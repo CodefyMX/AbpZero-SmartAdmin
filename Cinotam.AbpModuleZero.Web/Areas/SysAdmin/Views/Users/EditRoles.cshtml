@@ -1,0 +1,76 @@
+﻿@model Cinotam.ModuleZero.AppModule.Roles.Dto.RoleSelectorOutput
+@{
+    Layout = null;
+}
+<div class="modal-dialog" id="leaderModal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title"><img src="~/Scripts/smartAdminScripts/plugin/ckeditor/samples/assets/inlineall/logo.png" width="150" alt="SmartAdmin"></h4>
+        </div>
+        <div class="modal-body no-padding">
+
+            <form id="selectRoles" class="smart-form">
+                @Html.HiddenFor(a=>a.UserId)
+                <header>
+                    Seleccionar Roles
+                </header>
+                <fieldset>
+                    @foreach (var rol in Model.RoleDtos)
+                    {
+                        if (rol.IsSelected)
+                        {
+                            <section>
+                                <label class="checkbox">
+                                    <input type="checkbox" id="@rol.Name" checked="checked" value="@rol.Name">
+                                    <i></i>@rol.DisplayName
+                                </label>
+                            </section>
+                        }
+                        else
+                        {
+                            <label class="checkbox">
+                                <input type="checkbox" id="@rol.Name" value="@rol.Name">
+                                <i></i>@rol.DisplayName
+                            </label>
+                        }
+                    }
+                </fieldset>
+                <footer>
+                    <button type="submit" class="btn btn-primary">
+                        Guardar
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                </footer>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        var modalType = "MODAL_ROLES_SET";
+        $ (document).ready (function () {
+            $ ("#selectRoles").on ("submit", function (e) {
+                e.preventDefault ();
+                var data = {
+                    userId: $("#UserId").val(),
+                    roles:[]
+                };
+                
+                $("#selectRoles input:checked").each(function () {
+                    data.roles.push ($(this).val());
+                });
+
+                abp.services.app.user.setUserRoles(data).done(function () {
+                    window.modalInstance.close(modalType, {});
+                });
+
+            });
+        });
+    })();
+</script>
