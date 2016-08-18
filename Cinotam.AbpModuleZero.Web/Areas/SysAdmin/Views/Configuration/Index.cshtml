@@ -1,0 +1,182 @@
+﻿<!-- MAIN CONTENT -->
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa-fw fa fa-gear"></i>
+                @L("Configuration")
+                <span>
+                    >
+                    @L("ConfigurationManagement")
+                </span>
+            </h1>
+        </div>
+    </div>
+    <section id="widget-grid">
+        <div class="row">
+
+            <article class="col-xs-12 sortable-grid ui-sortable">
+
+                <div class="jarviswidget jarviswidget-sortable" id="wid-id-roleTable" style="" role="widget">
+                    <!-- widget options:
+                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                    data-widget-colorbutton="false"
+                    data-widget-editbutton="false"
+                    data-widget-togglebutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-fullscreenbutton="false"
+                    data-widget-custombutton="false"
+                    data-widget-collapsed="true"
+                    data-widget-sortable="false"
+
+                    -->
+                    <header role="heading">
+
+                        <ul id="widget-tab-1" class="nav nav-tabs">
+
+                            @*<li class="active">
+
+                                <a data-toggle="tab" href="#hr1"> <i class="fa fa-lg fa-cubes"></i> <span class="hidden-mobile hidden-tablet"> Diseño </span> </a>
+
+                            </li>*@
+
+                            <li class="active">
+                                <a data-toggle="tab" href="#hr2"> <i class="fa fa-lg fa-cogs"></i> <span class="hidden-mobile hidden-tablet"> Sistema </span></a>
+                            </li>
+
+                        </ul>
+                        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div role="content">
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <input class="form-control" type="text">
+                            <span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <div class="tab-content padding-10">
+                                <div class="tab-pane fade" id="hr1">
+                                    <form>
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="form-group col-lg-4">
+                                                    <label class="control-label">Tema</label>
+                                                    <select class="form-control" title="Click to Select a City">
+                                                        <option>Amsterdam</option>
+                                                        <option selected="selected">Atlanta</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                        </fieldset>
+                                    </form>
+
+                                </div>
+                                <div class="tab-pane fade  in active" id="hr2">
+                                    <div class="smart-form">
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col col-6">
+                                                    <div class="row">
+                                                        <section class="col col-6">
+                                                            <label class="toggle">
+                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Sitio en linea
+                                                            </label>
+                                                        </section>
+                                                    </div>
+                                                    <div class="row">
+                                                        <section class="col col-6">
+                                                            <label class="toggle">
+                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Permitir registro de usuarios
+                                                            </label>
+                                                        </section>
+                                                    </div>
+                                                    <div class="row">
+                                                        <section class="col col-6">
+                                                            <label class="toggle">
+                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Descargas activas
+                                                            </label>
+                                                        </section>
+                                                    </div>
+                                                    <div class="row">
+                                                        <section class="col col-6">
+                                                            <label class="toggle">
+                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Pagina de contacto
+                                                            </label>
+                                                        </section>
+                                                    </div>
+                                                    <div class="row">
+                                                        <section class="col col-6">
+                                                            <label class="toggle">
+                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Redireccionar a pagina de contacto (Sitio inactivo)
+                                                            </label>
+                                                        </section>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div class="row">
+                                                        <section class="col col-6">
+                                                            <label class="toggle">
+                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Rastrear solo ips del dominio
+                                                            </label>
+                                                        </section>
+                                                    </div>
+                                                    <div class="row">
+                                                        <section class="col col-6">
+                                                            <label class="toggle">
+                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Notificar cambios a administradores
+                                                            </label>
+                                                        </section>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col col-4">
+                                                            <label class="checkbox">
+                                                                <input type="checkbox" name="checkbox" checked="checked">
+                                                                <i></i>Usuarios
+                                                            </label>
+                                                            <label class="checkbox">
+                                                                <input type="checkbox" name="checkbox">
+                                                                <i></i>Roles
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+            </article>
+        </div>
+    </section>
+
+</div>
+<!-- END MAIN CONTENT -->
+@section pagespecific {
+
+}

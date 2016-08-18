@@ -1053,6 +1053,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Areas\SysAdmin\Views\Roles\Index.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Roles\CreateEditRole.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Configuration\Index.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
@@ -1118,6 +1119,7 @@
     <Compile Include="App_Start\AbpModuleZeroWebModule.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Areas\SysAdmin\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\RolesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\SysAdmin\SysAdminAreaRegistration.cs" />
