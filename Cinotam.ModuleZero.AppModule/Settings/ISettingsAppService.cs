@@ -1,13 +1,14 @@
-﻿using Cinotam.ModuleZero.AppModule.Settings.Dto;
+﻿using Abp.Application.Services;
+using Cinotam.ModuleZero.AppModule.Settings.Dto;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.Settings
 {
-    public interface ISettingsAppService
+    public interface ISettingsAppService : IApplicationService
     {
-        void CreateEditSetting(SettingInputDto input);
-        SettingInputDto GetSettingForEdit(int id);
-
-        SettingsOutput GetSettings();
-
+        Task CreateEditSetting(List<SettingInputDto> input);
+        Task<SettingInputDto> GetSettingForEdit(string name);
+        Task<SettingsOutput> GetSettingsOptions();
     }
 }

@@ -129,7 +129,7 @@ namespace Cinotam.ModuleZero.AppModule.Roles
             };
             if (allPermission.Children.Any())
             {
-                foreach (var childPermission in allPermission.Children.Where(a => a.Name != "Pages.Tenants"))
+                foreach (var childPermission in allPermission.Children)
                 {
                     AddPermission(childPermissions, rolePermissions, childPermission, rolePermissions.Any(a => a.Name == childPermission.Name));
                 }

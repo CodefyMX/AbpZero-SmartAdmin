@@ -1,4 +1,5 @@
-﻿<!-- MAIN CONTENT -->
+﻿@model Cinotam.ModuleZero.AppModule.Settings.Dto.SettingsOutput
+<!-- MAIN CONTENT -->
 <div id="content">
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
@@ -37,9 +38,9 @@
 
                             @*<li class="active">
 
-                                <a data-toggle="tab" href="#hr1"> <i class="fa fa-lg fa-cubes"></i> <span class="hidden-mobile hidden-tablet"> Diseño </span> </a>
+                                    <a data-toggle="tab" href="#hr1"> <i class="fa fa-lg fa-cubes"></i> <span class="hidden-mobile hidden-tablet"> Diseño </span> </a>
 
-                            </li>*@
+                                </li>*@
 
                             <li class="active">
                                 <a data-toggle="tab" href="#hr2"> <i class="fa fa-lg fa-cogs"></i> <span class="hidden-mobile hidden-tablet"> Sistema </span></a>
@@ -64,104 +65,100 @@
                         <!-- widget content -->
                         <div class="widget-body no-padding">
                             <div class="tab-content padding-10">
-                                <div class="tab-pane fade" id="hr1">
-                                    <form>
+                                <div class="tab-pane fade  in active" id="hr2">
+                                    <form id="settings" class="smart-form " >
                                         <fieldset>
                                             <div class="row">
-                                                <div class="form-group col-lg-4">
-                                                    <label class="control-label">Tema</label>
-                                                    <select class="form-control" title="Click to Select a City">
-                                                        <option>Amsterdam</option>
-                                                        <option selected="selected">Atlanta</option>
-                                                    </select>
+                                                <div class="col col-12">
+                                                    @foreach (var setting in Model.Settings)
+                                                    {
+                                                        <section class="col col-6">
+                                                            <label class="label">@setting.DisplayName</label>
+                                                            <label class="input">
+                                                                <input  type="text" data-key="@setting.Key" value="@setting.Value"/>
+                                                            </label>
+                                                            <div class="note">
+                                                                @setting.Description
+                                                                <p>
+                                                                    Default: @setting.DefaultValue
+                                                                </p>
+                                                            </div>
+                                                        </section>
+                                                    }
+                                                    @*<div class="row">
+                                                            <section class="col col-6">
+                                                                <label class="toggle">
+                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Permitir registro de usuarios
+                                                                </label>
+                                                            </section>
+                                                        </div>
+                                                        <div class="row">
+                                                            <section class="col col-6">
+                                                                <label class="toggle">
+                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Descargas activas
+                                                                </label>
+                                                            </section>
+                                                        </div>
+                                                        <div class="row">
+                                                            <section class="col col-6">
+                                                                <label class="toggle">
+                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Pagina de contacto
+                                                                </label>
+                                                            </section>
+                                                        </div>
+                                                        <div class="row">
+                                                            <section class="col col-6">
+                                                                <label class="toggle">
+                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Redireccionar a pagina de contacto (Sitio inactivo)
+                                                                </label>
+                                                            </section>
+                                                        </div>*@
+
                                                 </div>
+                                                
+                                                @*<div class="col col-6">
+                                                        <div class="row">
+                                                            <section class="col col-6">
+                                                                <label class="toggle">
+                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Rastrear solo ips del dominio
+                                                                </label>
+                                                            </section>
+                                                        </div>
+                                                        <div class="row">
+                                                            <section class="col col-6">
+                                                                <label class="toggle">
+                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
+                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Notificar cambios a administradores
+                                                                </label>
+                                                            </section>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col col-4">
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="checkbox" checked="checked">
+                                                                    <i></i>Usuarios
+                                                                </label>
+                                                                <label class="checkbox">
+                                                                    <input type="checkbox" name="checkbox">
+                                                                    <i></i>Roles
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
                                             </div>
 
-
+                                            <footer>
+                                                <button type="submit" class="btn btn-primary">
+                                                   Guardar
+                                                </button>
+                                            </footer>
                                         </fieldset>
                                     </form>
-
-                                </div>
-                                <div class="tab-pane fade  in active" id="hr2">
-                                    <div class="smart-form">
-                                        <fieldset>
-                                            <div class="row">
-                                                <div class="col col-6">
-                                                    <div class="row">
-                                                        <section class="col col-6">
-                                                            <label class="toggle">
-                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Sitio en linea
-                                                            </label>
-                                                        </section>
-                                                    </div>
-                                                    <div class="row">
-                                                        <section class="col col-6">
-                                                            <label class="toggle">
-                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Permitir registro de usuarios
-                                                            </label>
-                                                        </section>
-                                                    </div>
-                                                    <div class="row">
-                                                        <section class="col col-6">
-                                                            <label class="toggle">
-                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Descargas activas
-                                                            </label>
-                                                        </section>
-                                                    </div>
-                                                    <div class="row">
-                                                        <section class="col col-6">
-                                                            <label class="toggle">
-                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Pagina de contacto
-                                                            </label>
-                                                        </section>
-                                                    </div>
-                                                    <div class="row">
-                                                        <section class="col col-6">
-                                                            <label class="toggle">
-                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Redireccionar a pagina de contacto (Sitio inactivo)
-                                                            </label>
-                                                        </section>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col col-6">
-                                                    <div class="row">
-                                                        <section class="col col-6">
-                                                            <label class="toggle">
-                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Rastrear solo ips del dominio
-                                                            </label>
-                                                        </section>
-                                                    </div>
-                                                    <div class="row">
-                                                        <section class="col col-6">
-                                                            <label class="toggle">
-                                                                <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                <i data-swchon-text="Si" data-swchoff-text="No"></i>Notificar cambios a administradores
-                                                            </label>
-                                                        </section>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col col-4">
-                                                            <label class="checkbox">
-                                                                <input type="checkbox" name="checkbox" checked="checked">
-                                                                <i></i>Usuarios
-                                                            </label>
-                                                            <label class="checkbox">
-                                                                <input type="checkbox" name="checkbox">
-                                                                <i></i>Roles
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -179,4 +176,134 @@
 <!-- END MAIN CONTENT -->
 @section pagespecific {
 
+
+    <script>
+        (function () {
+            $ (document).ready(function () {
+                $("#settings").on("submit", function (e) {
+                    var data = [];
+                    e.preventDefault();
+                    $ ("#settings input").each(function () {
+                        var $element = $(this);
+                        var key = $element.data("key");
+                        var value = $element.val();
+                        data.push ({
+                            Key: key,
+                            Value:value
+                        });
+                        
+                    });
+                    abp.services.app.settings.createEditSetting(data).done(function () {
+                        window.location.reload ();
+                    });
+                });
+            });
+        })();
+    </script>
+
+    @*<script>
+        (function () {
+            var types = {
+                BOOLEAN : 0,
+                STRING : 1,
+                INT : 3
+            };
+            var inputTypes = {
+                CHECKBOX : "checkbox",
+                SELECT : "select",
+                TEXT : "text"
+            }
+
+            $ (document).ready (function () {
+                var dataSettings = $ ("[data-setting]");
+                dataSettings.each (function () {
+                    var elm = $ (this);
+                    var type = elm.attr ("type");
+                    var addCheckboxEvent = function (elm) {
+                        $ ("body").on ("change", elm, function () {
+                            var key = elm.data ("setting");
+                            var isCustomData;
+                            if (elm.is (":checked")) {
+                                var datavalueOff = elm.data ("valueoff");
+                                if (!datavalueOff) {
+                                    datavalueOff = false;
+                                } else {
+                                    isCustomData = true;
+                                }
+
+                                if (isCustomData) {
+                                    buildData (key, datavalueOff, types.STRING);
+                                } else {
+                                    buildData (key, datavalueOff, types.BOOLEAN);
+                                }
+
+                            } else {
+                                var datavalueOn = elm.data ("valueon");
+                                if (!datavalueOn) {
+                                    datavalueOn = true;
+                                } else {
+                                    isCustomData = true;
+                                }
+                                if (isCustomData) {
+                                    buildData (key, datavalueOn, types.STRING);
+                                } else {
+                                    buildData (key, datavalueOn, types.BOOLEAN);
+                                }
+                            }
+                        });
+                    };
+                    var addSelectEvent = function (elm) {
+                        $ ("body").on ("change", elm, function () {
+                            var key = elm.data("setting");
+
+                        });
+                    };
+                    var addTextEvent = function (elm) {
+
+                    };
+                    switch (type) {
+                    case inputTypes.CHECKBOX:
+                        addCheckboxEvent (elm);
+                        break;
+                    case inputTypes.SELECT:
+                        addSelectEvent (elm);
+                        break;
+                    case inputTypes.TEXT:
+                        addTextEvent (elm);
+                        break;
+                    default:
+                        break;
+                    }
+                });
+            });
+
+
+            function sendData (data) {
+                console.log ("Data to be send", data);
+            }
+
+            var configurationObject = function (key, value) {
+                this.Key = key;
+                this.Value = value;
+            }
+
+            function buildData (key, value, type) {
+                switch (type) {
+                case types.BOOLEAN:
+                    var converted = Boolean (value);
+                    var configData = new configurationObject (key, converted);
+                    sendData (configData);
+                    break;
+                case types.STRING:
+                    var configDataString = new configurationObject (key, value);
+                    sendData (configDataString);
+                    break;
+                case types.INT:
+                    break;
+                default:
+                }
+            }
+
+        }) ();
+    </script>*@
 }

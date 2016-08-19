@@ -99,6 +99,14 @@
   <ItemGroup>
     <Compile Include="CinotamModuleZeroAppModule.cs" />
     <Compile Include="CinotamModuleZeroAppServiceBase.cs" />
+    <Compile Include="Languages\Dto\LanguageDto.cs" />
+    <Compile Include="Languages\Dto\LanguagesOutput.cs" />
+    <Compile Include="Languages\Dto\LanguageTextsForEdit.cs" />
+    <Compile Include="Languages\Dto\LanguageInput.cs" />
+    <Compile Include="Languages\Dto\LanguageTextsForEditRequest.cs" />
+    <Compile Include="Languages\Dto\LocalizationTextInput.cs" />
+    <Compile Include="Languages\ILanguageAppService.cs" />
+    <Compile Include="Languages\LanguageAppService.cs" />
     <Compile Include="ModuleZeroNavigationProvider.cs" />
     <Compile Include="ModuleZeroSettingsProvider.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
@@ -120,6 +128,7 @@
     <Compile Include="Settings\Dto\SettingInputDto.cs" />
     <Compile Include="Settings\Dto\SettingsOutput.cs" />
     <Compile Include="Settings\ISettingsAppService.cs" />
+    <Compile Include="Settings\SettingsAppService.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\Dto\ProhibitPermissionInput.cs" />
     <Compile Include="Roles\Dto\RoleInput.cs" />
