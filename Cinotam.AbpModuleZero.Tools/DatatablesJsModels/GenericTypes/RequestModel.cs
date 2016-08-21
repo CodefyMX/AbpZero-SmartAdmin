@@ -3,13 +3,15 @@
 namespace Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes
 {
     /// <summary>
-    /// Normal request model
+    /// Normal request model, we use the generic to send special parameters to the query,
+    /// this will not have negative effects in the reflection extension (i hope so...)
     /// </summary>
-    public class RequestModel : RequestModel<int>
+    public class RequestModel<T> where T : new()
     {
         public RequestModel()
         {
             SecondarySearch = new List<string>();
+
         }
         public int start { get; set; }
         public int length { get; set; }
@@ -26,15 +28,7 @@ namespace Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes
         public string PropToSearch { get; set; }
         public bool SearchInAll { get; set; }
         public string SearchCol { get; set; }
-        public dynamic GenericProperty { get; set; }
+        public T TypeOfRequest { get; set; }
     }
 
-    /// <summary>
-    /// Abstract class for the request model
-    /// </summary>
-    /// <typeparam name="TParameterType"></typeparam>
-    public abstract class RequestModel<TParameterType>
-    {
-        public TParameterType RequestParameter { get; set; }
-    }
 }

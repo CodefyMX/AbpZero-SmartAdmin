@@ -2,7 +2,7 @@
 
 (function () {
     "use strict";
-    window.table = $("#languagesTable").DataTable({
+    var table = $("#languagesTable").DataTable({
         "bServerSide": true,
         "bPaginate": true,
         "sPaginationType": "full_numbers", // And its type.
@@ -27,7 +27,7 @@
             {
                 className: "text-center",
                 "render": function (data, type, row) {
-                    return " <a data-modal href='/SysAdmin/Languages/ChangeTexts/" + row.Id + "' class='btn btn-default btn-sm' title='Editar textos' ><i class='fa fa-edit'></i></a>";
+                    return " <a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-default btn-sm' title='Editar textos' ><i class='fa fa-edit'></i></a>";
                 },
                 "targets": 2
             },
@@ -37,14 +37,14 @@
             },
             {
                 "render": function (data, type, row) {
-                    return "<i class="+row.Icon+"></i> " +row.Name;
+                    return "<i class="+row.Icon+"></i> " +row.DisplayName;
                 },
                 "targets": 0
             }
         ],
         columns: [
             {
-                "data": "Name"
+                "data": "DisplayName"
             },
             { "data": "CreationTimeString" }
         ]

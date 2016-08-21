@@ -15,7 +15,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
         Task<ListResultOutput<UserListDto>> GetUsers();
 
-        ReturnModel<UserListDto> GetUsersForTable(RequestModel model);
+        ReturnModel<UserListDto> GetUsersForTable(RequestModel<object> model);
         Task DeleteUser(long? userId);
 
         Task CreateUser(CreateUserInput input);

@@ -52,7 +52,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 );
         }
 
-        public ReturnModel<UserListDto> GetUsersForTable(RequestModel model)
+        public ReturnModel<UserListDto> GetUsersForTable(RequestModel<object> model)
         {
             int totalCount;
             var query = _userRepository.GetAll();

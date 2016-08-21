@@ -22,7 +22,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View();
         }
         [WrapResult(false)]
-        public ActionResult LoadRoles(RequestModel input)
+        public ActionResult LoadRoles(RequestModel<object> input)
         {
             ProccessQueryData(input, "DisplayName", new[] { "DisplayName", "CreationTime" });
             var result = _roleAppService.GetRolesForTable(input);

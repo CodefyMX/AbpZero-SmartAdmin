@@ -22,7 +22,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         /// <param name="requestModel"></param>
         /// <param name="propToSearch">Prop used to filter data if empty search in all props of the object</param>
         /// <param name="reflectedProps">Columns of the table, they need to be in order</param>
-        protected void ProccessQueryData(RequestModel requestModel, string propToSearch, string[] reflectedProps)
+        protected void ProccessQueryData(RequestModel<object> requestModel, string propToSearch, string[] reflectedProps)
         {
             if (
                 Request.QueryString["order[0][column]"] != null)

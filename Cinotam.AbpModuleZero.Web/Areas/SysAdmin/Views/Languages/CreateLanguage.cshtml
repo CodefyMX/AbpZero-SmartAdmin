@@ -675,6 +675,7 @@
 </div>
 <script>
     (function () {
+        var modalType = "LANGUAGE_CREATED";
         function format(icon) {
             var originalOption = icon.element;
             return '<i class="' + $(originalOption).data('icon') + '"></i> ' + icon.text;
@@ -686,13 +687,16 @@
                 var icon = $("#icon").val();
                 var name = $("#name").val();
                 var displayNameText = $("#name option:selected").text();
-                var displayName = displayNameText.substring(0, (displayNameText.indexOf("(")-1));
+                var displayName = displayNameText.substring(0, (displayNameText.indexOf("(") - 1));
                 var data = {
                     Icon: icon,
-                    Name: name,
-                    displayName: displayName
+                    LangCode: name,
+                    DisplayName: displayName
                 }
-                console.log(data);
+                abp.services.app.language.addLanguage(data)
+                    .done(function () {
+                        modalInstance.close(modalType, {});
+                    });
             });
 
 

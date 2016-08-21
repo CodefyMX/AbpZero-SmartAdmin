@@ -69,7 +69,7 @@ namespace Cinotam.ModuleZero.AppModule.Roles
             }
 
         }
-        public ReturnModel<RoleDto> GetRolesForTable(RequestModel input)
+        public ReturnModel<RoleDto> GetRolesForTable(RequestModel<object> input)
         {
             var query = _roleManager.Roles.AsQueryable();
             int totalCount;

@@ -302,6 +302,7 @@
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
     <Content Include="Areas\SysAdmin\Scripts\datatables.responsiveConfigs.js" />
     <Content Include="Areas\SysAdmin\Scripts\languages.js" />
+    <Content Include="Areas\SysAdmin\Scripts\languageTexts.js" />
     <Content Include="Areas\SysAdmin\Scripts\roles.js" />
     <Content Include="Areas\SysAdmin\Scripts\users.js" />
     <Content Include="Content\css\abp\toastr.min.css" />
@@ -1056,6 +1057,7 @@
     <Content Include="Areas\SysAdmin\Views\Roles\CreateEditRole.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Configuration\Index.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\Index.cshtml" />
     <None Include="Areas\SysAdmin\Views\Layout\_LanguageSelectionAdmin.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />

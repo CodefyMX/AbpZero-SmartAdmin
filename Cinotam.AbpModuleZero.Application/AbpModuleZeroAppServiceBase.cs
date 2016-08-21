@@ -29,7 +29,7 @@ namespace Cinotam.AbpModuleZero
         {
             LocalizationSourceName = AbpModuleZeroConsts.LocalizationSourceName;
         }
-        public static IQueryable<T> GetOrderedQuery<T>(IQueryable<T> elements, RequestModel requestModel)
+        public static IQueryable<T> GetOrderedQuery<T>(IQueryable<T> elements, RequestModel<object> requestModel)
         {
             return requestModel.PropOrd.ToUpper() == "ASC" ? elements.OrderBy(requestModel.PropToSort) : elements.OrderByDescending(requestModel.PropToSort);
         }
@@ -42,7 +42,7 @@ namespace Cinotam.AbpModuleZero
         /// <param name="defaultOrderableProp">A default orderable property (if the method doesnt find the requested prop use this has callback)</param>
         /// <param name="totalCount"></param>
         /// <returns>ListOfTQ</returns>
-        public List<TQ> GenerateModel<TQ>(RequestModel request, IQueryable<TQ> queryable, string defaultOrderableProp, out int totalCount)
+        public List<TQ> GenerateModel<TQ>(RequestModel<object> request, IQueryable<TQ> queryable, string defaultOrderableProp, out int totalCount)
         {
             var pageIndex = request.start;
             var pageSize = request.length;

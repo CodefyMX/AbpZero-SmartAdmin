@@ -23,7 +23,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View();
         }
         [WrapResult(false)]
-        public ActionResult LoadUsers(RequestModel input)
+        public ActionResult LoadUsers(RequestModel<object> input)
         {
             ProccessQueryData(input, "UserName", new[] { "", "UserName", "EmailAddress" });
             var result = _userAppService.GetUsersForTable(input);

@@ -2,13 +2,14 @@
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.Languages;
+using Cinotam.ModuleZero.AppModule.Languages.Dto;
 using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
 {
     public class LanguagesController : AbpModuleZeroControllerBase
     {
-        private ILanguageAppService _languageAppService;
+        private readonly ILanguageAppService _languageAppService;
 
         public LanguagesController(ILanguageAppService languageAppService)
         {
@@ -21,7 +22,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View();
         }
         [WrapResult(false)]
-        public ActionResult LoadLanguages(RequestModel input)
+        public ActionResult LoadLanguages(RequestModel<object> input)
         {
             ProccessQueryData(input, "DisplayName", new[] { "Name", "CreationTime" });
             var data = _languageAppService.GetLanguagesForTable(input);
@@ -31,6 +32,24 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         public ActionResult CreateLanguage()
         {
             return View();
+        }
+
+        public ActionResult GetLanguageTexts(string targetLang)
+        {
+            var languageTexts = _languageAppService.GetLanguageTextsForEditView(targetLang, "en");
+            return View(languageTexts);
+        }
+        [WrapResult(false)]
+        public ActionResult GetLanguageTextsForTable(RequestModel<LanguageTextsForEditRequest> input, string source, string targetLang, string sourceLang)
+        {
+            input.TypeOfRequest = new LanguageTextsForEditRequest
+            {
+                Source = source,
+                SourceLang = sourceLang,
+                TargetLang = targetLang
+            };
+            var table = _languageAppService.GetLocalizationTexts(input);
+            return Json(table, JsonRequestBehavior.AllowGet);
         }
     }
 }

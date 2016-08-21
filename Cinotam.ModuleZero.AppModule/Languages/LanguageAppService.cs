@@ -31,10 +31,10 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         /// <returns></returns>
         public async Task AddLanguage(LanguageInput input)
         {
-            await _applicationLanguageManager.AddAsync(new ApplicationLanguage(AbpSession.TenantId, input.LangCode, input.Icon));
+            await _applicationLanguageManager.AddAsync(new ApplicationLanguage(AbpSession.TenantId, input.LangCode, input.DisplayName, input.Icon));
         }
 
-        public ReturnModel<LanguageDto> GetLanguagesForTable(RequestModel input)
+        public ReturnModel<LanguageDto> GetLanguagesForTable(RequestModel<object> input)
         {
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant))
             {
@@ -54,7 +54,8 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                     data = filterByLength.Select(a => new LanguageDto()
                     {
                         Icon = a.Icon,
-                        Name = a.DisplayName,
+                        DisplayName = a.DisplayName,
+                        Name = a.Name,
                         Id = a.Id,
                         CreationTime = a.CreationTime
                     }).ToArray()
@@ -71,17 +72,110 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                 CultureInfo.GetCultureInfo(input.Culture),
                 input.Key, input.Value);
         }
-
-        public LanguageTextsForEdit GetLocalizationTexts(LanguageTextsForEditRequest input)
+        /// <summary>
+        /// Experimental (Todo:Find the way to make just one ajax call to this function per operation)
+        /// Note: if there is a lot of language text elements in the table this may cause some perf. issues
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public ReturnModel<LanguageTextTableElement> GetLocalizationTexts(RequestModel<LanguageTextsForEditRequest> input)
         {
-            var languageTextsSource = _languageTextsRepository.GetAll().Where(a => a.Source == input.Source && a.LanguageName == input.SourceLang);
-            var languageTextsTarget = _languageTextsRepository.GetAll().Where(a => a.Source == input.Target && a.LanguageName == input.TargetLang);
-
+            //In memory watch out!
+            var languageTextsSource = _languageTextsRepository.GetAll()
+                .Where(a => a.Source == input.TypeOfRequest.Source
+                && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
+            var languageTextsTarget = _languageTextsRepository.GetAll()
+                .Where(a => a.Source == input.TypeOfRequest.Source
+                && a.LanguageName == input.TypeOfRequest.TargetLang).ToList();
+            //
             //Ahora a comparar
+
+            var listOfElements = new List<LanguageTextTableElement>();
+            foreach (var applicationLanguageText in languageTextsSource)
+            {
+                listOfElements.Add(new LanguageTextTableElement()
+                {
+                    Key = applicationLanguageText.Key,
+                    Source = applicationLanguageText.Source,
+                    SourceValue = applicationLanguageText.Value,
+                    TargetValue = GetTargetValueFromList(languageTextsTarget, applicationLanguageText.Key)
+                });
+            }
+
+
+            return new ReturnModel<LanguageTextTableElement>()
+            {
+                data = listOfElements.ToArray()
+            };
+        }
+
+        private string GetTargetValueFromList(List<ApplicationLanguageText> languageTextsTarget, string key)
+        {
+            if (languageTextsTarget.All(a => a.Key != key))
+            {
+                return "";
+            }
+            var first = languageTextsTarget.FirstOrDefault(a => a.Key == key);
+            return string.IsNullOrEmpty(first?.Value) ? "" : first.Value;
+        }
+
+        public LanguageTextsForEditView GetLanguageTextsForEditView(string selectedTargetLanguage,
+            string selectedSourceLanguage)
+        {
+            using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant))
+            {
+                var sources = _languageTextsRepository.GetAll();
+                var result = (from s in sources group s by s.Source into grp select grp.Key).ToList();
+                var languages = _languagesRepository.GetAll().ToList();
+                return new LanguageTextsForEditView()
+                {
+                    SourceLanguages = languages.Select(a => new LanguageSelected(a.DisplayName, a.Name, a.Icon)).ToList(),
+                    TargetLanguages = languages.Select(a => new LanguageSelected(a.DisplayName, a.Name, a.Icon)).ToList(),
+                    SelectedSourceLanguage = selectedSourceLanguage,
+                    SelectedTargetLanguage = selectedTargetLanguage,
+                    Source = result.Any() ?
+                    result.Select(a => a).ToList() :
+                    new List<string>()
+                    {
+                        AbpModuleZeroConsts.LocalizationSourceName
+                    }
+                };
+            }
+        }
+        #region UnusedCode
+
+        /*For GetLocalizationTexts
+         
+            Main Idea:
+
+                source = String
+                sources = List<LanguageText.cs>
+                targets = List<LanguageText.cs>
+            
+            Params: 
+            
+                object <LanguageTextsForEditRequest.cs>
+
+            Returns:
+
+                LanguageTextsForEdit.cs
+
+            Why Unused:
+
+                -This will require one additional list
+                -Its not suitable for table elements
+                -Too hard to implement with datatables.js
+
+            //////////////////////////////
+
+            var languageTextsSource = _languageTextsRepository.GetAll().Where(a => a.Source == input.TypeOfRequest.Source && a.LanguageName == input.TypeOfRequest.SourceLang);
+            
+            var languageTextsTarget = _languageTextsRepository.GetAll().Where(a => a.Source == input.TypeOfRequest.Source && a.LanguageName == input.TypeOfRequest.TargetLang);
 
             var targetLanguageTexts = new List<LanguageText>();
 
             var sourceLanguageTexts = new List<LanguageText>();
+            
             foreach (var applicationLanguageTextSrc in languageTextsSource)
             {
 
@@ -117,11 +211,16 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             }
             return new LanguageTextsForEdit()
             {
-                Source = input.Source,
-                Target = input.Target,
+                Source = input.TypeOfRequest.Source,
                 SourceLanguageTexts = sourceLanguageTexts,
                 TargetLanguageTexts = targetLanguageTexts
             };
-        }
+
+            //////////////////////////////
+
+         */
+
+
+        #endregion
     }
 }

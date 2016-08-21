@@ -8,7 +8,7 @@ namespace Cinotam.ModuleZero.AppModule.Roles
     public interface IRoleAppService : IApplicationService
     {
         Task UpdateRolePermissions(UpdateRolePermissionsInput input);
-        ReturnModel<RoleDto> GetRolesForTable(RequestModel input);
+        ReturnModel<RoleDto> GetRolesForTable(RequestModel<object> input);
         Task<RoleInput> GetRoleForEdit(int? id);
         Task CreateEditRole(RoleInput input);
         Task DeleteRole(int roleId);

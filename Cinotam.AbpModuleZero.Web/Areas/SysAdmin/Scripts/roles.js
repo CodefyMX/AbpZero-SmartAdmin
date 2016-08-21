@@ -2,7 +2,7 @@
 
 (function () {
     "use strict";
-    window.table = $("#rolesTable").DataTable({
+    var table = $("#rolesTable").DataTable({
         "bServerSide": true,
         "bPaginate": true,
         "sPaginationType": "full_numbers", // And its type.

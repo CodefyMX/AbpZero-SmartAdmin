@@ -100,10 +100,14 @@
     <Compile Include="CinotamModuleZeroAppModule.cs" />
     <Compile Include="CinotamModuleZeroAppServiceBase.cs" />
     <Compile Include="Languages\Dto\LanguageDto.cs" />
+    <Compile Include="Languages\Dto\LanguageSelected.cs" />
     <Compile Include="Languages\Dto\LanguagesOutput.cs" />
+    <Compile Include="Languages\Dto\LanguageText.cs" />
     <Compile Include="Languages\Dto\LanguageTextsForEdit.cs" />
     <Compile Include="Languages\Dto\LanguageInput.cs" />
     <Compile Include="Languages\Dto\LanguageTextsForEditRequest.cs" />
+    <Compile Include="Languages\Dto\LanguageTextsForEditView.cs" />
+    <Compile Include="Languages\Dto\LanguageTextTableElement.cs" />
     <Compile Include="Languages\Dto\LocalizationTextInput.cs" />
     <Compile Include="Languages\ILanguageAppService.cs" />
     <Compile Include="Languages\LanguageAppService.cs" />
