@@ -3,6 +3,7 @@ using System.Reflection;
 
 namespace Cinotam.ModuleZero.AppModule
 {
+    [DependsOn(typeof(Cinotam.AbpModuleZero.AbpModuleZeroCoreModule))]
     public class CinotamModuleZeroAppModule : AbpModule
     {
         public override void Initialize()

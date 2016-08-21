@@ -2,6 +2,7 @@
 using Abp.Domain.Uow;
 using Abp.Localization;
 using Cinotam.AbpModuleZero;
+using Cinotam.AbpModuleZero.Localization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Languages.Dto;
 using System.Collections.Generic;
@@ -17,12 +18,17 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         private readonly IApplicationLanguageTextManager _applicationLanguageTextManager;
         private readonly IRepository<ApplicationLanguageText, long> _languageTextsRepository;
         private readonly IRepository<ApplicationLanguage> _languagesRepository;
-        public LanguageAppService(IApplicationLanguageManager applicationLanguageManager, IApplicationLanguageTextManager applicationLanguageTextManager, IRepository<ApplicationLanguageText, long> languageTextsRepository, IRepository<ApplicationLanguage> languagesRepository)
+        private readonly ILanguageTextsProvider _languageTextsProvider;
+
+        public const string DefaultLanguage = "en";
+
+        public LanguageAppService(IApplicationLanguageManager applicationLanguageManager, IApplicationLanguageTextManager applicationLanguageTextManager, IRepository<ApplicationLanguageText, long> languageTextsRepository, IRepository<ApplicationLanguage> languagesRepository, ILanguageTextsProvider languageTextsProvider)
         {
             _applicationLanguageManager = applicationLanguageManager;
             _applicationLanguageTextManager = applicationLanguageTextManager;
             _languageTextsRepository = languageTextsRepository;
             _languagesRepository = languagesRepository;
+            _languageTextsProvider = languageTextsProvider;
         }
         /// <summary>
         /// Adds a new available language to the app
@@ -32,6 +38,17 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         public async Task AddLanguage(LanguageInput input)
         {
             await _applicationLanguageManager.AddAsync(new ApplicationLanguage(AbpSession.TenantId, input.LangCode, input.DisplayName, input.Icon));
+
+
+
+            AddAllKeysForNewLanguage(input.LangCode);
+
+
+        }
+
+        private void AddAllKeysForNewLanguage(string langCode)
+        {
+            _languageTextsProvider.SetLocalizationKeys(langCode, AbpSession.TenantId);
         }
 
         public ReturnModel<LanguageDto> GetLanguagesForTable(RequestModel<object> input)
@@ -80,16 +97,71 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         /// <returns></returns>
         public ReturnModel<LanguageTextTableElement> GetLocalizationTexts(RequestModel<LanguageTextsForEditRequest> input)
         {
+            var hasAny = true;
             //In memory watch out!
+
+
+            //Source requested
             var languageTextsSource = _languageTextsRepository.GetAll()
                 .Where(a => a.Source == input.TypeOfRequest.Source
                 && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
+            //Texts to edit
             var languageTextsTarget = _languageTextsRepository.GetAll()
                 .Where(a => a.Source == input.TypeOfRequest.Source
                 && a.LanguageName == input.TypeOfRequest.TargetLang).ToList();
             //
             //Ahora a comparar
 
+
+            //If there are no texts in the source
+            if (!languageTextsSource.Any())
+            {
+                //This will restore all the keys from the xml file
+                _languageTextsProvider.SetLocalizationTextForStaticLanguages(input.TypeOfRequest.SourceLang,
+                    AbpModuleZeroConsts.LocalizationSourceName);
+                hasAny = false;
+            }
+
+            if (languageTextsTarget.Any())
+            {
+                //If languageTextsSource has values
+                if (hasAny)
+                {
+                    //Build the model
+                    return GetTableData(languageTextsTarget, languageTextsSource);
+                }
+
+                //This means that the textSources where restored from the xml
+                //And now the must be reloaded
+                var languageTextsSourceS = _languageTextsRepository.GetAll()
+                    .Where(a => a.Source == input.TypeOfRequest.Source
+                                && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
+
+                //Once reloaded we build the model
+                return GetTableData(languageTextsTarget, languageTextsSourceS);
+            }
+            //Make sure that the source is english so it can be restored with all the english data
+            if (input.TypeOfRequest.SourceLang == DefaultLanguage)
+            {
+                //There are no language texts in the current tenant or with the current request
+                //Initialize default language texts
+                _languageTextsProvider.SetLocalizationStringsForStaticLanguage(
+                    AbpSession.TenantId,
+                    input.TypeOfRequest.SourceLang,
+                    input.TypeOfRequest.TargetLang,
+                    input.TypeOfRequest.Source);
+
+                var languageTextsSourceSecondSearch = _languageTextsRepository.GetAll().Where(a => a.Source == input.TypeOfRequest.Source && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
+                var languageTextsTargetSecondSearch = _languageTextsRepository.GetAll().Where(a => a.Source == input.TypeOfRequest.Source && a.LanguageName == input.TypeOfRequest.TargetLang).ToList();
+                return GetTableData(languageTextsTargetSecondSearch, languageTextsSourceSecondSearch);
+            }
+            //Return an empty table
+            return new ReturnModel<LanguageTextTableElement>();
+        }
+
+
+        private ReturnModel<LanguageTextTableElement> GetTableData(List<ApplicationLanguageText> languageTextsTarget, List<ApplicationLanguageText> languageTextsSource)
+        {
             var listOfElements = new List<LanguageTextTableElement>();
             foreach (var applicationLanguageText in languageTextsSource)
             {
@@ -101,12 +173,11 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                     TargetValue = GetTargetValueFromList(languageTextsTarget, applicationLanguageText.Key)
                 });
             }
-
-
             return new ReturnModel<LanguageTextTableElement>()
             {
                 data = listOfElements.ToArray()
             };
+
         }
 
         private string GetTargetValueFromList(List<ApplicationLanguageText> languageTextsTarget, string key)

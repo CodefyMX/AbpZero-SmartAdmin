@@ -6,8 +6,6 @@
         var targetLang = $("#SelectedTargetLanguage").val();
         var sourceLang = $("#SelectedSourceLanguage").val();
         var table = $("#languageTextsTable").DataTable({
-            "bServerSide": true,
-            "bPaginate": true,
             "sPaginationType": "full_numbers", // And its type.
             "iDisplayLength": 10,
             "ajax": "/SysAdmin/Languages/" + "GetLanguageTextsForTable?Source=" + source + "&TargetLang=" + targetLang + "&SourceLang=" + sourceLang,

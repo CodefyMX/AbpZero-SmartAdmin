@@ -14,6 +14,7 @@ namespace Cinotam.AbpModuleZero
     [DependsOn(typeof(AbpZeroCoreModule))]
     public class AbpModuleZeroCoreModule : AbpModule
     {
+
         public override void PreInitialize()
         {
             Configuration.Auditing.IsEnabledForAnonymousUsers = true;
@@ -45,6 +46,12 @@ namespace Cinotam.AbpModuleZero
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+
+
+
+
         }
+
+
     }
 }
