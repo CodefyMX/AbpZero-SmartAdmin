@@ -49,15 +49,11 @@ namespace Cinotam.AbpModuleZero.Localization
                 XmlLocation
                 );
             provider.Initialize(AbpModuleZeroConsts.LocalizationSourceName);
+            //Default dictionary = "en" en should be always available
             var strings = provider.DefaultDictionary.GetAllStrings();
             var result = strings.Select(a => a.Name).ToList();
 
             return result;
-        }
-
-        public void SetLocalizationTextForStaticLanguages(string staticLanguage, string defaultSource)
-        {
-
         }
         /// <summary>
         /// 
@@ -124,6 +120,7 @@ namespace Cinotam.AbpModuleZero.Localization
                     TenantId = tenantId,
                 });
             }
+            CurrentUnitOfWork.SaveChanges();
         }
     }
 }

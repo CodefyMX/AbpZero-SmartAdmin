@@ -48,6 +48,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
         private void AddAllKeysForNewLanguage(string langCode)
         {
+            //Only creates the keys with empty values
             _languageTextsProvider.SetLocalizationKeys(langCode, AbpSession.TenantId);
         }
 
@@ -97,66 +98,51 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         /// <returns></returns>
         public ReturnModel<LanguageTextTableElement> GetLocalizationTexts(RequestModel<LanguageTextsForEditRequest> input)
         {
-            var hasAny = true;
-            //In memory watch out!
+
+
+            //1.-Load all source texts
+            //1.1 If the current tenant has no texts in the dabatabase for the source
+            //    we must generate these texts with a default language wich is always available 
 
 
             //Source requested
             var languageTextsSource = _languageTextsRepository.GetAll()
                 .Where(a => a.Source == input.TypeOfRequest.Source
                 && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
+
+            if (!languageTextsSource.Any())
+            {
+                //This will restore all the keys from the xml file en should be always available
+                _languageTextsProvider.SetLocalizationStringsForStaticLanguage(AbpSession.TenantId, input.TypeOfRequest.SourceLang, "en",
+                    AbpModuleZeroConsts.LocalizationSourceName);
+            }
+
+            //2.-Load all target texts
+            //2.1.-If the current tenant has no texts in the database for the target
+            //     we must generate them with empty spaces and the key from the source 
             //Texts to edit
             var languageTextsTarget = _languageTextsRepository.GetAll()
                 .Where(a => a.Source == input.TypeOfRequest.Source
                 && a.LanguageName == input.TypeOfRequest.TargetLang).ToList();
-            //
-            //Ahora a comparar
 
-
-            //If there are no texts in the source
-            if (!languageTextsSource.Any())
+            if (!languageTextsTarget.Any())
             {
-                //This will restore all the keys from the xml file
-                _languageTextsProvider.SetLocalizationTextForStaticLanguages(input.TypeOfRequest.SourceLang,
-                    AbpModuleZeroConsts.LocalizationSourceName);
-                hasAny = false;
-            }
-
-            if (languageTextsTarget.Any())
-            {
-                //If languageTextsSource has values
-                if (hasAny)
-                {
-                    //Build the model
-                    return GetTableData(languageTextsTarget, languageTextsSource);
-                }
-
-                //This means that the textSources where restored from the xml
-                //And now the must be reloaded
+                //Only sets keys with empty values
+                _languageTextsProvider.SetLocalizationKeys(input.TypeOfRequest.TargetLang, AbpSession.TenantId);
                 var languageTextsSourceS = _languageTextsRepository.GetAll()
                     .Where(a => a.Source == input.TypeOfRequest.Source
                                 && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
 
-                //Once reloaded we build the model
-                return GetTableData(languageTextsTarget, languageTextsSourceS);
-            }
-            //Make sure that the source is english so it can be restored with all the english data
-            if (input.TypeOfRequest.SourceLang == DefaultLanguage)
-            {
-                //There are no language texts in the current tenant or with the current request
-                //Initialize default language texts
-                _languageTextsProvider.SetLocalizationStringsForStaticLanguage(
-                    AbpSession.TenantId,
-                    input.TypeOfRequest.SourceLang,
-                    input.TypeOfRequest.TargetLang,
-                    input.TypeOfRequest.Source);
 
-                var languageTextsSourceSecondSearch = _languageTextsRepository.GetAll().Where(a => a.Source == input.TypeOfRequest.Source && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
-                var languageTextsTargetSecondSearch = _languageTextsRepository.GetAll().Where(a => a.Source == input.TypeOfRequest.Source && a.LanguageName == input.TypeOfRequest.TargetLang).ToList();
-                return GetTableData(languageTextsTargetSecondSearch, languageTextsSourceSecondSearch);
+                //Once reloaded we build the model
+                var languageTextsTargetS = _languageTextsRepository.GetAll()
+                .Where(a => a.Source == input.TypeOfRequest.Source
+                && a.LanguageName == input.TypeOfRequest.TargetLang).ToList();
+                ////3.-Pupulate table with both key targetText - value and sourceText - value
+                return GetTableData(languageTextsTargetS, languageTextsSourceS);
             }
-            //Return an empty table
-            return new ReturnModel<LanguageTextTableElement>();
+            ////3.-Pupulate table with both key targetText - value and sourceText - value
+            return GetTableData(languageTextsTarget, languageTextsSource);
         }
 
 

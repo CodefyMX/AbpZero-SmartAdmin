@@ -9,6 +9,5 @@ namespace Cinotam.AbpModuleZero.Localization
         List<LocalizedString> GetLocalizationStringFromAssembly(string sourceLang);
         void SetLocalizationStringsForStaticLanguage(int? abpTenantId, string sourceLang, string targetLang, string source);
         void SetLocalizationKeys(string langCode, int? tenantId);
-        void SetLocalizationTextForStaticLanguages(string staticLanguage, string defaultSource);
     }
 }
