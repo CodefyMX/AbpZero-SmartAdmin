@@ -30,7 +30,7 @@
                     if (row.IsStatic) {
                         return "<a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-default btn-xs' title='Editar textos' ><i class='fa fa-edit'></i></a> <a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-danger btn-xs disabled' title='Eliminar lenguaje' ><i class='fa fa-times'></i></a>";
                     } else {
-                        return "<a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-default btn-xs' title='Editar textos' ><i class='fa fa-edit'></i></a> <a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-danger btn-xs' title='Eliminar lenguaje' ><i class='fa fa-times'></i></a>";
+                        return "<a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-default btn-xs' title='Editar textos' ><i class='fa fa-edit'></i></a> <a data-name='" + row.DisplayName + "' data-code=" + row.Name + " class='btn btn-danger btn-xs js-delete-language' title='Eliminar lenguaje' ><i class='fa fa-times'></i></a>";
                     }
                 },
                 "targets": 3
@@ -65,7 +65,18 @@
         ]
     });
 
-
+    $('body').on('click', '.js-delete-language', function () {
+        var code = $(this).data('code');
+        var name = $(this).data('name');
+        abp.message.confirm("¿Desea eliminar el lenguaje [" + name + "]?", "Eliminar Lenguaje", function (response) {
+            if (response) {
+                abp.ui.setBusy('body', abp.services.app.language.deleteLanguage(code).done(function () {
+                    table.ajax.reload();
+                    abp.notify.warn("Lenguaje [" + name + "] eliminado", "¡Exito!");
+                }));
+            }
+        });
+    });
 
     document.addEventListener('modalClose', modalHandler);
     function modalHandler(event) {

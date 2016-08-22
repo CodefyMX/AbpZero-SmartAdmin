@@ -83,6 +83,25 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
         }
 
+        public async Task DeleteLanguage(string code)
+        {
+            using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete))
+            {
+                //Much texts, many memory
+                await DeleteAllTextsFromLanguage(code);
+                await _applicationLanguageManager.RemoveAsync(AbpSession.TenantId, code);
+            }
+        }
+
+        private async Task DeleteAllTextsFromLanguage(string code)
+        {
+            var texts = _languageTextsRepository.GetAllList(a => a.LanguageName == code);
+            foreach (var applicationLanguageText in texts)
+            {
+                await _languageTextsRepository.DeleteAsync(applicationLanguageText);
+            }
+        }
+
         public async Task AddEditLocalizationText(LocalizationTextInput input)
         {
             await _applicationLanguageTextManager.UpdateStringAsync(

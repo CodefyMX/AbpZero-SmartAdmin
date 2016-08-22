@@ -13,6 +13,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         LanguageTextsForEditView GetLanguageTextsForEditView(string selectedTargetLanguage,
             string selectedSourceLanguage);
 
+        Task DeleteLanguage(string code);
         Task AddEditLocalizationText(LocalizationTextInput input);
     }
 }
