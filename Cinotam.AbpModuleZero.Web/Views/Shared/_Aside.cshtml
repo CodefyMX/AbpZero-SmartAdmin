@@ -22,14 +22,14 @@
 			<li class="@Html.RouteIf("index", "active")">
 				<a href="#" title="Administración"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Administración</span></a>
 				<ul>
-					<li class="@Html.RouteIf("index", "active")">
-						<a href="@Url.Action("index", "Users")" title="Usuarios"><span class="menu-item-parent">Usuarios / Roles</span></a>
+					<li class="@Html.RouteIf("UsersAndRolesList", "active")">
+						<a href="@Url.Action("UsersAndRolesList", "Users")" title="Usuarios"><span class="menu-item-parent">Usuarios y Roles</span></a>
 					</li>
-					<li class="@Html.RouteIf("index", "active")">
-						<a href="@Url.Action("index", "Languages")" title="Lenguajes"><span class="menu-item-parent">Lenguajes</span></a>
+					<li class="@Html.RouteIf("LanguagesList", "active")">
+						<a href="@Url.Action("LanguagesList", "Languages")" title="Lenguajes"><span class="menu-item-parent">Lenguajes</span></a>
 					</li>
-					<li class="@Html.RouteIf("index", "active")">
-						<a href="@Url.Action("index", "Configuration")" title="Configuración"><span class="menu-item-parent">Configuración</span></a>
+					<li class="@Html.RouteIf("Configurations", "active")">
+						<a href="@Url.Action("Configurations", "Configuration")" title="Configuración"><span class="menu-item-parent">Configuración</span></a>
 					</li>
 				</ul>
 			</li>

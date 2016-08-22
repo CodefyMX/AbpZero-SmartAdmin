@@ -26,7 +26,7 @@
             {
                 className: "text-center",
                 "render": function (data, type, row) {
-                    return " <a data-modal href='/SysAdmin/Users/CreateEditUser/" + row.Id + "' class='btn btn-default btn-sm' title='Editar usuario' ><i class='fa fa-edit'></i></a> <a data-modal href='/SysAdmin/Users/EditRoles/" + row.Id + "' class='btn btn-default btn-sm' title='Editar roles' ><i class='fa fa-lock'></i></a>";
+                    return " <a data-modal href='/SysAdmin/Users/CreateEditUser/" + row.Id + "' class='btn btn-default btn-xs' title='Editar usuario' ><i class='fa fa-edit'></i></a> <a data-modal href='/SysAdmin/Users/EditRoles/" + row.Id + "' class='btn btn-default btn-xs' title='Editar roles' ><i class='fa fa-lock'></i></a>";
                 },
                 "targets": 2
             },

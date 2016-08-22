@@ -579,7 +579,7 @@
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
     <Content Include="Areas\SysAdmin\Views\web.config" />
-    <Content Include="Areas\SysAdmin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Users\UsersAndRolesList.cshtml" />
     <Content Include="Areas\SysAdmin\Views\_ViewStart.cshtml" />
     <Content Include="Scripts\smartAdminScripts\app.config.js" />
     <Content Include="Scripts\smartAdminScripts\app.min.js" />
@@ -1053,13 +1053,13 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Areas\SysAdmin\Views\Roles\Index.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Roles\RolesList.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Roles\CreateEditRole.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Configuration\Index.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Configuration\Configurations.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
-    <None Include="Areas\SysAdmin\Views\Languages\Index.cshtml" />
+    <None Include="Areas\SysAdmin\Views\Languages\LanguagesList.cshtml" />
     <None Include="Areas\SysAdmin\Views\Layout\_LanguageSelectionAdmin.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />

@@ -3,7 +3,7 @@
 
     $(document).ready(function () {
 
-
+        drawBreadCrumb(["Languages","LanguageTexts"]);
 
         var source = $("#Source").val();
         var targetLang = $("#SelectedTargetLanguage").val();
@@ -33,7 +33,7 @@
                 {
                     className: "text-center",
                     "render": function (data, type, row) {
-                        return " <a data-href='/SysAdmin/Languages/EditText/?key=" + row.Key + "&targetLang=" + $("#SelectedTargetLanguage").val() + "&source=" + $("#Source").val() + "' class='btn btn-default btn-sm js-trigger-modal' title='Editar texto' ><i class='fa fa-edit'></i></a>";
+                        return " <a data-current='"+row.TargetValue+"' data-source='" + $("#Source").val() + "' data-lang='" + $("#SelectedTargetLanguage").val() + "' data-key='" + row.Key + "' data-href='/SysAdmin/Languages/EditText' class='btn btn-default btn-xs js-trigger-modal' title='Editar texto' ><i class='fa fa-edit'></i></a>";
                     },
                     "targets": 3
                 }
@@ -54,7 +54,13 @@
                 row: row
             }
             var href = $(this).data("href");
-            modalInstance.open(href, {});
+            var data = {
+                LanguageName: $(this).data("lang"),
+                Key: $(this).data("key"),
+                Source: $(this).data("source"),
+                Value:$(this).data("current")
+            }
+            modalInstance.open(href, data);
         });
 
         document.addEventListener("modalClose", modalHandler);

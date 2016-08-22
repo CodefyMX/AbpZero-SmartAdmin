@@ -27,9 +27,13 @@
             {
                 className: "text-center",
                 "render": function (data, type, row) {
-                    return " <a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-default btn-sm' title='Editar textos' ><i class='fa fa-edit'></i></a>";
+                    if (row.IsStatic) {
+                        return "<a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-default btn-xs' title='Editar textos' ><i class='fa fa-edit'></i></a> <a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-danger btn-xs disabled' title='Eliminar lenguaje' ><i class='fa fa-times'></i></a>";
+                    } else {
+                        return "<a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-default btn-xs' title='Editar textos' ><i class='fa fa-edit'></i></a> <a href='/SysAdmin/Languages/GetLanguageTexts?targetLang=" + row.Name + "' class='btn btn-danger btn-xs' title='Eliminar lenguaje' ><i class='fa fa-times'></i></a>";
+                    }
                 },
-                "targets": 2
+                "targets": 3
             },
             {
                 "name": "CreationTime",
@@ -37,10 +41,21 @@
             },
             {
                 "render": function (data, type, row) {
-                    return "<i class="+row.Icon+"></i> " +row.DisplayName;
+                    return "<i class=" + row.Icon + "></i> " + row.DisplayName;
                 },
                 "targets": 0
+            },
+            {
+                "render": function (data, type, row) {
+                    if (row.IsStatic) {
+                        return "<span class='label label-default'>Estatico</span>";
+                    } else {
+                        return "<span class='label label-primary'>Definido por el usuario</span>";
+                    }
+                },
+                "targets": 2
             }
+
         ],
         columns: [
             {
@@ -50,7 +65,7 @@
         ]
     });
 
-    
+
 
     document.addEventListener('modalClose', modalHandler);
     function modalHandler(event) {

@@ -12,5 +12,6 @@ namespace Cinotam.ModuleZero.AppModule.Languages.Dto
         public DateTime CreationTime { get; set; }
         public string CreationTimeString => CreationTime.ToShortDateString();
         public string DisplayName { get; set; }
+        public bool IsStatic { get; set; }
     }
 }

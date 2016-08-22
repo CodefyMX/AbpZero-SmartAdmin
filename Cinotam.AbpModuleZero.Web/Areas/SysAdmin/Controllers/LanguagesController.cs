@@ -17,7 +17,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         }
 
         // GET: SysAdmin/Languages
-        public ActionResult Index()
+        public ActionResult LanguagesList()
         {
             return View();
         }
@@ -52,16 +52,16 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return Json(table, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult EditText(string key, string targetLang, string source)
+        public ActionResult EditText(LocalizationTextInput input)
         {
-            var localizationTextInput = new LocalizationTextInput()
-            {
-                LanguageName = targetLang,
-                Key = key,
-                Source = source,
-                Value = ""
-            };
-            return View(localizationTextInput);
+            //var localizationTextInput = new LocalizationTextInput()
+            //{
+            //    LanguageName = targetLang,
+            //    Key = key,
+            //    Source = source,
+            //    Value = currentValue
+            //};
+            return View(input);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         }
 
         // GET: SysAdmin/Configuration
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Configurations()
         {
             var allSettings = await _settingsAppService.GetSettingsOptions();
             return View(allSettings);

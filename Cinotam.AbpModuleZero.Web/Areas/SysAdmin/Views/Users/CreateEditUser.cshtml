@@ -127,8 +127,8 @@
             abp.ui.setBusy($("#createEditForm"), abp.ajax({
                 url: url,
                 data: JSON.stringify(data)
-            }).done(function (response) {
-                window.modalInstance.close(response, modalType);
+            }).done(function () {
+                window.modalInstance.close({}, modalType);
             }));
         });
     })();

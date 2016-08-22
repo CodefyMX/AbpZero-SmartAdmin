@@ -23,9 +23,12 @@
                 <fieldset>
                     <section>
                         <div class="row">
+                            <label class="label col col-6"><strong>Fuente:</strong> @Model.Source</label>
+                            <label class="label col col-6"><strong>Lenguaje:</strong> @Model.LanguageName</label>
+                        </div>
+                        <div class="row">
                             <label class="label col col-4"><strong>Llave:</strong> @Model.Key</label>
-                            <label class="label col col-4"><strong>Fuente:</strong> @Model.Source</label>
-                            <label class="label col col-4"><strong>Lenguaje:</strong> @Model.LanguageName</label>
+
                         </div>
                     </section>
 
@@ -33,9 +36,9 @@
                         <div class="row">
                             <label class="label col col-2">Texto</label>
                             <div class="col col-10">
-                                <label class="input">
+                                <label class="textarea">
                                     <i class="icon-append fa fa-comment"></i>
-                                    @Html.TextBoxFor(a => a.Value, new { required = "required" })
+                                    @Html.TextAreaFor(a => a.Value, new { required = "required",@class="custom-scroll" })
                                 </label>
                             </div>
                         </div>

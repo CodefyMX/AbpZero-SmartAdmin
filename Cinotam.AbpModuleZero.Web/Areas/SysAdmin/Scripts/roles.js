@@ -32,9 +32,9 @@
                 className: "text-center",
                 "render": function (data, type, row) {
                     if (!row.IsStatic) {
-                        return " <a data-modal href='/SysAdmin/Roles/CreateEditRole/" + row.Id + "' class='btn btn-default btn-sm' title='Editar Rol' ><i class='fa fa-edit'></i></a>";
+                        return " <a data-modal href='/SysAdmin/Roles/CreateEditRole/" + row.Id + "' class='btn btn-default btn-xs' title='Editar Rol' ><i class='fa fa-edit'></i></a>";
                     } else {
-                        return " <a disabled class='btn btn-default btn-sm' title='Editar rol' ><i class='fa fa-edit'></i></a>";
+                        return " <a disabled class='btn btn-default btn-xs' title='Editar rol' ><i class='fa fa-edit'></i></a>";
                     }
                     
                 },

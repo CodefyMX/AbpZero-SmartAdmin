@@ -18,7 +18,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             _userAppService = userAppService;
         }
 
-        public ActionResult Index()
+        public ActionResult UsersAndRolesList()
         {
             return View();
         }

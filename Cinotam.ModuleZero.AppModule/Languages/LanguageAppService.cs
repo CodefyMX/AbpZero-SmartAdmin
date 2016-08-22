@@ -75,7 +75,8 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                         DisplayName = a.DisplayName,
                         Name = a.Name,
                         Id = a.Id,
-                        CreationTime = a.CreationTime
+                        CreationTime = a.CreationTime,
+                        IsStatic = a.TenantId == null
                     }).ToArray()
                 };
             }
