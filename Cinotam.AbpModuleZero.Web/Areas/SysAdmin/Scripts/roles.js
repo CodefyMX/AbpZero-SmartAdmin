@@ -56,7 +56,7 @@
     document.addEventListener('modalClose', modalHandler);
     function modalHandler(event) {
         console.log(event);
-        switch (event.detail.info) {
+        switch (event.detail.info.modalType) {
             case "MODAL_ROLES_SET":
                 table.ajax.reload();
                 abp.notify.success("Roles asignados", "¡Exito!");

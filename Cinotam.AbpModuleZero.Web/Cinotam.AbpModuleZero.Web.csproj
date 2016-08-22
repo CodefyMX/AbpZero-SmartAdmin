@@ -1058,6 +1058,7 @@
     <Content Include="Areas\SysAdmin\Views\Configuration\Index.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\Index.cshtml" />
     <None Include="Areas\SysAdmin\Views\Layout\_LanguageSelectionAdmin.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />

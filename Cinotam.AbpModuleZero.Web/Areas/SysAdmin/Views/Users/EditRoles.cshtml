@@ -13,7 +13,7 @@
         <div class="modal-body no-padding">
 
             <form id="selectRoles" class="smart-form">
-                @Html.HiddenFor(a=>a.UserId)
+                @Html.HiddenFor(a => a.UserId)
                 <header>
                     Seleccionar Roles
                 </header>
@@ -54,20 +54,20 @@
 <script>
     (function () {
         var modalType = "MODAL_ROLES_SET";
-        $ (document).ready (function () {
-            $ ("#selectRoles").on ("submit", function (e) {
-                e.preventDefault ();
+        $(document).ready(function () {
+            $("#selectRoles").on("submit", function (e) {
+                e.preventDefault();
                 var data = {
                     userId: $("#UserId").val(),
-                    roles:[]
+                    roles: []
                 };
-                
+
                 $("#selectRoles input:checked").each(function () {
-                    data.roles.push ($(this).val());
+                    data.roles.push($(this).val());
                 });
 
                 abp.services.app.user.setUserRoles(data).done(function () {
-                    window.modalInstance.close(modalType, {});
+                    window.modalInstance.close({}, modalType);
                 });
 
             });

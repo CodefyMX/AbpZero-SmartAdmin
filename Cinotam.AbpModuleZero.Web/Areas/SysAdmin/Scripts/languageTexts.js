@@ -1,10 +1,15 @@
 ﻿(function () {
     "use strict";
 
-    $(document).ready(function() {
+    $(document).ready(function () {
+
+
+
         var source = $("#Source").val();
         var targetLang = $("#SelectedTargetLanguage").val();
         var sourceLang = $("#SelectedSourceLanguage").val();
+
+
         var table = $("#languageTextsTable").DataTable({
             "sPaginationType": "full_numbers", // And its type.
             "iDisplayLength": 10,
@@ -28,7 +33,7 @@
                 {
                     className: "text-center",
                     "render": function (data, type, row) {
-                        return " <a  class='btn btn-default btn-sm' title='Editar texto' ><i class='fa fa-edit'></i></a>";
+                        return " <a data-href='/SysAdmin/Languages/EditText/?key=" + row.Key + "&targetLang=" + $("#SelectedTargetLanguage").val() + "&source=" + $("#Source").val() + "' class='btn btn-default btn-sm js-trigger-modal' title='Editar texto' ><i class='fa fa-edit'></i></a>";
                     },
                     "targets": 3
                 }
@@ -41,6 +46,41 @@
                 { "data": "TargetValue" }
             ]
         });
+        var currentRowSelected;
+        $('#languageTextsTable tbody').on('click', '.js-trigger-modal', function () {
+            var row = $(this).parent().parent();
+            currentRowSelected = {
+                data: table.row(row).data(),
+                row: row
+            }
+            var href = $(this).data("href");
+            modalInstance.open(href, {});
+        });
+
+        document.addEventListener("modalClose", modalHandler);
+
+        function modalHandler(event) {
+            console.log(event);
+            switch (event.detail.info.modalType) {
+                case "MODAL_CHANGE_TEXT":
+                    currentRowSelected.data.TargetValue = event.detail.info.Value;
+                    table.row(currentRowSelected.row).data(currentRowSelected.data).draw(false);
+                    console.log(currentRowSelected);
+                    break;
+                default:
+                    break;
+            }
+        }
+        $('body').on('change', '.js-select', function () {
+
+            var src = $("#Source").val();
+            var target = $("#SelectedTargetLanguage").val();
+            var sourceAbp = $("#SelectedSourceLanguage").val();
+
+            table.ajax.url("/SysAdmin/Languages/" + "GetLanguageTextsForTable?Source=" + src + "&TargetLang=" + target + "&SourceLang=" + sourceAbp).load();
+        });
+
+
     });
 
 

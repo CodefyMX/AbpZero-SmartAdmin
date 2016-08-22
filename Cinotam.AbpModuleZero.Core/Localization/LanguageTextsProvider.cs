@@ -31,9 +31,9 @@ namespace Cinotam.AbpModuleZero.Localization
             var result = new List<LocalizedString>();
             var localizationDictionary =
                 provider.Dictionaries.FirstOrDefault(a => a.Value.CultureInfo.Name == sourceLang);
-            var LocalizedStrings = localizationDictionary.Value.GetAllStrings().ToList();
+            var localizedStrings = localizationDictionary.Value.GetAllStrings().ToList();
             //Else we load by the source
-            foreach (var localizedString in LocalizedStrings)
+            foreach (var localizedString in localizedStrings)
             {
 
                 result.Add(localizedString);
@@ -55,72 +55,61 @@ namespace Cinotam.AbpModuleZero.Localization
 
             return result;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="abpTenantId"></param>
-        /// <param name="sourceLang">From where the keys will be obtained</param>
-        /// <param name="targetLang">Target language</param>
-        /// <param name="source"></param>
-        public void SetLocalizationStringsForStaticLanguage(int? abpTenantId, string sourceLang, string targetLang, string source)
-        {
-            /*Plan A
-             
-                1.- Find any language texts with the source lang
-                2.- If found populate the default values for the tenant
-             */
 
-            /*Plan B
-                There are not default values with the selected source
-                1.- Return with no data?
-             */
-
-            var localizedString = GetLocalizationStringFromAssembly(sourceLang);
-            //Localization strings found
-            if (localizedString.Any())
-            {
-                foreach (var s in localizedString)
-                {
-                    _languageTextsRepository.Insert(new ApplicationLanguageText()
-                    {
-                        Key = s.Name,
-                        Value = s.Value,
-                        LanguageName = targetLang,
-                        Source = source,
-                        TenantId = abpTenantId,
-
-                    });
-                }
-
-                CurrentUnitOfWork.SaveChanges();
-            }
-
-
-        }
-        /// <summary>
         /// Sets the localization keys for the new language
         /// For now this works only for  
         ///  AbpModuleZeroConsts.LocalizationSourceName
         ///  it should be adapted for all the localization sources
-        /// </summary>
         /// <param name="langCode"></param>
         /// <param name="tenantId"></param>
         public void SetLocalizationKeys(string langCode, int? tenantId)
         {
-            var keys = GetLocalizationKeysFromAssembly();
-
-            foreach (var key in keys)
+            if (!IsXMLAvailableForTheLangCode(langCode))
             {
-                _languageTextsRepository.Insert(new ApplicationLanguageText()
+                var keys = GetLocalizationKeysFromAssembly();
+
+                foreach (var key in keys)
                 {
-                    Key = key,
-                    Value = "",
-                    LanguageName = langCode,
-                    Source = AbpModuleZeroConsts.LocalizationSourceName,
-                    TenantId = tenantId,
-                });
+                    _languageTextsRepository.Insert(new ApplicationLanguageText()
+                    {
+                        Key = key,
+                        Value = string.Empty,
+                        LanguageName = langCode,
+                        Source = AbpModuleZeroConsts.LocalizationSourceName,
+                        TenantId = tenantId,
+                    });
+                }
+                CurrentUnitOfWork.SaveChanges();
             }
-            CurrentUnitOfWork.SaveChanges();
+            else
+            {
+                var keys = GetLocalizationStringFromAssembly(langCode);
+
+                foreach (var key in keys)
+                {
+                    _languageTextsRepository.Insert(new ApplicationLanguageText()
+                    {
+                        Key = key.Name,
+                        Value = key.Value,
+                        LanguageName = langCode,
+                        Source = AbpModuleZeroConsts.LocalizationSourceName,
+                        TenantId = tenantId,
+                    });
+                }
+                CurrentUnitOfWork.SaveChanges();
+            }
+        }
+
+        private bool IsXMLAvailableForTheLangCode(string langCode)
+        {
+            var provider = new XmlEmbeddedFileLocalizationDictionaryProvider(
+                Assembly.GetExecutingAssembly(),
+                XmlLocation
+                );
+            provider.Initialize(AbpModuleZeroConsts.LocalizationSourceName);
+            //Default dictionary = "en" en should be always available
+            var result = provider.Dictionaries.Any(a => a.Value.CultureInfo.Name == langCode);
+            return result;
         }
     }
 }

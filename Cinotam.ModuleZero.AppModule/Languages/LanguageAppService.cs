@@ -22,13 +22,13 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
         public const string DefaultLanguage = "en";
 
-        public LanguageAppService(IApplicationLanguageManager applicationLanguageManager, IApplicationLanguageTextManager applicationLanguageTextManager, IRepository<ApplicationLanguageText, long> languageTextsRepository, IRepository<ApplicationLanguage> languagesRepository, ILanguageTextsProvider languageTextsProvider)
+        public LanguageAppService(IApplicationLanguageManager applicationLanguageManager, IRepository<ApplicationLanguageText, long> languageTextsRepository, IRepository<ApplicationLanguage> languagesRepository, ILanguageTextsProvider languageTextsProvider, IApplicationLanguageTextManager applicationLanguageTextManager)
         {
             _applicationLanguageManager = applicationLanguageManager;
-            _applicationLanguageTextManager = applicationLanguageTextManager;
             _languageTextsRepository = languageTextsRepository;
             _languagesRepository = languagesRepository;
             _languageTextsProvider = languageTextsProvider;
+            _applicationLanguageTextManager = applicationLanguageTextManager;
         }
         /// <summary>
         /// Adds a new available language to the app
@@ -87,7 +87,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             await _applicationLanguageTextManager.UpdateStringAsync(
                 AbpSession.TenantId,
                 AbpModuleZeroConsts.LocalizationSourceName,
-                CultureInfo.GetCultureInfo(input.Culture),
+                CultureInfo.GetCultureInfo(input.LanguageName),
                 input.Key, input.Value);
         }
         /// <summary>
@@ -104,7 +104,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             //1.1 If the current tenant has no texts in the dabatabase for the source
             //    we must generate these texts with a default language wich is always available 
 
-
+            var sourceWasUpdated = false;
             //Source requested
             var languageTextsSource = _languageTextsRepository.GetAll()
                 .Where(a => a.Source == input.TypeOfRequest.Source
@@ -112,9 +112,10 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
             if (!languageTextsSource.Any())
             {
+
                 //This will restore all the keys from the xml file en should be always available
-                _languageTextsProvider.SetLocalizationStringsForStaticLanguage(AbpSession.TenantId, input.TypeOfRequest.SourceLang, "en",
-                    AbpModuleZeroConsts.LocalizationSourceName);
+                _languageTextsProvider.SetLocalizationKeys(input.TypeOfRequest.SourceLang, AbpSession.TenantId);
+                sourceWasUpdated = true;
             }
 
             //2.-Load all target texts
@@ -140,6 +141,13 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                 && a.LanguageName == input.TypeOfRequest.TargetLang).ToList();
                 ////3.-Pupulate table with both key targetText - value and sourceText - value
                 return GetTableData(languageTextsTargetS, languageTextsSourceS);
+            }
+            if (sourceWasUpdated)
+            {
+                var sourceUpdated = _languageTextsRepository.GetAll()
+                    .Where(a => a.Source == input.TypeOfRequest.Source
+                                && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
+                return GetTableData(languageTextsTarget, sourceUpdated);
             }
             ////3.-Pupulate table with both key targetText - value and sourceText - value
             return GetTableData(languageTextsTarget, languageTextsSource);

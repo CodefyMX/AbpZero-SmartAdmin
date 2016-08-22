@@ -118,7 +118,7 @@
                 abp.message.confirm("El rol "+roleName+" sera eliminado", "¿Esta seguro(a)?", function (response) {
                     if (response) {
                         abp.ui.setBusy($("#createEditRole"), abp.services.app.role.deleteRole(id).done(function () {
-                            window.modalInstance.close(modalTypeDelete, {});
+                            window.modalInstance.close({}, modalTypeDelete);
                         }));
                     }
                 });

@@ -695,7 +695,7 @@
                 }
                 abp.services.app.language.addLanguage(data)
                     .done(function () {
-                        modalInstance.close(modalType, {});
+                        modalInstance.close({}, modalType);
                     });
             });
 

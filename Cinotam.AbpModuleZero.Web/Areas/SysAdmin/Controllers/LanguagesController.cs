@@ -51,5 +51,17 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             var table = _languageAppService.GetLocalizationTexts(input);
             return Json(table, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult EditText(string key, string targetLang, string source)
+        {
+            var localizationTextInput = new LocalizationTextInput()
+            {
+                LanguageName = targetLang,
+                Key = key,
+                Source = source,
+                Value = ""
+            };
+            return View(localizationTextInput);
+        }
     }
 }

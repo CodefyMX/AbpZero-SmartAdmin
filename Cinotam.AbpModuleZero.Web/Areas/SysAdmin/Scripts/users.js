@@ -50,7 +50,7 @@
     document.addEventListener('modalClose', modalHandler);
     function modalHandler(event) {
         console.log(event);
-        switch (event.detail.info) {
+        switch (event.detail.info.modalType) {
             case "MODAL_USER_CREATED":
                 table.ajax.reload();
                 abp.notify.success("Usuario creado/editado", "¡Exito!");

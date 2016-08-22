@@ -1,0 +1,79 @@
+﻿@model Cinotam.ModuleZero.AppModule.Languages.Dto.LocalizationTextInput
+
+@{
+    Layout = null;
+}
+<div class="modal-dialog" id="leaderModal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title"><img src="~/Scripts/smartAdminScripts/plugin/ckeditor/samples/assets/inlineall/logo.png" width="150" alt="SmartAdmin"></h4>
+        </div>
+        <div class="modal-body no-padding">
+
+            <form method="POST" id="editText" class="smart-form">
+                @Html.HiddenFor(a => a.Key)
+                @Html.HiddenFor(a => a.LanguageName)
+                @Html.HiddenFor(a => a.Source)
+                <header>
+                    Cambiar texto
+                </header>
+                <fieldset>
+                    <section>
+                        <div class="row">
+                            <label class="label col col-4"><strong>Llave:</strong> @Model.Key</label>
+                            <label class="label col col-4"><strong>Fuente:</strong> @Model.Source</label>
+                            <label class="label col col-4"><strong>Lenguaje:</strong> @Model.LanguageName</label>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="row">
+                            <label class="label col col-2">Texto</label>
+                            <div class="col col-10">
+                                <label class="input">
+                                    <i class="icon-append fa fa-comment"></i>
+                                    @Html.TextBoxFor(a => a.Value, new { required = "required" })
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+
+                </fieldset>
+                <footer>
+                    <button type="submit" class="btn btn-primary">
+                        Guardar/Editar
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                </footer>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        var modalType = "MODAL_CHANGE_TEXT";
+        $(document).ready(function () {
+            $("#editText").on("submit", function (e) {
+                e.preventDefault();
+                var data = {
+                    Value: $("#Value").val(),
+                    Key: $("#Key").val(),
+                    LanguageName: $("#LanguageName").val(),
+                    Source: $("#Source").val()
+
+                };
+                console.log (data);
+                abp.ui.setBusy(this, abp.services.app.language.addEditLocalizationText(data).done(function () {
+                    modalInstance.close(data, modalType);
+                }));
+            });
+        });
+    })();
+</script>

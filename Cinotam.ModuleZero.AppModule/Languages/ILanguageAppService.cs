@@ -12,5 +12,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         ReturnModel<LanguageTextTableElement> GetLocalizationTexts(RequestModel<LanguageTextsForEditRequest> input);
         LanguageTextsForEditView GetLanguageTextsForEditView(string selectedTargetLanguage,
             string selectedSourceLanguage);
+
+        Task AddEditLocalizationText(LocalizationTextInput input);
     }
 }

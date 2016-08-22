@@ -50,23 +50,15 @@
         ]
     });
 
-
+    
 
     document.addEventListener('modalClose', modalHandler);
     function modalHandler(event) {
         console.log(event);
-        switch (event.detail.info) {
-            case "MODAL_ROLES_SET":
+        switch (event.detail.info.modalType) {
+            case "LANGUAGE_CREATED":
                 table.ajax.reload();
-                abp.notify.success("Roles asignados", "¡Exito!");
-                break;
-            case "MODAL_ROLE_CREATED":
-                table.ajax.reload();
-                abp.notify.success("Rol creado/editado", "¡Exito!");
-                break;
-            case "MODAL_ROLE_DELETED":
-                table.ajax.reload();
-                abp.notify.warn("Rol eliminado", "¡Exito!");
+                abp.notify.success("Lenguaje creado", "¡Exito!");
                 break;
             default:
                 console.log("Event unhandled");
