@@ -15,7 +15,7 @@
             <form id="selectRoles" class="smart-form">
                 @Html.HiddenFor(a => a.UserId)
                 <header>
-                    Seleccionar Roles
+                    @L("SelectRoles")
                 </header>
                 <fieldset>
                     @foreach (var rol in Model.RoleDtos)
@@ -40,10 +40,10 @@
                 </fieldset>
                 <footer>
                     <button type="submit" class="btn btn-primary">
-                        Guardar
+                        @L("Save")
                     </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Cancelar
+                        @L("Cancel")
                     </button>
                 </footer>
 

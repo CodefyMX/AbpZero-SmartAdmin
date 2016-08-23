@@ -9,7 +9,7 @@
         {
             <!-- Note: The activity badge color changes when clicked and resets the number to 0
             Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-            <span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
+            <span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> @*<b class="badge"> 21 </b>*@ </span>
 
         <!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
             <div class="ajax-dropdown">
@@ -17,15 +17,15 @@
                 <!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
                 <div class="btn-group btn-group-justified" data-toggle="buttons">
                     <label class="btn btn-default">
-                        <input type="radio" name="activity" id="~/content/ajax/notify/mail.html">
-                        Msgs (14)
+                        <input type="radio" name="activity" id="~/sysadmin/AuditLogs/GetLatestLogs/">
+                        Logs
                     </label>
                     <label class="btn btn-default">
                         <input type="radio" name="activity" id="~/content/ajax/notify/notifications.html">
                         notify (3)
                     </label>
                     <label class="btn btn-default">
-                        <input type="radio" name="activity" id="~/content/ajax/notify/tasks.html">
+                        <input type="radio" name="activity" id="~/sysadmin/AuditLogs/GetLatestLogs/">
                         Tasks (4)
                     </label>
                 </div>

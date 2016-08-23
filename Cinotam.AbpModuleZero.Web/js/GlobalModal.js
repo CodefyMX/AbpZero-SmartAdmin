@@ -1,6 +1,15 @@
 //El Peri!
 (function () {
-    var modal = function (container) {
+    "use strict";
+    var modal = function (container, options) {
+        console.log(options);
+        if (!options) {
+            options = {
+                loadingFunc: function () { },
+                loadEndFunc: function () { },
+                onErrorFunction: function () { }
+            }
+        }
         var modalTypes = {
             MODAL_CANCEL: 'MODAL_CANCEL'
         }
@@ -30,8 +39,15 @@
         }
         modalInstance.open = function (url, data) {
             if (url) {
-                selfModal.container.load(url, data, function () {
-                    selfModal.initModal();
+                options.loadingFunc();
+                selfModal.container.load(url, data, function (response, status, xhr) {
+                    if (status == "error") {
+                        options.onErrorFunction();
+                        options.loadEndFunc();
+                    } else {
+                        options.loadEndFunc();
+                        selfModal.initModal();
+                    }
                 });
             }
         }
@@ -50,14 +66,22 @@
         function initListener() {
             console.log('Modal service beep awaiting orders... bep bep');
             $('body').on('click', '[data-modal]', function (e) {
+                var button = $(this);
                 e.preventDefault();
                 var url = $(this).data('url') || $(this).attr('href');
-               
-                if (url) {
-                    console.log(url);
 
-                    selfModal.container.load(url, function () {
-                        selfModal.initModal();
+                if (url) {
+                    options.loadingFunc(button);
+                    selfModal.container.load(url, function (response, status, xhr) {
+                        if (status == "error") {
+                            options.loadEndFunc();
+
+                            options.onErrorFunction("Sorry but there was an error: "+xhr.status +" "+ xhr.statusText);
+                        } else {
+                            options.loadEndFunc();
+                            selfModal.initModal();
+                        }
+
                     });
                 }
             });
@@ -72,5 +96,5 @@
     };
     var nameSpace = abp.utils.createNamespace(abp, 'app.bootstrap');
     nameSpace.modal = modal;
-}) ();
+})();
 

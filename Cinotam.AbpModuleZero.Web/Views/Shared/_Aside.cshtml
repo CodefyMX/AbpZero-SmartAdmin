@@ -31,6 +31,9 @@
 					<li class="@Html.RouteIf("Configurations", "active")">
 						<a href="@Url.Action("Configurations", "Configuration")" title="Configuración"><span class="menu-item-parent">Configuración</span></a>
 					</li>
+					<li class="@Html.RouteIf("AuditLogsList", "active")">
+						<a href="@Url.Action("AuditLogsList", "AuditLogs")" title="Registros"><span class="menu-item-parent">Registros</span></a>
+					</li>
 				</ul>
 			</li>
 

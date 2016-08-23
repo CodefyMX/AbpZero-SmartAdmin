@@ -16,10 +16,10 @@
 
             <form method="POST" id="createEditRole" class="smart-form">
                 <header>
-                    Formulario de Registro de Rol
+                    @L("RoleRegisterForm")
                     @if (Model.Id != 0)
                     {
-                        <a data-id="@Model.Id" class="pull-right btn btn-sm btn-danger js-delete-role">Eliminar</a>
+                        <a data-id="@Model.Id" class="pull-right btn btn-sm btn-danger js-delete-role">@L("Delete")</a>
 
                     }
                 </header>
@@ -27,7 +27,7 @@
                 <fieldset>
                     <section>
                         <div class="row">
-                            <label class="label col col-2">Nombre</label>
+                            <label class="label col col-2">@L("Name")</label>
                             <div class="col col-10">
                                 <label class="input">
                                     <i class="icon-append fa fa-gear"></i>
@@ -95,10 +95,10 @@
                 </fieldset>
                 <footer>
                     <button type="submit" class="btn btn-primary">
-                        Guardar/Editar
+                        @L("Save")
                     </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Cancelar
+                        @L("Cancel")
                     </button>
                 </footer>
 
@@ -115,7 +115,9 @@
             var roleName = $("#DisplayName").val();
             $("body").on("click", ".js-delete-role", function () {
                 var id = $(this).data("id");
-                abp.message.confirm("El rol "+roleName+" sera eliminado", "¿Esta seguro(a)?", function (response) {
+                var message =abp.utils.formatString(LSys("RoleDeleteMessage"),roleName);
+               
+                abp.message.confirm(message, LSys("ConfirmQuestion"), function (response) {
                     if (response) {
                         abp.ui.setBusy($("#createEditRole"), abp.services.app.role.deleteRole(id).done(function () {
                             window.modalInstance.close({}, modalTypeDelete);
@@ -145,8 +147,7 @@
                         var allChecked;
                         if ($(this).is(":checked")) {
                             allChecked = $("#tree input:checked").length;
-                            console.log("Total to check", total);
-                            console.log("Total checked", allChecked);
+                            
                             if (allChecked + 1 >= total) {
                                 $(checkBoxs[0]).prop("checked", true);
                             }

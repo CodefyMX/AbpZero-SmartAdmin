@@ -18,23 +18,23 @@
                 @Html.HiddenFor(a => a.LanguageName)
                 @Html.HiddenFor(a => a.Source)
                 <header>
-                    Cambiar texto
+                    @L("ChangeText")
                 </header>
                 <fieldset>
                     <section>
                         <div class="row">
-                            <label class="label col col-6"><strong>Fuente:</strong> @Model.Source</label>
-                            <label class="label col col-6"><strong>Lenguaje:</strong> @Model.LanguageName</label>
+                            <label class="label col col-6"><strong>@L("Source"):</strong> @Model.Source</label>
+                            <label class="label col col-6"><strong>@L("Language"):</strong> @Model.LanguageName</label>
                         </div>
                         <div class="row">
-                            <label class="label col col-4"><strong>Llave:</strong> @Model.Key</label>
+                            <label class="label col col-4"><strong>@L("Key"):</strong> @Model.Key</label>
 
                         </div>
                     </section>
 
                     <section>
                         <div class="row">
-                            <label class="label col col-2">Texto</label>
+                            <label class="label col col-2">@L("Text")</label>
                             <div class="col col-10">
                                 <label class="textarea">
                                     <i class="icon-append fa fa-comment"></i>
@@ -47,10 +47,10 @@
                 </fieldset>
                 <footer>
                     <button type="submit" class="btn btn-primary">
-                        Guardar/Editar
+                        @L("Save")
                     </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Cancelar
+                        @L("Cancel")
                     </button>
                 </footer>
 

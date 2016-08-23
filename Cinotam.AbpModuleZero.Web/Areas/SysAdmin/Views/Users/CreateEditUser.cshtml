@@ -15,11 +15,11 @@
 
             <form action="@Url.Action("CreateEditUser")" method="POST" id="createEditForm" class="smart-form">
                 <header>
-                    Formulario de Registro/Edición
+                    @L("RegisterUserForm")
 
                     @if (Model.Id != 0)
                     {
-                        <a data-id="@Model.Id" class="pull-right btn btn-sm btn-danger js-delete-user">Eliminar</a>
+                        <a data-id="@Model.Id" class="pull-right btn btn-sm btn-danger js-delete-user">@L("Delete")</a>
 
                     }
 
@@ -28,7 +28,7 @@
                 <fieldset>
                     <section>
                         <div class="row">
-                            <label class="label col col-2">Usuario</label>
+                            <label class="label col col-2">@L("UserName")</label>
                             <div class="col col-10">
                                 <label class="input">
                                     <i class="icon-append fa fa-user"></i>
@@ -39,7 +39,7 @@
                     </section>
                     <section>
                         <div class="row">
-                            <label class="label col col-2">Correo electronico</label>
+                            <label class="label col col-2">@L("EmailAddress")</label>
                             <div class="col col-10">
                                 <label class="input">
                                     <i class="icon-append fa fa-envelope-o"></i>
@@ -50,7 +50,7 @@
                     </section>
                     <section>
                         <div class="row">
-                            <label class="label col col-2">Nombre</label>
+                            <label class="label col col-2">@L("Name")</label>
                             <div class="col col-10">
                                 <label class="input">
                                     <i class="icon-append fa fa-user"></i>
@@ -61,7 +61,7 @@
                     </section>
                     <section>
                         <div class="row">
-                            <label class="label col col-2">Apellidos</label>
+                            <label class="label col col-2">@L("Surname")</label>
                             <div class="col col-10">
                                 <label class="input">
                                     <i class="icon-append fa fa-user"></i>
@@ -73,7 +73,7 @@
 
                     <section>
                         <div class="row">
-                            <label class="label col col-2">Contraseña</label>
+                            <label class="label col col-2">@L("Password")</label>
                             <div class="col col-10">
                                 <label class="input">
                                     <i class="icon-append fa fa-lock"></i>
@@ -85,16 +85,16 @@
                     <section>
                         <label class="checkbox">
                             @Html.CheckBoxFor(a => a.IsActive)
-                            <i></i>Usuario Activo
+                            <i></i>@L("IsActive")
                         </label>
                     </section>
                 </fieldset>
                 <footer>
                     <button type="submit" class="btn btn-primary">
-                        Registrar/Editar
+                        @L("Save")
                     </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Cancelar
+                        @L("Cancel")
                     </button>
                 </footer>
 
@@ -109,7 +109,8 @@
         var fullName = $("#Name").val() + " " + $("#Surname").val();
         $("body").on("click", ".js-delete-user", function () {
             var id = $(this).data("id");
-            abp.message.confirm("El usuario " + fullName + " sera eliminado", "¿Esta seguro(a)?", function (response) {
+            var confirmDelete = abp.utils.formatString (LSys("ConfirmDeleteUser"),fullName);
+            abp.message.confirm(confirmDelete, LSys("ConfirmQuestion"), function (response) {
                 if (response) {
                     abp.ui.setBusy($("#createEditForm"), abp.services.app.user.deleteUser(id).done(function () {
                         window.modalInstance.close({}, modalTypeDeleted);

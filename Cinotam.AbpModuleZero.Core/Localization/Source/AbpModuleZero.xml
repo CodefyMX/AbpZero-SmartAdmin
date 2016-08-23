@@ -4,29 +4,91 @@
     <text name="HomePage" value="Home page" />
     <text name="About" value="About" />
     <text name="WellcomeMessage" value="Welcome to AbpModuleZero!" />
-    
+
     <text name="FormIsNotValidMessage" value="Form is not valid. Please check and fix errors." />
     <text name="TenantNameCanNotBeEmpty" value="Tenant name can not be empty" />
 
-    <text name="InvalidUserNameOrPassword" value="Invalid user name or password" />
     <text name="ThereIsNoTenantDefinedWithName{0}" value="There is no tenant defined with name {0}" />
     <text name="TenantIsNotActive" value="Tenant {0} is not active." />
-    <text name="UserIsNotActiveAndCanNotLogin" value="User {0} is not active and can not log in." />
-    <text name="PleaseEnterLoginInformation" value="Please enter login information" />
     <text name="TenancyName" value="Tenancy name" />
-    <text name="UserNameOrEmail" value="User name or email" />
-    <text name="Password" value="Password" />
-    <text name="RememberMe" value="Remember me" />
-    <text name="LogIn" value="Log in" />
 
+
+    <!--Datatables-->
+    <text name="NoDataAvailableInTable" value="No data available in table" />
+    <text name="ShowingStartToEnd" value="Showing _START_ to _END_ of _TOTAL_ entries"/>
+    <text name="ZeroEntries" value="Showing 0 to 0 of 0 entries"/>
     <text name="LoginFailed" value="Login failed!" />
+    <text name="ShowEntries" value="Show _MENU_ entries"/>
+    <text name="Loading" value="Loading"/>
+    <text name="Processing" value="Processing"/>
+    <text name="Search" value="Search" />
+    <text name="NoCoincidences" value="No Coincidences"/>
+    <text name="PaginateFirst" value="First"/>
+    <text name="PaginateBefore" value="Previous"/>
+    <text name="PaginateNext" value="Next"/>
+    <text name="PaginateLast" value="Last"/>
 
+    <!--//Datatables-->
+
+    <!--Users-->
+    <text name="RegisterUserForm" value="Register / Edit user form" />
+    <text name="UsersManagement" value="Users management"/>
+    <text name="Users" value="Users" />
+    <text name="IsActive" value="Is active" />
+    <text name="FullName" value="Full name" />
     <text name="NameSurname" value="Name surname" />
     <text name="UserName" value="User name" />
     <text name="Name" value="Name" />
     <text name="Surname" value="Surname" />
     <text name="EmailAddress" value="Email address" />
+    <text name="CreateNewUser" value="Create new user" />
+    <text name="UserNameOrEmail" value="User name or email" />
+    <text name="Password" value="Password" />
+    <text name="RememberMe" value="Remember me" />
+    <text name="LogIn" value="Log in" />
+    <text name="UserIsNotActiveAndCanNotLogin" value="User {0} is not active and can not log in." />
+    <text name="PleaseEnterLoginInformation" value="Please enter login information" />
+    <text name="InvalidUserNameOrPassword" value="Invalid user name or password" />
+    <text name="UserDeleted" value="User deleted" />
+    <text name="UserCreated" value="User created" />
+    <!--//Users-->
 
+
+    <!--Roles-->
+    <text name="SelectRoles" value="Select roles"/>
+    <text name="Roles" value="Roles"/>
+    <text name="CreateRol" value="Create Role"/>
+    <text name="RoleRegisterForm" value="Role register form"/>
+    <text name="RoleDeleteMessage" value="The role {0} will be removed"/>
+    <text name="EditRole" value="Edit role"/>
+    <text name="RoleAssigned" value="Role assigned"/>
+    <text name="RoleEdited" value="Role added / edited" />
+    <text name="RoleDeleted" value="Role deleted"/>
+
+    <!--//Roles-->
+
+
+    <!--Languages-->
+    <text name="Type" value="Type"/>
+    <text name="Static" value="Static"/>
+    <text name="NoStatic" value="User created"/>
+    <text name="Languages" value="Languages"/>
+    <text name="LanguagesManagement" value="Language management"/>
+    <text name="AddLanguage" value="Add language" />
+    <text name="TextEdition" value="Text edition"/>
+    <text name="SourceLang" value="Source language" />
+    <text name="TargetLang" value="Target language" />
+    <text name="Source" value="Source"/>
+    <text name="Key" value="Key"/>
+    <text name="SourceValue" value="Source value"/>
+    <text name="TargetValue" value="Target Value" />
+    <text name="Texts" value="Language texts" />
+    <text name="Text" value="Language text" />
+    <text name="ChangeText" value="Change text" />
+    <text name="DeleteLanguageMessage" value="Language [ {0} ] will be deleted" />
+    <!--//Languages-->
+    
+    
     <text name="Tenants" value="Tenants" />
     <text name="SavedSuccessfully" value="Saved successfully" />
     <text name="CreateNewTenant" value="Create new tenant" />
@@ -42,22 +104,24 @@
     <text name="TenantSelection" value="Tenant Selection" />
     <text name="TenantSelection_Detail" value="Please select one of the following tenants." />
     <text name="Logout" value="Logout" />
+    <text name="ConfirmDeleteUser" value="The user {0} will be deleted" />
 
     <text name="RegisterFormUserNameInvalidMessage">Please dont enter an email address for username.</text>
 
     <text name="DatabaseConnectionString" value="Database connection string" />
-    <text name="Users" value="Users" />
+
     <text name="Pages" value="Pages" />
     <text name="PagesSysAdminConfiguration" value="Configuration" />
     <text name="PagesSysAdminDashBoard" value="Control Panel" />
     <text name="PagesSysAdminLanguages" value="Languages" />
     <text name="PagesSysAdminPermissions" value="Permissions" />
     <text name="PagesSysAdminRoles" value="Roles" />
-    <text name="IsActive" value="Is active" />
-    <text name="FullName" value="Full name" />
-    <text name="CreateNewUser" value="Create new user" />
+    <text name="Delete" value="Delete"/>
     <text name="Yes" value="Yes" />
     <text name="No" value="No" />
     <text name="Optional" value="Optional" />
+    <text name="ConfirmQuestion" value="Are you sure?" ></text>
+    <text name="CreationTime" value="Creation Time"/>
+    <text name="Success" value="Success"/>
   </texts>
 </localizationDictionary>

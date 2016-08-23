@@ -35,8 +35,8 @@
       <HintPath>..\packages\Abp.0.10.3.1\lib\net452\Abp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Abp.AutoMapper, Version=0.10.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.AutoMapper.0.10.3.0\lib\net452\Abp.AutoMapper.dll</HintPath>
+    <Reference Include="Abp.AutoMapper, Version=0.10.3.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.AutoMapper.0.10.3.1\lib\net452\Abp.AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Abp.Zero, Version=0.10.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -97,6 +97,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditLogs\AuditLogService.cs" />
+    <Compile Include="AuditLogs\Dto\AuditLogOutput.cs" />
+    <Compile Include="AuditLogs\IAuditLogService.cs" />
     <Compile Include="CinotamModuleZeroAppModule.cs" />
     <Compile Include="CinotamModuleZeroAppServiceBase.cs" />
     <Compile Include="Languages\Dto\LanguageDto.cs" />

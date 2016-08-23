@@ -1,5 +1,5 @@
 ﻿/// <reference path="datatables.responsiveConfigs.js" />
-
+/// <reference path="~/Areas/SysAdmin/Scripts/localizationText.js" />
 (function () {
     "use strict";
     var table = $("#rolesTable").DataTable({
@@ -32,9 +32,9 @@
                 className: "text-center",
                 "render": function (data, type, row) {
                     if (!row.IsStatic) {
-                        return " <a data-modal href='/SysAdmin/Roles/CreateEditRole/" + row.Id + "' class='btn btn-default btn-xs' title='Editar Rol' ><i class='fa fa-edit'></i></a>";
+                        return " <a data-modal href='/SysAdmin/Roles/CreateEditRole/" + row.Id + "' class='btn btn-default btn-xs' title='" + LSys("EditRole") + "' ><i class='fa fa-edit'></i></a>";
                     } else {
-                        return " <a disabled class='btn btn-default btn-xs' title='Editar rol' ><i class='fa fa-edit'></i></a>";
+                        return " <a disabled class='btn btn-default btn-xs' title='"+LSys("EditRole")+"' ><i class='fa fa-edit'></i></a>";
                     }
                     
                 },
@@ -59,15 +59,15 @@
         switch (event.detail.info.modalType) {
             case "MODAL_ROLES_SET":
                 table.ajax.reload();
-                abp.notify.success("Roles asignados", "¡Exito!");
+                abp.notify.success(LSys("RoleAssigned"), LSys("Success"));
                 break;
             case "MODAL_ROLE_CREATED":
                 table.ajax.reload();
-                abp.notify.success("Rol creado/editado", "¡Exito!");
+                abp.notify.success(LSys("RoleEdited"), LSys("Success"));
                 break;
             case "MODAL_ROLE_DELETED":
                 table.ajax.reload();
-                abp.notify.warn("Rol eliminado", "¡Exito!");
+                abp.notify.warn(LSys("RoleDeleted"), LSys("Success"));
                 break;
             default:
                 console.log("Event unhandled");

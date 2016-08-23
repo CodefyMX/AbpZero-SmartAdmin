@@ -53,11 +53,11 @@
         switch (event.detail.info.modalType) {
             case "MODAL_USER_CREATED":
                 table.ajax.reload();
-                abp.notify.success("Usuario creado/editado", "¡Exito!");
+                abp.notify.success(LSys("UserCreated"), LSys("Success"));
                 break;
             case "MODAL_USER_DELETED":
                 table.ajax.reload();
-                abp.notify.warn("Usuario eliminado", "¡Exito!");
+                abp.notify.warn(LSys("UserDeleted"), LSys("Success"));
                 break;
             default:
                 console.log("Event unhandled");
