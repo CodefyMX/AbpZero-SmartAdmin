@@ -27,7 +27,7 @@
     <text name="UserNameOrEmail" value="User name or email" />
     <text name="Password" value="Password" />
     <text name="RememberMe" value="Remember me" />
-    
+
     <text name="LoginFailed" value="Login failed!" />
     <text name="LogIn" value="Log in" />
     <text name="UserIsNotActiveAndCanNotLogin" value="User {0} is not active and can not log in." />
@@ -72,14 +72,21 @@
     <text name="DeleteLanguageMessage" value="Language [ {0} ] will be deleted" />
     <text name="Language" value="Language" />
     <!--//Languages-->
-    
+
     <!--Audit logs-->
     <text name="AuditLogs" value="Audit Logs" />
     <text name="AuditLogList" value="Audit logs list"/>
     <text name="Logs" value="Logs"/>
+    <text name="IP" value="IP Address" />
+    <text name="ExecutionTime" value="Excecution time" />
+    <text name="MethodName" value="Method name" />
+    <text name="Parameters" value="Parameters"/>
+    <text name="BrowserInfo" value="Browser info"/>
+    <text name="Duration" value="Duration"/>
+    <text name="UserInfo" value="User info"/>
     <!--//Audit logs-->
-    
-    
+
+
     <!--Configuration-->
     <text name="Configuration" value="Configuration"/>
     <text name="ConfigurationManagement" value="Configuration Management"/>
@@ -120,5 +127,6 @@
     <text name="CreationTime" value="Creation Time"/>
     <text name="Success" value="Success"/>
     <text name="Home" value="Home"/>
+    <text name="Close" value="Close"/>
   </texts>
 </localizationDictionary>

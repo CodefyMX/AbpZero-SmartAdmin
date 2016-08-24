@@ -45,16 +45,41 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
             };
         }
 
-        public ReturnModel<AuditLogDto> GetAuditLogTable(RequestModel<object> input)
+        public async Task<ReturnModel<AuditLogDto>> GetAuditLogTable(RequestModel<object> input)
         {
             int count;
             var query = _auditLogRepository.GetAll();
             var filteredByLength = GenerateTableModel(input, query, "MethodName", out count);
             return new ReturnModel<AuditLogDto>()
             {
-                data = filteredByLength.Select(a => a.MapTo<AuditLogDto>()).ToArray(),
+                iTotalDisplayRecords = count,
+                recordsTotal = query.Count(),
+                recordsFiltered = filteredByLength.Count,
+                length = input.length,
+                data = await GetModel(filteredByLength),
                 draw = input.draw,
             };
+        }
+
+        public async Task<AuditLogDto> GetAuditLogDetails(long id)
+        {
+
+            var auditLog = await _auditLogRepository.FirstOrDefaultAsync(a => a.Id == id);
+            var mapped = auditLog.MapTo<AuditLogDto>();
+            mapped.UserName = auditLog.UserId != null ? (await UserManager.GetUserByIdAsync(auditLog.UserId.Value)).UserName : "Client";
+            return mapped;
+        }
+
+        private async Task<AuditLogDto[]> GetModel(List<AuditLog> filteredByLength)
+        {
+            var results = filteredByLength.Select(a => a.MapTo<AuditLogDto>()).ToArray();
+            foreach (var auditLogDto in results)
+            {
+
+                auditLogDto.UserName = auditLogDto.UserId != null ? (await UserManager.GetUserByIdAsync(auditLogDto.UserId.Value)).UserName : "Client";
+
+            }
+            return results.ToArray();
         }
     }
 }

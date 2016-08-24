@@ -7,6 +7,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
     public interface IAuditLogService
     {
         Task<AuditLogOutput> GetLatestAuditLogOutput();
-        ReturnModel<AuditLogDto> GetAuditLogTable(RequestModel<object> input);
+        Task<ReturnModel<AuditLogDto>> GetAuditLogTable(RequestModel<object> input);
+        Task<AuditLogDto> GetAuditLogDetails(long id);
     }
 }

@@ -580,7 +580,6 @@
     <Content Include="Areas\SysAdmin\Views\_ViewStart.cshtml" />
     <Content Include="Scripts\smartAdminScripts\app.config.js" />
     <Content Include="Scripts\smartAdminScripts\app.js" />
-    <Content Include="Scripts\smartAdminScripts\app.min.js" />
     <Content Include="Scripts\smartAdminScripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\smartAdminScripts\demo.min.js" />
     <Content Include="Scripts\smartAdminScripts\libs\jquery-2.1.1.min.js" />
@@ -1060,6 +1059,7 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css.map" />
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
+    <Content Include="Areas\SysAdmin\Views\AuditLogs\AuditLogDetail.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />

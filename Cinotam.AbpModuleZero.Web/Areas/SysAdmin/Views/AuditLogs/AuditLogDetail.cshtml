@@ -1,0 +1,57 @@
+﻿@model Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog" id="leaderModal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title"><img src="~/Scripts/smartAdminScripts/plugin/ckeditor/samples/assets/inlineall/logo.png" width="150" alt="SmartAdmin"></h4>
+        </div>
+        <div class="modal-body no-padding">
+
+            <form method="POST" id="editText" class="smart-form">
+                <header>
+                    <strong>@L("MethodName")</strong> : @Model.MethodName
+                </header>
+                <fieldset>
+                    <section>
+                        <h4>@L("BrowserInfo")</h4>
+                        <strong>@Model.BrowserInfo </strong>
+                    </section>
+                    <section>
+                        <h4>@L("IP")</h4>
+                        <strong> @Model.ClientIpAddress </strong>
+                    </section>
+                    <section>
+                        <h4>@L("Parameters")</h4>
+                        <pre><code>@Model.Parameters</code></pre>
+                       
+                    </section>
+                    <section>
+                        <h4>@L("ExecutionTime")</h4>
+                        <strong>@Model.ExecutionTime.ToLongDateString() @Model.ExecutionTime.ToLongTimeString()</strong>
+                    </section>
+                    <section>
+                        <h4>@L("Duration")</h4>
+                        <strong>@Model.ExecutionDuration ms</strong>  
+                    </section>
+                    <section>
+                        <h4>@L("UserInfo")</h4>
+                        <strong>@Model.UserName </strong>
+                    </section>
+                </fieldset>
+                <footer>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        @L("Close")
+                    </button>
+                </footer>
+
+            </form>
+        </div>
+    </div>
+</div>

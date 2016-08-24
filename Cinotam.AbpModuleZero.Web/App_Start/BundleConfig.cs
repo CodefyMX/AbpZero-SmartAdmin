@@ -20,9 +20,9 @@ namespace Cinotam.AbpModuleZero.Web
                     .Include("~/content/css/smartadmin-rtl.min.css")
                     .Include("~/content/css/smartadmin-skins.min.css")
                     .Include("~/content/css/your_style.min.css")
-                    .Include("~/content/abp/toastr.min.css", new CssRewriteUrlTransform())
-                    .Include("~/scripts/sweetalert/sweet-alert.css", new CssRewriteUrlTransform())
-                    .Include("~/Content/flags/famfamfam-flags.css", new CssRewriteUrlTransform()));
+                    .Include("~/Content/css/abp/toastr.min.css")
+                    .Include("~/Scripts/sweetalert/sweet-alert.css")
+                    .Include("~/Content/flags/famfamfam-flags.css"));
             //~/Bundles/vendor/css
             bundles.Add(
                 new StyleBundle("~/Bundles/vendor/css")
@@ -154,7 +154,7 @@ namespace Cinotam.AbpModuleZero.Web
                 "~/scripts/smartAdminScripts/plugin/vectormap/jquery-jvectormap-world-mill-en.js"
                 ));
 
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

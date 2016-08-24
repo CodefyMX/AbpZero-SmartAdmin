@@ -23,5 +23,6 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs.Dto
         public virtual string Parameters { get; set; }
         public virtual long? UserId { get; set; }
         public string UserName { get; set; }
+        public string ExecutionTimeString => ExecutionTime.ToShortDateString();
     }
 }
