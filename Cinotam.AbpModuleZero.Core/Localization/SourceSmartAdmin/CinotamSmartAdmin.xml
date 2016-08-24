@@ -17,13 +17,23 @@
     <text name="PaginateLast" value="Last"/>
 
     <!--//Datatables-->
-    
+
     <!--Widgets-->
     <text name="Restore" value="Restore" />
     <text name="Edit" value="Edit widget name"/>
     <text name="ChangeTitle" value="Change title" />
     <text name="Collapse" value="Collapse" />
     <text name="FullScreen" value="Full Screen"/>
+    <text name="ResetStorage" value="Clear local storage"/>
+    <text name="ResetConfirm" value="Would you like to RESET all your saved widgets and clear LocalStorage?"/>
+    <text name="LogOutMessage" value="You can improve your security further after logging out by closing this opened browser"/>
     <!--//Widgets-->
+
+
+    <!--Notifications Header-->
+    <text name="PressToShowInfo" value="Click a button to show messages here"/>
+    <text name="PrivacyMessage" value="This blank page message helps protect your privacy, or you can show the first message here automatically." />
+    <!--//Notifications Header-->
+
   </texts>
 </localizationDictionary>

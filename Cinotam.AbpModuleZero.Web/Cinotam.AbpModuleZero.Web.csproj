@@ -579,6 +579,7 @@
     <Content Include="Areas\SysAdmin\Views\Users\UsersAndRolesList.cshtml" />
     <Content Include="Areas\SysAdmin\Views\_ViewStart.cshtml" />
     <Content Include="Scripts\smartAdminScripts\app.config.js" />
+    <Content Include="Scripts\smartAdminScripts\app.js" />
     <Content Include="Scripts\smartAdminScripts\app.min.js" />
     <Content Include="Scripts\smartAdminScripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\smartAdminScripts\demo.min.js" />

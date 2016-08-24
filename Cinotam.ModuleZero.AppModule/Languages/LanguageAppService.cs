@@ -1,7 +1,6 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Localization;
-using Cinotam.AbpModuleZero;
 using Cinotam.AbpModuleZero.Localization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Languages.Dto;
@@ -106,7 +105,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         {
             await _applicationLanguageTextManager.UpdateStringAsync(
                 AbpSession.TenantId,
-                AbpModuleZeroConsts.LocalizationSourceName,
+                input.Source,
                 CultureInfo.GetCultureInfo(input.LanguageName),
                 input.Key, input.Value);
         }

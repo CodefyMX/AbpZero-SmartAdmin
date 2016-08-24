@@ -3,7 +3,7 @@
 
     $(document).ready(function () {
 
-        drawBreadCrumb(["Languages","LanguageTexts"]);
+        drawBreadCrumb([LSys("Language"), LSys("Texts")]);
 
         var source = $("#Source").val();
         var targetLang = $("#SelectedTargetLanguage").val();

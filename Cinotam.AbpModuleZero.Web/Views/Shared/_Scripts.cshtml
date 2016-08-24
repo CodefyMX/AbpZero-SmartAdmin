@@ -8,8 +8,9 @@
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script> if (!window.jQuery.ui) { document.write('<script src="/scripts/libs/jquery-ui-1.10.3.min.js"><\/script>'); } </script>
 
+
+
 <!-- IMPORTANT: SmartAdmin Core -->
-@Scripts.Render("~/scripts/smartadmin")
 
 @*@if (Request.IsAuthenticated)
 {
@@ -19,8 +20,6 @@
     <script src="~/Scripts/smartAdminScripts/demo.min.js"></script>
 }*@
 
-<!-- Voice command : plugin -->
-<script src="~/Scripts/smartAdminScripts/speech/voicecommand.min.js"></script>
 
 @Scripts.Render("~/Bundles/vendor/js/bottom")
 @Scripts.Render("~/Bundles/js")
@@ -38,31 +37,34 @@
 <script src="~/signalr/hubs"></script>
 @Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js")
 
+<script src="~/Areas/SysAdmin/Scripts/localizationText.js"></script>
 
-
+@Scripts.Render("~/scripts/smartadmin")
+<!-- Voice command : plugin -->
+<script src="~/Scripts/smartAdminScripts/speech/voicecommand.min.js"></script>
 
 
 
 <!-- SmartChat UI : plugin -->
-@Scripts.Render("~/scripts/smart-chat")
+@*@Scripts.Render("~/scripts/smart-chat")*@
 
 <!-- DataTables : plugin -->
 @Scripts.Render("~/scripts/datatables")
 
 <!-- jQGrid : plugin -->
-@Scripts.Render("~/scripts/jq-grid")
+@*@Scripts.Render("~/scripts/jq-grid")*@
 
 <!-- Forms : plugin -->
 @Scripts.Render("~/scripts/forms")
 
 <!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip, Morris, Sparkline, EasyPie -->
-@Scripts.Render("~/scripts/charts")
+@*@Scripts.Render("~/scripts/charts")*@
 
 <!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
-@Scripts.Render("~/scripts/vector-map")
+@*@Scripts.Render("~/scripts/vector-map")*@
 
 <!-- Full Calendar -->
-@Scripts.Render("~/scripts/full-calendar")
+@*@Scripts.Render("~/scripts/full-calendar")*@
 
 <!-- DO NOT REMOVE : GLOBAL FUNCTIONS! -->
 <script>
@@ -71,7 +73,6 @@
         drawBreadCrumb();
     });
 </script>
-<script src="~/Areas/SysAdmin/Scripts/localizationText.js"></script>
 @if (@Model is HelperResult)
 {
     @Model

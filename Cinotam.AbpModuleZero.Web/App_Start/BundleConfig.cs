@@ -102,7 +102,7 @@ namespace Cinotam.AbpModuleZero.Web
                 "~/scripts/smartAdminScripts/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js",
                 "~/scripts/smartAdminScripts/plugin/msie-fix/jquery.mb.browser.min.js",
                 "~/scripts/smartAdminScripts/plugin/fastclick/fastclick.min.js",
-                "~/scripts/smartAdminScripts/app.min.js"));
+                "~/scripts/smartAdminScripts/app.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/full-calendar").Include(
                 "~/scripts/smartAdminScripts/plugin/moment/moment.min.js",

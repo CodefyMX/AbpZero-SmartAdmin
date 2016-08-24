@@ -119,5 +119,6 @@
     <text name="ConfirmQuestion" value="Are you sure?" ></text>
     <text name="CreationTime" value="Creation Time"/>
     <text name="Success" value="Success"/>
+    <text name="Home" value="Home"/>
   </texts>
 </localizationDictionary>
