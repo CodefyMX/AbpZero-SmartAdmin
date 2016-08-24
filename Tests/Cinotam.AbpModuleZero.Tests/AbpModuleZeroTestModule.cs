@@ -8,7 +8,6 @@ using NSubstitute;
 namespace Cinotam.AbpModuleZero.Tests
 {
     [DependsOn(
-        typeof(AbpModuleZeroApplicationModule),
         typeof(AbpModuleZeroDataModule),
         typeof(AbpTestBaseModule))]
     public class AbpModuleZeroTestModule : AbpModule

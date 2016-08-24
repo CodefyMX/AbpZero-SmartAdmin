@@ -13,7 +13,6 @@ namespace Cinotam.AbpModuleZero.Web
 {
     [DependsOn(
         typeof(AbpModuleZeroDataModule),
-        typeof(AbpModuleZeroApplicationModule),
         typeof(AbpModuleZeroWebApiModule),
         typeof(CinotamModuleZeroAppModule),
         typeof(AbpWebSignalRModule),

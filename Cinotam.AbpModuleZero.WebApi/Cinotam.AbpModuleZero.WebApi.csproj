@@ -154,10 +154,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cinotam.AbpModuleZero.Application\Cinotam.AbpModuleZero.Application.csproj">
-      <Project>{edf5d964-4c0f-4f19-b674-58a38a5e5401}</Project>
-      <Name>Cinotam.AbpModuleZero.Application</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Cinotam.AbpModuleZero.Core\Cinotam.AbpModuleZero.Core.csproj">
       <Project>{17298ea0-af73-4f30-b6f1-2066100d7d74}</Project>
       <Name>Cinotam.AbpModuleZero.Core</Name>
