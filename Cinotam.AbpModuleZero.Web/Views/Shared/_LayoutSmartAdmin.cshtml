@@ -1,6 +1,9 @@
 ﻿@using System.Web.Optimization
 @using Abp.Configuration
 @using Cinotam.AbpModuleZero.Web.App_Helpers
+@{
+    SetAntiForgeryCookie();
+}
 <!DOCTYPE html>
 <html lang="en-us" id="@ViewBag.PageId" class="@Settings.CurrentTheme">
 <head>

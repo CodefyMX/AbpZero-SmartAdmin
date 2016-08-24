@@ -5602,3 +5602,562 @@ DEBUG 2016-08-24 11:24:24,314 [52   ] Abp.Web.SignalR.Hubs.AbpCommonHub        -
 WARN  2016-08-24 11:24:24,459 [21   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
 DEBUG 2016-08-24 11:24:24,838 [14   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:24:24.8376977-05:00","Properties":{}}
 DEBUG 2016-08-24 11:24:24,851 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 6c3644ed-933f-4ae2-9ea6-4ea2dd40c693
+DEBUG 2016-08-24 11:27:37,729 [53   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:27:37,730 [53   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:27:37,730 [53   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:27:37,730 [53   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:27:40,305 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 11:27:40,589 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 11:27:40,592 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,594 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,594 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,594 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,594 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,594 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,595 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,595 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,595 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,595 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,595 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,595 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,595 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,595 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,595 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:40,597 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 11:27:41,010 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:27:41,010 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:27:41,010 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:27:41,010 [1    ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:27:41,010 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:27:41,375 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:27:41,800 [1    ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-24 11:27:41,804 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 11:27:41,805 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 11:27:41,805 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-24 11:27:41,805 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-24 11:27:41,806 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 11:27:41,851 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:27:42,606 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 11:27:42,607 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-24 11:27:42,608 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 11:27:42,609 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 11:27:42,609 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 11:27:42,610 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-24 11:27:42,626 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-24 11:27:42,626 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 11:27:42,702 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 11:27:42,719 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-24 11:27:42,720 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 11:27:42,722 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 11:27:42,722 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-24 11:27:42,725 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 11:27:42,727 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 11:27:42,728 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-24 11:27:44,004 [47   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:27:43.9706977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:27:56,728 [44   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:27:56,728 [44   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:27:56,729 [44   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:27:56,729 [44   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:27:59,619 [55   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 11:28:00,331 [55   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 11:28:00,334 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,336 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,336 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,336 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,336 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,337 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,337 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,337 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,337 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,337 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,337 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,337 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,338 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,338 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,338 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:00,340 [55   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 11:28:00,964 [55   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:00,964 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:00,964 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:00,964 [55   ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:00,964 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:02,109 [55   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:02,689 [55   ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-24 11:28:02,690 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 11:28:02,691 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 11:28:02,691 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-24 11:28:02,691 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-24 11:28:02,692 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 11:28:02,735 [55   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:28:03,542 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 11:28:03,543 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-24 11:28:03,544 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 11:28:03,545 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 11:28:03,546 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 11:28:03,547 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-24 11:28:03,561 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-24 11:28:03,561 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 11:28:03,662 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 11:28:03,676 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-24 11:28:03,676 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 11:28:03,679 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 11:28:03,679 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-24 11:28:03,683 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 11:28:03,685 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 11:28:03,685 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-24 11:28:05,143 [47   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:28:05.1226977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:28:05,162 [53   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:28:05.1226977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:28:05,509 [47   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:28:05,510 [47   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:28:05,510 [47   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:28:05,510 [47   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:28:08,292 [55   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 11:28:08,709 [55   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 11:28:08,713 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,714 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,714 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,714 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,715 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,715 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,715 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,715 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,715 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,715 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,716 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,716 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,716 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,716 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,716 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:08,718 [55   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 11:28:09,193 [55   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:09,193 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:09,194 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:09,194 [55   ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:09,194 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:09,710 [55   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:10,099 [55   ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-24 11:28:10,101 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 11:28:10,102 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 11:28:10,102 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-24 11:28:10,102 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-24 11:28:10,103 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 11:28:10,151 [55   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:28:11,019 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 11:28:11,020 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-24 11:28:11,020 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 11:28:11,021 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 11:28:11,022 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 11:28:11,023 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-24 11:28:11,038 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-24 11:28:11,038 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 11:28:11,152 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 11:28:11,162 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-24 11:28:11,163 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 11:28:11,165 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 11:28:11,165 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-24 11:28:11,168 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 11:28:11,170 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 11:28:11,171 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-24 11:28:12,541 [21   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:28:12.5286977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:28:42,535 [18   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:28:42,535 [18   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:28:42,535 [18   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:28:42,535 [18   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:28:45,677 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 11:28:46,157 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 11:28:46,161 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,162 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,162 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,162 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,162 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,163 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,163 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,163 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,163 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,163 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,163 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,164 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,164 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,164 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,164 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:46,166 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 11:28:46,570 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:46,570 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:46,570 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:46,570 [1    ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:46,570 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:28:46,916 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:28:47,259 [1    ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-24 11:28:47,260 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 11:28:47,262 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 11:28:47,262 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-24 11:28:47,262 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-24 11:28:47,263 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 11:28:47,307 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:28:48,183 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 11:28:48,184 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-24 11:28:48,185 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 11:28:48,186 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 11:28:48,186 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 11:28:48,187 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-24 11:28:48,201 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-24 11:28:48,201 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 11:28:48,261 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 11:28:48,270 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-24 11:28:48,271 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 11:28:48,273 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 11:28:48,273 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-24 11:28:48,276 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 11:28:48,278 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 11:28:48,279 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-24 11:28:49,593 [21   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:28:49.5816977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:29:03,791 [24   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:29:03,791 [24   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:29:03,791 [24   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:29:03,791 [24   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:29:12,159 [55   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 11:29:12,169 [55   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 11:29:12,173 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,175 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,175 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,175 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,175 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,175 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,175 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,176 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,176 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,176 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,176 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,176 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,176 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,176 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,176 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:12,179 [55   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 11:29:12,298 [55   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:29:12,298 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:29:12,298 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:29:12,298 [55   ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:29:12,298 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:29:12,546 [55   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:13,352 [55   ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-24 11:29:13,356 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 11:29:13,357 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 11:29:13,357 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-24 11:29:13,357 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-24 11:29:13,358 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 11:29:13,404 [55   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:29:14,187 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 11:29:14,188 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-24 11:29:14,189 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 11:29:14,190 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 11:29:14,191 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 11:29:14,191 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-24 11:29:14,208 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-24 11:29:14,208 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 11:29:14,249 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 11:29:14,266 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-24 11:29:14,267 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 11:29:14,269 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 11:29:14,270 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-24 11:29:14,272 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 11:29:14,274 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 11:29:14,275 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-24 11:29:14,570 [47   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:29:14.5356977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:29:14,570 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:29:14.5356977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:29:44,452 [54   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:29:44,453 [54   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:29:44,453 [54   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:29:44,453 [54   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:29:54,215 [14   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:29:54,221 [14   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:29:54,222 [14   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:29:54,222 [14   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:29:59,483 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 11:29:59,492 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 11:29:59,496 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,498 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,498 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,498 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,498 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,499 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,499 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,499 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,499 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,499 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,499 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,499 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,499 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,505 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,505 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:29:59,507 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 11:29:59,637 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:29:59,637 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:29:59,637 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:29:59,637 [1    ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:29:59,637 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:29:59,888 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:00,694 [1    ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-24 11:30:00,698 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 11:30:00,699 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 11:30:00,699 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-24 11:30:00,700 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-24 11:30:00,700 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 11:30:00,748 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:30:01,520 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 11:30:01,521 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-24 11:30:01,522 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 11:30:01,522 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 11:30:01,523 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 11:30:01,524 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-24 11:30:01,631 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-24 11:30:01,631 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 11:30:01,634 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 11:30:01,634 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-24 11:30:01,634 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 11:30:01,634 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 11:30:01,635 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-24 11:30:01,635 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 11:30:01,635 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 11:30:01,635 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-24 11:30:02,074 [52   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:30:02.0366977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:30:32,432 [54   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:30:32,433 [54   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:30:32,433 [54   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:30:32,433 [54   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:30:39,235 [55   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 11:30:39,254 [55   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 11:30:39,258 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,260 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,260 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,260 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,260 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,260 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,261 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,261 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,261 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,261 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,261 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,261 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,261 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,261 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,262 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:39,265 [55   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 11:30:39,373 [55   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:30:39,373 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:30:39,373 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:30:39,373 [55   ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:30:39,373 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:30:39,678 [55   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:30:40,586 [55   ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-24 11:30:40,590 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 11:30:40,591 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 11:30:40,592 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-24 11:30:40,592 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-24 11:30:40,592 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 11:30:40,650 [55   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:30:41,664 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 11:30:41,665 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-24 11:30:41,666 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 11:30:41,667 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 11:30:41,668 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 11:30:41,669 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-24 11:30:41,846 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-24 11:30:41,846 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 11:30:41,867 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 11:30:41,867 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-24 11:30:41,867 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 11:30:41,867 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 11:30:41,867 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-24 11:30:41,868 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 11:30:41,868 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 11:30:41,868 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-24 11:30:42,431 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:30:42.3886977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:31:12,273 [44   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:31:12,273 [44   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:31:12,274 [44   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:31:12,274 [44   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:31:20,852 [18   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:31:20,858 [18   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:31:20,859 [18   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:31:20,859 [18   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:31:25,015 [18   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:31:25,021 [18   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:31:25,022 [18   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:31:25,022 [18   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:31:31,694 [27   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:31:31,700 [27   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:31:31,701 [27   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:31:31,701 [27   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:31:36,110 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 11:31:36,120 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 11:31:36,124 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,125 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,125 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.11.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,125 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.11.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,126 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,126 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,126 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,126 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,126 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,127 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,127 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,127 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,127 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,127 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,127 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,129 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 11:31:36,192 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:31:36,192 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:31:36,192 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:31:36,193 [1    ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:31:36,193 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:31:36,487 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:31:36,851 [1    ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-24 11:31:36,855 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 11:31:36,856 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 11:31:36,856 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-24 11:31:36,857 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-24 11:31:36,857 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 11:31:36,905 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:31:37,699 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 11:31:37,700 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-24 11:31:37,700 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 11:31:37,701 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 11:31:37,702 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 11:31:37,703 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-24 11:31:37,806 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-24 11:31:37,806 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 11:31:37,810 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 11:31:37,810 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-24 11:31:37,810 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 11:31:37,810 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 11:31:37,810 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-24 11:31:37,810 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 11:31:37,810 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 11:31:37,810 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-24 11:31:38,459 [33   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:31:38.4256977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:32:08,454 [17   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:32:08,454 [17   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:32:08,455 [17   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:32:08,455 [17   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:32:13,275 [55   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 11:32:13,286 [55   ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 11:32:13,289 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,291 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,291 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.11.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,291 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.11.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,292 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,292 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,292 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,292 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,293 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,293 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,293 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,293 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,293 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,293 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,294 [55   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:13,296 [55   ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 11:32:13,418 [55   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:32:13,418 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:32:13,418 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:32:13,418 [55   ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:32:13,418 [55   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:32:13,665 [55   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:32:14,023 [55   ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-24 11:32:14,027 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 11:32:14,028 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 11:32:14,028 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-24 11:32:14,028 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-24 11:32:14,029 [55   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 11:32:14,076 [55   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:32:14,888 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 11:32:14,889 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-24 11:32:14,890 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 11:32:14,891 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 11:32:14,892 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 11:32:14,893 [55   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-24 11:32:15,024 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-24 11:32:15,024 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 11:32:15,029 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 11:32:15,029 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-24 11:32:15,029 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 11:32:15,029 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 11:32:15,029 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-24 11:32:15,029 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 11:32:15,030 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 11:32:15,030 [55   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-24 11:32:15,855 [15   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:32:15.8216977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:33:40,107 [19   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-24 11:33:40,107 [19   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:33:40,108 [19   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:33:40,108 [19   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-24 11:33:47,550 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-24 11:33:47,560 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-24 11:33:47,564 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,566 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,566 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.11.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,566 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.11.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,566 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,566 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,567 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:47,570 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-24 11:33:47,691 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:33:47,691 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:33:47,691 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:33:47,691 [1    ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:33:47,691 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-24 11:33:47,971 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-24 11:33:48,755 [1    ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-24 11:33:48,759 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-24 11:33:48,760 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-24 11:33:48,761 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-24 11:33:48,761 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-24 11:33:48,761 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-24 11:33:48,808 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-24 11:33:49,577 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-24 11:33:49,578 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-24 11:33:49,579 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-24 11:33:49,580 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-24 11:33:49,581 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-24 11:33:49,581 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-24 11:33:49,685 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-24 11:33:49,685 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-24 11:33:49,688 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-24 11:33:49,688 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-24 11:33:49,688 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-24 11:33:49,688 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-24 11:33:49,688 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-24 11:33:49,689 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-24 11:33:49,689 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-24 11:33:49,689 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-24 11:33:50,109 [13   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:33:50.0736977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:33:50,109 [21   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"6c3644ed-933f-4ae2-9ea6-4ea2dd40c693","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:33:50.0736977-05:00","Properties":{}}
+WARN  2016-08-24 11:34:48,186 [6    ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-24 11:34:48,393 [47   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"5a1ae5f2-7f6d-4ab4-a9c5-3da6d38d6808","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:34:48.3926977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:34:48,421 [52   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 5a1ae5f2-7f6d-4ab4-a9c5-3da6d38d6808
+DEBUG 2016-08-24 11:35:01,833 [33   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 5a1ae5f2-7f6d-4ab4-a9c5-3da6d38d6808
+WARN  2016-08-24 11:35:02,021 [21   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-24 11:35:02,132 [45   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"64a4f7f4-14f6-4059-bcc5-7aa69943b369","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:35:02.1326977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:35:02,145 [17   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 64a4f7f4-14f6-4059-bcc5-7aa69943b369
+WARN  2016-08-24 11:35:04,098 [49   ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-08-24 11:35:04,099 [49   ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-08-24 11:35:04,099 [49   ] Abp.Logging.LogHelper                    - Can not find 'FullScreen' in localization source 'AbpModuleZero'!
+WARN  2016-08-24 11:35:04,099 [49   ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+WARN  2016-08-24 11:35:04,100 [49   ] Abp.Logging.LogHelper                    - Can not find 'ChangeTitle' in localization source 'AbpModuleZero'!
+WARN  2016-08-24 11:35:04,100 [49   ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-08-24 11:35:04,100 [49   ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-08-24 11:35:04,101 [49   ] Abp.Logging.LogHelper                    - Can not find 'FullScreen' in localization source 'AbpModuleZero'!
+WARN  2016-08-24 11:35:04,101 [49   ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-24 11:35:05,961 [45   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 6c3644ed-933f-4ae2-9ea6-4ea2dd40c693
+WARN  2016-08-24 11:35:06,247 [47   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-24 11:35:06,893 [54   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"ab9c88a3-32ff-47d7-a8eb-3881916522da","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-24T11:35:06.8936977-05:00","Properties":{}}
+DEBUG 2016-08-24 11:35:06,901 [24   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: ab9c88a3-32ff-47d7-a8eb-3881916522da
