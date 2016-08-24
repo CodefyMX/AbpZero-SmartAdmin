@@ -1405,3 +1405,1179 @@ DEBUG 2016-08-23 22:53:49,582 [67   ] Abp.Logging.LogHelper                    -
 DEBUG 2016-08-23 22:53:49,583 [67   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
 DEBUG 2016-08-23 22:53:49,585 [67   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
 DEBUG 2016-08-23 22:53:50,256 [109  ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"06a22c5e-45e0-4e6c-9eb8-5cfd2f1f3379","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T22:53:50.1669228-05:00","Properties":{}}
+DEBUG 2016-08-23 22:54:15,214 [118  ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-23 22:54:15,215 [118  ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 22:54:15,216 [118  ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 22:54:15,217 [118  ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-23 22:54:18,301 [56   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 22:54:18,776 [56   ] Abp.Modules.AbpModuleManager             - Found 14 ABP modules in total.
+DEBUG 2016-08-23 22:54:18,782 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,784 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,784 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,784 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,785 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,785 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,785 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,785 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,786 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,786 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,786 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,786 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,786 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,786 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:18,789 [56   ] Abp.Modules.AbpModuleManager             - 14 modules loaded.
+DEBUG 2016-08-23 22:54:19,625 [56   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 22:54:19,625 [56   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 22:54:19,625 [56   ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 22:54:19,625 [56   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 22:54:20,332 [56   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 22:54:21,192 [56   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 22:54:21,202 [56   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 22:54:21,204 [56   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 22:54:21,206 [56   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-23 22:54:21,207 [56   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 22:54:21,319 [56   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 22:54:23,030 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 22:54:23,032 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-23 22:54:23,034 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 22:54:23,035 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 22:54:23,036 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 22:54:23,038 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-23 22:54:25,630 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"06a22c5e-45e0-4e6c-9eb8-5cfd2f1f3379","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T22:54:25.5687153-05:00","Properties":{}}
+WARN  2016-08-23 22:55:35,179 [110  ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-08-23 22:55:35,180 [110  ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-08-23 22:55:35,181 [110  ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+WARN  2016-08-23 22:55:35,181 [110  ] Abp.Logging.LogHelper                    - Can not find 'ChangeTitle' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-23 22:55:42,302 [118  ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 06a22c5e-45e0-4e6c-9eb8-5cfd2f1f3379
+WARN  2016-08-23 22:55:43,864 [11   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-23 22:55:45,843 [59   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"d2c0de74-3533-40af-8dcb-aa3ad3951e7a","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T22:55:45.8433365-05:00","Properties":{}}
+DEBUG 2016-08-23 22:55:45,908 [9    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: d2c0de74-3533-40af-8dcb-aa3ad3951e7a
+ERROR 2016-08-23 22:58:28,163 [8    ] oduleZero.Web.Controllers.HomeController - Error executing child request for handler 'System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper'.
+System.Web.HttpException (0x80004005): Error executing child request for handler 'System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper'. ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+User_6950C9443380CF8B7D16AF1EED12A0EFBB766E8D34423D2599E226347BB34668 -> UserLoginInfoDto
+System.Data.Entity.DynamicProxies.User_6950C9443380CF8B7D16AF1EED12A0EFBB766E8D34423D2599E226347BB34668 -> Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+
+Destination path:
+UserLoginInfoDto
+
+Source value:
+[User 2] admin
+   at AutoMapper.MappingEngine.AutoMapper.IMappingEngineRunner.Map(ResolutionContext context)
+   at AutoMapper.MappingEngine.MapCore(Object source, Type sourceType, Type destinationType, MappingOperationOptions options)
+   at AutoMapper.MappingEngine.Map(Object source, Type sourceType, Type destinationType, Action`1 opts)
+   at AutoMapper.MappingEngine.Map[TDestination](Object source, Action`1 opts)
+   at AutoMapper.MappingEngine.Map[TDestination](Object source)
+   at AutoMapper.Mapper.Map[TDestination](Object source)
+   at Abp.AutoMapper.AutoMapExtensions.MapTo[TDestination](Object source) in D:\Halil\GitHub\aspnetboilerplate\src\Abp.AutoMapper\AutoMapper\AutoMapExtensions.cs:line 15
+   at Cinotam.ModuleZero.AppModule.Sessions.SessionAppService.<GetCurrentLoginInformations>d__0.MoveNext() in C:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.ModuleZero.AppModule\Sessions\SessionAppService.cs:line 15
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Abp.Threading.InternalAsyncHelper.<AwaitTaskWithPostActionAndFinallyAndGetResult>d__5`1.MoveNext() in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\InternalAsyncHelper.cs:line 120
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.<>c__DisplayClass7`1.<Run>b__5(Task`1 t)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   at Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   at Abp.Threading.AsyncHelper.RunSync[TResult](Func`1 func) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\AsyncHelper.cs:line 33
+   at Cinotam.AbpModuleZero.Web.Controllers.LayoutController.UserMenuOrLoginLink() in C:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Controllers\LayoutController.cs:line 63
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.<>c__DisplayClassa.<EndProcessRequest>b__9()
+   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.<>c__DisplayClass4.<Wrap>b__3()
+   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap[TResult](Func`1 func)
+   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap(Action action)
+   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)
+   at System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)
+   at System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage)
+   at System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)
+   at System.Web.HttpServerUtilityWrapper.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)
+   at System.Web.Mvc.Html.ChildActionExtensions.ActionHelper(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues, TextWriter textWriter)
+   at System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues)
+   at System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName)
+   at ASP._Page_Views_Shared__TopBar_cshtml.Execute() in c:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Views\Shared\_TopBar.cshtml:line 18
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
+   at ASP._Page_Views_Shared__Layout_cshtml.Execute() in c:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Views\Shared\_Layout.cshtml:line 39
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.WebPages.WebPageBase.<>c__DisplayClass3.<RenderPageCore>b__2(TextWriter writer)
+   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
+   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   at System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
+   at System.Web.WebPages.WebPageBase.PopContext()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+DEBUG 2016-08-23 23:01:02,378 [7    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-23 23:01:02,379 [7    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:01:02,380 [7    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:01:02,380 [7    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-23 23:01:06,124 [56   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:01:06,512 [56   ] Abp.Modules.AbpModuleManager             - Found 14 ABP modules in total.
+DEBUG 2016-08-23 23:01:06,518 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,520 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,520 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,520 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,520 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,521 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,521 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,521 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,521 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,521 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,521 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,522 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,522 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,522 [56   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:06,526 [56   ] Abp.Modules.AbpModuleManager             - 14 modules loaded.
+DEBUG 2016-08-23 23:01:07,196 [56   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:01:07,196 [56   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:01:07,197 [56   ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:01:07,197 [56   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:01:07,794 [56   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:01:08,517 [56   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:01:08,524 [56   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:01:08,527 [56   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:01:08,530 [56   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-23 23:01:08,532 [56   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:01:08,625 [56   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:01:10,107 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:01:10,109 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-23 23:01:10,110 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:01:10,111 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:01:10,113 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:01:10,114 [56   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-23 23:01:12,144 [109  ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"d2c0de74-3533-40af-8dcb-aa3ad3951e7a","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:01:12.0856804-05:00","Properties":{}}
+DEBUG 2016-08-23 23:02:26,834 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:02:26,850 [1    ] Abp.Modules.AbpModuleManager             - Found 14 ABP modules in total.
+DEBUG 2016-08-23 23:02:26,856 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,858 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,859 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,859 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,859 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,859 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,859 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,860 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,860 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,860 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,860 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,860 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,860 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,860 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:26,864 [1    ] Abp.Modules.AbpModuleManager             - 14 modules loaded.
+DEBUG 2016-08-23 23:02:27,004 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:02:27,004 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:02:27,004 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:02:27,004 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:02:27,568 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:02:29,545 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:02:29,556 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:02:29,558 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:02:29,560 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-23 23:02:29,562 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:02:29,726 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:02:32,320 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:02:32,322 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-23 23:02:32,324 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:02:32,326 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:02:32,327 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:02:32,329 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-23 23:02:33,270 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"d2c0de74-3533-40af-8dcb-aa3ad3951e7a","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:02:33.1899873-05:00","Properties":{}}
+DEBUG 2016-08-23 23:04:11,075 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:04:11,854 [1    ] Abp.Modules.AbpModuleManager             - Found 14 ABP modules in total.
+DEBUG 2016-08-23 23:04:11,868 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,872 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,872 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,872 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,873 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,874 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,879 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,880 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,880 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,880 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,881 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,881 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,881 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,881 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:11,888 [1    ] Abp.Modules.AbpModuleManager             - 14 modules loaded.
+DEBUG 2016-08-23 23:04:12,812 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:04:12,812 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:04:12,812 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:04:12,812 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:04:13,782 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:04:14,932 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:04:14,942 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:04:14,945 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:04:14,948 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-23 23:04:14,950 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:04:15,158 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:04:17,945 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:04:17,948 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-23 23:04:17,951 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:04:17,955 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:04:17,957 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:04:17,959 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-23 23:04:22,326 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"3f977409-5415-41b0-b794-b8e676709c3b","IpAddress":"::1","TenantId":1,"UserId":null,"ConnectTime":"2016-08-23T23:04:22.2868135-05:00","Properties":{}}
+WARN  2016-08-23 23:04:23,055 [6    ] Abp.Logging.LogHelper                    - Abp.Authorization.AbpAuthorizationException: El usuario actual no ha iniciado sesión en la aplicación!
+   en Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:línea 34
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:línea 85
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:línea 52
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   en System.Threading.Tasks.ContinuationTaskFromTask.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   en Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:línea 27
+   en Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) en D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:línea 35
+Abp.Authorization.AbpAuthorizationException: El usuario actual no ha iniciado sesión en la aplicación!
+   en Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:línea 34
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:línea 85
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:línea 52
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   en System.Threading.Tasks.ContinuationTaskFromTask.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   en Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:línea 27
+   en Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) en D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:línea 35
+WARN  2016-08-23 23:04:27,299 [10   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-23 23:04:27,981 [10   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"9fb9d507-28c0-413d-acfa-191f3387cf66","IpAddress":"::1","TenantId":1,"UserId":null,"ConnectTime":"2016-08-23T23:04:27.9812918-05:00","Properties":{}}
+DEBUG 2016-08-23 23:04:28,040 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 9fb9d507-28c0-413d-acfa-191f3387cf66
+DEBUG 2016-08-23 23:06:49,472 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:06:49,493 [1    ] Abp.Modules.AbpModuleManager             - Found 14 ABP modules in total.
+DEBUG 2016-08-23 23:06:49,498 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,501 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,501 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,501 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,501 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,502 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,502 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,502 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,502 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,502 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,502 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,502 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,503 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,503 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:49,506 [1    ] Abp.Modules.AbpModuleManager             - 14 modules loaded.
+DEBUG 2016-08-23 23:06:49,616 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:06:49,616 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:06:49,616 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:06:49,616 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:06:50,083 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:06:51,842 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:06:51,852 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:06:51,854 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:06:51,856 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-23 23:06:51,858 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:06:52,001 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:06:54,240 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:06:54,242 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-23 23:06:54,243 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:06:54,244 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:06:54,245 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:06:54,247 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-23 23:06:55,183 [9    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"16fedf47-4880-4a24-be63-3f80bcb5eb32","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:06:55.1587678-05:00","Properties":{}}
+DEBUG 2016-08-23 23:07:22,785 [9    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"16fedf47-4880-4a24-be63-3f80bcb5eb32","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:06:55.1587678-05:00","Properties":{}}
+DEBUG 2016-08-23 23:07:47,696 [12   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"16fedf47-4880-4a24-be63-3f80bcb5eb32","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:06:55.1587678-05:00","Properties":{}}
+DEBUG 2016-08-23 23:08:55,432 [9    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"16fedf47-4880-4a24-be63-3f80bcb5eb32","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:06:55.1587678-05:00","Properties":{}}
+WARN  2016-08-23 23:08:55,469 [8    ] Abp.BackgroundJobs.BackgroundJobManager  - System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: Valor de tiempo de espera caducado. El periodo de tiempo de espera se agotó al intentar consumir la confirmación del protocolo de enlace previo al inicio de sesión. El motivo podría ser que se produjo un error en el protocolo de enlace o que el servidor no pudo responder a tiempo.  El tiempo invertido al intentar conectarse a este servidor fue: [Previo al inicio de sesión] inicialización=1544; protocolo de enlace=69165;  ---> System.ComponentModel.Win32Exception: Tiempo de espera de la operación de espera agotado
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   en System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   en System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   en Abp.BackgroundJobs.BackgroundJobStore.GetWaitingJobsAsync(Int32 maxResultCount) en D:\Halil\GitHub\module-zero\src\Abp.Zero\BackgroundJobs\BackgroundJobStore.cs:línea 31
+   en Castle.Proxies.BackgroundJobStoreProxy.GetWaitingJobsAsync_callback(Int32 maxResultCount)
+   en Castle.Proxies.Invocations.BackgroundJobStore_GetWaitingJobsAsync.InvokeMethodOnTarget()
+   en Castle.DynamicProxy.AbstractInvocation.Proceed()
+   en Abp.Domain.Uow.UnitOfWorkInterceptor.PerformAsyncUow(IInvocation invocation, UnitOfWorkOptions options) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Domain\Uow\UnitOfWorkInterceptor.cs:línea 62
+   en Abp.Domain.Uow.UnitOfWorkInterceptor.PerformUow(IInvocation invocation, UnitOfWorkOptions options) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Domain\Uow\UnitOfWorkInterceptor.cs:línea 41
+   en Abp.Domain.Uow.UnitOfWorkInterceptor.Intercept(IInvocation invocation) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Domain\Uow\UnitOfWorkInterceptor.cs:línea 35
+   en Castle.DynamicProxy.AbstractInvocation.Proceed()
+   en Castle.Proxies.BackgroundJobStoreProxy.GetWaitingJobsAsync(Int32 maxResultCount)
+   en Abp.BackgroundJobs.BackgroundJobManager.<DoWork>b__9_0() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\BackgroundJobs\BackgroundJobManager.cs:línea 67
+   en System.Threading.Tasks.Task`1.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.<>c__DisplayClass7`1.<Run>b__5(Task`1 t)
+   en System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   en Abp.BackgroundJobs.BackgroundJobManager.DoWork() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\BackgroundJobs\BackgroundJobManager.cs:línea 67
+   en Abp.Threading.BackgroundWorkers.PeriodicBackgroundWorkerBase.Timer_Elapsed(Object sender, EventArgs e) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\BackgroundWorkers\PeriodicBackgroundWorkerBase.cs:línea 48
+System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: Valor de tiempo de espera caducado. El periodo de tiempo de espera se agotó al intentar consumir la confirmación del protocolo de enlace previo al inicio de sesión. El motivo podría ser que se produjo un error en el protocolo de enlace o que el servidor no pudo responder a tiempo.  El tiempo invertido al intentar conectarse a este servidor fue: [Previo al inicio de sesión] inicialización=1544; protocolo de enlace=69165;  ---> System.ComponentModel.Win32Exception: Tiempo de espera de la operación de espera agotado
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- Fin del seguimiento de la pila de la excepción interna ---
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   en System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection(Boolean shouldMonitorTransactions)
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   en System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   en Abp.BackgroundJobs.BackgroundJobStore.GetWaitingJobsAsync(Int32 maxResultCount) en D:\Halil\GitHub\module-zero\src\Abp.Zero\BackgroundJobs\BackgroundJobStore.cs:línea 31
+   en Castle.Proxies.BackgroundJobStoreProxy.GetWaitingJobsAsync_callback(Int32 maxResultCount)
+   en Castle.Proxies.Invocations.BackgroundJobStore_GetWaitingJobsAsync.InvokeMethodOnTarget()
+   en Castle.DynamicProxy.AbstractInvocation.Proceed()
+   en Abp.Domain.Uow.UnitOfWorkInterceptor.PerformAsyncUow(IInvocation invocation, UnitOfWorkOptions options) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Domain\Uow\UnitOfWorkInterceptor.cs:línea 62
+   en Abp.Domain.Uow.UnitOfWorkInterceptor.PerformUow(IInvocation invocation, UnitOfWorkOptions options) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Domain\Uow\UnitOfWorkInterceptor.cs:línea 41
+   en Abp.Domain.Uow.UnitOfWorkInterceptor.Intercept(IInvocation invocation) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Domain\Uow\UnitOfWorkInterceptor.cs:línea 35
+   en Castle.DynamicProxy.AbstractInvocation.Proceed()
+   en Castle.Proxies.BackgroundJobStoreProxy.GetWaitingJobsAsync(Int32 maxResultCount)
+   en Abp.BackgroundJobs.BackgroundJobManager.<DoWork>b__9_0() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\BackgroundJobs\BackgroundJobManager.cs:línea 67
+   en System.Threading.Tasks.Task`1.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.<>c__DisplayClass7`1.<Run>b__5(Task`1 t)
+   en System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   en Abp.BackgroundJobs.BackgroundJobManager.DoWork() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\BackgroundJobs\BackgroundJobManager.cs:línea 67
+   en Abp.Threading.BackgroundWorkers.PeriodicBackgroundWorkerBase.Timer_Elapsed(Object sender, EventArgs e) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\BackgroundWorkers\PeriodicBackgroundWorkerBase.cs:línea 48
+DEBUG 2016-08-23 23:08:55,489 [9    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"88edf251-0f5c-4703-bee4-c66f322e24b0","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:08:55.4890286-05:00","Properties":{}}
+DEBUG 2016-08-23 23:14:45,160 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:14:45,174 [1    ] Abp.Modules.AbpModuleManager             - Found 14 ABP modules in total.
+DEBUG 2016-08-23 23:14:45,179 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:45,188 [1    ] Abp.Modules.AbpModuleManager             - 14 modules loaded.
+DEBUG 2016-08-23 23:14:45,296 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:14:45,296 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:14:45,296 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:14:45,296 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:14:45,702 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:14:46,940 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:14:46,949 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:14:46,951 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:14:46,953 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-23 23:14:46,954 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:14:47,039 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:14:48,421 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:14:48,422 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-23 23:14:48,423 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:14:48,425 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:14:48,426 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:14:48,427 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-23 23:14:49,168 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"fc8e078b-fefc-454c-9b46-8eef5e31710f","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:14:49.1421559-05:00","Properties":{}}
+ERROR 2016-08-23 23:14:54,877 [6    ] oduleZero.Web.Controllers.HomeController - Error al ejecutar la solicitud secundaria para el controlador System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper.
+System.Web.HttpException (0x80004005): Error al ejecutar la solicitud secundaria para el controlador System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper. ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 -> TenantLoginInfoDto
+System.Data.Entity.DynamicProxies.Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 -> Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+
+Destination path:
+TenantLoginInfoDto
+
+Source value:
+[Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 1]
+   en AutoMapper.MappingEngine.AutoMapper.IMappingEngineRunner.Map(ResolutionContext context)
+   en AutoMapper.MappingEngine.MapCore(Object source, Type sourceType, Type destinationType, MappingOperationOptions options)
+   en AutoMapper.MappingEngine.Map(Object source, Type sourceType, Type destinationType, Action`1 opts)
+   en AutoMapper.MappingEngine.Map[TDestination](Object source, Action`1 opts)
+   en AutoMapper.MappingEngine.Map[TDestination](Object source)
+   en AutoMapper.Mapper.Map[TDestination](Object source)
+   en Abp.AutoMapper.AutoMapExtensions.MapTo[TDestination](Object source) en D:\Halil\GitHub\aspnetboilerplate\src\Abp.AutoMapper\AutoMapper\AutoMapExtensions.cs:línea 15
+   en Cinotam.ModuleZero.AppModule.Sessions.SessionAppService.<GetCurrentLoginInformations>d__0.MoveNext() en C:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.ModuleZero.AppModule\Sessions\SessionAppService.cs:línea 30
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Abp.Threading.InternalAsyncHelper.<AwaitTaskWithPostActionAndFinallyAndGetResult>d__5`1.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\InternalAsyncHelper.cs:línea 120
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.<>c__DisplayClass7`1.<Run>b__5(Task`1 t)
+   en System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   en Abp.Threading.AsyncHelper.RunSync[TResult](Func`1 func) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\AsyncHelper.cs:línea 33
+   en Cinotam.AbpModuleZero.Web.Controllers.LayoutController.UserMenuOrLoginLink() en C:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Controllers\LayoutController.cs:línea 63
+   en lambda_method(Closure , ControllerBase , Object[] )
+   en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   en System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.<>c__DisplayClassa.<EndProcessRequest>b__9()
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.<>c__DisplayClass4.<Wrap>b__3()
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap[TResult](Func`1 func)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap(Action action)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.EndProcessRequest(IAsyncResult result)
+   en System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)
+   en System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)
+   en System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage)
+   en System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)
+   en System.Web.HttpServerUtilityWrapper.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)
+   en System.Web.Mvc.Html.ChildActionExtensions.ActionHelper(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues, TextWriter textWriter)
+   en System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues)
+   en System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName)
+   en ASP._Page_Views_Shared__TopBar_cshtml.Execute() en c:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Views\Shared\_TopBar.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   en System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   en System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
+   en ASP._Page_Views_Shared__Layout_cshtml.Execute() en c:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Views\Shared\_Layout.cshtml:línea 39
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.WebPages.WebPageBase.<>c__DisplayClass3.<RenderPageCore>b__2(TextWriter writer)
+   en System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
+   en System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   en System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
+   en System.Web.WebPages.WebPageBase.PopContext()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+DEBUG 2016-08-23 23:15:32,284 [8    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-23 23:15:32,285 [8    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:15:32,286 [8    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:15:32,286 [8    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-23 23:15:38,399 [15   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:15:38,412 [15   ] Abp.Modules.AbpModuleManager             - Found 14 ABP modules in total.
+DEBUG 2016-08-23 23:15:38,419 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,421 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,421 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,421 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,421 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,422 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,422 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,422 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,422 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,422 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,422 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,422 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,422 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,423 [15   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:38,426 [15   ] Abp.Modules.AbpModuleManager             - 14 modules loaded.
+DEBUG 2016-08-23 23:15:38,606 [15   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:15:38,607 [15   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:15:38,607 [15   ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:15:38,607 [15   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:15:38,988 [15   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:15:40,270 [15   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:15:40,276 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:15:40,277 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:15:40,279 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-23 23:15:40,280 [15   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:15:40,364 [15   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:15:41,746 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:15:41,748 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-23 23:15:41,752 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:15:41,754 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:15:41,755 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:15:41,756 [15   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-23 23:15:42,372 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"fc8e078b-fefc-454c-9b46-8eef5e31710f","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:15:42.3029978-05:00","Properties":{}}
+ERROR 2016-08-23 23:15:50,462 [7    ] oduleZero.Web.Controllers.HomeController - Error al ejecutar la solicitud secundaria para el controlador System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper.
+System.Web.HttpException (0x80004005): Error al ejecutar la solicitud secundaria para el controlador System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper. ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 -> TenantLoginInfoDto
+System.Data.Entity.DynamicProxies.Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 -> Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+
+Destination path:
+TenantLoginInfoDto
+
+Source value:
+[Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 1]
+   en AutoMapper.MappingEngine.AutoMapper.IMappingEngineRunner.Map(ResolutionContext context)
+   en AutoMapper.MappingEngine.MapCore(Object source, Type sourceType, Type destinationType, MappingOperationOptions options)
+   en AutoMapper.MappingEngine.Map(Object source, Type sourceType, Type destinationType, Action`1 opts)
+   en AutoMapper.MappingEngine.Map[TDestination](Object source, Action`1 opts)
+   en AutoMapper.MappingEngine.Map[TDestination](Object source)
+   en AutoMapper.Mapper.Map[TDestination](Object source)
+   en Abp.AutoMapper.AutoMapExtensions.MapTo[TDestination](Object source) en D:\Halil\GitHub\aspnetboilerplate\src\Abp.AutoMapper\AutoMapper\AutoMapExtensions.cs:línea 15
+   en Cinotam.ModuleZero.AppModule.Sessions.SessionAppService.<GetCurrentLoginInformations>d__0.MoveNext() en C:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.ModuleZero.AppModule\Sessions\SessionAppService.cs:línea 30
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Abp.Threading.InternalAsyncHelper.<AwaitTaskWithPostActionAndFinallyAndGetResult>d__5`1.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\InternalAsyncHelper.cs:línea 120
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.<>c__DisplayClass7`1.<Run>b__5(Task`1 t)
+   en System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   en Abp.Threading.AsyncHelper.RunSync[TResult](Func`1 func) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\AsyncHelper.cs:línea 33
+   en Cinotam.AbpModuleZero.Web.Controllers.LayoutController.UserMenuOrLoginLink() en C:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Controllers\LayoutController.cs:línea 63
+   en lambda_method(Closure , ControllerBase , Object[] )
+   en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   en System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.<>c__DisplayClassa.<EndProcessRequest>b__9()
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.<>c__DisplayClass4.<Wrap>b__3()
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap[TResult](Func`1 func)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap(Action action)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.EndProcessRequest(IAsyncResult result)
+   en System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)
+   en System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)
+   en System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage)
+   en System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)
+   en System.Web.HttpServerUtilityWrapper.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)
+   en System.Web.Mvc.Html.ChildActionExtensions.ActionHelper(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues, TextWriter textWriter)
+   en System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues)
+   en System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName)
+   en ASP._Page_Views_Shared__TopBar_cshtml.Execute() en c:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Views\Shared\_TopBar.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   en System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   en System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
+   en ASP._Page_Views_Shared__Layout_cshtml.Execute() en c:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Views\Shared\_Layout.cshtml:línea 39
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.WebPages.WebPageBase.<>c__DisplayClass3.<RenderPageCore>b__2(TextWriter writer)
+   en System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
+   en System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   en System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
+   en System.Web.WebPages.WebPageBase.PopContext()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+DEBUG 2016-08-23 23:16:17,937 [16   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-23 23:16:17,939 [16   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:16:17,940 [16   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:16:17,940 [16   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-23 23:16:47,943 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:16:47,958 [1    ] Abp.Modules.AbpModuleManager             - Found 14 ABP modules in total.
+DEBUG 2016-08-23 23:16:47,963 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,966 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,966 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,966 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,966 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,967 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,967 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,967 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,967 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,967 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,967 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,967 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,967 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,967 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:47,971 [1    ] Abp.Modules.AbpModuleManager             - 14 modules loaded.
+DEBUG 2016-08-23 23:16:48,154 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:16:48,154 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:16:48,154 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:16:48,154 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:16:48,580 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,871 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:16:58,887 [1    ] Abp.Modules.AbpModuleManager             - Found 14 ABP modules in total.
+DEBUG 2016-08-23 23:16:58,893 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,895 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,895 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,896 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,896 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,897 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,897 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,897 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,897 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,897 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,897 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,898 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,898 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,898 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:16:58,903 [1    ] Abp.Modules.AbpModuleManager             - 14 modules loaded.
+DEBUG 2016-08-23 23:16:59,013 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:16:59,013 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:16:59,014 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:16:59,014 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:16:59,506 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:17:01,273 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:17:01,282 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:17:01,284 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:17:01,287 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-23 23:17:01,288 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:17:01,428 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:17:03,871 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:17:03,873 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-23 23:17:03,876 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:17:03,878 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:17:03,880 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:17:03,881 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-23 23:17:04,911 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"f653f63c-29d5-41ae-a14c-dbe3a254291b","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:17:04.8857792-05:00","Properties":{}}
+DEBUG 2016-08-23 23:17:39,243 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"f653f63c-29d5-41ae-a14c-dbe3a254291b","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:17:04.8857792-05:00","Properties":{}}
+ERROR 2016-08-23 23:20:16,183 [6    ] oduleZero.Web.Controllers.HomeController - Error al ejecutar la solicitud secundaria para el controlador System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper.
+System.Web.HttpException (0x80004005): Error al ejecutar la solicitud secundaria para el controlador System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper. ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 -> TenantLoginInfoDto
+System.Data.Entity.DynamicProxies.Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 -> Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+
+Destination path:
+TenantLoginInfoDto
+
+Source value:
+[Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 1]
+   en AutoMapper.MappingEngine.AutoMapper.IMappingEngineRunner.Map(ResolutionContext context)
+   en AutoMapper.MappingEngine.MapCore(Object source, Type sourceType, Type destinationType, MappingOperationOptions options)
+   en AutoMapper.MappingEngine.Map(Object source, Type sourceType, Type destinationType, Action`1 opts)
+   en AutoMapper.MappingEngine.Map[TDestination](Object source, Action`1 opts)
+   en AutoMapper.MappingEngine.Map[TDestination](Object source)
+   en AutoMapper.Mapper.Map[TDestination](Object source)
+   en Abp.AutoMapper.AutoMapExtensions.MapTo[TDestination](Object source) en D:\Halil\GitHub\aspnetboilerplate\src\Abp.AutoMapper\AutoMapper\AutoMapExtensions.cs:línea 15
+   en Cinotam.ModuleZero.AppModule.Sessions.SessionAppService.<GetCurrentLoginInformations>d__0.MoveNext() en C:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.ModuleZero.AppModule\Sessions\SessionAppService.cs:línea 30
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Abp.Threading.InternalAsyncHelper.<AwaitTaskWithPostActionAndFinallyAndGetResult>d__5`1.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\InternalAsyncHelper.cs:línea 120
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.<>c__DisplayClass7`1.<Run>b__5(Task`1 t)
+   en System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   en Abp.Threading.AsyncHelper.RunSync[TResult](Func`1 func) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\AsyncHelper.cs:línea 33
+   en Cinotam.AbpModuleZero.Web.Controllers.LayoutController.UserMenuOrLoginLink() en C:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Controllers\LayoutController.cs:línea 63
+   en lambda_method(Closure , ControllerBase , Object[] )
+   en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   en System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.<>c__DisplayClassa.<EndProcessRequest>b__9()
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.<>c__DisplayClass4.<Wrap>b__3()
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap[TResult](Func`1 func)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap(Action action)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.EndProcessRequest(IAsyncResult result)
+   en System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)
+   en System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)
+   en System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage)
+   en System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)
+   en System.Web.HttpServerUtilityWrapper.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)
+   en System.Web.Mvc.Html.ChildActionExtensions.ActionHelper(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues, TextWriter textWriter)
+   en System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues)
+   en System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName)
+   en ASP._Page_Views_Shared__TopBar_cshtml.Execute() en c:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Views\Shared\_TopBar.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   en System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   en System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
+   en ASP._Page_Views_Shared__Layout_cshtml.Execute() en c:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Views\Shared\_Layout.cshtml:línea 39
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.WebPages.WebPageBase.<>c__DisplayClass3.<RenderPageCore>b__2(TextWriter writer)
+   en System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
+   en System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   en System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
+   en System.Web.WebPages.WebPageBase.PopContext()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+DEBUG 2016-08-23 23:20:16,185 [13   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"f653f63c-29d5-41ae-a14c-dbe3a254291b","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:17:04.8857792-05:00","Properties":{}}
+DEBUG 2016-08-23 23:20:17,348 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"1ff302e1-a62f-45cb-adee-9c975a9bd9f1","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:20:17.3476112-05:00","Properties":{}}
+DEBUG 2016-08-23 23:21:29,820 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:21:29,836 [1    ] Abp.Modules.AbpModuleManager             - Found 14 ABP modules in total.
+DEBUG 2016-08-23 23:21:29,841 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,844 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,844 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,844 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,844 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,845 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,845 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,845 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,845 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,845 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,846 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,846 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,846 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,846 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:29,849 [1    ] Abp.Modules.AbpModuleManager             - 14 modules loaded.
+DEBUG 2016-08-23 23:21:29,969 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:21:29,969 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:21:29,969 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:21:29,969 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:21:30,472 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:21:32,338 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:21:32,347 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:21:32,349 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:21:32,353 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-23 23:21:32,355 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:21:32,532 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:21:34,845 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:21:34,846 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-23 23:21:34,847 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:21:34,849 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:21:34,851 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:21:34,853 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+ERROR 2016-08-23 23:21:35,696 [9    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - Can not find IP address of the client! connectionId: 1ff302e1-a62f-45cb-adee-9c975a9bd9f1
+ERROR 2016-08-23 23:21:35,696 [9    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - El valor no está dentro del intervalo esperado.
+System.ArgumentException: El valor no está dentro del intervalo esperado.
+   en System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   en System.Web.Hosting.IIS7WorkerRequest.GetServerVariableInternal(String name)
+   en System.Web.Hosting.IIS7WorkerRequest.GetServerVariable(String name)
+   en System.Web.HttpRequest.FillInServerVariablesCollection()
+   en System.Web.HttpServerVarsCollection.Populate()
+   en System.Web.HttpServerVarsCollection.Get(String name)
+   en Microsoft.Owin.Host.SystemWeb.OwinCallContext.Microsoft.Owin.Host.SystemWeb.CallEnvironment.AspNetDictionary.IPropertySource.GetServerRemoteIpAddress()
+   en Microsoft.Owin.Host.SystemWeb.CallEnvironment.AspNetDictionary.get_ServerRemoteIpAddress()
+   en Microsoft.Owin.Host.SystemWeb.CallEnvironment.AspNetDictionary.PropertiesTryGetValue(String key, Object& value)
+   en Microsoft.Owin.Host.SystemWeb.CallEnvironment.AspNetDictionary.System.Collections.Generic.IDictionary<System.String,System.Object>.get_Item(String key)
+   en Abp.Web.SignalR.Hubs.AbpCommonHub.GetIpAddressOfClient() en D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.SignalR\Web\SignalR\Hubs\AbpCommonHub.cs:línea 102
+DEBUG 2016-08-23 23:21:35,756 [9    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"1ff302e1-a62f-45cb-adee-9c975a9bd9f1","IpAddress":"","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:21:35.7052577-05:00","Properties":{}}
+DEBUG 2016-08-23 23:21:35,824 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"e4fd032f-df68-43ec-8861-c841b7eb803a","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:21:35.8237688-05:00","Properties":{}}
+ERROR 2016-08-23 23:21:52,968 [6    ] oduleZero.Web.Controllers.HomeController - Error al ejecutar la solicitud secundaria para el controlador System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper.
+System.Web.HttpException (0x80004005): Error al ejecutar la solicitud secundaria para el controlador System.Web.Mvc.HttpHandlerUtil+ServerExecuteHttpHandlerAsyncWrapper. ---> AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 -> TenantLoginInfoDto
+System.Data.Entity.DynamicProxies.Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 -> Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+
+Destination path:
+TenantLoginInfoDto
+
+Source value:
+[Tenant_11D0BECC87EDD1E2864AE1641396ADF19EB59521D95D4F65DA615185424B1E07 1]
+   en AutoMapper.MappingEngine.AutoMapper.IMappingEngineRunner.Map(ResolutionContext context)
+   en AutoMapper.MappingEngine.MapCore(Object source, Type sourceType, Type destinationType, MappingOperationOptions options)
+   en AutoMapper.MappingEngine.Map(Object source, Type sourceType, Type destinationType, Action`1 opts)
+   en AutoMapper.MappingEngine.Map[TDestination](Object source, Action`1 opts)
+   en AutoMapper.MappingEngine.Map[TDestination](Object source)
+   en AutoMapper.Mapper.Map[TDestination](Object source)
+   en Abp.AutoMapper.AutoMapExtensions.MapTo[TDestination](Object source) en D:\Halil\GitHub\aspnetboilerplate\src\Abp.AutoMapper\AutoMapper\AutoMapExtensions.cs:línea 15
+   en Cinotam.ModuleZero.AppModule.Sessions.SessionAppService.<GetCurrentLoginInformations>d__0.MoveNext() en C:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.ModuleZero.AppModule\Sessions\SessionAppService.cs:línea 30
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Abp.Threading.InternalAsyncHelper.<AwaitTaskWithPostActionAndFinallyAndGetResult>d__5`1.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\InternalAsyncHelper.cs:línea 120
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.<>c__DisplayClass7`1.<Run>b__5(Task`1 t)
+   en System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute()
+--- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
+   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   en Nito.AsyncEx.Synchronous.TaskExtensions.WaitAndUnwrapException[TResult](Task`1 task)
+   en Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
+   en Abp.Threading.AsyncHelper.RunSync[TResult](Func`1 func) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\Threading\AsyncHelper.cs:línea 33
+   en Cinotam.AbpModuleZero.Web.Controllers.LayoutController.UserMenuOrLoginLink() en C:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Controllers\LayoutController.cs:línea 63
+   en lambda_method(Closure , ControllerBase , Object[] )
+   en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   en System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   en System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   en System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   en System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   en System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   en System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.<>c__DisplayClassa.<EndProcessRequest>b__9()
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.<>c__DisplayClass4.<Wrap>b__3()
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap[TResult](Func`1 func)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap(Action action)
+   en System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.EndProcessRequest(IAsyncResult result)
+   en System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)
+   en System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)
+   en System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage)
+   en System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)
+   en System.Web.HttpServerUtilityWrapper.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)
+   en System.Web.Mvc.Html.ChildActionExtensions.ActionHelper(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues, TextWriter textWriter)
+   en System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues)
+   en System.Web.Mvc.Html.ChildActionExtensions.Action(HtmlHelper htmlHelper, String actionName, String controllerName)
+   en ASP._Page_Views_Shared__TopBar_cshtml.Execute() en c:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Views\Shared\_TopBar.cshtml:línea 18
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
+   en System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   en System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
+   en ASP._Page_Views_Shared__Layout_cshtml.Execute() en c:\Users\Lenovo\Documents\GitHub\AbpCinotamModuleZero\Cinotam.AbpModuleZero.Web\Views\Shared\_Layout.cshtml:línea 39
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   en System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.WebPages.WebPageBase.<>c__DisplayClass3.<RenderPageCore>b__2(TextWriter writer)
+   en System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
+   en System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   en System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
+   en System.Web.WebPages.WebPageBase.PopContext()
+   en System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   en System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   en System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   en System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   en System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   en System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+DEBUG 2016-08-23 23:24:08,481 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-23 23:24:08,502 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2016-08-23 23:24:08,508 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,511 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,511 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,511 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,512 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,512 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,512 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,513 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,513 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,513 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,513 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,513 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,513 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,514 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,514 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.10.3.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:08,519 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2016-08-23 23:24:08,639 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:24:08,639 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:24:08,639 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:24:08,639 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-23 23:24:09,126 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-23 23:24:10,863 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-08-23 23:24:10,874 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-23 23:24:10,878 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-23 23:24:10,880 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-23 23:24:10,881 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-23 23:24:11,014 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-23 23:24:13,263 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-23 23:24:13,265 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-23 23:24:13,266 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-23 23:24:13,267 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-23 23:24:13,268 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-23 23:24:13,270 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-23 23:24:13,296 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 9 classes defines auto mapping attributes
+DEBUG 2016-08-23 23:24:13,296 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-23 23:24:13,485 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-23 23:24:13,530 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-23 23:24:13,532 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-23 23:24:13,536 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-23 23:24:13,537 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-23 23:24:13,543 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-23 23:24:13,546 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-23 23:24:13,547 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-23 23:24:14,473 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"7bdfe91b-8328-49fc-9ff8-05d0f382c523","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:24:14.4344693-05:00","Properties":{}}
+DEBUG 2016-08-23 23:25:11,588 [11   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"7bdfe91b-8328-49fc-9ff8-05d0f382c523","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:24:14.4344693-05:00","Properties":{}}
+WARN  2016-08-23 23:25:12,944 [12   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-23 23:25:13,720 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"ec756e88-a259-4ba3-b99b-da482f50f7de","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:25:13.7191695-05:00","Properties":{}}
+DEBUG 2016-08-23 23:25:13,775 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: ec756e88-a259-4ba3-b99b-da482f50f7de
+DEBUG 2016-08-23 23:25:15,111 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"5f423fa1-cada-4f11-96fb-001b355d7802","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-23T23:25:15.1116579-05:00","Properties":{}}

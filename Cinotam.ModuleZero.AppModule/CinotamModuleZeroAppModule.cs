@@ -1,9 +1,10 @@
-﻿using Abp.Modules;
+﻿using Abp.AutoMapper;
+using Abp.Modules;
 using System.Reflection;
 
 namespace Cinotam.ModuleZero.AppModule
 {
-    [DependsOn(typeof(Cinotam.AbpModuleZero.AbpModuleZeroCoreModule))]
+    [DependsOn(typeof(Cinotam.AbpModuleZero.AbpModuleZeroCoreModule), typeof(AbpAutoMapperModule))]
     public class CinotamModuleZeroAppModule : AbpModule
     {
         public override void Initialize()

@@ -4,7 +4,7 @@ using Cinotam.AbpModuleZero.MultiTenancy;
 
 namespace Cinotam.ModuleZero.AppModule.Sessions.Dto
 {
-    [AutoMapFrom(typeof(Tenant))]
+    [AutoMap(typeof(Tenant))]
     public class TenantLoginInfoDto : EntityDto
     {
         public string TenancyName { get; set; }
