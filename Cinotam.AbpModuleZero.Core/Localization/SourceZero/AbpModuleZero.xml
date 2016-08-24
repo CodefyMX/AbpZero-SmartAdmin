@@ -12,24 +12,6 @@
     <text name="TenantIsNotActive" value="Tenant {0} is not active." />
     <text name="TenancyName" value="Tenancy name" />
 
-
-    <!--Datatables-->
-    <text name="NoDataAvailableInTable" value="No data available in table" />
-    <text name="ShowingStartToEnd" value="Showing _START_ to _END_ of _TOTAL_ entries"/>
-    <text name="ZeroEntries" value="Showing 0 to 0 of 0 entries"/>
-    <text name="LoginFailed" value="Login failed!" />
-    <text name="ShowEntries" value="Show _MENU_ entries"/>
-    <text name="Loading" value="Loading"/>
-    <text name="Processing" value="Processing"/>
-    <text name="Search" value="Search" />
-    <text name="NoCoincidences" value="No Coincidences"/>
-    <text name="PaginateFirst" value="First"/>
-    <text name="PaginateBefore" value="Previous"/>
-    <text name="PaginateNext" value="Next"/>
-    <text name="PaginateLast" value="Last"/>
-
-    <!--//Datatables-->
-
     <!--Users-->
     <text name="RegisterUserForm" value="Register / Edit user form" />
     <text name="UsersManagement" value="Users management"/>
@@ -45,6 +27,8 @@
     <text name="UserNameOrEmail" value="User name or email" />
     <text name="Password" value="Password" />
     <text name="RememberMe" value="Remember me" />
+    
+    <text name="LoginFailed" value="Login failed!" />
     <text name="LogIn" value="Log in" />
     <text name="UserIsNotActiveAndCanNotLogin" value="User {0} is not active and can not log in." />
     <text name="PleaseEnterLoginInformation" value="Please enter login information" />
@@ -89,7 +73,18 @@
     <text name="Language" value="Language" />
     <!--//Languages-->
     
+    <!--Audit logs-->
+    <text name="AuditLogs" value="Audit Logs" />
+    <text name="AuditLogList" value="Audit logs list"/>
+    <text name="Logs" value="Logs"/>
+    <!--//Audit logs-->
     
+    
+    <!--Configuration-->
+    <text name="Configuration" value="Configuration"/>
+    <text name="ConfigurationManagement" value="Configuration Management"/>
+    <text name="System" value="System" />
+    <!--//Configuration-->
     <text name="Tenants" value="Tenants" />
     <text name="SavedSuccessfully" value="Saved successfully" />
     <text name="CreateNewTenant" value="Create new tenant" />

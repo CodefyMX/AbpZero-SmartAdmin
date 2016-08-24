@@ -99,8 +99,11 @@
     <Compile Include="Authorization\Roles\StaticRoleNames.cs" />
     <Compile Include="Editions\EditionManager.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />
+    <Compile Include="Localization\Helpers\LocalizationSources.cs" />
+    <Compile Include="Localization\Helpers\XmlLocations.cs" />
     <Compile Include="Localization\ILanguageTextsProvider.cs" />
     <Compile Include="Localization\LanguageTextsProvider.cs" />
+    <Compile Include="Localization\LocalizationSources\Sources.cs" />
     <Compile Include="MultiTenancy\Tenant.cs" />
     <Compile Include="MultiTenancy\TenantManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,24 +121,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\AbpModuleZero-zh-CN.xml" />
-    <EmbeddedResource Include="Localization\Source\AbpModuleZero-tr.xml" />
-    <EmbeddedResource Include="Localization\Source\AbpModuleZero.xml" />
+    <EmbeddedResource Include="Localization\SourceZero\AbpModuleZero.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\AbpModuleZero-pt-BR.xml" />
+    <EmbeddedResource Include="Localization\SourceZero\AbpModuleZero-es.xml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\AbpModuleZero-es.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\AbpModuleZero-fr.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\AbpModuleZero-it.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\AbpModuleZero-ja.xml" />
+    <EmbeddedResource Include="Localization\SourceSmartAdmin\CinotamSmartAdmin.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

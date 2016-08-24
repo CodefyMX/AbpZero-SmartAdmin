@@ -7,6 +7,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 {
     public interface ILanguageAppService : IApplicationService
     {
+
         Task AddLanguage(LanguageInput input);
         ReturnModel<LanguageDto> GetLanguagesForTable(RequestModel<object> input);
         ReturnModel<LanguageTextTableElement> GetLocalizationTexts(RequestModel<LanguageTextsForEditRequest> input);

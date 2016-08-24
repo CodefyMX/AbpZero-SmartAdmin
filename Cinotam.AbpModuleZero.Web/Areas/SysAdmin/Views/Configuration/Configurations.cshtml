@@ -1,4 +1,5 @@
-﻿@model Cinotam.ModuleZero.AppModule.Settings.Dto.SettingsOutput
+﻿@using Cinotam.AbpModuleZero
+@model Cinotam.ModuleZero.AppModule.Settings.Dto.SettingsOutput
 <!-- MAIN CONTENT -->
 <div id="content">
     <div class="row">
@@ -58,7 +59,7 @@
                         <div class="jarviswidget-editbox">
                             <!-- This area used as dropdown edit box -->
                             <input class="form-control" type="text">
-                            <span class="note"><i class="fa fa-check text-success"></i> @L("ChangeTitle")</span>
+                            <span class="note"><i class="fa fa-check text-success"></i> @Ls(AbpModuleZeroConsts.LocalizationSmartAdminSourceName, "ChangeTitle")</span>
 
                         </div>
                         <!-- end widget edit box -->
@@ -85,71 +86,7 @@
                                                             </div>
                                                         </section>
                                                     }
-                                                    @*<div class="row">
-                                                            <section class="col col-6">
-                                                                <label class="toggle">
-                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Permitir registro de usuarios
-                                                                </label>
-                                                            </section>
-                                                        </div>
-                                                        <div class="row">
-                                                            <section class="col col-6">
-                                                                <label class="toggle">
-                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Descargas activas
-                                                                </label>
-                                                            </section>
-                                                        </div>
-                                                        <div class="row">
-                                                            <section class="col col-6">
-                                                                <label class="toggle">
-                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Pagina de contacto
-                                                                </label>
-                                                            </section>
-                                                        </div>
-                                                        <div class="row">
-                                                            <section class="col col-6">
-                                                                <label class="toggle">
-                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Redireccionar a pagina de contacto (Sitio inactivo)
-                                                                </label>
-                                                            </section>
-                                                        </div>*@
-
                                                 </div>
-                                                
-                                                @*<div class="col col-6">
-                                                        <div class="row">
-                                                            <section class="col col-6">
-                                                                <label class="toggle">
-                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Rastrear solo ips del dominio
-                                                                </label>
-                                                            </section>
-                                                        </div>
-                                                        <div class="row">
-                                                            <section class="col col-6">
-                                                                <label class="toggle">
-                                                                    <input type="checkbox" name="checkbox-toggle" checked="checked">
-                                                                    <i data-swchon-text="Si" data-swchoff-text="No"></i>Notificar cambios a administradores
-                                                                </label>
-                                                            </section>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col col-4">
-                                                                <label class="checkbox">
-                                                                    <input type="checkbox" name="checkbox" checked="checked">
-                                                                    <i></i>Usuarios
-                                                                </label>
-                                                                <label class="checkbox">
-                                                                    <input type="checkbox" name="checkbox">
-                                                                    <i></i>Roles
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>*@
                                             </div>
 
                                             <footer>

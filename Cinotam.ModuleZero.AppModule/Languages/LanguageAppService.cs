@@ -134,7 +134,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             {
 
                 //This will restore all the keys from the xml file en should be always available
-                _languageTextsProvider.SetLocalizationKeys(input.TypeOfRequest.SourceLang, AbpSession.TenantId);
+                _languageTextsProvider.SetLocalizationKeys(input.TypeOfRequest.SourceLang, input.TypeOfRequest.Source, AbpSession.TenantId);
                 sourceWasUpdated = true;
             }
 
@@ -149,7 +149,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             if (!languageTextsTarget.Any())
             {
                 //Only sets keys with empty values
-                _languageTextsProvider.SetLocalizationKeys(input.TypeOfRequest.TargetLang, AbpSession.TenantId);
+                _languageTextsProvider.SetLocalizationKeys(input.TypeOfRequest.TargetLang, input.TypeOfRequest.Source, AbpSession.TenantId);
                 var languageTextsSourceS = _languageTextsRepository.GetAll()
                     .Where(a => a.Source == input.TypeOfRequest.Source
                                 && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
@@ -209,8 +209,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         {
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant))
             {
-                var sources = _languageTextsRepository.GetAll();
-                var result = (from s in sources group s by s.Source into grp select grp.Key).ToList();
+                var result = _languageTextsProvider.GetLocalizationSources();
                 var languages = _languagesRepository.GetAll().ToList();
                 return new LanguageTextsForEditView()
                 {
@@ -218,12 +217,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                     TargetLanguages = languages.Select(a => new LanguageSelected(a.DisplayName, a.Name, a.Icon)).ToList(),
                     SelectedSourceLanguage = selectedSourceLanguage,
                     SelectedTargetLanguage = selectedTargetLanguage,
-                    Source = result.Any() ?
-                    result.Select(a => a).ToList() :
-                    new List<string>()
-                    {
-                        AbpModuleZeroConsts.LocalizationSourceName
-                    }
+                    Source = result
                 };
             }
         }

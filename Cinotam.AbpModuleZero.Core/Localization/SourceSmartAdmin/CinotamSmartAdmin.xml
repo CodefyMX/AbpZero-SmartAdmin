@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localizationDictionary culture="en">
+  <texts>
+
+    <!--Datatables-->
+    <text name="NoDataAvailableInTable" value="No data available in table" />
+    <text name="ShowingStartToEnd" value="Showing _START_ to _END_ of _TOTAL_ entries"/>
+    <text name="ZeroEntries" value="Showing 0 to 0 of 0 entries"/>
+    <text name="ShowEntries" value="Show _MENU_ entries"/>
+    <text name="Loading" value="Loading"/>
+    <text name="Processing" value="Processing"/>
+    <text name="Search" value="Search" />
+    <text name="NoCoincidences" value="No Coincidences"/>
+    <text name="PaginateFirst" value="First"/>
+    <text name="PaginateBefore" value="Previous"/>
+    <text name="PaginateNext" value="Next"/>
+    <text name="PaginateLast" value="Last"/>
+
+    <!--//Datatables-->
+    
+    <!--Widgets-->
+    <text name="Restore" value="Restore" />
+    <text name="Edit" value="Edit widget name"/>
+    <text name="ChangeTitle" value="Change title" />
+    <text name="Collapse" value="Collapse" />
+    <text name="FullScreen" value="Full Screen"/>
+    <!--//Widgets-->
+  </texts>
+</localizationDictionary>

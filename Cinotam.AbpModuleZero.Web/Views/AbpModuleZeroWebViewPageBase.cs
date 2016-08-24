@@ -12,6 +12,7 @@ namespace Cinotam.AbpModuleZero.Web.Views
         protected AbpModuleZeroWebViewPageBase()
         {
             LocalizationSourceName = AbpModuleZeroConsts.LocalizationSourceName;
+
         }
     }
 }
