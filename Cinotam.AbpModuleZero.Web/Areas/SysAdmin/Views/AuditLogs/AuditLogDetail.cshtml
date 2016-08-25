@@ -4,7 +4,7 @@
     Layout = null;
 }
 
-<div class="modal-dialog" id="leaderModal" role="document">
+<div class="modal-dialog modal-lg" id="leaderModal" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -29,7 +29,7 @@
                     </section>
                     <section>
                         <h4>@L("Parameters")</h4>
-                        <pre><code>@Model.Parameters</code></pre>
+                        <pre style="min-height: 100px"><code>@Model.Parameters</code></pre>
                        
                     </section>
                     <section>
@@ -48,6 +48,24 @@
                         <h4>@L("ClientName")</h4>
                         <strong>@Model.ClientName </strong>
                     </section>
+                    <section>
+                        @if (!string.IsNullOrEmpty(Model.Exception))
+                        {
+                            <div class="alert alert-warning">
+                                <h4>@L("ExceptionFound")</h4>
+                                <a data-id="@Model.Id"  class="toggle">Details</a>
+                                
+                            </div>
+                            <pre class="@Model.Id" style="display: none"><code>@Model.Exception</code></pre>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">
+                                <h4>@L("ExceptionNotFound")</h4>
+                                
+                            </div>
+                        }
+                    </section>
                 </fieldset>
                 <footer>
                     <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -59,3 +77,15 @@
         </div>
     </div>
 </div>
+<script>
+    (function () {
+        $ ("body")
+            .on ("click",
+                ".toggle",
+                function () {
+                    var id = $(this).data("id");
+                    var selector = "." + id;
+                    $ (selector).toggle();
+                });
+    }) ();
+</script>

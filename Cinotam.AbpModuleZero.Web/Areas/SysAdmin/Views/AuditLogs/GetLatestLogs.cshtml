@@ -9,7 +9,7 @@
     {
         <li>
             <span class="">
-                <a href="@Url.Action("AuditLogsList","AuditLogs",new {id = log.Id})" class="msg">
+                <a data-modal href="@Url.Action("AuditLogDetail","AuditLogs",new {id = log.Id})" class="msg">
                     @*<img src="../../../../Content/img/avatars/4.png" alt="" class="air air-top-left margin-top-5" width="40" height="40">*@
                     <span class="from">@log.MethodName <i class="icon-paperclip"></i></span>
                     <time>@log.ExecutionTime.ToShortTimeString()</time>
@@ -22,3 +22,30 @@
     
     
 </ul>
+
+<script>
+    (function () {
+        if (!window.modalInstance) {
+            var options = {
+                loadingFunc: loading,
+                loadEndFunc: notLoading,
+                onErrorFunction: error
+            };
+
+            function loading(button) {
+                console.log("Setting busy");
+                abp.ui.setBusy($("#content"));
+            }
+            function notLoading(button) {
+                abp.ui.clearBusy($("#content"));
+            }
+            function error(message) {
+                abp.message.error(message, "Error");
+            }
+
+            window.modalInstance = new abp.app.bootstrap.modal(null, options);
+        }
+
+
+    }) ();
+</script>

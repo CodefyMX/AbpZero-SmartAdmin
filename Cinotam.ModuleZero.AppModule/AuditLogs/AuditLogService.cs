@@ -76,10 +76,9 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
         [WrapResult(false)]
         public List<AuditLogTimeOutput> GetAuditLogTimes()
         {
-            var data = _auditLogRepository.GetAll();
+            var data = _auditLogRepository.GetAll().OrderByDescending(a => a.ExecutionTime);
             var listOfData = new List<AuditLogTimeOutput>();
             var query = from ex in data
-                        orderby ex.ExecutionTime
                         where DbFunctions.TruncateTime(ex.ExecutionTime) == DbFunctions.TruncateTime(DateTime.Now)
                         select ex;
             foreach (var auditLog in query.Take(100))
@@ -90,7 +89,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
                     ExecutionDuration = auditLog.ExecutionDuration,
                     Id = auditLog.Id,
                     MethodName = auditLog.MethodName,
-                    
+
                 });
             }
             return listOfData;

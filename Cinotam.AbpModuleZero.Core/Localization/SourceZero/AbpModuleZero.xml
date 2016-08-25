@@ -84,6 +84,9 @@
     <text name="BrowserInfo" value="Browser info"/>
     <text name="Duration" value="Duration"/>
     <text name="UserInfo" value="User info"/>
+    <text name="ExceptionNotFound" value="Method executed successfully"/>
+    <text name="ExceptionFound" value="Exception found"/>
+    <text name="ClientName" value="Client name"/>
     <!--//Audit logs-->
 
 
