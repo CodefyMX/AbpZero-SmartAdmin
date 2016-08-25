@@ -1,0 +1,141 @@
+﻿
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div id="logsChart" class="chart"></div>
+        <h4 class="text-center">
+            @L("MethodCalls")
+        </h4>
+    </div>
+</div>
+
+
+<script>
+    (function () {
+
+        function GetData(callback) {
+
+            abp.services.app.auditLogService.getAuditLogTimes()
+                .done(function (response) {
+                    var data = [];
+                    var dataToolTips = [];
+                    var count = 1;
+                    response.forEach(function (element) {
+                        dataToolTips.push({
+                            MethodName: element.methodName,
+                            Id: element.id
+                        });
+                        data.push([count, element.executionDuration]);
+                        count = count + 1;
+                    });
+                    callback(data, dataToolTips);
+                });
+        }
+
+
+        var $chrtFourth = "#7e9d3a";
+        if ($('#logsChart').length) {
+
+            // setup control widget
+            GetData(function (data, toolTips) {
+
+                var updateInterval = 1000;
+                $("#logsChart").val(updateInterval).change(function () {
+                    var v = $(this).val();
+                    if (v && !isNaN(+v)) {
+                        updateInterval = +v;
+                        if (updateInterval < 1)
+                            updateInterval = 1;
+                        if (updateInterval > 2000)
+                            updateInterval = 2000;
+                        $(this).val("" + updateInterval);
+                    }
+                });
+
+                // setup plot
+                var options = {
+                    colors: [$chrtFourth],
+                    series: {
+                        lines: {
+                            lineWidth: 1,
+                            fill: true,
+                            fillColor: {
+                                colors: [{
+                                    opacity: 0.4
+                                }, {
+                                    opacity: 0
+                                }]
+                            },
+                            steps: false
+
+                        }
+                    },
+                    xaxis: {
+                        label:"Hola"
+                    },
+                    yaxis: {
+                        label: "Hola"
+                    },
+                    //zoom: {
+                    //    interactive: true
+                    //},
+                    //pan: {
+                    //    interactive: true
+                    //},
+                    grid: {
+                        hoverable: true,
+                        clickable:true
+                    }
+                };
+                var plot = $.plot($("#logsChart"), [data], options);
+                $("#logsChart").bind("plothover", function (event, pos, item) {
+                    if (item) {
+                        var toolTip = toolTips[item.dataIndex];
+                        var txt = toolTip.MethodName;
+                        var value = item.datapoint[1];
+                        console.log (value);
+                        var color = "";
+                        if (value > 50) {
+                            color = "#ffca28";
+                        }
+                        if (value <= 50) {
+                            color = "#827717";
+                        }
+                        if (value > 80) {
+                            color = "#e53935";
+                        }
+                        var message = "Method name: " + txt + ", Execution time: <a style='color:"+color+"'> " + value + " ms<a>";
+                        $("#tooltip")
+                            .html(message)
+                            .css({ top: item.pageY + 5, left: item.pageX + 5 })
+                            .fadeIn(200);
+                    } else {
+                        $("#tooltip").hide();
+                    }
+                });
+                $("#logsChart").bind("plotclick", function (event, pos, item) {
+
+                    if (item) {
+                        var toolTip = toolTips[item.dataIndex];
+                        var id = toolTip.Id;
+                        window.modalInstance.open("/SysAdmin/AuditLogs/AuditLogDetail/" + id + "");
+                    }
+                });
+                $("<div id='tooltip'></div>").css({
+                    position: "absolute",
+                    display: "none",
+                    border: "1px solid #fdd",
+                    padding: "2px",
+                    "background-color": "#fee",
+                    opacity: 0.80
+                }).appendTo("body");
+                
+            });
+
+        }
+
+
+    })();
+</script>

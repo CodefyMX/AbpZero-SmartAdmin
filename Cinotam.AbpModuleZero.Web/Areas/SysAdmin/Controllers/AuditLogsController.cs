@@ -1,4 +1,5 @@
-﻿using Abp.Web.Models;
+﻿using Abp.Auditing;
+using Abp.Web.Models;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.AuditLogs;
@@ -15,14 +16,14 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         {
             _auditLogService = auditLogService;
         }
-
+        [DisableAuditing]
         // GET: SysAdmin/AuditLogs
         public ActionResult AuditLogsList(long? id)
         {
             ViewBag.StartupId = id ?? 0;
             return View();
         }
-
+        [DisableAuditing]
         [WrapResult(false)]
         public async Task<ActionResult> LoadLogs(RequestModel<object> input)
         {
@@ -30,12 +31,13 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             var result = await _auditLogService.GetAuditLogTable(input);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        [DisableAuditing]
         public async Task<ActionResult> GetLatestLogs()
         {
             var logs = await _auditLogService.GetLatestAuditLogOutput();
             return View(logs);
         }
-
+        [DisableAuditing]
         public async Task<ActionResult> AuditLogDetail(long id)
         {
             var auditLog = await _auditLogService.GetAuditLogDetails(id);

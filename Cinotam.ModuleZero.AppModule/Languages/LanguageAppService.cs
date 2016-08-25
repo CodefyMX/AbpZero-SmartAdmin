@@ -40,7 +40,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
 
 
-            AddAllKeysForNewLanguage(input.LangCode);
+            //AddAllKeysForNewLanguage(input.LangCode);
 
 
         }

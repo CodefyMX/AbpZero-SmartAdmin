@@ -1,15 +1,19 @@
 ﻿using Abp.Auditing;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
+using Abp.Web.Models;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.ModuleZero.AppModule.AuditLogs.Dto;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.AuditLogs
 {
+    [DisableAuditing]
     public class AuditLogService : CinotamModuleZeroAppServiceBase, IAuditLogService
     {
         private IAuditingStore _auditingStore;
@@ -21,7 +25,6 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
             _auditLogRepository = auditLogRepository;
             _userManager = userManager;
         }
-
 
         public async Task<AuditLogOutput> GetLatestAuditLogOutput()
         {
@@ -68,6 +71,29 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
             var mapped = auditLog.MapTo<AuditLogDto>();
             mapped.UserName = auditLog.UserId != null ? (await UserManager.GetUserByIdAsync(auditLog.UserId.Value)).UserName : "Client";
             return mapped;
+        }
+
+        [WrapResult(false)]
+        public List<AuditLogTimeOutput> GetAuditLogTimes()
+        {
+            var data = _auditLogRepository.GetAll();
+            var listOfData = new List<AuditLogTimeOutput>();
+            var query = from ex in data
+                        orderby ex.ExecutionTime
+                        where DbFunctions.TruncateTime(ex.ExecutionTime) == DbFunctions.TruncateTime(DateTime.Now)
+                        select ex;
+            foreach (var auditLog in query.Take(100))
+            {
+                listOfData.Add(new AuditLogTimeOutput()
+                {
+                    BrowserInfo = auditLog.BrowserInfo,
+                    ExecutionDuration = auditLog.ExecutionDuration,
+                    Id = auditLog.Id,
+                    MethodName = auditLog.MethodName,
+                    
+                });
+            }
+            return listOfData;
         }
 
         private async Task<AuditLogDto[]> GetModel(List<AuditLog> filteredByLength)

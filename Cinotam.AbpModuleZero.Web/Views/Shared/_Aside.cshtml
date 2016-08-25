@@ -22,6 +22,9 @@
 			<li class="@Html.RouteIf("index", "active")">
 				<a href="#" title="Administración"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Administración</span></a>
 				<ul>
+					<li class="@Html.RouteIf("Index", "active")">
+						<a href="@Url.Action("Index", "Dashboard")" title="Dashboard"><span class="menu-item-parent">Dashboard</span></a>
+					</li>
 					<li class="@Html.RouteIf("UsersAndRolesList", "active")">
 						<a href="@Url.Action("UsersAndRolesList", "Users")" title="Usuarios"><span class="menu-item-parent">Usuarios y Roles</span></a>
 					</li>

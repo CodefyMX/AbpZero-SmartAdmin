@@ -27,6 +27,7 @@
     <text name="ResetStorage" value="Clear local storage"/>
     <text name="ResetConfirm" value="Would you like to RESET all your saved widgets and clear LocalStorage?"/>
     <text name="LogOutMessage" value="You can improve your security further after logging out by closing this opened browser"/>
+    <text name="Refresh" value="Refresh"/>
     <!--//Widgets-->
 
 

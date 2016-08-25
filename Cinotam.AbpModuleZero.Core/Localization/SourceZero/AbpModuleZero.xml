@@ -92,6 +92,14 @@
     <text name="ConfigurationManagement" value="Configuration Management"/>
     <text name="System" value="System" />
     <!--//Configuration-->
+    
+    
+    <!--Dashboard-->
+    <text name="Dashboard" value="Dashboard" />
+    <text name="DashboardView" value="Dashboard panel" />
+    <text name="MethodCalls" value="Method calls"/>
+    <!--//Dashboard-->
+    
     <text name="Tenants" value="Tenants" />
     <text name="SavedSuccessfully" value="Saved successfully" />
     <text name="CreateNewTenant" value="Create new tenant" />

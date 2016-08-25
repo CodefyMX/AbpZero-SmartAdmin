@@ -1060,6 +1060,8 @@
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
     <Content Include="Areas\SysAdmin\Views\AuditLogs\AuditLogDetail.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Dashboard\GetLogsStadistics.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
@@ -1132,6 +1134,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\AuditLogsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\ConfigurationController.cs" />
+    <Compile Include="Areas\SysAdmin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\LanguagesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\LayoutController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\RolesController.cs" />
