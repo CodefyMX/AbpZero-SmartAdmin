@@ -1906,3 +1906,281 @@ DEBUG 2016-08-26 16:38:01,406 [34   ] Abp.AutoMapper.AbpAutoMapperModule       -
 DEBUG 2016-08-26 16:38:02,942 [48   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"c7ca9b1e-694c-44a1-a0fa-617367fda4e3","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:38:02.8961428-05:00","Properties":{}}
 DEBUG 2016-08-26 16:38:02,942 [46   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"a568606f-22ed-45a4-8242-5ee84ec5fd09","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:38:02.8961428-05:00","Properties":{}}
 DEBUG 2016-08-26 16:38:02,942 [49   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"cbebe036-0b97-430e-9a09-4c6494f34418","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:38:02.8961428-05:00","Properties":{}}
+DEBUG 2016-08-26 16:41:06,449 [47   ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-26 16:41:06,450 [47   ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-26 16:41:06,450 [47   ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-26 16:41:06,450 [47   ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-26 16:41:09,125 [12   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-26 16:41:09,437 [12   ] Abp.Modules.AbpModuleManager             - Found 17 ABP modules in total.
+DEBUG 2016-08-26 16:41:09,441 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,443 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,443 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.11.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,443 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.11.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,443 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,444 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,444 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,444 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,444 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,444 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,445 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,445 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,445 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,445 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.FileManager.CinotamFileManager, Cinotam.FileManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,445 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.FileManager.Cloudinary.CinotamFileManagerCloudinary, Cinotam.FileManager.Cloudinary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,446 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,446 [12   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:09,448 [12   ] Abp.Modules.AbpModuleManager             - 17 modules loaded.
+DEBUG 2016-08-26 16:41:09,892 [12   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-26 16:41:09,892 [12   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-26 16:41:09,892 [12   ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-26 16:41:09,892 [12   ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-26 16:41:09,892 [12   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-26 16:41:10,277 [12   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:41:10,633 [12   ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-26 16:41:10,634 [12   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-26 16:41:10,635 [12   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-26 16:41:10,636 [12   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-26 16:41:10,636 [12   ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-26 16:41:10,636 [12   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-26 16:41:10,679 [12   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-26 16:41:11,549 [12   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-26 16:41:11,550 [12   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-26 16:41:11,551 [12   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-26 16:41:11,552 [12   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-26 16:41:11,553 [12   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-26 16:41:11,554 [12   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-26 16:41:11,555 [12   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.AuditLogs.IAuditLogService' with service name 'app/auditLogService'.
+DEBUG 2016-08-26 16:41:11,579 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 11 classes defines auto mapping attributes
+DEBUG 2016-08-26 16:41:11,579 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-26 16:41:11,580 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-26 16:41:11,580 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-26 16:41:11,580 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserProfileDto
+DEBUG 2016-08-26 16:41:11,580 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-26 16:41:11,580 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-26 16:41:11,580 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-26 16:41:11,580 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-26 16:41:11,580 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-26 16:41:11,580 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-26 16:41:11,580 [12   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogTimeOutputDto
+DEBUG 2016-08-26 16:41:12,907 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"c7ca9b1e-694c-44a1-a0fa-617367fda4e3","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:41:12.9005904-05:00","Properties":{}}
+DEBUG 2016-08-26 16:41:12,907 [45   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"cbebe036-0b97-430e-9a09-4c6494f34418","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:41:12.9005904-05:00","Properties":{}}
+DEBUG 2016-08-26 16:41:12,907 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"a568606f-22ed-45a4-8242-5ee84ec5fd09","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:41:12.9005904-05:00","Properties":{}}
+DEBUG 2016-08-26 16:41:27,890 [32   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: cbebe036-0b97-430e-9a09-4c6494f34418
+DEBUG 2016-08-26 16:41:45,157 [35   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: c7ca9b1e-694c-44a1-a0fa-617367fda4e3
+WARN  2016-08-26 16:41:45,655 [6    ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:41:46,015 [45   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"d862af31-e401-465d-9bfb-2241e5954d35","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:41:46.0158312-05:00","Properties":{}}
+DEBUG 2016-08-26 16:41:46,060 [47   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: d862af31-e401-465d-9bfb-2241e5954d35
+WARN  2016-08-26 16:41:55,502 [42   ] Abp.Logging.LogHelper                    - Can not find 'ServiceName' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:41:55,503 [42   ] Abp.Logging.LogHelper                    - Can not find 'ExecutionDuration' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:41:55,554 [35   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: d862af31-e401-465d-9bfb-2241e5954d35
+WARN  2016-08-26 16:41:55,678 [37   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:41:56,062 [33   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"d574b402-7e88-41ca-b5c0-35a44e853aad","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:41:56.061848-05:00","Properties":{}}
+DEBUG 2016-08-26 16:41:56,078 [35   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: d574b402-7e88-41ca-b5c0-35a44e853aad
+WARN  2016-08-26 16:42:00,588 [47   ] Abp.Logging.LogHelper                    - Can not find 'ThemeSelector' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:42:00,589 [47   ] Abp.Logging.LogHelper                    - Can not find 'Status' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:42:01,198 [35   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: d574b402-7e88-41ca-b5c0-35a44e853aad
+WARN  2016-08-26 16:42:01,282 [47   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:42:01,552 [45   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"6e56889f-7b22-46b9-b19f-96d7139eeb16","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:42:01.5510428-05:00","Properties":{}}
+DEBUG 2016-08-26 16:42:01,566 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 6e56889f-7b22-46b9-b19f-96d7139eeb16
+WARN  2016-08-26 16:42:02,981 [47   ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:42:02,981 [47   ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:42:02,981 [47   ] Abp.Logging.LogHelper                    - Can not find 'FullScreen' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:42:02,981 [47   ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:42:03,327 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 6e56889f-7b22-46b9-b19f-96d7139eeb16
+WARN  2016-08-26 16:42:03,419 [42   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:42:03,759 [35   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"a1ccf39a-78be-4285-91dc-f891ec65c251","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:42:03.759926-05:00","Properties":{}}
+DEBUG 2016-08-26 16:42:03,765 [47   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: a1ccf39a-78be-4285-91dc-f891ec65c251
+DEBUG 2016-08-26 16:42:05,455 [45   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: a1ccf39a-78be-4285-91dc-f891ec65c251
+WARN  2016-08-26 16:42:05,559 [45   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:42:05,943 [35   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"c67a206b-88de-4847-aa2d-c585dbec679f","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:42:05.9437992-05:00","Properties":{}}
+DEBUG 2016-08-26 16:42:05,954 [37   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: c67a206b-88de-4847-aa2d-c585dbec679f
+DEBUG 2016-08-26 16:48:13,453 [49   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: c67a206b-88de-4847-aa2d-c585dbec679f
+WARN  2016-08-26 16:48:13,575 [47   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:48:14,257 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"5c12ed14-27b2-435b-8e84-ca46e274064a","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:48:14.2571082-05:00","Properties":{}}
+DEBUG 2016-08-26 16:48:14,271 [48   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 5c12ed14-27b2-435b-8e84-ca46e274064a
+WARN  2016-08-26 16:48:18,508 [51   ] Abp.Logging.LogHelper                    - Can not find 'MyProfile' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,508 [51   ] Abp.Logging.LogHelper                    - Can not find 'MyProfileView' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,509 [51   ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,509 [51   ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,509 [51   ] Abp.Logging.LogHelper                    - Can not find 'FullScreen' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,509 [51   ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,510 [51   ] Abp.Logging.LogHelper                    - Can not find 'ProfilePicture' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,520 [51   ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,521 [51   ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,521 [51   ] Abp.Logging.LogHelper                    - Can not find 'FullScreen' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,521 [51   ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:48:18,521 [51   ] Abp.Logging.LogHelper                    - Can not find 'MyInfo' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:48:18,573 [47   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 5c12ed14-27b2-435b-8e84-ca46e274064a
+WARN  2016-08-26 16:48:18,664 [47   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:48:18,986 [47   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"c650dcee-ffdd-4ac1-a5bb-a8f8ae4e11f3","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:48:18.9850536-05:00","Properties":{}}
+DEBUG 2016-08-26 16:48:18,992 [48   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: c650dcee-ffdd-4ac1-a5bb-a8f8ae4e11f3
+WARN  2016-08-26 16:48:25,141 [48   ] Abp.Auditing.AuditingHelper              - Newtonsoft.Json.JsonSerializationException: Error getting value from 'ReadTimeout' on 'System.Web.HttpInputStream'. ---> System.InvalidOperationException: Timeouts are not supported on this stream.
+   at System.IO.Stream.get_ReadTimeout()
+   at GetReadTimeout(Object )
+   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+   --- End of inner exception stack trace ---
+   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CalculatePropertyValues(JsonWriter writer, Object value, JsonContainerContract contract, JsonProperty member, JsonProperty property, JsonContract& memberContract, Object& memberValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeDictionary(JsonWriter writer, IDictionary values, JsonDictionaryContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonConvert.SerializeObjectInternal(Object value, Type type, JsonSerializer jsonSerializer)
+   at Abp.Auditing.AuditingHelper.Serialize(Object obj) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Auditing\AuditingHelper.cs:line 191
+   at Abp.Auditing.AuditingHelper.ConvertArgumentsToJson(IDictionary`2 arguments) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Auditing\AuditingHelper.cs:line 150
+Newtonsoft.Json.JsonSerializationException: Error getting value from 'ReadTimeout' on 'System.Web.HttpInputStream'. ---> System.InvalidOperationException: Timeouts are not supported on this stream.
+   at System.IO.Stream.get_ReadTimeout()
+   at GetReadTimeout(Object )
+   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+   --- End of inner exception stack trace ---
+   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CalculatePropertyValues(JsonWriter writer, Object value, JsonContainerContract contract, JsonProperty member, JsonProperty property, JsonContract& memberContract, Object& memberValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeDictionary(JsonWriter writer, IDictionary values, JsonDictionaryContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonConvert.SerializeObjectInternal(Object value, Type type, JsonSerializer jsonSerializer)
+   at Abp.Auditing.AuditingHelper.Serialize(Object obj) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Auditing\AuditingHelper.cs:line 191
+   at Abp.Auditing.AuditingHelper.ConvertArgumentsToJson(IDictionary`2 arguments) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Auditing\AuditingHelper.cs:line 150
+DEBUG 2016-08-26 16:48:36,387 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: c650dcee-ffdd-4ac1-a5bb-a8f8ae4e11f3
+WARN  2016-08-26 16:48:36,477 [50   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:48:36,907 [49   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"29932daa-c1fd-4336-9034-c3561c8b6a91","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:48:36.9076374-05:00","Properties":{}}
+DEBUG 2016-08-26 16:48:36,955 [49   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 29932daa-c1fd-4336-9034-c3561c8b6a91
+DEBUG 2016-08-26 16:48:45,079 [47   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 29932daa-c1fd-4336-9034-c3561c8b6a91
+WARN  2016-08-26 16:48:45,172 [49   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:48:45,545 [49   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"c11a4039-e0a3-4948-9727-d43e540f9ab6","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:48:45.5453646-05:00","Properties":{}}
+DEBUG 2016-08-26 16:48:45,561 [49   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: c11a4039-e0a3-4948-9727-d43e540f9ab6
+DEBUG 2016-08-26 16:50:30,674 [6    ] Abp.Modules.AbpModuleManager             - Shutting down has been started
+DEBUG 2016-08-26 16:50:30,674 [6    ] Abp.BackgroundJobs.BackgroundJobManager  - Stop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-26 16:50:30,674 [6    ] Abp.BackgroundJobs.BackgroundJobManager  - WaitToStop background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-26 16:50:30,674 [6    ] Abp.Modules.AbpModuleManager             - Shutting down completed.
+DEBUG 2016-08-26 16:50:40,473 [53   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-08-26 16:50:40,484 [53   ] Abp.Modules.AbpModuleManager             - Found 17 ABP modules in total.
+DEBUG 2016-08-26 16:50:40,488 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,490 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,490 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.11.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,490 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.11.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,490 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,490 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,491 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,491 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,491 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,491 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,491 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,491 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,491 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,492 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.FileManager.CinotamFileManager, Cinotam.FileManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,492 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.FileManager.Cloudinary.CinotamFileManagerCloudinary, Cinotam.FileManager.Cloudinary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,492 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,492 [53   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:40,494 [53   ] Abp.Modules.AbpModuleManager             - 17 modules loaded.
+DEBUG 2016-08-26 16:50:40,573 [53   ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-26 16:50:40,573 [53   ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-26 16:50:40,573 [53   ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-26 16:50:40,573 [53   ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-26 16:50:40,573 [53   ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-08-26 16:50:40,822 [53   ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-08-26 16:50:41,531 [53   ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-08-26 16:50:41,535 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-08-26 16:50:41,536 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-08-26 16:50:41,537 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-08-26 16:50:41,537 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-08-26 16:50:41,538 [53   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-08-26 16:50:41,588 [53   ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2016-08-26 16:50:42,397 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-08-26 16:50:42,398 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-08-26 16:50:42,399 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-08-26 16:50:42,400 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-08-26 16:50:42,401 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-08-26 16:50:42,402 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-08-26 16:50:42,403 [53   ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.AuditLogs.IAuditLogService' with service name 'app/auditLogService'.
+DEBUG 2016-08-26 16:50:42,514 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 11 classes defines auto mapping attributes
+DEBUG 2016-08-26 16:50:42,514 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-08-26 16:50:42,518 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-08-26 16:50:42,518 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-08-26 16:50:42,518 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserProfileDto
+DEBUG 2016-08-26 16:50:42,518 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-08-26 16:50:42,518 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-08-26 16:50:42,518 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-08-26 16:50:42,518 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-08-26 16:50:42,518 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-08-26 16:50:42,519 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-08-26 16:50:42,519 [53   ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogTimeOutputDto
+DEBUG 2016-08-26 16:50:43,005 [52   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"c11a4039-e0a3-4948-9727-d43e540f9ab6","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:50:42.9634884-05:00","Properties":{}}
+DEBUG 2016-08-26 16:50:43,005 [44   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"c11a4039-e0a3-4948-9727-d43e540f9ab6","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:50:42.9634884-05:00","Properties":{}}
+DEBUG 2016-08-26 16:50:43,012 [47   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"a568606f-22ed-45a4-8242-5ee84ec5fd09","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:50:42.9744895-05:00","Properties":{}}
+DEBUG 2016-08-26 16:50:43,017 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected (on reconnected event): {"ConnectionId":"c11a4039-e0a3-4948-9727-d43e540f9ab6","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:50:42.9634884-05:00","Properties":{}}
+DEBUG 2016-08-26 16:50:43,018 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"a568606f-22ed-45a4-8242-5ee84ec5fd09","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:50:42.9744895-05:00","Properties":{}}
+DEBUG 2016-08-26 16:50:45,021 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"c11a4039-e0a3-4948-9727-d43e540f9ab6","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:50:42.9634884-05:00","Properties":{}}
+DEBUG 2016-08-26 16:50:47,245 [38   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: c11a4039-e0a3-4948-9727-d43e540f9ab6
+WARN  2016-08-26 16:50:47,771 [46   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:50:48,016 [30   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"d4b3b334-a48d-45af-b720-43080802037c","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:50:48.0169937-05:00","Properties":{}}
+DEBUG 2016-08-26 16:50:48,064 [30   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: d4b3b334-a48d-45af-b720-43080802037c
+WARN  2016-08-26 16:50:53,333 [47   ] Abp.Logging.LogHelper                    - Can not find 'MyProfile' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,334 [47   ] Abp.Logging.LogHelper                    - Can not find 'MyProfileView' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,334 [47   ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,334 [47   ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,334 [47   ] Abp.Logging.LogHelper                    - Can not find 'FullScreen' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,335 [47   ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,335 [47   ] Abp.Logging.LogHelper                    - Can not find 'ProfilePicture' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,364 [47   ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,364 [47   ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,364 [47   ] Abp.Logging.LogHelper                    - Can not find 'FullScreen' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,364 [47   ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+WARN  2016-08-26 16:50:53,365 [47   ] Abp.Logging.LogHelper                    - Can not find 'MyInfo' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:50:53,414 [24   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: d4b3b334-a48d-45af-b720-43080802037c
+WARN  2016-08-26 16:50:53,511 [24   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-08-26 16:50:53,899 [46   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"dc84552c-17d5-4a49-a109-93a3766cf253","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-08-26T16:50:53.8985818-05:00","Properties":{}}
+DEBUG 2016-08-26 16:50:53,910 [11   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: dc84552c-17d5-4a49-a109-93a3766cf253
+WARN  2016-08-26 16:51:18,052 [44   ] Abp.Auditing.AuditingHelper              - Newtonsoft.Json.JsonSerializationException: Error getting value from 'ReadTimeout' on 'System.Web.HttpInputStream'. ---> System.InvalidOperationException: Timeouts are not supported on this stream.
+   at System.IO.Stream.get_ReadTimeout()
+   at GetReadTimeout(Object )
+   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+   --- End of inner exception stack trace ---
+   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CalculatePropertyValues(JsonWriter writer, Object value, JsonContainerContract contract, JsonProperty member, JsonProperty property, JsonContract& memberContract, Object& memberValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeDictionary(JsonWriter writer, IDictionary values, JsonDictionaryContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonConvert.SerializeObjectInternal(Object value, Type type, JsonSerializer jsonSerializer)
+   at Abp.Auditing.AuditingHelper.Serialize(Object obj) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Auditing\AuditingHelper.cs:line 191
+   at Abp.Auditing.AuditingHelper.ConvertArgumentsToJson(IDictionary`2 arguments) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Auditing\AuditingHelper.cs:line 150
+Newtonsoft.Json.JsonSerializationException: Error getting value from 'ReadTimeout' on 'System.Web.HttpInputStream'. ---> System.InvalidOperationException: Timeouts are not supported on this stream.
+   at System.IO.Stream.get_ReadTimeout()
+   at GetReadTimeout(Object )
+   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+   --- End of inner exception stack trace ---
+   at Newtonsoft.Json.Serialization.DynamicValueProvider.GetValue(Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CalculatePropertyValues(JsonWriter writer, Object value, JsonContainerContract contract, JsonProperty member, JsonProperty property, JsonContract& memberContract, Object& memberValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeDictionary(JsonWriter writer, IDictionary values, JsonDictionaryContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonConvert.SerializeObjectInternal(Object value, Type type, JsonSerializer jsonSerializer)
+   at Abp.Auditing.AuditingHelper.Serialize(Object obj) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Auditing\AuditingHelper.cs:line 191
+   at Abp.Auditing.AuditingHelper.ConvertArgumentsToJson(IDictionary`2 arguments) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Auditing\AuditingHelper.cs:line 150

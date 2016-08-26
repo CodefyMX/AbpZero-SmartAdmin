@@ -39,6 +39,7 @@ namespace Cinotam.FileManager.Files
                         tempFile.WasStoredInCloud = false;
                         return new SavedFileResult();
                     }
+                    FileSystemHelper.RemoveFile(tempFile.AbsolutePath);
                     return new SavedFileResult()
                     {
                         SecureUrl = result.SecureUrl,
