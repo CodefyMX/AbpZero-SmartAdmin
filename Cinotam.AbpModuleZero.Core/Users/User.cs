@@ -1,14 +1,14 @@
-﻿using System;
-using Abp.Authorization.Users;
+﻿using Abp.Authorization.Users;
 using Abp.Extensions;
 using Microsoft.AspNet.Identity;
+using System;
 
 namespace Cinotam.AbpModuleZero.Users
 {
     public class User : AbpUser<User>
     {
         public const string DefaultPassword = "123qwe";
-
+        public string ProfilePicture { get; set; }
         public static string CreateRandomPassword()
         {
             return Guid.NewGuid().ToString("N").Truncate(16);

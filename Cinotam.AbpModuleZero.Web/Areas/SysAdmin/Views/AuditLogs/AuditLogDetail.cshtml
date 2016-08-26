@@ -14,7 +14,7 @@
         </div>
         <div class="modal-body no-padding">
 
-            <form method="POST" id="editText" class="smart-form">
+            <form   class="smart-form">
                 <header>
                     <strong>@L("MethodName")</strong> : @Model.MethodName
                 </header>
@@ -56,7 +56,7 @@
                                 <a data-id="@Model.Id"  class="toggle">Details</a>
                                 
                             </div>
-                            <pre class="@Model.Id" style="display: none"><code>@Model.Exception</code></pre>
+                            <pre lang="js" class="@Model.Id" style="display: none">@Model.Exception</pre>
                         }
                         else
                         {

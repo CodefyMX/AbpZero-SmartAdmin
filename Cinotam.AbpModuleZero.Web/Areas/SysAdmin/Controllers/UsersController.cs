@@ -1,4 +1,5 @@
-﻿using Abp.Web.Models;
+﻿using Abp.UI;
+using Abp.Web.Models;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.Users;
@@ -47,5 +48,28 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             await _userAppService.CreateUser(input);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+        public async Task<ActionResult> MyProfile()
+        {
+            var user = await _userAppService.GetUserProfile(AbpSession.UserId);
+            return View(user);
+        }
+
+        public async Task<ActionResult> ChangeProfilePicture(long id)
+        {
+            if (Request.Files.Count <= 0 || Request.Files.Count > 1)
+            {
+                throw new UserFriendlyException("");
+            }
+            var result = await _userAppService.AddProfilePicture(new UpdateProfilePictureInput()
+            {
+                Image = Request.Files[0],
+                UserId = id
+            });
+
+            return Json(result);
+
+        }
+
     }
 }

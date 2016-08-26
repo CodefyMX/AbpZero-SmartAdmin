@@ -74,16 +74,17 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
         }
 
         [WrapResult(false)]
-        public List<AuditLogTimeOutput> GetAuditLogTimes()
+        public AuditLogTimeOutput GetAuditLogTimes()
         {
             var data = _auditLogRepository.GetAll().OrderByDescending(a => a.ExecutionTime);
-            var listOfData = new List<AuditLogTimeOutput>();
+            var listOfData = new List<AuditLogTimeOutputDto>();
             var query = from ex in data
                         where DbFunctions.TruncateTime(ex.ExecutionTime) == DbFunctions.TruncateTime(DateTime.Now)
                         select ex;
-            foreach (var auditLog in query.Take(100))
+            var inMemoryData = query.Take(100).ToList();
+            foreach (var auditLog in inMemoryData)
             {
-                listOfData.Add(new AuditLogTimeOutput()
+                listOfData.Add(new AuditLogTimeOutputDto()
                 {
                     BrowserInfo = auditLog.BrowserInfo,
                     ExecutionDuration = auditLog.ExecutionDuration,
@@ -92,7 +93,20 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
 
                 });
             }
-            return listOfData;
+            double avg = 0;
+            var totalCalls = 0;
+            if (data.Any())
+            {
+
+                avg = data.Average(a => a.ExecutionDuration);
+                totalCalls = data.Count();
+            }
+            return new AuditLogTimeOutput()
+            {
+                TotalRequestsReceived = totalCalls,
+                AuditLogTimeOutputDtos = listOfData,
+                AvgExecutionTime = avg.ToString("##.#")
+            };
         }
 
         private async Task<AuditLogDto[]> GetModel(List<AuditLog> filteredByLength)

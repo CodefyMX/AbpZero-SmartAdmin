@@ -1,0 +1,20 @@
+﻿@model Cinotam.ModuleZero.AppModule.Sessions.Dto.GetCurrentLoginInformationsOutput
+@{
+    Layout = null;
+}
+<div class="login-info">
+    <span>
+        <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+            @if (string.IsNullOrEmpty(Model.User.ProfilePicture))
+            {
+                <img src="~/content/img/avatars/sunny.png" alt="me" class="online" />
+            }
+            else
+            {
+                <img src="@Model.User.ProfilePicture" alt="me" class="online" />
+            }
+            <span>@User.Identity.Name.ToLower()</span>
+            <i class="fa fa-angle-down"></i>
+        </a>
+    </span>
+</div>

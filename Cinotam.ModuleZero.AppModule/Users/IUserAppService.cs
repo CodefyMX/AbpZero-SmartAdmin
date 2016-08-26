@@ -22,5 +22,8 @@ namespace Cinotam.ModuleZero.AppModule.Users
         Task<CreateUserInput> GetUserForEdit(long? userId);
         Task<RoleSelectorOutput> GetRolesForUser(long? userId);
         Task SetUserRoles(RoleSelectorInput input);
+        Task<UserProfileDto> GetUserProfile(long? abpSessionUserId);
+
+        Task<string> AddProfilePicture(UpdateProfilePictureInput input);
     }
 }

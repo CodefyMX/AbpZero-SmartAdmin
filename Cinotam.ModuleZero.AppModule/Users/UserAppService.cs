@@ -7,6 +7,9 @@ using Abp.UI;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Users;
+using Cinotam.FileManager.Files;
+using Cinotam.FileManager.Files.Inputs;
+using Cinotam.FileManager.FileTypes;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
 using Microsoft.AspNet.Identity;
@@ -22,11 +25,15 @@ namespace Cinotam.ModuleZero.AppModule.Users
     {
         private readonly IRepository<User, long> _userRepository;
         private readonly IPermissionManager _permissionManager;
+        private readonly IFileStoreManager _fileStoreManager;
+        private readonly UserManager _userManager;
 
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager)
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, UserManager userManager, IFileStoreManager fileStoreManager)
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
+            _userManager = userManager;
+            _fileStoreManager = fileStoreManager;
         }
 
         public async Task ProhibitPermission(ProhibitPermissionInput input)
@@ -137,6 +144,49 @@ namespace Cinotam.ModuleZero.AppModule.Users
             var user = await UserManager.GetUserByIdAsync(input.UserId);
             await UserManager.SetRoles(user, input.Roles);
         }
+
+        public async Task<UserProfileDto> GetUserProfile(long? abpSessionUserId)
+        {
+            if (!abpSessionUserId.HasValue) throw new UserFriendlyException(nameof(abpSessionUserId));
+            var user = await _userManager.GetUserByIdAsync(abpSessionUserId.Value);
+
+            return user.MapTo<UserProfileDto>();
+        }
+
+        public async Task<string> AddProfilePicture(UpdateProfilePictureInput input)
+        {
+            var result = _fileStoreManager.SaveFileToCloudService(new FileSaveInput()
+            {
+                CreateUniqueName = false,
+                File = input.Image,
+                FileType = ValidFileTypes.Image
+            });
+
+            var user = await UserManager.GetUserByIdAsync(input.UserId);
+
+
+            if (result.WasStoredInCloud)
+            {
+                user.ProfilePicture = result.Url;
+                await UserManager.UpdateAsync(user);
+                return result.Url;
+            }
+            else
+            {
+                var folder = $"/Content/Images/Users/{input.UserId}/profilePicture/";
+                var resultLocal = _fileStoreManager.SaveFileToServer(new FileSaveInput()
+                {
+                    CreateUniqueName = true,
+                    File = input.Image,
+                    FileType = ValidFileTypes.Image
+                }, folder);
+
+                user.ProfilePicture = result.VirtualPath;
+                await UserManager.UpdateAsync(user);
+                return resultLocal.VirtualPath;
+            }
+        }
+
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)
         {
             if (userId == null) throw new UserFriendlyException("User id");

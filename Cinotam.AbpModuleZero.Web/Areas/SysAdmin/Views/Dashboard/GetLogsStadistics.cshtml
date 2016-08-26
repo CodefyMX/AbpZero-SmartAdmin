@@ -14,8 +14,8 @@
             </span>
         </span>
     </div>
-    <br/><br/>
-    <div class="col-xs-12">
+    <br /><br />
+    <div class="col-xs-12 col-md-8">
 
 
         <div id="logsChart" class="chart"></div>
@@ -23,20 +23,53 @@
             @L("MethodCalls")
         </h4>
     </div>
+    <div class="col-xs-12 col-md-4">
+
+        <p class="text-center font-xl">Requests</p>
+        <p class="text-center font-lg" id="total">...</p>
+        <p class="text-center font-xl">Average Execution Time</p>
+        <p class="text-center font-lg" ><label id="average"></label> <i id="avgIndicator" class=""></i></p>
+      
+    </div>
 </div>
 
 
 <script>
     (function () {
-
+        var currentValue;
+        var newValue;
         function GetData(callback) {
-
+            
             abp.services.app.auditLogService.getAuditLogTimes()
                 .done(function (response) {
+                    
                     var data = [];
                     var dataToolTips = [];
                     var count = 1;
-                    response.forEach(function (element) {
+                    var element = $("#avgIndicator");
+                    //if (currentValue == response.avgExecutionTime) {
+                    //    console.log ("No changes");
+                    //}
+                    if (currentValue < response.avgExecutionTime) {
+                        element.removeClass("fa fa-caret-down icon-color-good");
+                        element.addClass("fa fa-caret-up icon-color-bad");
+                    }
+                    if (currentValue > response.avgExecutionTime)
+                    {
+                        element.removeClass("fa fa-caret-up icon-color-bad");
+                        element.addClass("fa fa-caret-down icon-color-good");
+                    }
+                    if (currentValue == undefined) {
+                        currentValue = response.avgExecutionTime;
+                    }
+                    if (response.avgExecutionTime != currentValue) {
+                        currentValue = response.avgExecutionTime;
+                    }
+                    newValue = response.avgExecutionTime;
+                    currentValue = response.avgExecutionTime;
+                    $("#average").text(newValue + " ms");
+                    $("#total").text(response.totalRequestsReceived);
+                    response.auditLogTimeOutputDtos.forEach(function (element) {
                         dataToolTips.push({
                             MethodName: element.methodName,
                             Id: element.id
@@ -85,12 +118,6 @@
 
                         }
                     },
-                    zoom: {
-                        interactive: true
-                    },
-                    pan: {
-                        interactive: true
-                    },
                     grid: {
                         hoverable: true,
                         clickable: true
@@ -102,7 +129,6 @@
                         var toolTip = toolTips[item.dataIndex];
                         var txt = toolTip.MethodName;
                         var value = item.datapoint[1];
-                        console.log(value);
                         var color = "";
                         if (value > 50) {
                             color = "#ffca28";
@@ -144,8 +170,11 @@
                     if ($("#start_interval").is(":checked")) {
 
 
-                        GetData(function (data, toolTips) {
-
+                        GetData(function (updatedData, updatedToolTips) {
+                            data = [];
+                            data = updatedData;
+                            toolTips = [];
+                            toolTips = updatedToolTips;
                             plot.setData([data]);
                             // since the axes don't change, we don't need to call plot.setupGrid()
                             plot.setupGrid();

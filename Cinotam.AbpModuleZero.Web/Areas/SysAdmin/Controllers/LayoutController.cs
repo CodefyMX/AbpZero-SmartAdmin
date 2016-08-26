@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Navigation;
 using Abp.Configuration.Startup;
 using Abp.Localization;
+using Abp.Threading;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.AbpModuleZero.Web.Models.Layout;
 using Cinotam.ModuleZero.AppModule.Sessions;
@@ -37,6 +38,12 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             };
 
             return PartialView("_LanguageSelectionAdmin", model);
+        }
+
+        public ViewResult UserInfo()
+        {
+            var userInfo = AsyncHelper.RunSync(() => _sessionAppService.GetCurrentLoginInformations());
+            return View("_CurrentUser", userInfo);
         }
     }
 }

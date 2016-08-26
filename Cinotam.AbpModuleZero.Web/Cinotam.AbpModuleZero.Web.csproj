@@ -1021,16 +1021,16 @@
     <Content Include="Scripts\smartAdminScripts\smart-chat-ui\smart.chat.ui.min.js" />
     <Content Include="Scripts\smartAdminScripts\smartwidgets\jarvis.widget.min.js" />
     <Content Include="Scripts\smartAdminScripts\speech\voicecommand.min.js" />
-    <Content Include="Views\Shared\_Aside.cshtml" />
-    <Content Include="Views\Shared\_CurrentUser.cshtml" />
-    <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_Header.cshtml" />
-    <Content Include="Views\Shared\_LayoutSmartAdmin.cshtml" />
-    <Content Include="Views\Shared\_Ribbon.cshtml" />
-    <Content Include="Views\Shared\_Scripts.cshtml" />
-    <Content Include="Views\Shared\_TermsAndConditions.cshtml" />
-    <Content Include="Views\Shared\_Tiles.cshtml" />
-    <Content Include="Views\Shared\_TopRight.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_Aside.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_CurrentUser.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_Header.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_LayoutSmartAdmin.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_Ribbon.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_Scripts.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_TermsAndConditions.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_Tiles.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_TopRight.cshtml" />
     <Content Include="Content\sound\bigbox.ogg" />
     <Content Include="Content\sound\messagebox.ogg" />
     <Content Include="Content\sound\smallbox.ogg" />
@@ -1069,6 +1069,7 @@
     <None Include="Areas\SysAdmin\Views\Layout\_LanguageSelectionAdmin.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1225,7 +1226,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\SysAdmin\Models\" />
-    <Folder Include="Areas\SysAdmin\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

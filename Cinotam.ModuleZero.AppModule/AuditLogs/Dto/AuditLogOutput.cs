@@ -15,6 +15,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs.Dto
     {
         public virtual string BrowserInfo { get; set; }
         public virtual string ClientIpAddress { get; set; }
+        public virtual string ServiceName { get; set; }
         public virtual string ClientName { get; set; }
         public virtual string Exception { get; set; }
         public virtual int ExecutionDuration { get; set; }
