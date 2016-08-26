@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.FileManager", "Cino
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.FileManager.Cloudinary", "Cinotam.FileManager.Cloudinary\Cinotam.FileManager.Cloudinary.csproj", "{632D78C7-0806-45A9-8FCF-1EC94DDA807A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.FileManager.SharedTypes", "Cinotam.FileManager.SharedTypes\Cinotam.FileManager.SharedTypes.csproj", "{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,10 @@ Global
 		{632D78C7-0806-45A9-8FCF-1EC94DDA807A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{632D78C7-0806-45A9-8FCF-1EC94DDA807A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{632D78C7-0806-45A9-8FCF-1EC94DDA807A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,5 +107,6 @@ Global
 		{4F061DBA-643A-4B5A-BCFA-6903E5D8B105} = {7408541C-F99C-4197-B203-136115BD1CB9}
 		{601A7D76-DFC2-4BBA-86E3-830657EB6A54} = {C5871A7A-7875-447C-9F8A-5440B9D87686}
 		{632D78C7-0806-45A9-8FCF-1EC94DDA807A} = {C5871A7A-7875-447C-9F8A-5440B9D87686}
+		{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853} = {C5871A7A-7875-447C-9F8A-5440B9D87686}
 	EndGlobalSection
 EndGlobal

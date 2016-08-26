@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{601A7D76-DFC2-4BBA-86E3-830657EB6A54}</ProjectGuid>
+    <ProjectGuid>{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cinotam.FileManager</RootNamespace>
-    <AssemblyName>Cinotam.FileManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Cinotam.FileManager.SharedTypes</RootNamespace>
+    <AssemblyName>Cinotam.FileManager.SharedTypes</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,16 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Abp">
-      <HintPath>..\packages\Abp.0.11.0.2\lib\net452\Abp.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,28 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CinotamFileManager.cs" />
-    <Compile Include="FileSystemHelpers\FileSystemHelper.cs" />
-    <Compile Include="Files\FileStoreManager.cs" />
-    <Compile Include="Files\IFileStoreManager.cs" />
-    <Compile Include="Files\Inputs\FileSaveInput.cs" />
-    <Compile Include="Files\Outputs\SavedFileResult.cs" />
-    <Compile Include="FileTypes\ValidFileTypes.cs" />
+    <Compile Include="Enums\TransformationsTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cinotam.FileManager.Cloudinary\Cinotam.FileManager.Cloudinary.csproj">
-      <Project>{632D78C7-0806-45A9-8FCF-1EC94DDA807A}</Project>
-      <Name>Cinotam.FileManager.Cloudinary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.FileManager.SharedTypes\Cinotam.FileManager.SharedTypes.csproj">
-      <Project>{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}</Project>
-      <Name>Cinotam.FileManager.SharedTypes</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

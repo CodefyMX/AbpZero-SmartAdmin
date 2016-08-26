@@ -1,5 +1,6 @@
 ﻿using Abp.Extensions;
 using Cinotam.FileManager.Cloudinary.Cloudinary;
+using Cinotam.FileManager.Cloudinary.Cloudinary.Inputs;
 using Cinotam.FileManager.Files.Inputs;
 using Cinotam.FileManager.Files.Outputs;
 using Cinotam.FileManager.FileSystemHelpers;
@@ -24,7 +25,14 @@ namespace Cinotam.FileManager.Files
             {
                 case ValidFileTypes.Image:
 
-                    var result = _cloudinaryApiConsumer.UploadImageAndGetCdn(tempFile.AbsolutePath);
+                    var result = _cloudinaryApiConsumer.UploadImageAndGetCdn(new SaveImageInput()
+                    {
+                        AbsoluteFileDirectory = tempFile.AbsolutePath,
+                        Folder = input.SpecialFolder,
+                        TransformationsType = input.ImageEditOptions.TransFormationType,
+                        Width = (int)input.ImageEditOptions?.Width,
+                        Height = (int)input.ImageEditOptions?.Height,
+                    });
                     if (result.Failed)
                     {
                         FileSystemHelper.RemoveFile(tempFile.AbsolutePath);

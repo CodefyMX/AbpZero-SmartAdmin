@@ -120,6 +120,7 @@
     <Compile Include="Languages\Dto\LocalizationTextInput.cs" />
     <Compile Include="Languages\ILanguageAppService.cs" />
     <Compile Include="Languages\LanguageAppService.cs" />
+    <Compile Include="ModuleZeroConsts.cs" />
     <Compile Include="ModuleZeroNavigationProvider.cs" />
     <Compile Include="ModuleZeroSettingsProvider.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
@@ -172,6 +173,10 @@
     <ProjectReference Include="..\Cinotam.AbpModuleZero.Tools\Cinotam.AbpModuleZero.Tools.csproj">
       <Project>{9AB7EE8A-5411-4D24-AE46-158065006F00}</Project>
       <Name>Cinotam.AbpModuleZero.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.FileManager.SharedTypes\Cinotam.FileManager.SharedTypes.csproj">
+      <Project>{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}</Project>
+      <Name>Cinotam.FileManager.SharedTypes</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.FileManager\Cinotam.FileManager.csproj">
       <Project>{601A7D76-DFC2-4BBA-86E3-830657EB6A54}</Project>

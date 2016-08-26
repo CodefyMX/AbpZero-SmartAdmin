@@ -54,17 +54,24 @@
   <ItemGroup>
     <Compile Include="CinotamFileManagerCloudinary.cs" />
     <Compile Include="Cloudinary\CloudinaryApiConsumer.cs" />
+    <Compile Include="Cloudinary\Inputs\SaveImageInput.cs" />
     <Compile Include="Cloudinary\Results\CloudinaryImageUploadResult.cs" />
     <Compile Include="Cloudinary\ICloudinaryApiConsumer.cs" />
     <Compile Include="Credentials\Credentials.cs" />
     <Compile Include="Credentials\Helpers\CloudinaryIdentityObject.cs" />
     <Compile Include="Credentials\ICredentials.cs" />
+    <Compile Include="Transformations\TransFormationsConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Cinotam.FileManager.SharedTypes\Cinotam.FileManager.SharedTypes.csproj">
+      <Project>{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}</Project>
+      <Name>Cinotam.FileManager.SharedTypes</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

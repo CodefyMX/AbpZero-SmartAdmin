@@ -10,6 +10,7 @@ using Cinotam.AbpModuleZero.Users;
 using Cinotam.FileManager.Files;
 using Cinotam.FileManager.Files.Inputs;
 using Cinotam.FileManager.FileTypes;
+using Cinotam.FileManager.SharedTypes.Enums;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
 using Microsoft.AspNet.Identity;
@@ -155,14 +156,22 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
         public async Task<string> AddProfilePicture(UpdateProfilePictureInput input)
         {
+            var user = await UserManager.GetUserByIdAsync(input.UserId);
+
+
             var result = _fileStoreManager.SaveFileToCloudService(new FileSaveInput()
             {
                 CreateUniqueName = false,
                 File = input.Image,
-                FileType = ValidFileTypes.Image
+                FileType = ValidFileTypes.Image,
+                SpecialFolder = user.UserName.Normalize(),
+                ImageEditOptions = new ImageEditOptionsRequest()
+                {
+                    Width = 120,
+                    Height = 120,
+                    TransFormationType = TransformationsTypes.ImageWithSize
+                }
             });
-
-            var user = await UserManager.GetUserByIdAsync(input.UserId);
 
 
             if (result.WasStoredInCloud)
@@ -171,20 +180,15 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 await UserManager.UpdateAsync(user);
                 return result.Url;
             }
-            else
+            var folder = $"/Content/Images/Users/{input.UserId}/profilePicture/";
+            var resultLocal = _fileStoreManager.SaveFileToServer(new FileSaveInput()
             {
-                var folder = $"/Content/Images/Users/{input.UserId}/profilePicture/";
-                var resultLocal = _fileStoreManager.SaveFileToServer(new FileSaveInput()
-                {
-                    CreateUniqueName = true,
-                    File = input.Image,
-                    FileType = ValidFileTypes.Image
-                }, folder);
-
-                user.ProfilePicture = result.VirtualPath;
-                await UserManager.UpdateAsync(user);
-                return resultLocal.VirtualPath;
-            }
+                CreateUniqueName = true,
+                File = input.Image,
+            }, folder);
+            user.ProfilePicture = result.VirtualPath;
+            await UserManager.UpdateAsync(user);
+            return resultLocal.VirtualPath;
         }
 
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)

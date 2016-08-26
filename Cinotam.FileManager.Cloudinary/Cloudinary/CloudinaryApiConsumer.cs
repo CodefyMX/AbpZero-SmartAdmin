@@ -1,4 +1,5 @@
-﻿using Cinotam.FileManager.Cloudinary.Cloudinary.Results;
+﻿using Cinotam.FileManager.Cloudinary.Cloudinary.Inputs;
+using Cinotam.FileManager.Cloudinary.Cloudinary.Results;
 using Cinotam.FileManager.Cloudinary.Credentials;
 using Cinotam.FileManager.Cloudinary.Credentials.Helpers;
 using CloudinaryDotNet.Actions;
@@ -18,13 +19,15 @@ namespace Cinotam.FileManager.Cloudinary.Cloudinary
             });
         }
 
-        public virtual CloudinaryImageUploadResult UploadImageAndGetCdn(string absoluteFileDirectory)
+        public virtual CloudinaryImageUploadResult UploadImageAndGetCdn(SaveImageInput input)
         {
             try
             {
                 var uploadParams = new ImageUploadParams()
                 {
-                    File = new FileDescription(absoluteFileDirectory)
+                    File = new FileDescription(input.AbsoluteFileDirectory),
+                    Folder = string.IsNullOrEmpty(input.Folder) ? null : input.Folder,
+                    Transformation = Transformations.TransFormationsConfig.GetTransformationConfiguration(input)
                 };
                 var result = _instance.Upload(uploadParams);
                 return new CloudinaryImageUploadResult()
