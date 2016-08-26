@@ -120,7 +120,6 @@
     <Compile Include="Languages\Dto\LocalizationTextInput.cs" />
     <Compile Include="Languages\ILanguageAppService.cs" />
     <Compile Include="Languages\LanguageAppService.cs" />
-    <Compile Include="ModuleZeroConsts.cs" />
     <Compile Include="ModuleZeroNavigationProvider.cs" />
     <Compile Include="ModuleZeroSettingsProvider.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
