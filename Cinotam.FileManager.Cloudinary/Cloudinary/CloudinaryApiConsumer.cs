@@ -1,4 +1,5 @@
-﻿using Cinotam.FileManager.Cloudinary.Cloudinary.Inputs;
+﻿using Abp.Auditing;
+using Cinotam.FileManager.Cloudinary.Cloudinary.Inputs;
 using Cinotam.FileManager.Cloudinary.Cloudinary.Results;
 using Cinotam.FileManager.Cloudinary.Credentials;
 using Cinotam.FileManager.Cloudinary.Credentials.Helpers;
@@ -6,6 +7,7 @@ using CloudinaryDotNet.Actions;
 
 namespace Cinotam.FileManager.Cloudinary.Cloudinary
 {
+    [Audited]
     public class CloudinaryApiConsumer : ICloudinaryApiConsumer
     {
         private readonly CloudinaryDotNet.Cloudinary _instance;

@@ -1,10 +1,13 @@
-﻿using Cinotam.AbpModuleZero.Web.Controllers;
+﻿using Abp.Web.Mvc.Authorization;
+using Cinotam.AbpModuleZero.Authorization;
+using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.Settings;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
 {
+    [AbpMvcAuthorize(PermissionNames.PagesSysAdminConfiguration)]
     public class ConfigurationController : AbpModuleZeroControllerBase
     {
         private readonly ISettingsAppService _settingsAppService;

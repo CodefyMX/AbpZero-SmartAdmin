@@ -53,6 +53,7 @@
     <Compile Include="FileSystemHelpers\FileSystemHelper.cs" />
     <Compile Include="Files\FileStoreManager.cs" />
     <Compile Include="Files\IFileStoreManager.cs" />
+    <Compile Include="Files\Inputs\FileSaveFromStringInput.cs" />
     <Compile Include="Files\Inputs\FileSaveInput.cs" />
     <Compile Include="Files\Outputs\SavedFileResult.cs" />
     <Compile Include="FileTypes\ValidFileTypes.cs" />

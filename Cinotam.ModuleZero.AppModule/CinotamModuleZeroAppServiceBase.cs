@@ -8,9 +8,11 @@ using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.ReflectionHelpers;
 using Cinotam.AbpModuleZero.Users;
 using Microsoft.AspNet.Identity;
+using NinjaNye.SearchExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule
@@ -55,6 +57,25 @@ namespace Cinotam.ModuleZero.AppModule
             {
                 queryable = queryable.Where(request.PropToSearch, searchString);
             }
+            queryable = !string.IsNullOrEmpty(request.PropToSort) ? GetOrderedQuery(queryable, request) : queryable.OrderBy(defaultOrderableProp);
+            var filteredByLength = queryable.Skip(pageIndex).Take(request.length).ToList();
+            return filteredByLength;
+        }
+        public List<TQ> GenerateTableModel<TQ>(RequestModel<object> request, IQueryable<TQ> queryable, List<Expression<Func<TQ, string>>> expression, string defaultOrderableProp, out int totalCount)
+        {
+            var pageIndex = request.start;
+            var pageSize = request.length;
+            totalCount = queryable.Count();
+            if (pageSize == -1)
+            {
+                pageIndex = 0;
+                request.length = totalCount;
+            }
+
+            var searchString = request.search["value"].ToUpper();
+
+            queryable = queryable.Search(expression.ToArray()).Containing(searchString);
+
             queryable = !string.IsNullOrEmpty(request.PropToSort) ? GetOrderedQuery(queryable, request) : queryable.OrderBy(defaultOrderableProp);
             var filteredByLength = queryable.Skip(pageIndex).Take(request.length).ToList();
             return filteredByLength;

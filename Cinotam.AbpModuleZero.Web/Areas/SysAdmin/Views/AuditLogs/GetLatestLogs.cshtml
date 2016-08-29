@@ -1,26 +1,30 @@
-﻿@model Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogOutput
+﻿@using Cinotam.AbpModuleZero.Authorization
+@model Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogOutput
 
 @{
     Layout = null;
 }
 
 <ul class="notification-body">
-    @foreach (var log in Model.AuditLogs)
+    @if (IsGranted(PermissionNames.AuditLogs))
     {
-        <li>
-            <span class="">
-                <a data-modal href="@Url.Action("AuditLogDetail","AuditLogs",new {id = log.Id})" class="msg">
-                    @*<img src="../../../../Content/img/avatars/4.png" alt="" class="air air-top-left margin-top-5" width="40" height="40">*@
-                    <span class="from">@log.MethodName <i class="icon-paperclip"></i></span>
-                    <time>@log.ExecutionTime.ToShortTimeString()</time>
-                    <span class="subject"><strong>User:</strong> @log.UserName <strong>IP:</strong> @log.ClientIpAddress</span>
-                    <span class="msg-body">@log.BrowserInfo</span>
-                </a>
-            </span>
-        </li>
+        foreach (var log in Model.AuditLogs)
+        {
+            <li>
+                <span class="">
+                    <a data-modal href="@Url.Action("AuditLogDetail", "AuditLogs", new {id = log.Id})" class="msg">
+                        @*<img src="../../../../Content/img/avatars/4.png" alt="" class="air air-top-left margin-top-5" width="40" height="40">*@
+                        <span class="from">@log.MethodName <i class="icon-paperclip"></i></span>
+                        <time>@log.ExecutionTime.ToShortTimeString()</time>
+                        <span class="subject"><strong>User:</strong> @log.UserName <strong>IP:</strong> @log.ClientIpAddress</span>
+                        <span class="msg-body">@log.BrowserInfo</span>
+                    </a>
+                </span>
+            </li>
+        }
     }
     
-    
+
 </ul>
 
 <script>

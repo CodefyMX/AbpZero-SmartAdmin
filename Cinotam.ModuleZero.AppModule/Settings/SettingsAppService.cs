@@ -1,11 +1,15 @@
-﻿using Abp.Configuration;
+﻿using Abp.Authorization;
+using Abp.Configuration;
 using Abp.Localization;
+using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.ModuleZero.AppModule.Settings.Dto;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.Settings
 {
+    [AbpAuthorize(PermissionNames.PagesSysAdminConfiguration)]
     public class SettingsAppService : CinotamModuleZeroAppServiceBase, ISettingsAppService
     {
         private readonly SettingManager _settingManager;
@@ -22,7 +26,27 @@ namespace Cinotam.ModuleZero.AppModule.Settings
         {
             foreach (var settingInputDto in input)
             {
-                await _settingManager.ChangeSettingForApplicationAsync(settingInputDto.Key, settingInputDto.Value);
+                switch (settingInputDto.SettingScopes)
+                {
+                    case SettingScopes.Application:
+                        await _settingManager.ChangeSettingForApplicationAsync(settingInputDto.Key, settingInputDto.Value);
+                        break;
+                    case SettingScopes.Application | SettingScopes.User | SettingScopes.Tenant:
+                        await _settingManager.ChangeSettingForApplicationAsync(settingInputDto.Key, settingInputDto.Value);
+                        break;
+                    case SettingScopes.Application | SettingScopes.Tenant:
+                        await _settingManager.ChangeSettingForApplicationAsync(settingInputDto.Key, settingInputDto.Value);
+                        break;
+                    case SettingScopes.Tenant:
+
+                        break;
+                    case SettingScopes.User:
+                        if (AbpSession.UserId != null)
+                            await _settingManager.ChangeSettingForUserAsync(AbpSession.UserId.Value, settingInputDto.Key, settingInputDto.Value);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
 
@@ -50,7 +74,8 @@ namespace Cinotam.ModuleZero.AppModule.Settings
                     DisplayName = settingDefinition.DisplayName != null ? settingDefinition.DisplayName.Localize(_localizationContext) : settingDefinition.Name,
                     Value = value,
                     DefaultValue = settingDefinition.DefaultValue,
-                    Description = settingDefinition.Description != null ? settingDefinition.Description.Localize(_localizationContext) : ""
+                    Description = settingDefinition.Description != null ? settingDefinition.Description.Localize(_localizationContext) : "",
+                    SettingScopes = settingDefinition.Scopes
                 };
                 settingsList.Add(setting);
             }

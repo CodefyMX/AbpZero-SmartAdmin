@@ -11,6 +11,8 @@ namespace Cinotam.FileManager.Files
         /// </summary>
         /// <returns></returns>
         SavedFileResult SaveFileToCloudService(FileSaveInput input);
+
+        SavedFileResult SaveFileToCloudServiceFromString(FileSaveFromStringInput input);
         SavedFileResult SaveFileToServer(FileSaveInput input, string targetFolder);
     }
 }

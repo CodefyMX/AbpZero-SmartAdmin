@@ -71,6 +71,10 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NinjaNye.SearchExtensions, Version=1.8.6017.41438, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NinjaNye.SearchExtensions.1.8.6017.41438\lib\net40\NinjaNye.SearchExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Nito.AsyncEx, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
       <Private>True</Private>
@@ -180,6 +184,10 @@
     <ProjectReference Include="..\Cinotam.FileManager\Cinotam.FileManager.csproj">
       <Project>{601A7D76-DFC2-4BBA-86E3-830657EB6A54}</Project>
       <Name>Cinotam.FileManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.ModuleZero.BackgroundTasks\Cinotam.ModuleZero.BackgroundTasks.csproj">
+      <Project>{DA270051-1279-4759-BA4B-1E70709BEE1E}</Project>
+      <Name>Cinotam.ModuleZero.BackgroundTasks</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

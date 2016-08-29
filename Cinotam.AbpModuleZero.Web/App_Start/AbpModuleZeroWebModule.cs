@@ -1,9 +1,15 @@
-﻿using Abp.Modules;
+﻿using Abp.Hangfire;
+using Abp.Hangfire.Configuration;
+using Abp.Modules;
+using Abp.Threading.BackgroundWorkers;
 using Abp.Web.Mvc;
 using Abp.Web.SignalR;
 using Abp.Zero.Configuration;
 using Cinotam.AbpModuleZero.Api;
 using Cinotam.ModuleZero.AppModule;
+using Cinotam.ModuleZero.BackgroundTasks;
+using Cinotam.ModuleZero.BackgroundTasks.Workers.ImagePublisher;
+using Hangfire;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -16,8 +22,9 @@ namespace Cinotam.AbpModuleZero.Web
         typeof(AbpModuleZeroWebApiModule),
         typeof(CinotamModuleZeroAppModule),
         typeof(AbpWebSignalRModule),
-        //typeof(AbpHangfireModule), - ENABLE TO USE HANGFIRE INSTEAD OF DEFAULT JOB MANAGER
-        typeof(AbpWebMvcModule))]
+        typeof(AbpHangfireModule),
+        typeof(AbpWebMvcModule),
+        typeof(CinotamModuleZeroBackground))]
     public class AbpModuleZeroWebModule : AbpModule
     {
         public override void PreInitialize()
@@ -29,10 +36,10 @@ namespace Cinotam.AbpModuleZero.Web
             Configuration.Navigation.Providers.Add<AbpModuleZeroNavigationProvider>();
 
             //Configure Hangfire - ENABLE TO USE HANGFIRE INSTEAD OF DEFAULT JOB MANAGER
-            //Configuration.BackgroundJobs.UseHangfire(configuration =>
-            //{
-            //    configuration.GlobalConfiguration.UseSqlServerStorage("Default");
-            //});
+            Configuration.BackgroundJobs.UseHangfire(configuration =>
+            {
+                configuration.GlobalConfiguration.UseSqlServerStorage("Default");
+            });
         }
 
         public override void Initialize()
@@ -42,6 +49,12 @@ namespace Cinotam.AbpModuleZero.Web
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        public override void PostInitialize()
+        {
+            var workerManager = IocManager.Resolve<IBackgroundWorkerManager>();
+            workerManager.Add(IocManager.Resolve<TryToUpdateProfilePictureToCdnService>());
         }
     }
 }

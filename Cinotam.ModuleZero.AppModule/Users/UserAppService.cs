@@ -2,8 +2,11 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
+using Abp.BackgroundJobs;
 using Abp.Domain.Repositories;
 using Abp.UI;
+using Castle.Components.DictionaryAdapter;
+using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Users;
@@ -17,26 +20,28 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.Users
 {
-    //[AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
     public class UserAppService : CinotamModuleZeroAppServiceBase, IUserAppService
     {
         private readonly IRepository<User, long> _userRepository;
         private readonly IPermissionManager _permissionManager;
         private readonly IFileStoreManager _fileStoreManager;
         private readonly UserManager _userManager;
-
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, UserManager userManager, IFileStoreManager fileStoreManager)
+        private IBackgroundJobManager _backgroundJobManager;
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, UserManager userManager, IFileStoreManager fileStoreManager, IBackgroundJobManager backgroundJobManager)
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
             _userManager = userManager;
             _fileStoreManager = fileStoreManager;
+            _backgroundJobManager = backgroundJobManager;
         }
 
+        [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
         public async Task ProhibitPermission(ProhibitPermissionInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
@@ -45,12 +50,14 @@ namespace Cinotam.ModuleZero.AppModule.Users
             await UserManager.ProhibitPermissionAsync(user, permission);
         }
 
+        [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
         //Example for primitive method parameters.
         public async Task RemoveFromRole(long userId, string roleName)
         {
             CheckErrors(await UserManager.RemoveFromRoleAsync(userId, roleName));
         }
 
+        [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
         public async Task<ListResultOutput<UserListDto>> GetUsers()
         {
             var users = await _userRepository.GetAllListAsync();
@@ -60,11 +67,20 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 );
         }
 
+        [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
         public ReturnModel<UserListDto> GetUsersForTable(RequestModel<object> model)
         {
             int totalCount;
             var query = _userRepository.GetAll();
-            var filterByLength = GenerateTableModel(model, query, "UserName", out totalCount);
+
+            List<Expression<Func<User, string>>> searchs = new EditableList<Expression<Func<User, string>>>();
+
+            searchs.Add(a => a.UserName);
+            searchs.Add(a => a.EmailAddress);
+            searchs.Add(a => a.Name);
+            searchs.Add(a => a.Surname);
+
+            var filterByLength = GenerateTableModel(model, query, searchs, "UserName", out totalCount);
             return new ReturnModel<UserListDto>()
             {
                 draw = model.draw,
@@ -77,11 +93,13 @@ namespace Cinotam.ModuleZero.AppModule.Users
             };
         }
 
+        [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
         public async Task DeleteUser(long? userId)
         {
             await _userRepository.DeleteAsync(a => a.Id == userId);
         }
 
+        [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
         public async Task CreateUser(CreateUserInput input)
         {
             var user = input.MapTo<User>();
@@ -131,6 +149,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
             }
         }
 
+        [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
         public async Task<CreateUserInput> GetUserForEdit(long? userId)
         {
             if (!userId.HasValue) return new CreateUserInput();
@@ -140,12 +159,14 @@ namespace Cinotam.ModuleZero.AppModule.Users
             return input;
         }
 
+        [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
         public async Task SetUserRoles(RoleSelectorInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
             await UserManager.SetRoles(user, input.Roles);
         }
 
+        [AbpAuthorize]
         public async Task<UserProfileDto> GetUserProfile(long? abpSessionUserId)
         {
             if (!abpSessionUserId.HasValue) throw new UserFriendlyException(nameof(abpSessionUserId));
@@ -153,7 +174,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
             return user.MapTo<UserProfileDto>();
         }
-
+        [AbpAuthorize]
         public async Task<string> AddProfilePicture(UpdateProfilePictureInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
@@ -186,7 +207,15 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 CreateUniqueName = true,
                 File = input.Image,
             }, folder);
-            user.ProfilePicture = result.VirtualPath;
+            user.ProfilePicture = resultLocal.VirtualPath;
+            user.IsPictureOnCdn = true;
+            //await _backgroundJobManager.EnqueueAsync<ProfilePictureCdnPublisher, PublisherInputDto>(new PublisherInputDto()
+            //{
+            //    File = resultLocal.AbsolutePath,
+            //    UserName = user.UserName,
+            //    UserId = input.UserId
+            //});
+
             await UserManager.UpdateAsync(user);
             return resultLocal.VirtualPath;
         }

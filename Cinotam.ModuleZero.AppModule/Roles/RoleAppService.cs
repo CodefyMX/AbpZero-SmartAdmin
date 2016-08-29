@@ -2,16 +2,19 @@
 using Abp.Authorization.Roles;
 using Abp.AutoMapper;
 using Abp.Localization;
+using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.Roles
 {
-    /* THIS IS JUST A SAMPLE. */
+    [AbpAuthorize(PermissionNames.PagesSysAdminRoles)]
     public class RoleAppService : CinotamModuleZeroAppServiceBase, IRoleAppService
     {
         private readonly RoleManager _roleManager;
@@ -73,7 +76,11 @@ namespace Cinotam.ModuleZero.AppModule.Roles
         {
             var query = _roleManager.Roles.AsQueryable();
             int totalCount;
-            var filterByLength = GenerateTableModel(input, query, "Name", out totalCount);
+
+            var search = new List<Expression<Func<Role, string>>>() { a => a.DisplayName, a => a.Name };
+
+
+            var filterByLength = GenerateTableModel(input, query, search, "Name", out totalCount);
             return new ReturnModel<RoleDto>()
             {
                 data = filterByLength.Select(a => a.MapTo<RoleDto>()).ToArray(),

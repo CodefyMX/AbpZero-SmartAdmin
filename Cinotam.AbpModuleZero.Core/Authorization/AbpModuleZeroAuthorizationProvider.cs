@@ -12,7 +12,6 @@ namespace Cinotam.AbpModuleZero.Authorization
             var pages = context.GetPermissionOrNull(PermissionNames.Pages) ??
                         context.CreatePermission(PermissionNames.Pages, L("Pages"));
 
-
             var users = pages.CreateChildPermission(PermissionNames.PagesSysAdminUsers, L("Users"));
 
             pages.CreateChildPermission(PermissionNames.PagesSysAdminConfiguration, L("PagesSysAdminConfiguration"));
@@ -24,6 +23,10 @@ namespace Cinotam.AbpModuleZero.Authorization
             pages.CreateChildPermission(PermissionNames.PagesSysAdminPermissions, L("PagesSysAdminPermissions"));
 
             pages.CreateChildPermission(PermissionNames.PagesSysAdminRoles, L("PagesSysAdminRoles"));
+
+            pages.CreateChildPermission(PermissionNames.PagesDashboard, L("PagesSysAdminDashboard"));
+
+            pages.CreateChildPermission(PermissionNames.AuditLogs, L("PagesSysAuditLogs"));
             //Host permissions
             var tenants = pages.CreateChildPermission(PermissionNames.PagesTenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
         }

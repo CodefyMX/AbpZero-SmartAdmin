@@ -1,7 +1,10 @@
 ﻿using Abp.Auditing;
+using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Web.Models;
+using Castle.Components.DictionaryAdapter;
+using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.ModuleZero.AppModule.AuditLogs.Dto;
@@ -9,11 +12,13 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.AuditLogs
 {
     [DisableAuditing]
+    [AbpAuthorize(PermissionNames.AuditLogs)]
     public class AuditLogService : CinotamModuleZeroAppServiceBase, IAuditLogService
     {
         private IAuditingStore _auditingStore;
@@ -52,7 +57,20 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
         {
             int count;
             var query = _auditLogRepository.GetAll();
-            var filteredByLength = GenerateTableModel(input, query, "MethodName", out count);
+
+            List<Expression<Func<AuditLog, string>>> searchs = new EditableList<Expression<Func<AuditLog, string>>>();
+
+            searchs.Add(a => a.MethodName);
+            searchs.Add(a => a.ClientIpAddress);
+            searchs.Add(a => a.BrowserInfo);
+            searchs.Add(a => a.ClientName);
+            searchs.Add(a => a.Exception);
+            searchs.Add(a => a.ServiceName);
+            searchs.Add(a => a.CustomData);
+            searchs.Add(a => a.Exception);
+
+            var filteredByLength = GenerateTableModel(input, query, searchs, "MethodName", out count);
+
             return new ReturnModel<AuditLogDto>()
             {
                 iTotalDisplayRecords = count,
@@ -74,14 +92,14 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
         }
 
         [WrapResult(false)]
-        public AuditLogTimeOutput GetAuditLogTimes()
+        public AuditLogTimeOutput GetAuditLogTimes(int? count)
         {
             var data = _auditLogRepository.GetAll().OrderByDescending(a => a.ExecutionTime);
             var listOfData = new List<AuditLogTimeOutputDto>();
             var query = from ex in data
                         where DbFunctions.TruncateTime(ex.ExecutionTime) == DbFunctions.TruncateTime(DateTime.Now)
                         select ex;
-            var inMemoryData = query.Take(100).ToList();
+            var inMemoryData = query.Take(count ?? 100).ToList();
             foreach (var auditLog in inMemoryData)
             {
                 listOfData.Add(new AuditLogTimeOutputDto()

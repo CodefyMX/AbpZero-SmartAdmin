@@ -5,9 +5,12 @@ using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.AuditLogs;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Abp.Web.Mvc.Authorization;
+using Cinotam.AbpModuleZero.Authorization;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
 {
+    [AbpMvcAuthorize(PermissionNames.AuditLogs)]
     public class AuditLogsController : AbpModuleZeroControllerBase
     {
         private readonly IAuditLogService _auditLogService;

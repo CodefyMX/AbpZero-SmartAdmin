@@ -1,16 +1,21 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp.Authorization;
+using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Localization;
+using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Localization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Languages.Dto;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.Languages
 {
+    [AbpAuthorize(PermissionNames.PagesSysAdminLanguages)]
     public class LanguageAppService : CinotamModuleZeroAppServiceBase, ILanguageAppService
     {
         private readonly IApplicationLanguageManager _applicationLanguageManager;
@@ -56,9 +61,10 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant))
             {
                 int totalCount;
+                var search = new List<Expression<Func<ApplicationLanguage, string>>> { a => a.DisplayName, a => a.Name, a => a.Icon };
 
                 var allLanguages = _languagesRepository.GetAll();
-                var filterByLength = GenerateTableModel(input, allLanguages, "Name", out totalCount).ToList();
+                var filterByLength = GenerateTableModel(input, allLanguages, search, "Name", out totalCount).ToList();
 
                 return new ReturnModel<LanguageDto>()
                 {

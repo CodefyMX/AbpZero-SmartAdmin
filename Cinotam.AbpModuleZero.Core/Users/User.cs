@@ -9,6 +9,7 @@ namespace Cinotam.AbpModuleZero.Users
     {
         public const string DefaultPassword = "123qwe";
         public string ProfilePicture { get; set; }
+        public bool IsPictureOnCdn { get; set; }
         public static string CreateRandomPassword()
         {
             return Guid.NewGuid().ToString("N").Truncate(16);

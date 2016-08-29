@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Navigation;
 using Abp.Localization;
 using Cinotam.AbpModuleZero;
+using Cinotam.AbpModuleZero.Authorization;
 
 namespace Cinotam.ModuleZero.AppModule
 {
@@ -12,7 +13,8 @@ namespace Cinotam.ModuleZero.AppModule
                 .AddItem(new MenuItemDefinition(
                     "Users",
                     L("Users"),
-                    url: "/Users"
+                    url: "/SysAdmin/Users/UsersAndRolesList",
+                    requiredPermissionName: PermissionNames.PagesSysAdminUsers
                     ))
                 );
         }

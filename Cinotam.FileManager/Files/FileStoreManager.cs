@@ -51,6 +51,37 @@ namespace Cinotam.FileManager.Files
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        public SavedFileResult SaveFileToCloudServiceFromString(FileSaveFromStringInput input)
+        {
+            switch (input.FileType)
+            {
+                case ValidFileTypes.Image:
+
+                    var result = _cloudinaryApiConsumer.UploadImageAndGetCdn(new SaveImageInput()
+                    {
+                        AbsoluteFileDirectory = input.File,
+                        Folder = input.SpecialFolder,
+                        TransformationsType = input.ImageEditOptions.TransFormationType,
+                        Width = (int)input.ImageEditOptions?.Width,
+                        Height = (int)input.ImageEditOptions?.Height,
+                    });
+                    if (result.Failed)
+                    {
+                        return new SavedFileResult();
+                    }
+                    return new SavedFileResult()
+                    {
+                        SecureUrl = result.SecureUrl,
+                        Url = result.Url,
+                        WasStoredInCloud = true,
+                        FileName = result.PublicId
+                    };
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
         public SavedFileResult SaveFileToServer(FileSaveInput input, string virtualFolder)
         {
             var fileExtension = FileSystemHelper.GetExtension(input.File.FileName);
@@ -72,5 +103,6 @@ namespace Cinotam.FileManager.Files
                 WasStoredInCloud = false
             };
         }
+
     }
 }

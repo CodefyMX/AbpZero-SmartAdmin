@@ -6,6 +6,8 @@
 
         public const string PagesTenants = "Pages.Tenants";
 
+        public const string PagesDashboard = "Pages.DashBoard";
+
         public const string PagesSysAdminUsers = "Pages.SysAdmin.Users";
 
         public const string PagesSysAdminRoles = "Pages.SysAdminRoles";
@@ -18,5 +20,6 @@
 
         public const string PagesSysAdminLanguages = "Pages.SysAdminLanguages";
 
+        public const string AuditLogs = "Pages.AuditLogs";
     }
 }

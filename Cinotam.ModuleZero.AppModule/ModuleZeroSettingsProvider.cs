@@ -11,7 +11,7 @@ namespace Cinotam.ModuleZero.AppModule
         {
             return new[]
             {
-                new SettingDefinition("Theme", "smart-style-0",description:L("ThemeSelector")),
+                new SettingDefinition("Theme", "smart-style-0",description:L("ThemeSelector"),scopes:SettingScopes.User),
                 new SettingDefinition("WebSiteStatus", "On",description:L("Status"))
             };
         }

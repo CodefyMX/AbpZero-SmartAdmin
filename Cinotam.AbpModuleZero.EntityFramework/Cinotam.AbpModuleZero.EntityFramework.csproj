@@ -182,6 +182,10 @@
     <Compile Include="Migrations\201608261706543_ProfilePicture.Designer.cs">
       <DependentUpon>201608261706543_ProfilePicture.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608291639321_IsInCdnService.cs" />
+    <Compile Include="Migrations\201608291639321_IsInCdnService.Designer.cs">
+      <DependentUpon>201608291639321_IsInCdnService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -252,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608261706543_ProfilePicture.resx">
       <DependentUpon>201608261706543_ProfilePicture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608291639321_IsInCdnService.resx">
+      <DependentUpon>201608291639321_IsInCdnService.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

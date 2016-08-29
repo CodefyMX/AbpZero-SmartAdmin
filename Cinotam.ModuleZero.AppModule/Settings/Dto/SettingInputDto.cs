@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.Configuration;
 
 namespace Cinotam.ModuleZero.AppModule.Settings.Dto
 {
@@ -9,5 +10,6 @@ namespace Cinotam.ModuleZero.AppModule.Settings.Dto
         public string Description { get; set; }
         public string DisplayName { get; set; }
         public string DefaultValue { get; set; }
+        public SettingScopes SettingScopes { get; set; }
     }
 }

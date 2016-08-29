@@ -1,4 +1,6 @@
 ﻿using Abp.Web.Models;
+using Abp.Web.Mvc.Authorization;
+using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.Roles;
@@ -7,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
 {
+    [AbpMvcAuthorize(PermissionNames.PagesSysAdminRoles)]
     public class RolesController : AbpModuleZeroControllerBase
     {
         // GET: SysAdmin/Roles

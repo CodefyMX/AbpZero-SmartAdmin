@@ -1222,6 +1222,10 @@
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>
       <Name>Cinotam.ModuleZero.AppModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cinotam.ModuleZero.BackgroundTasks\Cinotam.ModuleZero.BackgroundTasks.csproj">
+      <Project>{DA270051-1279-4759-BA4B-1E70709BEE1E}</Project>
+      <Name>Cinotam.ModuleZero.BackgroundTasks</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
