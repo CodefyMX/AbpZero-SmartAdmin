@@ -35,6 +35,7 @@
     <text name="InvalidUserNameOrPassword" value="Invalid user name or password" />
     <text name="UserDeleted" value="User deleted" />
     <text name="UserCreated" value="User created" />
+    <text name="UserDeletedByUser" value="The user {userName} has deleted the user {userNameDeleted}!"/>
     <!--//Users-->
 
 

@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.FileManager.SharedT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.ModuleZero.BackgroundTasks", "Cinotam.ModuleZero.BackgroundTasks\Cinotam.ModuleZero.BackgroundTasks.csproj", "{DA270051-1279-4759-BA4B-1E70709BEE1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.ModuleZero.Notifications", "Cinotam.ModuleZero.Notifications\Cinotam.ModuleZero.Notifications.csproj", "{57EE20C5-0930-41C0-9367-9A598B1B53D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,10 @@ Global
 		{DA270051-1279-4759-BA4B-1E70709BEE1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA270051-1279-4759-BA4B-1E70709BEE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA270051-1279-4759-BA4B-1E70709BEE1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57EE20C5-0930-41C0-9367-9A598B1B53D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57EE20C5-0930-41C0-9367-9A598B1B53D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57EE20C5-0930-41C0-9367-9A598B1B53D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57EE20C5-0930-41C0-9367-9A598B1B53D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,5 +121,6 @@ Global
 		{632D78C7-0806-45A9-8FCF-1EC94DDA807A} = {C5871A7A-7875-447C-9F8A-5440B9D87686}
 		{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853} = {C5871A7A-7875-447C-9F8A-5440B9D87686}
 		{DA270051-1279-4759-BA4B-1E70709BEE1E} = {E4A630AE-A788-4CF8-98F1-661278298495}
+		{57EE20C5-0930-41C0-9367-9A598B1B53D7} = {E4A630AE-A788-4CF8-98F1-661278298495}
 	EndGlobalSection
 EndGlobal

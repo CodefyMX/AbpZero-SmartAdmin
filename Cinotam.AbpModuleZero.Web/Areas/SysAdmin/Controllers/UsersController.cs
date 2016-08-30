@@ -80,5 +80,10 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
 
         }
 
+        [AbpMvcAuthorize]
+        public ActionResult Settings()
+        {
+            return View();
+        }
     }
 }

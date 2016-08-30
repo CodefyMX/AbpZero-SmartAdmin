@@ -140,13 +140,13 @@
                             var txt = toolTip.MethodName;
                             var value = item.datapoint[1];
                             var color = "";
-                            if (value > 50) {
+                            if (value > 500) {
                                 color = "#ffca28";
                             }
-                            if (value <= 50) {
+                            if (value <= 500) {
                                 color = "#827717";
                             }
-                            if (value > 80) {
+                            if (value > 1000) {
                                 color = "#e53935";
                             }
                             var message = "Method name: " + txt + ", Execution time: <a style='color:" + color + "'> " + value + " ms<a>";

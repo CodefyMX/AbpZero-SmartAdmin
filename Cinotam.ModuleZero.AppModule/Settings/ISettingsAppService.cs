@@ -10,5 +10,7 @@ namespace Cinotam.ModuleZero.AppModule.Settings
         Task CreateEditSetting(List<SettingInputDto> input);
         Task<SettingInputDto> GetSettingForEdit(string name);
         Task<SettingsOutput> GetSettingsOptions();
+        Task ChangeTheme(string themeName);
+        Task SubscribeToNotification();
     }
 }

@@ -2,6 +2,7 @@
 using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
+using Abp.Domain.Uow;
 using Abp.Web.Models;
 using Castle.Components.DictionaryAdapter;
 using Cinotam.AbpModuleZero.Authorization;
@@ -23,12 +24,14 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
     {
         private IAuditingStore _auditingStore;
         private readonly IRepository<AuditLog, long> _auditLogRepository;
+        private readonly IRepository<User, long> _usersRepository;
         private readonly UserManager _userManager;
-        public AuditLogService(IAuditingStore auditingStore, IRepository<AuditLog, long> auditLogRepository, UserManager userManager)
+        public AuditLogService(IAuditingStore auditingStore, IRepository<AuditLog, long> auditLogRepository, UserManager userManager, IRepository<User, long> usersRepository)
         {
             _auditingStore = auditingStore;
             _auditLogRepository = auditLogRepository;
             _userManager = userManager;
+            _usersRepository = usersRepository;
         }
 
         public async Task<AuditLogOutput> GetLatestAuditLogOutput()
@@ -84,11 +87,14 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
 
         public async Task<AuditLogDto> GetAuditLogDetails(long id)
         {
+            using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete))
+            {
+                var auditLog = await _auditLogRepository.FirstOrDefaultAsync(a => a.Id == id);
+                var mapped = auditLog.MapTo<AuditLogDto>();
+                mapped.UserName = auditLog.UserId != null ? (await UserManager.GetUserByIdAsync(auditLog.UserId.Value)).UserName : "Client";
+                return mapped;
+            }
 
-            var auditLog = await _auditLogRepository.FirstOrDefaultAsync(a => a.Id == id);
-            var mapped = auditLog.MapTo<AuditLogDto>();
-            mapped.UserName = auditLog.UserId != null ? (await UserManager.GetUserByIdAsync(auditLog.UserId.Value)).UserName : "Client";
-            return mapped;
         }
 
         [WrapResult(false)]
@@ -127,16 +133,19 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
             };
         }
 
-        private async Task<AuditLogDto[]> GetModel(List<AuditLog> filteredByLength)
+        private async Task<AuditLogDto[]> GetModel(IEnumerable<AuditLog> filteredByLength)
         {
-            var results = filteredByLength.Select(a => a.MapTo<AuditLogDto>()).ToArray();
-            foreach (var auditLogDto in results)
+            using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete))
             {
 
-                auditLogDto.UserName = auditLogDto.UserId != null ? (await UserManager.GetUserByIdAsync(auditLogDto.UserId.Value)).UserName : "Client";
+                var results = filteredByLength.Select(a => a.MapTo<AuditLogDto>()).ToArray();
+                foreach (var auditLogDto in results)
+                {
+                    auditLogDto.UserName = auditLogDto.UserId != null ? (await UserManager.GetUserByIdAsync(auditLogDto.UserId.Value)).UserName : "Client";
 
+                }
+                return results.ToArray();
             }
-            return results.ToArray();
         }
     }
 }

@@ -112,6 +112,7 @@
     <Compile Include="AuditLogs\IAuditLogService.cs" />
     <Compile Include="CinotamModuleZeroAppModule.cs" />
     <Compile Include="CinotamModuleZeroAppServiceBase.cs" />
+    <Compile Include="CinotamModuleZeroConsts.cs" />
     <Compile Include="Languages\Dto\LanguageDto.cs" />
     <Compile Include="Languages\Dto\LanguageSelected.cs" />
     <Compile Include="Languages\Dto\LanguagesOutput.cs" />
@@ -188,6 +189,10 @@
     <ProjectReference Include="..\Cinotam.ModuleZero.BackgroundTasks\Cinotam.ModuleZero.BackgroundTasks.csproj">
       <Project>{DA270051-1279-4759-BA4B-1E70709BEE1E}</Project>
       <Name>Cinotam.ModuleZero.BackgroundTasks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.ModuleZero.Notifications\Cinotam.ModuleZero.Notifications.csproj">
+      <Project>{57EE20C5-0930-41C0-9367-9A598B1B53D7}</Project>
+      <Name>Cinotam.ModuleZero.Notifications</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

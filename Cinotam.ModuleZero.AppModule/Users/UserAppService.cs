@@ -2,7 +2,6 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
-using Abp.BackgroundJobs;
 using Abp.Domain.Repositories;
 using Abp.UI;
 using Castle.Components.DictionaryAdapter;
@@ -16,6 +15,7 @@ using Cinotam.FileManager.FileTypes;
 using Cinotam.FileManager.SharedTypes.Enums;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
+using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -31,14 +31,14 @@ namespace Cinotam.ModuleZero.AppModule.Users
         private readonly IPermissionManager _permissionManager;
         private readonly IFileStoreManager _fileStoreManager;
         private readonly UserManager _userManager;
-        private IBackgroundJobManager _backgroundJobManager;
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, UserManager userManager, IFileStoreManager fileStoreManager, IBackgroundJobManager backgroundJobManager)
+        private readonly IUsersAppNotificationsSender _usersAppNotificationsSender;
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, UserManager userManager, IFileStoreManager fileStoreManager, IUsersAppNotificationsSender usersAppNotificationsSender)
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
             _userManager = userManager;
             _fileStoreManager = fileStoreManager;
-            _backgroundJobManager = backgroundJobManager;
+            _usersAppNotificationsSender = usersAppNotificationsSender;
         }
 
         [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
@@ -96,7 +96,12 @@ namespace Cinotam.ModuleZero.AppModule.Users
         [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
         public async Task DeleteUser(long? userId)
         {
+            if (!userId.HasValue) throw new UserFriendlyException(nameof(userId));
+            var userToDelete = await _userManager.GetUserByIdAsync(userId.Value);
             await _userRepository.DeleteAsync(a => a.Id == userId);
+
+            await
+                _usersAppNotificationsSender.SendUserDeletedNotification(AbpSession.UserId, userToDelete.FullName);
         }
 
         [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
@@ -132,6 +137,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+                    await _usersAppNotificationsSender.SendUserEditedNotification(AbpSession.UserId);
                 }
                 else
                 {
@@ -146,6 +152,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 user.Password = new PasswordHasher().HashPassword(input.Password);
                 user.IsEmailConfirmed = true;
                 CheckErrors(await UserManager.CreateAsync(user));
+                await _usersAppNotificationsSender.SendUserCreatedNotification(AbpSession.UserId);
             }
         }
 
