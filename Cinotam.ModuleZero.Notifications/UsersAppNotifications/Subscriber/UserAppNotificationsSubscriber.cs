@@ -1,4 +1,5 @@
-﻿using Abp.Notifications;
+﻿using Abp;
+using Abp.Notifications;
 using Cinotam.ModuleZero.Notifications.Notifications;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Inputs;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Subscriber
 
         public async Task SubscribeToNotification(NotificationSubscriptionInput input)
         {
-            await _notificationSubscriptionManager.SubscribeAsync(input.UserIdentifier, NotificationResolver.ResolveNotification(input.NotificationType), input.EntityIdentifier);
+            await _notificationSubscriptionManager.SubscribeAsync(input.UserIdentifier, input.NotificationName, input.EntityIdentifier);
         }
 
         public async Task SubscribeToAllNotifications(NotificationSubscriptionInput input)
@@ -39,7 +40,13 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Subscriber
 
         public async Task UnSubscribeToNotification(NotificationSubscriptionInput input)
         {
-            await _notificationSubscriptionManager.UnsubscribeAsync(input.UserIdentifier, NotificationResolver.ResolveNotification(input.NotificationType), input.EntityIdentifier);
+            await _notificationSubscriptionManager.UnsubscribeAsync(input.UserIdentifier, input.NotificationName, input.EntityIdentifier);
+        }
+
+        public async Task<bool> IsSubscribed(UserIdentifier user, string notificationName)
+        {
+            var result = await _notificationSubscriptionManager.IsSubscribedAsync(user, notificationName);
+            return result;
         }
     }
 }

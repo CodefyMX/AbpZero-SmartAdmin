@@ -1,0 +1,151 @@
+﻿
+@{
+    Layout = null;
+}
+<ul id="userNotifications" class="notification-body">
+    @*<li>
+            <span class="padding-10 unread">
+
+                <em class="badge padding-5 no-border-radius bg-color-blueLight pull-left margin-right-5">
+                    <i class="fa fa-user fa-fw fa-2x"></i>
+                </em>
+
+                <span>
+                    2 new users just signed up! <span class="text-primary">martin.luther</span> and <span class="text-primary">kevin.reliey</span>
+                    <br>
+                    <span class="pull-right font-xs text-muted"><i>1 min ago...</i></span>
+                </span>
+
+            </span>
+        </li>
+        <li>
+            <span class="padding-10 unread">
+
+                <em class="badge padding-5 no-border-radius bg-color-purple txt-color-white pull-left margin-right-5">
+                    <i class="fa fa-calendar fa-fw fa-2x"></i>
+                </em>
+
+                <span>
+                    <a href="javascript:void(0);" class="display-normal"><strong>Calendar</strong></a>: Sadi Orlaf invites you to lunch!
+                    <br>
+                    <strong>When: 1/3/2014 (1pm - 2pm)</strong><br>
+                    <span class="pull-right font-xs text-muted"><i>3 hrs ago...</i></span>
+                </span>
+
+            </span>
+        </li>
+        <li>
+            <span class="padding-10">
+
+                <em class="badge padding-5 no-border-radius bg-color-blueLight txt-color-white pull-left margin-right-5">
+                    <i class="fa fa-user fa-fw fa-2x"></i>
+                </em>
+
+                <span>
+                    <a href="javascript:void(0);" class="display-normal">Sofia</a> as contact? &nbsp;
+                    <button class="btn btn-xs btn-primary margin-top-5">accept</button>
+                    <button class="btn btn-xs btn-danger margin-top-5">reject</button>
+                    <span class="pull-right font-xs text-muted"><i>3 hrs ago...</i></span>
+                </span>
+
+            </span>
+        </li>
+        <li>
+            <span class="padding-10">
+
+                <em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5">
+                    <i class="fa fa-facebook fa-fw fa-2x"></i>
+                </em>
+
+                <span>
+                    Facebook recived +33 unique likes
+                    <br>
+                    <span class="pull-right font-xs text-muted"><i>4 hrs ago...</i></span>
+                </span>
+
+            </span>
+        </li>
+        <li>
+            <span class="padding-10">
+
+                <em class="badge padding-5 no-border-radius bg-color-green pull-left margin-right-5">
+                    <i class="fa fa-check fa-fw fa-2x"></i>
+                </em>
+
+                <span>
+                    2 projects were completed on time! Submitted for your approval - <a href="javascript:void(0);" class="display-normal">Click here</a>
+                    <br>
+                    <span class="pull-right font-xs text-muted"><i>1 day ago...</i></span>
+                </span>
+
+            </span>
+        </li>*@
+    <li>
+        <span>
+
+            <a href="@Url.Action("AllNotifications", "Users")">See all</a>
+        </span>
+    </li>
+</ul>
+<script>
+    (function () {
+
+        $(document)
+            .ready(function () {
+                initView();
+
+                abp.event.on('abp.notifications.received', function (userNotification) {
+                    console.log(userNotification);
+                    printNotificationInList(userNotification);
+                });
+
+            });
+        function initView() {
+            $("#userNotifications").text("");
+            abp.services.app.user.getMyNotifications().done(function (response) {
+                response.notifications.forEach(function (userNotification) {
+                    printNotificationInList(userNotification);
+                });
+            });
+        }
+        function printNotificationInList(userNotification) {
+            if (userNotification.notification.data.type === 'Abp.Notifications.LocalizableMessageNotificationData') {
+                var localizedText = abp.localization.localize(
+                    userNotification.notification.data.message.name,
+                    userNotification.notification.data.message.sourceName
+                );
+
+                $.each(userNotification.notification.data.properties, function (key, value) {
+                    localizedText = localizedText.replace('{' + key + '}', value);
+                });
+                switch (userNotification.notification.notificationName) {
+                    case "RoleAssignedToUser":
+                        $("#userNotifications").append(abp.utils.formatString('<li>' +
+                    '<span class="padding-10">' +
+                    '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"> <i class="fa fa-lock fa-fw fa-2x"></i></em>' +
+                    '<span>{0} <button href="#" class="btn btn-xs btn-primary margin-top-5 js-mark-readed">Details</button><br><a href="#" class="js-mark-readed">Mark as readed</a></span>' +
+                    '</span></li>', localizedText));
+                        break;
+                    case "RoleAssigned":
+                        $("#userNotifications").append(abp.utils.formatString('<li>' +
+                  '<span class="padding-10">' +
+                  '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"> <i class="fa fa-lock fa-fw fa-2x"></i></em>' +
+                  '<span>{0} <button href="#" class="btn btn-xs btn-primary margin-top-5 js-mark-readed">Details</button><br><a href="#" class="js-mark-readed">Mark as readed</a></span>' +
+                  '</span></li>', localizedText));
+                        break;
+                    default:
+                        $("#userNotifications").append(abp.utils.formatString('<li>' +
+                   '<span class="padding-10">' +
+                   '<em class="badge padding-5 no-border-radius bg-color-yellow pull-left margin-right-5"> <i class="fa fa-user fa-fw fa-2x"></i></em>' +
+                   '<span>{0}<br><a href="#" class="js-mark-readed">Mark as readed</a></span>' +
+                   '</span></li>', localizedText));
+                        break;
+                }
+
+
+            } else if (userNotification.notification.data.type === 'Abp.Notifications.MessageNotificationData') {
+                alert('New simple notification: ' + userNotification.notification.data.message);
+            }
+        }
+    })();
+</script>

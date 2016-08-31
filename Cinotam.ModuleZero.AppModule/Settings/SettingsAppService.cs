@@ -98,13 +98,31 @@ namespace Cinotam.ModuleZero.AppModule.Settings
             }
         }
 
-        public async Task SubscribeToNotification()
+        public async Task SubscribeToNotification(string notificationName)
         {
             if (AbpSession.UserId != null)
-                await _userAppNotificationsSubscriber.SubscribeToAllNotifications(new NotificationSubscriptionInput()
+                await _userAppNotificationsSubscriber.SubscribeToNotification(new NotificationSubscriptionInput()
                 {
                     UserIdentifier = new UserIdentifier(AbpSession.TenantId, AbpSession.UserId.Value),
+                    NotificationName = notificationName
                 });
+        }
+        public async Task UnSubscribeToNotification(string notificationName)
+        {
+            if (AbpSession.UserId != null)
+                await _userAppNotificationsSubscriber.UnSubscribeToNotification(new NotificationSubscriptionInput()
+                {
+                    UserIdentifier = new UserIdentifier(AbpSession.TenantId, AbpSession.UserId.Value),
+                    NotificationName = notificationName
+                });
+        }
+        public async Task<bool> IsSubscribed(string notificationName)
+        {
+            var result = AbpSession.UserId != null &&
+                         await
+                             _userAppNotificationsSubscriber.IsSubscribed(
+                                 new UserIdentifier(AbpSession.TenantId, AbpSession.UserId.Value), notificationName);
+            return result;
         }
     }
 }

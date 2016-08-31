@@ -85,5 +85,11 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         {
             return View();
         }
+        [AbpMvcAuthorize]
+        public ActionResult GetNotifications()
+        {
+
+            return View();
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿<!-- MAIN CONTENT -->
+﻿@using Cinotam.AbpModuleZero.Authorization
+@using Cinotam.ModuleZero.Notifications.Notifications
+<!-- MAIN CONTENT -->
 <div id="content">
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
@@ -90,10 +92,11 @@
                         <!-- widget content -->
                         <div class="widget-body no-padding">
                             <div class="smart-form">
-                                <header>Theme</header>
+                                <header>User options</header>
 
                                 <fieldset>
                                     <section>
+                                        <h4>@L("Themes")</h4>
                                         <label class="label">@L("SelectTheme")</label>
                                         <label>
                                             <select id="themeSelector" class="input-sm">
@@ -107,13 +110,53 @@
                                             </select><i></i>
                                         </label>
                                     </section>
-                                </fieldset>
-                                <fieldset>
                                     <section>
-                                        <label class="label">@L("SubscribeToNotifications")</label>
-                                        <label>
-                                            <button type="button" class="btn btn-primary" id="userNotifications">Subscribe</button>
-                                        </label>
+                                        <div class="row">
+                                            <div class="col col-12">
+                                                <h3>@L("NotificationsUser")</h3>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            @if (IsGranted(PermissionNames.PagesSysAdminUsers))
+                                            {
+
+                                                <div class="col col-4">
+                                                    <label class="label">@L("SubscribeToNotificationUserCreated")</label>
+                                                    <label>
+                                                        <a data-subscription data-subscription-name="@NotificationNames.UserCreated" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                    </label>
+                                                </div>
+                                                <div class="col col-4">
+                                                    <label class="label">@L("SubscribeToNotificationUserDeleted")</label>
+                                                    <label>
+                                                        <a data-subscription data-is-subscribed="false" data-subscription-name="@NotificationNames.UserDeleted" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                    </label>
+                                                </div>
+                                            }
+                                            @if (IsGranted(PermissionNames.PagesSysAdminRoles))
+                                            {
+
+                                                <div class="col col-4">
+                                                    <label class="label">@L("SubscribeToNotificationRoleCreated")</label>
+                                                    <label>
+                                                        <a data-subscription data-is-subscribed="false" data-subscription-name="@NotificationNames.RoleCreated" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                    </label>
+                                                </div>
+                                                <div class="col col-4">
+                                                    <label class="label">@L("SubscribeToNotificationRoleDeleted")</label>
+                                                    <label>
+                                                        <a data-subscription data-is-subscribed="false" data-subscription-name="@NotificationNames.RoleDeleted" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                    </label>
+                                                </div>
+                                                <div class="col col-4">
+                                                    <label class="label">@L("SubscribeToNotificationRoleAssigned")</label>
+                                                    <label>
+                                                        <a data-subscription data-subscription-name="@NotificationNames.RoleAssigned" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                    </label>
+                                                </div>
+                                            }
+                                        </div>
                                     </section>
                                 </fieldset>
                             </div>
@@ -136,15 +179,50 @@
         (function () {
             $(document)
                 .ready(function () {
+
                     $("#themeSelector").change(function () {
                         $("body").attr("class", "");
                         var value = $("#themeSelector option:selected").val();
                         $("body").attr("class", value);
                         abp.ui.setBusy("body", abp.services.app.settings.changeTheme(value));
                     });
-                    $ ("#userNotifications").click(function () {
-                        abp.ui.setBusy ("body", abp.services.app.settings.subscribeToNotification ());
+                    $("body").on("click", "[data-subscription]", function () {
+                        var $elm = $(this);
+                        var isSubscribed = $elm.data("is-subscribed");
+                        var notificationName = $elm.data("subscription-name");
+                        if (isSubscribed) {
+                            unSubscribe(notificationName, $elm);
+                        } else {
+                            subscribe(notificationName, $elm);
+                        }
                     });
+                    function subscribe(notificationName, $elm) {
+                        abp.ui.setBusy("body", abp.services.app.settings.subscribeToNotification(notificationName).done(function () {
+                            $elm.text(LSys("UnSubscribe"));
+                            $elm.data("is-subscribed", true);
+                        }));
+                    }
+                    function unSubscribe(notificationName, $elm) {
+                        abp.ui.setBusy("body", abp.services.app.settings.unSubscribeToNotification(notificationName).done(function () {
+                            $elm.text(LSys("Subscribe"));
+                            $elm.data("is-subscribed", false);
+                        }));
+                    }
+                    $("[data-subscription]").each(function () {
+                        var $elm = $(this);
+                        var val = $elm.data("subscription-name");
+                        abp.services.app.settings.isSubscribed(val).done(function (response) {
+                            if (response) {
+                                $elm.text(LSys("UnSubscribe"));
+                                $elm.data("is-subscribed", true);
+                            } else {
+                                $elm.text(LSys("Subscribe"));
+                                $elm.data("is-subscribed", false);
+
+                            }
+                        });
+                    });
+
                 });
         })();
     </script>

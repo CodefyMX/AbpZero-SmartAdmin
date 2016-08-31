@@ -11,6 +11,8 @@ namespace Cinotam.ModuleZero.AppModule.Settings
         Task<SettingInputDto> GetSettingForEdit(string name);
         Task<SettingsOutput> GetSettingsOptions();
         Task ChangeTheme(string themeName);
-        Task SubscribeToNotification();
+        Task SubscribeToNotification(string notificationName);
+        Task<bool> IsSubscribed(string notificationName);
+        Task UnSubscribeToNotification(string notificationName);
     }
 }

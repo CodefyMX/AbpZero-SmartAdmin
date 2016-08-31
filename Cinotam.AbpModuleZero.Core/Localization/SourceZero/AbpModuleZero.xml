@@ -36,6 +36,12 @@
     <text name="UserDeleted" value="User deleted" />
     <text name="UserCreated" value="User created" />
     <text name="UserDeletedByUser" value="The user {userName} has deleted the user {userNameDeleted}!"/>
+    <text name="ProfilePicture" value="Profile picture" />
+    <text name="MyInfo" value="My info"/>
+    <text name="MyProfile" value="My profile" />
+    <text name="MyProfileView" value="Profile info"/>
+    <text name="UserEditedNotification" value="User {userNameEdited} was edited by {userName}" />
+    <text name="UserCreatedNotification" value="User {userNameCreated} was created by {userName}"/>
     <!--//Users-->
 
 
@@ -49,7 +55,8 @@
     <text name="RoleAssigned" value="Role assigned"/>
     <text name="RoleEdited" value="Role added / edited" />
     <text name="RoleDeleted" value="Role deleted"/>
-
+    <text name="RoleAssignedNotification" value="Roles for User {usernameAssigned} where modified by user {userName}" />
+    <text name="RoleAssignedNotificationToUser" value="Your roles were modified by user {userName}" />
     <!--//Roles-->
 
 
@@ -95,6 +102,19 @@
     <text name="Configuration" value="Configuration"/>
     <text name="ConfigurationManagement" value="Configuration Management"/>
     <text name="System" value="System" />
+    <text name="Settings" value="Options"/>
+    <text name="SettingsAccount" value="Account settings" />
+    <text name="Themes" value="Themes" />
+    <text name="SelectTheme" value="Select theme" />
+    <text name="NotificationsUser" value="User notifications"/>
+    <text name="SubscribeToNotificationUserCreated" value="User created notifications" />
+    <text name="SubscribeToNotificationUserDeleted" value="User deleted notifications" />
+    <text name="SubscribeToNotificationRoleCreated" value="Role created notifications" />
+    <text name="SubscribeToNotificationRoleDeleted" value="Role deleted notifications" />
+    <text name="SubscribeToNotificationRoleAssigned" value="Role assigned notifications" />
+    <text name="Subscribe" value="Subscribe" />
+    <text name="UnSubscribe" value="Unsubscribe" />
+    <text name="Loading" value="Loading"/>
     <!--//Configuration-->
     
     

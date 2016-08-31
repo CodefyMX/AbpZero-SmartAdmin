@@ -1,5 +1,6 @@
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Notifications;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
@@ -25,5 +26,6 @@ namespace Cinotam.ModuleZero.AppModule.Users
         Task<UserProfileDto> GetUserProfile(long? abpSessionUserId);
 
         Task<string> AddProfilePicture(UpdateProfilePictureInput input);
+        Task<NotificationsOutput> GetMyNotifications(UserNotificationState state = UserNotificationState.Unread);
     }
 }

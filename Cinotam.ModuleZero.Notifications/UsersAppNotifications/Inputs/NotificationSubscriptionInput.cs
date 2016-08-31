@@ -7,6 +7,8 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Inputs
     {
         public UserIdentifier UserIdentifier { get; set; }
         public EntityIdentifier EntityIdentifier { get; set; }
-        public NotificationType.NotificationTypes NotificationType { get; set; }
+        public string NotificationName { get; set; }
+
+
     }
 }

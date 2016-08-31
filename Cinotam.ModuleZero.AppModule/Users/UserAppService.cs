@@ -1,8 +1,9 @@
+using Abp;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
-using Abp.Authorization.Users;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
+using Abp.Notifications;
 using Abp.UI;
 using Castle.Components.DictionaryAdapter;
 using Cinotam.AbpModuleZero.Authorization;
@@ -32,13 +33,15 @@ namespace Cinotam.ModuleZero.AppModule.Users
         private readonly IFileStoreManager _fileStoreManager;
         private readonly UserManager _userManager;
         private readonly IUsersAppNotificationsSender _usersAppNotificationsSender;
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, UserManager userManager, IFileStoreManager fileStoreManager, IUsersAppNotificationsSender usersAppNotificationsSender)
+        private readonly UserNotificationManager _userNotificationManager;
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, UserManager userManager, IFileStoreManager fileStoreManager, IUsersAppNotificationsSender usersAppNotificationsSender, UserNotificationManager userNotificationManager)
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
             _userManager = userManager;
             _fileStoreManager = fileStoreManager;
             _usersAppNotificationsSender = usersAppNotificationsSender;
+            _userNotificationManager = userNotificationManager;
         }
 
         [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
@@ -137,7 +140,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
-                    await _usersAppNotificationsSender.SendUserEditedNotification(AbpSession.UserId);
+                    await _usersAppNotificationsSender.SendUserEditedNotification(AbpSession.UserId, userFound.FullName);
                 }
                 else
                 {
@@ -152,7 +155,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 user.Password = new PasswordHasher().HashPassword(input.Password);
                 user.IsEmailConfirmed = true;
                 CheckErrors(await UserManager.CreateAsync(user));
-                await _usersAppNotificationsSender.SendUserCreatedNotification(AbpSession.UserId);
+                await _usersAppNotificationsSender.SendUserCreatedNotification(AbpSession.UserId, user.FullName);
             }
         }
 
@@ -171,6 +174,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
             await UserManager.SetRoles(user, input.Roles);
+            await _usersAppNotificationsSender.SendRoleAssignedNotification(AbpSession.TenantId, AbpSession.UserId, user.Id, input.Roles);
         }
 
         [AbpAuthorize]
@@ -226,7 +230,17 @@ namespace Cinotam.ModuleZero.AppModule.Users
             await UserManager.UpdateAsync(user);
             return resultLocal.VirtualPath;
         }
-
+        [AbpAuthorize]
+        public async Task<NotificationsOutput> GetMyNotifications(UserNotificationState state = UserNotificationState.Unread)
+        {
+            if (AbpSession.UserId == null) return new NotificationsOutput();
+            var notifications = (await _userNotificationManager.GetUserNotificationsAsync(new UserIdentifier(AbpSession.TenantId,
+                AbpSession.UserId.Value))).Where(a => a.State == state);
+            return new NotificationsOutput()
+            {
+                Notifications = notifications.ToList()
+            };
+        }
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)
         {
             if (userId == null) throw new UserFriendlyException("User id");
@@ -257,22 +271,5 @@ namespace Cinotam.ModuleZero.AppModule.Users
             return roleDtos;
         }
 
-        private async Task<List<UserRole>> GetConvertedRoles(IEnumerable<RoleInput> roles)
-        {
-            var rolesCreated = new List<UserRole>();
-            foreach (var roleInput in roles)
-            {
-                var role = await RoleManager.FindByNameAsync(roleInput.RoleName);
-                if (role == null) continue;
-                if (roleInput.Granted)
-                {
-                    rolesCreated.Add(new UserRole()
-                    {
-                        RoleId = role.Id,
-                    });
-                }
-            }
-            return rolesCreated;
-        }
     }
 }
