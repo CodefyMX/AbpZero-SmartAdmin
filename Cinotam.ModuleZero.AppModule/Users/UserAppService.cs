@@ -31,14 +31,12 @@ namespace Cinotam.ModuleZero.AppModule.Users
         private readonly IRepository<User, long> _userRepository;
         private readonly IPermissionManager _permissionManager;
         private readonly IFileStoreManager _fileStoreManager;
-        private readonly UserManager _userManager;
         private readonly IUsersAppNotificationsSender _usersAppNotificationsSender;
         private readonly UserNotificationManager _userNotificationManager;
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, UserManager userManager, IFileStoreManager fileStoreManager, IUsersAppNotificationsSender usersAppNotificationsSender, UserNotificationManager userNotificationManager)
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, IFileStoreManager fileStoreManager, IUsersAppNotificationsSender usersAppNotificationsSender, UserNotificationManager userNotificationManager)
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
-            _userManager = userManager;
             _fileStoreManager = fileStoreManager;
             _usersAppNotificationsSender = usersAppNotificationsSender;
             _userNotificationManager = userNotificationManager;
@@ -100,7 +98,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
         public async Task DeleteUser(long? userId)
         {
             if (!userId.HasValue) throw new UserFriendlyException(nameof(userId));
-            var userToDelete = await _userManager.GetUserByIdAsync(userId.Value);
+            var userToDelete = await UserManager.GetUserByIdAsync(userId.Value);
             await _userRepository.DeleteAsync(a => a.Id == userId);
 
             await
@@ -181,9 +179,10 @@ namespace Cinotam.ModuleZero.AppModule.Users
         public async Task<UserProfileDto> GetUserProfile(long? abpSessionUserId)
         {
             if (!abpSessionUserId.HasValue) throw new UserFriendlyException(nameof(abpSessionUserId));
-            var user = await _userManager.GetUserByIdAsync(abpSessionUserId.Value);
-
-            return user.MapTo<UserProfileDto>();
+            var user = await UserManager.GetUserByIdAsync(abpSessionUserId.Value);
+            var userProfileInfo = user.MapTo<UserProfileDto>();
+            userProfileInfo.MyRoles = (await UserManager.GetRolesAsync(userProfileInfo.Id)).ToList();
+            return userProfileInfo;
         }
         [AbpAuthorize]
         public async Task<string> AddProfilePicture(UpdateProfilePictureInput input)
@@ -231,11 +230,18 @@ namespace Cinotam.ModuleZero.AppModule.Users
             return resultLocal.VirtualPath;
         }
         [AbpAuthorize]
-        public async Task<NotificationsOutput> GetMyNotifications(UserNotificationState state = UserNotificationState.Unread)
+        public async Task<NotificationsOutput> GetMyNotifications(UserNotificationState state, int? take = null)
         {
             if (AbpSession.UserId == null) return new NotificationsOutput();
-            var notifications = (await _userNotificationManager.GetUserNotificationsAsync(new UserIdentifier(AbpSession.TenantId,
-                AbpSession.UserId.Value))).Where(a => a.State == state);
+            var userIdentifier = new UserIdentifier(AbpSession.TenantId,
+                AbpSession.UserId.Value);
+            var notifications = (await _userNotificationManager.GetUserNotificationsAsync(userIdentifier));
+            notifications.AddRange((await _userNotificationManager.GetUserNotificationsAsync(userIdentifier, UserNotificationState.Read)));
+
+            if (take.HasValue)
+            {
+                notifications = notifications.Take(take.Value).ToList();
+            }
             return new NotificationsOutput()
             {
                 Notifications = notifications.ToList()
@@ -245,7 +251,8 @@ namespace Cinotam.ModuleZero.AppModule.Users
         public async Task ChangePassword(ChangePasswordInput input)
         {
             if (input.UserId == null) throw new UserFriendlyException(L("UserNotFound"));
-            var user = await _userManager.GetUserByIdAsync(input.UserId.Value);
+
+            var user = await UserManager.GetUserByIdAsync(input.UserId.Value);
 
             var hasher = new PasswordHasher();
             if (!string.IsNullOrEmpty(input.OldPassword))
@@ -268,16 +275,25 @@ namespace Cinotam.ModuleZero.AppModule.Users
             }
         }
 
+        public async Task MarkAsReaded(Guid notificationId)
+        {
+            await _userNotificationManager.UpdateUserNotificationStateAsync(AbpSession.TenantId, notificationId,
+                UserNotificationState.Read);
+        }
+
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)
         {
             if (userId == null) throw new UserFriendlyException("User id");
             var userRoles = await UserManager.GetRolesAsync(userId.Value);
             var allRoles = RoleManager.Roles.ToList();
             var checkRoles = GetActiveAndInactiveRoles(userRoles, allRoles);
+            var user = await UserManager.GetUserByIdAsync(userId.Value);
             return new RoleSelectorOutput()
             {
                 UserId = userId.Value,
-                RoleDtos = checkRoles
+                RoleDtos = checkRoles,
+                LastModifier = (await GetLastEditedForName(user.LastModifierUserId)),
+                FullName = user.FullName
             };
         }
 

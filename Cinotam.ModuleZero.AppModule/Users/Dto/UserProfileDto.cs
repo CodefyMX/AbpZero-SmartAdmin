@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Cinotam.AbpModuleZero.Users;
+using System.Collections.Generic;
 
 namespace Cinotam.ModuleZero.AppModule.Users.Dto
 {
@@ -17,5 +18,7 @@ namespace Cinotam.ModuleZero.AppModule.Users.Dto
         public string ProfilePicture { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
+        public List<string> MyRoles { get; set; }
+        public string MyStringRoles => string.Join(",", MyRoles);
     }
 }

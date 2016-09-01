@@ -22,8 +22,18 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         }
 
         [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsers)]
-        public ActionResult UsersAndRolesList()
+        public ActionResult UsersAndRolesList(long? userId)
         {
+            if (userId.HasValue)
+            {
+                ViewBag.UserId = userId.Value;
+            }
+            else
+            {
+                ViewBag.UserId = 0;
+            }
+
+
             return View();
         }
         [WrapResult(false)]
@@ -85,12 +95,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         {
             return View();
         }
-        [AbpMvcAuthorize]
-        public ActionResult GetNotifications()
-        {
 
-            return View();
-        }
         [AbpMvcAuthorize]
         public ActionResult ChangePassword()
         {

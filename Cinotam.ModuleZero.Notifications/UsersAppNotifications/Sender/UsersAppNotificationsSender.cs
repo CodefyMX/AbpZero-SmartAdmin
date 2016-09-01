@@ -78,7 +78,8 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender
                 {
                     ["userName"] = user.FullName,
                     ["usernameAssigned"] = assignedUser.FullName,
-                    ["roleAssigned"] = string.Join(",", roleAssigned)
+                    ["roleAssigned"] = string.Join(",", roleAssigned),
+                    ["userId"] = assignedUserId.Value
                 };
                 await
                     _notificationPublisher.PublishAsync(NotificationNames.RoleAssigned, dataToSend);
@@ -95,7 +96,8 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender
                 {
                     ["userName"] = user.FullName,
                     ["usernameAssigned"] = assignedUser.FullName,
-                    ["roleAssigned"] = string.Join(",", roleAssigned)
+                    ["roleAssigned"] = string.Join(",", roleAssigned),
+                    ["userId"] = assignedUserId.Value
                 };
                 await _notificationPublisher.PublishAsync(NotificationNames.RoleAssignedToUser, dataToSendUser, userIds: new[] { assignedUserIdentifier });
             }

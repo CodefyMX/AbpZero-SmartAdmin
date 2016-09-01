@@ -2,6 +2,7 @@
 using Abp.Configuration.Startup;
 using Abp.Localization;
 using Abp.Threading;
+using Abp.Web.Mvc.Authorization;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.AbpModuleZero.Web.Models.Layout;
 using Cinotam.ModuleZero.AppModule.Sessions;
@@ -44,6 +45,12 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         {
             var userInfo = AsyncHelper.RunSync(() => _sessionAppService.GetCurrentLoginInformations());
             return View("_CurrentUser", userInfo);
+        }
+        [AbpMvcAuthorize]
+        public ActionResult GetNotifications()
+        {
+
+            return View();
         }
     }
 }

@@ -1072,7 +1072,7 @@
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\Settings.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Users\GetNotifications.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Layout\GetNotifications.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -29,6 +29,11 @@ namespace Cinotam.ModuleZero.AppModule
         {
             LocalizationSourceName = AbpModuleZeroConsts.LocalizationSourceName;
         }
+
+        public async Task<string> GetLastEditedForName(long? lastEditedForId)
+        {
+            return lastEditedForId != null ? (await UserManager.GetUserByIdAsync(lastEditedForId.Value)).FullName : "";
+        }
         private static IQueryable<T> GetOrderedQuery<T>(IQueryable<T> elements, RequestModel<object> requestModel)
         {
             return requestModel.PropOrd.ToUpper() == "ASC" ? elements.OrderBy(requestModel.PropToSort) : elements.OrderByDescending(requestModel.PropToSort);

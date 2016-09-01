@@ -93,7 +93,7 @@
         $(document)
             .ready(function () {
                 initView();
-
+                startListening ();
                 abp.event.on('abp.notifications.received', function (userNotification) {
                     console.log(userNotification);
                     printNotificationInList(userNotification);
@@ -102,7 +102,7 @@
             });
         function initView() {
             $("#userNotifications").text("");
-            abp.services.app.user.getMyNotifications().done(function (response) {
+            abp.services.app.user.getMyNotifications(2, 10).done(function (response) {
                 response.notifications.forEach(function (userNotification) {
                     printNotificationInList(userNotification);
                 });
@@ -114,30 +114,33 @@
                     userNotification.notification.data.message.name,
                     userNotification.notification.data.message.sourceName
                 );
-
+                console.log(userNotification);
                 $.each(userNotification.notification.data.properties, function (key, value) {
                     localizedText = localizedText.replace('{' + key + '}', value);
                 });
+
+                var stateClass = getStateClass(userNotification);
                 switch (userNotification.notification.notificationName) {
+
                     case "RoleAssignedToUser":
-                        $("#userNotifications").append(abp.utils.formatString('<li>' +
-                    '<span class="padding-10">' +
+                        $("#userNotifications").append(abp.utils.formatString('<li id=' + userNotification.id + '>' +
+                    '<span class="padding-10 ' + stateClass + '">' +
                     '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"> <i class="fa fa-lock fa-fw fa-2x"></i></em>' +
-                    '<span>{0} <button href="#" class="btn pull-right btn-xs btn-primary margin-top-5 js-mark-readed">Details</button><br><a href="#" class="js-mark-readed">Mark as readed</a></span>' +
+                    '<span>{0} <a data-notification-id=' + userNotification.id + ' data-href="/SysAdmin/Users/MyProfile" class="btn pull-right btn-xs btn-primary margin-top-5 js-call-action">Details</a><br><a href="#" data-notification-id=' + userNotification.id + ' class="js-mark-readed">Mark as readed</a></span>' +
                     '</span></li>', localizedText));
                         break;
                     case "RoleAssigned":
-                        $("#userNotifications").append(abp.utils.formatString('<li>' +
-                  '<span class="padding-10">' +
+                        $("#userNotifications").append(abp.utils.formatString('<li id=' + userNotification.id + '>' +
+                  '<span class="padding-10 ' + stateClass + '">' +
                   '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"> <i class="fa fa-lock fa-fw fa-2x"></i></em>' +
-                  '<span>{0} <button href="#" class="btn btn-xs pull-right btn-primary margin-top-5 js-mark-readed">Details</button><br><a href="#" class="js-mark-readed">Mark as readed</a></span>' +
+                  '<span>{0} <a data-notification-id=' + userNotification.id + ' data-href="/SysAdmin/Users/UsersAndRolesList/?userId=' + userNotification.notification.data.properties.userId + '" class="btn btn-xs pull-right btn-primary margin-top-5 js-call-action">Details</a><br><a href="#" class="js-mark-readed" data-notification-id=' + userNotification.id + '>Mark as readed</a></span>' +
                   '</span></li>', localizedText));
                         break;
                     default:
-                        $("#userNotifications").append(abp.utils.formatString('<li>' +
-                   '<span class="padding-10">' +
+                        $("#userNotifications").append(abp.utils.formatString('<li id=' + userNotification.id + '>' +
+                   '<span class="padding-10 ' + stateClass + '">' +
                    '<em class="badge padding-5 no-border-radius bg-color-yellow pull-left margin-right-5"> <i class="fa fa-user fa-fw fa-2x"></i></em>' +
-                   '<span>{0}<br><a href="#" class="js-mark-readed">Mark as readed</a></span>' +
+                   '<span>{0}<br><a data-notification-id=' + userNotification.id + ' href="#" class="js-mark-readed">Mark as readed</a></span>' +
                    '</span></li>', localizedText));
                         break;
                 }
@@ -146,6 +149,51 @@
             } else if (userNotification.notification.data.type === 'Abp.Notifications.MessageNotificationData') {
                 alert('New simple notification: ' + userNotification.notification.data.message);
             }
+        }
+        function getStateClass(userNotification) {
+            if (userNotification.state == 0) {
+                return "unread";
+            } else {
+                return "";
+            }
+        }
+        function startListening() {
+            $("body").on("click", ".js-call-action", function () {
+                var $elm = $(this);
+                callAction($elm);
+            });
+            $("body").on("click", ".js-mark-readed",function () {
+                var $elm = $(this);
+                var id = $elm.data("notification-id");
+                markAsReaded(id, function () {
+                    var selector = "#" + id;
+                    $(selector).removeClass("unread");
+                    var href = $elm.data("href");
+                    if (href) {
+                        window.location.href = href;
+                    }
+
+                });
+            });
+        }
+
+
+        function callAction($elm) {
+            var id = $elm.data("notification-id");
+            markAsReaded(id, function () {
+                var selector = "#" + id;
+                $(selector).removeClass("unread");
+                var href = $elm.data ("href");
+                if (href) {
+                    window.location.href = href;
+                }
+
+            });
+        }
+        function markAsReaded(notificationId, callback) {
+            abp.ui.setBusy("#userNotifications", abp.services.app.user.markAsReaded(notificationId).done(function () {
+                callback();
+            }));
         }
     })();
 </script>

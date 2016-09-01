@@ -197,13 +197,12 @@
 
                             <form action="@Url.Action("CreateEditUser")" method="POST" id="createEditForm" class="smart-form">
                                 @Html.HiddenFor(a => a.Id)
-                                @Html.HiddenFor(a=>a.UserName)
+                                @Html.HiddenFor(a => a.UserName)
                                 @Html.HiddenFor(a => a.ProfilePicture)
                                 @Html.HiddenFor(a => a.Password)
-                                @Html.HiddenFor(a=>a.IsActive)
+                                @Html.HiddenFor(a => a.IsActive)
                                 <fieldset>
                                     <section>
-
                                         <label class="label col col-2">@L("UserName")</label>
                                         <div class="col col-10">
                                             <label class="input">
@@ -240,6 +239,15 @@
                                         </div>
                                     </section>
                                     <section>
+                                        <label class="label col col-2">@L("MyRoles")</label>
+                                        <div class="col col-10">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-lock"></i>
+                                                @Html.TextBoxFor(a => a.MyStringRoles, new { required = "required",disabled="disabled" })
+                                            </label>
+                                        </div>
+                                    </section>
+                                    <section>
                                         <label class="label col col-2">@L("Password")</label>
                                         <div class="col col-10 padding-top-5">
                                             <label class="input">
@@ -247,6 +255,7 @@
                                             </label>
                                         </div>
                                     </section>
+
                                 </fieldset>
                                 <footer>
                                     <button type="submit" class="btn btn-primary">
@@ -255,6 +264,7 @@
                                 </footer>
 
                             </form>
+                           
                         </div>
                         <!-- end widget content -->
 
@@ -311,7 +321,7 @@
             function modalHandler(event) {
                 switch (event.detail.info.modalType) {
                     case "USER_PASSWORD_CHANGED":
-                        abp.notify.success(LSys("PasswordChanged"), LSys("Success"));
+                        abp.message.success(LSys("PasswordChanged"), LSys("Success"));
                         break;
                     default:
                         console.log("Event unhandled");

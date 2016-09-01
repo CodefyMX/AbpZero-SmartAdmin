@@ -45,6 +45,11 @@
     <text name="ProfileModified" value="Profile edited"/>
     <text name="ProfilePicModified" value="Profile picture uploaded"/>
     <text name="ChangePassword" value="Change password" />
+    <text name="Error" value="Error" />
+    <text name="PasswordsNotMatch" value="Both password and password confirmation not match" />
+    <text name="ChangePasswordForm" value="Change password form"/>
+    <text name="CurrentPassword" value="Current password"/>
+    <text name="ConfirmPassword" value="Confirm password"/>
     <!--//Users-->
 
 
@@ -119,14 +124,14 @@
     <text name="UnSubscribe" value="Unsubscribe" />
     <text name="Loading" value="Loading"/>
     <!--//Configuration-->
-    
-    
+
+
     <!--Dashboard-->
     <text name="Dashboard" value="Dashboard" />
     <text name="DashboardView" value="Dashboard panel" />
     <text name="MethodCalls" value="Method calls"/>
     <!--//Dashboard-->
-    
+
     <text name="Tenants" value="Tenants" />
     <text name="SavedSuccessfully" value="Saved successfully" />
     <text name="CreateNewTenant" value="Create new tenant" />

@@ -37,6 +37,14 @@
         "targets": 0
     }
         ],
+        initComplete: function () {
+            var id = $("#ActivatorUserId").val();
+            console.log(id);
+            if (id != 0) {
+                window.modalInstance.open("/SysAdmin/Users/EditRoles/" + id + "");
+
+            }
+        },
         columns: [
 
             {
@@ -45,7 +53,8 @@
             },
             { "data": "EmailAddress" },
             { "data": "Id" }
-        ]
+        ],
+        
     });
     document.addEventListener('modalClose', modalHandler);
     function modalHandler(event) {

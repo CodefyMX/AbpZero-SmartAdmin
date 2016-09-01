@@ -4,6 +4,7 @@ using Abp.Notifications;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
+using System;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.Users
@@ -26,7 +27,9 @@ namespace Cinotam.ModuleZero.AppModule.Users
         Task<UserProfileDto> GetUserProfile(long? abpSessionUserId);
 
         Task<string> AddProfilePicture(UpdateProfilePictureInput input);
-        Task<NotificationsOutput> GetMyNotifications(UserNotificationState state = UserNotificationState.Unread);
+        Task<NotificationsOutput> GetMyNotifications(UserNotificationState state = UserNotificationState.Unread, int? take = null);
         Task ChangePassword(ChangePasswordInput input);
+        Task MarkAsReaded(Guid notificationId);
+
     }
 }
