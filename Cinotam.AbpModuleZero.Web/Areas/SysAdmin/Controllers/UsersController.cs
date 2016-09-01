@@ -91,5 +91,13 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
 
             return View();
         }
+        [AbpMvcAuthorize]
+        public ActionResult ChangePassword()
+        {
+            return View(new ChangePasswordInput()
+            {
+                UserId = AbpSession.UserId
+            });
+        }
     }
 }

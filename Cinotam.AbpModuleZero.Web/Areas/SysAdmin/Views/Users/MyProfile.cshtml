@@ -20,18 +20,18 @@
 
                 <div class="jarviswidget jarviswidget-sortable" id="wid-id-profileInfoPic" style="" role="widget">
                     <!-- widget options:
-            usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
-            data-widget-colorbutton="false"
-            data-widget-editbutton="false"
-            data-widget-togglebutton="false"
-            data-widget-deletebutton="false"
-            data-widget-fullscreenbutton="false"
-            data-widget-custombutton="false"
-            data-widget-collapsed="true"
-            data-widget-sortable="false"
+                    data-widget-colorbutton="false"
+                    data-widget-editbutton="false"
+                    data-widget-togglebutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-fullscreenbutton="false"
+                    data-widget-custombutton="false"
+                    data-widget-collapsed="true"
+                    data-widget-sortable="false"
 
-            -->
+                    -->
                     <header role="heading">
 
                         <div class="jarviswidget-ctrls" role="menu">
@@ -197,51 +197,54 @@
 
                             <form action="@Url.Action("CreateEditUser")" method="POST" id="createEditForm" class="smart-form">
                                 @Html.HiddenFor(a => a.Id)
+                                @Html.HiddenFor(a=>a.UserName)
+                                @Html.HiddenFor(a => a.ProfilePicture)
+                                @Html.HiddenFor(a => a.Password)
+                                @Html.HiddenFor(a=>a.IsActive)
                                 <fieldset>
                                     <section>
 
-                                        <div class="row">
-
-                                            <label class="label col col-2">@L("UserName")</label>
-                                            <div class="col col-10">
-                                                <label class="input">
-                                                    <i class="icon-append fa fa-user"></i>
-                                                    @Html.TextBoxFor(a => a.UserName, new {disabled = "disabled"})
-                                                </label>
-                                            </div>
+                                        <label class="label col col-2">@L("UserName")</label>
+                                        <div class="col col-10">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-user"></i>
+                                                @Html.TextBoxFor(a => a.UserName, new { disabled = "disabled" })
+                                            </label>
                                         </div>
                                     </section>
                                     <section>
-                                        <div class="row">
-                                            <label class="label col col-2">@L("EmailAddress")</label>
-                                            <div class="col col-10">
-                                                <label class="input">
-                                                    <i class="icon-append fa fa-envelope-o"></i>
-                                                    @Html.TextBoxFor(a => a.EmailAddress, new {required = "required", type = "email"})
-                                                </label>
-                                            </div>
+                                        <label class="label col col-2">@L("EmailAddress")</label>
+                                        <div class="col col-10">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-envelope-o"></i>
+                                                @Html.TextBoxFor(a => a.EmailAddress, new { required = "required", type = "email" })
+                                            </label>
                                         </div>
                                     </section>
                                     <section>
-                                        <div class="row">
-                                            <label class="label col col-2">@L("Name")</label>
-                                            <div class="col col-10">
-                                                <label class="input">
-                                                    <i class="icon-append fa fa-user"></i>
-                                                    @Html.TextBoxFor(a => a.Name, new {required = "required"})
-                                                </label>
-                                            </div>
+                                        <label class="label col col-2">@L("Name")</label>
+                                        <div class="col col-10">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-user"></i>
+                                                @Html.TextBoxFor(a => a.Name, new { required = "required" })
+                                            </label>
                                         </div>
                                     </section>
                                     <section>
-                                        <div class="row">
-                                            <label class="label col col-2">@L("Surname")</label>
-                                            <div class="col col-10">
-                                                <label class="input">
-                                                    <i class="icon-append fa fa-user"></i>
-                                                    @Html.TextBoxFor(a => a.Surname, new {required = "required"})
-                                                </label>
-                                            </div>
+                                        <label class="label col col-2">@L("Surname")</label>
+                                        <div class="col col-10">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-user"></i>
+                                                @Html.TextBoxFor(a => a.Surname, new { required = "required" })
+                                            </label>
+                                        </div>
+                                    </section>
+                                    <section>
+                                        <label class="label col col-2">@L("Password")</label>
+                                        <div class="col col-10 padding-top-5">
+                                            <label class="input">
+                                                <a data-modal href="@Url.Action("ChangePassword")">@L("ChangePassword")</a>
+                                            </label>
                                         </div>
                                     </section>
                                 </fieldset>
@@ -269,30 +272,52 @@
     <script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
     <script>
         (function () {
-            $ ("#changeProfilePicture")
-                .on ("submit",
+            $("#changeProfilePicture")
+                .on("submit",
                     function (e) {
-                        e.preventDefault ();
-                        var data = new FormData (this);
-                        var id = $ ("#Id").val ();
-                        abp.ui.setBusy ($ ("#imageWrapped"), Upload (data, id));
+                        e.preventDefault();
+                        var data = new FormData(this);
+                        var id = $("#Id").val();
+                        abp.ui.setBusy($("#imageWrapped"), upload(data, id));
                     });
+            $("#createEditForm").on("submit", function (e) {
 
-            function Upload (data, id) {
-                return abp.ajax ({
-                        type : "POST",
-                        url : "/SysAdmin/Users/" + "ChangeProfilePicture/" + id,
-                        data : data,
-                        contentType : false,
-                        cache : false,
-                        processData : false
-                    })
-                    .done (function (response) {
-                        abp.notify.success ("Archivo guardado");
-                        $ ('#profilePicture').attr ("src", response);
-                        window.modalInstance.close ({}, {});
+                e.preventDefault();
+                var url = $(this).attr("action");
+                var data = $(this).serializeFormToObject();
+                abp.ui.setBusy($("#createEditForm"), abp.ajax({
+                    url: url,
+                    data: JSON.stringify(data)
+                }).done(function () {
+                    abp.message.success(LSys("ProfileModified"), LSys("Success"));
+                }));
+            });
+            function upload(data, id) {
+                return abp.ajax({
+                    type: "POST",
+                    url: "/SysAdmin/Users/" + "ChangeProfilePicture/" + id,
+                    data: data,
+                    contentType: false,
+                    cache: false,
+                    processData: false
+                })
+                    .done(function (response) {
+                        abp.message.success(LSys("ProfilePicModified"), LSys("Success"));
+                        $('#profilePicture').attr("src", response);
                     });
             }
-        }) ();
+
+            document.addEventListener('modalClose', modalHandler);
+            function modalHandler(event) {
+                switch (event.detail.info.modalType) {
+                    case "USER_PASSWORD_CHANGED":
+                        abp.notify.success(LSys("PasswordChanged"), LSys("Success"));
+                        break;
+                    default:
+                        console.log("Event unhandled");
+                }
+            }
+
+        })();
     </script>
 }

@@ -1067,6 +1067,7 @@
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\LanguagesList.cshtml" />
     <None Include="Areas\SysAdmin\Views\Layout\_LanguageSelectionAdmin.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Users\ChangePassword.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />

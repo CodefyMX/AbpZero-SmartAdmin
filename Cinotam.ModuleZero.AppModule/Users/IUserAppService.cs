@@ -27,5 +27,6 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
         Task<string> AddProfilePicture(UpdateProfilePictureInput input);
         Task<NotificationsOutput> GetMyNotifications(UserNotificationState state = UserNotificationState.Unread);
+        Task ChangePassword(ChangePasswordInput input);
     }
 }

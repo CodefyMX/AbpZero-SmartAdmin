@@ -147,6 +147,7 @@
     <Compile Include="Settings\Dto\SettingsOutput.cs" />
     <Compile Include="Settings\ISettingsAppService.cs" />
     <Compile Include="Settings\SettingsAppService.cs" />
+    <Compile Include="Users\Dto\ChangePasswordInput.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\Dto\NotificationsOutput.cs" />
     <Compile Include="Users\Dto\ProhibitPermissionInput.cs" />

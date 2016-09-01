@@ -241,6 +241,33 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 Notifications = notifications.ToList()
             };
         }
+
+        public async Task ChangePassword(ChangePasswordInput input)
+        {
+            if (input.UserId == null) throw new UserFriendlyException(L("UserNotFound"));
+            var user = await _userManager.GetUserByIdAsync(input.UserId.Value);
+
+            var hasher = new PasswordHasher();
+            if (!string.IsNullOrEmpty(input.OldPassword))
+            {
+                var checkedPassword = hasher.VerifyHashedPassword(user.Password, input.OldPassword);
+                switch (checkedPassword)
+                {
+                    case PasswordVerificationResult.Failed:
+                        //Is new password
+                        throw new UserFriendlyException(L("InvalidPassword"));
+                    case PasswordVerificationResult.Success:
+                        //Is old password
+                        user.Password = hasher.HashPassword(input.NewPassword);
+                        await UserManager.UpdateAsync(user);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                //await _usersAppNotificationsSender.SendUserEditedNotification(AbpSession.UserId, user.FullName);
+            }
+        }
+
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)
         {
             if (userId == null) throw new UserFriendlyException("User id");

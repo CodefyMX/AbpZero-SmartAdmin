@@ -15,5 +15,7 @@ namespace Cinotam.ModuleZero.AppModule.Users.Dto
 
         public string EmailAddress { get; set; }
         public string ProfilePicture { get; set; }
+        public string Password { get; set; }
+        public bool IsActive { get; set; }
     }
 }

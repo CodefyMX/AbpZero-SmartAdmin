@@ -46,7 +46,14 @@ namespace Cinotam.AbpModuleZero.Web
                         url: "About",
                         icon: "fa fa-info"
                         )
-                );
+                ).AddItem(new MenuItemDefinition(
+                        "Admin",
+                        L("Admin"),
+                        url: "/SysAdmin/Dashboard",
+                        icon: "fa fa-dashboard",
+                        requiredPermissionName: PermissionNames.PagesDashboard,
+                        requiresAuthentication: true
+                    ));
         }
 
         private static ILocalizableString L(string name)

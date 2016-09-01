@@ -18,21 +18,30 @@ namespace Cinotam.AbpModuleZero.Tools.DatatablesJsModels.ReflectionHelpers
             return (IQueryable<T>)OrderBy((IQueryable)source, propertyName);
 
         }
+
         public static IQueryable OrderBy(this IQueryable source, string propertyName)
 
         {
+            try
+            {
+                var x = Expression.Parameter(source.ElementType, "x");
 
-            var x = Expression.Parameter(source.ElementType, "x");
+                var selector = Expression.Lambda(Expression.PropertyOrField(x, propertyName), x);
 
-            var selector = Expression.Lambda(Expression.PropertyOrField(x, propertyName), x);
+                return source.Provider.CreateQuery(
 
-            return source.Provider.CreateQuery(
+                    Expression.Call(typeof(Queryable), "OrderBy", new[] { source.ElementType, selector.Body.Type },
 
-                Expression.Call(typeof(Queryable), "OrderBy", new[] { source.ElementType, selector.Body.Type },
+                        source.Expression, selector
+                    ));
+            }
+            catch (Exception)
+            {
+                return source.OrderBy("Id");
+            }
 
-                     source.Expression, selector
-                     ));
         }
+
         public static IQueryable<T> OrderByDescending<T>(this IQueryable<T> source, string propertyName)
 
         {
@@ -40,21 +49,30 @@ namespace Cinotam.AbpModuleZero.Tools.DatatablesJsModels.ReflectionHelpers
             return (IQueryable<T>)OrderByDescending((IQueryable)source, propertyName);
 
         }
+
         public static IQueryable OrderByDescending(this IQueryable source, string propertyName)
 
         {
+            try
+            {
+                var x = Expression.Parameter(source.ElementType, "x");
 
-            var x = Expression.Parameter(source.ElementType, "x");
+                var selector = Expression.Lambda(Expression.PropertyOrField(x, propertyName), x);
 
-            var selector = Expression.Lambda(Expression.PropertyOrField(x, propertyName), x);
+                return source.Provider.CreateQuery(
 
-            return source.Provider.CreateQuery(
+                    Expression.Call(typeof(Queryable), "OrderByDescending", new[] { source.ElementType, selector.Body.Type },
 
-                Expression.Call(typeof(Queryable), "OrderByDescending", new[] { source.ElementType, selector.Body.Type },
+                         source.Expression, selector
 
-                     source.Expression, selector
+                         ));
+            }
+            catch (Exception)
+            {
 
-                     ));
+                return source.OrderByDescending("Id");
+            }
+
 
         }
         public static IQueryable<T> Where<T>(this IQueryable<T> source, string propertyName, string valueToSearch)

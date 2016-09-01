@@ -1,12 +1,12 @@
 ﻿using Abp.Auditing;
 using Abp.Web.Models;
+using Abp.Web.Mvc.Authorization;
+using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.AuditLogs;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Abp.Web.Mvc.Authorization;
-using Cinotam.AbpModuleZero.Authorization;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
 {
@@ -30,7 +30,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         [WrapResult(false)]
         public async Task<ActionResult> LoadLogs(RequestModel<object> input)
         {
-            ProccessQueryData(input, "MethodName", new[] { "MethodName", "UserName", "ClientIpAddress" });
+            ProccessQueryData(input, "MethodName", new[] { "MethodName", "ServiceName", "UserName", "ClientIpAddress", "ExecutionTime", "ExecutionDuration", "BrowserInfo" });
             var result = await _auditLogService.GetAuditLogTable(input);
             return Json(result, JsonRequestBehavior.AllowGet);
         }

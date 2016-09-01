@@ -42,6 +42,9 @@
     <text name="MyProfileView" value="Profile info"/>
     <text name="UserEditedNotification" value="User {userNameEdited} was edited by {userName}" />
     <text name="UserCreatedNotification" value="User {userNameCreated} was created by {userName}"/>
+    <text name="ProfileModified" value="Profile edited"/>
+    <text name="ProfilePicModified" value="Profile picture uploaded"/>
+    <text name="ChangePassword" value="Change password" />
     <!--//Users-->
 
 
