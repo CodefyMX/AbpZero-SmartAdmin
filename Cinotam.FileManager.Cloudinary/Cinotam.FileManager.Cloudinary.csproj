@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Abp">
-      <HintPath>..\packages\Abp.0.11.0.2\lib\net452\Abp.dll</HintPath>
+    <Reference Include="Abp, Version=0.11.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Cinotam.AbpModuleZero.Web\Bin\Abp.dll</HintPath>
     </Reference>
     <Reference Include="CloudinaryDotNet, Version=1.0.25.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
       <HintPath>..\packages\CloudinaryDotNet.1.0.25\lib\net40\CloudinaryDotNet.dll</HintPath>
