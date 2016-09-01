@@ -77,15 +77,4 @@
         </div>
     </div>
 </div>
-<script>
-    (function () {
-        $ ("body")
-            .on ("click",
-                ".toggle",
-                function () {
-                    var id = $(this).data("id");
-                    var selector = "." + id;
-                    $ (selector).toggle();
-                });
-    }) ();
-</script>
+<script src="@Url.Content("~/Areas/SysAdmin/Scripts/AuditLogsScripts/AuditLogDetails.js")"></script>

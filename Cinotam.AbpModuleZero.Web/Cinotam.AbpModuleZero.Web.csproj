@@ -306,6 +306,10 @@
     <Content Include="Areas\SysAdmin\Scripts\localizationText.js" />
     <Content Include="Areas\SysAdmin\Scripts\roles.js" />
     <Content Include="Areas\SysAdmin\Scripts\users.js" />
+    <Content Include="Areas\SysAdmin\Scripts\AuditLogsScripts\AuditLogDetails.js" />
+    <Content Include="Areas\SysAdmin\Scripts\AuditLogsScripts\AuditLogsList.js" />
+    <Content Include="Areas\SysAdmin\Scripts\AuditLogsScripts\GetLatestLogs.js" />
+    <Content Include="Areas\SysAdmin\Views\Dashboard\GetLogStadistics.js" />
     <Content Include="Content\css\abp\toastr.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\demo.min.css" />
