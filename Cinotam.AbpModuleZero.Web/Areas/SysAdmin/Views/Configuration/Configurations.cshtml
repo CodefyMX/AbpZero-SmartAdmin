@@ -67,7 +67,7 @@
                         <div class="widget-body no-padding">
                             <div class="tab-content padding-10">
                                 <div class="tab-pane fade  in active" id="hr2">
-                                    <form id="settings" class="smart-form " >
+                                    <form id="settings" class="smart-form ">
                                         <fieldset>
                                             <div class="row">
                                                 <div class="col col-12">
@@ -76,7 +76,7 @@
                                                         <section class="col col-6">
                                                             <label class="label">@setting.DisplayName</label>
                                                             <label class="input">
-                                                                <input  type="text" data-scope="@setting.SettingScopes" data-key="@setting.Key" value="@setting.Value"/>
+                                                                <input type="text" data-scope="@setting.SettingScopes" data-key="@setting.Key" value="@setting.Value" />
                                                             </label>
                                                             <div class="note">
                                                                 @setting.Description
@@ -91,7 +91,7 @@
 
                                             <footer>
                                                 <button type="submit" class="btn btn-primary">
-                                                   @L("Save")
+                                                    @L("Save")
                                                 </button>
                                             </footer>
                                         </fieldset>
@@ -112,34 +112,5 @@
 </div>
 <!-- END MAIN CONTENT -->
 @section pagespecific {
-
-
-    <script>
-        (function () {
-            $(document).ready(function () {
-
-
-
-                $("#settings").on("submit", function (e) {
-                    var data = [];
-                    e.preventDefault();
-                    $ ("#settings input").each(function () {
-                        var $element = $(this);
-                        var key = $element.data("key");
-                        var scope = $element.data("scope");
-                        var value = $element.val();
-                        data.push ({
-                            Key: key,
-                            Value: value,
-                            SettingScopes:scope
-                        });
-                        
-                    });
-                    abp.services.app.settings.createEditSetting(data).done(function () {
-                        window.location.reload ();
-                    });
-                });
-            });
-        })();
-    </script>
+    <script src="@Url.Content("~/Areas/SysAdmin/Scripts/Configurations/Configurations.js")"></script>
 }

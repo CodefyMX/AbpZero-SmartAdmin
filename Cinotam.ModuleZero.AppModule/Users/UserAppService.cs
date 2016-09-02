@@ -116,6 +116,8 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 var userFound = _userRepository.Get(user.Id);
                 var pssw = userFound.Password;
                 var modified = input.MapTo(userFound);
+                modified.Password = pssw;
+                await UserManager.UpdateAsync(modified);
                 if (!string.IsNullOrEmpty(input.Password))
                 {
                     var checkedPassword = hasher.VerifyHashedPassword(pssw, input.Password);
@@ -126,15 +128,16 @@ namespace Cinotam.ModuleZero.AppModule.Users
                             modified.Password = hasher.HashPassword(input.Password);
                             await UserManager.UpdateAsync(modified);
                             break;
-                        case PasswordVerificationResult.Success:
-                            //Is old password
-                            modified.Password = pssw;
-                            await UserManager.UpdateAsync(modified);
-                            break;
-                        case PasswordVerificationResult.SuccessRehashNeeded:
-                            modified.Password = hasher.HashPassword(input.Password);
-                            await UserManager.UpdateAsync(modified);
-                            break;
+                        //Rev-02.09.2016
+                        //case PasswordVerificationResult.Success:
+                        //    //Is old password
+                        //    modified.Password = pssw;
+                        //    await UserManager.UpdateAsync(modified);
+                        //    break;
+                        //case PasswordVerificationResult.SuccessRehashNeeded:
+                        //    modified.Password = hasher.HashPassword(input.Password);
+                        //    await UserManager.UpdateAsync(modified);
+                        //    break;
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
