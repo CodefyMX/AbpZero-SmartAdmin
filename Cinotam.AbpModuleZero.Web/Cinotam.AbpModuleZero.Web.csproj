@@ -546,6 +546,7 @@
     <Content Include="Content\img\violate.jpg" />
     <Content Include="Content\img\voicecommand\active-btn.gif" />
     <Content Include="Content\img\vt-menu.png" />
+    <Content Include="Content\MailTemplates\Simple.Html" />
     <Content Include="Content\sound\bigbox.mp3" />
     <Content Include="Content\sound\license.txt" />
     <Content Include="Content\sound\messagebox.mp3" />

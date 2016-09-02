@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using Abp.Configuration;
 using Abp.IdentityFramework;
 using Abp.Runtime.Session;
 using Cinotam.AbpModuleZero;
@@ -24,6 +25,7 @@ namespace Cinotam.ModuleZero.AppModule
         public UserManager UserManager { get; set; }
 
         public RoleManager RoleManager { get; set; }
+        public SettingManager SettingsManager { get; set; }
 
         protected CinotamModuleZeroAppServiceBase()
         {

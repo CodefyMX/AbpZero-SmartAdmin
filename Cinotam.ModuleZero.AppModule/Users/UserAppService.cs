@@ -16,12 +16,17 @@ using Cinotam.FileManager.FileTypes;
 using Cinotam.FileManager.SharedTypes.Enums;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
+using Cinotam.ModuleZero.MailSender.CinotamMailSender;
+using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
+using Cinotam.ModuleZero.MailSender.TemplateManager;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.Users
@@ -33,13 +38,17 @@ namespace Cinotam.ModuleZero.AppModule.Users
         private readonly IFileStoreManager _fileStoreManager;
         private readonly IUsersAppNotificationsSender _usersAppNotificationsSender;
         private readonly UserNotificationManager _userNotificationManager;
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, IFileStoreManager fileStoreManager, IUsersAppNotificationsSender usersAppNotificationsSender, UserNotificationManager userNotificationManager)
+        private readonly ICinotamMailSender _cinotamMailSender;
+        private readonly ITemplateManager _templateManager;
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, IFileStoreManager fileStoreManager, IUsersAppNotificationsSender usersAppNotificationsSender, UserNotificationManager userNotificationManager, ICinotamMailSender cinotamMailSender, ITemplateManager templateManager)
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
             _fileStoreManager = fileStoreManager;
             _usersAppNotificationsSender = usersAppNotificationsSender;
             _userNotificationManager = userNotificationManager;
+            _cinotamMailSender = cinotamMailSender;
+            _templateManager = templateManager;
         }
 
         [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
@@ -152,12 +161,45 @@ namespace Cinotam.ModuleZero.AppModule.Users
             }
             else
             {
+
                 user.TenantId = AbpSession.TenantId;
                 user.Password = new PasswordHasher().HashPassword(input.Password);
                 user.IsEmailConfirmed = true;
                 CheckErrors(await UserManager.CreateAsync(user));
                 await _usersAppNotificationsSender.SendUserCreatedNotification(AbpSession.UserId, user.FullName);
+                await SendWelcomeEmail(user);
             }
+        }
+
+        private async Task SendWelcomeEmail(User user)
+        {
+
+            dynamic sendGridParams = BuildSendGridParams(user);
+            await _cinotamMailSender.SendMail(new EmailSendInput()
+            {
+                MailMessage = new MailMessage()
+                {
+                    From = new MailAddress((await SettingManager.GetSettingValueAsync("Abp.Net.Mail.DefaultFromAddress"))),
+                    To = { new MailAddress(user.EmailAddress) },
+                    Subject = "Welcome to Cinotam.ModuleZero",
+                },
+                Body = _templateManager.GetContent(TemplateType.Simple, user.FullName, "Welcome to Cinotam.ModuleZero"),
+                EncodeType = "text/html",
+                ExtraParams = sendGridParams,
+            });
+        }
+
+        private object BuildSendGridParams(User user)
+        {
+            dynamic sendGridParams = new ExpandoObject();
+            sendGridParams.TemplateId =
+            "81448bab-8391-4a6e-971d-142d68d662ad";
+            sendGridParams.Substitutions = new Dictionary<string, string>()
+                {
+                    {":user", user.FullName},
+                    {":subtitle", "Bienvenido al sitio"},
+                };
+            return sendGridParams;
         }
 
         [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]

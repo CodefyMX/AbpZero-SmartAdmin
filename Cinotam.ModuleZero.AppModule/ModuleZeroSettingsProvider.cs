@@ -12,7 +12,8 @@ namespace Cinotam.ModuleZero.AppModule
             return new[]
             {
                 new SettingDefinition("Theme", "smart-style-0",description:L("ThemeSelector"),scopes:SettingScopes.User),
-                new SettingDefinition("WebSiteStatus", "On",description:L("Status"))
+                new SettingDefinition("WebSiteStatus", "On",description:L("Status")),
+                new SettingDefinition("UseSmtp", "false",description:L("Status"))
             };
         }
         private static ILocalizableString L(string name)
