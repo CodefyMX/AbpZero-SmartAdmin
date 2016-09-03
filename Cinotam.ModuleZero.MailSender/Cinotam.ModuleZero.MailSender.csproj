@@ -59,6 +59,10 @@
     <Compile Include="TemplateManager\TemplateType.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cinotam.AbpModuleZero.Core\Cinotam.AbpModuleZero.Core.csproj">
+      <Project>{17298EA0-AF73-4F30-B6F1-2066100D7D74}</Project>
+      <Name>Cinotam.AbpModuleZero.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cinotam.MailSender.SendGrid\Cinotam.MailSender.SendGrid.csproj">
       <Project>{28B7BCBA-6C20-45A2-B939-15861DA5328A}</Project>
       <Name>Cinotam.MailSender.SendGrid</Name>

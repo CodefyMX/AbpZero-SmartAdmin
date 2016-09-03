@@ -1,5 +1,7 @@
-﻿using Abp.Domain.Services;
+﻿using Abp.Domain.Repositories;
+using Abp.Domain.Services;
 using Abp.Net.Mail;
+using Cinotam.AbpModuleZero.SystemMails;
 using Cinotam.MailSender.SendGrid.SendGrid;
 using Cinotam.MailSender.SendGrid.SendGrid.Inputs;
 using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
@@ -15,10 +17,12 @@ namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
     {
         private readonly IEmailSender _emailSender;
         private readonly ISendGridService _sendGridService;
-        public CinotamMailSender(IEmailSender emailSender, ISendGridService sendGridService)
+        private readonly IRepository<SystemMail> _systemMailsRepository;
+        public CinotamMailSender(IEmailSender emailSender, ISendGridService sendGridService, IRepository<SystemMail> systemMailsRepository)
         {
             _emailSender = emailSender;
             _sendGridService = sendGridService;
+            _systemMailsRepository = systemMailsRepository;
         }
 
         public async Task<EmailSentResult> SendMail(EmailSendInput input)
@@ -33,9 +37,24 @@ namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
 
             var resultHttp = await SendViaHttp(input);
             result.SentWithHttp = resultHttp;
+
+            if (result.SentWithHttp || result.SentWithSmtp)
+            {
+                input.Sent = true;
+            }
+            await SaveEmail(input);
             return result;
         }
 
+        private async Task SaveEmail(EmailSendInput email)
+        {
+            await _systemMailsRepository.InsertAndGetIdAsync(new SystemMail()
+            {
+                User = email.MailMessage.To.ToString(),
+                MessageData = email.MailMessage.Body,
+                Sent = email.Sent
+            });
+        }
         async Task<bool> SendViaHttp(EmailSendInput input)
         {
 
