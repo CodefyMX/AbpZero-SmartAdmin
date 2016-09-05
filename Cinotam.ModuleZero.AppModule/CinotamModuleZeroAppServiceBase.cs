@@ -40,6 +40,7 @@ namespace Cinotam.ModuleZero.AppModule
         {
             return requestModel.PropOrd.ToUpper() == "ASC" ? elements.OrderBy(requestModel.PropToSort) : elements.OrderByDescending(requestModel.PropToSort);
         }
+
         /// <summary>
         /// Generates a readyforuse datatable.js model
         /// </summary>

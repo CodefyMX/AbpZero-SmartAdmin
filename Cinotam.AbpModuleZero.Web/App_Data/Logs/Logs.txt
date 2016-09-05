@@ -987,3 +987,290 @@ DEBUG 2016-09-02 16:17:14,762 [5    ] Abp.Web.SignalR.Hubs.AbpCommonHub        -
 DEBUG 2016-09-02 16:17:14,789 [38   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 1b32ea86-0dfb-4659-a7bd-54004f198f42
 DEBUG 2016-09-02 16:18:05,834 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"3d9f6b09-6ea8-4fae-8118-5320af5c77db","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-02T16:16:56.7101914-05:00","Properties":{}}
 DEBUG 2016-09-02 16:18:05,835 [54   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is reconnected: {"ConnectionId":"1b32ea86-0dfb-4659-a7bd-54004f198f42","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-02T16:17:14.7621914-05:00","Properties":{}}
+DEBUG 2016-09-05 09:36:28,994 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-09-05 09:36:29,005 [1    ] Abp.Modules.AbpModuleManager             - Found 22 ABP modules in total.
+DEBUG 2016-09-05 09:36:29,009 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Web.AbpModuleZeroWebModule, Cinotam.AbpModuleZero.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,011 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroDataModule, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,011 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,011 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.11.0.2, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,012 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.11.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,012 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.11.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,012 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.AbpModuleZeroCoreModule, Cinotam.AbpModuleZero.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,012 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.AbpModuleZero.Api.AbpModuleZeroWebApiModule, Cinotam.AbpModuleZero.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,012 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.11.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,012 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.11.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,012 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=0.11.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,013 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.AppModule.CinotamModuleZeroAppModule, Cinotam.ModuleZero.AppModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,013 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.11.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,013 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.FileManager.CinotamFileManager, Cinotam.FileManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,013 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.FileManager.Cloudinary.CinotamFileManagerCloudinary, Cinotam.FileManager.Cloudinary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,013 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.Notifications.CinotamModuleZeroNotifications, Cinotam.ModuleZero.Notifications, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,013 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.MailSender.CinotamModuleZeroMailSender, Cinotam.ModuleZero.MailSender, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,013 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.MailSender.SendGrid.CinotamMailSenderSendGrid, Cinotam.MailSender.SendGrid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,013 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.SignalR.AbpWebSignalRModule, Abp.Web.SignalR, Version=0.11.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,014 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Hangfire.AbpHangfireModule, Abp.HangFire, Version=0.11.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,014 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.11.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,014 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Cinotam.ModuleZero.BackgroundTasks.CinotamModuleZeroBackground, Cinotam.ModuleZero.BackgroundTasks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:29,016 [1    ] Abp.Modules.AbpModuleManager             - 22 modules loaded.
+DEBUG 2016-09-05 09:36:29,115 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-09-05 09:36:29,115 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-09-05 09:36:29,115 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpModuleZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-09-05 09:36:29,115 [1    ] o.Configuration.LanguageManagementConfig - Converted CinotamSmartAdmin (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2016-09-05 09:36:29,115 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+INFO  2016-09-05 09:36:29,272 [1    ] Hangfire.SqlServer.SqlServerStorage      - Start installing Hangfire SQL objects...
+INFO  2016-09-05 09:36:29,373 [1    ] Hangfire.SqlServer.SqlServerStorage      - Hangfire SQL objects installed.
+DEBUG 2016-09-05 09:36:29,664 [1    ] EntityFramework.AbpEntityFrameworkModule - Registering DbContext: Cinotam.AbpModuleZero.EntityFramework.AbpModuleZeroDbContext, Cinotam.AbpModuleZero.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-09-05 09:36:30,707 [1    ] Abp.Localization.LocalizationManager     - Initializing 5 localization sources.
+DEBUG 2016-09-05 09:36:30,712 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-09-05 09:36:30,713 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-09-05 09:36:30,714 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpModuleZero
+DEBUG 2016-09-05 09:36:30,714 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: CinotamSmartAdmin
+DEBUG 2016-09-05 09:36:30,715 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-09-05 09:36:30,720 [1    ] bp.Hangfire.HangfireBackgroundJobManager - Start background worker: Abp.Hangfire.HangfireBackgroundJobManager
+INFO  2016-09-05 09:36:30,731 [1    ] Hangfire.BackgroundJobServer             - Starting Hangfire Server
+INFO  2016-09-05 09:36:30,734 [1    ] Hangfire.BackgroundJobServer             - Using job storage: 'SQL Server: localhost@AbpModuleZero'
+INFO  2016-09-05 09:36:30,734 [1    ] Hangfire.BackgroundJobServer             - Using the following options for SQL Server job storage:
+INFO  2016-09-05 09:36:30,734 [1    ] Hangfire.BackgroundJobServer             -     Queue poll interval: 00:00:15.
+INFO  2016-09-05 09:36:30,734 [1    ] Hangfire.BackgroundJobServer             - Using the following options for Hangfire Server:
+INFO  2016-09-05 09:36:30,735 [1    ] Hangfire.BackgroundJobServer             -     Worker count: 20
+INFO  2016-09-05 09:36:30,735 [1    ] Hangfire.BackgroundJobServer             -     Listening queues: 'default'
+INFO  2016-09-05 09:36:30,735 [1    ] Hangfire.BackgroundJobServer             -     Shutdown timeout: 00:00:15
+INFO  2016-09-05 09:36:30,735 [1    ] Hangfire.BackgroundJobServer             -     Schedule polling interval: 00:00:15
+DEBUG 2016-09-05 09:36:30,751 [erver] ngfire.Server.BackgroundProcessingServer - Background process 'BackgroundProcessingServer' started.
+DEBUG 2016-09-05 09:36:30,971 [tbeat] Hangfire.Server.ServerHeartbeat          - Background process 'ServerHeartbeat' started.
+DEBUG 2016-09-05 09:36:30,994 [chdog] Hangfire.Server.ServerWatchdog           - Background process 'ServerWatchdog' started.
+INFO  2016-09-05 09:36:31,018 [chdog] Hangfire.Server.ServerWatchdog           - 1 servers were removed due to timeout
+DEBUG 2016-09-05 09:36:31,022 [nager] Hangfire.SqlServer.ExpirationManager     - Background process 'Hangfire.SqlServer.ExpirationManager' started.
+DEBUG 2016-09-05 09:36:31,023 [nager] Hangfire.SqlServer.ExpirationManager     - Removing outdated records from the 'AggregatedCounter' table...
+DEBUG 2016-09-05 09:36:31,033 [gator] Hangfire.SqlServer.CountersAggregator    - Background process 'Hangfire.SqlServer.CountersAggregator' started.
+DEBUG 2016-09-05 09:36:31,034 [gator] Hangfire.SqlServer.CountersAggregator    - Aggregating records in 'Counter' table...
+DEBUG 2016-09-05 09:36:31,054 [9cdbd] Hangfire.Server.Worker                   - Background process 'Worker #af79cdbd' started.
+DEBUG 2016-09-05 09:36:31,081 [400d0] Hangfire.Server.Worker                   - Background process 'Worker #b6d400d0' started.
+DEBUG 2016-09-05 09:36:31,082 [nager] Hangfire.SqlServer.ExpirationManager     - Outdated records removed from the 'AggregatedCounter' table.
+DEBUG 2016-09-05 09:36:31,082 [nager] Hangfire.SqlServer.ExpirationManager     - Removing outdated records from the 'Job' table...
+DEBUG 2016-09-05 09:36:31,103 [nager] Hangfire.SqlServer.ExpirationManager     - Outdated records removed from the 'Job' table.
+DEBUG 2016-09-05 09:36:31,103 [nager] Hangfire.SqlServer.ExpirationManager     - Removing outdated records from the 'List' table...
+DEBUG 2016-09-05 09:36:31,112 [ea7a9] Hangfire.Server.Worker                   - Background process 'Worker #dcbea7a9' started.
+DEBUG 2016-09-05 09:36:31,121 [gator] Hangfire.SqlServer.CountersAggregator    - Records from the 'Counter' table aggregated.
+DEBUG 2016-09-05 09:36:31,122 [nager] Hangfire.SqlServer.ExpirationManager     - Outdated records removed from the 'List' table.
+DEBUG 2016-09-05 09:36:31,122 [nager] Hangfire.SqlServer.ExpirationManager     - Removing outdated records from the 'Set' table...
+DEBUG 2016-09-05 09:36:31,125 [nager] Hangfire.SqlServer.ExpirationManager     - Outdated records removed from the 'Set' table.
+DEBUG 2016-09-05 09:36:31,125 [nager] Hangfire.SqlServer.ExpirationManager     - Removing outdated records from the 'Hash' table...
+DEBUG 2016-09-05 09:36:31,130 [nager] Hangfire.SqlServer.ExpirationManager     - Outdated records removed from the 'Hash' table.
+DEBUG 2016-09-05 09:36:31,134 [b5110] Hangfire.Server.Worker                   - Background process 'Worker #cc8b5110' started.
+DEBUG 2016-09-05 09:36:31,139 [3698b] Hangfire.Server.Worker                   - Background process 'Worker #4523698b' started.
+DEBUG 2016-09-05 09:36:31,141 [3c353] Hangfire.Server.Worker                   - Background process 'Worker #2863c353' started.
+DEBUG 2016-09-05 09:36:31,149 [c729f] Hangfire.Server.Worker                   - Background process 'Worker #e0ec729f' started.
+DEBUG 2016-09-05 09:36:31,153 [0ec8f] Hangfire.Server.Worker                   - Background process 'Worker #0bb0ec8f' started.
+DEBUG 2016-09-05 09:36:31,159 [1b277] Hangfire.Server.Worker                   - Background process 'Worker #c2c1b277' started.
+DEBUG 2016-09-05 09:36:31,161 [b94c6] Hangfire.Server.Worker                   - Background process 'Worker #ea6b94c6' started.
+DEBUG 2016-09-05 09:36:31,171 [0c9f8] Hangfire.Server.Worker                   - Background process 'Worker #7dc0c9f8' started.
+DEBUG 2016-09-05 09:36:31,176 [999b5] Hangfire.Server.Worker                   - Background process 'Worker #50e999b5' started.
+DEBUG 2016-09-05 09:36:31,181 [21662] Hangfire.Server.Worker                   - Background process 'Worker #5a921662' started.
+DEBUG 2016-09-05 09:36:31,183 [3e5b8] Hangfire.Server.Worker                   - Background process 'Worker #61c3e5b8' started.
+DEBUG 2016-09-05 09:36:31,187 [e958a] Hangfire.Server.Worker                   - Background process 'Worker #31ee958a' started.
+DEBUG 2016-09-05 09:36:31,193 [bd54f] Hangfire.Server.Worker                   - Background process 'Worker #328bd54f' started.
+DEBUG 2016-09-05 09:36:31,199 [960c8] Hangfire.Server.Worker                   - Background process 'Worker #0af960c8' started.
+DEBUG 2016-09-05 09:36:31,222 [6a54b] Hangfire.Server.Worker                   - Background process 'Worker #87d6a54b' started.
+DEBUG 2016-09-05 09:36:31,305 [8a642] Hangfire.Server.Worker                   - Background process 'Worker #2b08a642' started.
+DEBUG 2016-09-05 09:36:31,312 [0c5da] Hangfire.Server.Worker                   - Background process 'Worker #5760c5da' started.
+DEBUG 2016-09-05 09:36:31,314 [duler] Hangfire.Server.DelayedJobScheduler      - Background process 'DelayedJobScheduler' started.
+DEBUG 2016-09-05 09:36:31,318 [duler] Hangfire.Server.RecurringJobScheduler    - Background process 'RecurringJobScheduler' started.
+DEBUG 2016-09-05 09:36:32,610 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-09-05 09:36:32,611 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Settings.ISettingsAppService' with service name 'app/settings'.
+DEBUG 2016-09-05 09:36:32,612 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Sessions.ISessionAppService' with service name 'app/session'.
+DEBUG 2016-09-05 09:36:32,613 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-09-05 09:36:32,614 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.MultiTenancy.ITenantAppService' with service name 'app/tenant'.
+DEBUG 2016-09-05 09:36:32,615 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.Languages.ILanguageAppService' with service name 'app/language'.
+DEBUG 2016-09-05 09:36:32,616 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'Cinotam.ModuleZero.AppModule.AuditLogs.IAuditLogService' with service name 'app/auditLogService'.
+DEBUG 2016-09-05 09:36:32,807 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 11 classes defines auto mapping attributes
+DEBUG 2016-09-05 09:36:32,807 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.AbpModuleZero.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-09-05 09:36:32,811 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.CreateUserInput
+DEBUG 2016-09-05 09:36:32,811 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserListDto
+DEBUG 2016-09-05 09:36:32,811 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Users.Dto.UserProfileDto
+DEBUG 2016-09-05 09:36:32,811 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-09-05 09:36:32,811 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-09-05 09:36:32,811 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.Roles.Dto.RoleDto
+DEBUG 2016-09-05 09:36:32,811 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CreateTenantInput
+DEBUG 2016-09-05 09:36:32,812 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto
+DEBUG 2016-09-05 09:36:32,812 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+DEBUG 2016-09-05 09:36:32,812 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogTimeOutputDto
+DEBUG 2016-09-05 09:36:32,982 [1    ] er.TryToUpdateProfilePictureToCdnService - Start background worker: Castle.Proxies.TryToUpdateProfilePictureToCdnServiceProxy
+WARN  2016-09-05 09:36:34,209 [6    ] Abp.Logging.LogHelper                    - Abp.Authorization.AbpAuthorizationException: Current user did not login to the application!
+   at Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:line 34
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:line 85
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:line 52
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   at System.Threading.Tasks.ContinuationTaskFromTask.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   at Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:line 27
+   at Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) in D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:line 35
+Abp.Authorization.AbpAuthorizationException: Current user did not login to the application!
+   at Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__18.MoveNext() in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:line 34
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Abp.Authorization.AuthorizationHelper.<CheckPermissions>d__21.MoveNext() in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:line 85
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Abp.Authorization.AuthorizationHelper.<AuthorizeAsync>d__19.MoveNext() in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelper.cs:line 52
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Nito.AsyncEx.AsyncContext.<>c__DisplayClass3.<Run>b__1(Task t)
+   at System.Threading.Tasks.ContinuationTaskFromTask.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Nito.AsyncEx.AsyncContext.Run(Func`1 action)
+   at Abp.Authorization.AuthorizationHelperExtensions.Authorize(IAuthorizationHelper authorizationHelper, MethodInfo methodInfo) in D:\Halil\GitHub\aspnetboilerplate\src\Abp\Authorization\AuthorizationHelperExtensions.cs:line 27
+   at Abp.Web.Mvc.Authorization.AbpMvcAuthorizeFilter.OnAuthorization(AuthorizationContext filterContext) in D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.Mvc\Web\Mvc\Authorization\AbpMvcAuthorizeFilter.cs:line 35
+WARN  2016-09-05 09:36:38,186 [7    ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:36:38,552 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"08dc084d-0d60-40b5-b7ca-974aa1c509fc","IpAddress":"::1","TenantId":1,"UserId":null,"ConnectTime":"2016-09-05T09:36:38.5461863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:36:38,584 [38   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 08dc084d-0d60-40b5-b7ca-974aa1c509fc
+WARN  2016-09-05 09:37:42,892 [42   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:37:43,082 [41   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:37:43,083 [41   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:37:43,279 [5    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"c9303a74-c15f-497e-8aa2-1ae138af508f","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:37:43.2781863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:37:43,297 [41   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: c9303a74-c15f-497e-8aa2-1ae138af508f
+WARN  2016-09-05 09:37:45,785 [42   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:37:45,823 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: c9303a74-c15f-497e-8aa2-1ae138af508f
+WARN  2016-09-05 09:37:45,883 [40   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:37:45,884 [40   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:37:46,037 [40   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"e7cc80e7-0c5a-4fab-86ca-d3c9cab967e3","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:37:46.0371863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:37:46,066 [41   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: e7cc80e7-0c5a-4fab-86ca-d3c9cab967e3
+DEBUG 2016-09-05 09:37:50,996 [43   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: e7cc80e7-0c5a-4fab-86ca-d3c9cab967e3
+WARN  2016-09-05 09:37:51,191 [5    ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:37:51,191 [5    ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:37:51,997 [50   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"18bc5fd3-6e44-4bf2-abe9-ee7fe5fb7bea","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:37:51.9971863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:37:52,017 [50   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 18bc5fd3-6e44-4bf2-abe9-ee7fe5fb7bea
+DEBUG 2016-09-05 09:37:56,659 [52   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 18bc5fd3-6e44-4bf2-abe9-ee7fe5fb7bea
+WARN  2016-09-05 09:37:56,772 [8    ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:37:56,772 [8    ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:37:57,181 [43   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"05c9f50f-4b8a-4c4d-96a9-7181bc9a32e3","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:37:57.1811863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:37:57,197 [50   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 05c9f50f-4b8a-4c4d-96a9-7181bc9a32e3
+WARN  2016-09-05 09:38:01,188 [43   ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:01,188 [43   ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:01,188 [43   ] Abp.Logging.LogHelper                    - Can not find 'FullScreen' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:01,189 [43   ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:38:01,232 [52   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 05c9f50f-4b8a-4c4d-96a9-7181bc9a32e3
+WARN  2016-09-05 09:38:01,320 [7    ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:01,320 [7    ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:38:01,688 [7    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"59a0a9dc-6d40-4342-9deb-b72865437389","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:38:01.6881863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:38:01,696 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 59a0a9dc-6d40-4342-9deb-b72865437389
+WARN  2016-09-05 09:38:02,618 [51   ] Abp.Logging.LogHelper                    - Can not find 'Status' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:02,618 [51   ] Abp.Logging.LogHelper                    - Can not find 'Status' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:38:03,197 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 59a0a9dc-6d40-4342-9deb-b72865437389
+WARN  2016-09-05 09:38:03,349 [51   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:03,349 [51   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:38:03,587 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"b084530e-24c3-46dd-a6c4-6a16b932df88","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:38:03.5871863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:38:03,599 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: b084530e-24c3-46dd-a6c4-6a16b932df88
+WARN  2016-09-05 09:38:12,955 [8    ] Abp.Logging.LogHelper                    - Can not find 'ServiceName' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:12,955 [8    ] Abp.Logging.LogHelper                    - Can not find 'ExecutionDuration' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:38:13,014 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: b084530e-24c3-46dd-a6c4-6a16b932df88
+WARN  2016-09-05 09:38:13,143 [40   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:13,144 [40   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:38:13,461 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"1726d9f6-4e4c-4784-9c81-a22b0295da90","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:38:13.4591863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:38:13,481 [39   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 1726d9f6-4e4c-4784-9c81-a22b0295da90
+DEBUG 2016-09-05 09:38:13,616 [40   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 08dc084d-0d60-40b5-b7ca-974aa1c509fc
+WARN  2016-09-05 09:38:13,620 [40   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Abp.RealTime.OnlineClientManagerExtensions.<>c__DisplayClass2_0.<GetAllByUserId>b__0(IOnlineClient c) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:línea 34
+   en System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   en System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   en System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   en System.Collections.Immutable.ImmutableExtensions.FallbackWrapper`1.get_Count()
+   en System.Collections.Immutable.ImmutableList`1.FillFromEmpty(IEnumerable`1 items)
+   en System.Collections.Immutable.ImmutableList`1.AddRange(IEnumerable`1 items)
+   en System.Collections.Immutable.ImmutableList.ToImmutableList[TSource](IEnumerable`1 source)
+   en Abp.RealTime.OnlineClientManagerExtensions.GetAllByUserId(IOnlineClientManager onlineClientManager, IUserIdentifier user) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:línea 33
+   en Abp.RealTime.OnlineClientManager.Remove(String connectionId) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManager.cs:línea 64
+   en Abp.Web.SignalR.Hubs.AbpCommonHub.<OnDisconnected>d__13.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.SignalR\Web\SignalR\Hubs\AbpCommonHub.cs:línea 80
+System.NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en Abp.RealTime.OnlineClientManagerExtensions.<>c__DisplayClass2_0.<GetAllByUserId>b__0(IOnlineClient c) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:línea 34
+   en System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   en System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   en System.Linq.Enumerable.ToArray[TSource](IEnumerable`1 source)
+   en System.Collections.Immutable.ImmutableExtensions.FallbackWrapper`1.get_Count()
+   en System.Collections.Immutable.ImmutableList`1.FillFromEmpty(IEnumerable`1 items)
+   en System.Collections.Immutable.ImmutableList`1.AddRange(IEnumerable`1 items)
+   en System.Collections.Immutable.ImmutableList.ToImmutableList[TSource](IEnumerable`1 source)
+   en Abp.RealTime.OnlineClientManagerExtensions.GetAllByUserId(IOnlineClientManager onlineClientManager, IUserIdentifier user) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManagerExtensions.cs:línea 33
+   en Abp.RealTime.OnlineClientManager.Remove(String connectionId) en D:\Halil\GitHub\aspnetboilerplate\src\Abp\RealTime\OnlineClientManager.cs:línea 64
+   en Abp.Web.SignalR.Hubs.AbpCommonHub.<OnDisconnected>d__13.MoveNext() en D:\Halil\GitHub\aspnetboilerplate\src\Abp.Web.SignalR\Web\SignalR\Hubs\AbpCommonHub.cs:línea 80
+DEBUG 2016-09-05 09:38:51,570 [41   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 1726d9f6-4e4c-4784-9c81-a22b0295da90
+WARN  2016-09-05 09:38:51,671 [40   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:51,671 [40   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:38:52,078 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"7ec2da6b-e0ed-4227-bf72-b3bef19edd0d","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:38:52.0771863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:38:52,085 [41   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 7ec2da6b-e0ed-4227-bf72-b3bef19edd0d
+WARN  2016-09-05 09:38:53,681 [42   ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:53,681 [42   ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:53,681 [42   ] Abp.Logging.LogHelper                    - Can not find 'FullScreen' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:53,682 [42   ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:38:53,798 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 7ec2da6b-e0ed-4227-bf72-b3bef19edd0d
+WARN  2016-09-05 09:38:53,928 [39   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:53,928 [39   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:38:54,219 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"b804d533-ad19-4216-a907-8d9e986e3baa","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:38:54.2181863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:38:54,231 [38   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: b804d533-ad19-4216-a907-8d9e986e3baa
+DEBUG 2016-09-05 09:38:56,562 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: b804d533-ad19-4216-a907-8d9e986e3baa
+WARN  2016-09-05 09:38:56,663 [8    ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:38:56,663 [8    ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:38:57,005 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"b0d2105e-d07d-414f-8dbc-c806b085a7d8","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:38:57.0051863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:38:57,083 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: b0d2105e-d07d-414f-8dbc-c806b085a7d8
+DEBUG 2016-09-05 09:39:19,438 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: b0d2105e-d07d-414f-8dbc-c806b085a7d8
+WARN  2016-09-05 09:39:19,538 [47   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:19,539 [47   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:39:20,186 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"a07d9bd7-8d6a-4b64-9be6-09a1cdfaf155","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:39:20.1861863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:39:20,203 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: a07d9bd7-8d6a-4b64-9be6-09a1cdfaf155
+DEBUG 2016-09-05 09:39:21,485 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: a07d9bd7-8d6a-4b64-9be6-09a1cdfaf155
+WARN  2016-09-05 09:39:21,587 [8    ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:21,587 [8    ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:39:22,019 [41   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"5de854f4-042d-4534-8587-7484a2735f4f","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:39:22.0191863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:39:22,041 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 5de854f4-042d-4534-8587-7484a2735f4f
+WARN  2016-09-05 09:39:22,699 [47   ] Abp.Logging.LogHelper                    - Can not find 'Edit' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:22,699 [47   ] Abp.Logging.LogHelper                    - Can not find 'Collapse' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:22,700 [47   ] Abp.Logging.LogHelper                    - Can not find 'FullScreen' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:22,700 [47   ] Abp.Logging.LogHelper                    - Can not find 'Restore' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:39:22,738 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 5de854f4-042d-4534-8587-7484a2735f4f
+WARN  2016-09-05 09:39:22,828 [40   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:22,828 [40   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:39:23,157 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"9e5584d1-3ede-4883-96c6-d09c0cc9d68b","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:39:23.1561863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:39:23,164 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 9e5584d1-3ede-4883-96c6-d09c0cc9d68b
+WARN  2016-09-05 09:39:23,865 [42   ] Abp.Logging.LogHelper                    - Can not find 'Status' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:23,865 [42   ] Abp.Logging.LogHelper                    - Can not find 'Status' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:39:23,935 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 9e5584d1-3ede-4883-96c6-d09c0cc9d68b
+WARN  2016-09-05 09:39:24,018 [41   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:24,019 [41   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:39:24,301 [51   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"79be4568-ef06-4183-b2bc-8509f5ddcc80","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:39:24.3011863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:39:24,313 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 79be4568-ef06-4183-b2bc-8509f5ddcc80
+WARN  2016-09-05 09:39:25,088 [42   ] Abp.Logging.LogHelper                    - Can not find 'ServiceName' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:25,089 [42   ] Abp.Logging.LogHelper                    - Can not find 'ExecutionDuration' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:39:25,138 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: 79be4568-ef06-4183-b2bc-8509f5ddcc80
+WARN  2016-09-05 09:39:25,223 [38   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:25,223 [38   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:39:25,589 [40   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"a0756673-e215-49ab-aaf5-eb448bb89fda","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:39:25.5891863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:39:25,609 [8    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: a0756673-e215-49ab-aaf5-eb448bb89fda
+DEBUG 2016-09-05 09:39:38,918 [38   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: a0756673-e215-49ab-aaf5-eb448bb89fda
+WARN  2016-09-05 09:39:38,998 [41   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:38,998 [41   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:39:39,447 [41   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"aa49c430-8bf4-41f3-863d-0e8c06107c4e","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:39:39.4471863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:39:39,469 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: aa49c430-8bf4-41f3-863d-0e8c06107c4e
+DEBUG 2016-09-05 09:39:40,846 [40   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is disconnected: aa49c430-8bf4-41f3-863d-0e8c06107c4e
+WARN  2016-09-05 09:39:40,970 [47   ] Abp.Logging.LogHelper                    - Can not find 'Admin' in localization source 'AbpModuleZero'!
+WARN  2016-09-05 09:39:40,971 [47   ] Abp.Logging.LogHelper                    - Can not find 'SysAdminMenu' in localization source 'AbpModuleZero'!
+DEBUG 2016-09-05 09:39:41,390 [42   ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is connected: {"ConnectionId":"4f78b15e-0c6d-4f65-abf0-564991137bb4","IpAddress":"::1","TenantId":1,"UserId":2,"ConnectTime":"2016-09-05T09:39:41.3901863-05:00","Properties":{}}
+DEBUG 2016-09-05 09:39:41,397 [6    ] Abp.Web.SignalR.Hubs.AbpCommonHub        - A client is registered: 4f78b15e-0c6d-4f65-abf0-564991137bb4

@@ -12,6 +12,7 @@ using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.FileManager.Files;
 using Cinotam.FileManager.Files.Inputs;
+using Cinotam.FileManager.Files.Outputs;
 using Cinotam.FileManager.FileTypes;
 using Cinotam.FileManager.SharedTypes.Enums;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
@@ -111,7 +112,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
             await _userRepository.DeleteAsync(a => a.Id == userId);
 
             await
-                _usersAppNotificationsSender.SendUserDeletedNotification(AbpSession.UserId, userToDelete.FullName);
+                _usersAppNotificationsSender.SendUserDeletedNotification((await GetCurrentUserAsync()), userToDelete);
         }
 
         [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
@@ -150,7 +151,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
-                    await _usersAppNotificationsSender.SendUserEditedNotification(AbpSession.UserId, userFound.FullName);
+                    await _usersAppNotificationsSender.SendUserEditedNotification((await GetCurrentUserAsync()), userFound);
                 }
                 else
                 {
@@ -166,7 +167,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 user.Password = new PasswordHasher().HashPassword(input.Password);
                 user.IsEmailConfirmed = true;
                 CheckErrors(await UserManager.CreateAsync(user));
-                await _usersAppNotificationsSender.SendUserCreatedNotification(AbpSession.UserId, user.FullName);
+                await _usersAppNotificationsSender.SendUserCreatedNotification((await GetCurrentUserAsync()), user);
                 await SendWelcomeEmail(user);
             }
         }
@@ -217,7 +218,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
             await UserManager.SetRoles(user, input.Roles);
-            await _usersAppNotificationsSender.SendRoleAssignedNotification(AbpSession.TenantId, AbpSession.UserId, user.Id, input.Roles);
+            await _usersAppNotificationsSender.SendRoleAssignedNotification(AbpSession.TenantId, (await GetCurrentUserAsync()), user);
         }
 
         [AbpAuthorize]
@@ -253,27 +254,29 @@ namespace Cinotam.ModuleZero.AppModule.Users
             if (result.WasStoredInCloud)
             {
                 user.ProfilePicture = result.Url;
+                user.IsPictureOnCdn = true;
                 await UserManager.UpdateAsync(user);
                 return result.Url;
             }
+
+            var resultLocal = SaveImageInServer(input);
+            user.ProfilePicture = resultLocal.VirtualPath;
+            user.IsPictureOnCdn = false;
+            await UserManager.UpdateAsync(user);
+            return resultLocal.VirtualPath;
+        }
+
+        private SavedFileResult SaveImageInServer(UpdateProfilePictureInput input)
+        {
             var folder = $"/Content/Images/Users/{input.UserId}/profilePicture/";
             var resultLocal = _fileStoreManager.SaveFileToServer(new FileSaveInput()
             {
                 CreateUniqueName = true,
                 File = input.Image,
             }, folder);
-            user.ProfilePicture = resultLocal.VirtualPath;
-            user.IsPictureOnCdn = true;
-            //await _backgroundJobManager.EnqueueAsync<ProfilePictureCdnPublisher, PublisherInputDto>(new PublisherInputDto()
-            //{
-            //    File = resultLocal.AbsolutePath,
-            //    UserName = user.UserName,
-            //    UserId = input.UserId
-            //});
-
-            await UserManager.UpdateAsync(user);
-            return resultLocal.VirtualPath;
+            return resultLocal;
         }
+
         [AbpAuthorize]
         public async Task<NotificationsOutput> GetMyNotifications(UserNotificationState state, int? take = null)
         {

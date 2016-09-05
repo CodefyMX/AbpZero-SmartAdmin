@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Services;
+using Cinotam.AbpModuleZero.Users;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender
@@ -6,9 +7,9 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender
     public interface IUsersAppNotificationsSender : IDomainService
     {
 
-        Task SendUserDeletedNotification(long? abpSessionUserId, string userNameDeleted);
-        Task SendUserEditedNotification(long? abpSessionUserId, string userEdited);
-        Task SendUserCreatedNotification(long? abpSessionUserId, string userCreated);
-        Task SendRoleAssignedNotification(int? currentTenant, long? abpSessionUserId, long? assignedUserId, string[] roleAssigned);
+        Task SendUserDeletedNotification(User currentUser, User userDeleted);
+        Task SendUserEditedNotification(User currentUser, User userEdited);
+        Task SendUserCreatedNotification(User currentUser, User userCreated);
+        Task SendRoleAssignedNotification(int? currentTenant, User currentUser, User assignedUser);
     }
 }
