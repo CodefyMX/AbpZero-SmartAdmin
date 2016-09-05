@@ -93,6 +93,12 @@
                             <i></i>@L("IsActive")
                         </label>
                     </section>
+                    <section>
+                        <label class="checkbox">
+                            @Html.CheckBoxFor(a => a.SendNotificationMail)
+                            <i></i>@L("SendNotificationMail")
+                        </label>
+                    </section>
                 </fieldset>
                 <footer>
                     <button type="submit" class="btn btn-primary">
@@ -130,6 +136,7 @@
             var url = $(this).attr("action");
             var data = $(this).serializeFormToObject();
             data.IsActive = $("#IsActive").is(":checked");
+            data.SendNotificationMail = $("#SendNotificationMail").is(":checked");
             abp.ui.setBusy($("#createEditForm"), abp.ajax({
                 url: url,
                 data: JSON.stringify(data)

@@ -28,7 +28,7 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender
             var dataToSend =
                 new LocalizableMessageNotificationData(new LocalizableString("UserDeletedByUser",
                     AbpModuleZeroConsts.LocalizationSourceName))
-                { ["userName"] = currentUser.FullName, ["userNameDeleted"] = userDeleted.FullName };
+                { ["userName"] = currentUser.FullName, ["userNameDeleted"] = userDeleted.FullName, ["userDeletedId"] = userDeleted.Id };
             await _notificationPublisher.PublishAsync(NotificationNames.UserDeleted, dataToSend, severity: NotificationSeverity.Warn);
 
 

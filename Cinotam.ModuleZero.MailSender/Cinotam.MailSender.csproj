@@ -57,6 +57,7 @@
     <Compile Include="TemplateManager\Templates\ChangePasswordTemplate.cs" />
     <Compile Include="TemplateManager\Templates\SimpleTemplate.cs" />
     <Compile Include="TemplateManager\Templates\Template.cs" />
+    <Compile Include="TemplateManager\Templates\WelcomeTemplate.cs" />
     <Compile Include="TemplateManager\TemplateType.cs" />
   </ItemGroup>
   <ItemGroup>

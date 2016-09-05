@@ -168,14 +168,17 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 user.IsEmailConfirmed = true;
                 CheckErrors(await UserManager.CreateAsync(user));
                 await _usersAppNotificationsSender.SendUserCreatedNotification((await GetCurrentUserAsync()), user);
-                await SendWelcomeEmail(user);
+                if (input.SendNotificationMail)
+                {
+                    await SendWelcomeEmail(user, input.Password);
+                }
             }
         }
 
-        private async Task SendWelcomeEmail(User user)
+        private async Task SendWelcomeEmail(User user, string password)
         {
 
-            dynamic sendGridParams = BuildSendGridParams(user);
+            dynamic sendGridParams = BuildSendGridParams(user, password);
             await _cinotamMailSender.SendMail(new EmailSendInput()
             {
                 MailMessage = new MailMessage()
@@ -184,13 +187,13 @@ namespace Cinotam.ModuleZero.AppModule.Users
                     To = { new MailAddress(user.EmailAddress) },
                     Subject = "Welcome to Cinotam.ModuleZero",
                 },
-                Body = _templateManager.GetContent(TemplateType.Simple, user.FullName, "Welcome to Cinotam.ModuleZero"),
+                Body = _templateManager.GetContent(TemplateType.Welcome, user.FullName, "Welcome to Cinotam.ModuleZero"),
                 EncodeType = "text/html",
                 ExtraParams = sendGridParams,
             });
         }
 
-        private object BuildSendGridParams(User user)
+        private object BuildSendGridParams(User user, string passWord)
         {
             dynamic sendGridParams = new ExpandoObject();
             sendGridParams.TemplateId =
@@ -198,8 +201,10 @@ namespace Cinotam.ModuleZero.AppModule.Users
             sendGridParams.Substitutions = new Dictionary<string, string>()
                 {
                     {":user", user.FullName},
-                    {":subtitle", "Bienvenido al sitio"},
-                };
+                    {":subtitle", "Welcome to Cinotam.ModuleZero"},
+                    {":website","localhost:61760" },
+                    {":userName",user.UserName},
+                    {":password",passWord}                };
             return sendGridParams;
         }
 

@@ -2,9 +2,8 @@
 {
     public class SimpleTemplate : Template
     {
-        public SimpleTemplate(string user, string content, string route = "/Content/MailTemplates/Simple.html")
+        public SimpleTemplate(string user, string content) : base("", "")
         {
-            TemplateRoute = route;
             User = user;
             Content = content;
         }

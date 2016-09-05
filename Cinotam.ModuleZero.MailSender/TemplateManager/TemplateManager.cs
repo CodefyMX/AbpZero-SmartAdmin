@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Cinotam.ModuleZero.MailSender.TemplateManager.Templates;
+using System;
 using System.Collections.Generic;
 using System.Web.Hosting;
-using Cinotam.ModuleZero.MailSender.TemplateManager.Templates;
 
 namespace Cinotam.ModuleZero.MailSender.TemplateManager
 {
@@ -11,8 +11,8 @@ namespace Cinotam.ModuleZero.MailSender.TemplateManager
         {
             switch (type)
             {
-                case TemplateType.Simple:
-                    return GetTextFromFile(new SimpleTemplate(user, content));
+                case TemplateType.Welcome:
+                    return GetTextFromFile(new WelcomeTemplate(user, content, false));
                 case TemplateType.NotificationUserChangePassword:
                     return GetTextFromFile(new ChangePasswordTemplate(user, content));
                 default:
