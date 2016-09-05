@@ -1,9 +1,9 @@
 ﻿using Abp.AutoMapper;
 using Abp.Modules;
 using Cinotam.FileManager;
+using Cinotam.ModuleZero.MailSender;
 using Cinotam.ModuleZero.Notifications;
 using System.Reflection;
-using Cinotam.MailSender;
 
 namespace Cinotam.ModuleZero.AppModule
 {

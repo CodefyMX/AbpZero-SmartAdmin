@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Abp.Domain.Services;
 
-namespace Cinotam.MailSender.TemplateManager
+namespace Cinotam.ModuleZero.MailSender.TemplateManager
 {
     public interface ITemplateManager : IDomainService
     {

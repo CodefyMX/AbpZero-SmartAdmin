@@ -50,6 +50,7 @@
     <Compile Include="CinotamMailSender\Inputs\EmailSendInput.cs" />
     <Compile Include="CinotamMailSender\Outputs\EmailSentResult.cs" />
     <Compile Include="CinotamModuleZeroMailSender.cs" />
+    <Compile Include="EmailResendWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateManager\ITemplateManager.cs" />
     <Compile Include="TemplateManager\TemplateManager.cs" />

@@ -4,13 +4,13 @@ using Cinotam.ModuleZero.Notifications.Notifications;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Inputs;
 using System.Threading.Tasks;
 
-namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Subscriber
+namespace Cinotam.ModuleZero.Notifications.GeneralSubscriber
 {
-    public class UserAppNotificationsSubscriber : IUserAppNotificationsSubscriber
+    public class AppNotificationsSubscriber : IAppNotificationsSubscriber
     {
         private readonly INotificationSubscriptionManager _notificationSubscriptionManager;
 
-        public UserAppNotificationsSubscriber(INotificationSubscriptionManager notificationSubscriptionManager)
+        public AppNotificationsSubscriber(INotificationSubscriptionManager notificationSubscriptionManager)
         {
             _notificationSubscriptionManager = notificationSubscriptionManager;
         }

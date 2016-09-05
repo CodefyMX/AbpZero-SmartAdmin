@@ -6,6 +6,7 @@ using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Localization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Languages.Dto;
+using Cinotam.ModuleZero.Notifications.LanguagesAppNotifications.Sender;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -23,16 +24,20 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         private readonly IRepository<ApplicationLanguageText, long> _languageTextsRepository;
         private readonly IRepository<ApplicationLanguage> _languagesRepository;
         private readonly ILanguageTextsProvider _languageTextsProvider;
-
         public const string DefaultLanguage = "en";
-
-        public LanguageAppService(IApplicationLanguageManager applicationLanguageManager, IRepository<ApplicationLanguageText, long> languageTextsRepository, IRepository<ApplicationLanguage> languagesRepository, ILanguageTextsProvider languageTextsProvider, IApplicationLanguageTextManager applicationLanguageTextManager)
+        private readonly ILanguagesAppNotificationSender _languagesAppNotificationSender;
+        public LanguageAppService(IApplicationLanguageManager applicationLanguageManager,
+            IRepository<ApplicationLanguageText, long> languageTextsRepository,
+            IRepository<ApplicationLanguage> languagesRepository,
+            ILanguageTextsProvider languageTextsProvider,
+            IApplicationLanguageTextManager applicationLanguageTextManager, ILanguagesAppNotificationSender languagesAppNotificationSender)
         {
             _applicationLanguageManager = applicationLanguageManager;
             _languageTextsRepository = languageTextsRepository;
             _languagesRepository = languagesRepository;
             _languageTextsProvider = languageTextsProvider;
             _applicationLanguageTextManager = applicationLanguageTextManager;
+            _languagesAppNotificationSender = languagesAppNotificationSender;
         }
         /// <summary>
         /// Adds a new available language to the app
@@ -41,10 +46,10 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         /// <returns></returns>
         public async Task AddLanguage(LanguageInput input)
         {
-            await _applicationLanguageManager.AddAsync(new ApplicationLanguage(AbpSession.TenantId, input.LangCode, input.DisplayName, input.Icon));
+            var newLanguage = new ApplicationLanguage(AbpSession.TenantId, input.LangCode, input.DisplayName, input.Icon);
+            await _applicationLanguageManager.AddAsync(newLanguage);
 
-
-
+            _languagesAppNotificationSender.SendLanguageCreatedNotification(newLanguage, (await GetCurrentUserAsync()));
             //AddAllKeysForNewLanguage(input.LangCode);
 
 
@@ -94,7 +99,9 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             {
                 //Much texts, many memory
                 await DeleteAllTextsFromLanguage(code);
+                var language = _languagesRepository.FirstOrDefault(a => a.Name == code);
                 await _applicationLanguageManager.RemoveAsync(AbpSession.TenantId, code);
+                _languagesAppNotificationSender.SendLanguageCreatedNotification(language, (await GetCurrentUserAsync()));
             }
         }
 

@@ -90,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CinotamModuleZeroNotifications.cs" />
+    <Compile Include="LanguagesAppNotifications\Sender\ILanguagesAppNotificationSender.cs" />
+    <Compile Include="LanguagesAppNotifications\Sender\LanguagesAppNotificationSender.cs" />
     <Compile Include="Notifications\NotificationNames.cs" />
     <Compile Include="Notifications\NotificationResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,8 +100,8 @@
     <Compile Include="UsersAppNotifications\Inputs\NotificationSubscriptionInput.cs" />
     <Compile Include="UsersAppNotifications\Inputs\NotificationType.cs" />
     <Compile Include="UsersAppNotifications\Sender\UsersAppNotificationsSender.cs" />
-    <Compile Include="UsersAppNotifications\Subscriber\IUserAppNotificationsSubscriber.cs" />
-    <Compile Include="UsersAppNotifications\Subscriber\UserAppNotificationsSubscriber.cs" />
+    <Compile Include="GeneralSubscriber\IAppNotificationsSubscriber.cs" />
+    <Compile Include="GeneralSubscriber\AppNotificationsSubscriber.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cinotam.AbpModuleZero.Core\Cinotam.AbpModuleZero.Core.csproj">
@@ -111,9 +113,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LanguagesAppNotifications\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

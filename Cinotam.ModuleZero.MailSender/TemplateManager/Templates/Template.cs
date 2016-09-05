@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cinotam.MailSender.TemplateManager.Templates
+namespace Cinotam.ModuleZero.MailSender.TemplateManager.Templates
 {
     public abstract class Template
     {

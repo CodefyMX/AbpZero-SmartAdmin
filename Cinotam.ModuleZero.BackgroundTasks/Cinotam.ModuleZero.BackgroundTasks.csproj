@@ -94,7 +94,6 @@
     <Compile Include="BackgroundJobs\ImagePublisher\Dto\PublisherInputDto.cs" />
     <Compile Include="BackgroundJobs\ImagePublisher\ProfilePictureCdnPublisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Workers\EmailSender\TryToResendTheEmailMessage.cs" />
     <Compile Include="Workers\ImagePublisher\TryToUpdateProfilePictureToCdnService.cs" />
   </ItemGroup>
   <ItemGroup>

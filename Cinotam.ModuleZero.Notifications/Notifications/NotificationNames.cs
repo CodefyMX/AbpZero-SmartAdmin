@@ -9,5 +9,7 @@
         public const string RoleDeleted = "RoleDeleted";
         public const string UserEdited = "UserEdited";
         public const string RoleAssignedToUser = "RoleAssignedToUser";
+        public const string LanguageCreated = "LanguageCreated";
+        public const string LanguageDeleted = "LanguageDeleted";
     }
 }

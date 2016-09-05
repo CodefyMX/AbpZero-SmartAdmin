@@ -1,8 +1,8 @@
-﻿using System.Reflection;
-using Abp.Modules;
+﻿using Abp.Modules;
 using Cinotam.MailSender.SendGrid;
+using System.Reflection;
 
-namespace Cinotam.MailSender
+namespace Cinotam.ModuleZero.MailSender
 {
 
     [DependsOn(typeof(CinotamMailSenderSendGrid))]

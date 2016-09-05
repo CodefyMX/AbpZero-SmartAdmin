@@ -4,8 +4,8 @@ using Abp.Configuration;
 using Abp.Localization;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.ModuleZero.AppModule.Settings.Dto;
+using Cinotam.ModuleZero.Notifications.GeneralSubscriber;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Inputs;
-using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Subscriber;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +19,8 @@ namespace Cinotam.ModuleZero.AppModule.Settings
         private readonly SettingManager _settingManager;
         private readonly ISettingDefinitionManager _definitionManager;
         private readonly ILocalizationContext _localizationContext;
-        private readonly IUserAppNotificationsSubscriber _userAppNotificationsSubscriber;
-        public SettingsAppService(SettingManager settingManager, ISettingDefinitionManager definitionManager, ILocalizationContext localizationContext, IUserAppNotificationsSubscriber userAppNotificationsSubscriber)
+        private readonly IAppNotificationsSubscriber _userAppNotificationsSubscriber;
+        public SettingsAppService(SettingManager settingManager, ISettingDefinitionManager definitionManager, ILocalizationContext localizationContext, IAppNotificationsSubscriber userAppNotificationsSubscriber)
         {
             _settingManager = settingManager;
             _definitionManager = definitionManager;

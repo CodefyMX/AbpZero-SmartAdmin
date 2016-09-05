@@ -1,15 +1,15 @@
 ﻿using Abp.Domain.Services;
 using Abp.Net.Mail;
-using Cinotam.MailSender.CinotamMailSender.Inputs;
-using Cinotam.MailSender.CinotamMailSender.Outputs;
 using Cinotam.MailSender.SendGrid.SendGrid;
 using Cinotam.MailSender.SendGrid.SendGrid.Inputs;
+using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
+using Cinotam.ModuleZero.MailSender.CinotamMailSender.Outputs;
 using System;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace Cinotam.MailSender.CinotamMailSender
+namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
 {
     public class CinotamMailSender : DomainService, ICinotamMailSender
     {

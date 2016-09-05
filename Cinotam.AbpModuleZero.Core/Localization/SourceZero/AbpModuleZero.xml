@@ -87,6 +87,8 @@
     <text name="ChangeText" value="Change text" />
     <text name="DeleteLanguageMessage" value="Language [ {0} ] will be deleted" />
     <text name="Language" value="Language" />
+    <text name="LanguageDeleted" value="Language: {languageName} was deleted by the user {user}"/>
+    <text name="LanguageCreated" value="Language: {languageName} was created by the user {user}"/>
     <!--//Languages-->
 
     <!--Audit logs-->

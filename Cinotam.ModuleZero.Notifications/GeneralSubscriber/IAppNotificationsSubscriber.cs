@@ -3,9 +3,9 @@ using Abp.Domain.Services;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Inputs;
 using System.Threading.Tasks;
 
-namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Subscriber
+namespace Cinotam.ModuleZero.Notifications.GeneralSubscriber
 {
-    public interface IUserAppNotificationsSubscriber : IDomainService
+    public interface IAppNotificationsSubscriber : IDomainService
     {
         Task SubscribeToNotification(NotificationSubscriptionInput input);
         Task SubscribeToAllNotifications(NotificationSubscriptionInput input);
