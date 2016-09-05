@@ -46,11 +46,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.ModuleZero.Backgrou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.ModuleZero.Notifications", "Cinotam.ModuleZero.Notifications\Cinotam.ModuleZero.Notifications.csproj", "{57EE20C5-0930-41C0-9367-9A598B1B53D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.ModuleZero.MailSender", "Cinotam.ModuleZero.MailSender\Cinotam.ModuleZero.MailSender.csproj", "{201432A3-493B-46FE-A6FB-03D9D95DDBF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.MailSender", "Cinotam.ModuleZero.MailSender\Cinotam.MailSender.csproj", "{201432A3-493B-46FE-A6FB-03D9D95DDBF6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cinotam.MailSenders", "Cinotam.MailSenders", "{1B7A5CB1-F0CB-4961-9548-D0E3B8549280}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.MailSender.SendGrid", "Cinotam.MailSender.SendGrid\Cinotam.MailSender.SendGrid.csproj", "{28B7BCBA-6C20-45A2-B939-15861DA5328A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CInotam.MailSender.Contracts", "CInotam.MailSender.Contracts\CInotam.MailSender.Contracts.csproj", "{B79DC367-7C6B-4F59-989F-86599FBFAD06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -122,6 +124,10 @@ Global
 		{28B7BCBA-6C20-45A2-B939-15861DA5328A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28B7BCBA-6C20-45A2-B939-15861DA5328A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28B7BCBA-6C20-45A2-B939-15861DA5328A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B79DC367-7C6B-4F59-989F-86599FBFAD06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B79DC367-7C6B-4F59-989F-86599FBFAD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B79DC367-7C6B-4F59-989F-86599FBFAD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B79DC367-7C6B-4F59-989F-86599FBFAD06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,7 +142,8 @@ Global
 		{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853} = {C5871A7A-7875-447C-9F8A-5440B9D87686}
 		{DA270051-1279-4759-BA4B-1E70709BEE1E} = {E4A630AE-A788-4CF8-98F1-661278298495}
 		{57EE20C5-0930-41C0-9367-9A598B1B53D7} = {E4A630AE-A788-4CF8-98F1-661278298495}
-		{201432A3-493B-46FE-A6FB-03D9D95DDBF6} = {E4A630AE-A788-4CF8-98F1-661278298495}
+		{201432A3-493B-46FE-A6FB-03D9D95DDBF6} = {1B7A5CB1-F0CB-4961-9548-D0E3B8549280}
 		{28B7BCBA-6C20-45A2-B939-15861DA5328A} = {1B7A5CB1-F0CB-4961-9548-D0E3B8549280}
+		{B79DC367-7C6B-4F59-989F-86599FBFAD06} = {1B7A5CB1-F0CB-4961-9548-D0E3B8549280}
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,4 @@
-﻿namespace Cinotam.ModuleZero.MailSender.TemplateManager.Templates
+﻿namespace Cinotam.MailSender.TemplateManager.Templates
 {
     public class ChangePasswordTemplate : Template
     {

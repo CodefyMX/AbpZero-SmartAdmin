@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs
+namespace Cinotam.MailSender.CinotamMailSender.Inputs
 {
     public class EmailSendInput
     {

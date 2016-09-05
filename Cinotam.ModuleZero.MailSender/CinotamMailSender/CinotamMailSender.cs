@@ -1,28 +1,24 @@
-﻿using Abp.Domain.Repositories;
-using Abp.Domain.Services;
+﻿using Abp.Domain.Services;
 using Abp.Net.Mail;
-using Cinotam.AbpModuleZero.SystemMails;
+using Cinotam.MailSender.CinotamMailSender.Inputs;
+using Cinotam.MailSender.CinotamMailSender.Outputs;
 using Cinotam.MailSender.SendGrid.SendGrid;
 using Cinotam.MailSender.SendGrid.SendGrid.Inputs;
-using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
-using Cinotam.ModuleZero.MailSender.CinotamMailSender.Outputs;
 using System;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
+namespace Cinotam.MailSender.CinotamMailSender
 {
     public class CinotamMailSender : DomainService, ICinotamMailSender
     {
         private readonly IEmailSender _emailSender;
         private readonly ISendGridService _sendGridService;
-        private readonly IRepository<SystemMail> _systemMailsRepository;
-        public CinotamMailSender(IEmailSender emailSender, ISendGridService sendGridService, IRepository<SystemMail> systemMailsRepository)
+        public CinotamMailSender(IEmailSender emailSender, ISendGridService sendGridService)
         {
             _emailSender = emailSender;
             _sendGridService = sendGridService;
-            _systemMailsRepository = systemMailsRepository;
         }
 
         public async Task<EmailSentResult> SendMail(EmailSendInput input)
@@ -48,12 +44,11 @@ namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
 
         private async Task SaveEmail(EmailSendInput email)
         {
-            await _systemMailsRepository.InsertAndGetIdAsync(new SystemMail()
+            var firstOrDefault = email.MailMessage.To.FirstOrDefault();
+            if (firstOrDefault != null)
             {
-                User = email.MailMessage.To.ToString(),
-                MessageData = email.MailMessage.Body,
-                Sent = email.Sent
-            });
+
+            }
         }
         async Task<bool> SendViaHttp(EmailSendInput input)
         {

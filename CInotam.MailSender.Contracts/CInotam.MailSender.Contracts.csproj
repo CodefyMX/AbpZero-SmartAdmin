@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{632D78C7-0806-45A9-8FCF-1EC94DDA807A}</ProjectGuid>
+    <ProjectGuid>{B79DC367-7C6B-4F59-989F-86599FBFAD06}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cinotam.FileManager.Cloudinary</RootNamespace>
-    <AssemblyName>Cinotam.FileManager.Cloudinary</AssemblyName>
+    <RootNamespace>CInotam.MailSender.Contracts</RootNamespace>
+    <AssemblyName>CInotam.MailSender.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -31,20 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Abp, Version=0.11.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Cinotam.AbpModuleZero.Web\Bin\Abp.dll</HintPath>
-    </Reference>
-    <Reference Include="CloudinaryDotNet, Version=1.0.26.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
-      <HintPath>..\packages\CloudinaryDotNet.1.0.26\lib\net40\CloudinaryDotNet.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp">
+      <HintPath>..\packages\Abp.0.11.1.0\lib\net452\Abp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,26 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CinotamFileManagerCloudinary.cs" />
-    <Compile Include="Cloudinary\CloudinaryApiConsumer.cs" />
-    <Compile Include="Cloudinary\Inputs\SaveImageInput.cs" />
-    <Compile Include="Cloudinary\Results\CloudinaryImageUploadResult.cs" />
-    <Compile Include="Cloudinary\ICloudinaryApiConsumer.cs" />
-    <Compile Include="Credentials\Credentials.cs" />
-    <Compile Include="Credentials\Helpers\CloudinaryIdentityObject.cs" />
-    <Compile Include="Credentials\ICredentials.cs" />
-    <Compile Include="Transformations\TransFormationsConfig.cs" />
+    <Compile Include="IMail.cs" />
+    <Compile Include="Mail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cinotam.FileManager.SharedTypes\Cinotam.FileManager.SharedTypes.csproj">
-      <Project>{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}</Project>
-      <Name>Cinotam.FileManager.SharedTypes</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

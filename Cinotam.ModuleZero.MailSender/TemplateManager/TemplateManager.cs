@@ -1,9 +1,9 @@
-﻿using Cinotam.ModuleZero.MailSender.TemplateManager.Templates;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web.Hosting;
+using Cinotam.MailSender.TemplateManager.Templates;
 
-namespace Cinotam.ModuleZero.MailSender.TemplateManager
+namespace Cinotam.MailSender.TemplateManager
 {
     public class TemplateManager : ITemplateManager
     {

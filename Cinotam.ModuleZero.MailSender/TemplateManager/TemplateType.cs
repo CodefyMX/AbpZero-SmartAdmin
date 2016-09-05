@@ -1,4 +1,4 @@
-﻿namespace Cinotam.ModuleZero.MailSender.TemplateManager
+﻿namespace Cinotam.MailSender.TemplateManager
 {
     public enum TemplateType
     {
