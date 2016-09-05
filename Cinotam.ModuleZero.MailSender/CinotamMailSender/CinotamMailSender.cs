@@ -1,15 +1,15 @@
 ﻿using Abp.Domain.Services;
 using Abp.Net.Mail;
+using Cinotam.MailSender.CinotamMailSender.Inputs;
+using Cinotam.MailSender.CinotamMailSender.Outputs;
 using Cinotam.MailSender.SendGrid.SendGrid;
 using Cinotam.MailSender.SendGrid.SendGrid.Inputs;
-using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
-using Cinotam.ModuleZero.MailSender.CinotamMailSender.Outputs;
 using System;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
+namespace Cinotam.MailSender.CinotamMailSender
 {
     public class CinotamMailSender : DomainService, ICinotamMailSender
     {
@@ -33,9 +33,23 @@ namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
 
             var resultHttp = await SendViaHttp(input);
             result.SentWithHttp = resultHttp;
+
+            if (result.SentWithHttp || result.SentWithSmtp)
+            {
+                input.Sent = true;
+            }
+            await SaveEmail(input);
             return result;
         }
 
+        private async Task SaveEmail(EmailSendInput email)
+        {
+            var firstOrDefault = email.MailMessage.To.FirstOrDefault();
+            if (firstOrDefault != null)
+            {
+
+            }
+        }
         async Task<bool> SendViaHttp(EmailSendInput input)
         {
 

@@ -1,4 +1,4 @@
-﻿namespace Cinotam.ModuleZero.MailSender.CinotamMailSender.Outputs
+﻿namespace Cinotam.MailSender.CinotamMailSender.Outputs
 {
     public class EmailSentResult
     {

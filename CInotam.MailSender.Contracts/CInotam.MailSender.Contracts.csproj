@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{201432A3-493B-46FE-A6FB-03D9D95DDBF6}</ProjectGuid>
+    <ProjectGuid>{B79DC367-7C6B-4F59-989F-86599FBFAD06}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cinotam.ModuleZero.MailSender</RootNamespace>
-    <AssemblyName>Cinotam.ModuleZero.MailSender</AssemblyName>
+    <RootNamespace>CInotam.MailSender.Contracts</RootNamespace>
+    <AssemblyName>CInotam.MailSender.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -35,8 +35,9 @@
       <HintPath>..\packages\Abp.0.11.1.0\lib\net452\Abp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,24 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CinotamMailSender\CinotamMailSender.cs" />
-    <Compile Include="CinotamMailSender\ICinotamMailSender.cs" />
-    <Compile Include="CinotamMailSender\Inputs\EmailSendInput.cs" />
-    <Compile Include="CinotamMailSender\Outputs\EmailSentResult.cs" />
-    <Compile Include="CinotamModuleZeroMailSender.cs" />
+    <Compile Include="IMail.cs" />
+    <Compile Include="Mail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TemplateManager\ITemplateManager.cs" />
-    <Compile Include="TemplateManager\TemplateManager.cs" />
-    <Compile Include="TemplateManager\Templates\ChangePasswordTemplate.cs" />
-    <Compile Include="TemplateManager\Templates\SimpleTemplate.cs" />
-    <Compile Include="TemplateManager\Templates\Template.cs" />
-    <Compile Include="TemplateManager\TemplateType.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cinotam.MailSender.SendGrid\Cinotam.MailSender.SendGrid.csproj">
-      <Project>{28B7BCBA-6C20-45A2-B939-15861DA5328A}</Project>
-      <Name>Cinotam.MailSender.SendGrid</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

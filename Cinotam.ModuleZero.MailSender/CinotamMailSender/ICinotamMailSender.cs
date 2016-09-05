@@ -1,9 +1,9 @@
-﻿using Abp.Domain.Services;
-using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
-using Cinotam.ModuleZero.MailSender.CinotamMailSender.Outputs;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Abp.Domain.Services;
+using Cinotam.MailSender.CinotamMailSender.Inputs;
+using Cinotam.MailSender.CinotamMailSender.Outputs;
 
-namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
+namespace Cinotam.MailSender.CinotamMailSender
 {
     public interface ICinotamMailSender : IDomainService
     {

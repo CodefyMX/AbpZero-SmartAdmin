@@ -17,9 +17,6 @@ using Cinotam.FileManager.FileTypes;
 using Cinotam.FileManager.SharedTypes.Enums;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
-using Cinotam.ModuleZero.MailSender.CinotamMailSender;
-using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
-using Cinotam.ModuleZero.MailSender.TemplateManager;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender;
 using Microsoft.AspNet.Identity;
 using System;
@@ -29,6 +26,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Cinotam.MailSender.CinotamMailSender;
+using Cinotam.MailSender.CinotamMailSender.Inputs;
+using Cinotam.MailSender.TemplateManager;
 
 namespace Cinotam.ModuleZero.AppModule.Users
 {
