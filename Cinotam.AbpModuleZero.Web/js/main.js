@@ -2,6 +2,7 @@
 
     //Notification handler
     abp.event.on('abp.notifications.received', function (userNotification) {
+        console.log ("SignalRNotification",userNotification);
         abp.notifications.showUiNotifyForUserNotification(userNotification);
     });
 

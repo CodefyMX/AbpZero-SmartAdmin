@@ -11,5 +11,7 @@
         public const string RoleAssignedToUser = "RoleAssignedToUser";
         public const string LanguageCreated = "LanguageCreated";
         public const string LanguageDeleted = "LanguageDeleted";
+        public const string RoleEdited = "RoleEdited";
+        public const string RoleDeletedForUser = "RoleDeletedForUser";
     }
 }

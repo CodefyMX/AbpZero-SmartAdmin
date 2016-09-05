@@ -95,6 +95,8 @@
     <Compile Include="Notifications\NotificationNames.cs" />
     <Compile Include="Notifications\NotificationResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesAppNotifications\Sender\IRolesAppNotificationsSender.cs" />
+    <Compile Include="RolesAppNotifications\Sender\RolesAppNotificationsSender.cs" />
     <Compile Include="UsersAppNotifications\Outputs\SendNotificationObject.cs" />
     <Compile Include="UsersAppNotifications\Sender\IUsersAppNotificationsSender.cs" />
     <Compile Include="UsersAppNotifications\Inputs\NotificationSubscriptionInput.cs" />

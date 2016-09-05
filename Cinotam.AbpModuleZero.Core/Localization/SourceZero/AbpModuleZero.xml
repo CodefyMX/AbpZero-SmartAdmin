@@ -65,6 +65,10 @@
     <text name="RoleDeleted" value="Role deleted"/>
     <text name="RoleAssignedNotification" value="Roles for User {usernameAssigned} where modified by user {userName}" />
     <text name="RoleAssignedNotificationToUser" value="Your roles were modified by user {userName}" />
+    <text name="RoleCreatedByUser" value="Role {roleName} created by {user}"/>
+    <text name="RoleEditedByUser" value="Role {roleName} edited by {user}"/>
+    <text name="RoleDeletedByUser" value="Role {roleName} deleted by {user}"/>
+    <text name="RoleDeletedForUser" value="One of your roles was deleted"/>
     <!--//Roles-->
 
 
@@ -88,7 +92,7 @@
     <text name="DeleteLanguageMessage" value="Language [ {0} ] will be deleted" />
     <text name="Language" value="Language" />
     <text name="LanguageDeleted" value="Language: {languageName} was deleted by the user {user}"/>
-    <text name="LanguageCreated" value="Language: {languageName} was created by the user {user}"/>
+    <text name="LanguageCreated" value="Language: {languageName} was deleted by the user {user}"/>
     <!--//Languages-->
 
     <!--Audit logs-->

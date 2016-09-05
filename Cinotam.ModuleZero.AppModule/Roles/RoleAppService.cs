@@ -6,6 +6,7 @@ using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
+using Cinotam.ModuleZero.Notifications.RolesAppNotifications.Sender;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,12 @@ namespace Cinotam.ModuleZero.AppModule.Roles
     {
         private readonly RoleManager _roleManager;
         private readonly IPermissionManager _permissionManager;
-
-        public RoleAppService(RoleManager roleManager, IPermissionManager permissionManager)
+        private readonly IRolesAppNotificationsSender _rolesAppNotificationsSender;
+        public RoleAppService(RoleManager roleManager, IPermissionManager permissionManager, IRolesAppNotificationsSender rolesAppNotificationsSender)
         {
             _roleManager = roleManager;
             _permissionManager = permissionManager;
+            _rolesAppNotificationsSender = rolesAppNotificationsSender;
         }
 
         public async Task DeleteRole(int roleId)
@@ -55,9 +57,8 @@ namespace Cinotam.ModuleZero.AppModule.Roles
 
                 await CurrentUnitOfWork.SaveChangesAsync();
 
-
-
                 await _roleManager.SetGrantedPermissionsAsync(role, permissions);
+                await _rolesAppNotificationsSender.SendRoleCreatedNotification((await GetCurrentUserAsync()), role);
             }
             else
             {
@@ -68,7 +69,7 @@ namespace Cinotam.ModuleZero.AppModule.Roles
                 await _roleManager.UpdateAsync(role);
                 await CurrentUnitOfWork.SaveChangesAsync();
                 await _roleManager.SetGrantedPermissionsAsync(role, permissions);
-
+                await _rolesAppNotificationsSender.SendRoleEditedNotification((await GetCurrentUserAsync()), role);
             }
 
         }

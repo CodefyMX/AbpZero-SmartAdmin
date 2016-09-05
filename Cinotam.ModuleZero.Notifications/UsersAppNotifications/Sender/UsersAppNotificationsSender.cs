@@ -40,7 +40,7 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender
             var dataToSend = new LocalizableMessageNotificationData(new LocalizableString("UserEditedNotification", AbpModuleZeroConsts.LocalizationSourceName))
             {
                 ["userName"] = currentUser.FullName,
-                ["userNameEdited"] = userEdited
+                ["userNameEdited"] = userEdited.FullName
             };
             await _notificationPublisher.PublishAsync(NotificationNames.UserEdited, dataToSend);
 
@@ -52,7 +52,7 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender
             var dataToSend = new LocalizableMessageNotificationData(new LocalizableString("UserCreatedNotification", AbpModuleZeroConsts.LocalizationSourceName))
             {
                 ["userName"] = currentUser.FullName,
-                ["userNameCreated"] = userCreated
+                ["userNameCreated"] = userCreated.FullName
             };
             await _notificationPublisher.PublishAsync(NotificationNames.UserCreated, dataToSend);
 

@@ -93,12 +93,10 @@
         $(document)
             .ready(function () {
                 initView();
-                startListening ();
+                startListening();
                 abp.event.on('abp.notifications.received', function (userNotification) {
-                    console.log(userNotification);
                     printNotificationInList(userNotification);
                 });
-
             });
         function initView() {
             $("#userNotifications").text("");
@@ -120,21 +118,49 @@
                 });
 
                 var stateClass = getStateClass(userNotification);
+                var html;
+
+                var badgeColors = {
+                    blue: "badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5",
+                    green: "badge padding-5 no-border-radius bg-color-green pull-left margin-right-5",
+                    yellow:"badge padding-5 no-border-radius bg-color-yellow pull-left margin-right-5"
+
+                }
+                var icons = {
+                    roles:"fa fa-lock fa-fw fa-2x",
+                    users:"fa fa-users fa-fw fa-2x",
+                    user:"fa fa-user fa-fw fa-2x",
+                    languages:"fa fa-flag fa-fw fa-2x"
+                }
+
+
                 switch (userNotification.notification.notificationName) {
 
                     case "RoleAssignedToUser":
-                        $("#userNotifications").append(abp.utils.formatString('<li class=' + userNotification.id + '>' +
-                    '<span class="padding-10 ' + stateClass + '">' +
-                    '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"> <i class="fa fa-lock fa-fw fa-2x"></i></em>' +
-                    '<span>{0} <a data-notification-id=' + userNotification.id + ' data-href="/SysAdmin/Users/MyProfile" class="btn pull-right btn-xs btn-primary margin-top-5 js-call-action">Details</a><br><a href="#" data-notification-id=' + userNotification.id + ' class="js-mark-readed">Mark as readed</a></span>' +
-                    '</span></li>', localizedText));
+                        //badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5
+                        //fa fa-lock fa-fw fa-2x
+                        html = getHtmlForNotification(userNotification, badgeColors.blue, icons.roles, stateClass, "/SysAdmin/Users/MyProfile", "");
+                        setHtmlNotification($("#userNotifications"), html, localizedText);
                         break;
                     case "RoleAssigned":
-                        $("#userNotifications").append(abp.utils.formatString('<li class=' + userNotification.id + '>' +
-                  '<span class="padding-10 ' + stateClass + '">' +
-                  '<em class="badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5"> <i class="fa fa-lock fa-fw fa-2x"></i></em>' +
-                  '<span>{0} <a data-notification-id=' + userNotification.id + ' data-href="/SysAdmin/Users/UsersAndRolesList/?userId=' + userNotification.notification.data.properties.userId + '" class="btn btn-xs pull-right btn-primary margin-top-5 js-call-action">Details</a><br><a href="#" class="js-mark-readed" data-notification-id=' + userNotification.id + '>Mark as readed</a></span>' +
-                  '</span></li>', localizedText));
+                        html = getHtmlForNotification(userNotification, badgeColors.blue, icons.roles, stateClass, "/SysAdmin/Users/UsersAndRolesList/?userId=", userNotification.notification.data.properties.userId);
+                        setHtmlNotification($("#userNotifications"), html, localizedText);
+                        break;
+                    case "RoleCreated":
+                        html = getHtmlForNotification(userNotification, badgeColors.green, icons.roles, stateClass, "/SysAdmin/Users/UsersAndRolesList/", "");
+                        setHtmlNotification($("#userNotifications"), html, localizedText);
+                        break;
+                    case "RoleDeleted":
+                        html = getHtmlForNotification(userNotification, badgeColors.yellow, icons.roles, stateClass, "/SysAdmin/Users/UsersAndRolesList/", "");
+                        setHtmlNotification($("#userNotifications"), html, localizedText);
+                        break;
+                    case "LanguageCreated":
+                        html = getHtmlForNotification(userNotification, badgeColors.blue, icons.languages, stateClass, "/SysAdmin/Languages/LanguagesList/", "");
+                        setHtmlNotification($("#userNotifications"), html, localizedText);
+                        break;
+                    case "LanguageDeleted":
+                        html = getHtmlForNotification(userNotification, badgeColors.yellow, icons.languages, stateClass, "/SysAdmin/Languages/LanguagesList/", "");
+                        setHtmlNotification($("#userNotifications"), html, localizedText);
                         break;
                     default:
                         $("#userNotifications").append(abp.utils.formatString('<li class=' + userNotification.id + '>' +
@@ -150,6 +176,29 @@
                 alert('New simple notification: ' + userNotification.notification.data.message);
             }
         }
+        function getHtmlForNotification(userNotification, badgeClass, icon, stateClass, href, id) {
+            //badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5
+            //fa fa-lock fa-fw fa-2x
+
+            if (!badgeClass) { badgeClass = "badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5" }
+            if (!icon) { icon = "fa fa-user fa-fw fa-2x" }
+            return '<li class=' +
+                userNotification.id +
+                '>' +
+                '<span class="padding-10 ' +
+                stateClass +
+                '">' +
+                '<em class="' + badgeClass + '"> <i class="' + icon + '"></i></em>' +
+                '<span>{0} <a data-notification-id=' +
+                userNotification.id +
+                ' data-href="' + href + id + '" class="btn pull-right btn-xs btn-primary margin-top-5 js-call-action">Details</a><br><a href="#" data-notification-id=' +
+                userNotification.id +
+                ' class="js-mark-readed">Mark as readed</a></span>' +
+                '</span></li>';
+        }
+        function setHtmlNotification($elm, html, localizedText) {
+            $elm.append(abp.utils.formatString(html, localizedText));
+        }
         function getStateClass(userNotification) {
             if (userNotification.state == 0) {
                 return "unread";
@@ -162,7 +211,7 @@
                 var $elm = $(this);
                 callAction($elm);
             });
-            $("body").on("click", ".js-mark-readed",function () {
+            $("body").on("click", ".js-mark-readed", function () {
                 var $elm = $(this);
                 var id = $elm.data("notification-id");
                 markAsReaded(id, function () {
@@ -183,7 +232,7 @@
             markAsReaded(id, function () {
                 var selector = "." + id;
                 $(selector).removeClass("unread");
-                var href = $elm.data ("href");
+                var href = $elm.data("href");
                 if (href) {
                     window.location.href = href;
                 }

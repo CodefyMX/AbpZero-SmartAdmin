@@ -49,7 +49,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             var newLanguage = new ApplicationLanguage(AbpSession.TenantId, input.LangCode, input.DisplayName, input.Icon);
             await _applicationLanguageManager.AddAsync(newLanguage);
 
-            _languagesAppNotificationSender.SendLanguageCreatedNotification(newLanguage, (await GetCurrentUserAsync()));
+            await _languagesAppNotificationSender.SendLanguageCreatedNotification(newLanguage, (await GetCurrentUserAsync()));
             //AddAllKeysForNewLanguage(input.LangCode);
 
 
@@ -98,19 +98,19 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete))
             {
                 //Much texts, many memory
-                await DeleteAllTextsFromLanguage(code);
+                DeleteAllTextsFromLanguage(code);
                 var language = _languagesRepository.FirstOrDefault(a => a.Name == code);
                 await _applicationLanguageManager.RemoveAsync(AbpSession.TenantId, code);
-                _languagesAppNotificationSender.SendLanguageCreatedNotification(language, (await GetCurrentUserAsync()));
+                await _languagesAppNotificationSender.SendLanguageDeletedNotification(language, (await GetCurrentUserAsync()));
             }
         }
 
-        private async Task DeleteAllTextsFromLanguage(string code)
+        private void DeleteAllTextsFromLanguage(string code)
         {
             var texts = _languageTextsRepository.GetAllList(a => a.LanguageName == code);
             foreach (var applicationLanguageText in texts)
             {
-                await _languageTextsRepository.DeleteAsync(applicationLanguageText);
+                _languageTextsRepository.Delete(applicationLanguageText);
             }
         }
 

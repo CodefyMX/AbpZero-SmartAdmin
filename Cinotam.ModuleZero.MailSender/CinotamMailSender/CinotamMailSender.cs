@@ -44,11 +44,7 @@ namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
 
         private async Task SaveEmail(EmailSendInput email)
         {
-            var firstOrDefault = email.MailMessage.To.FirstOrDefault();
-            if (firstOrDefault != null)
-            {
 
-            }
         }
         async Task<bool> SendViaHttp(EmailSendInput input)
         {

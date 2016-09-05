@@ -155,6 +155,27 @@
                                                         <a data-subscription data-subscription-name="@NotificationNames.RoleAssigned" class="btn btn-md btn-primary">@L("Loading")</a>
                                                     </label>
                                                 </div>
+                                                <div class="col col-4">
+                                                    <label class="label">@L("SubscribeToNotificationRoleDeleted")</label>
+                                                    <label>
+                                                        <a data-subscription data-subscription-name="@NotificationNames.RoleEdited" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                    </label>
+                                                </div>
+                                            }
+                                            @if (IsGranted(PermissionNames.PagesSysAdminLanguages))
+                                            {
+                                                <div class="col col-4">
+                                                    <label class="label">@L("SubscribeToNotificationLanguageCreated")</label>
+                                                    <label>
+                                                        <a data-subscription data-is-subscribed="false" data-subscription-name="@NotificationNames.LanguageCreated" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                    </label>
+                                                </div>
+                                                <div class="col col-4">
+                                                    <label class="label">@L("SubscribeToNotificationLanguageDeleted")</label>
+                                                    <label>
+                                                        <a data-subscription data-is-subscribed="false" data-subscription-name="@NotificationNames.LanguageDeleted" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                    </label>
+                                                </div>
                                             }
                                         </div>
                                     </section>
