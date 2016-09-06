@@ -131,6 +131,9 @@
     <Compile Include="MultiTenancy\Dto\TenantListDto.cs" />
     <Compile Include="MultiTenancy\ITenantAppService.cs" />
     <Compile Include="MultiTenancy\TenantAppService.cs" />
+    <Compile Include="Notifications\Dto\NotificationOutput.cs" />
+    <Compile Include="Notifications\INotificationService.cs" />
+    <Compile Include="Notifications\NotificationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\Dto\AssignedPermission.cs" />
     <Compile Include="Roles\Dto\RoleDto.cs" />

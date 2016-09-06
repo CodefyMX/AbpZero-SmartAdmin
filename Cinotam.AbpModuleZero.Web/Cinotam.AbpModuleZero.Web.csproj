@@ -1078,6 +1078,7 @@
     <None Include="Areas\SysAdmin\Views\Languages\LanguagesList.cshtml" />
     <None Include="Areas\SysAdmin\Views\Layout\_LanguageSelectionAdmin.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\ChangePassword.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Notifications\MyNotifications.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
@@ -1151,6 +1152,7 @@
     <Compile Include="Areas\SysAdmin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\LanguagesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\LayoutController.cs" />
+    <Compile Include="Areas\SysAdmin\Controllers\NotificationsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\RolesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\SysAdmin\SysAdminAreaRegistration.cs" />
