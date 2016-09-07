@@ -12,9 +12,11 @@ using Cinotam.ModuleZero.AppModule.AuditLogs.Dto;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Cinotam.ModuleZero.AppModule.AuditLogs
 {
@@ -22,16 +24,15 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
     [AbpAuthorize(PermissionNames.AuditLogs)]
     public class AuditLogService : CinotamModuleZeroAppServiceBase, IAuditLogService
     {
-        private IAuditingStore _auditingStore;
         private readonly IRepository<AuditLog, long> _auditLogRepository;
-        private readonly IRepository<User, long> _usersRepository;
+        private const string FilePath = "/App_Data/Logs/Logs.txt";
         private readonly UserManager _userManager;
-        public AuditLogService(IAuditingStore auditingStore, IRepository<AuditLog, long> auditLogRepository, UserManager userManager, IRepository<User, long> usersRepository)
+
+        public AuditLogService(IRepository<AuditLog, long> auditLogRepository,
+            UserManager userManager)
         {
-            _auditingStore = auditingStore;
             _auditLogRepository = auditLogRepository;
             _userManager = userManager;
-            _usersRepository = usersRepository;
         }
 
         public async Task<AuditLogOutput> GetLatestAuditLogOutput()
@@ -91,7 +92,9 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
             {
                 var auditLog = await _auditLogRepository.FirstOrDefaultAsync(a => a.Id == id);
                 var mapped = auditLog.MapTo<AuditLogDto>();
-                mapped.UserName = auditLog.UserId != null ? (await UserManager.GetUserByIdAsync(auditLog.UserId.Value)).UserName : "Client";
+                mapped.UserName = auditLog.UserId != null
+                    ? (await UserManager.GetUserByIdAsync(auditLog.UserId.Value)).UserName
+                    : "Client";
                 return mapped;
             }
 
@@ -133,6 +136,48 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
             };
         }
 
+        public async Task<ReturnModel<LogDto>> GetLogsTable(RequestModel<object> requestModel)
+        {
+            var logs = await GetLogs();
+
+            return new ReturnModel<LogDto>()
+            {
+                data = logs.OrderByDescending(a => a.Date).Take(100).ToArray(),
+            };
+        }
+        private async Task<List<LogDto>> GetLogs()
+        {
+            var fullPath = HttpContext.Current.Server.MapPath(FilePath);
+
+            var list = new List<LogDto>();
+            using (var fileStream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                var result = new byte[fileStream.Length];
+                await fileStream.ReadAsync(result, 0, (int)fileStream.Length);
+                var txt = System.Text.Encoding.ASCII.GetString(result);
+                foreach (var myString in txt.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    try
+                    {
+                        var cols = myString.Split(new[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
+                        list.AddRange(cols.Select(t => new LogDto()
+                        {
+                            LogLevel = cols[0],
+                            Date = cols[2],
+                            ThreadNumber = cols[4],
+                            LoggerName = cols[6],
+                            LogText = cols[8]
+                        }));
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
+                }
+
+            }
+            return list;
+        }
         private async Task<AuditLogDto[]> GetModel(IEnumerable<AuditLog> filteredByLength)
         {
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete))

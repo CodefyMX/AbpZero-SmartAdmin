@@ -109,6 +109,7 @@
     <Compile Include="AuditLogs\AuditLogService.cs" />
     <Compile Include="AuditLogs\Dto\AuditLogOutput.cs" />
     <Compile Include="AuditLogs\Dto\AuditLogTimeOutput.cs" />
+    <Compile Include="AuditLogs\Dto\LogDto.cs" />
     <Compile Include="AuditLogs\IAuditLogService.cs" />
     <Compile Include="CinotamModuleZeroAppModule.cs" />
     <Compile Include="CinotamModuleZeroAppServiceBase.cs" />

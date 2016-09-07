@@ -10,17 +10,17 @@ namespace Cinotam.AbpModuleZero.Web
 
             //VENDOR RESOURCES
             bundles.Add(new StyleBundle("~/content/smartadmin")
-                    .Include("~/content/css/bootstrap.min.css")
-                    .Include("~/content/css/demo.min.css")
-                    .Include("~/content/css/font-awesome.min.css")
-                    .Include("~/content/css/invoice.min.css")
-                    .Include("~/content/css/lockscreen.min.css")
-                    .Include("~/content/css/smartadmin-production-plugins.min.css")
-                    .Include("~/content/css/smartadmin-production.min.css")
-                    .Include("~/content/css/smartadmin-rtl.min.css")
-                    .Include("~/content/css/smartadmin-skins.min.css")
-                    .Include("~/content/css/your_style.min.css")
-                    .Include("~/Content/css/abp/toastr.min.css")
+                    .Include("~/Areas/SysAdmin/content/css/bootstrap.min.css")
+                    .Include("~/Areas/SysAdmin/content/css/demo.min.css")
+                    .Include("~/Areas/SysAdmin/content/css/font-awesome.min.css")
+                    .Include("~/Areas/SysAdmin/content/css/invoice.min.css")
+                    .Include("~/Areas/SysAdmin/content/css/lockscreen.min.css")
+                    .Include("~/Areas/SysAdmin/content/css/smartadmin-production-plugins.min.css")
+                    .Include("~/Areas/SysAdmin/content/css/smartadmin-production.min.css")
+                    .Include("~/Areas/SysAdmin/content/css/smartadmin-rtl.min.css")
+                    .Include("~/Areas/SysAdmin/content/css/smartadmin-skins.min.css")
+                    .Include("~/Areas/SysAdmin/content/css/your_style.min.css")
+                    .Include("~/Areas/SysAdmin/Content/css/abp/toastr.min.css")
                     .Include("~/Scripts/sweetalert/sweet-alert.css")
                     .Include("~/Content/flags/famfamfam-flags.css"));
             //~/Bundles/vendor/css
@@ -87,71 +87,71 @@ namespace Cinotam.AbpModuleZero.Web
                     .Include("~/js/main.js", "~/js/GlobalModal.js")
                 );
 
-            bundles.Add(new StyleBundle("~/content/smartadmin").IncludeDirectory("~/content/css", "*.min.css"));
+            bundles.Add(new StyleBundle("~/content/smartadmin").IncludeDirectory("~/areas/sysadmin/content/css", "*.min.css"));
 
             bundles.Add(new ScriptBundle("~/scripts/smartadmin").Include(
-                "~/scripts/smartAdminScripts/app.config.js",
-                "~/scripts/smartAdminScripts/plugin/jquery-touch/jquery.ui.touch-punch.min.js",
-                "~/scripts/smartAdminScripts/bootstrap/bootstrap.min.js",
-                "~/scripts/smartAdminScripts/notification/SmartNotification.min.js",
-                "~/scripts/smartAdminScripts/smartwidgets/jarvis.widget.min.js",
-                "~/scripts/smartAdminScripts/plugin/jquery-validate/jquery.validate.min.js",
-                "~/scripts/smartAdminScripts/plugin/masked-input/jquery.maskedinput.min.js",
-                "~/scripts/smartAdminScripts/plugin/select2/select2.min.js",
-                "~/scripts/smartAdminScripts/plugin/bootstrap-slider/bootstrap-slider.min.js",
-                "~/scripts/smartAdminScripts/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js",
-                "~/scripts/smartAdminScripts/plugin/msie-fix/jquery.mb.browser.min.js",
-                "~/scripts/smartAdminScripts/plugin/fastclick/fastclick.min.js",
-                "~/scripts/smartAdminScripts/app.js"));
+                "~/areas/sysadmin/scripts/smartAdminScripts/app.config.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/jquery-touch/jquery.ui.touch-punch.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/bootstrap/bootstrap.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/notification/SmartNotification.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/smartwidgets/jarvis.widget.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/jquery-validate/jquery.validate.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/masked-input/jquery.maskedinput.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/select2/select2.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/bootstrap-slider/bootstrap-slider.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/msie-fix/jquery.mb.browser.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/fastclick/fastclick.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/app.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/full-calendar").Include(
-                "~/scripts/smartAdminScripts/plugin/moment/moment.min.js",
-                "~/scripts/smartAdminScripts/plugin/fullcalendar/jquery.fullcalendar.min.js"
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/moment/moment.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/fullcalendar/jquery.fullcalendar.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/charts").Include(
-                "~/scripts/smartAdminScripts/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js",
-                "~/scripts/smartAdminScripts/plugin/sparkline/jquery.sparkline.min.js",
-                "~/scripts/smartAdminScripts/plugin/morris/morris.min.js",
-                "~/scripts/smartAdminScripts/plugin/morris/raphael.min.js",
-                "~/scripts/smartAdminScripts/plugin/flot/jquery.flot.cust.min.js",
-                "~/scripts/smartAdminScripts/plugin/flot/jquery.flot.resize.min.js",
-                "~/scripts/smartAdminScripts/plugin/flot/jquery.flot.time.min.js",
-                "~/scripts/smartAdminScripts/plugin/flot/jquery.flot.fillbetween.min.js",
-                "~/scripts/smartAdminScripts/plugin/flot/jquery.flot.orderBar.min.js",
-                "~/scripts/smartAdminScripts/plugin/flot/jquery.flot.pie.min.js",
-                "~/scripts/smartAdminScripts/plugin/flot/jquery.flot.tooltip.min.js",
-                "~/scripts/smartAdminScripts/plugin/dygraphs/dygraph-combined.min.js",
-                "~/scripts/smartAdminScripts/plugin/chartjs/chart.min.js",
-                "~/scripts/smartAdminScripts/plugin/highChartCore/highcharts-custom.min.js",
-                "~/scripts/smartAdminScripts/plugin/highchartTable/jquery.highchartTable.min.js"
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/sparkline/jquery.sparkline.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/morris/morris.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/morris/raphael.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.cust.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.resize.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.time.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.fillbetween.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.orderBar.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.pie.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.tooltip.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/dygraphs/dygraph-combined.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/chartjs/chart.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/highChartCore/highcharts-custom.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/highchartTable/jquery.highchartTable.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/datatables").Include(
-                "~/scripts/smartAdminScripts/plugin/datatables/jquery.dataTables.min.js",
-                "~/scripts/smartAdminScripts/plugin/datatables/dataTables.colVis.min.js",
-                "~/scripts/smartAdminScripts/plugin/datatables/dataTables.tableTools.min.js",
-                "~/scripts/smartAdminScripts/plugin/datatables/dataTables.bootstrap.min.js",
-                "~/scripts/smartAdminScripts/plugin/datatable-responsive/datatables.responsive.min.js"
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/datatables/jquery.dataTables.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/datatables/dataTables.colVis.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/datatables/dataTables.tableTools.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/datatables/dataTables.bootstrap.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/datatable-responsive/datatables.responsive.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/jq-grid").Include(
-                "~/scripts/smartAdminScripts/plugin/jqgrid/jquery.jqGrid.min.js",
-                "~/scripts/smartAdminScripts/plugin/jqgrid/grid.locale-en.min.js"
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/jqgrid/jquery.jqGrid.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/jqgrid/grid.locale-en.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/forms").Include(
-                "~/scripts/smartAdminScripts/plugin/jquery-form/jquery-form.min.js"
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/jquery-form/jquery-form.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/smart-chat").Include(
-                "~/scripts/smartAdminScripts/smart-chat-ui/smart.chat.ui.min.js",
-                "~/scripts/smartAdminScripts/smart-chat-ui/smart.chat.manager.min.js"
+                "~/areas/sysadmin/scripts/smartAdminScripts/smart-chat-ui/smart.chat.ui.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/smart-chat-ui/smart.chat.manager.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/vector-map").Include(
-                "~/scripts/smartAdminScripts/plugin/vectormap/jquery-jvectormap-1.2.2.min.js",
-                "~/scripts/smartAdminScripts/plugin/vectormap/jquery-jvectormap-world-mill-en.js"
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/vectormap/jquery-jvectormap-1.2.2.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/vectormap/jquery-jvectormap-world-mill-en.js"
                 ));
 
             BundleTable.EnableOptimizations = true;

@@ -64,6 +64,45 @@
 
             ]
         });
+        var sysTable = $("#systemLogsTable").DataTable({
+            "sPaginationType": "full_numbers", // And its type.
+            "iDisplayLength": 10,
+            "ajax": "/SysAdmin/AuditLogs/" + "SystemLogs",
+            "autoWidth": true,
+            "preDrawCallback": function () {
+                // Initialize the responsive datatables helper once.
+                if (!responsiveHelper_dt_languages) {
+                    responsiveHelper_dt_languages = new
+                        ResponsiveDatatablesHelper($('#systemLogsTable'), breakpointDefinition);
+                }
+            },
+            "rowCallback": function (nRow) {
+                responsiveHelper_dt_languages.createExpandIcon(nRow);
+            },
+            "drawCallback": function (oSettings) {
+                responsiveHelper_dt_languages.respond();
+            },
+            language: window.dataTablesLang,
+            
+            columns: [
+                {
+                    "data": "LogLevel"
+                },
+                {
+                    "data": "Date"
+                },
+                { "data": "ThreadNumber" },
+                {
+                    "data": "LoggerName"
+                },
+                {
+                    "data": "LogText"
+                }
+
+
+            ]
+        });
+
     }
 
 })();

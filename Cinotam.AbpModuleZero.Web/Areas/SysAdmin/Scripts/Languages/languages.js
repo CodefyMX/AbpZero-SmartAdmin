@@ -1,6 +1,4 @@
-﻿/// <reference path="datatables.responsiveConfigs.js" />
-/// <reference path="~/Areas/SysAdmin/Scripts/localizationText.js" />
-(function () {
+﻿(function () {
     "use strict";
     var table = $("#languagesTable").DataTable({
         "bServerSide": true,

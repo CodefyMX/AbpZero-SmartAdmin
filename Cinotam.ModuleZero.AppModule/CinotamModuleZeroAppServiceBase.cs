@@ -85,9 +85,10 @@ namespace Cinotam.ModuleZero.AppModule
             queryable = queryable.Search(expression.ToArray()).Containing(searchString);
 
             queryable = !string.IsNullOrEmpty(request.PropToSort) ? GetOrderedQuery(queryable, request) : queryable.OrderBy(defaultOrderableProp);
-            var filteredByLength = queryable.Skip(pageIndex).Take(request.length).ToList();
-            return filteredByLength;
+            var filteredByLength = queryable.Skip(pageIndex).Take(request.length);
+            return filteredByLength.ToList();
         }
+
         protected virtual Task<User> GetCurrentUserAsync()
         {
             var user = UserManager.FindByIdAsync(AbpSession.GetUserId());

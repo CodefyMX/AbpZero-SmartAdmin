@@ -63,7 +63,7 @@
             modalInstance.open(href, data);
         });
 
-        document.addEventListener("modalClose", modalHandler);
+        document.addEventListener('modalClose', modalHandler);
 
         function modalHandler(event) {
             console.log(event);

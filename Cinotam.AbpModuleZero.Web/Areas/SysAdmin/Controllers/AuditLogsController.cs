@@ -46,5 +46,17 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             var auditLog = await _auditLogService.GetAuditLogDetails(id);
             return View(auditLog);
         }
+
+        public ActionResult GetLogs()
+        {
+            return View();
+        }
+        [WrapResult(false)]
+        public async Task<JsonResult> SystemLogs(RequestModel<object> requestModel)
+        {
+            ProccessQueryData(requestModel, "LogLevel", new[] { "LogLevel", "Date", "Time", "ThreadNumber", "LoggerName", "LogText" });
+            var tableModel = await _auditLogService.GetLogsTable(requestModel);
+            return Json(tableModel, JsonRequestBehavior.AllowGet);
+        }
     }
 }

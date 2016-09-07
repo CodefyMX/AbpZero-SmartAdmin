@@ -11,5 +11,6 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
         Task<ReturnModel<AuditLogDto>> GetAuditLogTable(RequestModel<object> input);
         Task<AuditLogDto> GetAuditLogDetails(long id);
         AuditLogTimeOutput GetAuditLogTimes(int? count);
+        Task<ReturnModel<LogDto>> GetLogsTable(RequestModel<object> requestModel);
     }
 }

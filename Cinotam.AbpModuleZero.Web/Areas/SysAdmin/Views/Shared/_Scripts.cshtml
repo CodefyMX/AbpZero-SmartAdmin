@@ -37,13 +37,9 @@
 <script src="~/signalr/hubs"></script>
 @Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js")
 
-<script src="~/Areas/SysAdmin/Scripts/localizationText.js"></script>
+<script src=@Url.Content("~/Areas/SysAdmin/Scripts/Layout/localizationText.js")></script>
 
 @Scripts.Render("~/scripts/smartadmin")
-<!-- Voice command : plugin -->
-<script src="~/Scripts/smartAdminScripts/speech/voicecommand.min.js"></script>
-
-
 
 <!-- SmartChat UI : plugin -->
 @*@Scripts.Render("~/scripts/smart-chat")*@
