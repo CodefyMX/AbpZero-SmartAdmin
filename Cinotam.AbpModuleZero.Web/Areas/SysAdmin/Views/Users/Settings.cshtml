@@ -122,15 +122,19 @@
                                             {
 
                                                 <div class="col col-4">
-                                                    <label class="label">@L("SubscribeToNotificationUserCreated")</label>
+                                                    
                                                     <label>
-                                                        <a data-subscription data-subscription-name="@NotificationNames.UserCreated" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                        <input data-subscription data-subscription-name="@NotificationNames.UserCreated" type="checkbox" />
+                                                        <i></i>
+                                                        @L("SubscribeToNotificationUserCreated")
                                                     </label>
                                                 </div>
                                                 <div class="col col-4">
-                                                    <label class="label">@L("SubscribeToNotificationUserDeleted")</label>
+
                                                     <label>
-                                                        <a data-subscription data-is-subscribed="false" data-subscription-name="@NotificationNames.UserDeleted" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                        <input data-subscription data-subscription-name="@NotificationNames.UserDeleted" type="checkbox" />
+                                                        <i></i>
+                                                        @L("SubscribeToNotificationUserDeleted")
                                                     </label>
                                                 </div>
                                             }
@@ -138,42 +142,54 @@
                                             {
 
                                                 <div class="col col-4">
-                                                    <label class="label">@L("SubscribeToNotificationRoleCreated")</label>
+
                                                     <label>
-                                                        <a data-subscription data-is-subscribed="false" data-subscription-name="@NotificationNames.RoleCreated" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                        <input data-subscription data-subscription-name="@NotificationNames.RoleCreated" type="checkbox" />
+                                                        <i></i>
+                                                        @L("SubscribeToNotificationRoleCreated")
                                                     </label>
                                                 </div>
                                                 <div class="col col-4">
-                                                    <label class="label">@L("SubscribeToNotificationRoleDeleted")</label>
+
                                                     <label>
-                                                        <a data-subscription data-is-subscribed="false" data-subscription-name="@NotificationNames.RoleDeleted" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                        <input data-subscription data-subscription-name="@NotificationNames.RoleEdited" type="checkbox" />
+                                                        <i></i>
+                                                        @L("SubscribeToNotificationRoleEdited")
                                                     </label>
                                                 </div>
                                                 <div class="col col-4">
-                                                    <label class="label">@L("SubscribeToNotificationRoleAssigned")</label>
+
                                                     <label>
-                                                        <a data-subscription data-subscription-name="@NotificationNames.RoleAssigned" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                        <input data-subscription data-subscription-name="@NotificationNames.RoleDeleted" type="checkbox" />
+                                                        <i></i>
+                                                        @L("SubscribeToNotificationRoleDeleted")
                                                     </label>
                                                 </div>
                                                 <div class="col col-4">
-                                                    <label class="label">@L("SubscribeToNotificationRoleDeleted")</label>
+
                                                     <label>
-                                                        <a data-subscription data-subscription-name="@NotificationNames.RoleEdited" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                        <input data-subscription data-subscription-name="@NotificationNames.RoleAssigned" type="checkbox" />
+                                                        <i></i>
+                                                        @L("SubscribeToNotificationRoleAssigned")
                                                     </label>
                                                 </div>
                                             }
                                             @if (IsGranted(PermissionNames.PagesSysAdminLanguages))
                                             {
                                                 <div class="col col-4">
-                                                    <label class="label">@L("SubscribeToNotificationLanguageCreated")</label>
+
                                                     <label>
-                                                        <a data-subscription data-is-subscribed="false" data-subscription-name="@NotificationNames.LanguageCreated" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                        <input data-subscription data-subscription-name="@NotificationNames.LanguageCreated" type="checkbox" />
+                                                        <i></i>
+                                                        @L("SubscribeToNotificationLanguageCreated")
                                                     </label>
                                                 </div>
                                                 <div class="col col-4">
-                                                    <label class="label">@L("SubscribeToNotificationLanguageDeleted")</label>
+
                                                     <label>
-                                                        <a data-subscription data-is-subscribed="false" data-subscription-name="@NotificationNames.LanguageDeleted" class="btn btn-md btn-primary">@L("Loading")</a>
+                                                        <input data-subscription data-subscription-name="@NotificationNames.LanguageDeleted" type="checkbox" />
+                                                        <i></i>
+                                                        @L("SubscribeToNotificationLanguageDeleted")
                                                     </label>
                                                 </div>
                                             }
@@ -236,10 +252,11 @@
                             if (response) {
                                 $elm.text(LSys("UnSubscribe"));
                                 $elm.data("is-subscribed", true);
+                                $elm.prop("checked", true);
                             } else {
                                 $elm.text(LSys("Subscribe"));
                                 $elm.data("is-subscribed", false);
-
+                                $elm.prop("checked", false);
                             }
                         });
                     });

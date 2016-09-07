@@ -50,16 +50,16 @@
         $('#languageTextsTable tbody').on('click', '.js-trigger-modal', function () {
             var row = $(this).parent().parent();
             currentRowSelected = {
-                data: table.row(row).data(),
-                row: row
-            }
+                data : table.row (row).data (),
+                row : row
+            };
             var href = $(this).data("href");
             var data = {
-                LanguageName: $(this).data("lang"),
-                Key: $(this).data("key"),
-                Source: $(this).data("source"),
-                Value:$(this).data("current")
-            }
+                LanguageName : $ (this).data ("lang"),
+                Key : $ (this).data ("key"),
+                Source : $ (this).data ("source"),
+                Value : $ (this).data ("current")
+            };
             modalInstance.open(href, data);
         });
 

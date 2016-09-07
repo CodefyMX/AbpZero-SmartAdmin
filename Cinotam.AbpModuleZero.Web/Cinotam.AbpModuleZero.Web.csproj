@@ -305,7 +305,7 @@
     <Content Include="Areas\SysAdmin\Scripts\Languages\languages.js" />
     <Content Include="Areas\SysAdmin\Scripts\Languages\CreateLanguage.js" />
     <Content Include="Areas\SysAdmin\Scripts\Languages\EditText.js" />
-    <Content Include="Areas\SysAdmin\Scripts\languageTexts.js" />
+    <Content Include="Areas\SysAdmin\Scripts\Languages\languageTexts.js" />
     <Content Include="Areas\SysAdmin\Scripts\Layout\GetNotifications.js" />
     <Content Include="Areas\SysAdmin\Scripts\Layout\localizationText.js" />
     <Content Include="Areas\SysAdmin\Scripts\UsersRoles\roles.js" />
