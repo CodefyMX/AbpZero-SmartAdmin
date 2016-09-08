@@ -1,8 +1,9 @@
-﻿using Cinotam.FileManager.SharedTypes.Enums;
+﻿using Abp.Notifications;
+using Cinotam.FileManager.SharedTypes.Enums;
 
 namespace Cinotam.FileManager.Cloudinary.Cloudinary.Inputs
 {
-    public class SaveImageInput
+    public class SaveImageInput : NotificationData
     {
         public string AbsoluteFileDirectory { get; set; }
         public string Folder { get; set; }

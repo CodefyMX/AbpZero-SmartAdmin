@@ -1,5 +1,4 @@
 ﻿using Cinotam.MailSender.SendGrid.Credentials;
-using Cinotam.MailSender.SendGrid.SendGrid.Inputs;
 using Cinotam.MailSender.SendGrid.SendGrid.Outputs;
 using CInotam.MailSender.Contracts;
 using SendGrid;
@@ -62,5 +61,8 @@ namespace Cinotam.MailSender.SendGrid.SendGrid
                 MailSent = result.Success
             };
         }
+
+        public bool IsSmtp => false;
+        public bool IsHttp => true;
     }
 }

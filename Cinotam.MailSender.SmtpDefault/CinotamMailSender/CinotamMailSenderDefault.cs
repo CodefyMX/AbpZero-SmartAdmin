@@ -81,5 +81,8 @@ namespace Cinotam.MailSender.SmtpDefault.CinotamMailSender
                 SentWithHttp = result.SentWithHttp
             };
         }
+
+        public bool IsSmtp => true;
+        public bool IsHttp => false;
     }
 }

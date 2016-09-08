@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{601A7D76-DFC2-4BBA-86E3-830657EB6A54}</ProjectGuid>
+    <ProjectGuid>{9A4EF717-B1C9-4177-BDD0-0A1C9FF14A8F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cinotam.FileManager</RootNamespace>
-    <AssemblyName>Cinotam.FileManager</AssemblyName>
+    <RootNamespace>Cinotam.FileManager.Local</RootNamespace>
+    <AssemblyName>Cinotam.FileManager.Local</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,11 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Abp">
-      <HintPath>..\packages\Abp.0.11.0.2\lib\net452\Abp.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Abp.0.11.3.0\lib\net452\Abp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,36 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CinotamFileManager.cs" />
-    <Compile Include="FileManagerModule.cs" />
-    <Compile Include="Files\FileStoreManager.cs" />
-    <Compile Include="Files\IFileStoreManager.cs" />
-    <Compile Include="Files\Inputs\FileSaveFromStringInput.cs" />
-    <Compile Include="Files\Inputs\FileSaveInput.cs" />
-    <Compile Include="Files\Outputs\SavedFileResult.cs" />
-    <Compile Include="FileTypes\ValidFileTypes.cs" />
+    <Compile Include="CinotamFileManagerLocal.cs" />
+    <Compile Include="LocalFileManager\ILocalFileManager.cs" />
+    <Compile Include="LocalFileManager\LocalFileManager.cs" />
+    <Compile Include="LocalFileManager\Output\LocalSaveResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cinotam.FileManager.Cloudinary\Cinotam.FileManager.Cloudinary.csproj">
-      <Project>{632D78C7-0806-45A9-8FCF-1EC94DDA807A}</Project>
-      <Name>Cinotam.FileManager.Cloudinary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Cinotam.FileManager.Contracts\Cinotam.FileManager.Contracts.csproj">
       <Project>{B1AD0F0D-EC22-4426-88D9-60C2F19E1DAE}</Project>
       <Name>Cinotam.FileManager.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.FileManager.Local\Cinotam.FileManager.Local.csproj">
-      <Project>{9A4EF717-B1C9-4177-BDD0-0A1C9FF14A8F}</Project>
-      <Name>Cinotam.FileManager.Local</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.FileManager.SharedTypes\Cinotam.FileManager.SharedTypes.csproj">
-      <Project>{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}</Project>
-      <Name>Cinotam.FileManager.SharedTypes</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

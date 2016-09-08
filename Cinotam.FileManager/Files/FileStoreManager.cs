@@ -1,9 +1,9 @@
 ﻿using Abp.Extensions;
 using Cinotam.FileManager.Cloudinary.Cloudinary;
 using Cinotam.FileManager.Cloudinary.Cloudinary.Inputs;
+using Cinotam.FileManager.Contracts.FileSystemHelpers;
 using Cinotam.FileManager.Files.Inputs;
 using Cinotam.FileManager.Files.Outputs;
-using Cinotam.FileManager.FileSystemHelpers;
 using Cinotam.FileManager.FileTypes;
 using System;
 

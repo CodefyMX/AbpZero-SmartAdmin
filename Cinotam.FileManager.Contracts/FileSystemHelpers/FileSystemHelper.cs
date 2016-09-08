@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Web;
 
-namespace Cinotam.FileManager.FileSystemHelpers
+namespace Cinotam.FileManager.Contracts.FileSystemHelpers
 {
     public static class FileSystemHelper
     {
