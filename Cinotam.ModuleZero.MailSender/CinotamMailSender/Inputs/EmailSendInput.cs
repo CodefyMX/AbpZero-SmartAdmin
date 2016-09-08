@@ -1,8 +1,9 @@
-﻿using System.Net.Mail;
+﻿using CInotam.MailSender.Contracts;
+using System.Net.Mail;
 
 namespace Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs
 {
-    public class EmailSendInput
+    public class EmailSendInput : IMail
     {
         public EmailSendInput()
         {

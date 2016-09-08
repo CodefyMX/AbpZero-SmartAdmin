@@ -179,7 +179,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
         {
 
             dynamic sendGridParams = BuildSendGridParams(user, password);
-            await _cinotamMailSender.SendMail(new EmailSendInput()
+            await _cinotamMailSender.DeliverMail(new EmailSendInput()
             {
                 MailMessage = new MailMessage()
                 {

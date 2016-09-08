@@ -1,10 +1,12 @@
 ﻿using Cinotam.MailSender.SendGrid.Credentials;
 using Cinotam.MailSender.SendGrid.SendGrid.Inputs;
 using Cinotam.MailSender.SendGrid.SendGrid.Outputs;
+using CInotam.MailSender.Contracts;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
 using System.Threading.Tasks;
+using Mail = SendGrid.Helpers.Mail.Mail;
 
 namespace Cinotam.MailSender.SendGrid.SendGrid
 {
@@ -16,19 +18,19 @@ namespace Cinotam.MailSender.SendGrid.SendGrid
             _sendGrid = sendGridCredentialsService.GetInstance("SendGridKey", EnvironmentVariableTarget.User);
         }
 
-        public async Task<SendGridMessageResult> SendViaHttp(SendGridMessageInput input)
+        public async Task<SendGridMessageResult> SendViaHttp(IMail input)
         {
-            var from = new Email(input.Message.From.Address);
-            var subject = input.Subject;
-            var to = new Email(input.To);
+            var from = new Email(input.MailMessage.From.Address);
+            var subject = input.MailMessage.To;
+            var to = new Email(input.MailMessage.To.ToString());
             var content = new Content(input.EncodeType, input.Body);
-            var mail = new Mail(from, subject, to, content);
-            if (!string.IsNullOrEmpty(input.TemplateId))
+            var mail = new Mail(from, input.MailMessage.Subject, to, content);
+            if (!string.IsNullOrEmpty(input.ExtraParams.TemplateId))
             {
-                mail.TemplateId = input.TemplateId;
-                if (input.Substitutions != null)
+                mail.TemplateId = input.ExtraParams.TemplateId;
+                if (input.ExtraParams.Substitutions != null)
                 {
-                    foreach (var substitution in input.Substitutions)
+                    foreach (var substitution in input.ExtraParams.Substitutions)
                     {
                         mail.Personalization[0].AddSubstitution(substitution.Key, substitution.Value);
                     }
@@ -50,6 +52,15 @@ namespace Cinotam.MailSender.SendGrid.SendGrid
                 Success = false
             };
 
+        }
+
+        public async Task<IMailServiceResult> DeliverMail(IMail mail)
+        {
+            var result = await SendViaHttp(mail);
+            return new SendGridMessageResult()
+            {
+                MailSent = result.Success
+            };
         }
     }
 }

@@ -192,6 +192,10 @@
       <Project>{601A7D76-DFC2-4BBA-86E3-830657EB6A54}</Project>
       <Name>Cinotam.FileManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CInotam.MailSender.Contracts\CInotam.MailSender.Contracts.csproj">
+      <Project>{B79DC367-7C6B-4F59-989F-86599FBFAD06}</Project>
+      <Name>CInotam.MailSender.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cinotam.ModuleZero.BackgroundTasks\Cinotam.ModuleZero.BackgroundTasks.csproj">
       <Project>{DA270051-1279-4759-BA4B-1E70709BEE1E}</Project>
       <Name>Cinotam.ModuleZero.BackgroundTasks</Name>

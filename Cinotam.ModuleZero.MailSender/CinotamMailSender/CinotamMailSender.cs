@@ -2,8 +2,8 @@
 using Abp.Net.Mail;
 using Cinotam.MailSender.SendGrid.SendGrid;
 using Cinotam.MailSender.SendGrid.SendGrid.Inputs;
-using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
 using Cinotam.ModuleZero.MailSender.CinotamMailSender.Outputs;
+using CInotam.MailSender.Contracts;
 using System;
 using System.Linq;
 using System.Net.Mail;
@@ -21,32 +21,36 @@ namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
             _sendGridService = sendGridService;
         }
 
-        public async Task<EmailSentResult> SendMail(EmailSendInput input)
+        public async Task<IMailServiceResult> SendMail(IMail input)
         {
-            var result = new EmailSentResult();
-
-            var resultSmtp = await SendViaSmtp(input.MailMessage);
-            result.SentWithSmtp = resultSmtp;
-            //If was sent via smtp just return
-            if (resultSmtp) return result;
-            //Implement httpServices here
-
-            var resultHttp = await SendViaHttp(input);
-            result.SentWithHttp = resultHttp;
-
-            if (result.SentWithHttp || result.SentWithSmtp)
+            foreach (var mailServiceProvider in MailSenderAbpModule.MailServiceProviders)
             {
-                input.Sent = true;
+                var result = await mailServiceProvider.DeliverMail(input);
+                if (result.MailSent) return new EmailSentResult()
+                {
+                    MailSent = true
+                };
             }
-            await SaveEmail(input);
-            return result;
+            throw new InvalidOperationException(nameof(MailSenderAbpModule));
+            //var result = new EmailSentResult();
+
+            //var resultSmtp = await SendViaSmtp(input.MailMessage);
+            //result.SentWithSmtp = resultSmtp;
+            ////If was sent via smtp just return
+            //if (resultSmtp) return result;
+            ////Implement httpServices here
+
+            //var resultHttp = await SendViaHttp(input);
+            //result.SentWithHttp = resultHttp;
+
+            //if (result.SentWithHttp || result.SentWithSmtp)
+            //{
+            //    input.Sent = true;
+            //}
+            //return result;
         }
 
-        private async Task SaveEmail(EmailSendInput email)
-        {
-
-        }
-        async Task<bool> SendViaHttp(EmailSendInput input)
+        async Task<bool> SendViaHttp(IMail input)
         {
 
             var firstOrDefault = input.MailMessage.To.FirstOrDefault();
@@ -79,6 +83,17 @@ namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
             {
                 return false;
             }
+        }
+
+        public async Task<IMailServiceResult> DeliverMail(IMail mail)
+        {
+            var result = (EmailSentResult)(await SendMail(mail));
+            return new EmailSentResult()
+            {
+                MailSent = result.MailSent,
+                SentWithSmtp = result.SentWithSmtp,
+                SentWithHttp = result.SentWithHttp
+            };
         }
     }
 }

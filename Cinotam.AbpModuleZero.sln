@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.MailSender.SendGrid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CInotam.MailSender.Contracts", "CInotam.MailSender.Contracts\CInotam.MailSender.Contracts.csproj", "{B79DC367-7C6B-4F59-989F-86599FBFAD06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.MailSender.SmtpDefault", "Cinotam.MailSender.SmtpDefault\Cinotam.MailSender.SmtpDefault.csproj", "{3242A6C6-4C65-4516-AEA1-4C8D70F23B80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,10 @@ Global
 		{B79DC367-7C6B-4F59-989F-86599FBFAD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B79DC367-7C6B-4F59-989F-86599FBFAD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B79DC367-7C6B-4F59-989F-86599FBFAD06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3242A6C6-4C65-4516-AEA1-4C8D70F23B80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3242A6C6-4C65-4516-AEA1-4C8D70F23B80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3242A6C6-4C65-4516-AEA1-4C8D70F23B80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3242A6C6-4C65-4516-AEA1-4C8D70F23B80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,5 +151,6 @@ Global
 		{201432A3-493B-46FE-A6FB-03D9D95DDBF6} = {1B7A5CB1-F0CB-4961-9548-D0E3B8549280}
 		{28B7BCBA-6C20-45A2-B939-15861DA5328A} = {1B7A5CB1-F0CB-4961-9548-D0E3B8549280}
 		{B79DC367-7C6B-4F59-989F-86599FBFAD06} = {1B7A5CB1-F0CB-4961-9548-D0E3B8549280}
+		{3242A6C6-4C65-4516-AEA1-4C8D70F23B80} = {1B7A5CB1-F0CB-4961-9548-D0E3B8549280}
 	EndGlobalSection
 EndGlobal

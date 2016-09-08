@@ -1,6 +1,6 @@
 ﻿using CInotam.MailSender.Contracts;
 
-namespace Cinotam.ModuleZero.MailSender.CinotamMailSender.Outputs
+namespace Cinotam.MailSender.SmtpDefault.CinotamMailSender.Outputs
 {
     public class EmailSentResult : IMailServiceResult
     {

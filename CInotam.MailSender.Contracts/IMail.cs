@@ -1,10 +1,14 @@
-﻿namespace CInotam.MailSender.Contracts
+﻿using System.Net.Mail;
+
+namespace CInotam.MailSender.Contracts
 {
     public interface IMail
     {
-        string From { get; set; }
-        string To { get; set; }
-        string Data { get; }
+        MailMessage MailMessage { get; set; }
+        string HtmlView { get; set; }
+        string Body { get; set; }
+        string EncodeType { get; set; }
+        dynamic ExtraParams { get; set; }
         bool Sent { get; set; }
     }
 }
