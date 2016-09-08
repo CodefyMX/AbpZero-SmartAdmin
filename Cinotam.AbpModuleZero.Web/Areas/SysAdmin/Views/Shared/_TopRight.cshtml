@@ -8,28 +8,19 @@
 <!-- Top menu profile link : this shows only when top menu is active -->
 <ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
     <li class="">
-        <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
-            <img src="~/content/img/avatars/sunny.png" alt="John Doe" class="online" />
-        </a>
+        @{ Html.RenderAction("UserInfo", "Layout",new {viewName = "_alternativeUserInfo" }); }
+        
         <ul class="dropdown-menu pull-right">
             <li>
-                <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-cog"></i> Setting</a>
+                <a href="@Url.Action("MyProfile", "Users")" class="padding-10 padding-top-0 padding-bottom-0"><i class="fa fa-user"></i> <span>My Profile </span> </a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="#" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> Profile</a>
+                <a href="@Url.Action("Settings", "Users")" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-gear"></i> <span>Options </span> </a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut"><i class="fa fa-arrow-down"></i> <>S</>hortcut</a>
-            </li>
-            <li class="divider"></li>
-            <li>
-                <a href="javascript:void(0);" class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen"><i class="fa fa-arrows-alt"></i> Full <>S</>creen</a>
-            </li>
-            <li class="divider"></li>
-            <li>
-                <a href="@Url.Action("Logout", "account",new { Area=""})" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong><>L</>ogout</strong></a>
+                <a href="@Url.Action("Logout", "account", new {Area = ""})" class="padding-10 padding-top-0 padding-bottom-0" data-action="userLogout"><i class="fa fa-sign-out fa-lg"></i> <strong>Logout</strong></a>
             </li>
         </ul>
     </li>

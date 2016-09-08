@@ -1,0 +1,17 @@
+﻿@model Cinotam.ModuleZero.AppModule.Sessions.Dto.GetCurrentLoginInformationsOutput
+@{
+    Layout = null;
+}
+
+@if (string.IsNullOrEmpty(Model.User.ProfilePicture))
+            {
+    <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
+        <img src=@Url.Content("~/Areas/SysAdmin/Content/img/avatars/sunny.png") alt="John Doe" class="online" />
+    </a>
+}
+else
+{
+    <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
+        <img src=@Model.User.ProfilePicture alt="John Doe" class="online" />
+    </a>
+}

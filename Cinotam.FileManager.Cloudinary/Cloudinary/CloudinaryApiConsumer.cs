@@ -86,7 +86,7 @@ namespace Cinotam.FileManager.Cloudinary.Cloudinary
                     ImageSavedInCdn = true
                 };
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return new CloudinaryImageUploadResult()
                 {

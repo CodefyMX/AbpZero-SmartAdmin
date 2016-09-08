@@ -14,7 +14,7 @@
     <RootNamespace>Cinotam.AbpModuleZero.Web</RootNamespace>
     <AssemblyName>Cinotam.AbpModuleZero.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -1080,6 +1080,7 @@
     <None Include="Areas\SysAdmin\Views\Layout\_LanguageSelectionAdmin.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\ChangePassword.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Notifications\MyNotifications.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_alternativeUserInfo.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
@@ -1266,7 +1267,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61814</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61760/</IISUrl>
+          <IISUrl>http://localhost/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

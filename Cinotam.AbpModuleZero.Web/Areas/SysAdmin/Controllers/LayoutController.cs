@@ -41,10 +41,10 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return PartialView("_LanguageSelectionAdmin", model);
         }
 
-        public ViewResult UserInfo()
+        public ViewResult UserInfo(string viewName = "_CurrentUser")
         {
             var userInfo = AsyncHelper.RunSync(() => _sessionAppService.GetCurrentLoginInformations());
-            return View("_CurrentUser", userInfo);
+            return View(viewName, userInfo);
         }
         [AbpMvcAuthorize]
         public ActionResult GetNotifications()

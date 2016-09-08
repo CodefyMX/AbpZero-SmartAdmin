@@ -14,11 +14,12 @@ namespace Cinotam.MailSender.SendGrid.SendGrid
         private readonly SendGridAPIClient _sendGrid;
         public SendGridService(ISendGridCredentialsService sendGridCredentialsService)
         {
-            _sendGrid = sendGridCredentialsService.GetInstance("SendGridKey", EnvironmentVariableTarget.User);
+            _sendGrid = sendGridCredentialsService.GetInstance("SendGridKey", EnvironmentVariableTarget.Machine);
         }
 
         public async Task<SendGridMessageResult> SendViaHttp(IMail input)
         {
+
             var from = new Email(input.MailMessage.From.Address);
             var subject = input.MailMessage.To;
             var to = new Email(input.MailMessage.To.ToString());
