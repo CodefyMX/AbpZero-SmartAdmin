@@ -249,7 +249,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                     ["Height"] = 120,
                     ["TransformationType"] = 2
                 },
-            }, useCdnFirst: true);
+            }, useCdnFirst: false);
             if (result.WasStoredInCloud)
             {
                 user.ProfilePicture = result.Url;

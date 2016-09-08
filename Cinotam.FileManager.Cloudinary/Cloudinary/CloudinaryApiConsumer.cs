@@ -66,7 +66,7 @@ namespace Cinotam.FileManager.Cloudinary.Cloudinary
         {
             try
             {
-                var filePath = SaveFileInTempFolder(input.File, input.CreateUniqueName);
+                var filePath = string.IsNullOrEmpty(input.FilePath) ? SaveFileInTempFolder(input.File, input.CreateUniqueName) : input.FilePath;
                 var uploadParams = new ImageUploadParams()
                 {
                     File = new FileDescription(filePath),

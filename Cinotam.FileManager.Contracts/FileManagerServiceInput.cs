@@ -24,6 +24,7 @@ namespace Cinotam.FileManager.Contracts
             }
 
         }
+
         private Dictionary<string, object> _properties;
         public object this[string key]
         {
@@ -34,6 +35,7 @@ namespace Cinotam.FileManager.Contracts
         public HttpPostedFileBase File { get; set; }
         public string SpecialFolder { get; set; }
         public string VirtualFolder { get; set; }
+        public string FilePath { get; set; }
         public bool CreateUniqueName { get; set; }
     }
 }

@@ -10,6 +10,8 @@ namespace Cinotam.FileManager.Contracts
         HttpPostedFileBase File { get; set; }
         string SpecialFolder { get; set; }
         string VirtualFolder { get; set; }
+
+        string FilePath { get; set; }
         /// <summary>
         /// Has no effect if the file is going to be stored in the cloud
         /// </summary>
