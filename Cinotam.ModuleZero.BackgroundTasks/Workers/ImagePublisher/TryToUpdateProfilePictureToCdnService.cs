@@ -6,11 +6,10 @@ using Abp.Threading.Timers;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.FileManager.Files;
 using Cinotam.FileManager.Files.Inputs;
-using Cinotam.FileManager.FileTypes;
-using Cinotam.FileManager.SharedTypes.Enums;
 using System;
 using System.IO;
 using System.Web.Hosting;
+using Abp.Threading;
 
 namespace Cinotam.ModuleZero.BackgroundTasks.Workers.ImagePublisher
 {
@@ -38,20 +37,18 @@ namespace Cinotam.ModuleZero.BackgroundTasks.Workers.ImagePublisher
                 {
                     var profilePictureHolder = user.ProfilePicture;
                     if (string.IsNullOrEmpty(user.ProfilePicture)) continue;
-                    var result = _fileStoreManager.SaveFileToCloudServiceFromString(new FileSaveFromStringInput()
+                    var result = AsyncHelper.RunSync(() => _fileStoreManager.SaveFile(new FileSaveFromStringInput()
                     {
                         CreateUniqueName = false,
-                        File = GetAbsolutePath(user.ProfilePicture),
-                        FileType = ValidFileTypes.Image,
-                        ImageEditOptions = new ImageEditOptionsRequest()
+                        FilePath = GetAbsolutePath(user.ProfilePicture),
+                        Properties =
                         {
-                            Height = 120,
-                            Width = 120,
-                            TransFormationType = TransformationsTypes.ImageWithSize,
-
+                            ["Width"] = 120,
+                            ["Height"] = 120,
+                            ["TransformationType"] = 2
                         },
                         SpecialFolder = user.UserName
-                    });
+                    }, true));
                     if (!result.WasStoredInCloud) continue;
                     user.ProfilePicture = result.Url;
                     user.IsPictureOnCdn = true;

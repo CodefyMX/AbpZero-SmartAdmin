@@ -12,9 +12,6 @@ using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.FileManager.Files;
 using Cinotam.FileManager.Files.Inputs;
-using Cinotam.FileManager.Files.Outputs;
-using Cinotam.FileManager.FileTypes;
-using Cinotam.FileManager.SharedTypes.Enums;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
 using Cinotam.ModuleZero.MailSender.CinotamMailSender;
@@ -241,21 +238,18 @@ namespace Cinotam.ModuleZero.AppModule.Users
             var user = await UserManager.GetUserByIdAsync(input.UserId);
 
 
-            var result = _fileStoreManager.SaveFileToCloudService(new FileSaveInput()
+            var result = await _fileStoreManager.SaveFile(new FileSaveInput()
             {
                 CreateUniqueName = false,
                 File = input.Image,
-                FileType = ValidFileTypes.Image,
                 SpecialFolder = user.UserName.Normalize(),
-                ImageEditOptions = new ImageEditOptionsRequest()
+                Properties =
                 {
-                    Width = 120,
-                    Height = 120,
-                    TransFormationType = TransformationsTypes.ImageWithSize
-                }
-            });
-
-
+                    ["Width"] = 120,
+                    ["Height"] = 120,
+                    ["TransformationType"] = 2
+                },
+            }, useCdnFirst: true);
             if (result.WasStoredInCloud)
             {
                 user.ProfilePicture = result.Url;
@@ -263,25 +257,11 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 await UserManager.UpdateAsync(user);
                 return result.Url;
             }
-
-            var resultLocal = SaveImageInServer(input);
-            user.ProfilePicture = resultLocal.VirtualPath;
+            user.ProfilePicture = result.VirtualPath;
             user.IsPictureOnCdn = false;
             await UserManager.UpdateAsync(user);
-            return resultLocal.VirtualPath;
+            return result.VirtualPath;
         }
-
-        private SavedFileResult SaveImageInServer(UpdateProfilePictureInput input)
-        {
-            var folder = $"/Content/Images/Users/{input.UserId}/profilePicture/";
-            var resultLocal = _fileStoreManager.SaveFileToServer(new FileSaveInput()
-            {
-                CreateUniqueName = true,
-                File = input.Image,
-            }, folder);
-            return resultLocal;
-        }
-
         [AbpAuthorize]
         public async Task<NotificationsOutput> GetMyNotifications(UserNotificationState state, int? take = null)
         {

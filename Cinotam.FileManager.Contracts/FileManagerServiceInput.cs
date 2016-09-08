@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 
 namespace Cinotam.FileManager.Contracts
 {
@@ -29,5 +30,10 @@ namespace Cinotam.FileManager.Contracts
             get { return Properties[key]; }
             set { Properties[key] = value; }
         }
+
+        public HttpPostedFileBase File { get; set; }
+        public string SpecialFolder { get; set; }
+        public string VirtualFolder { get; set; }
+        public bool CreateUniqueName { get; set; }
     }
 }

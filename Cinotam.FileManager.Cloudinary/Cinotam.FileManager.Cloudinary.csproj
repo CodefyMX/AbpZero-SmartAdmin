@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cinotam.FileManager.Contracts\Cinotam.FileManager.Contracts.csproj">
+      <Project>{B1AD0F0D-EC22-4426-88D9-60C2F19E1DAE}</Project>
+      <Name>Cinotam.FileManager.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cinotam.FileManager.SharedTypes\Cinotam.FileManager.SharedTypes.csproj">
       <Project>{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}</Project>
       <Name>Cinotam.FileManager.SharedTypes</Name>

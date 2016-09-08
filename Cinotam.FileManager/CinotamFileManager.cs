@@ -1,5 +1,6 @@
 ﻿using Abp.Modules;
 using Cinotam.FileManager.Cloudinary;
+using Cinotam.FileManager.Cloudinary.Cloudinary;
 using Cinotam.FileManager.Local;
 using Cinotam.FileManager.Local.LocalFileManager;
 using System.Reflection;
@@ -18,6 +19,7 @@ namespace Cinotam.FileManager
         {
 
             FileManagerServiceProviders.Add(IocManager.Resolve<LocalFileManager>());
+            FileManagerServiceProviders.Add(IocManager.Resolve<CloudinaryApiConsumer>());
         }
     }
 }

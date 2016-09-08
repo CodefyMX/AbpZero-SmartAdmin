@@ -6,7 +6,7 @@ namespace Cinotam.FileManager
 {
     public class FileManagerModule : AbpModule
     {
-        public List<IFileManagerServiceProvider> FileManagerServiceProviders = new List<IFileManagerServiceProvider>();
+        public static List<IFileManagerServiceProvider> FileManagerServiceProviders = new List<IFileManagerServiceProvider>();
 
         protected FileManagerModule()
         {

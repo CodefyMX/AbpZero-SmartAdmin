@@ -12,11 +12,13 @@
             ImageSavedInServer = false;
 
         }
-        public bool ImageSavedInCdn { get; }
-        public bool ImageSavedInServer { get; }
+        public bool ImageSavedInCdn { get; set; }
+        public bool ImageSavedInServer { get; set; }
         public string ServiceName { get; set; }
         public string CdnUrl { get; set; }
         public string LocalUrl { get; set; }
-
+        public string FileName { get; set; }
+        public string VirtualPathResult { get; set; }
+        public bool ImageSaved { get; set; }
     }
 }

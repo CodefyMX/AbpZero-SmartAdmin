@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Web.Hosting;
 
 namespace Cinotam.FileManager.Contracts.FileSystemHelpers
 {
@@ -24,18 +25,15 @@ namespace Cinotam.FileManager.Contracts.FileSystemHelpers
 
         public static string GetAbsolutePath(string virtualPath)
         {
-            var server = HttpContext.Current.Server;
-            return server.MapPath(virtualPath);
+
+            return HostingEnvironment.MapPath(virtualPath);
         }
 
         public static void CreateFolder(string virtualPath)
         {
-            var server = HttpContext.Current.Server;
-            var path = server.MapPath(virtualPath);
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
+            var path = HostingEnvironment.MapPath(virtualPath);
+            if (Directory.Exists(path)) return;
+            if (path != null) Directory.CreateDirectory(path);
         }
     }
 }

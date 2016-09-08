@@ -4,6 +4,7 @@ namespace Cinotam.FileManager.Contracts
 {
     public interface IFileManagerServiceProvider
     {
-        Task<IFileManagerServiceResult> SaveImage(IFileManagerServiceInput result);
+        bool IsCdnService { get; }
+        Task<FileManagerServiceResult> SaveImage(IFileManagerServiceInput result);
     }
 }

@@ -1,11 +1,10 @@
 ﻿using Abp.Domain.Services;
-using Cinotam.FileManager.Cloudinary.Cloudinary.Inputs;
-using Cinotam.FileManager.Cloudinary.Cloudinary.Results;
+using Cinotam.FileManager.Contracts;
 
 namespace Cinotam.FileManager.Cloudinary.Cloudinary
 {
-    public interface ICloudinaryApiConsumer : IDomainService
+    public interface ICloudinaryApiConsumer : IDomainService, IFileManagerServiceProvider
     {
-        CloudinaryImageUploadResult UploadImageAndGetCdn(SaveImageInput input);
+        //CloudinaryImageUploadResult UploadImageAndGetCdn(SaveImageInput input);
     }
 }
