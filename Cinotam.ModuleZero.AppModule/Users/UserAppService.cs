@@ -3,9 +3,11 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
+using Abp.Localization;
 using Abp.Notifications;
 using Abp.UI;
 using Castle.Components.DictionaryAdapter;
+using Cinotam.AbpModuleZero;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
@@ -119,7 +121,6 @@ namespace Cinotam.ModuleZero.AppModule.Users
             var hasher = new PasswordHasher();
             if (user.Id != 0)
             {
-
                 var userFound = _userRepository.Get(user.Id);
                 var pssw = userFound.Password;
                 var modified = input.MapTo(userFound);
@@ -155,7 +156,6 @@ namespace Cinotam.ModuleZero.AppModule.Users
                     modified.Password = pssw;
                     await UserManager.UpdateAsync(modified);
                 }
-
             }
             else
             {
@@ -176,6 +176,9 @@ namespace Cinotam.ModuleZero.AppModule.Users
         {
 
             dynamic sendGridParams = BuildSendGridParams(user, password);
+            var welcomeMessage = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "WelcomeMessage"), user.FullName);
+            var yourUserIs = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "YourUserIs"), user.UserName);
+            var yourDefaultPasswordIs = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "YourDefaultPassword"), password);
             await _cinotamMailSender.DeliverMail(new EmailSendInput()
             {
                 MailMessage = new MailMessage()
@@ -184,7 +187,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                     To = { new MailAddress(user.EmailAddress) },
                     Subject = "Welcome to Cinotam.ModuleZero",
                 },
-                Body = _templateManager.GetContent(TemplateType.Welcome, user.FullName, "Welcome to Cinotam.ModuleZero"),
+                Body = _templateManager.GetContent(TemplateType.Welcome, false, welcomeMessage, yourUserIs, yourDefaultPasswordIs),
                 EncodeType = "text/html",
                 ExtraParams = sendGridParams,
             });
@@ -193,8 +196,8 @@ namespace Cinotam.ModuleZero.AppModule.Users
         private object BuildSendGridParams(User user, string passWord)
         {
             dynamic sendGridParams = new ExpandoObject();
-            sendGridParams.TemplateId =
-            "81448bab-8391-4a6e-971d-142d68d662ad";
+            sendGridParams.TemplateId = "81448bab-8391-4a6e-971d-142d68d662ad";
+            sendGridParams.EnableTemplates = false;
             sendGridParams.Substitutions = new Dictionary<string, string>()
                 {
                     {":user", user.FullName},
@@ -307,6 +310,30 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 //await _usersAppNotificationsSender.SendUserEditedNotification(AbpSession.UserId, user.FullName);
             }
         }
+        //private async Task SendChangePasswordEmail(User user)
+        //{
+        //    dynamic sendGridParams = BuildSendGridParamsForPasswordChanged(user);
+        //    var passwordChanged = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "WelcomeMessage"), user.FullName);
+        //    var yourUserIs = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "YourUserIs"), user.UserName);
+        //    var yourDefaultPasswordIs = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "YourDefaultPassword"), password);
+        //    await _cinotamMailSender.DeliverMail(new EmailSendInput()
+        //    {
+        //        MailMessage = new MailMessage()
+        //        {
+        //            From = new MailAddress((await SettingManager.GetSettingValueAsync("Abp.Net.Mail.DefaultFromAddress"))),
+        //            To = { new MailAddress(user.EmailAddress) },
+        //            Subject = "Welcome to Cinotam.ModuleZero",
+        //        },
+        //        Body = _templateManager.GetContent(TemplateType.Welcome, false, welcomeMessage, yourUserIs, yourDefaultPasswordIs),
+        //        EncodeType = "text/html",
+        //        ExtraParams = sendGridParams,
+        //    });
+        //}
+
+        //private object BuildSendGridParamsForPasswordChanged(User user)
+        //{
+        //    return new object();
+        //}
 
         public async Task MarkAsReaded(Guid notificationId)
         {

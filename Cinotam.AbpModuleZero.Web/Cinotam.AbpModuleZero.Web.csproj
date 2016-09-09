@@ -547,6 +547,13 @@
     <Content Include="Areas\SysAdmin\Content\img\violate.jpg" />
     <Content Include="Areas\SysAdmin\Content\img\voicecommand\active-btn.gif" />
     <Content Include="Areas\SysAdmin\Content\img\vt-menu.png" />
+    <Content Include="Content\bootstrap-cosmo.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\MailTemplates\WelcomeTemplates\Welcome.Html" />
     <Content Include="Content\MailTemplates\WelcomeTemplates\Welcome_Partial.html" />
     <Content Include="Areas\SysAdmin\Content\sound\bigbox.mp3" />
@@ -556,6 +563,42 @@
     <Content Include="Areas\SysAdmin\Content\sound\voice_alert.mp3" />
     <Content Include="Areas\SysAdmin\Content\sound\voice_off.mp3" />
     <Content Include="Areas\SysAdmin\Content\sound\voice_on.mp3" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="css\main.css">
       <DependentUpon>main.less</DependentUpon>
     </Content>
@@ -1086,10 +1129,28 @@
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\Settings.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Layout\GetNotifications.cshtml" />
+    <Content Include="Scripts\contentTools\sandbox\build\icons.woff" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Content\toastr.scss" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.2.0-vsdoc.js" />
+    <Content Include="Scripts\contentTools\sandbox\author-pic.jpg" />
+    <Content Include="Scripts\contentTools\sandbox\build\content-tools.js" />
+    <Content Include="Scripts\contentTools\sandbox\build\content-tools.min.css" />
+    <Content Include="Scripts\contentTools\sandbox\build\content-tools.min.js" />
+    <Content Include="Scripts\contentTools\sandbox\build\images\drop-horz.svg" />
+    <Content Include="Scripts\contentTools\sandbox\build\images\drop-vert-above.svg" />
+    <Content Include="Scripts\contentTools\sandbox\build\images\drop-vert-below.svg" />
+    <Content Include="Scripts\contentTools\sandbox\build\images\video.svg" />
+    <Content Include="Scripts\contentTools\sandbox\image.png" />
+    <Content Include="Scripts\contentTools\sandbox\sandbox.css" />
+    <Content Include="Scripts\contentTools\sandbox\sandbox.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
@@ -1211,6 +1272,7 @@
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\ckeditor\samples\sample_posteddata.php" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\ckeditor\skins\moono\readme.md" />
+    <Content Include="Views\Home\Editor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1251,6 +1313,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\SysAdmin\Models\" />
+    <Folder Include="Scripts\contentTools\sandbox\src\" />
+    <Folder Include="Views\Templates\Simple\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

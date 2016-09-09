@@ -2,10 +2,9 @@
 {
     public class WelcomeTemplate : Template
     {
-        public WelcomeTemplate(string user, string content, bool usePartial) : base("Welcome", "/Content/MailTemplates/WelcomeTemplates/{0}.html")
+        public WelcomeTemplate(bool usePartial, params string[] arguments) : base("Welcome", "/Content/MailTemplates/WelcomeTemplates/{0}.html")
         {
-            User = user;
-            Content = content;
+            Arguments = arguments;
             UsePartial = usePartial;
         }
     }

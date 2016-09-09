@@ -12,8 +12,7 @@ namespace Cinotam.ModuleZero.MailSender.TemplateManager.Templates
 
         private string _templateName;
         private readonly string _route;
-        public string User { get; set; }
-        public string Content { get; set; }
+        public object[] Arguments { get; set; }
         public string TemplateRoute => BuildRoute();
         public DateTime Date { get; set; }
         public bool UsePartial { get; set; }

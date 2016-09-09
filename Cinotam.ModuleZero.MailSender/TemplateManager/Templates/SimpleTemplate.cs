@@ -4,8 +4,6 @@
     {
         public SimpleTemplate(string user, string content) : base("", "")
         {
-            User = user;
-            Content = content;
         }
     }
 }

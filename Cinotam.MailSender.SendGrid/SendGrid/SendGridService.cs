@@ -25,7 +25,7 @@ namespace Cinotam.MailSender.SendGrid.SendGrid
             var to = new Email(input.MailMessage.To.ToString());
             var content = new Content(input.EncodeType, input.Body);
             var mail = new Mail(from, input.MailMessage.Subject, to, content);
-            if (!string.IsNullOrEmpty(input.ExtraParams.TemplateId))
+            if (!string.IsNullOrEmpty(input.ExtraParams.TemplateId) && input.ExtraParams.EnableTemplates)
             {
                 mail.TemplateId = input.ExtraParams.TemplateId;
                 if (input.ExtraParams.Substitutions != null)

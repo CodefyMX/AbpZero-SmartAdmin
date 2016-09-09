@@ -2,10 +2,8 @@
 {
     public class ChangePasswordTemplate : Template
     {
-        public ChangePasswordTemplate(string user, string content, string templateRoute = "/Content/MailTemplates/PasswordChange.html") : base("", "")
+        public ChangePasswordTemplate() : base("", "")
         {
-            User = user;
-            Content = content;
         }
     }
 }

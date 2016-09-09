@@ -1,47 +1,34 @@
 ﻿using Cinotam.ModuleZero.MailSender.TemplateManager.Templates;
 using System;
-using System.Collections.Generic;
 using System.Web.Hosting;
 
 namespace Cinotam.ModuleZero.MailSender.TemplateManager
 {
     public class TemplateManager : ITemplateManager
     {
-        public string GetContent(TemplateType type, string user, string content)
+
+        public string GetContent(TemplateType type, bool enablePartials, params string[] arguments)
         {
             switch (type)
             {
                 case TemplateType.Welcome:
-                    return GetTextFromFile(new WelcomeTemplate(user, content, false));
+                    return GetTextFromFile(new WelcomeTemplate(enablePartials, arguments));
                 case TemplateType.NotificationUserChangePassword:
-                    return GetTextFromFile(new ChangePasswordTemplate(user, content));
+                    return GetTextFromFile(new ChangePasswordTemplate());
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
-
-        public string GetContent(TemplateType type, IDictionary<int, string> arguments)
-        {
-            throw new NotImplementedException();
-        }
-
         private string GetTextFromFile(Template template)
         {
-            try
+            var localPath = HostingEnvironment.MapPath(template.TemplateRoute);
+            if (localPath != null)
             {
-                var localPath = HostingEnvironment.MapPath(template.TemplateRoute);
-                if (localPath != null)
-                {
-                    var text = System.IO.File.ReadAllText(localPath);
-                    var format = string.Format(text, template.User, template.Content);
-                    return format;
-                }
-                return template.Content;
+                var text = System.IO.File.ReadAllText(localPath);
+                var format = string.Format(text, template.Arguments);
+                return format;
             }
-            catch (Exception)
-            {
-                return template.Content;
-            }
+            throw new InvalidOperationException(nameof(localPath));
         }
     }
 }

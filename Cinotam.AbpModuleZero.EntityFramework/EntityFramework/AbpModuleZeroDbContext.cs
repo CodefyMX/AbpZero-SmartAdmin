@@ -2,14 +2,21 @@
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
+using Cinotam.Cms.DatabaseEntities.Pages.Entities;
+using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System.Data.Common;
+using System.Data.Entity;
 
 namespace Cinotam.AbpModuleZero.EntityFramework
 {
     public class AbpModuleZeroDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
         //TODO: Define an IDbSet for your Entities...
-
+        #region CinotamCms
+        public IDbSet<Page> Pages { get; set; }
+        public IDbSet<Template> Templates { get; set; }
+        public IDbSet<Content> Contents { get; set; }
+        #endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.
          *   But it may cause problems when working Migrate.exe of EF. If you will apply migrations on command line, do not

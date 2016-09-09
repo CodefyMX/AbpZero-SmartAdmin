@@ -50,6 +50,9 @@
     <text name="ChangePasswordForm" value="Change password form"/>
     <text name="CurrentPassword" value="Current password"/>
     <text name="ConfirmPassword" value="Confirm password"/>
+    <text name="WelcomeMessage" value="Welcome {0} to the best website in the UNIVERSE!!!"/>
+    <text name="YourUserIs" value="Your username is {0}"/>
+    <text name="YourDefaultPassword" value="Your default password is: {0}"/>
     <!--//Users-->
 
 

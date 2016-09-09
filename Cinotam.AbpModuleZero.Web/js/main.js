@@ -1,6 +1,6 @@
 ﻿(function ($) {
 
-    
+
 
     //serializeFormToObject plugin for jQuery
     $.fn.serializeFormToObject = function () {
@@ -35,7 +35,7 @@ var notificationService = (function () {
         if (!$element) {
             $element = $("#userNotifications");
         }
-        $element.text ("");
+        $element.text("");
         abp.services.app.user.getMyNotifications(2, 10).done(function (response) {
             response.notifications.forEach(function (userNotification) {
                 printNotificationInList(userNotification);
@@ -44,10 +44,10 @@ var notificationService = (function () {
     }
     function printNotificationInList(userNotification, $element) {
         if (!$element) {
-            $element = $ ("#userNotifications");
-            console.info ("Element not defined, defining default");
+            $element = $("#userNotifications");
+            console.info("Element not defined, defining default");
         } else {
-            console.info ("Element defined");
+            console.info("Element defined");
         }
         if (userNotification.notification.data.type === 'Abp.Notifications.LocalizableMessageNotificationData') {
             var localizedText = abp.localization.localize(
@@ -107,12 +107,12 @@ var notificationService = (function () {
                 case "UserCreated":
                     html = getHtmlForNotification(userNotification, badgeColors.green, icons.user, stateClass, "/SysAdmin/Users/UsersAndRolesList/", "");
                     setHtmlNotification($element, html, localizedText);
-                    
+
                     break;
                 case "UserDeleted":
                     html = getHtmlForNotification(userNotification, badgeColors.yellow, icons.user, stateClass, "/SysAdmin/Users/UsersAndRolesList/", "");
                     setHtmlNotification($element, html, localizedText);
-                    
+
                     break;
                 default:
                     $element.append(abp.utils.formatString('<li class=' + userNotification.id + '>' +
@@ -166,44 +166,35 @@ var notificationService = (function () {
         $("body").on("click", ".js-mark-readed", function () {
             var $elm = $(this);
             var id = $elm.data("notification-id");
-            markAsReaded(id, function () {
-                var selector = "." + id;
-                $(selector).removeClass("unread");
-                var href = $elm.data("href");
-                if (href) {
-                    window.location.href = href;
-                }
-
-            });
+            markAsReaded(id, $elm);
         });
     }
     function callAction($elm) {
         var id = $elm.data("notification-id");
-        markAsReaded(id, function () {
-            var selector = "." + id;
-            $(selector).removeClass("unread");
+        markAsReaded(id, $elm);
+    }
+    function markAsReaded(notificationId, $elm) {
+        abp.ui.setBusy("#userNotifications", abp.services.app.user.markAsReaded(notificationId).done(function () {
+            var selector = "." + notificationId;
+            var elements = $ (selector);
+            elements.children().removeClass("unread");
             var href = $elm.data("href");
             if (href) {
                 window.location.href = href;
             }
 
-        });
-    }
-    function markAsReaded(notificationId, callback) {
-        abp.ui.setBusy("#userNotifications", abp.services.app.user.markAsReaded(notificationId).done(function () {
-            callback();
         }));
     }
 
     var functions = {
-        initView : initView,
-        printNotificationInList : printNotificationInList,
-        getHtmlForNotification : getHtmlForNotification,
-        setHtmlNotification : setHtmlNotification,
-        getStateClass : getStateClass,
-        startListening : startListening,
-        callAction : callAction,
-        markAsReaded : markAsReaded
+        initView: initView,
+        printNotificationInList: printNotificationInList,
+        getHtmlForNotification: getHtmlForNotification,
+        setHtmlNotification: setHtmlNotification,
+        getStateClass: getStateClass,
+        startListening: startListening,
+        callAction: callAction,
+        markAsReaded: markAsReaded
     };
     return functions;
 })();
