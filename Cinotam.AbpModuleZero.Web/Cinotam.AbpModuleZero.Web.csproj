@@ -14,7 +14,7 @@
     <RootNamespace>Cinotam.AbpModuleZero.Web</RootNamespace>
     <AssemblyName>Cinotam.AbpModuleZero.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -1137,6 +1137,60 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\toastr.less" />
     <Content Include="Content\toastr.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\sandbox\cloudinary-image-uploader.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\sandbox\image-uploader.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\sandbox\sandbox.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\sandbox\sandbox.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\editor.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\history.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\namespace.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\styles.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\tools.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\dialogs\dialogs.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\dialogs\image.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\dialogs\link.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\dialogs\properties.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\dialogs\table.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\dialogs\video.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\events.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\flashes.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\ignition.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\inspector.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\modal.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\toolbox.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\scripts\ui\ui.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\editor.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\history.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\namespace.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\styles.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\tools.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\dialogs\dialogs.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\dialogs\image.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\dialogs\link.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\dialogs\properties.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\dialogs\table.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\dialogs\video.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\events.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\flashes.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\ignition.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\inspector.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\modal.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\toolbox.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\spec\ui\ui.coffee" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\content-tools.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_attributes.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_crop-marks.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_dialogs.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_flashes.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_grips.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_ignition.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_inspector.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_modal.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_progress.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_sections.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_toolbox.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_ui.scss" />
+    <Content Include="Scripts\contentTools\sandbox\src\styles\_settings.scss" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1315,7 +1369,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\SysAdmin\Models\" />
-    <Folder Include="Scripts\contentTools\sandbox\src\" />
     <Folder Include="Views\Templates\Simple\" />
   </ItemGroup>
   <PropertyGroup>
