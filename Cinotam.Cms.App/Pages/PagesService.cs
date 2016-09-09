@@ -1,4 +1,5 @@
-﻿using Cinotam.Cms.App.Pages.Dto;
+﻿using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
+using Cinotam.Cms.App.Pages.Dto;
 using Cinotam.Cms.Core.Pages;
 using System;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace Cinotam.Cms.App.Pages
             throw new NotImplementedException();
         }
 
-        public Task<PageListOutput> GetPageList()
+        public Task<ReturnModel<PageDto>> GetPageList(RequestModel<object> input)
         {
             throw new NotImplementedException();
         }

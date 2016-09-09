@@ -37,9 +37,18 @@
 					<li class="@Html.RouteIf("AuditLogsList", "active")">
 						<a href="@Url.Action("AuditLogsList", "AuditLogs")" title="Registros"><span class="menu-item-parent">Registros</span></a>
 					</li>
+					
+				</ul>
+
+			</li>
+			<li class="@Html.RouteIf("index", "active")">
+				<a href="#" title="Administración"><i class="fa fa-lg fa-fw fa-beer"></i> <span class="menu-item-parent">Cms</span></a>
+				<ul>
+					<li class="@Html.RouteIf("MyPages", "active")">
+						<a href="@Url.Action("MyPages", "Cms")" title="Paginas"><span class="menu-item-parent">Paginas</span></a>
+					</li>
 				</ul>
 			</li>
-
 		</ul>
 	</nav>
 	<span class="minifyme" data-action="minifyMenu">

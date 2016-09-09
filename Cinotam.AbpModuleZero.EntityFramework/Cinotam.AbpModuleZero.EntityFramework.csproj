@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201609092045359_CmsBasicEntities.Designer.cs">
       <DependentUpon>201609092045359_CmsBasicEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609092129271_PageIdField.cs" />
+    <Compile Include="Migrations\201609092129271_PageIdField.Designer.cs">
+      <DependentUpon>201609092129271_PageIdField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -285,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609092045359_CmsBasicEntities.resx">
       <DependentUpon>201609092045359_CmsBasicEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609092129271_PageIdField.resx">
+      <DependentUpon>201609092129271_PageIdField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

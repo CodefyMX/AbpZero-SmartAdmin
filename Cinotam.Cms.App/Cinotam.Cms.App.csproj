@@ -52,6 +52,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cinotam.AbpModuleZero.Tools\Cinotam.AbpModuleZero.Tools.csproj">
+      <Project>{9AB7EE8A-5411-4D24-AE46-158065006F00}</Project>
+      <Name>Cinotam.AbpModuleZero.Tools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cinotam.Cms.Core\Cinotam.Cms.Core.csproj">
       <Project>{CC639C97-140A-42F6-8323-7C702077ACAE}</Project>
       <Name>Cinotam.Cms.Core</Name>
