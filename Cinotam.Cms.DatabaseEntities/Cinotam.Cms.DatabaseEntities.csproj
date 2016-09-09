@@ -49,6 +49,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\Entities\Template.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cinotam.Cms.Contracts\Cinotam.Cms.Contracts.csproj">
+      <Project>{DABC5C7B-2468-40CB-A673-DC723656174D}</Project>
+      <Name>Cinotam.Cms.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

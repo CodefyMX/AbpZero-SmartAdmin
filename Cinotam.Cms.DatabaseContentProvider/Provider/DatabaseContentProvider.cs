@@ -18,17 +18,19 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
             _templateRepository = templateRepository;
         }
 
-        public Task SaveContent(IPageContentInput input)
+        public bool IsFileSystemService => false;
+
+        public Task SaveContent(IPageContent input)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IHtmlContentOutput> GetPageContent(int pageId)
+        public Task<IPageContent> GetPageContent(int pageId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IHtmlContentOutput> GetPageContent(int pageId, string language)
+        public Task<IPageContent> GetPageContent(int pageId, string language)
         {
             throw new System.NotImplementedException();
         }

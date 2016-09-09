@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Abp">
+      <HintPath>..\packages\Abp.0.11.3.0\lib\net452\Abp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,7 +45,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CinotamCmsApp.cs" />
+    <Compile Include="Pages\Dto\PageDto.cs" />
+    <Compile Include="Pages\Dto\PageListOutput.cs" />
+    <Compile Include="Pages\IPagesService.cs" />
+    <Compile Include="Pages\PagesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cinotam.Cms.Core\Cinotam.Cms.Core.csproj">
+      <Project>{CC639C97-140A-42F6-8323-7C702077ACAE}</Project>
+      <Name>Cinotam.Cms.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

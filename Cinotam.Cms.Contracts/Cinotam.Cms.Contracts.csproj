@@ -41,8 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IHtmlContentOutput.cs" />
-    <Compile Include="IPageContentInput.cs" />
+    <Compile Include="IPageContent.cs" />
     <Compile Include="ITemplateContentProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

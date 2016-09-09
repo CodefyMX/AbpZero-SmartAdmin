@@ -4,8 +4,9 @@ namespace Cinotam.Cms.Contracts
 {
     public interface ITemplateContentProvider
     {
-        Task SaveContent(IPageContentInput input);
-        Task<IHtmlContentOutput> GetPageContent(int pageId);
-        Task<IHtmlContentOutput> GetPageContent(int pageId, string language);
+        bool IsFileSystemService { get; }
+        Task SaveContent(IPageContent input);
+        Task<IPageContent> GetPageContent(int pageId);
+        Task<IPageContent> GetPageContent(int pageId, string language);
     }
 }

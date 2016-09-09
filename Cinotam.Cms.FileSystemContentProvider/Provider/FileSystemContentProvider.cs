@@ -6,17 +6,18 @@ namespace Cinotam.Cms.FileSystemContentProvider.Provider
 {
     public class FileSystemContentProvider : IFileSystemContentProvider
     {
-        public Task SaveContent(IPageContentInput input)
+        public bool IsFileSystemService => false;
+        public Task SaveContent(IPageContent input)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IHtmlContentOutput> GetPageContent(int pageId)
+        public Task<IPageContent> GetPageContent(int pageId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IHtmlContentOutput> GetPageContent(int pageId, string language)
+        public Task<IPageContent> GetPageContent(int pageId, string language)
         {
             throw new NotImplementedException();
         }
