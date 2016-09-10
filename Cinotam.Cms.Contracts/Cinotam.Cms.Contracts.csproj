@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPageContent.cs" />
+    <Compile Include="ITemplateContent.cs" />
+    <Compile Include="IPageContentProvider.cs" />
     <Compile Include="ITemplateContentProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -29,7 +29,7 @@ namespace Cinotam.Cms.Core.Pages
         {
             var useFileSystem = false;
 
-            foreach (var templateContentProvider in CinotamCmsCore.TemplateContentProviders.Where(a => a.IsFileSystemService == useFileSystem))
+            foreach (var templateContentProvider in CinotamCmsCore.PageContentProviders.Where(a => a.IsFileSystemService == useFileSystem))
             {
                 await templateContentProvider.SaveContent(content);
             }
@@ -39,7 +39,7 @@ namespace Cinotam.Cms.Core.Pages
         {
             var useFileSystem = false;
 
-            foreach (var templateContentProvider in CinotamCmsCore.TemplateContentProviders.Where(a => a.IsFileSystemService == useFileSystem))
+            foreach (var templateContentProvider in CinotamCmsCore.PageContentProviders.Where(a => a.IsFileSystemService == useFileSystem))
             {
                 var result = await templateContentProvider.GetPageContent(pageId, lang);
                 if (result != null) return result as Content;

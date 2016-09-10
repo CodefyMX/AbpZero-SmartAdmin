@@ -11,5 +11,6 @@ namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
         public virtual ICollection<Content> Contents { get; set; }
         public virtual int? ParentPage { get; set; }
         public virtual ICollection<Page> ChildPages { get; set; }
+        public bool Active { get; set; }
     }
 }

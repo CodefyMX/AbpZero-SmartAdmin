@@ -1,9 +1,9 @@
 ﻿using Abp.Modules;
 using System.Reflection;
 
-namespace Cinotam.Cms.DatabaseContentProvider
+namespace Cinotam.Cms.DatabaseTemplateProvider
 {
-    public class CinotamCmsDatabaseProvider : AbpModule
+    public class CinotamCmsDatabaseTemplateProvider : AbpModule
     {
         public override void Initialize()
         {

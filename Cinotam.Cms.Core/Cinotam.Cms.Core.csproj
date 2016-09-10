@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CinotamCmsConst.cs" />
     <Compile Include="CinotamCmsCore.cs" />
     <Compile Include="Pages\IPageManager.cs" />
     <Compile Include="Pages\PageManager.cs" />
@@ -61,6 +62,10 @@
     <ProjectReference Include="..\Cinotam.Cms.DatabaseEntities\Cinotam.Cms.DatabaseEntities.csproj">
       <Project>{2A5BA0A4-51FB-4132-BD08-F00357B24F23}</Project>
       <Name>Cinotam.Cms.DatabaseEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.Cms.DatabaseTemplateProvider\Cinotam.Cms.DatabaseTemplateProvider.csproj">
+      <Project>{129C15E0-149B-4BF8-B136-B37D4C085F70}</Project>
+      <Name>Cinotam.Cms.DatabaseTemplateProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.Cms.FileSystemContentProvider\Cinotam.Cms.FileSystemContentProvider.csproj">
       <Project>{BAD69CC1-63F4-4874-A00C-D64367FF3D5E}</Project>

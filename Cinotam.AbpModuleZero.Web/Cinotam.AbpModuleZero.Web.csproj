@@ -1353,6 +1353,10 @@
       <Project>{5eb52d3d-09fd-463a-b02a-8d9856bd3724}</Project>
       <Name>Cinotam.AbpModuleZero.WebApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cinotam.Cms.App\Cinotam.Cms.App.csproj">
+      <Project>{10E38564-856C-4C11-940C-6B23C5E3A284}</Project>
+      <Name>Cinotam.Cms.App</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cinotam.ModuleZero.AppModule\Cinotam.ModuleZero.AppModule.csproj">
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>
       <Name>Cinotam.ModuleZero.AppModule</Name>

@@ -1,12 +1,13 @@
 ﻿using Abp.Application.Services.Dto;
+using Castle.Components.DictionaryAdapter;
+using System.Collections.Generic;
 
 namespace Cinotam.Cms.App.Pages.Dto
 {
     public class PageDto : EntityDto
     {
         public string Title { get; set; }
-        public string Content { get; set; }
-        public string TemplateId { get; set; }
-        public string Lang { get; set; }
+        public int TemplateId { get; set; }
+        public List<Lang> Langs { get; set; } = new EditableList<Lang>();
     }
 }

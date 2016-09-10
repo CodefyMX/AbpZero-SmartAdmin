@@ -7,9 +7,10 @@ namespace Cinotam.Cms.App.Pages
 {
     public interface IPagesService : IApplicationService
     {
-        Task CreateEditPage(string name, int parent, int templateId);
-        Task<PageDto> GetPage(int id, string lang);
+        Task CreateEditPage(PageInput input);
+        Task<PageInput> GetPage(int? id);
+        Task<PageInput> GetPageForEdit(int? id);
         Task<PageDto> GetPreviewPage(int id, string name);
-        Task<ReturnModel<PageDto>> GetPageList(RequestModel<object> input);
+        ReturnModel<PageDto> GetPageList(RequestModel<object> input);
     }
 }

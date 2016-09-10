@@ -1,28 +1,70 @@
-﻿using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
+﻿using Abp.Domain.Repositories;
+using Abp.Localization;
+using Abp.Threading;
+using Castle.Components.DictionaryAdapter;
+using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.Cms.App.Pages.Dto;
 using Cinotam.Cms.Core.Pages;
+using Cinotam.Cms.DatabaseEntities.Pages.Entities;
+using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Cinotam.Cms.App.Pages
 {
-    public class PagesService : IPagesService
+    public class PagesService : CinotamCmsAppServiceBase, IPagesService
     {
         private readonly IPageManager _pageManager;
-
-        public PagesService(IPageManager pageManager)
+        private readonly IRepository<Page> _pageRepository;
+        private readonly IRepository<Content> _contentRepository;
+        private readonly IRepository<Template> _templateRepository;
+        private readonly IApplicationLanguageManager _applicationLanguageManager;
+        public PagesService(IPageManager pageManager, IRepository<Page> pageRepository, IRepository<Content> contentRepository, IRepository<Template> templateRepository, IApplicationLanguageManager applicationLanguageManager)
         {
             _pageManager = pageManager;
+            _pageRepository = pageRepository;
+            _contentRepository = contentRepository;
+            _templateRepository = templateRepository;
+            _applicationLanguageManager = applicationLanguageManager;
         }
 
-        public Task CreateEditPage(string name, int parent, int templateId)
+        public Task CreateEditPage(PageInput input)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PageDto> GetPage(int id, string lang)
+        public async Task<PageInput> GetPage(int? id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<PageInput> GetPageForEdit(int? id)
+        {
+            if (!id.HasValue) return new PageInput();
+            var templates = _templateRepository.GetAllList();
+            var otherPages = _pageRepository.GetAllList();
+            var page = await _pageRepository.GetAsync(id.Value);
+            if (page == null) return new PageInput();
+            return new PageInput()
+            {
+                Title = page.Name,
+                ParentId = page.ParentPage ?? 0,
+                Active = page.Active,
+                Pages = otherPages.Select(a => new PageDto()
+                {
+                    Id = a.Id,
+                    Title = a.Name
+                }).ToList(),
+                Templates = templates.Select(a => new TemplateDto()
+                {
+                    Id = a.Id,
+                    Name = a.Name
+                }).ToList(),
+                TemplateId = GetTemplate(page.Id)
+            };
         }
 
         public Task<PageDto> GetPreviewPage(int id, string name)
@@ -30,9 +72,53 @@ namespace Cinotam.Cms.App.Pages
             throw new NotImplementedException();
         }
 
-        public Task<ReturnModel<PageDto>> GetPageList(RequestModel<object> input)
+        public ReturnModel<PageDto> GetPageList(RequestModel<object> input)
         {
-            throw new NotImplementedException();
+            var query = _pageRepository.GetAll();
+            List<Expression<Func<Page, string>>> searchs = new EditableList<Expression<Func<Page, string>>>();
+            searchs.Add(a => a.Name);
+            int count;
+            var pages = GenerateTableModel(input, query, searchs, "Name", out count);
+            return new ReturnModel<PageDto>()
+            {
+                data = pages.Select(a => new PageDto()
+                {
+                    Id = a.Id,
+                    Langs = AsyncHelper.RunSync(() => GetAvailableLangs(a.Id)),
+                    Title = a.Name,
+                    TemplateId = GetTemplate(a.Id)
+                }).ToArray(),
+                draw = input.draw,
+                length = input.length,
+                recordsTotal = count,
+                iTotalDisplayRecords = count,
+                iTotalRecords = query.Count(),
+                recordsFiltered = pages.Count()
+            };
+        }
+
+        private async Task<List<Lang>> GetAvailableLangs(int pageId)
+        {
+            var list = new List<Lang>();
+            var allContents = _contentRepository.GetAllList(a => a.Page.Id == pageId);
+            var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
+            foreach (var item in allContents)
+            {
+                var lang = (await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId)).FirstOrDefault(a => a.Name.Equals(item.Lang));
+                if (lang != null)
+                    list.Add(new Lang()
+                    {
+                        LangCode = lang.Name,
+                        LangIcon = lang.Icon
+                    });
+            }
+            return list;
+        }
+
+        private int GetTemplate(int pageId)
+        {
+            var template = _templateRepository.FirstOrDefault(a => a.Page.Any(p => p.Id == pageId));
+            return template?.Id ?? 0;
         }
     }
 }

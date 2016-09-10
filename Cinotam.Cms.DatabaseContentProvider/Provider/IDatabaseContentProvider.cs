@@ -3,7 +3,7 @@ using Cinotam.Cms.Contracts;
 
 namespace Cinotam.Cms.DatabaseContentProvider.Provider
 {
-    public interface IDatabaseContentProvider : ITemplateContentProvider, IDomainService
+    public interface IDatabaseContentProvider : IPageContentProvider, IDomainService
     {
     }
 }
