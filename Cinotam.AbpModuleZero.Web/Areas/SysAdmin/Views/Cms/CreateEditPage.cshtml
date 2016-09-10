@@ -1,0 +1,30 @@
+﻿@model Cinotam.Cms.App.Pages.Dto.PageInput
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModal-label">@L("CreateEditPage")</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+                <div class="form-group">
+                    <label class="control-label" for="Title">@L("Name")</label>
+                    @Html.TextBoxFor(a=>a.Title,new {@class="form-control"})
+                </div>
+                <div class="form-group">
+                    <label class="control-label">@L("SelectTemplate")</label>
+                    @Html.DropDownListFor(a=>a.TemplateId,new SelectList(Model.Templates,"Id","Name",Model.TemplateId),new {@class="form-control"})
+                </div>   
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">@L("Close")</button>
+            <button type="button" class="btn btn-primary">@L("Save")</button>
+        </div>
+    </div>
+</div>

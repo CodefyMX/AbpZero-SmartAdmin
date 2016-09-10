@@ -2,6 +2,7 @@
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.Cms.App.Pages;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
@@ -28,9 +29,9 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult CreateEditPage(int? id)
+        public async Task<ActionResult> CreateEditPage(int? id)
         {
-            var page = _pagesService.GetPageForEdit(id);
+            var page = await _pagesService.GetPageForEdit(id);
             return View(page);
         }
     }

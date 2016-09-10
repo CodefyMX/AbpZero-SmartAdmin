@@ -31,12 +31,24 @@ namespace Cinotam.Cms.App.Pages
             _applicationLanguageManager = applicationLanguageManager;
         }
 
-        public Task CreateEditPage(PageInput input)
+        public async Task CreateEditPage(PageInput input)
         {
-            throw new NotImplementedException();
+            await _pageManager.SaveOrEditPage(new Page()
+            {
+                Active = false,
+                Name = input.Title,
+                Template = GetTemplateObject(input.TemplateId),
+                ParentPage = input.ParentId
+            });
+
         }
 
-        public async Task<PageInput> GetPage(int? id)
+        private Template GetTemplateObject(int? inputTemplateId)
+        {
+            return _templateRepository.FirstOrDefault(a => a.Id == inputTemplateId.Value);
+        }
+
+        public Task<PageInput> GetPage(int? id)
         {
             throw new NotImplementedException();
         }
@@ -101,7 +113,6 @@ namespace Cinotam.Cms.App.Pages
         {
             var list = new List<Lang>();
             var allContents = _contentRepository.GetAllList(a => a.Page.Id == pageId);
-            var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
             foreach (var item in allContents)
             {
                 var lang = (await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId)).FirstOrDefault(a => a.Name.Equals(item.Lang));
