@@ -2,12 +2,13 @@
 using Cinotam.Cms.Contracts;
 using Cinotam.Cms.DatabaseContentProvider;
 using Cinotam.Cms.DatabaseTemplateProvider;
+using Cinotam.Cms.FileSystemTemplateProvider;
 using System.Collections.Generic;
 using System.Reflection;
 
 namespace Cinotam.Cms.Core
 {
-    [DependsOn(typeof(CinotamCmsDatabaseProvider), typeof(CinotamCmsDatabaseTemplateProvider))]
+    [DependsOn(typeof(CinotamCmsDatabaseProvider), typeof(CinotamCmsDatabaseTemplateProvider), typeof(CinotamCmsFileSystemTemplateProvider))]
     public class CinotamCmsCore : AbpModule
     {
         public static List<IPageContentProvider> PageContentProviders = new List<IPageContentProvider>();
@@ -24,7 +25,7 @@ namespace Cinotam.Cms.Core
 
             //PageContentProviders.Add(IocManager.Resolve<FileSystemContentProvider.Provider.FileSystemContentProvider>());
 
-            TemplateContentProviders.Add(IocManager.Resolve<DatabaseTemplateProvider.Provider.DatabaseTemplateProvider>());
+            TemplateContentProviders.Add(IocManager.Resolve<FileSystemTemplateProvider.Provider.FileSystemTemplateProvider>());
         }
     }
 }

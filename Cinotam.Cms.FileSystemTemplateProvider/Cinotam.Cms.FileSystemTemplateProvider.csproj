@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CC639C97-140A-42F6-8323-7C702077ACAE}</ProjectGuid>
+    <ProjectGuid>{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cinotam.Cms.Core</RootNamespace>
-    <AssemblyName>Cinotam.Cms.Core</AssemblyName>
+    <RootNamespace>Cinotam.Cms.FileSystemTemplateProvider</RootNamespace>
+    <AssemblyName>Cinotam.Cms.FileSystemTemplateProvider</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -34,8 +34,13 @@
     <Reference Include="Abp">
       <HintPath>..\packages\Abp.0.11.3.0\lib\net452\Abp.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,42 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CinotamCmsConst.cs" />
-    <Compile Include="CinotamCmsCore.cs" />
-    <Compile Include="Pages\IPageManager.cs" />
-    <Compile Include="Pages\PageManager.cs" />
+    <Compile Include="CinotamCmsFileSystemTemplateProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Templates\ITemplateManager.cs" />
-    <Compile Include="Templates\TemplateManager.cs" />
+    <Compile Include="Provider\FileSystemTemplateProvider.cs" />
+    <Compile Include="Provider\IFileSystemTemplateProvider.cs" />
+    <Compile Include="Provider\JsonEntities\JsonConfigurarion.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cinotam.Cms.Contracts\Cinotam.Cms.Contracts.csproj">
       <Project>{DABC5C7B-2468-40CB-A673-DC723656174D}</Project>
       <Name>Cinotam.Cms.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.DatabaseContentProvider\Cinotam.Cms.DatabaseContentProvider.csproj">
-      <Project>{57CDC3CD-F90E-460E-A5CB-73AF6354506B}</Project>
-      <Name>Cinotam.Cms.DatabaseContentProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.DatabaseEntities\Cinotam.Cms.DatabaseEntities.csproj">
-      <Project>{2A5BA0A4-51FB-4132-BD08-F00357B24F23}</Project>
-      <Name>Cinotam.Cms.DatabaseEntities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.DatabaseTemplateProvider\Cinotam.Cms.DatabaseTemplateProvider.csproj">
-      <Project>{129C15E0-149B-4BF8-B136-B37D4C085F70}</Project>
-      <Name>Cinotam.Cms.DatabaseTemplateProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.FileSystemContentProvider\Cinotam.Cms.FileSystemContentProvider.csproj">
-      <Project>{BAD69CC1-63F4-4874-A00C-D64367FF3D5E}</Project>
-      <Name>Cinotam.Cms.FileSystemContentProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.FileSystemTemplateProvider\Cinotam.Cms.FileSystemTemplateProvider.csproj">
-      <Project>{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115}</Project>
-      <Name>Cinotam.Cms.FileSystemTemplateProvider</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1247,6 +1247,7 @@
       <DependentUpon>Login.css</DependentUpon>
     </Content>
     <Content Include="Views\Account\Register.js" />
+    <Content Include="Content\Templates\Simple\Simple.html" />
     <Content Include="Views\Tenants\Index.js" />
     <Content Include="Views\Users\Index.js" />
     <Content Include="Web.config">
@@ -1330,6 +1331,7 @@
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\ckeditor\samples\sample_posteddata.php" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\ckeditor\skins\moono\readme.md" />
     <Content Include="Views\Home\Editor.cshtml" />
+    <Content Include="Content\Templates\Simple\TemplateConfig.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1374,7 +1376,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\SysAdmin\Models\" />
-    <Folder Include="Views\Templates\Simple\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

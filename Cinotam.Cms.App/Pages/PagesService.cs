@@ -5,6 +5,7 @@ using Castle.Components.DictionaryAdapter;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.Cms.App.Pages.Dto;
 using Cinotam.Cms.Core.Pages;
+using Cinotam.Cms.Core.Templates;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System;
@@ -21,14 +22,16 @@ namespace Cinotam.Cms.App.Pages
         private readonly IRepository<Page> _pageRepository;
         private readonly IRepository<Content> _contentRepository;
         private readonly IRepository<Template> _templateRepository;
+        private readonly ITemplateManager _templateManager;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
-        public PagesService(IPageManager pageManager, IRepository<Page> pageRepository, IRepository<Content> contentRepository, IRepository<Template> templateRepository, IApplicationLanguageManager applicationLanguageManager)
+        public PagesService(IPageManager pageManager, IRepository<Page> pageRepository, IRepository<Content> contentRepository, IRepository<Template> templateRepository, IApplicationLanguageManager applicationLanguageManager, ITemplateManager templateManager)
         {
             _pageManager = pageManager;
             _pageRepository = pageRepository;
             _contentRepository = contentRepository;
             _templateRepository = templateRepository;
             _applicationLanguageManager = applicationLanguageManager;
+            _templateManager = templateManager;
         }
 
         public async Task CreateEditPage(PageInput input)
@@ -55,6 +58,8 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task<PageInput> GetPageForEdit(int? id)
         {
+
+            await _templateManager.GetTemplateContent("Simple");
             if (!id.HasValue) return new PageInput();
             var templates = _templateRepository.GetAllList();
             var otherPages = _pageRepository.GetAllList();

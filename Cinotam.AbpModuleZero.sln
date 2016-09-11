@@ -80,6 +80,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateProviders", "Templa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.Cms.DatabaseTemplateProvider", "Cinotam.Cms.DatabaseTemplateProvider\Cinotam.Cms.DatabaseTemplateProvider.csproj", "{129C15E0-149B-4BF8-B136-B37D4C085F70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.Cms.FileSystemTemplateProvider", "Cinotam.Cms.FileSystemTemplateProvider\Cinotam.Cms.FileSystemTemplateProvider.csproj", "{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -194,6 +196,10 @@ Global
 		{129C15E0-149B-4BF8-B136-B37D4C085F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{129C15E0-149B-4BF8-B136-B37D4C085F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{129C15E0-149B-4BF8-B136-B37D4C085F70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -223,5 +229,6 @@ Global
 		{85E44809-46C7-4BAE-B808-7CF31CE07CA0} = {4F3BDDAA-F04A-41D2-8579-2B89508111EE}
 		{8E26E0D0-C1DF-4462-BBDE-93142345A281} = {4F3BDDAA-F04A-41D2-8579-2B89508111EE}
 		{129C15E0-149B-4BF8-B136-B37D4C085F70} = {8E26E0D0-C1DF-4462-BBDE-93142345A281}
+		{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115} = {8E26E0D0-C1DF-4462-BBDE-93142345A281}
 	EndGlobalSection
 EndGlobal

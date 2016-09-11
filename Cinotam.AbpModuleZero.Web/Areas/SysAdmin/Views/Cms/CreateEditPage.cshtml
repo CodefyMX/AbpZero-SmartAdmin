@@ -18,13 +18,16 @@
                 <div class="form-group">
                     <label class="control-label">@L("SelectTemplate")</label>
                     @Html.DropDownListFor(a=>a.TemplateId,new SelectList(Model.Templates,"Id","Name",Model.TemplateId),new {@class="form-control"})
+                </div>
+                <div class="form-group">
+                    <label class="control-label">@L("SelectParentPage")</label>
+                    @Html.DropDownListFor(a => a.ParentId, new SelectList(Model.Pages, "Id", "Title", Model.ParentId), new { @class = "form-control" })
                 </div>   
-                <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">@L("Close")</button>
-            <button type="button" class="btn btn-primary">@L("Save")</button>
+            <button type="submit" class="btn btn-primary">@L("Save")</button>
         </div>
     </div>
 </div>
