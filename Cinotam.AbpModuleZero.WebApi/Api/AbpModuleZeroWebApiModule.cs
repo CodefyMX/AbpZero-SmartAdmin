@@ -3,13 +3,14 @@ using Abp.Configuration.Startup;
 using Abp.Modules;
 using Abp.WebApi;
 using Abp.WebApi.Controllers.Dynamic.Builders;
+using Cinotam.Cms.App;
 using Cinotam.ModuleZero.AppModule;
 using System.Reflection;
 using System.Web.Http;
 
 namespace Cinotam.AbpModuleZero.Api
 {
-    [DependsOn(typeof(AbpWebApiModule), typeof(CinotamModuleZeroAppModule))]
+    [DependsOn(typeof(AbpWebApiModule), typeof(CinotamModuleZeroAppModule), typeof(CinotamCmsApp))]
     public class AbpModuleZeroWebApiModule : AbpModule
     {
         public override void Initialize()
@@ -18,6 +19,9 @@ namespace Cinotam.AbpModuleZero.Api
 
             DynamicApiControllerBuilder
                 .ForAll<IApplicationService>(typeof(CinotamModuleZeroAppModule).Assembly, "app")
+                .Build();
+            DynamicApiControllerBuilder
+                .ForAll<IApplicationService>(typeof(CinotamCmsApp).Assembly, "cms")
                 .Build();
             Configuration.Modules.AbpWebApi().HttpConfiguration.Filters.Add(new HostAuthenticationFilter("Bearer"));
         }

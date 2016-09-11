@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Repositories;
+﻿using System.Collections.Generic;
+using Abp.Domain.Repositories;
 using Cinotam.Cms.Contracts;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System.Threading.Tasks;
@@ -18,6 +19,11 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
         {
             var content = await _templatesRepository.FirstOrDefaultAsync(a => a.Name == templateName);
             return content == null ? string.Empty : content.Content;
+        }
+
+        public Task<List<string>> GetAvailableTemplates()
+        {
+            throw new System.NotImplementedException();
         }
 
         public async Task<string> GetTemplateContent(int templateId)

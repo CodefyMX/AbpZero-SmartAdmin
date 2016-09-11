@@ -11,5 +11,6 @@ namespace Cinotam.Cms.App.Pages.Dto
         public bool Active { get; set; }
         public List<TemplateDto> Templates { get; set; } = new EditableList<TemplateDto>();
         public List<PageDto> Pages { get; set; } = new EditableList<PageDto>();
+        public string TemplateName { get; set; }
     }
 }

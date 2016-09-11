@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Cinotam.Cms.Core.Templates
@@ -13,6 +14,16 @@ namespace Cinotam.Cms.Core.Templates
                 return templateContent;
             }
             throw new InvalidOperationException(nameof(templateName));
+        }
+
+        public async Task<List<string>> GetAvailableTemplates()
+        {
+            foreach (var provider in CinotamCmsCore.TemplateContentProviders)
+            {
+                var templateContent = await provider.GetAvailableTemplates();
+                return templateContent;
+            }
+            throw new InvalidOperationException();
         }
     }
 }

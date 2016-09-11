@@ -58,11 +58,22 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task<PageInput> GetPageForEdit(int? id)
         {
-
-            await _templateManager.GetTemplateContent("Simple");
-            if (!id.HasValue) return new PageInput();
-            var templates = _templateRepository.GetAllList();
+            var templates = await _templateManager.GetAvailableTemplates();
             var otherPages = _pageRepository.GetAllList();
+            await _templateManager.GetTemplateContent("Simple");
+            if (!id.HasValue) return new PageInput()
+            {
+                Pages = otherPages.Select(a => new PageDto()
+                {
+                    Id = a.Id,
+                    Title = a.Name
+                }).ToList(),
+                Templates = templates.Select(a => new TemplateDto()
+                {
+                    Name = a
+                }).ToList(),
+            };
+
             var page = await _pageRepository.GetAsync(id.Value);
             if (page == null) return new PageInput();
             return new PageInput()
@@ -77,8 +88,7 @@ namespace Cinotam.Cms.App.Pages
                 }).ToList(),
                 Templates = templates.Select(a => new TemplateDto()
                 {
-                    Id = a.Id,
-                    Name = a.Name
+                    Name = a
                 }).ToList(),
                 TemplateId = GetTemplate(page.Id)
             };

@@ -7,5 +7,6 @@
         public bool IsPartial { get; set; }
         public string TemplateFullName { get; set; }
         public bool OverrideFolder { get; set; }
+        public string DisplayName { get; set; }
     }
 }

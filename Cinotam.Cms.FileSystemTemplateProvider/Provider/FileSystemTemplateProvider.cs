@@ -29,9 +29,23 @@ namespace Cinotam.Cms.FileSystemTemplateProvider.Provider
             throw new InvalidOperationException(nameof(templateName));
         }
 
+        public async Task<List<string>> GetAvailableTemplates()
+        {
+            var directories = GetDirectories();
+            var templates = new List<string>();
+            await Task.FromResult(0);
+            foreach (var directory in directories)
+            {
+                var configuration = GetConfigFile(directory);
+                if (configuration == null) continue;
+                templates.Add(configuration.TemplateName);
+            }
+            return templates;
+        }
+
         private string GetContentFromConfiguration(JsonConfigurarion configuration, string directory)
         {
-            var file = directory+"/"  + configuration.TemplateFullName;
+            var file = directory + "/" + configuration.TemplateFullName;
             return GetTextFromFile(file);
         }
 

@@ -97,7 +97,7 @@
                                     <tr>
                                         <th data-class="expand">@L("Name")</th>
                                         <th>@L("Langs")</th>
-                                        <th>@L("Options")</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -144,13 +144,21 @@
                 {
                     "render": function (data, type, row) {
                         var lang = "";
-                        console.log(row);
+                        if (row.Langs.length <= 0) {
+                            return LSys("NoLangAvaiableYetForThisPage");
+                        }
                         row.Langs.forEach(function (dLanf) {
                             lang = lang + "<i title='" + dLanf.LangCode + "' class='" + dLanf.LangIcon + "'></i> ";
                         });
                         return lang;
                     },
                     "targets": 1
+                },
+                {
+                    "render": function (data, type, row) {
+                        return "<a href='/SysAdmin/Cms/PageConfig/"+row.Id+"' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i></a>";
+                    },
+                    "targets": 2
                 }
             ],
             "drawCallback": function (oSettings) {
