@@ -13,5 +13,13 @@ namespace Cinotam.Cms.App.Pages
         Task<PageDto> GetPreviewPage(int id, string name);
         ReturnModel<PageDto> GetPageList(RequestModel<object> input);
         Task<PageConfigurationObject> GetPageConfigurationObject(int id);
+        Task<PageTitleInput> GetPageTitleForEdit(int id, string lang);
+        Task CreateEditPageTitle(PageTitleInput input);
+        Task<PageViewOutput> GetPageViewById(int id, string lang);
+        PageViewOutput GetPageViewBySlug(string slug);
+        Task SavePageContent(PageContentInput input);
+        void TogglePageStatus(int pageId);
+        void SetPageAsMain(int pageId);
+        Task<string> GetMainPageSlug();
     }
 }

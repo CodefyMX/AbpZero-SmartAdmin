@@ -2,9 +2,9 @@
 @using System.Web.Optimization
 @using Abp.Timing
 @using Abp.Web.Mvc.Extensions
-@{
+@*@{
     SetAntiForgeryCookie();
-}
+}*@
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +48,7 @@
 
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
 @Scripts.Render("~/Bundles/vendor/js/bottom")
-
+    <script src="~/Scripts/bootstrap.min.js"></script>
     @Scripts.Render("~/Bundles/js")
 
     <script>

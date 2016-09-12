@@ -9,5 +9,6 @@ namespace Cinotam.Cms.App.Pages.Dto
         public string PageName { get; set; }
         public List<PageContentDto> ContentsByLanguage { get; set; } = new EditableList<PageContentDto>();
         public int Id { get; set; }
+        public bool IsMainPage { get; set; }
     }
 }

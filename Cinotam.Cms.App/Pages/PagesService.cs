@@ -2,6 +2,7 @@
 using Abp.Localization;
 using Abp.Threading;
 using Castle.Components.DictionaryAdapter;
+using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.Cms.App.Pages.Dto;
 using Cinotam.Cms.Core.Pages;
@@ -10,6 +11,7 @@ using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -40,15 +42,122 @@ namespace Cinotam.Cms.App.Pages
             {
                 Active = false,
                 Name = input.Title,
-                Template = GetTemplateObject(input.TemplateId),
-                ParentPage = input.ParentId
+                ParentPage = input.ParentId,
+                TemplateName = input.TemplateName
             });
 
         }
 
-        private Template GetTemplateObject(int? inputTemplateId)
+        public async Task SavePageContent(PageContentInput input)
         {
-            return _templateRepository.FirstOrDefault(a => a.Id == inputTemplateId.Value);
+            var pageContent = _contentRepository.FirstOrDefault(a => a.Page.Id == input.PageId && input.Lang == a.Lang);
+            pageContent.HtmlContent = input.HtmlContent;
+            await _pageManager.SavePageContent(pageContent);
+        }
+
+        public void TogglePageStatus(int pageId)
+        {
+            var page = _pageRepository.Get(pageId);
+            page.Active = !page.Active;
+            _pageRepository.Update(page);
+        }
+
+        public void SetPageAsMain(int pageId)
+        {
+            var page = _pageRepository.Get(pageId);
+            page.IsMainPage = !page.IsMainPage;
+            DisableOthers(pageId);
+            _pageRepository.Update(page);
+        }
+
+        public async Task<string> GetMainPageSlug()
+        {
+            var page = await _pageRepository.FirstOrDefaultAsync(a => a.IsMainPage && a.Active);
+            if (page == null) return string.Empty;
+            var pageContents =
+                _contentRepository.FirstOrDefault(
+                    a => a.Page.Id == page.Id && a.Lang == CultureInfo.CurrentUICulture.Name);
+            if (pageContents == null) return string.Empty;
+            return pageContents.Url;
+        }
+
+        private void DisableOthers(int pageId)
+        {
+            var pages = _pageRepository.GetAllList(a => a.Id != pageId);
+            foreach (var page in pages)
+            {
+                page.IsMainPage = false;
+                _pageRepository.Update(page);
+            }
+
+        }
+
+        public async Task<PageTitleInput> GetPageTitleForEdit(int id, string lang)
+        {
+            var contents = await _pageManager.GetPageContent(id, lang);
+            if (contents == null) return new PageTitleInput() { PageId = id, Lang = lang };
+            return new PageTitleInput()
+            {
+                Lang = lang,
+                PageId = id,
+                Title = contents.Title
+            };
+        }
+
+        public async Task CreateEditPageTitle(PageTitleInput input)
+        {
+            var page = _pageRepository.Get(input.PageId);
+            var template = await _templateManager.GetTemplateContent(page.TemplateName);
+            await _pageManager.SavePageContent(new Content()
+            {
+                Title = input.Title,
+                Lang = input.Lang,
+                HtmlContent = template,
+                Url = input.Title.Sluggify(),
+                PageId = page.Id,
+                Page = page,
+                TemplateUniqueName = page.TemplateName
+            });
+        }
+
+        public async Task<PageViewOutput> GetPageViewById(int id, string lang)
+        {
+            var pageContent = await _pageManager.GetPageContent(id, lang);
+            return new PageViewOutput()
+            {
+                Id = id,
+                Lang = lang,
+                HtmlContent = pageContent.HtmlContent,
+                TemplateName = pageContent.TemplateUniqueName,
+                Title = pageContent.Title
+            };
+        }
+
+        public PageViewOutput GetPageViewBySlug(string slug)
+        {
+            var content = _contentRepository.FirstOrDefault(a => a.Url.ToUpper().Equals(slug.ToUpper()) && a.Page.Active);
+            if (content == null) return null;
+            if (content.Lang == CultureInfo.CurrentUICulture.Name)
+            {
+                return new PageViewOutput()
+                {
+                    HtmlContent = content.HtmlContent,
+                    Id = content.PageId,
+                    Lang = content.Lang,
+                    TemplateName = content.TemplateUniqueName,
+                    Title = content.Title
+                };
+            }
+            var currentLangContent = _contentRepository.FirstOrDefault(a => a.PageId == content.PageId && CultureInfo.CurrentUICulture.Name == a.Lang);
+            if (currentLangContent == null) return null;
+            return new PageViewOutput()
+            {
+                HtmlContent = currentLangContent.HtmlContent,
+                Id = currentLangContent.PageId,
+                Lang = currentLangContent.Lang,
+                TemplateName = currentLangContent.TemplateUniqueName,
+                Title = currentLangContent.Title
+            };
         }
 
         public Task<PageInput> GetPage(int? id)
@@ -90,7 +199,6 @@ namespace Cinotam.Cms.App.Pages
                 {
                     Name = a
                 }).ToList(),
-                TemplateId = GetTemplate(page.Id)
             };
         }
 
@@ -113,7 +221,6 @@ namespace Cinotam.Cms.App.Pages
                     Id = a.Id,
                     Langs = AsyncHelper.RunSync(() => GetAvailableLangs(a.Id)),
                     Title = a.Name,
-                    TemplateId = GetTemplate(a.Id)
                 }).ToArray(),
                 draw = input.draw,
                 length = input.length,
@@ -134,8 +241,42 @@ namespace Cinotam.Cms.App.Pages
                 PageName = page.Name,
                 IsActive = page.Active,
                 Id = id,
+                ContentsByLanguage = await GetContentsByLanguage(pageContents),
+                IsMainPage = page.IsMainPage
 
             };
+        }
+
+        private async Task<List<PageContentDto>> GetContentsByLanguage(List<Content> pageContents)
+        {
+            var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
+            var pageContentsList = new List<PageContentDto>();
+            foreach (var applicationLanguage in allLanguages)
+            {
+                var contentWithLanguage = pageContents.FirstOrDefault(a => a.Lang == applicationLanguage.Name);
+                if (contentWithLanguage == null)
+                {
+                    pageContentsList.Add(new PageContentDto()
+                    {
+                        Lang = applicationLanguage.Name,
+                        HtmlContent = "",
+                        LanguageIcon = applicationLanguage.Icon,
+                        Slug = ""
+                    });
+                }
+                else
+                {
+                    pageContentsList.Add(new PageContentDto()
+                    {
+                        Lang = applicationLanguage.Name,
+                        LanguageIcon = applicationLanguage.Icon,
+                        Slug = contentWithLanguage.Url,
+                        Title = contentWithLanguage.Title,
+                        TemplateUniqueName = contentWithLanguage.TemplateUniqueName
+                    });
+                }
+            }
+            return pageContentsList;
         }
 
         private async Task<PageConfigurationObject> CreateEmptyPageConfigurationObject(int id)
@@ -152,6 +293,7 @@ namespace Cinotam.Cms.App.Pages
                     Slug = ""
                 });
                 obj.Id = id;
+                obj.IsMainPage = false;
             }
             return obj;
         }
@@ -171,12 +313,6 @@ namespace Cinotam.Cms.App.Pages
                     });
             }
             return list;
-        }
-
-        private int GetTemplate(int pageId)
-        {
-            var template = _templateRepository.FirstOrDefault(a => a.Page.Any(p => p.Id == pageId));
-            return template?.Id ?? 0;
         }
     }
 }

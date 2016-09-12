@@ -1,8 +1,7 @@
 ﻿using Abp.Web.Mvc.Authorization;
 using Cinotam.AbpModuleZero.Authorization;
-using Cinotam.AbpModuleZero.MultiTenancy;
-using System.Web.Mvc;
 using Cinotam.ModuleZero.AppModule.MultiTenancy;
+using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Controllers
 {

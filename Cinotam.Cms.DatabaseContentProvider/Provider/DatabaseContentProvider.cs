@@ -1,10 +1,8 @@
 ﻿using Abp.Domain.Repositories;
 using Cinotam.Cms.Contracts;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
-using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System;
 using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Cinotam.Cms.DatabaseContentProvider.Provider
@@ -13,12 +11,10 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
     {
         private readonly IRepository<Content> _contentRepository;
         private readonly IRepository<Page> _pageRepository;
-        private readonly IRepository<Template> _templateRepository;
-        public DatabaseContentProvider(IRepository<Content> contentRepository, IRepository<Page> pageRepository, IRepository<Template> templateRepository)
+        public DatabaseContentProvider(IRepository<Content> contentRepository, IRepository<Page> pageRepository)
         {
             _contentRepository = contentRepository;
             _pageRepository = pageRepository;
-            _templateRepository = templateRepository;
         }
 
         public bool IsFileSystemService => false;
@@ -26,14 +22,32 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
         public async Task SaveContent(IPageContent input)
         {
             var page = _pageRepository.Get(input.PageId);
-            var pageContent = new Content()
+            var pageContent = _contentRepository.FirstOrDefault(a => a.Id == input.Id);
+            if (pageContent != null)
             {
-                HtmlContent = input.HtmlContent,
-                Lang = input.Lang,
-                PageId = input.PageId,
-                Page = page
-            };
-            await _contentRepository.InsertAndGetIdAsync(pageContent);
+                pageContent.HtmlContent = input.HtmlContent;
+                pageContent.Lang = input.Lang;
+                pageContent.PageId = input.PageId;
+                pageContent.Page = page;
+                pageContent.Title = input.Title;
+                pageContent.Url = input.Url;
+                pageContent.TemplateUniqueName = input.TemplateUniqueName;
+            }
+            else
+            {
+                pageContent = new Content()
+                {
+                    HtmlContent = input.HtmlContent,
+                    Lang = input.Lang,
+                    PageId = input.PageId,
+                    Page = page,
+                    Title = input.Title,
+                    Url = input.Url,
+                    TemplateUniqueName = input.TemplateUniqueName,
+                };
+            }
+
+            await _contentRepository.InsertOrUpdateAndGetIdAsync(pageContent);
         }
 
         public async Task<IPageContent> GetPageContent(int pageId)
@@ -45,7 +59,10 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
 
         public async Task<IPageContent> GetPageContent(int pageId, string language)
         {
-            var page = _pageRepository.GetAllIncluding(a => a.Template).FirstOrDefault(a => a.Id == pageId);
+
+
+
+            var page = _pageRepository.FirstOrDefault(a => a.Id == pageId);
             if (page == null) throw new InvalidOperationException(nameof(page));
             var content =
                 await _contentRepository.FirstOrDefaultAsync(a => a.PageId == pageId && a.Lang == language);
@@ -54,14 +71,9 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
             {
                 Lang = language,
                 PageId = pageId,
-                HtmlContent = GetPageContentFromTemplate(page.Template.Id)
+                HtmlContent = ""
             };
             return newContent;
-        }
-
-        private string GetPageContentFromTemplate(int templateId)
-        {
-            return string.Empty;
         }
     }
 }

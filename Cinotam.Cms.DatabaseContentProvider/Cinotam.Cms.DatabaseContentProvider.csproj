@@ -76,6 +76,10 @@
       <Project>{2A5BA0A4-51FB-4132-BD08-F00357B24F23}</Project>
       <Name>Cinotam.Cms.DatabaseEntities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cinotam.ModuleZero.MailSender\Cinotam.MailSender.csproj">
+      <Project>{201432A3-493B-46FE-A6FB-03D9D95DDBF6}</Project>
+      <Name>Cinotam.MailSender</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

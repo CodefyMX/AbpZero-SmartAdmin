@@ -1,10 +1,11 @@
-﻿
+﻿@model Cinotam.Cms.App.Pages.Dto.PageTitleInput
 @{
     Layout = null;
 }
 <div class="modal-dialog" role="document">
     <form id="setPageName">
-
+        @Html.HiddenFor(a=>a.Lang)
+        @Html.HiddenFor(a=>a.PageId)
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -16,7 +17,7 @@
                         <label class="control-label">
                             @L("SetTitle")
                         </label>
-                        <input type="text" class="form-control" value=""/>
+                        @Html.TextBoxFor(a=>a.Title)
                     </div>
                 </div>
             </div>
@@ -34,7 +35,7 @@
                 $("#setPageName").on("submit",function(e) {
                     e.preventDefault();
                     var data = $(this).serializeFormToObject();
-                    abp.services.cms.pagesService.setPageTitle(data)
+                    abp.services.cms.pagesService.createEditPageTitle(data)
                         .done(function() {
                             window.location.reload();
                         });

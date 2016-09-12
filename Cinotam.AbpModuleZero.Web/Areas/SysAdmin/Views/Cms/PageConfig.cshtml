@@ -1,5 +1,6 @@
 ﻿@using Cinotam.AbpModuleZero
 @model Cinotam.Cms.App.Pages.Dto.PageConfigurationObject
+    @Html.HiddenFor(a=>a.Id)
 <div id="content">
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
@@ -92,15 +93,15 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             <div class="row">
-                                <div class="col-xs-4">
+                                <div class="col-xs-6">
 
                                     @if (Model.IsActive)
                                     {
                                         <div class="alert alert-info alert-dismissible" role="alert">
                                             <strong>@L("PageIsActive")</strong>
-                                            <br/><br/>
+                                            <br /><br />
                                             <p>
-                                                <a class="btn btn-sm btn-primary" href="#">@L("Enable")</a>
+                                                <a class="btn btn-sm btn-primary js-toggle-status" href="#">@L("Disable")</a>
                                             </p>
                                         </div>
                                     }
@@ -108,9 +109,33 @@
                                     {
                                         <div class="alert alert-warning alert-dismissible" role="alert">
                                             <strong>@L("PageIsNotActive")</strong>
-                                            <br/><br/>
+                                            <br /><br />
                                             <p>
-                                                <a class="btn btn-sm btn-warning" href="#">@L("Disable")</a>
+                                                <a class="btn btn-sm btn-warning js-toggle-status" href="#">@L("Enable")</a>
+                                            </p>
+                                        </div>
+
+                                    }
+                                </div>
+                                <div class="col-xs-6">
+
+                                    @if (Model.IsMainPage)
+                                    {
+                                        <div class="alert alert-success alert-dismissible" role="alert">
+                                            <strong>@L("PageIsPrincipal")</strong>
+                                            <br /><br />
+                                            <p>
+                                                <a class="btn btn-sm btn-primary js-toggle-main" href="#">@L("UnsetAsPrincipal")</a>
+                                            </p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="alert alert-info alert-dismissible" role="alert">
+                                            <strong>@L("PageIsNotPrincipal")</strong>
+                                            <br /><br />
+                                            <p>
+                                                <a class="btn btn-sm btn-primary js-toggle-main" href="#">@L("SetAsPrincipal")</a>
                                             </p>
                                         </div>
 
@@ -121,54 +146,60 @@
                                 <div class="col-sm-12">
                                     <table id="contentTable" class="table table-responsive table-condensed">
                                         <thead>
-                                        <tr>
-                                            <th>
-                                                @L("Language")
-                                            </th>
-                                            <th>@L("Title")</th>
-                                            <th>@L("Url")</th>
-                                            <th>@L("Content")</th>
-                                        </tr>
+                                            <tr>
+                                                <th>
+                                                    @L("Language")
+                                                </th>
+                                                <th>@L("Title")</th>
+                                                <th>@L("Url")</th>
+                                                <th class="text-center">@L("Content")</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach (var pageContentDto in Model.ContentsByLanguage)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @pageContentDto.Lang
-                                                </td>
-                                                <td>
-                                                    @if (string.IsNullOrEmpty(pageContentDto.Title))
-                                                    {
+                                            @foreach (var pageContentDto in Model.ContentsByLanguage)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @pageContentDto.Lang
+                                                    </td>
+                                                    <td>
+                                                        @if (string.IsNullOrEmpty(pageContentDto.Title))
+                                                        {
 
-                                                        <a data-modal href="@Url.Action("ChooseTitle",new {id=Model.Id,lang=pageContentDto.Lang})" class="btn btn-sm btn-success">@L("ChooseTitle")</a>
-                                                    }
-                                                </td>
-                                                <td>
-                                                    @if (string.IsNullOrEmpty(pageContentDto.Title))
-                                                    {
+                                                            <a data-modal href="@Url.Action("ChooseTitle", new {id = Model.Id, lang = pageContentDto.Lang})" class="btn btn-sm btn-success">@L("ChooseTitle")</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p>
+                                                                @pageContentDto.Title
+                                                            </p>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @if (string.IsNullOrEmpty(pageContentDto.Title))
+                                                        {
 
-                                                        <p class="text-muted">@L("MustChooseTitle")</p>
-                                                    }
-                                                    else
-                                                    {
-                                                        <p>@pageContentDto.Title </p>
-                                                    }
-                                                </td>
-                                                <td>
-                                                    @if (string.IsNullOrEmpty(pageContentDto.Title))
-                                                    {
+                                                            <p class="text-muted">@L("MustChooseTitle")</p>
+                                                        }
+                                                        else
+                                                        {
+                                                        <a target="_blank" href=@Url.Action("Index", "Pages", new { slug = pageContentDto.Slug,Area="" })>@pageContentDto.Slug</a>
+                                                        }
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if (string.IsNullOrEmpty(pageContentDto.Title))
+                                                        {
 
-                                                        <p class="text-muted">@L("MustChooseTitle")</p>
-                                                    }
-                                                    else
-                                                    {
-                                                        <p>@pageContentDto.Slug </p>
-                                                    }
-                                                </td>
-                                            </tr>
+                                                            <p class="text-muted">@L("MustChooseTitle")</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a target="_blank" href="@Url.Action("PageEditor","Pages",new {Area="",id=Model.Id,lang=pageContentDto.Lang})" class="btn btn-sm btn-primary">@L("AddEditContent")</a>
+                                                        }
+                                                    </td>
+                                                </tr>
 
-                                        }
+                                            }
                                         </tbody>
 
                                     </table>
@@ -189,6 +220,25 @@
     </section>
 </div>
 @section pageSpecific{
-    
-<script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
+
+    <script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
+    <script>
+        (function () {
+            var pageId = $ ("#Id").val();
+            $ ('.js-toggle-status')
+                .click (function () {
+                    abp.services.cms.pagesService.togglePageStatus (pageId)
+                        .done (function () {
+                            window.location.reload ();
+                        });
+                });
+            $('.js-toggle-main')
+                .click(function () {
+                    abp.services.cms.pagesService.setPageAsMain(pageId)
+                        .done(function () {
+                            window.location.reload();
+                        });
+                });
+        })();
+    </script>
 }

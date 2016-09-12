@@ -214,6 +214,14 @@
     <Compile Include="Migrations\201609120045083_DbUpdateIds.Designer.cs">
       <DependentUpon>201609120045083_DbUpdateIds.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609121508550_TemplateReferenceRemoved.cs" />
+    <Compile Include="Migrations\201609121508550_TemplateReferenceRemoved.Designer.cs">
+      <DependentUpon>201609121508550_TemplateReferenceRemoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609122047488_MainPageProperty.cs" />
+    <Compile Include="Migrations\201609122047488_MainPageProperty.Designer.cs">
+      <DependentUpon>201609122047488_MainPageProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -324,6 +332,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609120045083_DbUpdateIds.resx">
       <DependentUpon>201609120045083_DbUpdateIds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121508550_TemplateReferenceRemoved.resx">
+      <DependentUpon>201609121508550_TemplateReferenceRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609122047488_MainPageProperty.resx">
+      <DependentUpon>201609122047488_MainPageProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

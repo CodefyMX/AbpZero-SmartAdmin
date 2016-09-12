@@ -41,9 +41,15 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View(pageConfiguration);
         }
 
-        public ActionResult ChooseTitle(int id, string lang)
+        public async Task<ActionResult> ChooseTitle(int id, string lang)
         {
-            return View();
+            var pageTitleInfo = await _pagesService.GetPageTitleForEdit(id, lang);
+            return View(pageTitleInfo);
+        }
+
+        public ActionResult AddEditContent(int id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

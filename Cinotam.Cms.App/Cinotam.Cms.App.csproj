@@ -98,9 +98,12 @@
     <Compile Include="Pages\Dto\Lang.cs" />
     <Compile Include="Pages\Dto\PageConfigurationObject.cs" />
     <Compile Include="Pages\Dto\PageContentDto.cs" />
+    <Compile Include="Pages\Dto\PageContentInput.cs" />
     <Compile Include="Pages\Dto\PageDto.cs" />
     <Compile Include="Pages\Dto\PageInput.cs" />
     <Compile Include="Pages\Dto\PageListOutput.cs" />
+    <Compile Include="Pages\Dto\PageTitleInput.cs" />
+    <Compile Include="Pages\Dto\PageViewOutput.cs" />
     <Compile Include="Pages\Dto\TemplateDto.cs" />
     <Compile Include="Pages\IPagesService.cs" />
     <Compile Include="Pages\PagesService.cs" />
@@ -110,6 +113,10 @@
     <ProjectReference Include="..\Cinotam.AbpModuleZero.Core\Cinotam.AbpModuleZero.Core.csproj">
       <Project>{17298EA0-AF73-4F30-B6F1-2066100D7D74}</Project>
       <Name>Cinotam.AbpModuleZero.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.AbpModuleZero.Extensions\Cinotam.AbpModuleZero.Extensions.csproj">
+      <Project>{4F061DBA-643A-4B5A-BCFA-6903E5D8B105}</Project>
+      <Name>Cinotam.AbpModuleZero.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.AbpModuleZero.Tools\Cinotam.AbpModuleZero.Tools.csproj">
       <Project>{9AB7EE8A-5411-4D24-AE46-158065006F00}</Project>

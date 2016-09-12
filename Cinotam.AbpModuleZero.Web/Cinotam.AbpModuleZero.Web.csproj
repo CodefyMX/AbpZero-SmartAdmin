@@ -14,7 +14,7 @@
     <RootNamespace>Cinotam.AbpModuleZero.Web</RootNamespace>
     <AssemblyName>Cinotam.AbpModuleZero.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -563,6 +563,7 @@
     <Content Include="Areas\SysAdmin\Content\sound\voice_alert.mp3" />
     <Content Include="Areas\SysAdmin\Content\sound\voice_off.mp3" />
     <Content Include="Areas\SysAdmin\Content\sound\voice_on.mp3" />
+    <Content Include="Content\Templates\ArticlePage\ArticlePage.html" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -605,6 +606,7 @@
     <Content Include="css\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
+    <Content Include="css\pageViewStyle.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="images\abp-logo.png" />
@@ -1194,6 +1196,8 @@
     <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_toolbox.scss" />
     <Content Include="Scripts\contentTools\sandbox\src\styles\ui\_ui.scss" />
     <Content Include="Scripts\contentTools\sandbox\src\styles\_settings.scss" />
+    <Content Include="Content\Templates\ArticlePage\TemplateConfig.json" />
+    <Content Include="Scripts\contentTools\sandbox\build\content-tools.min.css.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1282,6 +1286,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -1334,6 +1339,8 @@
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\ckeditor\skins\moono\readme.md" />
     <Content Include="Views\Home\Editor.cshtml" />
     <Content Include="Content\Templates\Simple\TemplateConfig.json" />
+    <Content Include="Views\Pages\PageEditor.cshtml" />
+    <Content Include="Views\Pages\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1390,7 +1397,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61814</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
