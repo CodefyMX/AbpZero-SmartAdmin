@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+<div class="modal-dialog" role="document">
+    <form id="setPageName">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModal-label">@L("ChooseName")</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <div class="form-group">
+                        <label class="control-label">
+                            @L("SetTitle")
+                        </label>
+                        <input type="text" class="form-control" value=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@L("Close")</button>
+                <button type="submit" class="btn btn-primary">@L("Save")</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    (function() {
+        $(document)
+            .ready(function() {
+                $("#setPageName").on("submit",function(e) {
+                    e.preventDefault();
+                    var data = $(this).serializeFormToObject();
+                    abp.services.cms.pagesService.setPageTitle(data)
+                        .done(function() {
+                            window.location.reload();
+                        });
+                });
+            });
+
+    })();
+</script>

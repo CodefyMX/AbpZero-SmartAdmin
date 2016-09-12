@@ -34,5 +34,16 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             var page = await _pagesService.GetPageForEdit(id);
             return View(page);
         }
+
+        public async Task<ActionResult> PageConfig(int id)
+        {
+            var pageConfiguration = await _pagesService.GetPageConfigurationObject(id);
+            return View(pageConfiguration);
+        }
+
+        public ActionResult ChooseTitle(int id, string lang)
+        {
+            return View();
+        }
     }
 }

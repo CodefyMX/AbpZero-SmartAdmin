@@ -1118,6 +1118,8 @@
     <Content Include="Abp\Framework\styles\abp.css.map" />
     <Content Include="Areas\SysAdmin\Views\Cms\MyPages.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Cms\CreateEditPage.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Cms\PageConfig.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Cms\ChooseTitle.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />

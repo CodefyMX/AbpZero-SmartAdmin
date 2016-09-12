@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201609112259368_TemplateNameHelper.Designer.cs">
       <DependentUpon>201609112259368_TemplateNameHelper.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609120045083_DbUpdateIds.cs" />
+    <Compile Include="Migrations\201609120045083_DbUpdateIds.Designer.cs">
+      <DependentUpon>201609120045083_DbUpdateIds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -317,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609112259368_TemplateNameHelper.resx">
       <DependentUpon>201609112259368_TemplateNameHelper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609120045083_DbUpdateIds.resx">
+      <DependentUpon>201609120045083_DbUpdateIds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -18,6 +18,7 @@ namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
         /// Helper for filesystem templates
         /// </summary>
         public string TemplateUniqueName { get; set; }
+        public string Url { get; set; }
 
     }
 }

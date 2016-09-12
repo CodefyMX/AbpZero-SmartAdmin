@@ -12,5 +12,6 @@ namespace Cinotam.Cms.App.Pages
         Task<PageInput> GetPageForEdit(int? id);
         Task<PageDto> GetPreviewPage(int id, string name);
         ReturnModel<PageDto> GetPageList(RequestModel<object> input);
+        Task<PageConfigurationObject> GetPageConfigurationObject(int id);
     }
 }

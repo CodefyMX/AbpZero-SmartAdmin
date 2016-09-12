@@ -124,6 +124,38 @@ namespace Cinotam.Cms.App.Pages
             };
         }
 
+        public async Task<PageConfigurationObject> GetPageConfigurationObject(int id)
+        {
+            var page = await _pageRepository.GetAsync(id);
+            var pageContents = await _contentRepository.GetAllListAsync(a => a.Page.Id == id);
+            if (!pageContents.Any()) return (await CreateEmptyPageConfigurationObject(id));
+            return new PageConfigurationObject()
+            {
+                PageName = page.Name,
+                IsActive = page.Active,
+                Id = id,
+
+            };
+        }
+
+        private async Task<PageConfigurationObject> CreateEmptyPageConfigurationObject(int id)
+        {
+            var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
+            var obj = new PageConfigurationObject();
+            foreach (var applicationLanguage in allLanguages)
+            {
+                obj.ContentsByLanguage.Add(new PageContentDto()
+                {
+                    Lang = applicationLanguage.Name,
+                    HtmlContent = "",
+                    LanguageIcon = applicationLanguage.Icon,
+                    Slug = ""
+                });
+                obj.Id = id;
+            }
+            return obj;
+        }
+
         private async Task<List<Lang>> GetAvailableLangs(int pageId)
         {
             var list = new List<Lang>();

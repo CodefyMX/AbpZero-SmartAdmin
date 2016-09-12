@@ -96,6 +96,8 @@
     <Compile Include="CinotamCmsApp.cs" />
     <Compile Include="CinotamCmsAppServiceBase.cs" />
     <Compile Include="Pages\Dto\Lang.cs" />
+    <Compile Include="Pages\Dto\PageConfigurationObject.cs" />
+    <Compile Include="Pages\Dto\PageContentDto.cs" />
     <Compile Include="Pages\Dto\PageDto.cs" />
     <Compile Include="Pages\Dto\PageInput.cs" />
     <Compile Include="Pages\Dto\PageListOutput.cs" />
