@@ -1130,6 +1130,7 @@
     <Content Include="Areas\SysAdmin\Views\Users\ChangePassword.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Notifications\MyNotifications.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\_alternativeUserInfo.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\Error.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />

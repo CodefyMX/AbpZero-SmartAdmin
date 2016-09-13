@@ -13,7 +13,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         {
             _pages = pages;
         }
-        [Route("{slug}")]
+        [Route("Page/{slug}")]
         public ActionResult Index(string slug)
         {
             var page = _pages.GetPageViewBySlug(slug);

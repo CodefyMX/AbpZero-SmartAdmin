@@ -16,6 +16,63 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         {
             LocalizationSourceName = AbpModuleZeroConsts.LocalizationSourceName;
         }
+
+        //protected override void ExecuteCore()
+        //{
+        //    var lang = GetCurrentCulture();
+        //    Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang, false);
+
+        //    // set the lang value into route data
+        //    RouteData.Values["lang"] = lang;
+
+        //    // save the location into cookie
+        //    var cookie = new HttpCookie("DPClick.CurrentUICulture",
+        //        Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName)
+        //    {
+        //        Expires = DateTime.Now.AddYears(1)
+        //    };
+
+        //    HttpContext.Response.SetCookie(cookie);
+        //    base.ExecuteCore();
+        //}
+
+        //private string GetCurrentCulture()
+        //{
+
+        //    string lang;
+
+        //    // set the culture from the route data (url)
+
+        //    if (RouteData.Values["lang"] != null &&
+        //       !string.IsNullOrWhiteSpace(RouteData.Values["lang"].ToString()))
+        //    {
+        //        lang = RouteData.Values["lang"].ToString();
+        //        return lang;
+        //    }
+        //    // load the culture info from the cookie
+        //    HttpCookie cookie = HttpContext.Request.Cookies["DPClick.CurrentUICulture"];
+        //    if (cookie != null)
+        //    {
+        //        // set the culture by the cookie content
+        //        lang = cookie.Value;
+        //        return lang;
+
+        //    }
+        //    // set the culture by the location if not speicified
+        //    if (HttpContext.Request.UserLanguages != null)
+        //    {
+        //        lang = HttpContext.Request.UserLanguages[0];
+
+        //        return lang;
+        //    }
+
+
+        //    //English is default
+        //    return "en";
+
+        //}
+
+
         /// <summary>
         /// Build the model for the datatables.js request
         /// </summary>

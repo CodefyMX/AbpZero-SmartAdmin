@@ -25,7 +25,7 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
             var pageContent = _contentRepository.FirstOrDefault(a => a.Id == input.Id);
             if (pageContent != null)
             {
-                pageContent.HtmlContent = input.HtmlContent;
+                pageContent.HtmlContent = input.HtmlContent.Trim();
                 pageContent.Lang = input.Lang;
                 pageContent.PageId = input.PageId;
                 pageContent.Page = page;
@@ -37,7 +37,7 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
             {
                 pageContent = new Content()
                 {
-                    HtmlContent = input.HtmlContent,
+                    HtmlContent = input.HtmlContent.Trim(),
                     Lang = input.Lang,
                     PageId = input.PageId,
                     Page = page,
@@ -59,8 +59,6 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
 
         public async Task<IPageContent> GetPageContent(int pageId, string language)
         {
-
-
 
             var page = _pageRepository.FirstOrDefault(a => a.Id == pageId);
             if (page == null) throw new InvalidOperationException(nameof(page));

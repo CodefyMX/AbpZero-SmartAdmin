@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="CinotamCmsConst.cs" />
     <Compile Include="CinotamCmsCore.cs" />
+    <Compile Include="Menus\Menu.cs" />
+    <Compile Include="Menus\MenuContent.cs" />
     <Compile Include="Pages\IPageManager.cs" />
     <Compile Include="Pages\PageManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

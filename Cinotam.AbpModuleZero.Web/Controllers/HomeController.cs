@@ -1,12 +1,10 @@
-﻿using Abp.Web.Mvc.Authorization;
-using Cinotam.Cms.App.Pages;
+﻿using Cinotam.Cms.App.Pages;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Controllers
 {
 
-    [AbpMvcAuthorize]
     public class HomeController : AbpModuleZeroControllerBase
     {
         private readonly IPagesService _pages;

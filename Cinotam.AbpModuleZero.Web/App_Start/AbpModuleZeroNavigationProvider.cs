@@ -20,8 +20,7 @@ namespace Cinotam.AbpModuleZero.Web
                         "Home",
                         L("HomePage"),
                         url: "",
-                        icon: "fa fa-home",
-                        requiresAuthentication: true
+                        icon: "fa fa-home"
                         )
                 ).AddItem(
                     new MenuItemDefinition(
