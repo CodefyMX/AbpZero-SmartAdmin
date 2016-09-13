@@ -6,7 +6,7 @@ namespace Cinotam.Cms.Core.Templates
 {
     public class TemplateManager : ITemplateManager
     {
-        public async Task<string> GetTemplateContent(string templateName)
+        public async Task<string> GetTemplateContentAsync(string templateName)
         {
             foreach (var provider in CinotamCmsCore.TemplateContentProviders)
             {
@@ -16,7 +16,7 @@ namespace Cinotam.Cms.Core.Templates
             throw new InvalidOperationException(nameof(templateName));
         }
 
-        public async Task<List<string>> GetAvailableTemplates()
+        public async Task<List<string>> GetAvailableTemplatesAsync()
         {
             foreach (var provider in CinotamCmsCore.TemplateContentProviders)
             {

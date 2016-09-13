@@ -15,37 +15,7 @@ namespace Cinotam.AbpModuleZero.Web
         public override void SetNavigation(INavigationProviderContext context)
         {
             context.Manager.MainMenu
-                .AddItem(
-                    new MenuItemDefinition(
-                        "Home",
-                        L("HomePage"),
-                        url: "",
-                        icon: "fa fa-home"
-                        )
-                ).AddItem(
-                    new MenuItemDefinition(
-                        "Tenants",
-                        L("Tenants"),
-                        url: "Tenants",
-                        icon: "fa fa-globe",
-                        requiredPermissionName: PermissionNames.PagesTenants
-                        )
-                ).AddItem(
-                    new MenuItemDefinition(
-                        "Users",
-                        L("Users"),
-                        url: "Users",
-                        icon: "fa fa-users",
-                        requiredPermissionName: PermissionNames.PagesSysAdminUsers
-                        )
-                ).AddItem(
-                    new MenuItemDefinition(
-                        "About",
-                        L("About"),
-                        url: "About",
-                        icon: "fa fa-info"
-                        )
-                ).AddItem(new MenuItemDefinition(
+                .AddItem(new MenuItemDefinition(
                         "Admin",
                         L("Admin"),
                         url: "/SysAdmin/Dashboard",

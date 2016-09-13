@@ -1,0 +1,16 @@
+﻿@using Abp.Collections.Extensions
+@model List<Cinotam.Cms.App.Pages.Dto.MenuDto>
+
+<ul class="dropdown-menu">
+    @foreach (var childMenu in Model)
+    {
+        <li>
+            <a href="@Url.Action("Index", "Pages", new {slug = childMenu.Url})">@childMenu.DisplayText</a>
+            @if (!childMenu.Childs.IsNullOrEmpty())
+            {
+                Html.RenderPartial("_childsMenu", childMenu.Childs);
+            }
+        </li>
+
+    }
+</ul>

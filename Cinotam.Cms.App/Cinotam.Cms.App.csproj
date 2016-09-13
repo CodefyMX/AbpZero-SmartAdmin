@@ -98,6 +98,7 @@
     <Compile Include="Menus\Dto\MenuInput.cs" />
     <Compile Include="Menus\Dto\MenuOutput.cs" />
     <Compile Include="Menus\IMenuAppService.cs" />
+    <Compile Include="Pages\Dto\BreadCrum.cs" />
     <Compile Include="Pages\Dto\Lang.cs" />
     <Compile Include="Pages\Dto\PageConfigurationObject.cs" />
     <Compile Include="Pages\Dto\PageContentDto.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Pages\Dto\PageDto.cs" />
     <Compile Include="Pages\Dto\PageInput.cs" />
     <Compile Include="Pages\Dto\PageListOutput.cs" />
+    <Compile Include="Pages\Dto\PagesMenu.cs" />
     <Compile Include="Pages\Dto\PageTitleInput.cs" />
     <Compile Include="Pages\Dto\PageViewOutput.cs" />
     <Compile Include="Pages\Dto\TemplateDto.cs" />

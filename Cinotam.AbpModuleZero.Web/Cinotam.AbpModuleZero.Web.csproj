@@ -1342,6 +1342,8 @@
     <Content Include="Content\Templates\Simple\TemplateConfig.json" />
     <Content Include="Views\Pages\PageEditor.cshtml" />
     <Content Include="Views\Pages\Index.cshtml" />
+    <None Include="Views\Layout\PagesMenu.cshtml" />
+    <None Include="Views\Layout\_childsMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

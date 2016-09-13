@@ -46,10 +46,12 @@
   <ItemGroup>
     <Compile Include="CinotamCmsConst.cs" />
     <Compile Include="CinotamCmsCore.cs" />
-    <Compile Include="Menus\Menu.cs" />
-    <Compile Include="Menus\MenuContent.cs" />
+    <Compile Include="Menus\IMenuManager.cs" />
+    <Compile Include="Menus\MenuManager.cs" />
     <Compile Include="Pages\IPageManager.cs" />
     <Compile Include="Pages\PageManager.cs" />
+    <Compile Include="Pages\Policy\IPagePolicy.cs" />
+    <Compile Include="Pages\Policy\PagePolicy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\ITemplateManager.cs" />
     <Compile Include="Templates\TemplateManager.cs" />

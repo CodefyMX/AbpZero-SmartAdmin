@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Menus\Menu.cs" />
+    <Compile Include="Menus\MenuContent.cs" />
     <Compile Include="Pages\Entities\Content.cs" />
     <Compile Include="Pages\Entities\Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

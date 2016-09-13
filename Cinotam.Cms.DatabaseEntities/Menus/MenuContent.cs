@@ -1,6 +1,6 @@
 ﻿using Abp.Domain.Entities.Auditing;
 
-namespace Cinotam.Cms.Core.Menus
+namespace Cinotam.Cms.DatabaseEntities.Menus
 {
     public class MenuContent : FullAuditedEntity
     {

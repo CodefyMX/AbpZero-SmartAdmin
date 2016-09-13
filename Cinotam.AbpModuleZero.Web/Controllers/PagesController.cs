@@ -14,9 +14,9 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             _pages = pages;
         }
         [Route("Page/{slug}")]
-        public ActionResult Index(string slug)
+        public async Task<ActionResult> Index(string slug)
         {
-            var page = _pages.GetPageViewBySlug(slug);
+            var page =  await _pages.GetPageViewBySlug(slug);
             if (page == null) return RedirectToAction("Index", "Home");
             return View(page);
         }

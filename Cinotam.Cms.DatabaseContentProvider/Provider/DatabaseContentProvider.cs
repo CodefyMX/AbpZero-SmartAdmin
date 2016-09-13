@@ -73,5 +73,11 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
             };
             return newContent;
         }
+
+        public async Task<IPageContent> GetPageContent(string url)
+        {
+            var page = await _contentRepository.FirstOrDefaultAsync(a => a.Url == url);
+            return page;
+        }
     }
 }

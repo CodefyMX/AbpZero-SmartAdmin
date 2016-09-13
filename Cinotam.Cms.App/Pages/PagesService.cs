@@ -38,7 +38,7 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task CreateEditPage(PageInput input)
         {
-            await _pageManager.SaveOrEditPage(new Page()
+            await _pageManager.SaveOrEditPageAsync(new Page()
             {
                 Active = false,
                 Name = input.Title,
@@ -52,7 +52,7 @@ namespace Cinotam.Cms.App.Pages
         {
             var pageContent = _contentRepository.FirstOrDefault(a => a.Page.Id == input.PageId && input.Lang == a.Lang);
             pageContent.HtmlContent = input.HtmlContent;
-            await _pageManager.SavePageContent(pageContent);
+            await _pageManager.SavePageContentAsync(pageContent);
         }
 
         public void TogglePageStatus(int pageId)
@@ -81,6 +81,45 @@ namespace Cinotam.Cms.App.Pages
             return pageContents.Url;
         }
 
+        public Menu GetPagesMenu()
+        {
+            var pagesMenuList = new List<MenuDto>();
+            var parentPages = _pageRepository.GetAllList(a => a.ParentPage == null);
+
+            foreach (var parent in parentPages)
+            {
+                var childs = SearchForChilds(parent);
+                var content = _contentRepository.FirstOrDefault(a => a.PageId == parent.Id);
+                pagesMenuList.Add(new MenuDto()
+                {
+                    DisplayText = content.Title,
+                    Childs = childs,
+                    Url = content.Url
+                });
+            }
+            return new Menu()
+            {
+                Menus = pagesMenuList
+            };
+        }
+
+        private List<MenuDto> SearchForChilds(Page parent)
+        {
+            var childs = _pageRepository.GetAllList(a => a.ParentPage == parent.Id);
+            var childList = new List<MenuDto>();
+            foreach (var child in childs)
+            {
+                var content = _contentRepository.FirstOrDefault(a => a.PageId == child.Id);
+                childList.Add(new MenuDto()
+                {
+                    DisplayText = content.Title,
+                    Url = content.Url,
+                    Childs = SearchForChilds(child)
+                });
+            }
+            return childList;
+        }
+
         private void DisableOthers(int pageId)
         {
             var pages = _pageRepository.GetAllList(a => a.Id != pageId);
@@ -94,7 +133,7 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task<PageTitleInput> GetPageTitleForEdit(int id, string lang)
         {
-            var contents = await _pageManager.GetPageContent(id, lang);
+            var contents = await _pageManager.GetPageContentAsync(id, lang);
             if (contents == null) return new PageTitleInput() { PageId = id, Lang = lang };
             return new PageTitleInput()
             {
@@ -107,8 +146,8 @@ namespace Cinotam.Cms.App.Pages
         public async Task CreateEditPageTitle(PageTitleInput input)
         {
             var page = _pageRepository.Get(input.PageId);
-            var template = await _templateManager.GetTemplateContent(page.TemplateName);
-            await _pageManager.SavePageContent(new Content()
+            var template = await _templateManager.GetTemplateContentAsync(page.TemplateName);
+            await _pageManager.SavePageContentAsync(new Content()
             {
                 Title = input.Title,
                 Lang = input.Lang,
@@ -122,18 +161,83 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task<PageViewOutput> GetPageViewById(int id, string lang)
         {
-            var pageContent = await _pageManager.GetPageContent(id, lang);
+            var pageContent = await _pageManager.GetPageContentAsync(id, lang);
             return new PageViewOutput()
             {
                 Id = id,
                 Lang = lang,
                 HtmlContent = pageContent.HtmlContent,
                 TemplateName = pageContent.TemplateUniqueName,
-                Title = pageContent.Title
+                Title = pageContent.Title,
+                BreadCrums = await GetBreadCrumsForPage(id)
             };
         }
 
-        public PageViewOutput GetPageViewBySlug(string slug)
+        private async Task<List<BreadCrum>> GetBreadCrumsForPage(int id)
+        {
+            var list = new List<BreadCrum>();
+
+            //First we add the main page (if any is set)
+
+
+            var page = _pageRepository.FirstOrDefault(a => a.Id == id);
+
+            if (page != null)
+            {
+                if (!page.IsMainPage)
+                {
+                    var mainPage = await GetMainPage();
+                    if (mainPage != null)
+                    {
+
+                        list.Add(mainPage);
+                    }
+                }
+                await GetParentBreadCrumForPage(page, list);
+                var content = await _pageManager.GetPageContentAsync(page.Id, CultureInfo.CurrentUICulture.Name);
+                //This way the current page breadcrum will be added at the end of the list
+                list.Add(new BreadCrum()
+                {
+                    DisplayName = content.Title,
+                    Url = content.Url
+                });
+            }
+
+            return list;
+
+        }
+
+        private async Task<BreadCrum> GetMainPage()
+        {
+            var page = await _pageRepository.FirstOrDefaultAsync(a => a.IsMainPage && a.Active);
+            if (page == null) return null;
+            var pageContents =
+                _contentRepository.FirstOrDefault(
+                    a => a.Page.Id == page.Id && a.Lang == CultureInfo.CurrentUICulture.Name);
+            return new BreadCrum()
+            {
+                DisplayName = pageContents.Title,
+                Url = pageContents.Url
+            };
+        }
+
+        private async Task GetParentBreadCrumForPage(Page page, List<BreadCrum> breadCrums)
+        {
+            if (page.ParentPage.HasValue)
+            {
+                var parent = _pageRepository.FirstOrDefault(a => a.Id == page.ParentPage.Value);
+                await GetParentBreadCrumForPage(parent, breadCrums);
+                var content = await _pageManager.GetPageContentAsync(parent.Id, CultureInfo.CurrentUICulture.Name);
+                //This way the current page breadcrum will be added at the end of the list
+                breadCrums.Add(new BreadCrum()
+                {
+                    DisplayName = content.Title,
+                    Url = content.Url
+                });
+            }
+        }
+
+        public async Task<PageViewOutput> GetPageViewBySlug(string slug)
         {
             var content = _contentRepository.FirstOrDefault(a => a.Url.ToUpper().Equals(slug.ToUpper()) && a.Page.Active);
             if (content == null) return null;
@@ -145,7 +249,8 @@ namespace Cinotam.Cms.App.Pages
                     Id = content.PageId,
                     Lang = content.Lang,
                     TemplateName = content.TemplateUniqueName,
-                    Title = content.Title
+                    Title = content.Title,
+                    BreadCrums = await GetBreadCrumsForPage(content.PageId)
                 };
             }
             var currentLangContent = _contentRepository.FirstOrDefault(a => a.PageId == content.PageId && CultureInfo.CurrentUICulture.Name == a.Lang);
@@ -156,7 +261,8 @@ namespace Cinotam.Cms.App.Pages
                 Id = currentLangContent.PageId,
                 Lang = currentLangContent.Lang,
                 TemplateName = currentLangContent.TemplateUniqueName,
-                Title = currentLangContent.Title
+                Title = currentLangContent.Title,
+                BreadCrums = await GetBreadCrumsForPage(content.PageId)
             };
         }
 
@@ -167,9 +273,9 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task<PageInput> GetPageForEdit(int? id)
         {
-            var templates = await _templateManager.GetAvailableTemplates();
+            var templates = await _templateManager.GetAvailableTemplatesAsync();
             var otherPages = _pageRepository.GetAllList();
-            await _templateManager.GetTemplateContent("Simple");
+            await _templateManager.GetTemplateContentAsync("Simple");
             if (!id.HasValue) return new PageInput()
             {
                 Pages = otherPages.Select(a => new PageDto()

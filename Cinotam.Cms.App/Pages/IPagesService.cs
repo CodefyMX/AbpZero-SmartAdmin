@@ -16,10 +16,11 @@ namespace Cinotam.Cms.App.Pages
         Task<PageTitleInput> GetPageTitleForEdit(int id, string lang);
         Task CreateEditPageTitle(PageTitleInput input);
         Task<PageViewOutput> GetPageViewById(int id, string lang);
-        PageViewOutput GetPageViewBySlug(string slug);
+        Task<PageViewOutput> GetPageViewBySlug(string slug);
         Task SavePageContent(PageContentInput input);
         void TogglePageStatus(int pageId);
         void SetPageAsMain(int pageId);
         Task<string> GetMainPageSlug();
+        Menu GetPagesMenu();
     }
 }

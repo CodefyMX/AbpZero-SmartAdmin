@@ -21,5 +21,10 @@ namespace Cinotam.Cms.FileSystemContentProvider.Provider
         {
             throw new NotImplementedException();
         }
+
+        public Task<IPageContent> GetPageContent(string url)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

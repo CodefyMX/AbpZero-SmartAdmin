@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Repositories;
+using Cinotam.Cms.Core.Pages.Policy;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,34 +9,36 @@ namespace Cinotam.Cms.Core.Pages
     public class PageManager : IPageManager
     {
         private readonly IRepository<Page> _pageRepository;
-
-        public PageManager(IRepository<Page> pageRepository)
+        private readonly IPagePolicy _pagePolicy;
+        public PageManager(IRepository<Page> pageRepository, IPagePolicy pagePolicy)
         {
             _pageRepository = pageRepository;
+            _pagePolicy = pagePolicy;
         }
 
-        public async Task<int> SaveOrEditPage(Page page)
+        public async Task<int> SaveOrEditPageAsync(Page page)
         {
+            _pagePolicy.ValidatePage(page);
             return (await _pageRepository.InsertAndGetIdAsync(page));
         }
 
-        public async Task<Page> GetPage(int id)
+        public async Task<Page> GetPageAsync(int id)
         {
             var page = await _pageRepository.FirstOrDefaultAsync(a => a.Id == id);
             return page;
         }
 
-        public async Task SavePageContent(Content content)
+        public async Task SavePageContentAsync(Content content)
         {
             var useFileSystem = false;
-
+            await _pagePolicy.ValidateContent(content);
             foreach (var templateContentProvider in CinotamCmsCore.PageContentProviders.Where(a => a.IsFileSystemService == useFileSystem))
             {
                 await templateContentProvider.SaveContent(content);
             }
         }
 
-        public async Task<Content> GetPageContent(int pageId, string lang = "en")
+        public async Task<Content> GetPageContentAsync(int pageId, string lang = "en")
         {
             var useFileSystem = false;
 

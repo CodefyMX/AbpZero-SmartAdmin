@@ -1,0 +1,36 @@
+﻿@using Abp.Collections.Extensions
+@model Cinotam.Cms.App.Pages.Dto.Menu
+
+@{
+    Layout = null;
+}
+@foreach (var pageMenuDto in Model.Menus)
+{
+    <li class="dropdown dropdown-li">
+        <a class="dropdown-link" data-toggle="dropdown" href="@Url.Action("Index", "Pages", new {slug = pageMenuDto.Url})">
+            @pageMenuDto.DisplayText
+            @if (!pageMenuDto.Childs.IsNullOrEmpty())
+            {
+                <b class="caret"></b>
+            }
+        </a>
+
+    @if (!pageMenuDto.Childs.IsNullOrEmpty())
+    {
+        <ul class="dropdown-menu">
+            @foreach (var childMenu in pageMenuDto.Childs)
+            {
+                <li>
+                    <a href="@Url.Action("Index", "Pages", new {slug = childMenu.Url})">@childMenu.DisplayText</a>
+                    @if (!childMenu.Childs.IsNullOrEmpty())
+                        {
+                            Html.RenderPartial("_childsMenu", childMenu.Childs);
+                        }
+                </li>
+
+            }
+        </ul>
+    }
+
+</li>
+}

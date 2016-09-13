@@ -7,9 +7,9 @@ namespace Cinotam.Cms.Core.Pages
     public interface IPageManager : IDomainService
     {
 
-        Task<int> SaveOrEditPage(Page page);
-        Task<Page> GetPage(int id);
-        Task SavePageContent(Content content);
-        Task<Content> GetPageContent(int pageId, string lang = "en");
+        Task<int> SaveOrEditPageAsync(Page page);
+        Task<Page> GetPageAsync(int id);
+        Task SavePageContentAsync(Content content);
+        Task<Content> GetPageContentAsync(int pageId, string lang = "en");
     }
 }

@@ -6,7 +6,7 @@ namespace Cinotam.Cms.Core.Templates
 {
     public interface ITemplateManager : IDomainService
     {
-        Task<string> GetTemplateContent(string templateName);
-        Task<List<string>> GetAvailableTemplates();
+        Task<string> GetTemplateContentAsync(string templateName);
+        Task<List<string>> GetAvailableTemplatesAsync();
     }
 }
