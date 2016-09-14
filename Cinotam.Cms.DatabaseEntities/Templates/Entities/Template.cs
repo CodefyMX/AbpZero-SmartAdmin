@@ -9,6 +9,10 @@ namespace Cinotam.Cms.DatabaseEntities.Templates.Entities
     {
         private List<Resource> _resources;
 
+        public Template()
+        {
+            _resources = new List<Resource>();
+        }
         public string Name { get; set; }
         public string FileName { get; set; }
         public string Content { get; set; }

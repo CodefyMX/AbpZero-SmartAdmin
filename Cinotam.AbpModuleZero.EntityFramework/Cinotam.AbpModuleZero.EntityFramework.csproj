@@ -246,6 +246,10 @@
     <Compile Include="Migrations\201609141819596_InterfaceImplementation.Designer.cs">
       <DependentUpon>201609141819596_InterfaceImplementation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609142012004_ChunksUpdate.cs" />
+    <Compile Include="Migrations\201609142012004_ChunksUpdate.Designer.cs">
+      <DependentUpon>201609142012004_ChunksUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -380,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609141819596_InterfaceImplementation.resx">
       <DependentUpon>201609141819596_InterfaceImplementation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609142012004_ChunksUpdate.resx">
+      <DependentUpon>201609142012004_ChunksUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

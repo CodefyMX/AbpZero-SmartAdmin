@@ -5,6 +5,7 @@ using Castle.Components.DictionaryAdapter;
 using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.Cms.App.Pages.Dto;
+using Cinotam.Cms.Contracts;
 using Cinotam.Cms.Core.Pages;
 using Cinotam.Cms.Core.Templates;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
@@ -50,9 +51,19 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task SavePageContent(PageContentInput input)
         {
+            var chunks = new List<CChunk>();
             var pageContent = _contentRepository.FirstOrDefault(a => a.Page.Id == input.PageId && input.Lang == a.Lang);
             pageContent.HtmlContent = input.HtmlContent;
-            await _pageManager.SavePageContentAsync(pageContent);
+            foreach (var inputChunk in input.Chunks)
+            {
+                chunks.Add(new CChunk()
+                {
+                    PageContent = pageContent,
+                    Value = inputChunk.Value,
+                    Key = inputChunk.Key
+                });
+            }
+            await _pageManager.SavePageContentAsync(pageContent, chunks);
         }
 
         public void TogglePageStatus(int pageId)

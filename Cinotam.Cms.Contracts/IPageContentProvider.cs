@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Cinotam.Cms.Contracts
 {
@@ -9,5 +10,7 @@ namespace Cinotam.Cms.Contracts
         Task<IPageContent> GetPageContent(int pageId);
         Task<IPageContent> GetPageContent(int pageId, string language);
         Task<IPageContent> GetPageContent(string url);
+        Task AddChunks(List<CChunk> inputs);
+        Task<List<IChunk>> GetChunks(int pageId, string language);
     }
 }

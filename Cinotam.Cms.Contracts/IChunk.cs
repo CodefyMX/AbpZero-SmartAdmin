@@ -4,5 +4,6 @@
     {
         string Key { get; set; }
         string Value { get; set; }
+        IPageContent PageContent { get; set; }
     }
 }

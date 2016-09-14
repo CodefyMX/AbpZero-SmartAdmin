@@ -1,5 +1,6 @@
 ﻿using Cinotam.Cms.Contracts;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Cinotam.Cms.FileSystemContentProvider.Provider
@@ -23,6 +24,16 @@ namespace Cinotam.Cms.FileSystemContentProvider.Provider
         }
 
         public Task<IPageContent> GetPageContent(string url)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AddChunks(List<CChunk> inputs)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<IChunk>> GetChunks(int pageId, string language)
         {
             throw new NotImplementedException();
         }

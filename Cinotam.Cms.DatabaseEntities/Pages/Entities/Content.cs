@@ -7,6 +7,10 @@ namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
 {
     public class Content : FullAuditedEntity, IPageContent
     {
+        public Content()
+        {
+            _chunks = new List<Chunk>();
+        }
         private List<Chunk> _chunks;
         public string Lang { get; set; }
         public int PageId { get; set; }

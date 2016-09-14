@@ -14,6 +14,18 @@
         var lang = document.getElementById("Lang").value;
         var id = document.getElementById("Id").value;
         
+        var regions = ev.detail().regions;
+        var chunks = [];
+
+        for (name in regions) {
+            if (regions.hasOwnProperty(name)) {
+                chunks.push({
+                    Key:name,
+                    Value:regions[name]
+                });
+            }
+        }
+
 
         // Set the editor as busy while we save our changes
         
@@ -24,6 +36,7 @@
         payload.HtmlContent = allContent;
         payload.PageId = id;
         payload.Lang = lang;
+        payload.Chunks = chunks;
         console.log (payload);
         // Send the update content to the server to be saved
         abp.ajax({

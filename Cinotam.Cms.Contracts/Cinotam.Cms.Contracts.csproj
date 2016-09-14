@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CChunk.cs" />
     <Compile Include="CResource.cs" />
     <Compile Include="CTemplate.cs" />
     <Compile Include="IChunk.cs" />

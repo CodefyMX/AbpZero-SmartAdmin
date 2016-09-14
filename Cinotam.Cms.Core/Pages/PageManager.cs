@@ -1,6 +1,8 @@
 ﻿using Abp.Domain.Repositories;
+using Cinotam.Cms.Contracts;
 using Cinotam.Cms.Core.Pages.Policy;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,13 +30,14 @@ namespace Cinotam.Cms.Core.Pages
             return page;
         }
 
-        public async Task SavePageContentAsync(Content content)
+        public async Task SavePageContentAsync(Content content, List<CChunk> chunks = null)
         {
             var useFileSystem = false;
             await _pagePolicy.ValidateContent(content);
             foreach (var templateContentProvider in CinotamCmsCore.PageContentProviders.Where(a => a.IsFileSystemService == useFileSystem))
             {
                 await templateContentProvider.SaveContent(content);
+                await templateContentProvider.AddChunks(chunks);
             }
         }
 
