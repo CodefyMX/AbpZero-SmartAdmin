@@ -1,7 +1,11 @@
 ﻿@using Cinotam.AbpModuleZero.Authorization
 @model Cinotam.Cms.App.Pages.Dto.PageViewOutput
 @{
-    ViewBag.Title = "Page";
+    ViewBag.Title = Model.Title;
+    if (Model.IsPartial)
+    {
+        Layout = null;
+    }
 }
 <link href="~/css/pageViewStyle.css" rel="stylesheet" />
 

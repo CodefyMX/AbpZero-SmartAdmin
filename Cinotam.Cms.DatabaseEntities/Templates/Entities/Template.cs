@@ -12,6 +12,7 @@ namespace Cinotam.Cms.DatabaseEntities.Templates.Entities
         public string Name { get; set; }
         public string FileName { get; set; }
         public string Content { get; set; }
+        public bool IsPartial { get; set; }
         public virtual ICollection<IResource> Resources { get { return _resources.ConvertAll(r => (IResource)r); } }
         public virtual ICollection<Resource> ResourcesObj
         {

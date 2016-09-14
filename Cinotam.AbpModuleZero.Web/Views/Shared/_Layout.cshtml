@@ -6,7 +6,7 @@
     SetAntiForgeryCookie();
 }
 <!DOCTYPE html>
-<html lang="en">
+<html lang="@UICulture">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,7 @@
 
     <link rel="shortcut icon" href="~/favicon.ico">
 
-    <title>AbpModuleZero</title>
+    <title>@ViewBag.Title</title>
 
     @Styles.Render("~/Bundles/vendor/css")
     @Styles.Render("~/Bundles/css")

@@ -51,5 +51,10 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         {
             throw new System.NotImplementedException();
         }
+
+        public ActionResult MyTemplales()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

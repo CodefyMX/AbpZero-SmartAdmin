@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CResource.cs" />
     <Compile Include="CTemplate.cs" />
+    <Compile Include="IChunk.cs" />
     <Compile Include="IPageContent.cs" />
     <Compile Include="IResource.cs" />
     <Compile Include="ITemplateContent.cs" />

@@ -1,5 +1,9 @@
 ﻿using Cinotam.Cms.FileSystemTemplateProvider.Provider;
+using FakeItEasy;
 using Shouldly;
+using System.Collections.Specialized;
+using System.Threading.Tasks;
+using System.Web;
 using Xunit;
 
 namespace Cinotam.AbpModuleZero.Tests.TemplateFileSystemProvider
@@ -13,10 +17,30 @@ namespace Cinotam.AbpModuleZero.Tests.TemplateFileSystemProvider
         }
 
         [Fact]
-        public void TestFileSystem()
+        public async Task TestFileSystem()
         {
-            var result = _fileSystemTemplateProvider.GetTemplateContent("");
+            FakeHttpContext();
+            var result = await _fileSystemTemplateProvider.GetTemplateContent("Simple");
             result.ShouldNotBeNull();
+        }
+        public static HttpContextBase FakeHttpContext()
+        {
+            var context = A.Fake<HttpContextBase>();
+            var request = A.Fake<HttpRequestBase>();
+            var response = A.Fake<HttpResponseBase>();
+            var session = A.Fake<HttpSessionStateBase>();
+            var server = A.Fake<HttpServerUtilityBase>();
+
+            A.CallTo(() => request.QueryString).Returns(new NameValueCollection());
+            A.CallTo(() => request.Form).Returns(new NameValueCollection());
+            A.CallTo(() => request.Headers).Returns(new NameValueCollection());
+
+            A.CallTo(() => context.Request).Returns(request);
+            A.CallTo(() => context.Response).Returns(response);
+            A.CallTo(() => context.Session).Returns(session);
+            A.CallTo(() => context.Server).Returns(server);
+
+            return context;
         }
     }
 }

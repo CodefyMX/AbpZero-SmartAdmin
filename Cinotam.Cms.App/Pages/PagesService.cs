@@ -110,6 +110,7 @@ namespace Cinotam.Cms.App.Pages
             foreach (var child in childs)
             {
                 var content = _contentRepository.FirstOrDefault(a => a.PageId == child.Id);
+                if (content == null) continue;
                 childList.Add(new MenuDto()
                 {
                     DisplayText = content.Title,
@@ -151,7 +152,8 @@ namespace Cinotam.Cms.App.Pages
             {
                 Title = input.Title,
                 Lang = input.Lang,
-                HtmlContent = template,
+                HtmlContent = template.Content,
+                IsPartial = template.IsPartial,
                 Url = input.Title.Sluggify(),
                 PageId = page.Id,
                 Page = page,
@@ -169,7 +171,8 @@ namespace Cinotam.Cms.App.Pages
                 HtmlContent = pageContent.HtmlContent,
                 TemplateName = pageContent.TemplateUniqueName,
                 Title = pageContent.Title,
-                BreadCrums = await GetBreadCrumsForPage(id)
+                BreadCrums = await GetBreadCrumsForPage(id),
+                IsPartial = pageContent.IsPartial
             };
         }
 
@@ -250,6 +253,7 @@ namespace Cinotam.Cms.App.Pages
                     Lang = content.Lang,
                     TemplateName = content.TemplateUniqueName,
                     Title = content.Title,
+                    IsPartial = content.IsPartial,
                     BreadCrums = await GetBreadCrumsForPage(content.PageId)
                 };
             }
@@ -262,7 +266,8 @@ namespace Cinotam.Cms.App.Pages
                 Lang = currentLangContent.Lang,
                 TemplateName = currentLangContent.TemplateUniqueName,
                 Title = currentLangContent.Title,
-                BreadCrums = await GetBreadCrumsForPage(content.PageId)
+                BreadCrums = await GetBreadCrumsForPage(content.PageId),
+                IsPartial = currentLangContent.IsPartial,
             };
         }
 

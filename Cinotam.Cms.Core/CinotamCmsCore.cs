@@ -25,7 +25,10 @@ namespace Cinotam.Cms.Core
 
             //PageContentProviders.Add(IocManager.Resolve<FileSystemContentProvider.Provider.FileSystemContentProvider>());
 
+
             TemplateContentProviders.Add(IocManager.Resolve<FileSystemTemplateProvider.Provider.FileSystemTemplateProvider>());
+
+            TemplateContentProviders.Add(IocManager.Resolve<DatabaseTemplateProvider.Provider.DatabaseTemplateProvider>());
         }
     }
 }

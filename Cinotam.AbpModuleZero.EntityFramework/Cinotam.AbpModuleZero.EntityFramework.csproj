@@ -230,6 +230,22 @@
     <Compile Include="Migrations\201609141539552_ExternalResourceModifications.Designer.cs">
       <DependentUpon>201609141539552_ExternalResourceModifications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609141716128_ResourcesDescription.cs" />
+    <Compile Include="Migrations\201609141716128_ResourcesDescription.Designer.cs">
+      <DependentUpon>201609141716128_ResourcesDescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609141740205_IsPartialPropertyForPageContent.cs" />
+    <Compile Include="Migrations\201609141740205_IsPartialPropertyForPageContent.Designer.cs">
+      <DependentUpon>201609141740205_IsPartialPropertyForPageContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609141804042_Chunks.cs" />
+    <Compile Include="Migrations\201609141804042_Chunks.Designer.cs">
+      <DependentUpon>201609141804042_Chunks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609141819596_InterfaceImplementation.cs" />
+    <Compile Include="Migrations\201609141819596_InterfaceImplementation.Designer.cs">
+      <DependentUpon>201609141819596_InterfaceImplementation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -352,6 +368,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609141539552_ExternalResourceModifications.resx">
       <DependentUpon>201609141539552_ExternalResourceModifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141716128_ResourcesDescription.resx">
+      <DependentUpon>201609141716128_ResourcesDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141740205_IsPartialPropertyForPageContent.resx">
+      <DependentUpon>201609141740205_IsPartialPropertyForPageContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141804042_Chunks.resx">
+      <DependentUpon>201609141804042_Chunks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141819596_InterfaceImplementation.resx">
+      <DependentUpon>201609141819596_InterfaceImplementation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

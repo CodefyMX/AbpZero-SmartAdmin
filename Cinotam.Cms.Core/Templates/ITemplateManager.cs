@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Services;
+using Cinotam.Cms.Core.Templates.Outputs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +7,9 @@ namespace Cinotam.Cms.Core.Templates
 {
     public interface ITemplateManager : IDomainService
     {
-        Task<string> GetTemplateContentAsync(string templateName);
+        Task<TemplateInfo> GetTemplateContentAsync(string templateName);
         Task<List<string>> GetAvailableTemplatesAsync();
+        Task AddCssResource(string url, string name, string description);
+        Task AddJsResource(string url, string name, string description);
     }
 }

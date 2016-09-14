@@ -16,6 +16,8 @@ namespace Cinotam.AbpModuleZero.EntityFramework
         public IDbSet<Page> Pages { get; set; }
         public IDbSet<Template> Templates { get; set; }
         public IDbSet<Content> Contents { get; set; }
+        public IDbSet<Resource> Resources { get; set; }
+        public IDbSet<Chunk> Chunks { get; set; }
         #endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

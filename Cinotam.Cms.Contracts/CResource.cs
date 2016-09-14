@@ -5,5 +5,6 @@
         public string ResourceType { get; set; }
         public string ResourceUrl { get; set; }
         public ITemplateContent Template { get; set; }
+        public string Description { get; set; }
     }
 }

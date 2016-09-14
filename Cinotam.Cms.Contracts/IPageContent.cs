@@ -1,4 +1,6 @@
-﻿namespace Cinotam.Cms.Contracts
+﻿using System.Collections.Generic;
+
+namespace Cinotam.Cms.Contracts
 {
     public interface IPageContent
     {
@@ -9,5 +11,7 @@
         string Url { get; set; }
         string TemplateUniqueName { get; set; }
         int Id { get; set; }
+        bool IsPartial { get; set; }
+        ICollection<IChunk> Chunks { get; }
     }
 }

@@ -7,6 +7,7 @@ namespace Cinotam.Cms.Contracts
         string Name { get; set; }
         string FileName { get; set; }
         string Content { get; set; }
+        bool IsPartial { get; set; }
         ICollection<IResource> Resources { get; }
     }
 }

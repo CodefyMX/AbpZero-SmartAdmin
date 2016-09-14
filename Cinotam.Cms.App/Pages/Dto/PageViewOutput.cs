@@ -10,6 +10,7 @@ namespace Cinotam.Cms.App.Pages.Dto
         public string HtmlContent { get; set; }
         public string TemplateName { get; set; }
         public string Title { get; set; }
+        public bool IsPartial { get; set; }
         public List<BreadCrum> BreadCrums { get; set; } = new EditableList<BreadCrum>();
     }
 }

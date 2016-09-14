@@ -28,6 +28,7 @@ namespace Cinotam.Cms.Core.Pages.Policy
 
         private async Task CheckUrlContent(Content content)
         {
+            if (content.Id != 0) return;
             foreach (var templateContentProvider in CinotamCmsCore.PageContentProviders.Where(a => a.IsFileSystemService == false))
             {
                 var result = await templateContentProvider.GetPageContent(content.Url);

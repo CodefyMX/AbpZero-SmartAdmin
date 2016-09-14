@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using System.Web.Hosting;
+using System.Web;
 
 namespace Cinotam.Cms.FileSystemTemplateProvider.Provider
 {
@@ -96,6 +96,16 @@ namespace Cinotam.Cms.FileSystemTemplateProvider.Provider
             return listOfTemplates;
         }
 
+        public Task AddJsResource(string resourceRoute, string templateName, string description)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AddCssResource(string resourceRoute, string templateName, string description)
+        {
+            throw new NotImplementedException();
+        }
+
         public string ServiceName => "Cinotam.FileSystem.Template.Provider";
 
         private ICollection<CResource> GetResources(JsonConfigurarion configuration)
@@ -124,7 +134,7 @@ namespace Cinotam.Cms.FileSystemTemplateProvider.Provider
 
         private IEnumerable<string> GetDirectories()
         {
-            var folder = HostingEnvironment.MapPath(TemplateFolder);
+            var folder = HttpContext.Current.Server.MapPath(TemplateFolder);
             if (folder != null)
             {
                 var directories = Directory.GetDirectories(folder);

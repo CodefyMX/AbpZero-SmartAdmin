@@ -2,6 +2,7 @@
 using Cinotam.Cms.Contracts;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
@@ -9,10 +10,12 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
     public class DatabaseTemplateProvider : IDatabaseTemplateProvider
     {
         private readonly IRepository<Template> _templatesRepository;
+        private readonly IRepository<Resource> _resourceRepository;
 
-        public DatabaseTemplateProvider(IRepository<Template> templatesRepository)
+        public DatabaseTemplateProvider(IRepository<Template> templatesRepository, IRepository<Resource> resourceRepository)
         {
             _templatesRepository = templatesRepository;
+            _resourceRepository = resourceRepository;
         }
 
         public async Task<string> GetTemplateContent(string templateName)
@@ -21,31 +24,36 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
             return content == null ? string.Empty : content.Content;
         }
 
-        public Task<List<string>> GetAvailableTemplates()
+        public async Task<List<string>> GetAvailableTemplates()
         {
-            throw new System.NotImplementedException();
+            var templates = await _templatesRepository.GetAllListAsync();
+            return templates.Select(a => a.Name).ToList();
         }
-
-        public async Task<string> GetTemplateContent(int templateId)
-        {
-            var content = await _templatesRepository.FirstOrDefaultAsync(a => a.Id == templateId);
-            return content == null ? string.Empty : content.Content;
-        }
-
         public async Task CreateEditTemplate(ITemplateContent templateContent)
         {
-            var content = new Template()
-            {
-                Content = templateContent.Content,
-                Name = templateContent.Name,
-                FileName = ""
-            };
-            await _templatesRepository.InsertAndGetIdAsync(content);
+
+            await _templatesRepository.InsertAndGetIdAsync(templateContent as Template);
         }
 
-        public Task<CTemplate> GetTemplateInfo(string templateName)
+        public async Task<CTemplate> GetTemplateInfo(string templateName)
         {
-            throw new System.NotImplementedException();
+            var template = await _templatesRepository.FirstOrDefaultAsync(a => a.Name == templateName);
+            return new CTemplate()
+            {
+                Content = template.Content,
+                Name = template.Name,
+                ResourcesObj = GetResources(template.Id),
+            };
+        }
+
+        private ICollection<CResource> GetResources(int templateId)
+        {
+            var templateResources = _resourceRepository.GetAllList(a => a.TemplateObj.Id == templateId);
+            return templateResources.Select(a => new CResource()
+            {
+                ResourceUrl = a.ResourceUrl,
+                ResourceType = a.ResourceType
+            }).ToList();
         }
 
         public Task<List<CTemplate>> GetTemplatesInfo()
@@ -55,14 +63,28 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
 
         public string ServiceName => "Cinotam.Database.Template.Provider";
 
-        public Task AddJsResource(string resourceRoute, string templateName)
+        public async Task AddJsResource(string resourceRoute, string templateName, string description)
         {
-            throw new System.NotImplementedException();
+            var template = await GetTemplateInfo(templateName);
+            await _resourceRepository.InsertOrUpdateAndGetIdAsync(new Resource()
+            {
+                ResourceUrl = resourceRoute,
+                ResourceType = "js",
+                Description = description,
+                Template = template
+            });
         }
 
-        public Task AddCssResource(string resourceRoute, string templateName)
+        public async Task AddCssResource(string resourceRoute, string templateName, string description)
         {
-            return null;
+            var template = await GetTemplateInfo(templateName);
+            await _resourceRepository.InsertOrUpdateAndGetIdAsync(new Resource()
+            {
+                ResourceUrl = resourceRoute,
+                ResourceType = "css",
+                Description = description,
+                Template = template
+            });
         }
     }
 }

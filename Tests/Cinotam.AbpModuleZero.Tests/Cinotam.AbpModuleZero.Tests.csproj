@@ -95,6 +95,10 @@
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FakeItEasy, Version=2.2.0.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FakeItEasy.2.2.0\lib\net40\FakeItEasy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -137,6 +141,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -164,6 +169,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessions\SessionAppService_Tests.cs" />
     <Compile Include="AbpModuleZeroTestBase.cs" />
+    <Compile Include="TemplateDataBaseProvider\TemplateDatabaseProvider_Tests.cs" />
     <Compile Include="TemplateFileSystemProvider\TemplateFileSystemProvider_Tests.cs" />
     <Compile Include="Users\UserAppService_Tests.cs" />
   </ItemGroup>
@@ -185,6 +191,14 @@
     <ProjectReference Include="..\..\Cinotam.Cms.Contracts\Cinotam.Cms.Contracts.csproj">
       <Project>{DABC5C7B-2468-40CB-A673-DC723656174D}</Project>
       <Name>Cinotam.Cms.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cinotam.Cms.DatabaseEntities\Cinotam.Cms.DatabaseEntities.csproj">
+      <Project>{2A5BA0A4-51FB-4132-BD08-F00357B24F23}</Project>
+      <Name>Cinotam.Cms.DatabaseEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cinotam.Cms.DatabaseTemplateProvider\Cinotam.Cms.DatabaseTemplateProvider.csproj">
+      <Project>{129C15E0-149B-4BF8-B136-B37D4C085F70}</Project>
+      <Name>Cinotam.Cms.DatabaseTemplateProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Cinotam.Cms.FileSystemTemplateProvider\Cinotam.Cms.FileSystemTemplateProvider.csproj">
       <Project>{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115}</Project>
