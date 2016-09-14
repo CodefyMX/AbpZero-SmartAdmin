@@ -8,5 +8,12 @@
         public string TemplateFullName { get; set; }
         public bool OverrideFolder { get; set; }
         public string DisplayName { get; set; }
+        public ExternalResources ExternalResources { get; set; }
+    }
+
+    public class ExternalResources
+    {
+        public string[] Css { get; set; }
+        public string[] Js { get; set; }
     }
 }

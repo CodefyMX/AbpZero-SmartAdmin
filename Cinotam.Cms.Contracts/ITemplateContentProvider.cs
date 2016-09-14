@@ -8,5 +8,9 @@ namespace Cinotam.Cms.Contracts
         Task<string> GetTemplateContent(string templateName);
         Task<List<string>> GetAvailableTemplates();
         Task CreateEditTemplate(ITemplateContent templateContent);
+        Task<CTemplate> GetTemplateInfo(string templateName);
+        Task<List<CTemplate>> GetTemplatesInfo();
+
+        string ServiceName { get; }
     }
 }

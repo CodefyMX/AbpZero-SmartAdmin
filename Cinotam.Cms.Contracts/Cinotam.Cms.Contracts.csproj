@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CResource.cs" />
+    <Compile Include="CTemplate.cs" />
     <Compile Include="IPageContent.cs" />
+    <Compile Include="IResource.cs" />
     <Compile Include="ITemplateContent.cs" />
     <Compile Include="IPageContentProvider.cs" />
     <Compile Include="ITemplateContentProvider.cs" />

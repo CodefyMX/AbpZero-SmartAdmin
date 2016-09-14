@@ -222,6 +222,14 @@
     <Compile Include="Migrations\201609122047488_MainPageProperty.Designer.cs">
       <DependentUpon>201609122047488_MainPageProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609141517366_ExternalResources.cs" />
+    <Compile Include="Migrations\201609141517366_ExternalResources.Designer.cs">
+      <DependentUpon>201609141517366_ExternalResources.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609141539552_ExternalResourceModifications.cs" />
+    <Compile Include="Migrations\201609141539552_ExternalResourceModifications.Designer.cs">
+      <DependentUpon>201609141539552_ExternalResourceModifications.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -338,6 +346,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609122047488_MainPageProperty.resx">
       <DependentUpon>201609122047488_MainPageProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141517366_ExternalResources.resx">
+      <DependentUpon>201609141517366_ExternalResources.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609141539552_ExternalResourceModifications.resx">
+      <DependentUpon>201609141539552_ExternalResourceModifications.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Abp.Domain.Repositories;
+﻿using Abp.Domain.Repositories;
 using Cinotam.Cms.Contracts;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
@@ -41,6 +41,28 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
                 FileName = ""
             };
             await _templatesRepository.InsertAndGetIdAsync(content);
+        }
+
+        public Task<CTemplate> GetTemplateInfo(string templateName)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<List<CTemplate>> GetTemplatesInfo()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string ServiceName => "Cinotam.Database.Template.Provider";
+
+        public Task AddJsResource(string resourceRoute, string templateName)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task AddCssResource(string resourceRoute, string templateName)
+        {
+            return null;
         }
     }
 }
