@@ -14,5 +14,7 @@ namespace Cinotam.Cms.App.Pages.Dto
     {
         public string Key { get; set; }
         public string Value { get; set; }
+
+        public int Order { get; set; }
     }
 }

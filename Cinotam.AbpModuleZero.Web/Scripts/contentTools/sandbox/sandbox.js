@@ -14,15 +14,18 @@
         var lang = document.getElementById("Lang").value;
         var id = document.getElementById("Id").value;
         
-        var regions = ev.detail().regions;
+        var regions = editor.orderedRegions();
         var chunks = [];
-
+        var order = 0;
         for (name in regions) {
+            console.log (regions[name]);
             if (regions.hasOwnProperty(name)) {
                 chunks.push({
                     Key:name,
-                    Value:regions[name]
+                    Value: regions[name]._domElement.innerHTML,
+                    Order: order
                 });
+                order = order + 1;
             }
         }
 

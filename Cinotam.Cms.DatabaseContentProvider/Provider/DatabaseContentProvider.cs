@@ -26,6 +26,7 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
 
         public async Task SaveContent(IPageContent input)
         {
+
             var page = _pageRepository.Get(input.PageId);
             var pageContent = _contentRepository.FirstOrDefault(a => a.Id == input.Id);
             if (pageContent != null)
@@ -99,11 +100,13 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
                             Value = input.Value,
                             Key = input.Key,
                             ContentObj = input.PageContent as Content,
+                            Order = input.Order
                         });
                     }
                     else
                     {
                         chunk.Value = input.Value;
+
                         await _chunkRepository.UpdateAsync(chunk);
                     }
 

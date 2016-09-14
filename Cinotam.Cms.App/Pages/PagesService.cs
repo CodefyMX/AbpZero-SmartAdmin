@@ -60,7 +60,8 @@ namespace Cinotam.Cms.App.Pages
                 {
                     PageContent = pageContent,
                     Value = inputChunk.Value,
-                    Key = inputChunk.Key
+                    Key = inputChunk.Key,
+                    Order = inputChunk.Order
                 });
             }
             await _pageManager.SavePageContentAsync(pageContent, chunks);
