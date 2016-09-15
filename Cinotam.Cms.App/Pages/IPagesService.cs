@@ -22,5 +22,6 @@ namespace Cinotam.Cms.App.Pages
         void SetPageAsMain(int pageId);
         Task<string> GetMainPageSlug();
         Menu GetPagesMenu();
+
     }
 }

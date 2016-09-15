@@ -5,9 +5,10 @@ namespace Cinotam.Cms.Contracts
 {
     public interface ITemplateContentProvider
     {
+        bool IsDatabase { get; }
         Task<string> GetTemplateContent(string templateName);
         Task<List<string>> GetAvailableTemplates();
-        Task CreateEditTemplate(ITemplateContent templateContent);
+        Task CreateEditTemplate(CTemplate templateContent);
         Task<CTemplate> GetTemplateInfo(string templateName);
         Task<List<CTemplate>> GetTemplatesInfo();
         Task AddJsResource(string resourceRoute, string templateName, string description);

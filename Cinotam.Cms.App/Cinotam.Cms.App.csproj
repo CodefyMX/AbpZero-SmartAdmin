@@ -83,6 +83,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -113,6 +114,9 @@
     <Compile Include="Pages\IPagesService.cs" />
     <Compile Include="Pages\PagesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates\Dto\TemplateInput.cs" />
+    <Compile Include="Templates\ITemplateService.cs" />
+    <Compile Include="Templates\TemplateService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cinotam.AbpModuleZero.Core\Cinotam.AbpModuleZero.Core.csproj">
@@ -144,9 +148,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Templates\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

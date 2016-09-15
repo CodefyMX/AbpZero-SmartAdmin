@@ -1,4 +1,4 @@
-﻿using Cinotam.Cms.DatabaseEntities.Templates.Entities;
+﻿using Cinotam.Cms.Contracts;
 using Cinotam.Cms.DatabaseTemplateProvider.Provider;
 using Shouldly;
 using System.Threading.Tasks;
@@ -19,7 +19,7 @@ namespace Cinotam.AbpModuleZero.Tests.TemplateDataBaseProvider
 
         public async Task TestDatabaseTemplateProvider()
         {
-            var template = new Template()
+            var template = new CTemplate()
             {
                 Content = "Content",
                 Name = "TestTemplate",
@@ -27,7 +27,7 @@ namespace Cinotam.AbpModuleZero.Tests.TemplateDataBaseProvider
             };
             await _templateContentProvider.CreateEditTemplate(template);
 
-            template.Id.ShouldNotBe(0);
+            template.FileName.ShouldNotBe(null);
 
         }
     }

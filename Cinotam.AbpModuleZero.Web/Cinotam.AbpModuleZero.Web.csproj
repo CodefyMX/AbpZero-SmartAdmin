@@ -1131,6 +1131,9 @@
     <Content Include="Areas\SysAdmin\Views\Notifications\MyNotifications.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\_alternativeUserInfo.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Templates\MyTemplates.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Templates\CreateEditTemplate.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Templates\EditHtml.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
@@ -1282,6 +1285,7 @@
     <Compile Include="Areas\SysAdmin\Controllers\LayoutController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\NotificationsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\RolesController.cs" />
+    <Compile Include="Areas\SysAdmin\Controllers\TemplatesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\SysAdmin\SysAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AboutController.cs" />
@@ -1371,6 +1375,14 @@
     <ProjectReference Include="..\Cinotam.Cms.App\Cinotam.Cms.App.csproj">
       <Project>{10E38564-856C-4C11-940C-6B23C5E3A284}</Project>
       <Name>Cinotam.Cms.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.Cms.Contracts\Cinotam.Cms.Contracts.csproj">
+      <Project>{DABC5C7B-2468-40CB-A673-DC723656174D}</Project>
+      <Name>Cinotam.Cms.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.Cms.Core\Cinotam.Cms.Core.csproj">
+      <Project>{CC639C97-140A-42F6-8323-7C702077ACAE}</Project>
+      <Name>Cinotam.Cms.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.ModuleZero.AppModule\Cinotam.ModuleZero.AppModule.csproj">
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>

@@ -18,6 +18,8 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
             _resourceRepository = resourceRepository;
         }
 
+        public bool IsDatabase => true;
+
         public async Task<string> GetTemplateContent(string templateName)
         {
             var content = await _templatesRepository.FirstOrDefaultAsync(a => a.Name == templateName);
@@ -29,10 +31,26 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
             var templates = await _templatesRepository.GetAllListAsync();
             return templates.Select(a => a.Name).ToList();
         }
-        public async Task CreateEditTemplate(ITemplateContent templateContent)
+        public async Task CreateEditTemplate(CTemplate templateContent)
         {
 
-            await _templatesRepository.InsertAndGetIdAsync(templateContent as Template);
+            var found = _templatesRepository.FirstOrDefault(a => a.Name == templateContent.Name);
+
+            if (found == null)
+            {
+                await _templatesRepository.InsertOrUpdateAndGetIdAsync(new Template()
+                {
+                    Content = templateContent.Content,
+                    Name = templateContent.Name,
+                    IsPartial = templateContent.IsPartial,
+                });
+            }
+
+            else
+            {
+                found.Content = templateContent.Content;
+                await _templatesRepository.InsertOrUpdateAndGetIdAsync(found);
+            }
         }
 
         public async Task<CTemplate> GetTemplateInfo(string templateName)
@@ -43,6 +61,7 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
                 Content = template.Content,
                 Name = template.Name,
                 ResourcesObj = GetResources(template.Id),
+                IsPartial = template.IsPartial,
             };
         }
 
@@ -56,9 +75,21 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
             }).ToList();
         }
 
-        public Task<List<CTemplate>> GetTemplatesInfo()
+        public async Task<List<CTemplate>> GetTemplatesInfo()
         {
-            throw new System.NotImplementedException();
+            var templates = await _templatesRepository.GetAllListAsync();
+            var templateList = new List<CTemplate>();
+            foreach (var template in templates)
+            {
+                templateList.Add(new CTemplate()
+                {
+                    Content = template.Content,
+                    Name = template.Name,
+                    ResourcesObj = GetResources(template.Id),
+                    IsPartial = template.IsPartial,
+                });
+            }
+            return templateList;
         }
 
         public string ServiceName => "Cinotam.Database.Template.Provider";
@@ -71,7 +102,8 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
                 ResourceUrl = resourceRoute,
                 ResourceType = "js",
                 Description = description,
-                Template = template
+                Template = template,
+
             });
         }
 

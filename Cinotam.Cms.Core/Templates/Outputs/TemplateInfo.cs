@@ -9,6 +9,7 @@ namespace Cinotam.Cms.Core.Templates.Outputs
         public string FileName { get; set; }
         public string Content { get; set; }
         public bool IsPartial { get; set; }
+        public bool IsDatabaseTemplate { get; set; }
         public ICollection<IResource> Resources { get; set; }
     }
 }

@@ -11,5 +11,8 @@ namespace Cinotam.Cms.Core.Templates
         Task<List<string>> GetAvailableTemplatesAsync();
         Task AddCssResource(string url, string name, string description);
         Task AddJsResource(string url, string name, string description);
+        Task<List<TemplateInfo>> GetTemplateContentsAsync();
+        Task<TemplateCreationResult> AddTemplate(TemplateInfo info);
+        Task<TemplateCreationResult> EditTemplate(TemplateInfo info);
     }
 }

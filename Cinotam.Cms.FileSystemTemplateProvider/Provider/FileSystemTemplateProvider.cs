@@ -14,6 +14,8 @@ namespace Cinotam.Cms.FileSystemTemplateProvider.Provider
         private const string TemplateFolder = "/Content/Templates/";
         private const string JsonConfigFileName = "TemplateConfig.json";
 
+        public bool IsDatabase => false;
+
         public async Task<string> GetTemplateContent(string templateName)
         {
             var directories = GetDirectories();
@@ -49,7 +51,7 @@ namespace Cinotam.Cms.FileSystemTemplateProvider.Provider
             return GetTextFromFile(file);
         }
 
-        public Task CreateEditTemplate(ITemplateContent templateContent)
+        public Task CreateEditTemplate(CTemplate templateContent)
         {
             throw new NotImplementedException("File system template creation is not available");
         }
@@ -69,6 +71,7 @@ namespace Cinotam.Cms.FileSystemTemplateProvider.Provider
                     Content = content,
                     FileName = configuration.TemplateFullName,
                     Name = configuration.TemplateName,
+                    IsPartial = configuration.IsPartial,
                     ResourcesObj = GetResources(configuration)
                 };
             }
@@ -90,6 +93,7 @@ namespace Cinotam.Cms.FileSystemTemplateProvider.Provider
                     Content = content,
                     FileName = configuration.TemplateFullName,
                     Name = configuration.TemplateName,
+                    IsPartial = configuration.IsPartial,
                     ResourcesObj = GetResources(configuration)
                 });
             }

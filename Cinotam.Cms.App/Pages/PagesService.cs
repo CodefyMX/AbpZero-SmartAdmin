@@ -61,7 +61,8 @@ namespace Cinotam.Cms.App.Pages
                     PageContent = pageContent,
                     Value = inputChunk.Value,
                     Key = inputChunk.Key,
-                    Order = inputChunk.Order
+                    Order = inputChunk.Order,
+
                 });
             }
             await _pageManager.SavePageContentAsync(pageContent, chunks);
@@ -96,12 +97,13 @@ namespace Cinotam.Cms.App.Pages
         public Menu GetPagesMenu()
         {
             var pagesMenuList = new List<MenuDto>();
-            var parentPages = _pageRepository.GetAllList(a => a.ParentPage == null);
+            var parentPages = _pageRepository.GetAllList(a => a.ParentPage == null && a.Active);
 
             foreach (var parent in parentPages)
             {
                 var childs = SearchForChilds(parent);
                 var content = _contentRepository.FirstOrDefault(a => a.PageId == parent.Id);
+                if (content == null) continue;
                 pagesMenuList.Add(new MenuDto()
                 {
                     DisplayText = content.Title,
@@ -117,7 +119,7 @@ namespace Cinotam.Cms.App.Pages
 
         private List<MenuDto> SearchForChilds(Page parent)
         {
-            var childs = _pageRepository.GetAllList(a => a.ParentPage == parent.Id);
+            var childs = _pageRepository.GetAllList(a => a.ParentPage == parent.Id && a.Active);
             var childList = new List<MenuDto>();
             foreach (var child in childs)
             {
@@ -169,6 +171,7 @@ namespace Cinotam.Cms.App.Pages
                 Url = input.Title.Sluggify(),
                 PageId = page.Id,
                 Page = page,
+
                 TemplateUniqueName = page.TemplateName
             });
         }
@@ -437,5 +440,7 @@ namespace Cinotam.Cms.App.Pages
             }
             return list;
         }
+
+
     }
 }

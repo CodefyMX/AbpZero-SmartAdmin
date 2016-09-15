@@ -1,5 +1,5 @@
-﻿using Cinotam.Cms.Core.Templates.Outputs;
-using Cinotam.Cms.DatabaseEntities.Templates.Entities;
+﻿using Cinotam.Cms.Contracts;
+using Cinotam.Cms.Core.Templates.Outputs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +23,8 @@ namespace Cinotam.Cms.Core.Templates
                         FileName = templateContent.FileName,
                         IsPartial = templateContent.IsPartial,
                         Name = templateContent.Name,
-                        Resources = templateContent.Resources
+                        Resources = templateContent.Resources,
+                        IsDatabaseTemplate = provider.IsDatabase
                     };
                 }
                 catch (Exception)
@@ -31,7 +32,7 @@ namespace Cinotam.Cms.Core.Templates
                     //
                 }
             }
-            throw new InvalidOperationException(nameof(templateName));
+            return null;
         }
 
         public async Task<List<string>> GetAvailableTemplatesAsync()
@@ -73,7 +74,7 @@ namespace Cinotam.Cms.Core.Templates
             {
                 try
                 {
-                    var template = new Template()
+                    var template = new CTemplate()
                     {
                         Name = templateName,
                         Content = templateInfo.Content,
@@ -111,6 +112,7 @@ namespace Cinotam.Cms.Core.Templates
             }
             throw new InvalidOperationException();
         }
+
         public async Task AddJsResource(string url, string name, string description)
         {
             foreach (var provider in CinotamCmsCore.TemplateContentProviders)
@@ -129,6 +131,83 @@ namespace Cinotam.Cms.Core.Templates
                 }
             }
             throw new InvalidOperationException();
+        }
+
+        public async Task<List<TemplateInfo>> GetTemplateContentsAsync()
+        {
+            var listOfTemplatesInfo = new List<TemplateInfo>();
+            foreach (var templateContentProvider in CinotamCmsCore.TemplateContentProviders)
+            {
+                var templates = await templateContentProvider.GetTemplatesInfo();
+                foreach (var cTemplate in templates)
+                {
+                    listOfTemplatesInfo.Add(new TemplateInfo()
+                    {
+                        Content = cTemplate.Content,
+                        FileName = cTemplate.FileName,
+                        IsDatabaseTemplate = templateContentProvider.IsDatabase,
+                        IsPartial = cTemplate.IsPartial,
+                        Name = cTemplate.Name
+                    });
+                }
+            }
+            return listOfTemplatesInfo;
+        }
+
+        public async Task<TemplateCreationResult> EditTemplate(TemplateInfo info)
+        {
+            return (await SaveTemplate(info));
+        }
+        public async Task<TemplateCreationResult> AddTemplate(TemplateInfo info)
+        {
+
+            if ((await Exists(info.Name)))
+            {
+                return new TemplateCreationResult()
+                {
+                    ErrorMessage = "TemplateNameAlreadyExsist",
+                    HasError = true
+                };
+            }
+            return (await SaveTemplate(info));
+
+        }
+
+        private async Task<TemplateCreationResult> SaveTemplate(ITemplateContent info)
+        {
+            foreach (var templateContentProvider in CinotamCmsCore.TemplateContentProviders)
+            {
+                try
+                {
+                    await templateContentProvider.CreateEditTemplate(new CTemplate()
+                    {
+                        Content = info.Content,
+                        Name = info.Name,
+                        IsPartial = info.IsPartial,
+
+                    });
+                }
+                catch (Exception ex)
+                {
+                    if (ex is NotImplementedException) continue;
+                    throw;
+                }
+            }
+            return new TemplateCreationResult()
+            {
+                HasError = false
+            };
+        }
+
+        private async Task<bool> Exists(string name)
+        {
+            var templates = new List<string>();
+
+            foreach (var templateContentProvider in CinotamCmsCore.TemplateContentProviders)
+            {
+                templates.AddRange((await templateContentProvider.GetAvailableTemplates()));
+            }
+            return templates.Any(a => a == name);
         }
     }
 }

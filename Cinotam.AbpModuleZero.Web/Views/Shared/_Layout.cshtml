@@ -38,7 +38,7 @@
     @Scripts.Render("~/Bundles/vendor/js/top")
 
 </head>
-<body >
+<body>
     @Html.Partial("_TopBar")
 
     <div class="container-fluid">
@@ -47,7 +47,7 @@
 
 
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
-@Scripts.Render("~/Bundles/vendor/js/bottom")
+    @Scripts.Render("~/Bundles/vendor/js/bottom")
     <script src="~/Scripts/bootstrap.min.js"></script>
     @Scripts.Render("~/Bundles/js")
 
@@ -64,7 +64,7 @@
     <script src="~/signalr/hubs"></script>
     @Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js")
 
-<!-- View specific scripts -->
+    <!-- View specific scripts -->
     @RenderSection("scripts", required: false)
 </body>
 </html>

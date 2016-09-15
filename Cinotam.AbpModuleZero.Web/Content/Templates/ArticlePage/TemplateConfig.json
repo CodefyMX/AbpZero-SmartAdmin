@@ -2,7 +2,7 @@
   "templateName": "ArticlePage",
   "fileType": "html",
   "templateFullName": "ArticlePage.html",
-  "isPartial": false,
+  "isPartial": true,
   "externalResources": {
     "css": [ "" ],
     "js": [ "" ]

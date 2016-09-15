@@ -2,7 +2,7 @@
   "templateName": "Simple",
   "fileType": "html",
   "templateFullName": "Simple.html",
-  "isPartial": false,
+  "isPartial": true,
   "externalResources": {
     "css": [ "" ],
     "js": [ "" ]

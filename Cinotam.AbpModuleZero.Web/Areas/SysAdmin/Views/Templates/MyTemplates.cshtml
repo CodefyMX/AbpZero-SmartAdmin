@@ -1,13 +1,18 @@
 ﻿@using Cinotam.AbpModuleZero
+
+@{
+    ViewBag.Title = "MyTemplates";
+}
+
 <div id="content">
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
             <h1 class="page-title txt-color-blueDark">
                 <i class="fa-fw fa fa-home"></i>
-                @L("Dashboard")
+                @L("Templates")
                 <span>
                     >
-                    @L("DashboardView")
+                    @L("TemplateManagement")
                 </span>
             </h1>
         </div>
@@ -17,7 +22,7 @@
 
             <article class="col-xs-12 sortable-grid ui-sortable">
 
-                <div class="jarviswidget jarviswidget-sortable" id="wid-id-cmsPagesTable" style="" role="widget">
+                <div class="jarviswidget jarviswidget-sortable" id="wid-id-cmsTemplatesTable" style="" role="widget">
                     <!-- widget options:
                     usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
@@ -47,7 +52,7 @@
                             @*<a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a>*@
                         </div>
                         <div class="widget-toolbar" role="menu">
-                            <a data-modal="" href="@Url.Action("CreateEditPage","Cms")" class="btn btn-success">@L("CreateNewPage")</a>
+                            <a data-modal="" href="@Url.Action("CreateEditTemplate","Templates")" class="btn btn-success">@L("CreateNewTemplate")</a>
                             <a data-toggle="dropdown" class="dropdown-toggle color-box selector" href="javascript:void(0);"></a>
                             <ul class="dropdown-menu arrow-box-up-right color-select pull-right">
                                 <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
@@ -73,7 +78,7 @@
                         </div>
 
                         <h2>
-                            <strong>@L("Pages")</strong> <i></i>
+                            <strong>@L("Templates")</strong> <i></i>
                         </h2>
                         <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
 
@@ -92,11 +97,13 @@
                         <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body no-padding">
-                            <table class="table table-striped table-bordered table-hover table-condensed" width="100%" id="pagesTable">
+                            <table class="table table-striped table-bordered table-hover table-condensed" width="100%" id="templatesTable">
                                 <thead>
                                     <tr>
                                         <th data-class="expand">@L("Name")</th>
-                                        <th>@L("Langs")</th>
+                                        <th>@L("FileName")</th>
+                                        <th>@L("Type")</th>
+                                        <th>@L("From")</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -116,62 +123,80 @@
     </section>
 </div>
 @section pagespecific{
-
     <script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
     <script>
         (function () {
 
+            var table = $("#templatesTable")
+     .DataTable({
+         "sPaginationType": "full_numbers", // And its type.
+         "iDisplayLength": 10,
+         "ajax": "/SysAdmin/Templates/" + "GetTemplates",
+         "autoWidth": true,
+         "preDrawCallback": function () {
+             // Initialize the responsive datatables helper once.
+             if (!responsiveHelper_dt_roles) {
+                 responsiveHelper_dt_roles = new
+                     ResponsiveDatatablesHelper($('#templatesTable'), breakpointDefinition);
+             }
+         },
+         "rowCallback": function (nRow) {
+             responsiveHelper_dt_roles.createExpandIcon(nRow);
+         },
+         columnDefs: [
+             {
+                 className: "text-center",
+                 "render": function (data, type, row) {
+                     if (row.IsPartial) {
+                         return "<label class='label label-primary'>" + LSys("IsPartial") + "</label>";
+                     } else {
+                         return "<label class='label label-primary'>" + LSys("IsNotPartial") + "</label>";
+                     }
+                 },
+                 "targets": 2
+             },
+             {
+                 className: "text-center",
+                 "render": function (data, type, row) {
+                     if (row.IsDatabaseTemplate) {
+                         return "<label class='label label-primary'>" + LSys("IsFromDatabase") + "</label>";
+                     } else {
+                         return "<label class='label label-primary'>" + LSys("IsFromFileSystem") + "</label>";
+                     }
+                 },
+                 "targets": 3
+             },
+             {
+                 className: "text-center",
+                 "render": function (data, type, row) {
+                     if (row.IsDatabaseTemplate) {
+                         return "<a  href='/SysAdmin/Templates/EditHtml/" +
+                             row.Name +
+                             "' class='btn btn-primary btn-xs'><i class='fa fa-code'></i></a>" + "   <a data-modal href='/SysAdmin/Templates/AddCssRes/" +
+                             row.Name +
+                             "' class='btn btn-primary btn-xs'><i class='fa fa-css3'></i></a>";
+                     } else {
+                         return "<a class='btn btn-primary btn-xs disabled'><i class='fa fa-code'></i></a>  <a target='_blank' class='btn btn-primary btn-xs disabled'><i class='fa fa-css3'></i></a>";
+                     }
+                 },
+                 "targets": 4
+             }
+         ],
+         "drawCallback": function (oSettings) {
+             responsiveHelper_dt_roles.respond();
+         },
+         language: window.dataTablesLang,
+         columns: [
+             {
+                 "data": "Name"
+             },
+             {
+                 "data": "FileName"
+             }
+         ]
+     });
 
-            var table = $("#pagesTable")
-        .DataTable({
-            "bServerSide": true,
-            "bPaginate": true,
-            "sPaginationType": "full_numbers", // And its type.
-            "iDisplayLength": 10,
-            "ajax": "/SysAdmin/Cms/" + "GetPagesTable",
-            "autoWidth": true,
-            "preDrawCallback": function () {
-                // Initialize the responsive datatables helper once.
-                if (!responsiveHelper_dt_roles) {
-                    responsiveHelper_dt_roles = new
-                        ResponsiveDatatablesHelper($('#pagesTable'), breakpointDefinition);
-                }
-            },
-            "rowCallback": function (nRow) {
-                responsiveHelper_dt_roles.createExpandIcon(nRow);
-            },
-            columnDefs: [
-                {
-                    "render": function (data, type, row) {
-                        var lang = "";
-                        if (row.Langs.length <= 0) {
-                            return LSys("NoLangAvaiableYetForThisPage");
-                        }
-                        row.Langs.forEach(function (dLanf) {
-                            lang = lang + "<i title='" + dLanf.LangCode + "' class='" + dLanf.LangIcon + "'></i> ";
-                        });
-                        return lang;
-                    },
-                    "targets": 1
-                },
-                {
-                    className: "text-center",
-                    "render": function (data, type, row) {
-                        return "<a href='/SysAdmin/Cms/PageConfig/"+row.Id+"' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i></a>";
-                    },
-                    "targets": 2
-                }
-            ],
-            "drawCallback": function (oSettings) {
-                responsiveHelper_dt_roles.respond();
-            },
-            language: window.dataTablesLang,
-            columns: [
-                {
-                    "data": "Title"
-                }
-            ]
-        });
+
 
         })();
     </script>
