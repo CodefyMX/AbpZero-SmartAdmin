@@ -258,6 +258,18 @@
     <Compile Include="Migrations\201609142125336_OrderForChunks.Designer.cs">
       <DependentUpon>201609142125336_OrderForChunks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609192016442_MenuMigration.cs" />
+    <Compile Include="Migrations\201609192016442_MenuMigration.Designer.cs">
+      <DependentUpon>201609192016442_MenuMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609192051519_Update.cs" />
+    <Compile Include="Migrations\201609192051519_Update.Designer.cs">
+      <DependentUpon>201609192051519_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609192113556_ForeignKeysForModels.cs" />
+    <Compile Include="Migrations\201609192113556_ForeignKeysForModels.Designer.cs">
+      <DependentUpon>201609192113556_ForeignKeysForModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -271,8 +283,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cinotam.AbpModuleZero.Core\Cinotam.AbpModuleZero.Core.csproj">
@@ -398,6 +414,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609142125336_OrderForChunks.resx">
       <DependentUpon>201609142125336_OrderForChunks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609192016442_MenuMigration.resx">
+      <DependentUpon>201609192016442_MenuMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609192051519_Update.resx">
+      <DependentUpon>201609192051519_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609192113556_ForeignKeysForModels.resx">
+      <DependentUpon>201609192113556_ForeignKeysForModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

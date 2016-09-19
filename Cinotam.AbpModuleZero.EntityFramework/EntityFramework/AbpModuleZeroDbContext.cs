@@ -2,6 +2,7 @@
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
+using Cinotam.Cms.DatabaseEntities.Menus;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System.Data.Common;
@@ -18,6 +19,8 @@ namespace Cinotam.AbpModuleZero.EntityFramework
         public IDbSet<Content> Contents { get; set; }
         public IDbSet<Resource> Resources { get; set; }
         public IDbSet<Chunk> Chunks { get; set; }
+        public IDbSet<Menu> Menus { get; set; }
+        public IDbSet<MenuContent> MenuContents { get; set; }
         #endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

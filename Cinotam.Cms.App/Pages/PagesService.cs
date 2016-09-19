@@ -21,12 +21,19 @@ namespace Cinotam.Cms.App.Pages
 {
     public class PagesService : CinotamCmsAppServiceBase, IPagesService
     {
+        #region Dependencies
+
         private readonly IPageManager _pageManager;
         private readonly IRepository<Page> _pageRepository;
         private readonly IRepository<Content> _contentRepository;
         private readonly IRepository<Template> _templateRepository;
         private readonly ITemplateManager _templateManager;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
+
+        #endregion
+
+        #region Ctor
+
         public PagesService(IPageManager pageManager, IRepository<Page> pageRepository, IRepository<Content> contentRepository, IRepository<Template> templateRepository, IApplicationLanguageManager applicationLanguageManager, ITemplateManager templateManager)
         {
             _pageManager = pageManager;
@@ -36,6 +43,11 @@ namespace Cinotam.Cms.App.Pages
             _applicationLanguageManager = applicationLanguageManager;
             _templateManager = templateManager;
         }
+
+
+        #endregion
+
+        #region Implementations
 
         public async Task CreateEditPage(PageInput input)
         {
@@ -117,33 +129,15 @@ namespace Cinotam.Cms.App.Pages
             };
         }
 
-        private List<MenuDto> SearchForChilds(Page parent)
+        public async Task<List<PageDto>> GetPageListDto()
         {
-            var childs = _pageRepository.GetAllList(a => a.ParentPage == parent.Id && a.Active);
-            var childList = new List<MenuDto>();
-            foreach (var child in childs)
+            var pages = await _pageRepository.GetAllListAsync();
+            return pages.Select(a => new PageDto()
             {
-                var content = _contentRepository.FirstOrDefault(a => a.PageId == child.Id);
-                if (content == null) continue;
-                childList.Add(new MenuDto()
-                {
-                    DisplayText = content.Title,
-                    Url = content.Url,
-                    Childs = SearchForChilds(child)
-                });
-            }
-            return childList;
-        }
-
-        private void DisableOthers(int pageId)
-        {
-            var pages = _pageRepository.GetAllList(a => a.Id != pageId);
-            foreach (var page in pages)
-            {
-                page.IsMainPage = false;
-                _pageRepository.Update(page);
-            }
-
+                Id = a.Id,
+                Langs = AsyncHelper.RunSync(() => GetAvailableLangs(a.Id)),
+                Title = a.Name,
+            }).ToList();
         }
 
         public async Task<PageTitleInput> GetPageTitleForEdit(int id, string lang)
@@ -191,69 +185,6 @@ namespace Cinotam.Cms.App.Pages
             };
         }
 
-        private async Task<List<BreadCrum>> GetBreadCrumsForPage(int id)
-        {
-            var list = new List<BreadCrum>();
-
-            //First we add the main page (if any is set)
-
-
-            var page = _pageRepository.FirstOrDefault(a => a.Id == id);
-
-            if (page != null)
-            {
-                if (!page.IsMainPage)
-                {
-                    var mainPage = await GetMainPage();
-                    if (mainPage != null)
-                    {
-
-                        list.Add(mainPage);
-                    }
-                }
-                await GetParentBreadCrumForPage(page, list);
-                var content = await _pageManager.GetPageContentAsync(page.Id, CultureInfo.CurrentUICulture.Name);
-                //This way the current page breadcrum will be added at the end of the list
-                list.Add(new BreadCrum()
-                {
-                    DisplayName = content.Title,
-                    Url = content.Url
-                });
-            }
-
-            return list;
-
-        }
-
-        private async Task<BreadCrum> GetMainPage()
-        {
-            var page = await _pageRepository.FirstOrDefaultAsync(a => a.IsMainPage && a.Active);
-            if (page == null) return null;
-            var pageContents =
-                _contentRepository.FirstOrDefault(
-                    a => a.Page.Id == page.Id && a.Lang == CultureInfo.CurrentUICulture.Name);
-            return new BreadCrum()
-            {
-                DisplayName = pageContents.Title,
-                Url = pageContents.Url
-            };
-        }
-
-        private async Task GetParentBreadCrumForPage(Page page, List<BreadCrum> breadCrums)
-        {
-            if (page.ParentPage.HasValue)
-            {
-                var parent = _pageRepository.FirstOrDefault(a => a.Id == page.ParentPage.Value);
-                await GetParentBreadCrumForPage(parent, breadCrums);
-                var content = await _pageManager.GetPageContentAsync(parent.Id, CultureInfo.CurrentUICulture.Name);
-                //This way the current page breadcrum will be added at the end of the list
-                breadCrums.Add(new BreadCrum()
-                {
-                    DisplayName = content.Title,
-                    Url = content.Url
-                });
-            }
-        }
 
         public async Task<PageViewOutput> GetPageViewBySlug(string slug)
         {
@@ -373,6 +304,100 @@ namespace Cinotam.Cms.App.Pages
             };
         }
 
+        #endregion
+
+        #region Helpers
+
+        private async Task<List<BreadCrum>> GetBreadCrumsForPage(int id)
+        {
+            var list = new List<BreadCrum>();
+
+            //First we add the main page (if any is set)
+
+
+            var page = _pageRepository.FirstOrDefault(a => a.Id == id);
+
+            if (page != null)
+            {
+                if (!page.IsMainPage)
+                {
+                    var mainPage = await GetMainPage();
+                    if (mainPage != null)
+                    {
+
+                        list.Add(mainPage);
+                    }
+                }
+                await GetParentBreadCrumForPage(page, list);
+                var content = await _pageManager.GetPageContentAsync(page.Id, CultureInfo.CurrentUICulture.Name);
+                //This way the current page breadcrum will be added at the end of the list
+                list.Add(new BreadCrum()
+                {
+                    DisplayName = content.Title,
+                    Url = content.Url
+                });
+            }
+
+            return list;
+
+        }
+
+        private async Task<BreadCrum> GetMainPage()
+        {
+            var page = await _pageRepository.FirstOrDefaultAsync(a => a.IsMainPage && a.Active);
+            if (page == null) return null;
+            var pageContents =
+                _contentRepository.FirstOrDefault(
+                    a => a.Page.Id == page.Id && a.Lang == CultureInfo.CurrentUICulture.Name);
+            return new BreadCrum()
+            {
+                DisplayName = pageContents.Title,
+                Url = pageContents.Url
+            };
+        }
+        private List<MenuDto> SearchForChilds(Page parent)
+        {
+            var childs = _pageRepository.GetAllList(a => a.ParentPage == parent.Id && a.Active);
+            var childList = new List<MenuDto>();
+            foreach (var child in childs)
+            {
+                var content = _contentRepository.FirstOrDefault(a => a.PageId == child.Id);
+                if (content == null) continue;
+                childList.Add(new MenuDto()
+                {
+                    DisplayText = content.Title,
+                    Url = content.Url,
+                    Childs = SearchForChilds(child)
+                });
+            }
+            return childList;
+        }
+
+        private void DisableOthers(int pageId)
+        {
+            var pages = _pageRepository.GetAllList(a => a.Id != pageId);
+            foreach (var page in pages)
+            {
+                page.IsMainPage = false;
+                _pageRepository.Update(page);
+            }
+
+        }
+        private async Task GetParentBreadCrumForPage(Page page, List<BreadCrum> breadCrums)
+        {
+            if (page.ParentPage.HasValue)
+            {
+                var parent = _pageRepository.FirstOrDefault(a => a.Id == page.ParentPage.Value);
+                await GetParentBreadCrumForPage(parent, breadCrums);
+                var content = await _pageManager.GetPageContentAsync(parent.Id, CultureInfo.CurrentUICulture.Name);
+                //This way the current page breadcrum will be added at the end of the list
+                breadCrums.Add(new BreadCrum()
+                {
+                    DisplayName = content.Title,
+                    Url = content.Url
+                });
+            }
+        }
         private async Task<List<PageContentDto>> GetContentsByLanguage(List<Content> pageContents)
         {
             var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
@@ -441,6 +466,7 @@ namespace Cinotam.Cms.App.Pages
             return list;
         }
 
+        #endregion
 
     }
 }

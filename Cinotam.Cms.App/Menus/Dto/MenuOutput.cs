@@ -1,4 +1,5 @@
-﻿using Castle.Components.DictionaryAdapter;
+﻿using Abp.Application.Services.Dto;
+using Castle.Components.DictionaryAdapter;
 using System.Collections.Generic;
 
 namespace Cinotam.Cms.App.Menus.Dto
@@ -9,7 +10,7 @@ namespace Cinotam.Cms.App.Menus.Dto
 
     }
 
-    public class MenuDto
+    public class MenuDto : EntityDto
     {
         public string Title { get; set; }
         public string Url { get; set; }

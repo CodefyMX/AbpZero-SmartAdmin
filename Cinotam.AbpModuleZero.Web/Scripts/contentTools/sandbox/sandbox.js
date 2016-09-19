@@ -48,6 +48,9 @@
         }).done(function () {
             new ContentTools.FlashUI('ok');
             self.busy(false);
+        }).fail(function (jqXhr, textStatus, errorThrown) {
+            new ContentTools.FlashUI('no');
+            self.busy(false);
         });
     });
     function imageUploader(dialog) {

@@ -48,7 +48,10 @@
 						<a href="@Url.Action("MyPages", "Cms")" title="Paginas"><span class="menu-item-parent">Paginas</span></a>
 					</li>
 					<li class="@Html.RouteIf("MyTemplates", "active")">
-						<a href="@Url.Action("MyTemplates", "Templates")" title="Paginas"><span class="menu-item-parent">Paginas base</span></a>
+						<a href="@Url.Action("MyTemplates", "Templates")" title="Paginas Base"><span class="menu-item-parent">Paginas base</span></a>
+					</li>
+					<li class="@Html.RouteIf("MyMenus", "active")">
+						<a href="@Url.Action("MyMenus", "Menu")" title="Menus"><span class="menu-item-parent">Menus</span></a>
 					</li>
 				</ul>
 			</li>

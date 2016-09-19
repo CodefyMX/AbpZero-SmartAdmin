@@ -1,4 +1,5 @@
 ﻿using Abp.Modules;
+using Cinotam.AbpModuleZero;
 using Cinotam.Cms.Contracts;
 using Cinotam.Cms.DatabaseContentProvider;
 using Cinotam.Cms.DatabaseTemplateProvider;
@@ -8,7 +9,7 @@ using System.Reflection;
 
 namespace Cinotam.Cms.Core
 {
-    [DependsOn(typeof(CinotamCmsDatabaseProvider), typeof(CinotamCmsDatabaseTemplateProvider), typeof(CinotamCmsFileSystemTemplateProvider))]
+    [DependsOn(typeof(AbpModuleZeroCoreModule), typeof(CinotamCmsDatabaseProvider), typeof(CinotamCmsDatabaseTemplateProvider), typeof(CinotamCmsFileSystemTemplateProvider))]
     public class CinotamCmsCore : AbpModule
     {
         public static List<IPageContentProvider> PageContentProviders = new List<IPageContentProvider>();

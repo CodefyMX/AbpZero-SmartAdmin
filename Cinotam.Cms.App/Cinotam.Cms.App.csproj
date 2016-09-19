@@ -100,9 +100,12 @@
   <ItemGroup>
     <Compile Include="CinotamCmsApp.cs" />
     <Compile Include="CinotamCmsAppServiceBase.cs" />
+    <Compile Include="Menus\Dto\MenuContentDto.cs" />
+    <Compile Include="Menus\Dto\MenuContentInput.cs" />
     <Compile Include="Menus\Dto\MenuInput.cs" />
     <Compile Include="Menus\Dto\MenuOutput.cs" />
     <Compile Include="Menus\IMenuAppService.cs" />
+    <Compile Include="Menus\MenuAppService.cs" />
     <Compile Include="Pages\Dto\BreadCrum.cs" />
     <Compile Include="Pages\Dto\Lang.cs" />
     <Compile Include="Pages\Dto\PageConfigurationObject.cs" />

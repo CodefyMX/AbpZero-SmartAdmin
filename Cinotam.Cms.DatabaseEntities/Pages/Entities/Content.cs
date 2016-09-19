@@ -1,11 +1,13 @@
 ﻿using Abp.Domain.Entities.Auditing;
 using Cinotam.Cms.Contracts;
+using Cinotam.Cms.DatabaseEntities.CustomFilters;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
 {
-    public class Content : FullAuditedEntity, IPageContent
+    public class Content : FullAuditedEntity, IPageContent, IHasPage
     {
         public Content()
         {
@@ -13,9 +15,10 @@ namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
         }
         private List<Chunk> _chunks;
         public string Lang { get; set; }
-        public int PageId { get; set; }
+        public virtual int PageId { get; set; }
         public string HtmlContent { get; set; }
         public string Title { get; set; }
+        [ForeignKey("PageId")]
         public virtual Page Page { get; set; }
         /// <summary>
         /// Helper for filesystem templates

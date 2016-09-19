@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.Cms.App.Pages.Dto;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Cinotam.Cms.App.Pages
@@ -23,5 +24,6 @@ namespace Cinotam.Cms.App.Pages
         Task<string> GetMainPageSlug();
         Menu GetPagesMenu();
 
+        Task<List<PageDto>> GetPageListDto();
     }
 }
