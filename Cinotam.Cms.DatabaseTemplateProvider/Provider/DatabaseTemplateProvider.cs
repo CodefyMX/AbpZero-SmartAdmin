@@ -67,12 +67,16 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
 
         private ICollection<CResource> GetResources(int templateId)
         {
-            var templateResources = _resourceRepository.GetAllList(a => a.TemplateObj.Id == templateId);
-            return templateResources.Select(a => new CResource()
-            {
-                ResourceUrl = a.ResourceUrl,
-                ResourceType = a.ResourceType
-            }).ToList();
+            var resourceList = new List<CResource>();
+            var template =
+                _templatesRepository.GetAllIncluding(a => a.ResourcesObj).FirstOrDefault(a => a.Id == templateId);
+            if (template != null)
+                resourceList = template.ResourcesObj.Select(a => new CResource()
+                {
+                    ResourceUrl = a.ResourceUrl,
+                    ResourceType = a.ResourceType
+                }).ToList();
+            return resourceList;
         }
 
         public async Task<List<CTemplate>> GetTemplatesInfo()
