@@ -98,7 +98,7 @@ namespace Cinotam.Cms.App.Menus
         public async Task<List<MenuDto>> GetMenuList()
         {
             var menuList = new List<MenuDto>();
-            var menus = await _menuRepository.GetAllListAsync();
+            var menus = await _menuRepository.GetAllListAsync(a => a.ParentId == null);
             foreach (var parent in menus)
             {
                 var contents = await GetMenuContents(parent.Id);
@@ -108,6 +108,7 @@ namespace Cinotam.Cms.App.Menus
                     Id = parent.Id,
                     Title = contents.Text.IsNullOrEmpty() ? "NoLang" : contents.Text,
                     Url = contents.Url,
+                    Childs = await GetChilds(parent)
                 };
                 menuList.Add(menuDto);
             }
@@ -120,12 +121,12 @@ namespace Cinotam.Cms.App.Menus
             var childs = _menuRepository.GetAllList(a => a.ParentId == parent.Id);
             foreach (var child in childs)
             {
-                var contents = await GetMenuContents(parent.Id);
+                var contents = await GetMenuContents(child.Id);
                 var menuDto = new MenuDto()
                 {
                     Lang = contents.Lang,
                     Id = parent.Id,
-                    Title = contents.Text,
+                    Title = contents.Text.IsNullOrEmpty() ? "NoContent" : contents.Text,
                     Url = contents.Url,
                     Childs = await GetChilds(child)
                 };
