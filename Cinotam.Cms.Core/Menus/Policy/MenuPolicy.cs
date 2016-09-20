@@ -2,6 +2,7 @@
 using Abp.UI;
 using Cinotam.Cms.DatabaseEntities.Menus;
 using System.Linq;
+using Cinotam.Cms.DatabaseEntities.Menus.Entities;
 
 namespace Cinotam.Cms.Core.Menus.Policy
 {

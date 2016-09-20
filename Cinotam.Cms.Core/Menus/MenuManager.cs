@@ -1,7 +1,6 @@
 ﻿using Abp.Domain.Repositories;
 using Cinotam.Cms.Core.Menus.Policy;
-using Cinotam.Cms.DatabaseEntities.Menus;
-using System;
+using Cinotam.Cms.DatabaseEntities.Menus.Entities;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,21 +30,36 @@ namespace Cinotam.Cms.Core.Menus
             var parentMenu = _menuRepository.GetAllIncluding(a => a.MenuContents).FirstOrDefault(a => a.Id == parent);
             if (parentMenu != null)
             {
-                menu.ParentId = parent;
                 await _menuRepository.InsertOrUpdateAndGetIdAsync(menu);
             }
         }
 
-        public Task MoveAsync(int menu, int parent)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task AddMenuContentAsync(MenuContent menuContent)
         {
             _menuPolicy.ValidateMenuContent(menuContent);
             await _menuContentRepository.InsertOrUpdateAndGetIdAsync(menuContent);
 
+        }
+
+        public Task AddSectionAsync(MenuSection menu)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task AddSectionContentAsync(MenuSectionContent menu)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task AddMenuItemAsync(MenuSectionItem sectionItem)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task AddMenuItemContentAsync(MenuSectionItemContent sectionItemContent)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

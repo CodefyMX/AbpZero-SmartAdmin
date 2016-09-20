@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
 {
-    public class Content : FullAuditedEntity, IPageContent, IHasPage
+    public class Content : FullAuditedEntity, IPageContent, IHasPage, ILocalizable
     {
         public Content()
         {

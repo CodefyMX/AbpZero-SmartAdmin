@@ -270,6 +270,14 @@
     <Compile Include="Migrations\201609192113556_ForeignKeysForModels.Designer.cs">
       <DependentUpon>201609192113556_ForeignKeysForModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609200123351_MenuItemsAndContents.cs" />
+    <Compile Include="Migrations\201609200123351_MenuItemsAndContents.Designer.cs">
+      <DependentUpon>201609200123351_MenuItemsAndContents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609200126315_ParentIdRemoved.cs" />
+    <Compile Include="Migrations\201609200126315_ParentIdRemoved.Designer.cs">
+      <DependentUpon>201609200126315_ParentIdRemoved.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -423,6 +431,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609192113556_ForeignKeysForModels.resx">
       <DependentUpon>201609192113556_ForeignKeysForModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609200123351_MenuItemsAndContents.resx">
+      <DependentUpon>201609200123351_MenuItemsAndContents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609200126315_ParentIdRemoved.resx">
+      <DependentUpon>201609200126315_ParentIdRemoved.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

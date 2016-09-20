@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Services;
 using Cinotam.Cms.DatabaseEntities.Menus;
+using Cinotam.Cms.DatabaseEntities.Menus.Entities;
 
 namespace Cinotam.Cms.Core.Menus.Policy
 {

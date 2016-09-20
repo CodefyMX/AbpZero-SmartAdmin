@@ -10,7 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Menu = Cinotam.Cms.DatabaseEntities.Menus.Menu;
+using Cinotam.Cms.DatabaseEntities.Menus.Entities;
+using Menu = Cinotam.Cms.DatabaseEntities.Menus.Entities.Menu;
 using MenuDto = Cinotam.Cms.App.Menus.Dto.MenuDto;
 
 namespace Cinotam.Cms.App.Menus
@@ -66,7 +67,6 @@ namespace Cinotam.Cms.App.Menus
                 AvaiablePages = (await GetAvailablePages()),
                 Id = menu.Id,
                 PageId = menu.Page.Id,
-                ParentMenuId = menu.ParentId,
             };
         }
         public Task<MenuContentInput> GetMenuContentInputForEdit(int? id)
@@ -77,7 +77,7 @@ namespace Cinotam.Cms.App.Menus
         public async Task<MenuOutput> GetMenu()
         {
             var menuList = new List<MenuDto>();
-            var parents = _menuRepository.GetAllList(a => a.ParentId == null);
+            var parents = _menuRepository.GetAllList();
 
             foreach (var parent in parents)
             {
@@ -98,7 +98,7 @@ namespace Cinotam.Cms.App.Menus
         public async Task<List<MenuDto>> GetMenuList()
         {
             var menuList = new List<MenuDto>();
-            var menus = await _menuRepository.GetAllListAsync(a => a.ParentId == null);
+            var menus = await _menuRepository.GetAllListAsync();
             foreach (var parent in menus)
             {
                 var contents = await GetMenuContents(parent.Id);
@@ -118,7 +118,7 @@ namespace Cinotam.Cms.App.Menus
         private async Task<List<MenuDto>> GetChilds(Menu parent)
         {
             var menuList = new List<MenuDto>();
-            var childs = _menuRepository.GetAllList(a => a.ParentId == parent.Id);
+            var childs = _menuRepository.GetAllList();
             foreach (var child in childs)
             {
                 var contents = await GetMenuContents(child.Id);
