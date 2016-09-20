@@ -8,12 +8,13 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
     public class MenuController : AbpModuleZeroControllerBase
     {
         // GET: SysAdmin/Menu
-        private readonly IMenuAppService _menuAppService;
+        private readonly IMenuService _menuAppService;
 
-        public MenuController(IMenuAppService menuAppService)
+        public MenuController(IMenuService menuAppService)
         {
             _menuAppService = menuAppService;
         }
+
 
         public async Task<ActionResult> MyMenus()
         {
@@ -23,13 +24,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
 
         public async Task<ActionResult> CreateEditMenu(int? id)
         {
-            var model = await _menuAppService.GetMenuInputForEdit(id);
-            return View(model);
-        }
-
-        public async Task<ActionResult> CreateEditMenuContent(int? id)
-        {
-            var model = await _menuAppService.GetMenuContentInputForEdit(id);
+            var model = await _menuAppService.GetMenuForEdit(id);
             return View(model);
         }
     }

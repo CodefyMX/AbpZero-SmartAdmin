@@ -6,12 +6,13 @@ namespace Cinotam.Cms.Core.Menus
 {
     public interface IMenuManager : IDomainService
     {
-        Task AddMenuAsync(Menu menu);
-        Task AddMenuContentAsync(MenuContent menuContent);
-        Task AddSectionAsync(MenuSection menu);
-        Task AddSectionContentAsync(MenuSectionContent menu);
+        Task<int> AddMenuAsync(Menu menu);
+        Task<int> AddMenuContentAsync(MenuContent menuContent);
+        Task<int> AddSectionAsync(MenuSection menu);
+        Task<int> AddSectionContentAsync(MenuSectionContent menu);
 
-        Task AddMenuItemAsync(MenuSectionItem sectionItem);
-        Task AddMenuItemContentAsync(MenuSectionItemContent sectionItemContent);
+        Task<int> AddMenuItemAsync(MenuSectionItem sectionItem);
+        Task<int> AddMenuItemContentAsync(MenuSectionItemContent sectionItemContent);
+        Task Update(Menu menu);
     }
 }

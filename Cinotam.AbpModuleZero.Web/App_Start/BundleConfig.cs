@@ -69,7 +69,7 @@ namespace Cinotam.AbpModuleZero.Web
                         "~/Abp/Framework/scripts/libs/abp.spin.js",
                         "~/Abp/Framework/scripts/libs/abp.sweet-alert.js",
 
-                        "~/scripts/jquery.signalR-2.2.0.min.js"
+                        "~/scripts/jquery.signalR-2.2.1.min.js"
                     )
                 );
 

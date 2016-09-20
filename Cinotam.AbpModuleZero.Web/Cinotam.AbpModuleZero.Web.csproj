@@ -1139,6 +1139,7 @@
     <Content Include="Areas\SysAdmin\Views\Templates\CreateEditTemplate.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Templates\EditHtml.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\MyMenus.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Menu\CreateEditMenu.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />

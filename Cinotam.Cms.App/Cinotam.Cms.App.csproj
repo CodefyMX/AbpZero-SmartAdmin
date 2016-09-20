@@ -100,12 +100,19 @@
   <ItemGroup>
     <Compile Include="CinotamCmsApp.cs" />
     <Compile Include="CinotamCmsAppServiceBase.cs" />
-    <Compile Include="Menus\Dto\MenuContentDto.cs" />
-    <Compile Include="Menus\Dto\MenuContentInput.cs" />
+    <Compile Include="Menus\Dto\LangInput.cs" />
+    <Compile Include="Menus\Dto\LangInputForItem.cs" />
+    <Compile Include="Menus\Dto\MenuElement.cs" />
+    <Compile Include="Menus\Dto\MenuElementContent.cs" />
     <Compile Include="Menus\Dto\MenuInput.cs" />
+    <Compile Include="Menus\Dto\MenuInputForItem.cs" />
+    <Compile Include="Menus\Dto\MenuItemAbstraction.cs" />
     <Compile Include="Menus\Dto\MenuOutput.cs" />
-    <Compile Include="Menus\IMenuAppService.cs" />
-    <Compile Include="Menus\MenuAppService.cs" />
+    <Compile Include="Menus\Dto\OrderInput.cs" />
+    <Compile Include="Menus\Dto\SectionElement.cs" />
+    <Compile Include="Menus\Dto\SectionItem.cs" />
+    <Compile Include="Menus\IMenuService.cs" />
+    <Compile Include="Menus\MenuService.cs" />
     <Compile Include="Pages\Dto\BreadCrum.cs" />
     <Compile Include="Pages\Dto\Lang.cs" />
     <Compile Include="Pages\Dto\PageConfigurationObject.cs" />

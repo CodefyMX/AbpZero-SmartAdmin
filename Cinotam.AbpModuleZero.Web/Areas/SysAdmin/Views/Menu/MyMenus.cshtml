@@ -1,7 +1,7 @@
 ﻿
 @using Abp.Collections.Extensions
 @using Cinotam.AbpModuleZero
-@model List<Cinotam.Cms.App.Menus.Dto.MenuDto>
+@model List<Cinotam.Cms.App.Menus.Dto.MenuElement>
 
 <div id="content">
     <div class="row">
@@ -51,7 +51,7 @@
                             @*<a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a>*@
                         </div>
                         <div class="widget-toolbar" role="menu">
-                            <a data-modal="" href="@Url.Action("CreateEditMenu","Menu")" class="btn btn-success">@L("CreateNewMenu")</a>
+                            <a data-modal href="@Url.Action("CreateEditMenu","Menu")" class="btn btn-success">@L("CreateNewMenu")</a>
                             <a data-toggle="dropdown" class="dropdown-toggle color-box selector" href="javascript:void(0);"></a>
                             <ul class="dropdown-menu arrow-box-up-right color-select pull-right">
                                 <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
@@ -95,27 +95,49 @@
                         </div>
                         <!-- end widget edit box -->
                         <!-- widget content -->
-                        <div class="widget-body no-padding">
-                            <ul class="list-group">
-                                @foreach (var menu in Model)
-                                {
-                                    <li class="list-group-item">
-                                        <i class="fa fa-bars"></i> <a>  @menu.Title</a>
-                                        <ul>
-                                            @if (!menu.Childs.IsNullOrEmpty())
-                                            {
-                                                foreach (var menuChild in menu.Childs)
-                                                {
-                                                    <li>
-                                                        <i class="fa fa-arrow-right"></i> <a>  @menuChild.Title</a>
-                                                    </li>
-                                                }
-                                            }
-                                        </ul>
-                                        
-                                    </li>
-                                }
-                            </ul>
+                        <div class="widget-body">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+
+                                    <ul id="menus" class="list-group">
+                                        @foreach (var menu in Model)
+                                        {
+                                            <li data-id="@menu.Id" class="list-group-item">
+                                                <i style="cursor: pointer" class="fa fa-bars fa-2x handle"></i>
+                                                <h4 class="list-group-item-heading">
+                                                    @menu.DisplayName @foreach (var lang in menu.PageElementContents)
+                                                                      {
+                                                                          <a>[<i class="@lang.Icon"></i> @lang.Lang] </a>
+                                                                      } <a class="btn btn-warning btn-sm pull-right" href="#"><i class="fa fa-times"></i></a>
+                                                </h4>
+                                                <p class="list-group-item-text">
+
+
+
+
+                                                </p>
+                                                <p>
+                                                    <a data-modal class="btn btn-primary btn-sm" href="@Url.Action("CreateEditMenu",new {id = menu.Id})"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn-primary btn-sm" href="#"><i class="fa fa-bars"></i></a>
+
+                                                </p>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="alert alert-info">
+                                        <h2>
+                                            Instructive
+                                        </h2>
+                                        <p>
+                                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                                            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
@@ -133,3 +155,33 @@
         </div>
     </section>
 </div>
+@section pagespecific{
+    <script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
+    <script>
+        $(document).ready(function () {
+            bind();
+        });
+        window.bind = function () {
+            $('#menus').sortable({
+                handle: ".handle",
+                orientation: "y",
+                update: function () {
+                    var data = [];
+                    $("#menus li").each(function (index) {
+                        var id = $(this).data("id");
+                        data.push({
+                            Order: index,
+                            Id: id
+                        });
+                    });
+                    ChangeOrder(data);
+                }
+            });
+        }
+        function ChangeOrder(data) {
+            abp.ui.setBusy($("#menus"), abp.services.cms.menuService.changeOrder(data, "Menu").done(function () {
+                abp.notify.success(LSys("OrderChanged"));
+            }));
+        }
+    </script>
+}

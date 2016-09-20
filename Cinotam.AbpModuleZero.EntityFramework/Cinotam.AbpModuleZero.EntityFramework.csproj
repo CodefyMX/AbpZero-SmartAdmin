@@ -278,6 +278,18 @@
     <Compile Include="Migrations\201609200126315_ParentIdRemoved.Designer.cs">
       <DependentUpon>201609200126315_ParentIdRemoved.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609201542404_PageInMenuRemoved.cs" />
+    <Compile Include="Migrations\201609201542404_PageInMenuRemoved.Designer.cs">
+      <DependentUpon>201609201542404_PageInMenuRemoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609201810499_HasOrder.cs" />
+    <Compile Include="Migrations\201609201810499_HasOrder.Designer.cs">
+      <DependentUpon>201609201810499_HasOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609201848327_ActivableOptions.cs" />
+    <Compile Include="Migrations\201609201848327_ActivableOptions.Designer.cs">
+      <DependentUpon>201609201848327_ActivableOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -437,6 +449,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609200126315_ParentIdRemoved.resx">
       <DependentUpon>201609200126315_ParentIdRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609201542404_PageInMenuRemoved.resx">
+      <DependentUpon>201609201542404_PageInMenuRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609201810499_HasOrder.resx">
+      <DependentUpon>201609201810499_HasOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609201848327_ActivableOptions.resx">
+      <DependentUpon>201609201848327_ActivableOptions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

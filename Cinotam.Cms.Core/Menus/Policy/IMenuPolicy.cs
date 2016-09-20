@@ -1,5 +1,4 @@
 ﻿using Abp.Domain.Services;
-using Cinotam.Cms.DatabaseEntities.Menus;
 using Cinotam.Cms.DatabaseEntities.Menus.Entities;
 
 namespace Cinotam.Cms.Core.Menus.Policy
@@ -8,5 +7,9 @@ namespace Cinotam.Cms.Core.Menus.Policy
     {
         void ValidateMenu(Menu menu);
         void ValidateMenuContent(MenuContent menuContent);
+        void ValidateMenuSection(MenuSection menuSection);
+        void ValidateMenuSectionContent(MenuSectionContent menuSectionContent);
+        void ValidateMenuItem(MenuSectionItem sectionItem);
+        void ValidateMenuItemContent(MenuSectionItemContent sectionItemContent);
     }
 }
