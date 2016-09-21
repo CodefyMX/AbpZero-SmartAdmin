@@ -22,7 +22,8 @@ namespace Cinotam.Cms.DatabaseEntities.Menus.Entities
             return new MenuSection()
             {
                 SectionName = sectionName,
-                Menu = menu
+                Menu = menu,
+                CategoryDiscriminator = sectionName
             };
         }
 

@@ -67,7 +67,10 @@
                         });
                     });
 
-                    console.log(data);
+                    abp.services.cms.menuService.setMenuSectionsFromCategories (data)
+                        .done (function () {
+
+                        });
                 });
             });
 

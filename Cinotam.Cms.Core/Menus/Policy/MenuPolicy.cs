@@ -51,7 +51,7 @@ namespace Cinotam.Cms.Core.Menus.Policy
         {
             if (menuSectionContent.MenuSection == null) throw new UserFriendlyException("InvalidMenuSection");
             if (menuSectionContent.Id != 0) return;
-            var found = _menuSectionContentRepository.FirstOrDefault(a => a.Lang == menuSectionContent.Lang);
+            var found = _menuSectionContentRepository.FirstOrDefault(a => a.Lang == menuSectionContent.Lang && a.MenuSection.Id == menuSectionContent.MenuSection.Id);
             if (found == null) return;
             throw new UserFriendlyException("LangExists");
         }
@@ -69,7 +69,7 @@ namespace Cinotam.Cms.Core.Menus.Policy
         {
             if (sectionItemContent.MenuSectionItem == null) throw new UserFriendlyException("InvalidaMenuItemSection");
             if (sectionItemContent.Id != 0) return;
-            var found = _menuSectionItemContentRepository.FirstOrDefault(a => a.Lang == sectionItemContent.Lang);
+            var found = _menuSectionItemContentRepository.FirstOrDefault(a => a.Lang == sectionItemContent.Lang && a.MenuSectionItem.Id == sectionItemContent.MenuSectionItem.Id);
             if (found == null) return;
             throw new UserFriendlyException("LangExists");
         }

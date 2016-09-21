@@ -1,10 +1,12 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Localization;
+using Abp.UI;
 using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.Cms.App.Menus.Dto;
 using Cinotam.Cms.Core.Menus;
 using Cinotam.Cms.DatabaseEntities.Category.Entities;
 using Cinotam.Cms.DatabaseEntities.Menus.Entities;
+using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +23,13 @@ namespace Cinotam.Cms.App.Menus
         private readonly IRepository<MenuSectionContent> _menuSectionContentRepository;
         private readonly IRepository<MenuSectionItem> _menuSectionItemRepository;
         private readonly IRepository<MenuSectionItemContent> _menuSectionItemContentRepository;
+        private readonly IRepository<Page> _pageRepository;
+        private readonly IRepository<Content> _pageContentRepository;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
         private readonly IRepository<Category> _categoryRepository;
+        private readonly IRepository<CategoryContent> _categoryContentRepository;
         private readonly IMenuManager _menuManager;
-        public MenuService(IRepository<Menu> menuRepository, IRepository<MenuContent> menuContentRepository, IRepository<MenuSection> menuSectionRepository, IRepository<MenuSectionContent> menuSectionContentRepository, IRepository<MenuSectionItem> menuSectionItemRepository, IRepository<MenuSectionItemContent> menuSectionItemContentRepository, IApplicationLanguageManager applicationLanguageManager, IMenuManager menuManager, IRepository<Category> categoryRepository)
+        public MenuService(IRepository<Menu> menuRepository, IRepository<MenuContent> menuContentRepository, IRepository<MenuSection> menuSectionRepository, IRepository<MenuSectionContent> menuSectionContentRepository, IRepository<MenuSectionItem> menuSectionItemRepository, IRepository<MenuSectionItemContent> menuSectionItemContentRepository, IApplicationLanguageManager applicationLanguageManager, IMenuManager menuManager, IRepository<Category> categoryRepository, IRepository<CategoryContent> categoryContentRepository, IRepository<Page> pageRepository, IRepository<Content> pageContentRepository)
         {
             _menuRepository = menuRepository;
             _menuContentRepository = menuContentRepository;
@@ -35,6 +40,9 @@ namespace Cinotam.Cms.App.Menus
             _applicationLanguageManager = applicationLanguageManager;
             _menuManager = menuManager;
             _categoryRepository = categoryRepository;
+            _categoryContentRepository = categoryContentRepository;
+            _pageRepository = pageRepository;
+            _pageContentRepository = pageContentRepository;
         }
 
         public Task<MenuOutput> GetMenuForView()
@@ -274,6 +282,57 @@ namespace Cinotam.Cms.App.Menus
 
         public async Task SetMenuSectionsFromCategories(CategorySetModel input)
         {
+            var menu = _menuRepository.FirstOrDefault(input.MenuId);
+            foreach (var inputAvailableCategory in input.AvailableCategories.Where(a => a.Checked))
+            {
+                //GetCategory
+                var category = _categoryRepository.FirstOrDefault(a => a.Id == inputAvailableCategory.CategoryId);
+
+                //GetCategoryContent
+                var contents =
+                    _categoryContentRepository.GetAllList(a => a.CategoryId == inputAvailableCategory.CategoryId);
+
+                //Create a new section with the name of the category
+                var section = MenuSection.CreateMenuSection(category.Name, menu);
+                await _menuManager.AddSectionAsync(section);
+                //If the category has no contents throw an error
+                if (!contents.Any()) throw new UserFriendlyException(L("CategoryHasNoContent"));
+
+
+                //Now we add the translations for each category (the categories are going to be converted to sections)
+                foreach (var categoryContent in contents)
+                {
+                    var sectionContent = MenuSectionContent.CreateMenuSectionContent(categoryContent.Lang,
+                        categoryContent.DisplayText, section);
+                    await _menuManager.AddSectionContentAsync(sectionContent);
+                }
+
+                //Now we get each page in the category
+                var pagesInCategory =
+                    _pageRepository.GetAllList(a => a.IncludeInMenu && a.Active && a.CategoryId == category.Id);
+
+                //And convert those page into links for the menu
+                foreach (var page in pagesInCategory)
+                {
+                    var pageContents = _pageContentRepository.GetAllList(a => a.PageId == page.Id);
+
+                    if (!pageContents.Any()) { throw new UserFriendlyException(L("PageHasNoContent")); }
+
+                    var menuSectionItem = MenuSectionItem.CreateMenuSectionItem(page.Name, section);
+
+                    await _menuManager.AddMenuItemAsync(menuSectionItem);
+
+                    foreach (var pageContent in pageContents)
+                    {
+                        var menuSectionItemContent =
+                            MenuSectionItemContent.CreateMenuSectionItemContent(pageContent.Title, pageContent.Lang,
+                                menuSectionItem);
+                        await _menuManager.AddMenuItemContentAsync(menuSectionItemContent);
+                    }
+                }
+
+            }
+
 
         }
         private bool IsInThisMenu(int id, Category availableCategory)
@@ -307,3 +366,4 @@ namespace Cinotam.Cms.App.Menus
         }
     }
 }
+
