@@ -38,7 +38,7 @@ namespace Cinotam.Cms.Core.Pages.Policy
 
         private void CheckName(Page page)
         {
-
+            if(page.Id !=0) return;
             var isAny = _pageRepository.GetAllList(a => a.Name == page.Name).Any();
             if (isAny) throw new UserFriendlyException("RepeatedNameForPage");
         }

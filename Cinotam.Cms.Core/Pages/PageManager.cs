@@ -21,7 +21,7 @@ namespace Cinotam.Cms.Core.Pages
         public async Task<int> SaveOrEditPageAsync(Page page)
         {
             _pagePolicy.ValidatePage(page);
-            return (await _pageRepository.InsertAndGetIdAsync(page));
+            return (await _pageRepository.InsertOrUpdateAndGetIdAsync(page));
         }
 
         public async Task<Page> GetPageAsync(int id)

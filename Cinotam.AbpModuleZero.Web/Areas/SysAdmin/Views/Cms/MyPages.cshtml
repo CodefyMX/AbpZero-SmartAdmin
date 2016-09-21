@@ -14,7 +14,7 @@
     </div>
     <section id="widget-grid">
         <div class="row">
-
+            
             <article class="col-xs-12 sortable-grid ui-sortable">
 
                 <div class="jarviswidget jarviswidget-sortable" id="wid-id-cmsPagesTable" style="" role="widget">
@@ -96,7 +96,10 @@
                                 <thead>
                                     <tr>
                                         <th data-class="expand">@L("Name")</th>
+                                        <th>@L("Category")</th>
+                                        <th>@L("TemplateName")</th>
                                         <th>@L("Langs")</th>
+
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -152,14 +155,18 @@
                         });
                         return lang;
                     },
-                    "targets": 1
+                    "targets": 3
                 },
                 {
                     className: "text-center",
                     "render": function (data, type, row) {
-                        return "<a href='/SysAdmin/Cms/PageConfig/"+row.Id+"' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i></a>";
+                        return "<a href='/SysAdmin/Cms/PageConfig/" + row.Id + "' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i></a>";
                     },
-                    "targets": 2
+                    "targets": 4
+                },
+                {
+                    "orderable": false,
+                    "targets": 1
                 }
             ],
             "drawCallback": function (oSettings) {
@@ -169,6 +176,11 @@
             columns: [
                 {
                     "data": "Title"
+                },
+                {
+                    "data": "CategoryName"
+                }, {
+                    "data":"TemplateName"
                 }
             ]
         });

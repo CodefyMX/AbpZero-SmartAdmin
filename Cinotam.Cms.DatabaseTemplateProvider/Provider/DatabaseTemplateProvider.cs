@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Repositories;
+using Abp.Extensions;
 using Cinotam.Cms.Contracts;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System.Collections.Generic;
@@ -58,7 +59,7 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
             var template = await _templatesRepository.FirstOrDefaultAsync(a => a.Name == templateName);
             return new CTemplate()
             {
-                Content = template.Content,
+                Content = template.Content.IsNullOrEmpty() ? string.Empty : template.Content,
                 Name = template.Name,
                 ResourcesObj = GetResources(template.Id),
                 IsPartial = template.IsPartial,
@@ -87,7 +88,7 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
             {
                 templateList.Add(new CTemplate()
                 {
-                    Content = template.Content,
+                    Content = template.Content.IsNullOrEmpty() ? string.Empty : template.Content,
                     Name = template.Name,
                     ResourcesObj = GetResources(template.Id),
                     IsPartial = template.IsPartial,

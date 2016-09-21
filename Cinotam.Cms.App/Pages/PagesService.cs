@@ -6,8 +6,11 @@ using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.Cms.App.Pages.Dto;
 using Cinotam.Cms.Contracts;
+using Cinotam.Cms.Core.Category;
 using Cinotam.Cms.Core.Pages;
 using Cinotam.Cms.Core.Templates;
+using Cinotam.Cms.DatabaseEntities.Category.Entities;
+using Cinotam.Cms.DatabaseEntities.CustomFilters;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System;
@@ -27,6 +30,8 @@ namespace Cinotam.Cms.App.Pages
         private readonly IRepository<Page> _pageRepository;
         private readonly IRepository<Content> _contentRepository;
         private readonly IRepository<Template> _templateRepository;
+        private readonly IRepository<Category> _categoryRepository;
+        private readonly ICategoryManager _categoryManager;
         private readonly ITemplateManager _templateManager;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
 
@@ -34,7 +39,7 @@ namespace Cinotam.Cms.App.Pages
 
         #region Ctor
 
-        public PagesService(IPageManager pageManager, IRepository<Page> pageRepository, IRepository<Content> contentRepository, IRepository<Template> templateRepository, IApplicationLanguageManager applicationLanguageManager, ITemplateManager templateManager)
+        public PagesService(IPageManager pageManager, IRepository<Page> pageRepository, IRepository<Content> contentRepository, IRepository<Template> templateRepository, IApplicationLanguageManager applicationLanguageManager, ITemplateManager templateManager, IRepository<Category> categoryRepository, ICategoryManager categoryManager)
         {
             _pageManager = pageManager;
             _pageRepository = pageRepository;
@@ -42,6 +47,8 @@ namespace Cinotam.Cms.App.Pages
             _templateRepository = templateRepository;
             _applicationLanguageManager = applicationLanguageManager;
             _templateManager = templateManager;
+            _categoryRepository = categoryRepository;
+            _categoryManager = categoryManager;
         }
 
 
@@ -84,6 +91,13 @@ namespace Cinotam.Cms.App.Pages
         {
             var page = _pageRepository.Get(pageId);
             page.Active = !page.Active;
+            _pageRepository.Update(page);
+        }
+
+        public void TogglePageInMenuStatus(int pageId)
+        {
+            var page = _pageRepository.Get(pageId);
+            page.IncludeInMenu = !page.IncludeInMenu;
             _pageRepository.Update(page);
         }
 
@@ -138,6 +152,57 @@ namespace Cinotam.Cms.App.Pages
                 Langs = AsyncHelper.RunSync(() => GetAvailableLangs(a.Id)),
                 Title = a.Name,
             }).ToList();
+        }
+
+        public async Task<CategorySetResult> SetCategory(CategoryAssignationInput input)
+        {
+            Category category;
+            var exists = await CreateCategoryIfNotExists(input.Name, input.DisplayName);
+            if (!exists)
+            {
+                var slug = input.Name.Sluggify();
+                category = await _categoryRepository.FirstOrDefaultAsync(a => a.Name.Equals(slug));
+            }
+            else
+            {
+                category = await _categoryRepository.FirstOrDefaultAsync(a => a.Name.Equals(input.Name));
+            }
+            var page = _pageRepository.Get(input.PageId);
+            page.Category = category;
+            await _pageManager.SaveOrEditPageAsync(page);
+            return new CategorySetResult()
+            {
+                IsExistentCategory = exists
+            };
+        }
+
+        private async Task<bool> CreateCategoryIfNotExists(string inputCategoryName, string inputCategoryDisplayName)
+        {
+            var category = await _categoryRepository.FirstOrDefaultAsync(a => a.Name.Equals(inputCategoryName));
+            if (category == null)
+            {
+                await _categoryManager.AddEditCategory(inputCategoryDisplayName.Sluggify(), inputCategoryDisplayName);
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<CategoryOutput> GetCategories()
+        {
+            var categories = new List<CategoryDto>();
+            var allCategories = await _categoryRepository.GetAllListAsync();
+            foreach (var allCategory in allCategories)
+            {
+                categories.Add(new CategoryDto()
+                {
+                    DisplayName = allCategory.DisplayName,
+                    Name = allCategory.Name
+                });
+            }
+            return new CategoryOutput()
+            {
+                Categories = categories
+            };
         }
 
         public async Task<PageTitleInput> GetPageTitleForEdit(int id, string lang)
@@ -269,6 +334,8 @@ namespace Cinotam.Cms.App.Pages
             var query = _pageRepository.GetAll();
             List<Expression<Func<Page, string>>> searchs = new EditableList<Expression<Func<Page, string>>>();
             searchs.Add(a => a.Name);
+            searchs.Add(a => a.Category.DisplayName);
+            searchs.Add(a => a.TemplateName);
             int count;
             var pages = GenerateTableModel(input, query, searchs, "Name", out count);
             return new ReturnModel<PageDto>()
@@ -278,6 +345,8 @@ namespace Cinotam.Cms.App.Pages
                     Id = a.Id,
                     Langs = AsyncHelper.RunSync(() => GetAvailableLangs(a.Id)),
                     Title = a.Name,
+                    CategoryName = a.CategoryId.HasValue ? GetCategoryName(a) : "",
+                    TemplateName = a.TemplateName
                 }).ToArray(),
                 draw = input.draw,
                 length = input.length,
@@ -292,16 +361,23 @@ namespace Cinotam.Cms.App.Pages
         {
             var page = await _pageRepository.GetAsync(id);
             var pageContents = await _contentRepository.GetAllListAsync(a => a.Page.Id == id);
-            if (!pageContents.Any()) return (await CreateEmptyPageConfigurationObject(id));
+            if (!pageContents.Any()) return (await CreateEmptyPageConfigurationObject(page));
             return new PageConfigurationObject()
             {
                 PageName = page.Name,
                 IsActive = page.Active,
                 Id = id,
                 ContentsByLanguage = await GetContentsByLanguage(pageContents),
-                IsMainPage = page.IsMainPage
-
+                IsMainPage = page.IsMainPage,
+                CategoryName = page.CategoryId.HasValue ? GetCategoryName(page) : "",
+                IncludeInMenu = page.IncludeInMenu
             };
+        }
+
+        private string GetCategoryName(IMayHaveCategory page)
+        {
+            var category = _categoryRepository.FirstOrDefault(a => a.Id == page.CategoryId);
+            return category.DisplayName;
         }
 
         #endregion
@@ -430,7 +506,7 @@ namespace Cinotam.Cms.App.Pages
             return pageContentsList;
         }
 
-        private async Task<PageConfigurationObject> CreateEmptyPageConfigurationObject(int id)
+        private async Task<PageConfigurationObject> CreateEmptyPageConfigurationObject(Page page)
         {
             var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
             var obj = new PageConfigurationObject();
@@ -441,10 +517,13 @@ namespace Cinotam.Cms.App.Pages
                     Lang = applicationLanguage.Name,
                     HtmlContent = "",
                     LanguageIcon = applicationLanguage.Icon,
-                    Slug = ""
+                    Slug = "",
+
                 });
-                obj.Id = id;
+                obj.Id = page.Id;
                 obj.IsMainPage = false;
+                obj.CategoryName = page.CategoryId.HasValue ? GetCategoryName(page) : "";
+                obj.IncludeInMenu = page.IncludeInMenu;
             }
             return obj;
         }

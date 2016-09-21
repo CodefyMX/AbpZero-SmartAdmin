@@ -290,6 +290,22 @@
     <Compile Include="Migrations\201609201848327_ActivableOptions.Designer.cs">
       <DependentUpon>201609201848327_ActivableOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609211543550_CategoriesForPages.cs" />
+    <Compile Include="Migrations\201609211543550_CategoriesForPages.Designer.cs">
+      <DependentUpon>201609211543550_CategoriesForPages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609211747242_CategoryContentForCategories.cs" />
+    <Compile Include="Migrations\201609211747242_CategoryContentForCategories.Designer.cs">
+      <DependentUpon>201609211747242_CategoryContentForCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609211855098_IncludePageInMenu.cs" />
+    <Compile Include="Migrations\201609211855098_IncludePageInMenu.Designer.cs">
+      <DependentUpon>201609211855098_IncludePageInMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609212059559_MenuNameInCategory.cs" />
+    <Compile Include="Migrations\201609212059559_MenuNameInCategory.Designer.cs">
+      <DependentUpon>201609212059559_MenuNameInCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -458,6 +474,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609201848327_ActivableOptions.resx">
       <DependentUpon>201609201848327_ActivableOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609211543550_CategoriesForPages.resx">
+      <DependentUpon>201609211543550_CategoriesForPages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609211747242_CategoryContentForCategories.resx">
+      <DependentUpon>201609211747242_CategoryContentForCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609211855098_IncludePageInMenu.resx">
+      <DependentUpon>201609211855098_IncludePageInMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609212059559_MenuNameInCategory.resx">
+      <DependentUpon>201609212059559_MenuNameInCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

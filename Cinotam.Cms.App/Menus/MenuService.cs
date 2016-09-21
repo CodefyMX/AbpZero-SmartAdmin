@@ -3,11 +3,13 @@ using Abp.Localization;
 using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.Cms.App.Menus.Dto;
 using Cinotam.Cms.Core.Menus;
+using Cinotam.Cms.DatabaseEntities.Category.Entities;
 using Cinotam.Cms.DatabaseEntities.Menus.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Menu = Cinotam.Cms.DatabaseEntities.Menus.Entities.Menu;
 
 namespace Cinotam.Cms.App.Menus
 {
@@ -20,8 +22,9 @@ namespace Cinotam.Cms.App.Menus
         private readonly IRepository<MenuSectionItem> _menuSectionItemRepository;
         private readonly IRepository<MenuSectionItemContent> _menuSectionItemContentRepository;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
+        private readonly IRepository<Category> _categoryRepository;
         private readonly IMenuManager _menuManager;
-        public MenuService(IRepository<Menu> menuRepository, IRepository<MenuContent> menuContentRepository, IRepository<MenuSection> menuSectionRepository, IRepository<MenuSectionContent> menuSectionContentRepository, IRepository<MenuSectionItem> menuSectionItemRepository, IRepository<MenuSectionItemContent> menuSectionItemContentRepository, IApplicationLanguageManager applicationLanguageManager, IMenuManager menuManager)
+        public MenuService(IRepository<Menu> menuRepository, IRepository<MenuContent> menuContentRepository, IRepository<MenuSection> menuSectionRepository, IRepository<MenuSectionContent> menuSectionContentRepository, IRepository<MenuSectionItem> menuSectionItemRepository, IRepository<MenuSectionItemContent> menuSectionItemContentRepository, IApplicationLanguageManager applicationLanguageManager, IMenuManager menuManager, IRepository<Category> categoryRepository)
         {
             _menuRepository = menuRepository;
             _menuContentRepository = menuContentRepository;
@@ -31,6 +34,7 @@ namespace Cinotam.Cms.App.Menus
             _menuSectionItemContentRepository = menuSectionItemContentRepository;
             _applicationLanguageManager = applicationLanguageManager;
             _menuManager = menuManager;
+            _categoryRepository = categoryRepository;
         }
 
         public Task<MenuOutput> GetMenuForView()
@@ -230,6 +234,65 @@ namespace Cinotam.Cms.App.Menus
                 default:
                     throw new IndexOutOfRangeException(nameof(discriminator));
             }
+        }
+
+        public async Task<CategorySetModel> GetCategorySetModel(int id)
+        {
+            var availableCategories = await _categoryRepository.GetAllListAsync();
+            var availableCategoriesList = new List<CategorySetInputModel>();
+            foreach (var availableCategory in availableCategories)
+            {
+                string isInCategoryName;
+                if (IsThisCategoryInAnotherMenu(availableCategory, out isInCategoryName))
+                {
+                    availableCategoriesList.Add(new CategorySetInputModel()
+                    {
+                        CategoryDisplayName = availableCategory.DisplayName,
+                        CategoryId = availableCategory.Id,
+                        Enabled = false,
+                        NameOfCategoryIsIn = isInCategoryName,
+                        Checked = IsInThisMenu(id, availableCategory)
+                    });
+                }
+                else
+                {
+                    availableCategoriesList.Add(new CategorySetInputModel()
+                    {
+                        CategoryDisplayName = availableCategory.DisplayName,
+                        CategoryId = availableCategory.Id,
+                        Enabled = true,
+                        NameOfCategoryIsIn = isInCategoryName,
+                    });
+                }
+            }
+            return new CategorySetModel()
+            {
+                MenuId = id,
+                AvailableCategories = availableCategoriesList
+            };
+        }
+
+        public async Task SetMenuSectionsFromCategories(CategorySetModel input)
+        {
+
+        }
+        private bool IsInThisMenu(int id, Category availableCategory)
+        {
+            var sections = _menuSectionRepository.GetAllList(a => a.CategoryDiscriminator == availableCategory.Name && a.MenuId == id);
+            return sections.Any();
+        }
+
+        private bool IsThisCategoryInAnotherMenu(Category availableCategory, out string isInCategoryName)
+        {
+            var isFound = _menuSectionRepository.FirstOrDefault(a => a.CategoryDiscriminator == availableCategory.Name);
+            if (isFound == null)
+            {
+                isInCategoryName = string.Empty;
+                return false;
+
+            }
+            isInCategoryName = isFound.SectionName;
+            return true;
         }
 
         private async Task OrderForMenus(List<OrderInput> orderInputs)

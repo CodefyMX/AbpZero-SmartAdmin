@@ -98,8 +98,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories\CategoryService.cs" />
+    <Compile Include="Categories\Dto\CategoryInput.cs" />
+    <Compile Include="Categories\ICategoryService.cs" />
     <Compile Include="CinotamCmsApp.cs" />
     <Compile Include="CinotamCmsAppServiceBase.cs" />
+    <Compile Include="Menus\Dto\CategorySetModel.cs" />
     <Compile Include="Menus\Dto\LangInput.cs" />
     <Compile Include="Menus\Dto\LangInputForItem.cs" />
     <Compile Include="Menus\Dto\MenuElement.cs" />
@@ -114,6 +118,9 @@
     <Compile Include="Menus\IMenuService.cs" />
     <Compile Include="Menus\MenuService.cs" />
     <Compile Include="Pages\Dto\BreadCrum.cs" />
+    <Compile Include="Pages\Dto\CategoryAssignationInput.cs" />
+    <Compile Include="Pages\Dto\CategoryOutput.cs" />
+    <Compile Include="Pages\Dto\CategorySetResult.cs" />
     <Compile Include="Pages\Dto\Lang.cs" />
     <Compile Include="Pages\Dto\PageConfigurationObject.cs" />
     <Compile Include="Pages\Dto\PageContentDto.cs" />

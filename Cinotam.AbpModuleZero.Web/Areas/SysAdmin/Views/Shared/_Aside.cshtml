@@ -53,6 +53,9 @@
 					<li class="@Html.RouteIf("MyMenus", "active")">
 						<a href="@Url.Action("MyMenus", "Menu")" title="Menus"><span class="menu-item-parent">Menus</span></a>
 					</li>
+					<li class="@Html.RouteIf("MyCategories", "active")">
+						<a href="@Url.Action("MyCategories", "PageCategories")" title="Menus"><span class="menu-item-parent">Categorias</span></a>
+					</li>
 				</ul>
 			</li>
 		</ul>

@@ -1,4 +1,5 @@
 ﻿using Cinotam.AbpModuleZero.Web.Controllers;
+using Cinotam.Cms.App.Categories;
 using Cinotam.Cms.App.Menus;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -9,10 +10,11 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
     {
         // GET: SysAdmin/Menu
         private readonly IMenuService _menuAppService;
-
-        public MenuController(IMenuService menuAppService)
+        private readonly ICategoryService _categoryService;
+        public MenuController(IMenuService menuAppService, ICategoryService categoryService)
         {
             _menuAppService = menuAppService;
+            _categoryService = categoryService;
         }
 
 
@@ -25,6 +27,12 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         public async Task<ActionResult> CreateEditMenu(int? id)
         {
             var model = await _menuAppService.GetMenuForEdit(id);
+            return View(model);
+        }
+
+        public async Task<ActionResult> SetCategories(int id)
+        {
+            var model = await _menuAppService.GetCategorySetModel(id);
             return View(model);
         }
     }

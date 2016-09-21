@@ -170,11 +170,18 @@
                  className: "text-center",
                  "render": function (data, type, row) {
                      if (row.IsDatabaseTemplate) {
-                         return "<a  href='/SysAdmin/Templates/EditHtml/" +
+                         var buttons = "<a  href='/SysAdmin/Templates/EditHtml/" +
                              row.Name +
-                             "' class='btn btn-primary btn-xs'><i class='fa fa-code'></i></a>" + "   <a data-modal href='/SysAdmin/Templates/AddCssRes/" +
-                             row.Name +
-                             "' class='btn btn-primary btn-xs'><i class='fa fa-css3'></i></a>";
+                             "' class='btn btn-primary btn-xs'><i class='fa fa-code'></i></a>" +
+                             "   <a data-modal href='/SysAdmin/Templates/AddCssRes/";
+                         if (!row.IsPartial) {
+                             buttons += row.Name +
+                                 "' class='btn btn-primary btn-xs'><i class='fa fa-css3'></i></a>";
+                         } else {
+                             buttons += row.Name +
+                                 "' class='btn btn-primary btn-xs disabled'><i class='fa fa-css3'></i></a>";
+                         }
+                         return buttons;
                      } else {
                          return "<a class='btn btn-primary btn-xs disabled'><i class='fa fa-code'></i></a>  <a target='_blank' class='btn btn-primary btn-xs disabled'><i class='fa fa-css3'></i></a>";
                      }

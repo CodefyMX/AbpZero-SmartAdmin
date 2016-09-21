@@ -312,6 +312,7 @@
     <Content Include="Areas\SysAdmin\Scripts\Languages\languageTexts.js" />
     <Content Include="Areas\SysAdmin\Scripts\Layout\GetNotifications.js" />
     <Content Include="Areas\SysAdmin\Scripts\Layout\localizationText.js" />
+    <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\bootstrap-typeahead\bootstrap-typeahead.min.js" />
     <Content Include="Areas\SysAdmin\Scripts\UsersRoles\roles.js" />
     <Content Include="Areas\SysAdmin\Scripts\UsersRoles\users.js" />
     <Content Include="Areas\SysAdmin\Scripts\AuditLogs\AuditLogDetails.js" />
@@ -1140,6 +1141,7 @@
     <Content Include="Areas\SysAdmin\Views\Templates\EditHtml.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\MyMenus.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\CreateEditMenu.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Menu\SetCategories.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
@@ -1298,6 +1300,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Areas\SysAdmin\Controllers\PageCategoriesController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
@@ -1355,6 +1358,7 @@
     <Content Include="Views\Pages\Index.cshtml" />
     <None Include="Views\Layout\PagesMenu.cshtml" />
     <None Include="Views\Layout\_childsMenu.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\PageCategories\MyCategories.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

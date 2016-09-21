@@ -2,6 +2,7 @@
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
+using Cinotam.Cms.DatabaseEntities.Category.Entities;
 using Cinotam.Cms.DatabaseEntities.Menus.Entities;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
@@ -25,6 +26,8 @@ namespace Cinotam.AbpModuleZero.EntityFramework
         public IDbSet<MenuSectionContent> MenuSectionContents { get; set; }
         public IDbSet<MenuSectionItem> MenuSectionItems { get; set; }
         public IDbSet<MenuSectionItemContent> MenuSectionItemContents { get; set; }
+        public IDbSet<Category> Categories { get; set; }
+        public IDbSet<CategoryContent> CategoryContents { get; set; }
         #endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.
@@ -34,7 +37,7 @@ namespace Cinotam.AbpModuleZero.EntityFramework
         public AbpModuleZeroDbContext()
             : base("Default")
         {
-            //DbInterception.Add(new FullTextInterceptor());
+
         }
 
         /* NOTE:

@@ -16,5 +16,6 @@ namespace Cinotam.Cms.App.Menus
         Task<int> AddMenuSectionItem(MenuInputForItem input);
         Task<MenuInputForItem> GetMenuSectionItemForEdit(int? id);
         Task ChangeOrder(List<OrderInput> orderInputs, string discriminator);
+        Task<CategorySetModel> GetCategorySetModel(int id);
     }
 }

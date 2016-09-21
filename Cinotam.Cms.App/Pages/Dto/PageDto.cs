@@ -9,5 +9,7 @@ namespace Cinotam.Cms.App.Pages.Dto
         public string Title { get; set; }
         public int TemplateId { get; set; }
         public List<Lang> Langs { get; set; } = new EditableList<Lang>();
+        public string CategoryName { get; set; }
+        public string TemplateName { get; set; }
     }
 }
