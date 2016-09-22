@@ -14,7 +14,7 @@
     <RootNamespace>Cinotam.AbpModuleZero.Web</RootNamespace>
     <AssemblyName>Cinotam.AbpModuleZero.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -1142,6 +1142,7 @@
     <Content Include="Areas\SysAdmin\Views\Menu\MyMenus.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\CreateEditMenu.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\SetCategories.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\PageCategories\CreateEditCategoryContent.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />

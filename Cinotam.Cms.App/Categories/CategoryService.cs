@@ -58,6 +58,65 @@ namespace Cinotam.Cms.App.Categories
             };
         }
 
+        public async Task<CategoryForEditModel> GetCategoryForEdit(int? id)
+        {
+            if (!id.HasValue) return await CreateEmptyCategoryForEditModel();
+            var category = await _categoryRepository.GetAsync(id.Value);
+
+            return new CategoryForEditModel()
+            {
+                DisplayName = category.DisplayName,
+                Name = category.Name,
+                CategoryLangContents = await GetLanguageContents(id.Value)
+            };
+
+        }
+
+        private async Task<List<CategoryLangContent>> GetLanguageContents(int idValue)
+        {
+            var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
+            var categoryLangContent = new List<CategoryLangContent>();
+            foreach (var applicationLanguage in allLanguages)
+            {
+                var contentWithLanguage =
+                    _categoryContentRepository.FirstOrDefault(a => a.Lang.Equals(applicationLanguage.Name));
+                if (contentWithLanguage == null)
+                {
+                    categoryLangContent.Add(new CategoryLangContent()
+                    {
+                        DisplayText = string.Empty,
+                        Icon = applicationLanguage.Icon,
+                        Lang = applicationLanguage.Name
+                    });
+                }
+                else
+                {
+                    categoryLangContent.Add(new CategoryLangContent()
+                    {
+                        DisplayText = contentWithLanguage.DisplayText,
+                        Icon = applicationLanguage.Icon,
+                        Lang = applicationLanguage.Name
+                    });
+                }
+            }
+            return categoryLangContent;
+        }
+
+        private async Task<CategoryForEditModel> CreateEmptyCategoryForEditModel()
+        {
+            var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
+            return new CategoryForEditModel()
+            {
+                CategoryLangContents = allLanguages.Select(a => new CategoryLangContent()
+                {
+                    DisplayText = string.Empty,
+                    Lang = a.Name,
+                    Icon = a.Icon
+                }).ToList()
+            };
+
+        }
+
         private async Task<List<Lang>> GetAvailableLangs(int argId)
         {
             var list = new List<Lang>();

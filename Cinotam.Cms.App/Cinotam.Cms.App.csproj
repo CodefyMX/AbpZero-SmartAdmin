@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categories\CategoryService.cs" />
+    <Compile Include="Categories\Dto\CategoryForEditModel.cs" />
     <Compile Include="Categories\Dto\CategoryInput.cs" />
     <Compile Include="Categories\ICategoryService.cs" />
     <Compile Include="CinotamCmsApp.cs" />

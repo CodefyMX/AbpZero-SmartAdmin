@@ -94,7 +94,17 @@
                         <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body no-padding">
-                           
+                            <table class="table table-striped table-bordered table-hover table-condensed" width="100%" id="categoriesTable">
+                                <thead>
+                                    <tr>
+                                        <th data-class="expand">@L("Name")</th>
+                                        <th>@L("DisplayName")</th>
+                                        <th>@L("Langs")</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
                         </div>
                         <!-- end widget content -->
 
@@ -108,3 +118,65 @@
 
 </div>
 <!-- END MAIN CONTENT -->
+@section pagespecific{
+<script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
+    <script>
+        (function () {
+            var table = $("#categoriesTable")
+        .DataTable({
+            "bServerSide": true,
+            "bPaginate": true,
+            "sPaginationType": "full_numbers", // And its type.
+            "iDisplayLength": 10,
+            "ajax": "/SysAdmin/PageCategories/" + "GetCategories",
+            "autoWidth": true,
+            "preDrawCallback": function () {
+                // Initialize the responsive datatables helper once.
+                if (!responsiveHelper_dt_roles) {
+                    responsiveHelper_dt_roles = new
+                        ResponsiveDatatablesHelper($('#categoriesTable'), breakpointDefinition);
+                }
+            },
+            "rowCallback": function (nRow) {
+                responsiveHelper_dt_roles.createExpandIcon(nRow);
+            },
+            columnDefs: [
+                {
+                    "render": function (data, type, row) {
+                        var lang = "";
+                        if (row.Languages.length <= 0) {
+                            return LSys("NoLangAvaiableYetForThisCategory");
+                        }
+                        row.Languages.forEach(function (dLanf) {
+                            lang = lang + "<i title='" + dLanf.LangCode + "' class='" + dLanf.LangIcon + "'></i> ";
+                        });
+                        return lang;
+                    },
+                    "targets": 2
+                    
+
+                }, {
+                    className: "text-center",
+                    "render": function (data, type, row) {
+                        return "<a data-modal href='/SysAdmin/PageCategories/CreateEditCategoryContent/" + row.Id + "' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i></a>";
+                    },
+                    "targets": 3
+                }
+
+            ],
+            "drawCallback": function (oSettings) {
+                responsiveHelper_dt_roles.respond();
+            },
+            language: window.dataTablesLang,
+            columns: [
+                {
+                    "data": "Name"
+                },
+                {
+                    "data": "DisplayName"
+                }
+            ]
+        });
+        })();
+    </script>
+}
