@@ -22,7 +22,7 @@ namespace Cinotam.AbpModuleZero.EntityFramework
         public IDbSet<Chunk> Chunks { get; set; }
         public IDbSet<Menu> Menus { get; set; }
         public IDbSet<MenuContent> MenuContents { get; set; }
-        public IDbSet<MenuSection> MenuSections { get; set; }
+        public IDbSet<Cms.DatabaseEntities.Menus.Entities.MenuSection> MenuSections { get; set; }
         public IDbSet<MenuSectionContent> MenuSectionContents { get; set; }
         public IDbSet<MenuSectionItem> MenuSectionItems { get; set; }
         public IDbSet<MenuSectionItemContent> MenuSectionItemContents { get; set; }

@@ -26,11 +26,23 @@
                         }
                         else
                         {
-                            <div class="checkbox">
-                                <label>
-                                    <input disabled="disabled" type="checkbox" /> @item.CategoryDisplayName  [@L("UsedIn") @item.NameOfCategoryIsIn]
-                                </label>
-                            </div>
+                            if (item.IdMenuIsIn == Model.MenuId)
+                            {
+                                <div class="checkbox">
+                                    <label>
+                                        <input @checkedStatus data-category="@item.CategoryId" class="js-set-category" type="checkbox"/> @item.CategoryDisplayName
+                                    </label>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="checkbox">
+                                    <label>
+                                        <input disabled="disabled" @checkedStatus type="checkbox" /> @item.CategoryDisplayName  [@L("UsedIn") @item.NameOfMenuIsIn]
+                                    </label>
+                                </div>
+                            }
+
                         }
 
                     }
@@ -68,7 +80,8 @@
                     });
 
                     abp.services.cms.menuService.setMenuSectionsFromCategories (data)
-                        .done (function () {
+                        .done(function () {
+                            window.location.reload ();
 
                         });
                 });

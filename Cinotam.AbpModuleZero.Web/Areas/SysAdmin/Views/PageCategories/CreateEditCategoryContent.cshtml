@@ -5,7 +5,7 @@
 @model Cinotam.Cms.App.Categories.Dto.CategoryForEditModel
 <div class="modal-dialog" role="document">
     <div class="modal-content">
-        <form id="createMenuForm">
+        <form id="createCategoryForm">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModal-label">@L("CreateEditMenu")</h4>
@@ -15,14 +15,13 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             @Html.HiddenFor(a => a.Id)
-                            <label class="control-label" for="Title">@L("Name")</label>
+                            <label class="control-label" for="Name">@L("Name")</label>
                             @Html.TextBoxFor(a => a.Name, new { @class = "form-control", required = "required" })
-                            
-                            <label class="control-label" for="Title">@L("DisplayName")</label>
+                            <br />
+                            <label class="control-label" for="DisplayName">@L("DisplayName")</label>
                             @Html.TextBoxFor(a => a.DisplayName, new { @class = "form-control", required = "required" })
 
 
-                            <br />
                             <br />
                             @foreach (var lang in Model.CategoryLangContents)
                             {
@@ -45,3 +44,33 @@
 
     </div>
 </div>
+<script>
+    (function () {
+
+        $("#createCategoryForm").on("submit", function (e) {
+            e.preventDefault();
+            var availableLangs = [];
+            $(".js-lang-input")
+                .each(function (i, element) {
+                    var $element = $(element);
+                    var langInput = {
+                        Lang: $element.data("lang"),
+                        MenuId: $element.data("id"),
+                        Text: $element.val()
+                    }
+                    availableLangs.push(langInput);
+                });
+            var data = {
+                Name: $("#Name").val(),
+                DisplayName: $("#DisplayName").val(),
+                LanguageInputs: availableLangs
+            }
+            abp.ui.setBusy($("#createCategoryForm"), abp.services.cms.categoryService.addEditCategory(data).done(function () {
+                window.location.reload();
+            }));
+
+        });
+
+
+    }) ();
+</script>

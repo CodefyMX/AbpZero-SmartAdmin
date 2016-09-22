@@ -14,5 +14,6 @@ namespace Cinotam.Cms.Core.Menus
         Task<int> AddMenuItemAsync(MenuSectionItem sectionItem);
         Task<int> AddMenuItemContentAsync(MenuSectionItemContent sectionItemContent);
         Task Update(Menu menu);
+        Task RemoveSection(MenuSection sectionFromMenu);
     }
 }

@@ -5,6 +5,7 @@ using Castle.Components.DictionaryAdapter;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.Cms.App.Categories.Dto;
 using Cinotam.Cms.App.Pages.Dto;
+using Cinotam.Cms.Core.Category;
 using Cinotam.Cms.DatabaseEntities.Category.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,40 @@ namespace Cinotam.Cms.App.Categories
     {
         private readonly IRepository<Category> _categoryRepository;
         private readonly IRepository<CategoryContent> _categoryContentRepository;
+        private readonly ICategoryManager _categoryManager;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
-        public CategoryService(IRepository<Category> categoryRepository, IRepository<CategoryContent> categoryContentRepository, IApplicationLanguageManager applicationLanguageManager)
+        public CategoryService(IRepository<Category> categoryRepository, IRepository<CategoryContent> categoryContentRepository, IApplicationLanguageManager applicationLanguageManager, ICategoryManager categoryManager)
         {
             _categoryRepository = categoryRepository;
             _categoryContentRepository = categoryContentRepository;
             _applicationLanguageManager = applicationLanguageManager;
+            _categoryManager = categoryManager;
         }
 
-        public Task AddEditCategory(CategoryInput input)
+        public async Task AddEditCategory(CategoryInput input)
         {
-            throw new NotImplementedException();
+            var id = await _categoryManager.AddEditCategory(input.Name, input.DisplayName);
+            var categoryCreated = _categoryRepository.FirstOrDefault(id);
+            foreach (var inputLanguageInput in input.LanguageInputs)
+            {
+
+                if (string.IsNullOrEmpty(inputLanguageInput.Text)) continue;
+                var foundWithSameLanguage =
+                    _categoryContentRepository.FirstOrDefault(
+                        a => a.CategoryId == id && a.Lang == inputLanguageInput.Lang);
+                if (foundWithSameLanguage == null)
+                {
+                    await
+                        _categoryManager.AddEditCategoryContent(
+                            CategoryContent.CreateCategoryContent(inputLanguageInput.Lang, inputLanguageInput.Text,
+                                categoryCreated));
+                }
+                else
+                {
+                    foundWithSameLanguage.DisplayText = inputLanguageInput.Text;
+                    await _categoryManager.AddEditCategoryContent(foundWithSameLanguage);
+                }
+            }
         }
 
         public ReturnModel<CategoryDto> GetCategories(RequestModel<object> requestModel)
@@ -79,7 +103,7 @@ namespace Cinotam.Cms.App.Categories
             foreach (var applicationLanguage in allLanguages)
             {
                 var contentWithLanguage =
-                    _categoryContentRepository.FirstOrDefault(a => a.Lang.Equals(applicationLanguage.Name));
+                    _categoryContentRepository.FirstOrDefault(a => a.Lang.Equals(applicationLanguage.Name) && a.CategoryId == idValue);
                 if (contentWithLanguage == null)
                 {
                     categoryLangContent.Add(new CategoryLangContent()

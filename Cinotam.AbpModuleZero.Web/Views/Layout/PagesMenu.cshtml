@@ -1,36 +1,81 @@
 ﻿@using Abp.Collections.Extensions
-@model Cinotam.Cms.App.Pages.Dto.Menu
+@model Cinotam.Cms.App.Menus.Dto.MenuOutput
 
 @{
     Layout = null;
 }
-@foreach (var pageMenuDto in Model.Menus)
-{
-    <li class="dropdown dropdown-li">
-        <a class="dropdown-link" data-toggle="dropdown" href="@Url.Action("Index", "Pages", new {slug = pageMenuDto.Url})">
-            @pageMenuDto.DisplayText
-            @if (!pageMenuDto.Childs.IsNullOrEmpty())
-            {
-                <b class="caret"></b>
-            }
-        </a>
 
-    @if (!pageMenuDto.Childs.IsNullOrEmpty())
-    {
-        <ul class="dropdown-menu">
-            @foreach (var childMenu in pageMenuDto.Childs)
-            {
-                <li>
-                    <a href="@Url.Action("Index", "Pages", new {slug = childMenu.Url})">@childMenu.DisplayText</a>
-                    @if (!childMenu.Childs.IsNullOrEmpty())
+
+<link href="~/Content/Custom/DropDownMenuLarge.css" rel="stylesheet" />
+<div class="collapse navbar-collapse js-navbar-collapse">
+    <ul class="nav navbar-nav">
+
+        @foreach (var menu in Model.MenuElements)
+        {
+            <li id="js-menu-@menu.Id" class="dropdown dropdown-large">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@menu.DisplayName <b class="caret"></b></a>
+                @if (menu.SectionElements.Count < 2)
+                {
+                    <input type="hidden" data-id="@menu.Id" class="js-use-small-menu" value="true" />
+                    <ul class="dropdown-menu">
+                        
+                        @foreach (var sections in menu.SectionElements)
                         {
-                            Html.RenderPartial("_childsMenu", childMenu.Childs);
+                            if (sections.SectionItems.Any())
+                            {
+
+                                <li><a class="disabled">@sections.DisplayName</a> </li>
+
+                                <li role="separator" class="divider"></li>
+                                foreach (var item in sections.SectionItems)
+                                {
+                                    var url = item.Url;
+                                    if (item.HasPage)
+                                    {
+                                        url = Url.Action("Index", "Pages", new { slug = item.Url });
+                                    }
+                                    <li><a href="@url">@item.DisplayName</a></li>
+                                }
+                            }
+
+
                         }
-                </li>
+                    </ul>
+                }
+                else
+                {
+                    <input type="hidden" id="useSmallMenu" value="false" />
+                    <ul class="dropdown-menu dropdown-menu-large row">
+                        @foreach (var sections in menu.SectionElements)
+                        {
+                            if (sections.SectionItems.Any())
+                            {
+                                <li class="col-sm-6">
+                                    <ul>
+                                        <li class="dropdown-header">@sections.DisplayName</li>
+                                        @foreach (var item in sections.SectionItems)
+                                        {
+                                            var url = item.Url;
+                                            if (item.HasPage)
+                                            {
+                                                url = Url.Action("Index", "Pages", new { slug = item.Url });
+                                            }
+                                            <li><a href="@url">@item.DisplayName</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
 
-            }
-        </ul>
-    }
+                        }
+                    </ul>
+                }
 
-</li>
-}
+            </li>
+        }
+
+
+        @Html.Action("TopMenu", "Layout", new { activeMenu = ViewBag.ActiveMenu })
+
+    </ul>
+
+</div><!-- /.nav-collapse -->

@@ -2,7 +2,7 @@
 
 namespace Cinotam.Cms.App.Menus.Dto
 {
-    public abstract class MenuItemAbstraction : EntityDto
+    public class MenuItemContent : EntityDto
     {
         public string DisplayName { get; set; }
         public string Lang { get; set; }

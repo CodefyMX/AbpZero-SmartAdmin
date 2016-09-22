@@ -77,5 +77,25 @@ namespace Cinotam.Cms.Core.Menus
         {
             await _menuRepository.UpdateAsync(menu);
         }
+
+        public async Task RemoveSection(MenuSection sectionFromMenu)
+        {
+            var contents = _menuSectionContentRepository.GetAllList(a => a.SectionId == sectionFromMenu.Id);
+            foreach (var menuSectionContent in contents)
+            {
+                await _menuSectionContentRepository.DeleteAsync(menuSectionContent);
+            }
+            var sectionItems = _menuSectionItemRepository.GetAllList(a => a.SectionId == sectionFromMenu.Id);
+            foreach (var menuSectionItem in sectionItems)
+            {
+                var itemContents = _menuSectionItemContentRepository.GetAllList(a => a.SectionItemId == menuSectionItem.Id);
+                foreach (var itemContent in itemContents)
+                {
+                    await _menuSectionItemContentRepository.DeleteAsync(itemContent);
+                }
+                await _menuSectionItemRepository.DeleteAsync(menuSectionItem);
+            }
+            await _menuSectionRepository.DeleteAsync(sectionFromMenu);
+        }
     }
 }

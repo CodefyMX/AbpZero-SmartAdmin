@@ -111,7 +111,7 @@
     <Compile Include="Menus\Dto\MenuElementContent.cs" />
     <Compile Include="Menus\Dto\MenuInput.cs" />
     <Compile Include="Menus\Dto\MenuInputForItem.cs" />
-    <Compile Include="Menus\Dto\MenuItemAbstraction.cs" />
+    <Compile Include="Menus\Dto\MenuItemContent.cs" />
     <Compile Include="Menus\Dto\MenuOutput.cs" />
     <Compile Include="Menus\Dto\OrderInput.cs" />
     <Compile Include="Menus\Dto\SectionElement.cs" />

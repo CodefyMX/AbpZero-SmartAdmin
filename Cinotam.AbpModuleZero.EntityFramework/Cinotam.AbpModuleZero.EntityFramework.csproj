@@ -302,6 +302,10 @@
     <Compile Include="Migrations\201609212059559_MenuNameInCategory.Designer.cs">
       <DependentUpon>201609212059559_MenuNameInCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609221635177_HasPage.cs" />
+    <Compile Include="Migrations\201609221635177_HasPage.Designer.cs">
+      <DependentUpon>201609221635177_HasPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -330,10 +334,6 @@
     <ProjectReference Include="..\Cinotam.Cms.Contracts\Cinotam.Cms.Contracts.csproj">
       <Project>{DABC5C7B-2468-40CB-A673-DC723656174D}</Project>
       <Name>Cinotam.Cms.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.Core\Cinotam.Cms.Core.csproj">
-      <Project>{CC639C97-140A-42F6-8323-7C702077ACAE}</Project>
-      <Name>Cinotam.Cms.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.Cms.DatabaseContentProvider\Cinotam.Cms.DatabaseContentProvider.csproj">
       <Project>{57CDC3CD-F90E-460E-A5CB-73AF6354506B}</Project>
@@ -483,7 +483,11 @@
     <EmbeddedResource Include="Migrations\201609212059559_MenuNameInCategory.resx">
       <DependentUpon>201609212059559_MenuNameInCategory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609221635177_HasPage.resx">
+      <DependentUpon>201609221635177_HasPage.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

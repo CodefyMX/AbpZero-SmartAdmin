@@ -66,5 +66,25 @@
 
     <!-- View specific scripts -->
     @RenderSection("scripts", required: false)
+    <script>
+    (function () {
+        $(document)
+            .ready(function () {
+                $(".js-use-small-menu")
+                    .each(function (i, element) {
+                        var $element = $(element);
+                        var useSmallMenu = $element.val();
+                        var id = $element.data("id");
+                        console.log (useSmallMenu);
+                        if (useSmallMenu) {
+                            var selector = "#js-menu-" + id;
+                            console.log (selector);
+                            $(selector).removeClass("dropdown-large");
+                        }
+                    });
+
+            });
+    })();
+    </script>
 </body>
 </html>

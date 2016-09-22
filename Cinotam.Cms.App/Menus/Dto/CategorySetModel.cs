@@ -14,7 +14,8 @@ namespace Cinotam.Cms.App.Menus.Dto
         public int CategoryId { get; set; }
         public string CategoryDisplayName { get; set; }
         public bool Enabled { get; set; }
-        public string NameOfCategoryIsIn { get; set; }
+        public string NameOfMenuIsIn { get; set; }
+        public int IdMenuIsIn { get; set; }
         public bool Checked { get; set; }
     }
 }

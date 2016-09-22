@@ -15,8 +15,10 @@ namespace Cinotam.Cms.DatabaseEntities.Menus.Entities
         [ForeignKey("SectionItemId")]
         public virtual MenuSectionItem MenuSectionItem { get; set; }
         public int SectionItemId { get; set; }
-        public string Lang { get; set; }
 
+        public int? PageId { get; set; }
+        public string Url { get; set; }
+        public string Lang { get; set; }
         public static MenuSectionItemContent CreateMenuSectionItemContent(string displayText, string lang, MenuSectionItem menuSectionItem)
         {
             if (menuSectionItem.Id == 0) throw new NullReferenceException(nameof(menuSectionItem));

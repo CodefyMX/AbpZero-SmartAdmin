@@ -4,6 +4,7 @@ using Abp.Localization;
 using Abp.Runtime.Session;
 using Abp.Threading;
 using Cinotam.AbpModuleZero.Web.Models.Layout;
+using Cinotam.Cms.App.Menus;
 using Cinotam.Cms.App.Pages;
 using Cinotam.ModuleZero.AppModule.Sessions;
 using System.Web.Mvc;
@@ -17,17 +18,19 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         private readonly ISessionAppService _sessionAppService;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly IPagesService _pagesService;
+        private readonly IMenuService _menuService;
         public LayoutController(
             IUserNavigationManager userNavigationManager,
             ILocalizationManager localizationManager,
             ISessionAppService sessionAppService,
-            IMultiTenancyConfig multiTenancyConfig, IPagesService pagesService)
+            IMultiTenancyConfig multiTenancyConfig, IPagesService pagesService, IMenuService menuService)
         {
             _userNavigationManager = userNavigationManager;
             _localizationManager = localizationManager;
             _sessionAppService = sessionAppService;
             _multiTenancyConfig = multiTenancyConfig;
             _pagesService = pagesService;
+            _menuService = menuService;
         }
 
         [ChildActionOnly]
@@ -81,7 +84,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
         public ActionResult PagesMenu()
         {
-            var menu = _pagesService.GetPagesMenu();
+            var menu = AsyncHelper.RunSync(() => _menuService.GetMenuForView());
             return View(menu);
         }
     }
