@@ -19,8 +19,8 @@ namespace Cinotam.Cms.App.Pages
         Task<PageViewOutput> GetPageViewById(int id, string lang);
         Task<PageViewOutput> GetPageViewBySlug(string slug);
         Task SavePageContent(PageContentInput input);
-        void TogglePageStatus(int pageId);
-        void TogglePageInMenuStatus(int pageId);
+        Task TogglePageStatus(int pageId);
+        Task TogglePageInMenuStatus(int pageId);
         void SetPageAsMain(int pageId);
         Task<string> GetMainPageSlug();
         Menu GetPagesMenu();

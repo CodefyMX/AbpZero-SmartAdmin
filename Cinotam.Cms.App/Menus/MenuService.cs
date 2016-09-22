@@ -417,7 +417,7 @@ namespace Cinotam.Cms.App.Menus
                     foreach (var categoryContent in contents)
                     {
                         var sectionContent = MenuSectionContent.CreateMenuSectionContent(categoryContent.Lang,
-                            categoryContent.DisplayText, section);
+                        categoryContent.DisplayText, section);
                         await _menuManager.AddSectionContentAsync(sectionContent);
                     }
 
@@ -451,6 +451,7 @@ namespace Cinotam.Cms.App.Menus
                 }
                 else
                 {
+                    //Remove links for not checked elements
                     var categoryForRemove =
                     _categoryRepository.FirstOrDefault(a => a.Id == inputAvailableCategory.CategoryId);
 
@@ -463,6 +464,68 @@ namespace Cinotam.Cms.App.Menus
 
 
         }
+
+        public async Task UpdateMenuItemsFromCategory(int categoryId)
+        {
+            //GetCategory
+            var category = _categoryRepository.FirstOrDefault(a => a.Id == categoryId);
+
+            var menu =
+                _menuRepository.FirstOrDefault(a => a.MenuSections.Any(s => s.CategoryDiscriminator == category.Name));
+            //GetCategoryContent
+            var contents =
+                _categoryContentRepository.GetAllList(a => a.CategoryId == categoryId);
+
+            //Create a new section with the name of the category
+            var section = MenuSection.CreateMenuSection(category.Name, menu);
+
+            var id = await _menuManager.AddSectionAsync(section);
+            //If the category has no contents throw an error
+            if (!contents.Any()) throw new UserFriendlyException(L("CategoryHasNoContent"));
+
+            if (section.Id == 0)
+            {
+                section = _menuSectionRepository.FirstOrDefault(id);
+            }            //Now we add the translations for each category (the categories are going to be converted to sections)
+            foreach (var categoryContent in contents)
+            {
+                var sectionContent = MenuSectionContent.CreateMenuSectionContent(categoryContent.Lang,
+                categoryContent.DisplayText, section);
+                await _menuManager.AddSectionContentAsync(sectionContent);
+            }
+
+            //Now we get each page in the category
+            var pagesInCategory =
+                _pageRepository.GetAllList(a => a.IncludeInMenu && a.Active && a.CategoryId == category.Id);
+
+            //And convert those page into links for the menu
+            foreach (var page in pagesInCategory)
+            {
+                var pageContents = _pageContentRepository.GetAllList(a => a.PageId == page.Id);
+
+                if (!pageContents.Any())
+                {
+                    throw new UserFriendlyException(L("PageHasNoContent"));
+                }
+
+                var menuSectionItem = MenuSectionItem.CreateMenuSectionItem(page.Name, section);
+
+                var idItem = await _menuManager.AddMenuItemAsync(menuSectionItem);
+                if (menuSectionItem.Id == 0)
+                {
+                    menuSectionItem = _menuSectionItemRepository.FirstOrDefault(idItem);
+                }
+                foreach (var pageContent in pageContents)
+                {
+                    var menuSectionItemContent =
+                        MenuSectionItemContent.CreateMenuSectionItemContent(pageContent.Title, pageContent.Lang,
+                            menuSectionItem);
+                    menuSectionItemContent.PageId = pageContent.PageId;
+                    await _menuManager.AddMenuItemContentAsync(menuSectionItemContent);
+                }
+            }
+        }
+
         private bool IsInThisMenu(int id, Category availableCategory)
         {
             var sections = _menuSectionRepository.GetAllList(a => a.CategoryDiscriminator == availableCategory.Name && a.MenuId == id);

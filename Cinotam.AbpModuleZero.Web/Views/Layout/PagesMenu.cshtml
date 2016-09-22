@@ -14,7 +14,7 @@
         {
             <li id="js-menu-@menu.Id" class="dropdown dropdown-large">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">@menu.DisplayName <b class="caret"></b></a>
-                @if (menu.SectionElements.Count < 2)
+                @if (menu.SectionElements.Count < 3)
                 {
                     <input type="hidden" data-id="@menu.Id" class="js-use-small-menu" value="true" />
                     <ul class="dropdown-menu">
@@ -24,16 +24,16 @@
                             if (sections.SectionItems.Any())
                             {
 
-                                <li><a class="disabled">@sections.DisplayName</a> </li>
+                                <h6 class="dropdown-header">@sections.DisplayName</h6>
 
-                                <li role="separator" class="divider"></li>
                                 foreach (var item in sections.SectionItems)
                                 {
-                                    var url = item.Url;
-                                    if (item.HasPage)
-                                    {
-                                        url = Url.Action("Index", "Pages", new { slug = item.Url });
-                                    }
+                                    if(item == null) { continue;}
+                                        var url = item.Url;
+                                        if (item.HasPage)
+                                        {
+                                            url = Url.Action("Index", "Pages", new { slug = item.Url });
+                                        }
                                     <li><a href="@url">@item.DisplayName</a></li>
                                 }
                             }

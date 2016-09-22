@@ -4,6 +4,7 @@ using Abp.Threading;
 using Castle.Components.DictionaryAdapter;
 using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
+using Cinotam.Cms.App.Menus;
 using Cinotam.Cms.App.Pages.Dto;
 using Cinotam.Cms.Contracts;
 using Cinotam.Cms.Core.Category;
@@ -34,12 +35,12 @@ namespace Cinotam.Cms.App.Pages
         private readonly ICategoryManager _categoryManager;
         private readonly ITemplateManager _templateManager;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
-
+        private readonly IMenuService _menuService;
         #endregion
 
         #region Ctor
 
-        public PagesService(IPageManager pageManager, IRepository<Page> pageRepository, IRepository<Content> contentRepository, IRepository<Template> templateRepository, IApplicationLanguageManager applicationLanguageManager, ITemplateManager templateManager, IRepository<Category> categoryRepository, ICategoryManager categoryManager)
+        public PagesService(IPageManager pageManager, IRepository<Page> pageRepository, IRepository<Content> contentRepository, IRepository<Template> templateRepository, IApplicationLanguageManager applicationLanguageManager, ITemplateManager templateManager, IRepository<Category> categoryRepository, ICategoryManager categoryManager, IMenuService menuService)
         {
             _pageManager = pageManager;
             _pageRepository = pageRepository;
@@ -49,6 +50,7 @@ namespace Cinotam.Cms.App.Pages
             _templateManager = templateManager;
             _categoryRepository = categoryRepository;
             _categoryManager = categoryManager;
+            _menuService = menuService;
         }
 
 
@@ -87,18 +89,20 @@ namespace Cinotam.Cms.App.Pages
             await _pageManager.SavePageContentAsync(pageContent, chunks);
         }
 
-        public void TogglePageStatus(int pageId)
+        public async Task TogglePageStatus(int pageId)
         {
             var page = _pageRepository.Get(pageId);
             page.Active = !page.Active;
             _pageRepository.Update(page);
+            if (page.CategoryId.HasValue) await _menuService.UpdateMenuItemsFromCategory(page.CategoryId.Value);
         }
 
-        public void TogglePageInMenuStatus(int pageId)
+        public async Task TogglePageInMenuStatus(int pageId)
         {
             var page = _pageRepository.Get(pageId);
             page.IncludeInMenu = !page.IncludeInMenu;
             _pageRepository.Update(page);
+            if (page.CategoryId.HasValue) await _menuService.UpdateMenuItemsFromCategory(page.CategoryId.Value);
         }
 
         public void SetPageAsMain(int pageId)
@@ -170,6 +174,7 @@ namespace Cinotam.Cms.App.Pages
             var page = _pageRepository.Get(input.PageId);
             page.Category = category;
             await _pageManager.SaveOrEditPageAsync(page);
+            if (page.CategoryId.HasValue) await _menuService.UpdateMenuItemsFromCategory(page.CategoryId.Value);
             return new CategorySetResult()
             {
                 IsExistentCategory = exists
@@ -233,6 +238,7 @@ namespace Cinotam.Cms.App.Pages
 
                 TemplateUniqueName = page.TemplateName
             });
+            if (page.CategoryId.HasValue) await _menuService.UpdateMenuItemsFromCategory(page.CategoryId.Value);
         }
 
         public async Task<PageViewOutput> GetPageViewById(int id, string lang)

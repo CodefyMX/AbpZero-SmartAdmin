@@ -27,7 +27,7 @@ namespace Cinotam.Cms.Core.Menus.Policy
         {
             if (menu.Id != 0) return;
             var menus = _menuRepository.GetAllList(a => a.MenuName == menu.MenuName);
-            if (menus.Any()) throw new UserFriendlyException("RepeatedName");
+            if (menus.Any()) throw new UserFriendlyException("RepeatedMenuName");
         }
 
         public void ValidateMenuContent(MenuContent menuContent)
@@ -44,7 +44,7 @@ namespace Cinotam.Cms.Core.Menus.Policy
             if (menuSection.Id != 0) return;
             var found = _menuSectionRepository.FirstOrDefault(a => a.SectionName == menuSection.SectionName);
             if (found == null) return;
-            throw new UserFriendlyException("RepeatedName");
+            throw new UserFriendlyException("RepeatedMenuSectionName");
         }
 
         public void ValidateMenuSectionContent(MenuSectionContent menuSectionContent)
@@ -62,7 +62,7 @@ namespace Cinotam.Cms.Core.Menus.Policy
             if (sectionItem.Id != 0) return;
             var found = _menuSectionItemRepository.FirstOrDefault(a => a.Name == sectionItem.Name);
             if (found == null) return;
-            throw new UserFriendlyException("RepeatedName");
+            throw new UserFriendlyException("RepeatedMenuItemName");
         }
 
         public void ValidateMenuItemContent(MenuSectionItemContent sectionItemContent)

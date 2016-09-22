@@ -2,6 +2,7 @@
 using Abp.Localization;
 using Abp.Threading;
 using Castle.Components.DictionaryAdapter;
+using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.Cms.App.Categories.Dto;
 using Cinotam.Cms.App.Pages.Dto;
@@ -31,7 +32,7 @@ namespace Cinotam.Cms.App.Categories
 
         public async Task AddEditCategory(CategoryInput input)
         {
-            var id = await _categoryManager.AddEditCategory(input.Name, input.DisplayName);
+            var id = await _categoryManager.AddEditCategory(input.Name.Sluggify(), input.DisplayName);
             var categoryCreated = _categoryRepository.FirstOrDefault(id);
             foreach (var inputLanguageInput in input.LanguageInputs)
             {

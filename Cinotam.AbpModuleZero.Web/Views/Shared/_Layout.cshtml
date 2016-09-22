@@ -66,8 +66,10 @@
 
     <!-- View specific scripts -->
     @RenderSection("scripts", required: false)
-    <script>
+<script>
+    //Menu dropdown large activator
     (function () {
+        "use strict";
         $(document)
             .ready(function () {
                 $(".js-use-small-menu")
@@ -75,16 +77,15 @@
                         var $element = $(element);
                         var useSmallMenu = $element.val();
                         var id = $element.data("id");
-                        console.log (useSmallMenu);
                         if (useSmallMenu) {
                             var selector = "#js-menu-" + id;
-                            console.log (selector);
+                            console.log(selector);
                             $(selector).removeClass("dropdown-large");
                         }
                     });
 
             });
     })();
-    </script>
+</script>
 </body>
 </html>

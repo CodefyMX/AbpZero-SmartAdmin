@@ -18,5 +18,6 @@ namespace Cinotam.Cms.App.Menus
         Task ChangeOrder(List<OrderInput> orderInputs, string discriminator);
         Task<CategorySetModel> GetCategorySetModel(int id);
         Task SetMenuSectionsFromCategories(CategorySetModel input);
+        Task UpdateMenuItemsFromCategory(int categoryId);
     }
 }
