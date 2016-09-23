@@ -273,7 +273,7 @@
                                             <label>@L("Category")</label>
                                             <input type="text" autocomplete="off" id="category" class="form-control" placeholder="Ex. Shop, Info, Tech">
                                         </div>
-                                        <button type="submit" class="btn btn-default">@L("Save")</button>
+                                        <button type="submit" class="btn btn-default js-btn-change-cat" disabled="disabled">@L("Save")</button>
                                     </form>
                                 </div>
                             </div>
@@ -480,6 +480,12 @@
                 displayName: "",
                 name: ""
             };
+            $(".js-btn-change-cat").on("keyup", function () {
+                var self = this;
+                if (selectedCategory.typeAheadSelected) {
+                    self.attr ("disabled",false);
+                }
+            });
             abp.services.cms.pagesService.getCategories()
                 .done(function (data) {
                     var categories = [];
@@ -508,6 +514,7 @@
                                         name: ""
                                     };
                                 }
+                                $ (".js-btn-change-cat").attr ("disabled", false);
                             }
                         }
                         );
@@ -518,21 +525,11 @@
                         e.preventDefault();
                         if (!selectedCategory.typeAheadSelected) {
                             selectedCategory.name = $("#category").val();
-                            selectedCategory.displayName = $("#category").val();
                             selectedCategory.pageId = $("#Id").val();
                         }
                         abp.services.cms.pagesService.setCategory(selectedCategory)
-                            .done(function (response) {
-                                if (response.isExistentCategory) {
-
+                            .done(function () {
                                     window.location.reload();
-                                } else {
-                                    abp.message.confirm(LSys("SetLanguageContentNotification"), LSys("ReloadPage"), function (responseC) {
-                                        if (responseC) {
-                                            window.location.reload();
-                                        }
-                                    });
-                                }
                             });
                     });
 

@@ -7,13 +7,13 @@ namespace Cinotam.AbpModuleZero.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class MenuItemsAndContents : IMigrationMetadata
+    public sealed partial class MenuUpdated : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MenuItemsAndContents));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MenuUpdated));
         
         string IMigrationMetadata.Id
         {
-            get { return "201609200123351_MenuItemsAndContents"; }
+            get { return "201609231845035_MenuUpdated"; }
         }
         
         string IMigrationMetadata.Source

@@ -48,9 +48,10 @@ namespace Cinotam.Cms.Core.Menus
             //_menuPolicy.ValidateMenuSection(found);
             if (found != null)
             {
-                found.CategoryDiscriminator = menuSection.CategoryDiscriminator;
+                found.CategoryId = menuSection.Category.Id;
                 found.Menu = menuSection.Menu;
                 found.SectionName = menuSection.SectionName;
+                await _menuSectionRepository.InsertOrUpdateAndGetIdAsync(found);
                 return found.Id;
             }
 
@@ -143,6 +144,20 @@ namespace Cinotam.Cms.Core.Menus
                 await _menuSectionItemRepository.DeleteAsync(menuSectionItem);
             }
             await _menuSectionRepository.DeleteAsync(sectionFromMenu);
+        }
+
+        public void RemoveSectionItemsForPage(int pageId)
+        {
+            var sectionItems = _menuSectionItemRepository.GetAllList(a => a.PageId == pageId);
+            foreach (var sectionItem in sectionItems)
+            {
+                var contents = _menuSectionItemContentRepository.GetAllList(a => a.Id == sectionItem.Id);
+                foreach (var menuSectionContent in contents)
+                {
+                    _menuSectionItemContentRepository.Delete(menuSectionContent);
+                }
+                _menuSectionItemRepository.Delete(sectionItem);
+            }
         }
     }
 }

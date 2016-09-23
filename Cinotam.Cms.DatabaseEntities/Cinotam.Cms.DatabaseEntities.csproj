@@ -97,6 +97,7 @@
     <Compile Include="CustomFilters\IHasTemplate.cs" />
     <Compile Include="CustomFilters\IIsActivable.cs" />
     <Compile Include="CustomFilters\ILocalizable.cs" />
+    <Compile Include="CustomFilters\IMayHavePage.cs" />
     <Compile Include="CustomFilters\IMayHaveTemplate.cs" />
     <Compile Include="CustomFilters\IMustHaveCategory.cs" />
     <Compile Include="Menus\Entities\Menu.cs" />

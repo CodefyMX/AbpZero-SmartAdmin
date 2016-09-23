@@ -1,5 +1,4 @@
 ﻿using Abp.Domain.Repositories;
-using Abp.Domain.Uow;
 using Abp.Localization;
 using Abp.UI;
 using Cinotam.AbpModuleZero.Extensions;
@@ -26,12 +25,12 @@ namespace Cinotam.Cms.App.Menus
         private readonly IRepository<MenuSectionItem> _menuSectionItemRepository;
         private readonly IRepository<MenuSectionItemContent> _menuSectionItemContentRepository;
         private readonly IRepository<Page> _pageRepository;
-        private readonly IUnitOfWorkManager _unitOfWorkManager;
         private readonly IRepository<Content> _pageContentRepository;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
         private readonly IRepository<Category> _categoryRepository;
         private readonly IRepository<CategoryContent> _categoryContentRepository;
         private readonly IMenuManager _menuManager;
+        private const string DynamicCreated = "DynamicCreated";
         public MenuService(IRepository<Menu> menuRepository,
             IRepository<MenuContent> menuContentRepository,
             IRepository<MenuSection> menuSectionRepository,
@@ -43,8 +42,7 @@ namespace Cinotam.Cms.App.Menus
             IRepository<Category> categoryRepository,
             IRepository<CategoryContent> categoryContentRepository,
             IRepository<Page> pageRepository,
-            IRepository<Content> pageContentRepository,
-            IUnitOfWorkManager unitOfWorkManager)
+            IRepository<Content> pageContentRepository)
         {
             _menuRepository = menuRepository;
             _menuContentRepository = menuContentRepository;
@@ -58,7 +56,6 @@ namespace Cinotam.Cms.App.Menus
             _categoryContentRepository = categoryContentRepository;
             _pageRepository = pageRepository;
             _pageContentRepository = pageContentRepository;
-            _unitOfWorkManager = unitOfWorkManager;
         }
 
         public async Task<MenuOutput> GetMenuForView()
@@ -83,85 +80,7 @@ namespace Cinotam.Cms.App.Menus
             };
         }
 
-        private async Task<List<SectionElement>> GetMenuSections(int allMenuId)
-        {
-            var sections = await _menuSectionRepository.GetAllListAsync(a => a.MenuId == allMenuId);
-            var sectionList = new List<SectionElement>();
-            foreach (var menuSection in sections)
-            {
-                var contentForSection = await GetContentsForSection(menuSection.Id);
-                if (contentForSection == null) continue;
-                sectionList.Add(new SectionElement()
-                {
-                    DisplayName = contentForSection.DisplayName,
-                    Lang = contentForSection.Lang,
-                    SectionItems = await GetSectionItems(menuSection.Id)
-                });
-            }
-            return sectionList;
-        }
 
-        private async Task<List<SectionItem>> GetSectionItems(int menuSectionId)
-        {
-            var items = await _menuSectionItemRepository.GetAllListAsync(a => a.SectionId == menuSectionId);
-            var sectionItems = new List<SectionItem>();
-            foreach (var menuSectionItem in items)
-            {
-                var content = await GetContentForMenuItem(menuSectionItem.Id);
-                sectionItems.Add(content);
-
-            }
-            return sectionItems;
-        }
-
-        private async Task<SectionItem> GetContentForMenuItem(int id)
-        {
-            var content =
-                await _menuSectionItemContentRepository.FirstOrDefaultAsync(
-                    a => a.SectionItemId == id && a.Lang == CultureInfo.CurrentUICulture.Name);
-            if (content == null) return null;
-            return new SectionItem()
-            {
-                Url = content.PageId.HasValue ? GetPageUrl(content.PageId) : content.Url,
-                DisplayName = content.DisplayText,
-                HasPage = content.PageId.HasValue,
-                Lang = content.Lang,
-                Id = content.Id
-            };
-        }
-
-        private string GetPageUrl(int? contentPageId)
-        {
-            var pageContent = _pageContentRepository.FirstOrDefault(a => a.PageId == contentPageId.Value);
-            return pageContent.Url;
-        }
-
-        private async Task<MenuItemContent> GetContentsForSection(int menuSectionId)
-        {
-            var foundContent =
-                await _menuSectionContentRepository.FirstOrDefaultAsync(
-                    a => a.SectionId == menuSectionId && CultureInfo.CurrentUICulture.Name == a.Lang);
-            if (foundContent == null) return null;
-            return new MenuElement()
-            {
-                DisplayName = foundContent.DisplayText,
-                Lang = foundContent.Lang,
-                Id = foundContent.Id
-            };
-        }
-
-        private async Task<MenuItemContent> GetContentForCurrentLanguage(int allMenuId)
-        {
-            var content =
-                await _menuContentRepository.FirstOrDefaultAsync(
-                    a => a.MenuId == allMenuId && a.Lang == CultureInfo.CurrentUICulture.Name);
-            if (content == null) return null;
-            return new MenuItemContent()
-            {
-                Lang = content.Lang,
-                DisplayName = content.Text
-            };
-        }
 
         public async Task<List<MenuElement>> GetMenuList()
         {
@@ -180,47 +99,7 @@ namespace Cinotam.Cms.App.Menus
             return elements;
         }
 
-        private async Task<List<MenuElementContent>> GetContentsForElement(int menuId)
-        {
-            var contents = _menuContentRepository.GetAllList(a => a.MenuId == menuId);
-            var list = new List<MenuElementContent>();
-            var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
-            foreach (var menuContent in contents)
-            {
-                var coincidence = allLanguages.FirstOrDefault(a => a.Name.Equals(menuContent.Lang));
-                if (coincidence == null) continue;
-                list.Add(new MenuElementContent()
-                {
-                    Icon = coincidence.Icon,
-                    Lang = coincidence.Name
-                });
-            }
-            return list;
-        }
-        private async Task<List<MenuElementContent>> CreateEmptyLanguagesOptions()
-        {
-            var list = new List<MenuElementContent>();
-            var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
-            foreach (var language in allLanguages)
-            {
-                list.Add(new MenuElementContent()
-                {
-                    Icon = language.Icon,
-                    Lang = language.Name
-                });
-            }
-            return list;
-        }
 
-        private MenuElement EmptyLangMenuElement(string lang)
-        {
-            return new MenuElement()
-            {
-                DisplayName = L("NoAvailableLangText"),
-                Id = 0,
-                Lang = lang
-            };
-        }
 
         public async Task<int> AddMenu(MenuInput input)
         {
@@ -277,63 +156,23 @@ namespace Cinotam.Cms.App.Menus
             };
         }
 
-        private async Task<List<LangInput>> GetAvailableContents(Menu menu)
-        {
-            var list = new List<LangInput>();
-            var allLangs = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
-            foreach (var applicationLanguage in allLangs)
-            {
-                var content = _menuContentRepository.FirstOrDefault(a => a.Lang == applicationLanguage.Name && a.MenuId == menu.Id);
-                if (content == null)
-                {
-                    list.Add(new LangInput()
-                    {
-                        DisplayText = "",
-                        Lang = applicationLanguage.Name,
-                        Icon = applicationLanguage.Icon,
-                    });
-                }
-                else
-                {
-                    list.Add(new LangInput()
-                    {
-                        DisplayText = content.Text,
-                        Icon = applicationLanguage.Icon,
-                        Lang = applicationLanguage.Name,
-                        Id = content.Id
-                    });
-                }
-            }
-            return list;
-        }
 
-        private async Task<List<LangInput>> GetEmptyAvailableLangs()
-        {
-            var langs = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
-            return langs.Select(a => new LangInput()
-            {
-                DisplayText = "",
-                Lang = a.Name,
-                Icon = a.Icon
-            }).ToList();
-        }
-
-        public async Task<int> AddMenuSection(MenuInput input)
+        public Task<int> AddMenuSection(MenuInput input)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<MenuInput> GetMenuSectionForEdit(int? id)
+        public Task<MenuInput> GetMenuSectionForEdit(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<int> AddMenuSectionItem(MenuInputForItem input)
+        public Task<int> AddMenuSectionItem(MenuInputForItem input)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<MenuInputForItem> GetMenuSectionItemForEdit(int? id)
+        public Task<MenuInputForItem> GetMenuSectionItemForEdit(int? id)
         {
             throw new NotImplementedException();
         }
@@ -406,135 +245,242 @@ namespace Cinotam.Cms.App.Menus
                     var contents =
                         _categoryContentRepository.GetAllList(a => a.CategoryId == inputAvailableCategory.CategoryId);
 
-                    //Create a new section with the name of the category
-                    var section = MenuSection.CreateMenuSection(category.Name, menu);
-                    await _menuManager.AddSectionAsync(section);
                     //If the category has no contents throw an error
                     if (!contents.Any()) throw new UserFriendlyException(L("CategoryHasNoContent"));
 
+                    //Create a new section with the name of the category
+                    var section = await CreateMenuSection(category, menu);
 
                     //Now we add the translations for each category (the categories are going to be converted to sections)
-                    foreach (var categoryContent in contents)
-                    {
-                        var sectionContent = MenuSectionContent.CreateMenuSectionContent(categoryContent.Lang,
-                        categoryContent.DisplayText, section);
-                        await _menuManager.AddSectionContentAsync(sectionContent);
-                    }
 
-                    //Now we get each page in the category
-                    var pagesInCategory =
-                        _pageRepository.GetAllList(a => a.IncludeInMenu && a.Active && a.CategoryId == category.Id);
+                    await CreateSectionContents(contents, section);
 
-                    //And convert those page into links for the menu
-                    foreach (var page in pagesInCategory)
-                    {
-                        var pageContents = _pageContentRepository.GetAllList(a => a.PageId == page.Id);
-
-                        if (!pageContents.Any())
-                        {
-                            throw new UserFriendlyException(L("PageHasNoContent"));
-                        }
-
-                        var menuSectionItem = MenuSectionItem.CreateMenuSectionItem(page.Name, section);
-
-                        await _menuManager.AddMenuItemAsync(menuSectionItem);
-
-                        foreach (var pageContent in pageContents)
-                        {
-                            var menuSectionItemContent =
-                                MenuSectionItemContent.CreateMenuSectionItemContent(pageContent.Title, pageContent.Lang,
-                                    menuSectionItem);
-                            menuSectionItemContent.PageId = pageContent.PageId;
-                            await _menuManager.AddMenuItemContentAsync(menuSectionItemContent);
-                        }
-                    }
+                    //Now we get each page in the category and set the menu items
+                    await SetMenuItemsFromPagesInCategory(category, section);
                 }
                 else
                 {
-                    //Remove links for not checked elements
-                    var categoryForRemove =
-                    _categoryRepository.FirstOrDefault(a => a.Id == inputAvailableCategory.CategoryId);
-
-                    var sectionFromMenu =
-                        _menuSectionRepository.FirstOrDefault(a => a.CategoryDiscriminator == categoryForRemove.Name);
-                    if (sectionFromMenu != null) await _menuManager.RemoveSection(sectionFromMenu);
-
+                    await RemoveItemsFromCategory(inputAvailableCategory.CategoryId);
                 }
             }
-
-
         }
 
-        public async Task UpdateMenuItemsFromCategory(int categoryId)
+        public async Task UpdateMenuItemsWhenCategoryChange(int pageId, int? oldCategoryId, int newCategoryId)
         {
-            //GetCategory
-            var category = _categoryRepository.FirstOrDefault(a => a.Id == categoryId);
+            var section = _menuSectionRepository.FirstOrDefault(a => a.CategoryId == oldCategoryId) ??
+                          _menuSectionRepository.FirstOrDefault(a => a.CategoryId == newCategoryId);
 
-            var menu =
-                _menuRepository.FirstOrDefault(a => a.MenuSections.Any(s => s.CategoryDiscriminator == category.Name));
-            //GetCategoryContent
-            var contents =
-                _categoryContentRepository.GetAllList(a => a.CategoryId == categoryId);
+            var elementFromOldSection = await _menuSectionItemRepository.FirstOrDefaultAsync(a => a.SectionId == section.Id && a.PageId == pageId);
 
-            //Create a new section with the name of the category
-            var section = MenuSection.CreateMenuSection(category.Name, menu);
+            if (elementFromOldSection == null) return;
 
-            var id = await _menuManager.AddSectionAsync(section);
-            //If the category has no contents throw an error
-            if (!contents.Any()) throw new UserFriendlyException(L("CategoryHasNoContent"));
+            var newSection = _menuSectionRepository.FirstOrDefault(a => a.CategoryId == newCategoryId);
+            if (newSection == null) return;
+            elementFromOldSection.SectionId = newSection.Id;
 
-            if (section.Id == 0)
-            {
-                section = _menuSectionRepository.FirstOrDefault(id);
-            }            //Now we add the translations for each category (the categories are going to be converted to sections)
-            foreach (var categoryContent in contents)
-            {
-                var sectionContent = MenuSectionContent.CreateMenuSectionContent(categoryContent.Lang,
-                categoryContent.DisplayText, section);
-                await _menuManager.AddSectionContentAsync(sectionContent);
-            }
-
-            //Now we get each page in the category
-            var pagesInCategory =
-                _pageRepository.GetAllList(a => a.IncludeInMenu && a.Active && a.CategoryId == category.Id);
-
-            //And convert those page into links for the menu
-            foreach (var page in pagesInCategory)
-            {
-                var pageContents = _pageContentRepository.GetAllList(a => a.PageId == page.Id);
-
-                if (!pageContents.Any())
-                {
-                    throw new UserFriendlyException(L("PageHasNoContent"));
-                }
-
-                var menuSectionItem = MenuSectionItem.CreateMenuSectionItem(page.Name, section);
-
-                var idItem = await _menuManager.AddMenuItemAsync(menuSectionItem);
-                if (menuSectionItem.Id == 0)
-                {
-                    menuSectionItem = _menuSectionItemRepository.FirstOrDefault(idItem);
-                }
-                foreach (var pageContent in pageContents)
-                {
-                    var menuSectionItemContent =
-                        MenuSectionItemContent.CreateMenuSectionItemContent(pageContent.Title, pageContent.Lang,
-                            menuSectionItem);
-                    menuSectionItemContent.PageId = pageContent.PageId;
-                    await _menuManager.AddMenuItemContentAsync(menuSectionItemContent);
-                }
-            }
         }
 
+        #region Helpers
+        private async Task<List<MenuElementContent>> GetContentsForElement(int menuId)
+        {
+            var contents = _menuContentRepository.GetAllList(a => a.MenuId == menuId);
+            var list = new List<MenuElementContent>();
+            var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
+            foreach (var menuContent in contents)
+            {
+                var coincidence = allLanguages.FirstOrDefault(a => a.Name.Equals(menuContent.Lang));
+                if (coincidence == null) continue;
+                list.Add(new MenuElementContent()
+                {
+                    Icon = coincidence.Icon,
+                    Lang = coincidence.Name
+                });
+            }
+            return list;
+        }
+        private async Task<List<SectionElement>> GetMenuSections(int allMenuId)
+        {
+            var sections = await _menuSectionRepository.GetAllListAsync(a => a.MenuId == allMenuId);
+            var sectionList = new List<SectionElement>();
+            foreach (var menuSection in sections)
+            {
+                if (menuSection.CategoryId.HasValue)
+                {
+                    var contentFromCategory = await GetContentFromCategory(menuSection.CategoryId.Value);
+                    sectionList.Add(new SectionElement()
+                    {
+                        DisplayName = contentFromCategory.DisplayName,
+                        Lang = contentFromCategory.Lang,
+                        SectionItems = await GetSectionItemsFromPages(menuSection.Id)
+                    });
+                }
+                else
+                {
+                    var contentForSection = await GetContentsForSection(menuSection.Id);
+                    if (contentForSection == null) continue;
+                    sectionList.Add(new SectionElement()
+                    {
+                        DisplayName = contentForSection.DisplayName,
+                        Lang = contentForSection.Lang,
+                        SectionItems = await GetSectionItems(menuSection.Id)
+                    });
+                }
+
+            }
+            return sectionList;
+        }
+
+        private async Task<List<SectionItem>> GetSectionItemsFromPages(int menuSectionId)
+        {
+            var sectionItemContents = new List<SectionItem>();
+            var sectionItems = await _menuSectionItemRepository.GetAllListAsync(a => a.SectionId == menuSectionId);
+            foreach (var menuSectionItem in sectionItems)
+            {
+                if (menuSectionItem.PageId.HasValue)
+                {
+                    var content =
+                        _pageContentRepository.FirstOrDefault(
+                            a => a.PageId == menuSectionItem.PageId.Value && a.Lang == CultureInfo.CurrentUICulture.Name);
+                    sectionItemContents.Add(new SectionItem()
+                    {
+                        DisplayName = content.Title,
+                        HasPage = true,
+                        Lang = content.Lang,
+                        Url = content.Url
+                    });
+                }
+                else
+                {
+                    var content = await GetContentForMenuItem(menuSectionItem.Id);
+                    sectionItemContents.Add(content);
+                }
+            }
+            return sectionItemContents;
+
+        }
+
+        private async Task<MenuItemContent> GetContentFromCategory(int categoryIdValue)
+        {
+            var content =
+                await _categoryContentRepository.FirstOrDefaultAsync(
+                    a => a.CategoryId == categoryIdValue && a.Lang == CultureInfo.CurrentUICulture.Name);
+            if (content == null) return null;
+            return new MenuItemContent()
+            {
+                Lang = content.Lang,
+                DisplayName = content.DisplayText
+            };
+        }
+
+        private async Task<List<SectionItem>> GetSectionItems(int menuSectionId)
+        {
+            var items = await _menuSectionItemRepository.GetAllListAsync(a => a.SectionId == menuSectionId);
+            var sectionItems = new List<SectionItem>();
+            foreach (var menuSectionItem in items)
+            {
+                var content = await GetContentForMenuItem(menuSectionItem.Id);
+                sectionItems.Add(content);
+
+            }
+            return sectionItems;
+        }
+
+        private async Task<SectionItem> GetContentForMenuItem(int id)
+        {
+            var content =
+                await _menuSectionItemContentRepository.FirstOrDefaultAsync(
+                    a => a.SectionItemId == id && a.Lang == CultureInfo.CurrentUICulture.Name);
+            if (content == null) return null;
+            return new SectionItem()
+            {
+                Url = content.PageId.HasValue ? GetPageUrl(content.PageId) : content.Url,
+                DisplayName = content.DisplayText,
+                HasPage = content.PageId.HasValue,
+                Lang = content.Lang,
+                Id = content.Id
+            };
+        }
+
+        private string GetPageUrl(int? contentPageId)
+        {
+            var pageContent = _pageContentRepository.FirstOrDefault(a => a.PageId == contentPageId.Value);
+            return pageContent == null ? null : pageContent.Url;
+        }
+
+        private async Task<MenuItemContent> GetContentsForSection(int menuSectionId)
+        {
+            var foundContent =
+                await _menuSectionContentRepository.FirstOrDefaultAsync(
+                    a => a.SectionId == menuSectionId && CultureInfo.CurrentUICulture.Name == a.Lang);
+            if (foundContent == null) return null;
+            return new MenuElement()
+            {
+                DisplayName = foundContent.DisplayText,
+                Lang = foundContent.Lang,
+                Id = foundContent.Id
+            };
+        }
+
+        private async Task<MenuItemContent> GetContentForCurrentLanguage(int allMenuId)
+        {
+            var content =
+                await _menuContentRepository.FirstOrDefaultAsync(
+                    a => a.MenuId == allMenuId && a.Lang == CultureInfo.CurrentUICulture.Name);
+            if (content == null) return null;
+            return new MenuItemContent()
+            {
+                Lang = content.Lang,
+                DisplayName = content.Text
+            };
+        }
+        private async Task<List<LangInput>> GetAvailableContents(Menu menu)
+        {
+            var list = new List<LangInput>();
+            var allLangs = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
+            foreach (var applicationLanguage in allLangs)
+            {
+                var content = _menuContentRepository.FirstOrDefault(a => a.Lang == applicationLanguage.Name && a.MenuId == menu.Id);
+                if (content == null)
+                {
+                    list.Add(new LangInput()
+                    {
+                        DisplayText = "",
+                        Lang = applicationLanguage.Name,
+                        Icon = applicationLanguage.Icon,
+                    });
+                }
+                else
+                {
+                    list.Add(new LangInput()
+                    {
+                        DisplayText = content.Text,
+                        Icon = applicationLanguage.Icon,
+                        Lang = applicationLanguage.Name,
+                        Id = content.Id
+                    });
+                }
+            }
+            return list;
+        }
+        private async Task<List<LangInput>> GetEmptyAvailableLangs()
+        {
+            var langs = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
+            return langs.Select(a => new LangInput()
+            {
+                DisplayText = "",
+                Lang = a.Name,
+                Icon = a.Icon
+            }).ToList();
+        }
         private bool IsInThisMenu(int id, Category availableCategory)
         {
-            var sections = _menuSectionRepository.GetAllList(a => a.CategoryDiscriminator == availableCategory.Name && a.MenuId == id);
+            var sections = _menuSectionRepository.GetAllList(a => a.CategoryId == availableCategory.Id && a.MenuId == id);
             return sections.Any();
         }
 
         private bool IsThisCategoryInAnotherMenu(Category availableCategory, out string isInCategoryName, out int idCategoryIsIn)
         {
-            var isFound = _menuSectionRepository.GetAllIncluding(a => a.Menu).FirstOrDefault(a => a.CategoryDiscriminator == availableCategory.Name);
+            var isFound = _menuSectionRepository.GetAllIncluding(a => a.Menu).FirstOrDefault(a => a.CategoryId == availableCategory.Id);
             if (isFound == null)
             {
                 isInCategoryName = string.Empty;
@@ -556,6 +502,85 @@ namespace Cinotam.Cms.App.Menus
                 await _menuManager.Update(menu);
             }
         }
+        private async Task RemoveItemsFromCategory(int categoryId)
+        {
+            //Remove links for not checked elements
+            var categoryForRemove =
+            _categoryRepository.FirstOrDefault(a => a.Id == categoryId);
+
+            var sectionFromMenu =
+                _menuSectionRepository.FirstOrDefault(a => a.CategoryId == categoryForRemove.Id);
+            if (sectionFromMenu != null) await _menuManager.RemoveSection(sectionFromMenu);
+        }
+
+        private async Task SetMenuItemsFromPagesInCategory(Category category, MenuSection section)
+        {
+            var pagesInCategory =
+                _pageRepository.GetAllList(a => a.IncludeInMenu && a.Active && a.CategoryId == category.Id);
+            //And convert those page into links for the menu
+            foreach (var page in pagesInCategory)
+            {
+                var pageContents = _pageContentRepository.GetAllList(a => a.PageId == page.Id);
+
+                if (!pageContents.Any())
+                {
+                    throw new UserFriendlyException(L("PageHasNoContent"));
+                }
+
+                await CreateSectionItem(page, section, pageContents);
+            }
+        }
+
+        private async Task CreateSectionItem(Page page, MenuSection section, List<Content> pageContents)
+        {
+            var menuSectionItem = MenuSectionItem.CreateMenuSectionItem(page.Name, section, page.Id);
+
+            var id = await _menuManager.AddMenuItemAsync(menuSectionItem);
+
+            if (menuSectionItem.Id == 0)
+            {
+                menuSectionItem = _menuSectionItemRepository.FirstOrDefault(id);
+            }
+
+            foreach (var pageContent in pageContents)
+            {
+
+                await CreateEditSectionItemContent(pageContent, menuSectionItem);
+
+            }
+        }
+
+        private async Task CreateEditSectionItemContent(Content pageContent, MenuSectionItem menuSectionItem)
+        {
+            var menuSectionItemContent =
+                    MenuSectionItemContent.CreateMenuSectionItemContent(DynamicCreated, pageContent.Lang,
+                        menuSectionItem);
+            menuSectionItemContent.PageId = pageContent.PageId;
+            await _menuManager.AddMenuItemContentAsync(menuSectionItemContent);
+        }
+
+        private async Task CreateSectionContents(IEnumerable<CategoryContent> contents, MenuSection section)
+        {
+            foreach (var categoryContent in contents)
+            {
+                var sectionContent = MenuSectionContent.CreateMenuSectionContent(categoryContent.Lang,
+                DynamicCreated, section);
+                await _menuManager.AddSectionContentAsync(sectionContent);
+            }
+        }
+
+        private async Task<MenuSection> CreateMenuSection(Category category, Menu menu)
+        {
+            var section = MenuSection.CreateMenuSectionWithCategory(category.Name, menu, category);
+            var sectionId = await _menuManager.AddSectionAsync(section);
+            if (section.Id == 0)
+            {
+                section = _menuSectionRepository.FirstOrDefault(sectionId);
+            }
+            return section;
+        }
+        #endregion
     }
 }
+
 

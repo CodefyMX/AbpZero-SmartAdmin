@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Localization;
 using Abp.Threading;
+using Abp.UI;
 using Castle.Components.DictionaryAdapter;
 using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
@@ -63,7 +64,7 @@ namespace Cinotam.Cms.App.Pages
             await _pageManager.SaveOrEditPageAsync(new Page()
             {
                 Active = false,
-                Name = input.Title,
+                Name = input.Title.Sluggify(),
                 ParentPage = input.ParentId,
                 TemplateName = input.TemplateName
             });
@@ -91,18 +92,18 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task TogglePageStatus(int pageId)
         {
-            var page = _pageRepository.Get(pageId);
+            var page = await _pageRepository.FirstOrDefaultAsync(pageId);
+
             page.Active = !page.Active;
             _pageRepository.Update(page);
-            if (page.CategoryId.HasValue) await _menuService.UpdateMenuItemsFromCategory(page.CategoryId.Value);
         }
 
         public async Task TogglePageInMenuStatus(int pageId)
         {
-            var page = _pageRepository.Get(pageId);
+            var page = await _pageRepository.GetAsync(pageId);
             page.IncludeInMenu = !page.IncludeInMenu;
             _pageRepository.Update(page);
-            if (page.CategoryId.HasValue) await _menuService.UpdateMenuItemsFromCategory(page.CategoryId.Value);
+
         }
 
         public void SetPageAsMain(int pageId)
@@ -160,24 +161,18 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task<CategorySetResult> SetCategory(CategoryAssignationInput input)
         {
-            Category category;
-            var exists = await CreateCategoryIfNotExists(input.Name, input.DisplayName);
-            if (!exists)
-            {
-                var slug = input.Name.Sluggify();
-                category = await _categoryRepository.FirstOrDefaultAsync(a => a.Name.Equals(slug));
-            }
-            else
-            {
-                category = await _categoryRepository.FirstOrDefaultAsync(a => a.Name.Equals(input.Name));
-            }
-            var page = _pageRepository.Get(input.PageId);
+            var page = _pageRepository.FirstOrDefault(input.PageId);
+            var oldCategoryId = page.CategoryId;
+            //var exists = await CreateCategoryIfNotExists(input.Name, input.DisplayName);
+            var category = await _categoryRepository.FirstOrDefaultAsync(a => a.Name.Equals(input.Name));
+            if (category == null) throw new UserFriendlyException(L("CategoryDontExists"));
+
             page.Category = category;
             await _pageManager.SaveOrEditPageAsync(page);
-            if (page.CategoryId.HasValue) await _menuService.UpdateMenuItemsFromCategory(page.CategoryId.Value);
+            if (page.CategoryId.HasValue) await _menuService.UpdateMenuItemsWhenCategoryChange(page.Id, oldCategoryId, page.CategoryId.Value);
             return new CategorySetResult()
             {
-                IsExistentCategory = exists
+
             };
         }
 
@@ -186,8 +181,7 @@ namespace Cinotam.Cms.App.Pages
             var category = await _categoryRepository.FirstOrDefaultAsync(a => a.Name.Equals(inputCategoryName));
             if (category == null)
             {
-                await _categoryManager.AddEditCategory(inputCategoryDisplayName.Sluggify(), inputCategoryDisplayName);
-                return false;
+                throw new UserFriendlyException(L("CategoryDontExists"));
             }
             return true;
         }
@@ -238,7 +232,6 @@ namespace Cinotam.Cms.App.Pages
 
                 TemplateUniqueName = page.TemplateName
             });
-            if (page.CategoryId.HasValue) await _menuService.UpdateMenuItemsFromCategory(page.CategoryId.Value);
         }
 
         public async Task<PageViewOutput> GetPageViewById(int id, string lang)

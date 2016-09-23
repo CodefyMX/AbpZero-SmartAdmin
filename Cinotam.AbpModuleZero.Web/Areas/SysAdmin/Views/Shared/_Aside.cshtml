@@ -44,18 +44,20 @@
 			<li class="@Html.RouteIf("index", "active")">
 				<a href="#" title="Administración"><i class="fa fa-lg fa-fw fa-beer"></i> <span class="menu-item-parent">Cms</span></a>
 				<ul>
+					<li class="@Html.RouteIf("MyCategories", "active")">
+						<a href="@Url.Action("MyCategories", "PageCategories")" title="Menus"><span class="menu-item-parent">Categorias</span></a>
+					</li>
+					<li class="@Html.RouteIf("MyMenus", "active")">
+						<a href="@Url.Action("MyMenus", "Menu")" title="Menus"><span class="menu-item-parent">Menus</span></a>
+					</li>
 					<li class="@Html.RouteIf("MyPages", "active")">
 						<a href="@Url.Action("MyPages", "Cms")" title="Paginas"><span class="menu-item-parent">Paginas</span></a>
 					</li>
 					<li class="@Html.RouteIf("MyTemplates", "active")">
 						<a href="@Url.Action("MyTemplates", "Templates")" title="Paginas Base"><span class="menu-item-parent">Paginas base</span></a>
 					</li>
-					<li class="@Html.RouteIf("MyMenus", "active")">
-						<a href="@Url.Action("MyMenus", "Menu")" title="Menus"><span class="menu-item-parent">Menus</span></a>
-					</li>
-					<li class="@Html.RouteIf("MyCategories", "active")">
-						<a href="@Url.Action("MyCategories", "PageCategories")" title="Menus"><span class="menu-item-parent">Categorias</span></a>
-					</li>
+					
+
 				</ul>
 			</li>
 		</ul>

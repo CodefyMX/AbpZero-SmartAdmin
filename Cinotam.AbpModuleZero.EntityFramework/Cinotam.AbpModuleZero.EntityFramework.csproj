@@ -266,45 +266,9 @@
     <Compile Include="Migrations\201609192113556_ForeignKeysForModels.Designer.cs">
       <DependentUpon>201609192113556_ForeignKeysForModels.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609200123351_MenuItemsAndContents.cs" />
-    <Compile Include="Migrations\201609200123351_MenuItemsAndContents.Designer.cs">
-      <DependentUpon>201609200123351_MenuItemsAndContents.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609200126315_ParentIdRemoved.cs" />
-    <Compile Include="Migrations\201609200126315_ParentIdRemoved.Designer.cs">
-      <DependentUpon>201609200126315_ParentIdRemoved.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609201542404_PageInMenuRemoved.cs" />
-    <Compile Include="Migrations\201609201542404_PageInMenuRemoved.Designer.cs">
-      <DependentUpon>201609201542404_PageInMenuRemoved.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609201810499_HasOrder.cs" />
-    <Compile Include="Migrations\201609201810499_HasOrder.Designer.cs">
-      <DependentUpon>201609201810499_HasOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609201848327_ActivableOptions.cs" />
-    <Compile Include="Migrations\201609201848327_ActivableOptions.Designer.cs">
-      <DependentUpon>201609201848327_ActivableOptions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609211543550_CategoriesForPages.cs" />
-    <Compile Include="Migrations\201609211543550_CategoriesForPages.Designer.cs">
-      <DependentUpon>201609211543550_CategoriesForPages.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609211747242_CategoryContentForCategories.cs" />
-    <Compile Include="Migrations\201609211747242_CategoryContentForCategories.Designer.cs">
-      <DependentUpon>201609211747242_CategoryContentForCategories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609211855098_IncludePageInMenu.cs" />
-    <Compile Include="Migrations\201609211855098_IncludePageInMenu.Designer.cs">
-      <DependentUpon>201609211855098_IncludePageInMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609212059559_MenuNameInCategory.cs" />
-    <Compile Include="Migrations\201609212059559_MenuNameInCategory.Designer.cs">
-      <DependentUpon>201609212059559_MenuNameInCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201609221635177_HasPage.cs" />
-    <Compile Include="Migrations\201609221635177_HasPage.Designer.cs">
-      <DependentUpon>201609221635177_HasPage.cs</DependentUpon>
+    <Compile Include="Migrations\201609231845035_MenuUpdated.cs" />
+    <Compile Include="Migrations\201609231845035_MenuUpdated.Designer.cs">
+      <DependentUpon>201609231845035_MenuUpdated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -456,35 +420,8 @@
     <EmbeddedResource Include="Migrations\201609192113556_ForeignKeysForModels.resx">
       <DependentUpon>201609192113556_ForeignKeysForModels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609200123351_MenuItemsAndContents.resx">
-      <DependentUpon>201609200123351_MenuItemsAndContents.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609200126315_ParentIdRemoved.resx">
-      <DependentUpon>201609200126315_ParentIdRemoved.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609201542404_PageInMenuRemoved.resx">
-      <DependentUpon>201609201542404_PageInMenuRemoved.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609201810499_HasOrder.resx">
-      <DependentUpon>201609201810499_HasOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609201848327_ActivableOptions.resx">
-      <DependentUpon>201609201848327_ActivableOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609211543550_CategoriesForPages.resx">
-      <DependentUpon>201609211543550_CategoriesForPages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609211747242_CategoryContentForCategories.resx">
-      <DependentUpon>201609211747242_CategoryContentForCategories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609211855098_IncludePageInMenu.resx">
-      <DependentUpon>201609211855098_IncludePageInMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609212059559_MenuNameInCategory.resx">
-      <DependentUpon>201609212059559_MenuNameInCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609221635177_HasPage.resx">
-      <DependentUpon>201609221635177_HasPage.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609231845035_MenuUpdated.resx">
+      <DependentUpon>201609231845035_MenuUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
