@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Services;
 using Cinotam.Cms.DatabaseEntities.Menus.Entities;
+using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using System.Threading.Tasks;
 
 namespace Cinotam.Cms.Core.Menus
@@ -16,5 +17,6 @@ namespace Cinotam.Cms.Core.Menus
         Task Update(Menu menu);
         Task RemoveSection(MenuSection sectionFromMenu);
         void RemoveSectionItemsForPage(int pageId);
+        Task SetItemForPage(Page page);
     }
 }

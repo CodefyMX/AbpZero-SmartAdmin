@@ -28,5 +28,7 @@ namespace Cinotam.Cms.App.Pages
         Task<List<PageDto>> GetPageListDto();
         Task<CategorySetResult> SetCategory(CategoryAssignationInput input);
         Task<CategoryOutput> GetCategories();
+        Task<List<Chunk>> GetChunks(ChunkRequest input);
+        Task<PageViewOutput> GetTemplateHtml(int id, string lang, string templateName);
     }
 }

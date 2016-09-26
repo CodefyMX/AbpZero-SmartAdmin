@@ -12,5 +12,8 @@ namespace Cinotam.Cms.App.Pages.Dto
         public bool IsMainPage { get; set; }
         public bool IncludeInMenu { get; set; }
         public string CategoryName { get; set; }
+        public string TemplateName { get; set; }
+        public List<CategoryDto> AvailableCategoryDtos { get; set; }
+        public int? CategoryId { get; set; }
     }
 }

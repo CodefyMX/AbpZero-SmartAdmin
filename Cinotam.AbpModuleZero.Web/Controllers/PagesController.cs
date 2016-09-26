@@ -16,7 +16,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         [Route("Page/{slug}")]
         public async Task<ActionResult> Index(string slug)
         {
-            var page =  await _pages.GetPageViewBySlug(slug);
+            var page = await _pages.GetPageViewBySlug(slug);
             if (page == null) return RedirectToAction("Index", "Home");
             return View(page);
         }
@@ -26,6 +26,11 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             return View(page);
         }
 
+        public async Task<ActionResult> UpdateWithTemplate(int id, string lang, string templateName)
+        {
+            var page = await _pages.GetTemplateHtml(id, lang, templateName);
+            return View(page);
+        }
         public async Task<ActionResult> SavePage(PageContentInput input)
         {
             await _pages.SavePageContent(input);

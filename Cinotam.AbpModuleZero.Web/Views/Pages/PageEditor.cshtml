@@ -1,6 +1,12 @@
-﻿@model Cinotam.Cms.App.Pages.Dto.PageViewOutput
+﻿@using System.Threading
+@using System.Web.Optimization
+@model Cinotam.Cms.App.Pages.Dto.PageViewOutput
 @{
     ViewBag.Title = Model.Title;
+    if (!Model.IsPartial)
+    {
+        Layout = null;
+    }
 }
 @*<link rel="stylesheet" type="text/css" href="../../Scripts/contentTools/sandbox/sandbox.css">*@
 <link href="~/Scripts/contentTools/sandbox/build/content-tools.min.css" rel="stylesheet" />
@@ -10,11 +16,31 @@
 @Html.HiddenFor(a => a.TemplateName)
 
 <div id="content">
-
     @Html.Raw(Model.HtmlContent)
 </div>
 
-@section Scripts{
+@if (!Model.IsPartial)
+{
+
+     <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    <script src="~/Scripts/jquery-2.2.0.min.js"></script>
+    @Scripts.Render("~/Bundles/vendor/js/bottom")
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Scripts.Render("~/Bundles/js")
+
+    <script>
+        //Localizing momentjs
+        moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
+    </script>
     <script src="~/Scripts/contentTools/sandbox/build/content-tools.min.js"></script>
     <script type="text/javascript" src="../../Scripts/contentTools/sandbox/sandbox.js"></script>
+}
+else
+{
+
+    @section Scripts{
+
+        <script src="~/Scripts/contentTools/sandbox/build/content-tools.min.js"></script>
+        <script type="text/javascript" src="../../Scripts/contentTools/sandbox/sandbox.js"></script>
+    }
 }

@@ -122,6 +122,8 @@
     <Compile Include="Pages\Dto\CategoryAssignationInput.cs" />
     <Compile Include="Pages\Dto\CategoryOutput.cs" />
     <Compile Include="Pages\Dto\CategorySetResult.cs" />
+    <Compile Include="Pages\Dto\Chunk.cs" />
+    <Compile Include="Pages\Dto\ChunkRequest.cs" />
     <Compile Include="Pages\Dto\Lang.cs" />
     <Compile Include="Pages\Dto\PageConfigurationObject.cs" />
     <Compile Include="Pages\Dto\PageContentDto.cs" />

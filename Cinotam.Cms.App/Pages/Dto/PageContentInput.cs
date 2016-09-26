@@ -9,12 +9,4 @@ namespace Cinotam.Cms.App.Pages.Dto
         public string Lang { get; set; }
         public List<Chunk> Chunks { get; set; }
     }
-
-    public class Chunk
-    {
-        public string Key { get; set; }
-        public string Value { get; set; }
-
-        public int Order { get; set; }
-    }
 }

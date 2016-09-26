@@ -24,11 +24,11 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
 
         public bool IsFileSystemService => false;
 
+
         public async Task SaveContent(IPageContent input)
         {
-
             var page = _pageRepository.Get(input.PageId);
-            var pageContent = _contentRepository.FirstOrDefault(a => a.Id == input.Id);
+            var pageContent = _contentRepository.FirstOrDefault(a => a.PageId == input.PageId && a.Lang == input.Lang);
             if (pageContent != null)
             {
                 pageContent.HtmlContent = input.HtmlContent.Trim();
@@ -39,6 +39,7 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
                 pageContent.Url = input.Url;
                 pageContent.TemplateUniqueName = input.TemplateUniqueName;
                 pageContent.IsPartial = input.IsPartial;
+
             }
             else
             {
@@ -51,7 +52,7 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
                     Title = input.Title,
                     Url = input.Url,
                     TemplateUniqueName = input.TemplateUniqueName,
-                    IsPartial = input.IsPartial
+                    IsPartial = input.IsPartial,
                 };
             }
 

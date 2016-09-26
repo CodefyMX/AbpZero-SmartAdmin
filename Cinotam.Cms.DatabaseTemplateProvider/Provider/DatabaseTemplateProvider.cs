@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Extensions;
+using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.Cms.Contracts;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace Cinotam.Cms.DatabaseTemplateProvider.Provider
         public async Task CreateEditTemplate(CTemplate templateContent)
         {
 
+            templateContent.Content = HtmlCleaner.CleanHtml(templateContent.Content);
             var found = _templatesRepository.FirstOrDefault(a => a.Name == templateContent.Name);
 
             if (found == null)

@@ -1361,6 +1361,7 @@
     <None Include="Views\Layout\PagesMenu.cshtml" />
     <None Include="Views\Layout\_childsMenu.cshtml" />
     <Content Include="Areas\SysAdmin\Views\PageCategories\MyCategories.cshtml" />
+    <Content Include="Views\Pages\UpdateWithTemplate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -2,6 +2,7 @@
 using Abp.Domain.Services;
 using Cinotam.Cms.Core.Menus.Policy;
 using Cinotam.Cms.DatabaseEntities.Menus.Entities;
+using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using System.Threading.Tasks;
 
 namespace Cinotam.Cms.Core.Menus
@@ -14,8 +15,11 @@ namespace Cinotam.Cms.Core.Menus
         private readonly IRepository<MenuSectionContent> _menuSectionContentRepository;
         private readonly IRepository<MenuSectionItem> _menuSectionItemRepository;
         private readonly IRepository<MenuSectionItemContent> _menuSectionItemContentRepository;
+        private readonly IRepository<Page> _pageRepository;
+        private readonly IRepository<Content> _pageContentRepository;
         private readonly IMenuPolicy _menuPolicy;
-        public MenuManager(IRepository<Menu> menuRepository, IRepository<MenuContent> menuContentRepository, IMenuPolicy menuPolicy, IRepository<MenuSection> menuSectionRepository, IRepository<MenuSectionContent> menuSectionContentRepository, IRepository<MenuSectionItem> menuSectionItemRepository, IRepository<MenuSectionItemContent> menuSectionItemContentRepository)
+
+        public MenuManager(IRepository<Menu> menuRepository, IRepository<MenuContent> menuContentRepository, IMenuPolicy menuPolicy, IRepository<MenuSection> menuSectionRepository, IRepository<MenuSectionContent> menuSectionContentRepository, IRepository<MenuSectionItem> menuSectionItemRepository, IRepository<MenuSectionItemContent> menuSectionItemContentRepository, IRepository<Page> pageRepository, IRepository<Content> pageContentRepository)
         {
             _menuRepository = menuRepository;
             _menuContentRepository = menuContentRepository;
@@ -24,6 +28,8 @@ namespace Cinotam.Cms.Core.Menus
             _menuSectionContentRepository = menuSectionContentRepository;
             _menuSectionItemRepository = menuSectionItemRepository;
             _menuSectionItemContentRepository = menuSectionItemContentRepository;
+            _pageRepository = pageRepository;
+            _pageContentRepository = pageContentRepository;
         }
 
         public async Task<int> AddMenuAsync(Menu menu)
@@ -158,6 +164,27 @@ namespace Cinotam.Cms.Core.Menus
                 }
                 _menuSectionItemRepository.Delete(sectionItem);
             }
+        }
+
+        public async Task SetItemForPage(Page page)
+        {
+            var section = await _menuSectionRepository.FirstOrDefaultAsync(a => a.CategoryId == page.CategoryId);
+            if (section == null) return;
+            var pageContents = _pageContentRepository.GetAllList(a => a.PageId == page.Id);
+            var sectionItemEntity = MenuSectionItem.CreateMenuSectionItem(page.Name, section, page.Id);
+            var id = await AddMenuItemAsync(sectionItemEntity);
+            if (sectionItemEntity.Id == 0)
+            {
+                sectionItemEntity = _menuSectionItemRepository.FirstOrDefault(id);
+            }
+            foreach (var pageContent in pageContents)
+            {
+                await
+                    AddMenuItemContentAsync(
+                        MenuSectionItemContent.CreateMenuSectionItemContent(pageContent.Title, pageContent.Lang,
+                            sectionItemEntity));
+            }
+
         }
     }
 }

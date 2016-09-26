@@ -57,7 +57,6 @@ namespace Cinotam.Cms.App.Menus
             _pageRepository = pageRepository;
             _pageContentRepository = pageContentRepository;
         }
-
         public async Task<MenuOutput> GetMenuForView()
         {
             var allMenus = _menuRepository.GetAllList(a => a.IsActive && a.MenuContents.Any()).OrderBy(a => a.Order);
@@ -270,6 +269,8 @@ namespace Cinotam.Cms.App.Menus
             var section = _menuSectionRepository.FirstOrDefault(a => a.CategoryId == oldCategoryId) ??
                           _menuSectionRepository.FirstOrDefault(a => a.CategoryId == newCategoryId);
 
+            if (section == null) return;
+
             var elementFromOldSection = await _menuSectionItemRepository.FirstOrDefaultAsync(a => a.SectionId == section.Id && a.PageId == pageId);
 
             if (elementFromOldSection == null) return;
@@ -279,6 +280,8 @@ namespace Cinotam.Cms.App.Menus
             elementFromOldSection.SectionId = newSection.Id;
 
         }
+
+
 
         #region Helpers
         private async Task<List<MenuElementContent>> GetContentsForElement(int menuId)

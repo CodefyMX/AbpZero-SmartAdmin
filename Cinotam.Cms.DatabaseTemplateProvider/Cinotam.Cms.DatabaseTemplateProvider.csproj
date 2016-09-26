@@ -100,6 +100,10 @@
       <Project>{17298EA0-AF73-4F30-B6F1-2066100D7D74}</Project>
       <Name>Cinotam.AbpModuleZero.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cinotam.AbpModuleZero.Extensions\Cinotam.AbpModuleZero.Extensions.csproj">
+      <Project>{4F061DBA-643A-4B5A-BCFA-6903E5D8B105}</Project>
+      <Name>Cinotam.AbpModuleZero.Extensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cinotam.Cms.Contracts\Cinotam.Cms.Contracts.csproj">
       <Project>{DABC5C7B-2468-40CB-A673-DC723656174D}</Project>
       <Name>Cinotam.Cms.Contracts</Name>

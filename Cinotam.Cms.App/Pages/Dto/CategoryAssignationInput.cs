@@ -3,7 +3,6 @@
     public class CategoryAssignationInput
     {
         public int PageId { get; set; }
-        public string Name { get; set; }
-        public string DisplayName { get; set; }
+        public int CategoryId { get; set; }
     }
 }
