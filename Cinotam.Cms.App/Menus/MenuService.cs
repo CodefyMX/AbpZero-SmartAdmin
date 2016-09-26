@@ -310,6 +310,7 @@ namespace Cinotam.Cms.App.Menus
                 if (menuSection.CategoryId.HasValue)
                 {
                     var contentFromCategory = await GetContentFromCategory(menuSection.CategoryId.Value);
+                    if (contentFromCategory == null) continue;
                     sectionList.Add(new SectionElement()
                     {
                         DisplayName = contentFromCategory.DisplayName,
@@ -344,6 +345,7 @@ namespace Cinotam.Cms.App.Menus
                     var content =
                         _pageContentRepository.FirstOrDefault(
                             a => a.PageId == menuSectionItem.PageId.Value && a.Lang == CultureInfo.CurrentUICulture.Name);
+                    if (content == null) continue;
                     sectionItemContents.Add(new SectionItem()
                     {
                         DisplayName = content.Title,

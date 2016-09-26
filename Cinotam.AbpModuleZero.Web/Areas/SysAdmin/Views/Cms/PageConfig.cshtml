@@ -92,8 +92,8 @@
                         <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body">
-                            <div class="row">
-                                <div class="col-xs-4">
+                            <div id="pageOpts" class="row">
+                                <div class="col-xs-12">
 
                                     @if (Model.IsActive)
                                     {
@@ -120,53 +120,20 @@
                                 @if (Model.IsActive)
                                 {
 
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-12">
 
-                                        @if (Model.IsMainPage)
-                                        {
-                                            <div class="alert alert-success alert-dismissible" role="alert">
-                                                <strong>@L("PageIsPrincipal")</strong>
-                                                <br /><br />
-                                                <p>
-                                                    <a class="btn btn-sm btn-primary js-toggle-main" href="#">@L("UnsetAsPrincipal")</a>
-                                                </p>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="alert alert-info alert-dismissible" role="alert">
-                                                <strong>@L("PageIsNotPrincipal")</strong>
-                                                <br /><br />
-                                                <p>
-                                                    <a class="btn btn-sm btn-primary js-toggle-main" href="#">@L("SetAsPrincipal")</a>
-                                                </p>
-                                            </div>
+                                        <div class="checkbox-inline">
+                                            <label>
 
-                                        }
-                                    </div>
-                                    <div class="col-xs-4">
+                                                @Html.CheckBoxFor(a => a.IsMainPage, new { @class = "js-toggle-main" }) @L("IsMainPage")
+                                            </label>
+                                        </div>
+                                        <div class="checkbox-inline">
+                                            <label>
 
-                                        @if (Model.IncludeInMenu)
-                                        {
-                                            <div class="alert alert-success alert-dismissible" role="alert">
-                                                <strong>@L("PageIsIncludedInMenu")</strong>
-                                                <br /><br />
-                                                <p>
-                                                    <a class="btn btn-sm btn-primary js-toggle-menu" href="#">@L("UnsetMenu")</a>
-                                                </p>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="alert alert-info alert-dismissible" role="alert">
-                                                <strong>@L("PageIsNotIncludedInMenu")</strong>
-                                                <br /><br />
-                                                <p>
-                                                    <a class="btn btn-sm btn-primary js-toggle-menu" href="#">@L("SetMenu")</a>
-                                                </p>
-                                            </div>
-
-                                        }
+                                                @Html.CheckBoxFor(a => a.IncludeInMenu, new { @class = "js-toggle-menu" }) @L("IncludeInMenu")
+                                            </label>
+                                        </div>
                                     </div>
                                 }
                             </div>
@@ -544,38 +511,38 @@
             var pageId = $("#Id").val();
             $('.js-toggle-status')
                 .click(function () {
-                    abp.services.cms.pagesService.togglePageStatus(pageId)
+                    abp.ui.setBusy($("#pageOpts"), abp.services.cms.pagesService.togglePageStatus(pageId)
                         .done(function () {
                             window.location.reload();
-                        });
+                        }));
                 });
             $('.js-toggle-main')
-                .click(function () {
-                    abp.services.cms.pagesService.setPageAsMain(pageId)
+                .change(function () {
+                    abp.ui.setBusy($("#pageOpts"), abp.services.cms.pagesService.setPageAsMain(pageId)
                         .done(function () {
-                            window.location.reload();
-                        });
+
+                        }));
                 });
             $('.js-toggle-menu')
-                .click(function () {
-                    abp.services.cms.pagesService.togglePageInMenuStatus(pageId)
+                .change(function () {
+                    abp.ui.setBusy($("#pageOpts"), abp.services.cms.pagesService.togglePageInMenuStatus(pageId)
                         .done(function () {
-                            window.location.reload();
-                        });
+
+                        }));
                 });
             $("#categorizePage")
-                .on("submit",function (e) {
-                        e.preventDefault();
-                        var selectedCategory = {
-                            CategoryId: $("#CategoryId").val(),
-                            PageId: $("#Id").val()
-                        }
+                .on("submit", function (e) {
+                    e.preventDefault();
+                    var selectedCategory = {
+                        CategoryId: $("#CategoryId").val(),
+                        PageId: $("#Id").val()
+                    }
                     console.log(selectedCategory);
-                        abp.ui.setBusy(this, abp.services.cms.pagesService.setCategory(selectedCategory)
-                            .done(function () {
-                                abp.notify.success(LSys("CategoryChanged"));
-                            }));
-                    });
+                    abp.ui.setBusy(this, abp.services.cms.pagesService.setCategory(selectedCategory)
+                        .done(function () {
+                            abp.notify.success(LSys("CategoryChanged"));
+                        }));
+                });
 
         })();
     </script>
