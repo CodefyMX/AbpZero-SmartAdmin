@@ -13,5 +13,6 @@ namespace Cinotam.Cms.App.Pages.Dto
         public string LanguageIcon { get; set; }
         public string Slug { get; set; }
         public string Title { get; set; }
+        public string Preview { get; set; }
     }
 }

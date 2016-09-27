@@ -270,6 +270,10 @@
     <Compile Include="Migrations\201609231845035_MenuUpdated.Designer.cs">
       <DependentUpon>201609231845035_MenuUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609272006150_PreviewImage.cs" />
+    <Compile Include="Migrations\201609272006150_PreviewImage.Designer.cs">
+      <DependentUpon>201609272006150_PreviewImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -422,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609231845035_MenuUpdated.resx">
       <DependentUpon>201609231845035_MenuUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609272006150_PreviewImage.resx">
+      <DependentUpon>201609272006150_PreviewImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -273,10 +273,21 @@ namespace Cinotam.Cms.App.Menus
 
             var elementFromOldSection = await _menuSectionItemRepository.FirstOrDefaultAsync(a => a.SectionId == section.Id && a.PageId == pageId);
 
-            if (elementFromOldSection == null) return;
 
             var newSection = _menuSectionRepository.FirstOrDefault(a => a.CategoryId == newCategoryId);
             if (newSection == null) return;
+            if (elementFromOldSection == null)
+            {
+                var page = _pageRepository.FirstOrDefault(pageId);
+
+                var newSectionItem = MenuSectionItem.CreateMenuSectionItem(page.Name, newSection, pageId);
+                var newSectionEntity = await CreateSectionItem(page, newSection, page.Contents.ToList());
+                if (newSectionItem.Id == 0)
+                {
+                    newSectionItem = _menuSectionItemRepository.FirstOrDefault(newSectionEntity.Id);
+                }
+                elementFromOldSection = newSectionItem;
+            }
             elementFromOldSection.SectionId = newSection.Id;
 
         }
@@ -536,7 +547,7 @@ namespace Cinotam.Cms.App.Menus
             }
         }
 
-        private async Task CreateSectionItem(Page page, MenuSection section, List<Content> pageContents)
+        private async Task<MenuSectionItem> CreateSectionItem(Page page, MenuSection section, List<Content> pageContents)
         {
             var menuSectionItem = MenuSectionItem.CreateMenuSectionItem(page.Name, section, page.Id);
 
@@ -553,6 +564,7 @@ namespace Cinotam.Cms.App.Menus
                 await CreateEditSectionItemContent(pageContent, menuSectionItem);
 
             }
+            return menuSectionItem;
         }
 
         private async Task CreateEditSectionItemContent(Content pageContent, MenuSectionItem menuSectionItem)

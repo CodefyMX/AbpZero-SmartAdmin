@@ -104,6 +104,12 @@
     <Compile Include="Categories\ICategoryService.cs" />
     <Compile Include="CinotamCmsApp.cs" />
     <Compile Include="CinotamCmsAppServiceBase.cs" />
+    <Compile Include="EventHandler\CategoryDeletedHandler.cs" />
+    <Compile Include="EventHandler\CategoryForPageChangedHandler.cs" />
+    <Compile Include="EventHandler\PageStateChangedHandler.cs" />
+    <Compile Include="Events\PageStateChangedData.cs" />
+    <Compile Include="Events\CategoryDeletedEventData.cs" />
+    <Compile Include="Events\PageCategoryChangedData.cs" />
     <Compile Include="Menus\Dto\CategorySetModel.cs" />
     <Compile Include="Menus\Dto\LangInput.cs" />
     <Compile Include="Menus\Dto\LangInputForItem.cs" />
@@ -134,6 +140,7 @@
     <Compile Include="Pages\Dto\PagesMenu.cs" />
     <Compile Include="Pages\Dto\PageTitleInput.cs" />
     <Compile Include="Pages\Dto\PageViewOutput.cs" />
+    <Compile Include="Pages\Dto\ParentPageSetInput.cs" />
     <Compile Include="Pages\Dto\TemplateDto.cs" />
     <Compile Include="Pages\IPagesService.cs" />
     <Compile Include="Pages\PagesService.cs" />
@@ -166,6 +173,10 @@
     <ProjectReference Include="..\Cinotam.Cms.DatabaseEntities\Cinotam.Cms.DatabaseEntities.csproj">
       <Project>{2A5BA0A4-51FB-4132-BD08-F00357B24F23}</Project>
       <Name>Cinotam.Cms.DatabaseEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.FileManager\Cinotam.FileManager.csproj">
+      <Project>{601A7D76-DFC2-4BBA-86E3-830657EB6A54}</Project>
+      <Name>Cinotam.FileManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

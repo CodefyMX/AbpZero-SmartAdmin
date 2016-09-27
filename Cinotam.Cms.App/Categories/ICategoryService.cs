@@ -11,5 +11,6 @@ namespace Cinotam.Cms.App.Categories
         Task AddEditCategory(CategoryInput input);
         ReturnModel<CategoryDto> GetCategories(RequestModel<object> requestModel);
         Task<CategoryForEditModel> GetCategoryForEdit(int? id);
+        Task RemoveCategory(int categoryId);
     }
 }

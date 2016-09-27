@@ -30,5 +30,6 @@ namespace Cinotam.Cms.App.Pages
         Task<CategoryOutput> GetCategories();
         Task<List<Chunk>> GetChunks(ChunkRequest input);
         Task<PageViewOutput> GetTemplateHtml(int id, string lang, string templateName);
+        Task SetParentPage(ParentPageSetInput input);
     }
 }

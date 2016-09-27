@@ -9,12 +9,26 @@
         new ContentTools.Style('Justify', 'text-justify', ['p', 'a']),
         new ContentTools.Style('Image Centered', 'img-center', ['img'])
     ]);
+    var base64String;
+
+
+    function capturePreview(callback) {
+        html2canvas(document.body,
+            {
+                onrendered: function (canvas) {
+                    callback(canvas);
+                }
+            });
+    }
+
     editor.addEventListener('saved', function (ev) {
+
+        var self = this;
         var allContent = document.getElementById("content").innerHTML;
         var lang = document.getElementById("Lang").value;
         var id = document.getElementById("Id").value;
-
         var regions = editor.orderedRegions();
+        console.log(regions);
         var chunks = [];
         var order = 0;
         for (name in regions) {
@@ -28,30 +42,31 @@
                 order = order + 1;
             }
         }
-
-
-        // Set the editor as busy while we save our changes
-
-        var self = this;
-        self.busy(true);
-        // Collect the contents of each region into a FormData instance
-        var payload = {};
-        payload.HtmlContent = allContent;
-        payload.PageId = id;
-        payload.Lang = lang;
-        payload.Chunks = chunks;
-        console.log(payload);
-        // Send the update content to the server to be saved
-        abp.ajax({
-            data: JSON.stringify(payload),
-            url: "/Pages/SavePage"
-        }).done(function () {
-            new ContentTools.FlashUI('ok');
-            self.busy(false);
-        }).fail(function (jqXhr, textStatus, errorThrown) {
-            new ContentTools.FlashUI('no');
-            self.busy(false);
+        capturePreview(function (canvas) {
+            var dataUrl = canvas.toDataURL();
+            base64String = dataUrl;
+            // Set the editor as busy while we save our changes
+            self.busy(true);
+            // Collect the contents of each region into a FormData instance
+            var payload = {};
+            payload.HtmlContent = allContent;
+            payload.PageId = id;
+            payload.Lang = lang;
+            payload.Chunks = chunks;
+            payload.base64String = base64String;
+            // Send the update content to the server to be saved
+            abp.ajax({
+                data: JSON.stringify(payload),
+                url: "/Pages/SavePage"
+            }).done(function () {
+                new ContentTools.FlashUI('ok');
+                self.busy(false);
+            }).fail(function (jqXhr, textStatus, errorThrown) {
+                new ContentTools.FlashUI('no');
+                self.busy(false);
+            });
         });
+
     });
     function imageUploader(dialog) {
         var image;

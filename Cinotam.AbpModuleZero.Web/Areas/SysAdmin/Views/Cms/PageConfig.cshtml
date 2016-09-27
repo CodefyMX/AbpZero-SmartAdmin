@@ -1,5 +1,6 @@
 ﻿@using Cinotam.AbpModuleZero
 @model Cinotam.Cms.App.Pages.Dto.PageConfigurationObject
+<link href="~/Scripts/lightBox2/css/lightbox.min.css" rel="stylesheet" />
 @Html.HiddenFor(a => a.Id)
 <div id="content">
     <div class="row">
@@ -117,25 +118,27 @@
 
                                     }
                                 </div>
-                                @if (Model.IsActive)
-                                {
 
-                                    <div class="col-xs-12">
+                                <div class="col-xs-12 form-group">
+                                    @if (Model.IsActive)
+                                    {
+
 
                                         <div class="checkbox-inline">
                                             <label>
 
-                                                @Html.CheckBoxFor(a => a.IsMainPage, new { @class = "js-toggle-main" }) @L("IsMainPage")
+                                                @Html.CheckBoxFor(a => a.IsMainPage, new { @class = "js-toggle-main" }) <span>@L("IsMainPage")</span>
                                             </label>
                                         </div>
                                         <div class="checkbox-inline">
                                             <label>
 
-                                                @Html.CheckBoxFor(a => a.IncludeInMenu, new { @class = "js-toggle-menu" }) @L("IncludeInMenu")
+                                                @Html.CheckBoxFor(a => a.IncludeInMenu, new { @class = "js-toggle-menu" }) <span>@L("IncludeInMenu")</span>
                                             </label>
                                         </div>
-                                    </div>
-                                }
+                                    }
+
+                                </div>
                             </div>
                         </div>
                         <!-- end widget content -->
@@ -204,7 +207,7 @@
                         </div>
 
                         <h2>
-                            <strong>@L("PageCategorization")</strong> <i></i>
+                            <strong>@L("AdvancedOptions")</strong> <i></i>
                         </h2>
                         <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
 
@@ -224,23 +227,25 @@
                         <!-- widget content -->
                         <div class="widget-body">
 
-                            <form id="categorizePage" class="form-inline">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="alert alert-info alert-dismissible" role="alert">
-
-                                            <h4>@L("CategorizePage")</h4>
-                                        </div>
-                                    </div>
-                                </div>
+                            <form id="categorizePage">
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <div class="form-group form-group-lg">
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                @L("SetCategory")
+                                            </label>
                                             @Html.DropDownListFor(a => a.CategoryId, new List<SelectListItem>(new SelectList(Model.AvailableCategoryDtos, "Id", "DisplayName")), L("SelectCategory"), new { @class = "form-control" })
                                         </div>
-                                        <button type="submit" class="btn btn-default js-btn-change-cat btn-lg">@L("Save")</button>
-
                                     </div>
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                @L("SetParentPage")
+                                            </label>
+                                            @Html.DropDownListFor(a => a.ParentId, new List<SelectListItem>(new SelectList(Model.AvailablePages, "Id", "Title")), L("SelectPrentPage"), new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
                                 </div>
                             </form>
                         </div>
@@ -340,6 +345,9 @@
                                                 </th>
                                                 <th>@L("Title")</th>
                                                 <th>@L("Url")</th>
+                                                <th>
+                                                    @L("Preview")
+                                                </th>
                                                 <th class="text-center">@L("Content")</th>
                                             </tr>
                                         </thead>
@@ -349,6 +357,7 @@
                                                 <tr>
                                                     <td>
                                                         <i class="@pageContentDto.LanguageIcon"></i> @pageContentDto.Lang
+
                                                     </td>
                                                     <td>
                                                         @if (string.IsNullOrEmpty(pageContentDto.Title))
@@ -373,6 +382,14 @@
                                                         {
                                                             <a target="_blank" href=@Url.Action("Index", "Pages", new {slug = pageContentDto.Slug, Area = ""})>@pageContentDto.Slug</a>
                                                         }
+                                                    </td>
+                                                    <td>
+                                                        @if (!string.IsNullOrEmpty(pageContentDto.Preview))
+                                                        {
+                                                            <a href="@pageContentDto.Preview" data-lightbox="image-1" data-title="@pageContentDto.Lang">@L("LastWorkPreview")</a>
+
+                                                        }
+
                                                     </td>
                                                     <td class="text-center">
                                                         @if (string.IsNullOrEmpty(pageContentDto.Title))
@@ -503,7 +520,7 @@
     </section>
 </div>
 @section pageSpecific{
-
+    <script src="~/Scripts/lightBox2/js/lightbox.min.js"></script>
     <script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
     <script src="~/Areas/SysAdmin/Scripts/smartAdminScripts/plugin/bootstrap-typeahead/bootstrap-typeahead.min.js"></script>
     <script>
@@ -530,19 +547,38 @@
 
                         }));
                 });
-            $("#categorizePage")
-                .on("submit", function (e) {
+            $("#CategoryId")
+                .on("change", function (e) {
                     e.preventDefault();
+                    var categoryId = $("#CategoryId").val();
+                    if (categoryId === 0) {
+                        categoryId = null;
+                    }
                     var selectedCategory = {
-                        CategoryId: $("#CategoryId").val(),
+                        CategoryId: categoryId,
                         PageId: $("#Id").val()
                     }
-                    console.log(selectedCategory);
                     abp.ui.setBusy(this, abp.services.cms.pagesService.setCategory(selectedCategory)
                         .done(function () {
                             abp.notify.success(LSys("CategoryChanged"));
                         }));
                 });
+            $("#ParentId")
+               .on("change", function (e) {
+                   e.preventDefault();
+                   var parentPage = $("#ParentId").val();
+                   if (parentPage === 0) {
+                       parentPage = null;
+                   }
+                   var selectedParent = {
+                       ParentPageId: parentPage,
+                       PageId: $("#Id").val()
+                   }
+                   abp.ui.setBusy(this, abp.services.cms.pagesService.setParentPage(selectedParent)
+                       .done(function () {
+                           abp.notify.success(LSys("ParentChanged"));
+                       }));
+               });
 
         })();
     </script>

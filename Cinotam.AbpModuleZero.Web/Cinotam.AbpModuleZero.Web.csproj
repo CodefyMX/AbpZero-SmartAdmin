@@ -1227,6 +1227,7 @@
     <Content Include="Scripts\contentTools\sandbox\image.png" />
     <Content Include="Scripts\contentTools\sandbox\sandbox.css" />
     <Content Include="Scripts\contentTools\sandbox\sandbox.js" />
+    <Content Include="Scripts\Html2Canvas\html2canvas.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
@@ -1240,6 +1241,16 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lightBox2\css\lightbox.css" />
+    <Content Include="Scripts\lightBox2\css\lightbox.min.css" />
+    <Content Include="Scripts\lightBox2\images\close.png" />
+    <Content Include="Scripts\lightBox2\images\loading.gif" />
+    <Content Include="Scripts\lightBox2\images\next.png" />
+    <Content Include="Scripts\lightBox2\images\prev.png" />
+    <Content Include="Scripts\lightBox2\js\lightbox-plus-jquery.js" />
+    <Content Include="Scripts\lightBox2\js\lightbox-plus-jquery.min.js" />
+    <Content Include="Scripts\lightBox2\js\lightbox.js" />
+    <Content Include="Scripts\lightBox2\js\lightbox.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -1358,6 +1369,8 @@
     <Content Include="Content\Templates\Simple\TemplateConfig.json" />
     <Content Include="Views\Pages\PageEditor.cshtml" />
     <Content Include="Views\Pages\Index.cshtml" />
+    <Content Include="Scripts\lightBox2\js\lightbox-plus-jquery.min.map" />
+    <Content Include="Scripts\lightBox2\js\lightbox.min.map" />
     <None Include="Views\Layout\PagesMenu.cshtml" />
     <None Include="Views\Layout\_childsMenu.cshtml" />
     <Content Include="Areas\SysAdmin\Views\PageCategories\MyCategories.cshtml" />

@@ -17,5 +17,7 @@ namespace Cinotam.FileManager.Files
         //SavedFileResult SaveFileToServer(FileSaveInput input, string targetFolder);
 
         Task<SavedFileResult> SaveFile(IFileManagerServiceInput input, bool useCdnFirst);
+
+        Task<SavedFileResult> SaveFileFromBase64(string uniquePath, string base64String, bool useCdnFirst);
     }
 }

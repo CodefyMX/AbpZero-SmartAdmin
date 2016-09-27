@@ -39,7 +39,7 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
                 pageContent.Url = input.Url;
                 pageContent.TemplateUniqueName = input.TemplateUniqueName;
                 pageContent.IsPartial = input.IsPartial;
-
+                pageContent.PreviewImage = input.PreviewImage;
             }
             else
             {
@@ -53,6 +53,7 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
                     Url = input.Url,
                     TemplateUniqueName = input.TemplateUniqueName,
                     IsPartial = input.IsPartial,
+                    PreviewImage = input.PreviewImage
                 };
             }
 

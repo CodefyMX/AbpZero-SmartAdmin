@@ -1,6 +1,7 @@
-﻿using Cinotam.FileManager.Cloudinary.Cloudinary;
-using Cinotam.FileManager.Contracts;
+﻿using Cinotam.FileManager.Contracts;
+using Cinotam.FileManager.Files.Inputs;
 using Cinotam.FileManager.Files.Outputs;
+using Cinotam.FileManager.Local.LocalFileManager;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,10 +10,11 @@ namespace Cinotam.FileManager.Files
 {
     public class FileStoreManager : IFileStoreManager
     {
-        private readonly ICloudinaryApiConsumer _cloudinaryApiConsumer;
-        public FileStoreManager(ICloudinaryApiConsumer cloudinaryApiConsumer)
+        private readonly ILocalFileManager _localFileManager;
+
+        public FileStoreManager(ILocalFileManager localFileManager)
         {
-            _cloudinaryApiConsumer = cloudinaryApiConsumer;
+            _localFileManager = localFileManager;
         }
 
         #region Deprecated
@@ -110,6 +112,54 @@ namespace Cinotam.FileManager.Files
             foreach (var fileManagerServiceProvider in providers)
             {
                 var result = await fileManagerServiceProvider.SaveImage(input);
+                if (result.ImageSavedInCdn)
+                {
+                    return new SavedFileResult()
+                    {
+                        AbsolutePath = string.Empty,
+                        FileName = result.FileName,
+                        Url = result.CdnUrl,
+                        VirtualPath = string.Empty,
+                        WasStoredInCloud = true
+                    };
+                }
+                if (result.ImageSavedInServer)
+                {
+                    return new SavedFileResult()
+                    {
+                        AbsolutePath = result.LocalUrl,
+                        FileName = result.FileName,
+                        SecureUrl = string.Empty,
+                        Url = string.Empty,
+                        VirtualPath = result.VirtualPathResult,
+                        WasStoredInCloud = false
+                    };
+                }
+            }
+            throw new InvalidOperationException(nameof(IFileManagerServiceProvider));
+        }
+
+        public async Task<SavedFileResult> SaveFileFromBase64(string uniquePath, string base64String, bool useCdnFirst)
+        {
+            var absolutePath = _localFileManager.SaveFileFromBase64String(base64String);
+            var fileSaveFromStringInput = new FileSaveFromStringInput()
+            {
+                CreateUniqueName = false,
+                FilePath = absolutePath,
+                SpecialFolder = uniquePath,
+                Properties =
+                {
+                    ["TransformationType"] = 0
+                },
+            };
+            var providers = FileManagerModule.FileManagerServiceProviders.OrderBy(a => a.IsCdnService).ToList();
+            if (useCdnFirst)
+            {
+                providers = providers.OrderByDescending(a => a.IsCdnService).ToList();
+            }
+            foreach (var fileManagerServiceProvider in providers)
+            {
+                var result = await fileManagerServiceProvider.SaveImage(fileSaveFromStringInput);
                 if (result.ImageSavedInCdn)
                 {
                     return new SavedFileResult()

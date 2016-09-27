@@ -1,10 +1,12 @@
 ﻿using Abp.Domain.Repositories;
+using Abp.Events.Bus;
 using Abp.Localization;
 using Abp.Threading;
 using Castle.Components.DictionaryAdapter;
 using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.Cms.App.Categories.Dto;
+using Cinotam.Cms.App.Events;
 using Cinotam.Cms.App.Pages.Dto;
 using Cinotam.Cms.Core.Category;
 using Cinotam.Cms.DatabaseEntities.Category.Entities;
@@ -22,12 +24,15 @@ namespace Cinotam.Cms.App.Categories
         private readonly IRepository<CategoryContent> _categoryContentRepository;
         private readonly ICategoryManager _categoryManager;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
+        public IEventBus EventBus { get; set; }
         public CategoryService(IRepository<Category> categoryRepository, IRepository<CategoryContent> categoryContentRepository, IApplicationLanguageManager applicationLanguageManager, ICategoryManager categoryManager)
         {
             _categoryRepository = categoryRepository;
             _categoryContentRepository = categoryContentRepository;
             _applicationLanguageManager = applicationLanguageManager;
             _categoryManager = categoryManager;
+            EventBus = NullEventBus.Instance;
+
         }
 
         public async Task AddEditCategory(CategoryInput input)
@@ -97,6 +102,13 @@ namespace Cinotam.Cms.App.Categories
 
         }
 
+        public async Task RemoveCategory(int categoryId)
+        {
+
+            await _categoryRepository.DeleteAsync(categoryId);
+
+            EventBus.Trigger(new CategoryDeletedEventData() { CategoryId = categoryId });
+        }
         private async Task<List<CategoryLangContent>> GetLanguageContents(int idValue)
         {
             var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);

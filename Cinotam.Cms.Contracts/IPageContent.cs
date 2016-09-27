@@ -13,5 +13,6 @@ namespace Cinotam.Cms.Contracts
         int Id { get; set; }
         bool IsPartial { get; set; }
         ICollection<IChunk> Chunks { get; }
+        string PreviewImage { get; set; }
     }
 }

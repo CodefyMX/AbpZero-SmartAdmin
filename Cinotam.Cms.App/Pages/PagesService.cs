@@ -1,19 +1,20 @@
 ﻿using Abp.Domain.Repositories;
+using Abp.Events.Bus;
 using Abp.Localization;
 using Abp.Threading;
 using Abp.UI;
 using Castle.Components.DictionaryAdapter;
 using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
-using Cinotam.Cms.App.Menus;
+using Cinotam.Cms.App.Events;
 using Cinotam.Cms.App.Pages.Dto;
 using Cinotam.Cms.Contracts;
-using Cinotam.Cms.Core.Menus;
 using Cinotam.Cms.Core.Pages;
 using Cinotam.Cms.Core.Templates;
 using Cinotam.Cms.DatabaseEntities.Category.Entities;
 using Cinotam.Cms.DatabaseEntities.CustomFilters;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
+using Cinotam.FileManager.Files;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -35,8 +36,8 @@ namespace Cinotam.Cms.App.Pages
         private readonly IRepository<DatabaseEntities.Pages.Entities.Chunk> _chunkRepository;
         private readonly ITemplateManager _templateManager;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
-        private readonly IMenuManager _menuManager;
-        private readonly IMenuService _menuService;
+        private readonly IFileStoreManager _fileStoreManager;
+        public IEventBus EventBus { get; set; }
         #endregion
 
         #region Ctor
@@ -47,8 +48,7 @@ namespace Cinotam.Cms.App.Pages
             IApplicationLanguageManager applicationLanguageManager,
             ITemplateManager templateManager,
             IRepository<Category> categoryRepository,
-            IRepository<DatabaseEntities.Pages.Entities.Chunk> chunkRepository,
-            IMenuManager menuManager, IMenuService menuService)
+            IRepository<DatabaseEntities.Pages.Entities.Chunk> chunkRepository, IFileStoreManager fileStoreManager)
         {
             _pageManager = pageManager;
             _pageRepository = pageRepository;
@@ -57,8 +57,8 @@ namespace Cinotam.Cms.App.Pages
             _templateManager = templateManager;
             _categoryRepository = categoryRepository;
             _chunkRepository = chunkRepository;
-            _menuManager = menuManager;
-            _menuService = menuService;
+            _fileStoreManager = fileStoreManager;
+            EventBus = NullEventBus.Instance;
         }
 
 
@@ -83,6 +83,8 @@ namespace Cinotam.Cms.App.Pages
             var chunks = new List<CChunk>();
             var pageContent = _contentRepository.FirstOrDefault(a => a.Page.Id == input.PageId && input.Lang == a.Lang);
             pageContent.HtmlContent = input.HtmlContent;
+            var uniquePageName = pageContent.Title + pageContent.PageId + pageContent.Lang;
+            var file = await _fileStoreManager.SaveFileFromBase64(uniquePageName.Sluggify(), input.Base64String.Trim(), true);
             foreach (var inputChunk in input.Chunks)
             {
                 chunks.Add(new CChunk()
@@ -91,9 +93,9 @@ namespace Cinotam.Cms.App.Pages
                     Value = inputChunk.Value,
                     Key = inputChunk.Key,
                     Order = inputChunk.Order,
-
                 });
             }
+            pageContent.PreviewImage = file.WasStoredInCloud ? file.Url : file.VirtualPath;
             await _pageManager.SavePageContentAsync(pageContent, chunks);
         }
 
@@ -103,17 +105,18 @@ namespace Cinotam.Cms.App.Pages
 
             page.Active = !page.Active;
             _pageRepository.Update(page);
-            if (!page.Active)
-            {
-                _menuManager.RemoveSectionItemsForPage(pageId);
-            }
-            else
-            {
-                if (page.IncludeInMenu)
-                {
-                    await _menuManager.SetItemForPage(page);
-                }
-            }
+            //if (!page.Active)
+            //{
+            //    _menuManager.RemoveSectionItemsForPage(pageId);
+            //}
+            //else
+            //{
+            //    if (page.IncludeInMenu)
+            //    {
+            //        await _menuManager.SetItemForPage(page);
+            //    }
+            //}
+            EventBus.Trigger(new PageStateChangedData() { Page = page });
         }
 
         public async Task TogglePageInMenuStatus(int pageId)
@@ -121,18 +124,20 @@ namespace Cinotam.Cms.App.Pages
             var page = await _pageRepository.GetAsync(pageId);
             page.IncludeInMenu = !page.IncludeInMenu;
             _pageRepository.Update(page);
-            if (!page.IncludeInMenu)
-            {
-                _menuManager.RemoveSectionItemsForPage(pageId);
-            }
-            else
-            {
-                if (page.Active)
-                {
+            //if (!page.IncludeInMenu)
+            //{
+            //    _menuManager.RemoveSectionItemsForPage(pageId);
+            //}
+            //else
+            //{
+            //    if (page.Active)
+            //    {
 
-                    await _menuManager.SetItemForPage(page);
-                }
-            }
+            //        await _menuManager.SetItemForPage(page);
+            //    }
+            //}
+
+            EventBus.Trigger(new PageStateChangedData() { Page = page });
         }
 
         public void SetPageAsMain(int pageId)
@@ -188,8 +193,24 @@ namespace Cinotam.Cms.App.Pages
             }).ToList();
         }
 
+        public async Task SetParentPage(ParentPageSetInput input)
+        {
+            var page = _pageRepository.FirstOrDefault(input.PageId);
+            if (page == null) return;
+            if (input.ParentPageId == 0)
+            {
+                input.ParentPageId = null;
+            }
+            page.ParentPage = input.ParentPageId;
+            await _pageManager.SaveOrEditPageAsync(page);
+        }
         public async Task<CategorySetResult> SetCategory(CategoryAssignationInput input)
         {
+            if (input.CategoryId == 0)
+            {
+                await SetCategoryToNull(input.PageId);
+                return new CategorySetResult();
+            }
             var page = _pageRepository.FirstOrDefault(input.PageId);
             var oldCategoryId = page.CategoryId;
             //var exists = await CreateCategoryIfNotExists(input.Name, input.DisplayName);
@@ -198,21 +219,24 @@ namespace Cinotam.Cms.App.Pages
 
             page.Category = category;
             await _pageManager.SaveOrEditPageAsync(page);
-            if (page.CategoryId.HasValue) await _menuService.UpdateMenuItemsWhenCategoryChange(page.Id, oldCategoryId, page.CategoryId.Value);
-            return new CategorySetResult()
+            if (page.CategoryId.HasValue)
             {
+                EventBus.Trigger(new PageCategoryChangedData()
+                {
+                    PageId = page.Id,
+                    CategoryId = page.CategoryId.Value,
+                    OldCategoryId = oldCategoryId
+                });
+            }
 
-            };
+            return new CategorySetResult();
         }
 
-        private async Task<bool> CreateCategoryIfNotExists(string inputCategoryName, string inputCategoryDisplayName)
+        private async Task SetCategoryToNull(int inputPageId)
         {
-            var category = await _categoryRepository.FirstOrDefaultAsync(a => a.Name.Equals(inputCategoryName));
-            if (category == null)
-            {
-                throw new UserFriendlyException(L("CategoryDontExists"));
-            }
-            return true;
+            var page = _pageRepository.FirstOrDefault(inputPageId);
+            page.CategoryId = null;
+            await _pageManager.SaveOrEditPageAsync(page);
         }
 
         public async Task<CategoryOutput> GetCategories()
@@ -376,7 +400,7 @@ namespace Cinotam.Cms.App.Pages
                     Langs = AsyncHelper.RunSync(() => GetAvailableLangs(a.Id)),
                     Title = a.Name,
                     CategoryName = a.CategoryId.HasValue ? GetCategoryName(a) : "",
-                    TemplateName = a.TemplateName
+                    TemplateName = a.TemplateName,
                 }).ToArray(),
                 draw = input.draw,
                 length = input.length,
@@ -402,15 +426,19 @@ namespace Cinotam.Cms.App.Pages
                 CategoryName = page.CategoryId.HasValue ? GetCategoryName(page) : "",
                 IncludeInMenu = page.IncludeInMenu,
                 TemplateName = page.TemplateName,
+                AvailableTemplates = await _templateManager.GetTemplateContentsAsync(),
+                AvailablePages = (await GetPageListDto()).Where(a => a.Id != page.Id).ToList(),
+                ParentId = page.ParentPage ?? 0,
                 AvailableCategoryDtos = _categoryRepository.GetAllList().Select(a => new CategoryDto()
                 {
                     DisplayName = a.DisplayName,
                     Id = a.Id,
                     Name = a.Name
                 }).ToList(),
-                CategoryId = page.CategoryId
+                CategoryId = page.CategoryId ?? 0
             };
         }
+
 
         public async Task<List<Chunk>> GetChunks(ChunkRequest input)
         {
@@ -447,7 +475,7 @@ namespace Cinotam.Cms.App.Pages
         private string GetCategoryName(IMayHaveCategory page)
         {
             var category = _categoryRepository.FirstOrDefault(a => a.Id == page.CategoryId);
-            return category.DisplayName;
+            return category == null ? string.Empty : category.DisplayName;
         }
 
         #endregion
@@ -495,6 +523,14 @@ namespace Cinotam.Cms.App.Pages
             var pageContents =
                 _contentRepository.FirstOrDefault(
                     a => a.Page.Id == page.Id && a.Lang == CultureInfo.CurrentUICulture.Name);
+            if (pageContents == null)
+            {
+                return new BreadCrum()
+                {
+                    DisplayName = string.Empty,
+                    Url = string.Empty
+                };
+            }
             return new BreadCrum()
             {
                 DisplayName = pageContents.Title,
@@ -569,7 +605,8 @@ namespace Cinotam.Cms.App.Pages
                         LanguageIcon = applicationLanguage.Icon,
                         Slug = contentWithLanguage.Url,
                         Title = contentWithLanguage.Title,
-                        TemplateUniqueName = contentWithLanguage.TemplateUniqueName
+                        TemplateUniqueName = contentWithLanguage.TemplateUniqueName,
+                        Preview = contentWithLanguage.PreviewImage
                     });
                 }
             }
@@ -588,12 +625,20 @@ namespace Cinotam.Cms.App.Pages
                     HtmlContent = "",
                     LanguageIcon = applicationLanguage.Icon,
                     Slug = "",
-
                 });
+                obj.ParentId = page.ParentPage ?? 0;
                 obj.Id = page.Id;
                 obj.IsMainPage = false;
                 obj.CategoryName = page.CategoryId.HasValue ? GetCategoryName(page) : "";
                 obj.IncludeInMenu = page.IncludeInMenu;
+                obj.AvailableTemplates = await _templateManager.GetTemplateContentsAsync();
+                obj.AvailablePages = (await GetPageListDto()).Where(a => a.Id != page.Id).ToList();
+                obj.AvailableCategoryDtos = _categoryRepository.GetAllList().Select(a => new CategoryDto()
+                {
+                    DisplayName = a.DisplayName,
+                    Id = a.Id,
+                    Name = a.Name
+                }).ToList();
             }
             return obj;
         }
@@ -609,7 +654,7 @@ namespace Cinotam.Cms.App.Pages
                     list.Add(new Lang()
                     {
                         LangCode = lang.Name,
-                        LangIcon = lang.Icon
+                        LangIcon = lang.Icon,
                     });
             }
             return list;

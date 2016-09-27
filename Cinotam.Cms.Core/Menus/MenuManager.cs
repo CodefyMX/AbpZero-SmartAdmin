@@ -36,14 +36,12 @@ namespace Cinotam.Cms.Core.Menus
         {
             _menuPolicy.ValidateMenu(menu);
             var id = await _menuRepository.InsertOrUpdateAndGetIdAsync(menu);
-            await CurrentUnitOfWork.SaveChangesAsync();
             return id;
         }
         public async Task<int> AddMenuContentAsync(MenuContent menuContent)
         {
             //_menuPolicy.ValidateMenuContent(menuContent);
             var id = await _menuContentRepository.InsertOrUpdateAndGetIdAsync(menuContent);
-            await CurrentUnitOfWork.SaveChangesAsync();
             return id;
         }
 
@@ -62,7 +60,6 @@ namespace Cinotam.Cms.Core.Menus
             }
 
             var id = await _menuSectionRepository.InsertOrUpdateAndGetIdAsync(menuSection);
-            await CurrentUnitOfWork.SaveChangesAsync();
             return id;
         }
 
@@ -81,7 +78,6 @@ namespace Cinotam.Cms.Core.Menus
                 return idFound;
             }
             var id = await _menuSectionContentRepository.InsertOrUpdateAndGetIdAsync(menu);
-            await CurrentUnitOfWork.SaveChangesAsync();
             return id;
         }
 
@@ -99,7 +95,6 @@ namespace Cinotam.Cms.Core.Menus
             }
 
             var id = await _menuSectionItemRepository.InsertOrUpdateAndGetIdAsync(sectionItem);
-            await CurrentUnitOfWork.SaveChangesAsync();
             return id;
         }
 
@@ -123,7 +118,6 @@ namespace Cinotam.Cms.Core.Menus
             }
 
             var id = await _menuSectionItemContentRepository.InsertOrUpdateAndGetIdAsync(sectionItemContent);
-            await CurrentUnitOfWork.SaveChangesAsync();
             return id;
         }
 
