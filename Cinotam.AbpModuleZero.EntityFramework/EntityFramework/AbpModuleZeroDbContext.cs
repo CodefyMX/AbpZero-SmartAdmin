@@ -17,12 +17,13 @@ namespace Cinotam.AbpModuleZero.EntityFramework
         #region CinotamCms
         public IDbSet<Page> Pages { get; set; }
         public IDbSet<Template> Templates { get; set; }
+
         public IDbSet<Content> Contents { get; set; }
         public IDbSet<Resource> Resources { get; set; }
         public IDbSet<Chunk> Chunks { get; set; }
         public IDbSet<Menu> Menus { get; set; }
         public IDbSet<MenuContent> MenuContents { get; set; }
-        public IDbSet<Cms.DatabaseEntities.Menus.Entities.MenuSection> MenuSections { get; set; }
+        public IDbSet<MenuSection> MenuSections { get; set; }
         public IDbSet<MenuSectionContent> MenuSectionContents { get; set; }
         public IDbSet<MenuSectionItem> MenuSectionItems { get; set; }
         public IDbSet<MenuSectionItemContent> MenuSectionItemContents { get; set; }

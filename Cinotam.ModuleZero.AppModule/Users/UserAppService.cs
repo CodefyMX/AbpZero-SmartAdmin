@@ -68,11 +68,11 @@ namespace Cinotam.ModuleZero.AppModule.Users
         }
 
         [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
-        public async Task<ListResultOutput<UserListDto>> GetUsers()
+        public async Task<ListResultDto<UserListDto>> GetUsers()
         {
             var users = await _userRepository.GetAllListAsync();
 
-            return new ListResultOutput<UserListDto>(
+            return new ListResultDto<UserListDto>(
                 users.MapTo<List<UserListDto>>()
                 );
         }
