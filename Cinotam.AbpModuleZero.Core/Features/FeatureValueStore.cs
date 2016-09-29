@@ -3,26 +3,25 @@ using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.MultiTenancy;
 using Abp.Runtime.Caching;
-using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
 
 namespace Cinotam.AbpModuleZero.Features
 {
-    public class FeatureValueStore : AbpFeatureValueStore<Tenant, Role, User>
+    public class FeatureValueStore : AbpFeatureValueStore<Tenant, User>
     {
         public FeatureValueStore(
-            ICacheManager cacheManager, 
-            IRepository<TenantFeatureSetting, long> tenantFeatureRepository, 
-            IRepository<Tenant> tenantRepository, 
-            IRepository<EditionFeatureSetting, long> editionFeatureRepository, 
-            IFeatureManager featureManager, 
-            IUnitOfWorkManager unitOfWorkManager) 
-            : base(cacheManager, 
-                  tenantFeatureRepository, 
-                  tenantRepository, 
-                  editionFeatureRepository, 
-                  featureManager, 
+            ICacheManager cacheManager,
+            IRepository<TenantFeatureSetting, long> tenantFeatureRepository,
+            IRepository<Tenant> tenantRepository,
+            IRepository<EditionFeatureSetting, long> editionFeatureRepository,
+            IFeatureManager featureManager,
+            IUnitOfWorkManager unitOfWorkManager)
+            : base(cacheManager,
+                  tenantFeatureRepository,
+                  tenantRepository,
+                  editionFeatureRepository,
+                  featureManager,
                   unitOfWorkManager)
         {
         }

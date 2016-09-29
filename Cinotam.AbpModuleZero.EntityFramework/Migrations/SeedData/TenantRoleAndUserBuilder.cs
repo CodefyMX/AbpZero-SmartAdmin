@@ -1,4 +1,3 @@
-using System.Linq;
 using Abp.Authorization;
 using Abp.Authorization.Roles;
 using Abp.Authorization.Users;
@@ -7,6 +6,7 @@ using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.EntityFramework;
 using Cinotam.AbpModuleZero.Users;
+using System.Linq;
 
 namespace Cinotam.AbpModuleZero.Migrations.SeedData
 {
@@ -44,17 +44,15 @@ namespace Cinotam.AbpModuleZero.Migrations.SeedData
 
                 foreach (var permission in permissions)
                 {
-                    if (!permission.IsGrantedByDefault)
-                    {
-                        _context.Permissions.Add(
-                            new RolePermissionSetting
-                            {
-                                TenantId = _tenantId,
-                                Name = permission.Name,
-                                IsGranted = true,
-                                RoleId = adminRole.Id
-                            });
-                    }
+                    _context.Permissions.Add(
+                           new RolePermissionSetting
+                           {
+                               TenantId = _tenantId,
+                               Name = permission.Name,
+                               IsGranted = true,
+                               RoleId = adminRole.Id
+                           });
+
                 }
 
                 _context.SaveChanges();

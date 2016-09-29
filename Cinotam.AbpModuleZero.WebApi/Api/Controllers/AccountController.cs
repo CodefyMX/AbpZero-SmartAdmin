@@ -1,17 +1,17 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Web.Http;
-using Abp.Authorization.Users;
+﻿using Abp.Authorization.Users;
 using Abp.UI;
 using Abp.Web.Models;
 using Abp.WebApi.Controllers;
 using Cinotam.AbpModuleZero.Api.Models;
-using Cinotam.AbpModuleZero.Authorization.Roles;
+using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
 using Microsoft.Owin.Infrastructure;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
+using System;
+using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace Cinotam.AbpModuleZero.Api.Controllers
 {
@@ -19,16 +19,16 @@ namespace Cinotam.AbpModuleZero.Api.Controllers
     {
         public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
 
-        private readonly UserManager _userManager;
+        private readonly LogInManager _logInManager;
 
         static AccountController()
         {
             OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
         }
 
-        public AccountController(UserManager userManager)
+        public AccountController(LogInManager logInManager)
         {
-            _userManager = userManager;
+            _logInManager = logInManager;
         }
 
         [HttpPost]
@@ -51,9 +51,9 @@ namespace Cinotam.AbpModuleZero.Api.Controllers
             return new AjaxResponse(OAuthBearerOptions.AccessTokenFormat.Protect(ticket));
         }
 
-        private async Task<AbpUserManager<Tenant, Role, User>.AbpLoginResult> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
+        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
         {
-            var loginResult = await _userManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
+            var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
             switch (loginResult.Result)
             {

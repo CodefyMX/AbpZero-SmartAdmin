@@ -36,9 +36,9 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
             _abpZeroDbMigrator = abpZeroDbMigrator;
         }
 
-        public ListResultOutput<TenantListDto> GetTenants()
+        public ListResultDto<TenantListDto> GetTenants()
         {
-            return new ListResultOutput<TenantListDto>(
+            return new ListResultDto<TenantListDto>(
                 _tenantManager.Tenants
                     .OrderBy(t => t.TenancyName)
                     .ToList()

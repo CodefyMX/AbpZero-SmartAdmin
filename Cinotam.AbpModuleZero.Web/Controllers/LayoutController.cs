@@ -18,12 +18,13 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         private readonly ISessionAppService _sessionAppService;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly IPagesService _pagesService;
+        private ILanguageManager _languageManager;
         private readonly IMenuService _menuService;
         public LayoutController(
             IUserNavigationManager userNavigationManager,
             ILocalizationManager localizationManager,
             ISessionAppService sessionAppService,
-            IMultiTenancyConfig multiTenancyConfig, IPagesService pagesService, IMenuService menuService)
+            IMultiTenancyConfig multiTenancyConfig, IPagesService pagesService, IMenuService menuService, ILanguageManager languageManager)
         {
             _userNavigationManager = userNavigationManager;
             _localizationManager = localizationManager;
@@ -31,6 +32,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             _multiTenancyConfig = multiTenancyConfig;
             _pagesService = pagesService;
             _menuService = menuService;
+            _languageManager = languageManager;
         }
 
         [ChildActionOnly]
@@ -50,8 +52,8 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         {
             var model = new LanguageSelectionViewModel
             {
-                CurrentLanguage = _localizationManager.CurrentLanguage,
-                Languages = _localizationManager.GetAllLanguages()
+                CurrentLanguage = _languageManager.CurrentLanguage,
+                Languages = _languageManager.GetLanguages()
             };
 
             return PartialView("_LanguageSelection", model);

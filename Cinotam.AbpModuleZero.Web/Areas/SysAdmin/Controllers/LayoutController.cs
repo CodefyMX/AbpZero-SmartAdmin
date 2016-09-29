@@ -17,25 +17,26 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         private readonly ILocalizationManager _localizationManager;
         private readonly ISessionAppService _sessionAppService;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
-
+        private readonly ILanguageManager _languageManager;
         public LayoutController(
             IUserNavigationManager userNavigationManager,
             ILocalizationManager localizationManager,
             ISessionAppService sessionAppService,
-            IMultiTenancyConfig multiTenancyConfig)
+            IMultiTenancyConfig multiTenancyConfig, ILanguageManager languageManager)
         {
             _userNavigationManager = userNavigationManager;
             _localizationManager = localizationManager;
             _sessionAppService = sessionAppService;
             _multiTenancyConfig = multiTenancyConfig;
+            _languageManager = languageManager;
         }
         [ChildActionOnly]
         public PartialViewResult LanguageSelection()
         {
             var model = new LanguageSelectionViewModel
             {
-                CurrentLanguage = _localizationManager.CurrentLanguage,
-                Languages = _localizationManager.GetAllLanguages()
+                CurrentLanguage = _languageManager.CurrentLanguage,
+                Languages = _languageManager.GetLanguages()
             };
 
             return PartialView("_LanguageSelectionAdmin", model);

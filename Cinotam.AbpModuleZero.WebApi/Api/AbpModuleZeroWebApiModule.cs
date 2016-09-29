@@ -2,7 +2,6 @@
 using Abp.Configuration.Startup;
 using Abp.Modules;
 using Abp.WebApi;
-using Abp.WebApi.Controllers.Dynamic.Builders;
 using Cinotam.Cms.App;
 using Cinotam.ModuleZero.AppModule;
 using System.Reflection;
@@ -17,10 +16,10 @@ namespace Cinotam.AbpModuleZero.Api
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
 
-            DynamicApiControllerBuilder
+            Configuration.Modules.AbpWebApi().DynamicApiControllerBuilder
                 .ForAll<IApplicationService>(typeof(CinotamModuleZeroAppModule).Assembly, "app")
                 .Build();
-            DynamicApiControllerBuilder
+            Configuration.Modules.AbpWebApi().DynamicApiControllerBuilder
                 .ForAll<IApplicationService>(typeof(CinotamCmsApp).Assembly, "cms")
                 .Build();
             Configuration.Modules.AbpWebApi().HttpConfiguration.Filters.Add(new HostAuthenticationFilter("Bearer"));
