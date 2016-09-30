@@ -9,5 +9,6 @@
         public string Url { get; set; }
         public bool WasStoredInCloud { get; set; }
         public string FileName { get; set; }
+        public string Dimensions { get; set; }
     }
 }

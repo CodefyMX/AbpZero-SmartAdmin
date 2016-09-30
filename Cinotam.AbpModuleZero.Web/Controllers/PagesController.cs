@@ -1,4 +1,6 @@
-﻿using Cinotam.Cms.App.Pages;
+﻿using Abp.UI;
+using Abp.Web.Security.AntiForgery;
+using Cinotam.Cms.App.Pages;
 using Cinotam.Cms.App.Pages.Dto;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -35,6 +37,23 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         {
             await _pages.SavePageContent(input);
             return Json(new { ok = true });
+        }
+        [DisableAbpAntiForgeryTokenValidation]
+        public async Task<ActionResult> UploadImage(int id, string lang)
+        {
+
+            if (HttpContext.Request.Files.Count > 0)
+            {
+                var result = await _pages.AddImageToPage(new AddImageInput()
+                {
+                    Image = HttpContext.Request.Files[0],
+                    Lang = lang,
+                    PageId = id
+                });
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            throw new UserFriendlyException(L("AddImage"));
         }
     }
 }

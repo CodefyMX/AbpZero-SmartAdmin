@@ -31,5 +31,8 @@ namespace Cinotam.Cms.App.Pages
         Task<List<Chunk>> GetChunks(ChunkRequest input);
         Task<PageViewOutput> GetTemplateHtml(int id, string lang, string templateName);
         Task SetParentPage(ParentPageSetInput input);
+        Task<ImageAddedResult> AddImageToPage(AddImageInput input);
+        Task<ImageAddedResult> ProcessImage(ProcessImageInput input);
+        Task<string> SaveImageFromBase64(Base64Input base64);
     }
 }

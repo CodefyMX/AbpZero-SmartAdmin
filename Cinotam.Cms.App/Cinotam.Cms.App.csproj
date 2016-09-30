@@ -84,12 +84,14 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Linq.Dynamic, Version=1.0.5840.25917, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Linq.Dynamic.1.0.6\lib\net40\System.Linq.Dynamic.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -124,12 +126,15 @@
     <Compile Include="Menus\Dto\SectionItem.cs" />
     <Compile Include="Menus\IMenuService.cs" />
     <Compile Include="Menus\MenuService.cs" />
+    <Compile Include="Pages\Dto\AddImageInput.cs" />
+    <Compile Include="Pages\Dto\Base64Input.cs" />
     <Compile Include="Pages\Dto\BreadCrum.cs" />
     <Compile Include="Pages\Dto\CategoryAssignationInput.cs" />
     <Compile Include="Pages\Dto\CategoryOutput.cs" />
     <Compile Include="Pages\Dto\CategorySetResult.cs" />
     <Compile Include="Pages\Dto\Chunk.cs" />
     <Compile Include="Pages\Dto\ChunkRequest.cs" />
+    <Compile Include="Pages\Dto\ImageAddedResult.cs" />
     <Compile Include="Pages\Dto\Lang.cs" />
     <Compile Include="Pages\Dto\PageConfigurationObject.cs" />
     <Compile Include="Pages\Dto\PageContentDto.cs" />
@@ -141,6 +146,7 @@
     <Compile Include="Pages\Dto\PageTitleInput.cs" />
     <Compile Include="Pages\Dto\PageViewOutput.cs" />
     <Compile Include="Pages\Dto\ParentPageSetInput.cs" />
+    <Compile Include="Pages\Dto\ProcessImageInput.cs" />
     <Compile Include="Pages\Dto\TemplateDto.cs" />
     <Compile Include="Pages\IPagesService.cs" />
     <Compile Include="Pages\PagesService.cs" />
@@ -173,6 +179,10 @@
     <ProjectReference Include="..\Cinotam.Cms.DatabaseEntities\Cinotam.Cms.DatabaseEntities.csproj">
       <Project>{2A5BA0A4-51FB-4132-BD08-F00357B24F23}</Project>
       <Name>Cinotam.Cms.DatabaseEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.FileManager.Contracts\Cinotam.FileManager.Contracts.csproj">
+      <Project>{B1AD0F0D-EC22-4426-88D9-60C2F19E1DAE}</Project>
+      <Name>Cinotam.FileManager.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.FileManager\Cinotam.FileManager.csproj">
       <Project>{601A7D76-DFC2-4BBA-86E3-830657EB6A54}</Project>
