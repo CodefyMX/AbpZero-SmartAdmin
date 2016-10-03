@@ -34,5 +34,6 @@ namespace Cinotam.Cms.App.Pages
         Task<ImageAddedResult> AddImageToPage(AddImageInput input);
         Task<ImageAddedResult> ProcessImage(ProcessImageInput input);
         Task<string> SaveImageFromBase64(Base64Input base64);
+        Task SetTemplate(SetTemplateInput input);
     }
 }

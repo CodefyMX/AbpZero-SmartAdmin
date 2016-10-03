@@ -147,6 +147,7 @@
     <Compile Include="Pages\Dto\PageViewOutput.cs" />
     <Compile Include="Pages\Dto\ParentPageSetInput.cs" />
     <Compile Include="Pages\Dto\ProcessImageInput.cs" />
+    <Compile Include="Pages\Dto\SetTemplateInput.cs" />
     <Compile Include="Pages\Dto\TemplateDto.cs" />
     <Compile Include="Pages\IPagesService.cs" />
     <Compile Include="Pages\PagesService.cs" />

@@ -664,6 +664,12 @@ namespace Cinotam.Cms.App.Pages
             return pageContentsList;
         }
 
+        public async Task SetTemplate(SetTemplateInput input)
+        {
+            var page = _pageRepository.Get(input.PageId);
+            page.TemplateName = input.TemplateName;
+            await _pageManager.SaveOrEditPageAsync(page);
+        }
         private async Task<PageConfigurationObject> CreateEmptyPageConfigurationObject(Page page)
         {
             var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);

@@ -245,7 +245,17 @@
                                             @Html.DropDownListFor(a => a.ParentId, new List<SelectListItem>(new SelectList(Model.AvailablePages, "Id", "Title")), L("SelectPrentPage"), new { @class = "form-control" })
                                         </div>
                                     </div>
-
+                                    <div class="col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                @L("SetTemplatePage")
+                                            </label>
+                                            @Html.DropDownListFor(a => a.TemplateName, new List<SelectListItem>(new SelectList(Model.AvailableTemplates, "Name", "Name")), L("SelectTemplatePage"), new { @class = "form-control" })
+                                            <p class="help-block warning">
+                                                @L("WarningAboutTemplateChange")
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -577,6 +587,22 @@
                    abp.ui.setBusy(this, abp.services.cms.pagesService.setParentPage(selectedParent)
                        .done(function () {
                            abp.notify.success(LSys("ParentChanged"));
+                       }));
+               });
+            $("#TemplateName")
+               .on("change", function (e) {
+                   var templateName = $("#TemplateName").val();
+                   
+                   var selectedTemplate = {
+                       TemplateName: templateName,
+                       PageId: $("#Id").val()
+                   }
+                   abp.ui.setBusy(this, abp.services.cms.pagesService.setTemplate(selectedTemplate)
+                       .done(function () {
+                           abp.notify.warn(LSys("TemplateChanged"));
+                           setTimeout(function() {
+                               window.location.reload();
+                           },2000);
                        }));
                });
 

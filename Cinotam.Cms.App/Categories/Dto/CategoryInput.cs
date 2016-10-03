@@ -6,7 +6,6 @@ namespace Cinotam.Cms.App.Categories.Dto
     public class CategoryInput
     {
         public string Name { get; set; }
-        public string DisplayName { get; set; }
         public List<LanguageInput> LanguageInputs { get; set; } = new EditableList<LanguageInput>();
     }
 
