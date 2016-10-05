@@ -2,6 +2,7 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
 using Cinotam.AbpModuleZero.Users;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cinotam.ModuleZero.AppModule.Users.Dto
@@ -30,6 +31,9 @@ namespace Cinotam.ModuleZero.AppModule.Users.Dto
 
         public bool IsActive { get; set; }
         public bool SendNotificationMail { get; set; }
-
+        public bool IsLockoutEnabled { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool IsTwoFactorEnabled { get; set; }
+        public virtual DateTime? LockoutEndDateUtc { get; set; }
     }
 }

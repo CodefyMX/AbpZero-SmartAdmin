@@ -25,5 +25,9 @@ namespace Cinotam.ModuleZero.AppModule.Users.Dto
         public bool IsActive { get; set; }
 
         public DateTime CreationTime { get; set; }
+        public bool IsLockoutEnabled { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool IsTwoFactorEnabled { get; set; }
+        public virtual DateTime? LockoutEndDateUtc { get; set; }
     }
 }

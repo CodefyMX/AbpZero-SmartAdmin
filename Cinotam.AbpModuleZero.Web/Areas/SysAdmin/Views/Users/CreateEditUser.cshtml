@@ -70,7 +70,17 @@
                             </div>
                         </div>
                     </section>
-                    
+                    <section>
+                        <div class="row">
+                            <label class="label col col-2">@L("PhoneNumber")</label>
+                            <div class="col col-10">
+                                <label class="input">
+                                    <i class="icon-append fa fa-user"></i>
+                                    @Html.TextBoxFor(a => a.PhoneNumber, new { required = "required" })
+                                </label>
+                            </div>
+                        </div>
+                    </section>
                     @if (Model.Id == 0)
                     {
                         <!--//Rev-02.09.2016-->
@@ -86,7 +96,24 @@
                             </div>
                         </section>
                     }
-                    
+                    @if (Model.IsLockoutEnabled)
+                    {
+                        <div class="alert alert-warning">
+                            <p>@L("UserLocked")</p>
+                            <section>
+                                <label class="checkbox">
+                                    @Html.CheckBoxFor(a => a.IsLockoutEnabled)
+                                    <i></i>@L("LockOut")
+                                </label>
+                            </section>
+                        </div>
+                    }
+                    <section>
+                        <label class="checkbox">
+                            @Html.CheckBoxFor(a => a.IsTwoFactorEnabled)
+                            <i></i>@L("EnableTwoFactorAuth")
+                        </label>
+                    </section>
                     <section>
                         <label class="checkbox">
                             @Html.CheckBoxFor(a => a.IsActive)

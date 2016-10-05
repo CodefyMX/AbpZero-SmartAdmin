@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Cinotam.AbpModuleZero.Users;
+using System;
 using System.Collections.Generic;
 
 namespace Cinotam.ModuleZero.AppModule.Users.Dto
@@ -20,5 +21,9 @@ namespace Cinotam.ModuleZero.AppModule.Users.Dto
         public bool IsActive { get; set; }
         public List<string> MyRoles { get; set; }
         public string MyStringRoles => string.Join(",", MyRoles);
+        public bool IsLockoutEnabled { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool IsTwoFactorEnabled { get; set; }
+        public virtual DateTime? LockoutEndDateUtc { get; set; }
     }
 }
