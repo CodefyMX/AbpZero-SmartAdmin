@@ -292,7 +292,34 @@ namespace Cinotam.Cms.App.Menus
 
         }
 
+        public async Task DeleteMenu(int menuId)
+        {
+            var menu = await _menuRepository.GetAsync(menuId);
+            await RemoveSectionsAndContentsFromMenu(menu);
+            _menuRepository.Delete(menu);
+        }
 
+        private async Task RemoveSectionsAndContentsFromMenu(Menu menu)
+        {
+            var sections = await _menuSectionRepository.GetAllListAsync(a => a.MenuId == menu.Id);
+            foreach (var sectionItem in sections)
+            {
+
+                await RemoveSectionItemsFromSection(sectionItem);
+
+                await _menuSectionRepository.DeleteAsync(sectionItem);
+
+            }
+        }
+
+        private async Task RemoveSectionItemsFromSection(MenuSection section)
+        {
+            var sectionItems = await _menuSectionItemRepository.GetAllListAsync(a => a.SectionId == section.Id);
+            foreach (var menuSectionItem in sectionItems)
+            {
+                await _menuSectionItemRepository.DeleteAsync(menuSectionItem);
+            }
+        }
 
         #region Helpers
         private async Task<List<MenuElementContent>> GetContentsForElement(int menuId)

@@ -13,7 +13,14 @@
 
     public class ExternalResources
     {
-        public string[] Css { get; set; }
-        public string[] Js { get; set; }
+        public Resource[] Css { get; set; }
+        public Resource[] Js { get; set; }
+    }
+
+    public class Resource
+    {
+        public string Url { get; set; }
+        public bool IsCdn { get; set; }
+        public int Order { get; set; }
     }
 }

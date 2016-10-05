@@ -1318,6 +1318,7 @@
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="CustomJsonValueProviderFactory.cs" />
     <Compile Include="Models\Layout\UserMenuOrLoginLinkViewModel.cs" />
     <Compile Include="Models\Account\LoginFormViewModel.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
@@ -1427,6 +1428,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\SysAdmin\Models\" />
+    <Folder Include="Content\Templates\ArticlePage\Resources\" />
+    <Folder Include="Content\Templates\Simple\Resources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

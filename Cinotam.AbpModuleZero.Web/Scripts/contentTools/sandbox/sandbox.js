@@ -167,6 +167,7 @@
 
     var editor = ContentTools.EditorApp.get();
     editor.init('*[data-editable]', 'data-name');
+    console.info("Editor inicializado");
     ContentTools.StylePalette.add([
         new ContentTools.Style('Video', 'video', ['iframe']),
         new ContentTools.Style('Video Center', 'video-center', ['iframe']),

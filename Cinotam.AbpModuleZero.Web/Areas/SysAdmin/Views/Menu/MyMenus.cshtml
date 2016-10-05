@@ -106,20 +106,15 @@
                                                 <i style="cursor: pointer" class="fa fa-bars fa-2x handle"></i>
                                                 <h4 class="list-group-item-heading">
                                                     @menu.DisplayName @foreach (var lang in menu.PageElementContents)
-                                                                      {
-                                                                          <a>[<i class="@lang.Icon"></i> @lang.Lang] </a>
-                                                                      } <a class="btn btn-warning btn-sm pull-right" href="#"><i class="fa fa-times"></i></a>
+                                                    {
+                                                        <a>[<i class="@lang.Icon"></i> @lang.Lang] </a>
+                                                    } <a data-id="@menu.Id" class="btn btn-warning btn-sm pull-right js-delete-menu" href="#"><i class="fa fa-times"></i></a>
                                                 </h4>
                                                 <p class="list-group-item-text">
-
-
-
-
                                                 </p>
                                                 <p>
                                                     <a data-modal class="btn btn-primary btn-sm" href="@Url.Action("CreateEditMenu",new {id = menu.Id})"><i class="fa fa-edit"></i></a>
                                                     <a data-modal class="btn btn-primary btn-sm" href="@Url.Action("SetCategories",new {id = menu.Id})"><i class="fa fa-link"></i></a>
-                                                    <a data-modal class="btn btn-primary btn-sm" href="@Url.Action("UpdateMenuFromCategories",new {id = menu.Id})"><i class="fa fa-check-circle-o"></i></a>
                                                 </p>
                                             </li>
                                         }
@@ -161,6 +156,29 @@
         $(document).ready(function () {
             bind();
         });
+
+
+        $("body")
+            .on("click",
+                ".js-delete-menu",
+                function () {
+                    var id = $(this).data("id");
+
+                    abp.message.confirm(LSys("ElementWillBeRemoved"), LSys("Sure"), function (response) {
+
+                        if (response) {
+                            abp.services.cms.menuService.deleteMenu(id)
+                                .done(function () {
+
+                                    window.location.reload();
+
+                                });
+                        }
+
+                    });
+
+                });
+
         window.bind = function () {
             $('#menus').sortable({
                 handle: ".handle",

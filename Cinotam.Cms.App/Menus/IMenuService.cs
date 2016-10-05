@@ -20,5 +20,7 @@ namespace Cinotam.Cms.App.Menus
         Task SetMenuSectionsFromCategories(CategorySetModel input);
         Task UpdateMenuItemsWhenCategoryChange(int pageId, int? oldCategoryId, int newCategoryId);
 
+        Task DeleteMenu(int menuId);
+
     }
 }
