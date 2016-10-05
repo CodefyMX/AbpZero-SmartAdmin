@@ -12,6 +12,8 @@ namespace Cinotam.FileManager.Contracts
         string VirtualFolder { get; set; }
 
         string FilePath { get; set; }
+
+        string OverrideFormat { get; set; }
         /// <summary>
         /// Has no effect if the file is going to be stored in the cloud
         /// </summary>

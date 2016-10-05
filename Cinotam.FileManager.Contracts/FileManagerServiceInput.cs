@@ -36,6 +36,7 @@ namespace Cinotam.FileManager.Contracts
         public string SpecialFolder { get; set; }
         public string VirtualFolder { get; set; }
         public string FilePath { get; set; }
+        public string OverrideFormat { get; set; }
         public bool CreateUniqueName { get; set; }
     }
 }

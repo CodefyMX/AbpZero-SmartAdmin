@@ -140,14 +140,15 @@ namespace Cinotam.FileManager.Files
             throw new InvalidOperationException(nameof(IFileManagerServiceProvider));
         }
 
-        public async Task<SavedFileResult> SaveFileFromBase64(string uniquePath, string base64String, bool useCdnFirst)
+        public async Task<SavedFileResult> SaveFileFromBase64(string uniquePath, string base64String, bool useCdnFirst, string overrideFormat = "")
         {
-            var absolutePath = _localFileManager.SaveFileFromBase64String(base64String);
+            var absolutePath = _localFileManager.SaveFileFromBase64String(base64String, overrideFormat);
             var fileSaveFromStringInput = new FileSaveFromStringInput()
             {
                 CreateUniqueName = false,
                 FilePath = absolutePath,
                 SpecialFolder = uniquePath,
+                OverrideFormat = overrideFormat,
                 VirtualFolder = "/Content/Images/",
                 Properties =
                 {

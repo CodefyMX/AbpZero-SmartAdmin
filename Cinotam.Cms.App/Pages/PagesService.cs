@@ -247,7 +247,7 @@ namespace Cinotam.Cms.App.Pages
         public async Task<string> SaveImageFromBase64(Base64Input base64)
         {
             var path = (base64.PageId + base64.Lang).Sluggify();
-            var result = await _fileStoreManager.SaveFileFromBase64(path, base64.Base64String, true);
+            var result = await _fileStoreManager.SaveFileFromBase64(path, base64.Base64String, false, ".png");
             if (result.WasStoredInCloud)
             {
                 return result.Url;

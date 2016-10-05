@@ -5,6 +5,6 @@ namespace Cinotam.FileManager.Local.LocalFileManager
 {
     public interface ILocalFileManager : IFileManagerServiceProvider, IDomainService
     {
-        string SaveFileFromBase64String(string base64String);
+        string SaveFileFromBase64String(string base64String, string overrideFormat);
     }
 }

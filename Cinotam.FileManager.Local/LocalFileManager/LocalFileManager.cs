@@ -13,8 +13,62 @@ namespace Cinotam.FileManager.Local.LocalFileManager
     {
         public bool IsCdnService => false;
         private const string LocalTempImagesFolder = "/Content/Temp/";
+        private const string GenericFolder = "/Content/GenericFiles/";
         private const string LocalUserImagesFolder = "/Content/Users/ProfilePictures/{0}/";
         public async Task<FileManagerServiceResult> SaveImage(IFileManagerServiceInput input)
+        {
+
+            if (input.File == null)
+            {
+                var storeLocalResult = await SaveFromFolder(input);
+                return storeLocalResult;
+            }
+            var result = await SaveFromFileBase(input);
+            return result;
+        }
+
+        private async Task<FileManagerServiceResult> SaveFromFolder(IFileManagerServiceInput input)
+        {
+
+            if (File.Exists(input.FilePath))
+            {
+                //Fix dis!   
+                var fileStream = File.OpenRead(input.FilePath);
+                var virtualFolder = await Task.FromResult(MoveFile(!string.IsNullOrEmpty(input.SpecialFolder) ? (input.VirtualFolder + input.SpecialFolder + "/") : GenericFolder, fileStream, input));
+                return new FileManagerServiceResult()
+                {
+                    VirtualPathResult = virtualFolder,
+                    ImageSaved = true,
+                    ImageSavedInCdn = false,
+                    ImageSavedInServer = true,
+                };
+
+            }
+            return new FileManagerServiceResult()
+            {
+                ImageSaved = false,
+                ImageSavedInCdn = false,
+            };
+        }
+
+        private string MoveFile(string targetFolder, FileStream file, IFileManagerServiceInput input)
+        {
+            try
+            {
+                var absolutePath = FileSystemHelper.GetAbsolutePath(targetFolder);
+                var absolutePathWithName = absolutePath + Path.GetFileName(file.Name);
+                FileSystemHelper.CreateFolder(targetFolder);
+                file.Close();
+                File.Move(input.FilePath, absolutePathWithName);
+                return targetFolder + Path.GetFileName(file.Name);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private async Task<FileManagerServiceResult> SaveFromFileBase(IFileManagerServiceInput input)
         {
             var fileExtension = FileSystemHelper.GetExtension(input.File.FileName);
             var fileName = input.File.FileName;
@@ -50,12 +104,14 @@ namespace Cinotam.FileManager.Local.LocalFileManager
                 ImageSavedInServer = true
             };
         }
+
         /// <summary>
         /// Returns the absolute path where the image was saved
         /// </summary>
         /// <param name="base64String"></param>
+        /// <param name="overrideFormat"></param>
         /// <returns></returns>
-        public string SaveFileFromBase64String(string base64String)
+        public string SaveFileFromBase64String(string base64String, string overrideFormat)
         {
             var image = ConvertToImage(base64String);
 
@@ -63,7 +119,7 @@ namespace Cinotam.FileManager.Local.LocalFileManager
 
             var absolutePath = HttpContext.Current.Server.MapPath(LocalTempImagesFolder);
 
-            var absolutePathWithFileName = absolutePath + fileName;
+            var absolutePathWithFileName = absolutePath + fileName + overrideFormat;
 
             FileSystemHelper.CreateFolder(LocalTempImagesFolder);
 

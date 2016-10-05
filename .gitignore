@@ -245,3 +245,8 @@ ModelManifest.xml
 .fake/
 # TEXT - Log Files
 .txt
+/Cinotam.AbpModuleZero.Web/Content/Images/1es
+/Cinotam.AbpModuleZero.Web/Content/Temp/4ddce8f7-9542-4ff0-adac-2a8e1a272476
+*.png
+/Cinotam.AbpModuleZero.Web/Content/Temp/8ba04694-d9ca-4ce6-a58c-e6ba2c628264
+/Cinotam.AbpModuleZero.Web/Content/Temp/f878e6ea-5ab6-4d58-9dab-0a6841c0b5cf

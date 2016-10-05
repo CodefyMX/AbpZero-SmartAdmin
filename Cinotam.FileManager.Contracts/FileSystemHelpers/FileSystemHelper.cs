@@ -32,8 +32,9 @@ namespace Cinotam.FileManager.Contracts.FileSystemHelpers
         public static void CreateFolder(string virtualPath)
         {
             var path = HostingEnvironment.MapPath(virtualPath);
+            if (string.IsNullOrEmpty(path)) return;
             if (Directory.Exists(path)) return;
-            if (path != null) Directory.CreateDirectory(path);
+            Directory.CreateDirectory(path);
         }
     }
 }
