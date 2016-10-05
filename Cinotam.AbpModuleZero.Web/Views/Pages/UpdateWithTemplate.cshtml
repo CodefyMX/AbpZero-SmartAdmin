@@ -1,5 +1,6 @@
 ﻿@using System.Threading
 @using System.Web.Optimization
+@using Abp.Timing
 @model Cinotam.Cms.App.Pages.Dto.PageViewOutput
 @{
     ViewBag.Title = Model.Title;
@@ -57,7 +58,10 @@ else
 
 @if (!Model.IsPartial)
 {
-
+    foreach (var resourceDto in Model.CssResource)
+    {
+        <link rel="stylesheet" href="@resourceDto.Url" />
+    }
     <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
     @Scripts.Render("~/Bundles/vendor/js/bottom")
@@ -68,9 +72,40 @@ else
         //Localizing momentjs
         moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
     </script>
+        <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    <script src="~/api/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)"></script>
+        <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
     <script src="~/Scripts/Html2Canvas/html2canvas.js"></script>
     <script src="~/Scripts/contentTools/sandbox/build/content-tools.min.js"></script>
     <script type="text/javascript" src="../../Scripts/contentTools/sandbox/sandbox.js"></script>
+    <script>
+
+        (function () {
+            //Get the chunks and put them in the dom
+
+            $(document)
+                .ready(function () {
+                    var pageContent = {
+                        Id: $("#ContentId").val()
+                    }
+                    abp.ui.setBusy($("#content"), abp.services.cms.pagesService.getChunks(pageContent)
+                        .done(function (response) {
+                            if (response.length <= 0) {
+                                abp.message.warn("NoContent");
+                            }
+                            response.forEach(function (element) {
+                                var $jqueryElement = $("[data-name='" + element.key + "']");
+                                $jqueryElement.html(element.value);
+                            });
+                        }));
+                });
+        })();
+    </script>
+
+    foreach (var resourceDto in Model.JsResource)
+    {
+        <script src="@resourceDto.Url"></script>
+    }
 }
 else
 {

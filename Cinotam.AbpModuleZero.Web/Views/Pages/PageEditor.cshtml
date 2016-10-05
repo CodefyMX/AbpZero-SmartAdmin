@@ -1,5 +1,6 @@
 ﻿@using System.Threading
 @using System.Web.Optimization
+@using Abp.Timing
 @model Cinotam.Cms.App.Pages.Dto.PageViewOutput
 @{
     ViewBag.Title = Model.Title;
@@ -66,6 +67,9 @@ else
         //Localizing momentjs
         moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
     </script>
+        <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+        <script src="~/api/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)"></script>
+        <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
     <script src="~/Scripts/Html2Canvas/html2canvas.js"></script>
     <script src="~/Scripts/contentTools/sandbox/build/content-tools.min.js"></script>
     <script type="text/javascript" src="../../Scripts/contentTools/sandbox/sandbox.js"></script>

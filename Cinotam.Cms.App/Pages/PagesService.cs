@@ -537,6 +537,9 @@ namespace Cinotam.Cms.App.Pages
         {
             var html = await _templateManager.GetTemplateContentAsync(templateName);
             var pageContent = await _pageManager.GetPageContentAsync(id, lang);
+            var template = await _templateManager.GetTemplateContentAsync(pageContent.TemplateUniqueName);
+            var css = template.Resources.Where(a => a.ResourceType == "css");
+            var js = template.Resources.Where(a => a.ResourceType == "js");
             return new PageViewOutput()
             {
                 ContentId = pageContent.Id,
@@ -545,7 +548,17 @@ namespace Cinotam.Cms.App.Pages
                 Lang = pageContent.Lang,
                 TemplateName = pageContent.TemplateUniqueName,
                 Title = pageContent.Title,
-                HtmlContent = html.Content
+                HtmlContent = html.Content,
+                JsResource = js.Select(a => new ResourceDto()
+                {
+                    IsCdn = a.IsCdn,
+                    Url = a.ResourceUrl
+                }).ToList(),
+                CssResource = css.Select(a => new ResourceDto()
+                {
+                    IsCdn = a.IsCdn,
+                    Url = a.ResourceUrl
+                }).ToList()
             };
         }
 
