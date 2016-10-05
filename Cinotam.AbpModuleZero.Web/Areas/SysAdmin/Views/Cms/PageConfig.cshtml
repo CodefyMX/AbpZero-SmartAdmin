@@ -136,6 +136,18 @@
                                                 @Html.CheckBoxFor(a => a.IncludeInMenu, new { @class = "js-toggle-menu" }) <span>@L("IncludeInMenu")</span>
                                             </label>
                                         </div>
+                                        <div class="checkbox-inline">
+                                            <label>
+
+                                                @Html.CheckBoxFor(a => a.ShowBreadCrum, new { @class = "js-toggle-breadcrum" }) <span>@L("ShowBreadCrum")</span>
+                                            </label>
+                                        </div>
+                                        <div class="checkbox-inline">
+                                            <label>
+
+                                                @Html.CheckBoxFor(a => a.BreadCrumInContainer, new { @class = "js-toggle-breadcrumcont" }) <span>@L("BreadCrumInContainer")</span>
+                                            </label>
+                                        </div>
                                     }
 
                                 </div>

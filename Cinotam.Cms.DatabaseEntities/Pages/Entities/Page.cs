@@ -18,5 +18,7 @@ namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
         public Category.Entities.Category Category { get; set; }
         public int? CategoryId { get; set; }
         public bool IncludeInMenu { get; set; }
+        public bool ShowBreadCrum { get; set; }
+        public bool BreadCrumInContainer { get; set; }
     }
 }

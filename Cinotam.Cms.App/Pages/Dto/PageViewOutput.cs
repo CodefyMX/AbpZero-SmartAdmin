@@ -16,6 +16,8 @@ namespace Cinotam.Cms.App.Pages.Dto
         public int ContentId { get; set; }
         public List<ResourceDto> CssResource { get; set; } = new EditableList<ResourceDto>();
         public List<ResourceDto> JsResource { get; set; } = new EditableList<ResourceDto>();
+        public bool ShowBreadCrum { get; set; }
+        public bool BreadCrumInContainer { get; set; }
     }
     public class ResourceDto : Resource { }
 }
