@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -115,24 +116,31 @@ namespace Cinotam.Cms.FileSystemTemplateProvider.Provider
         private ICollection<CResource> GetResources(JsonConfigurarion configuration)
         {
             var list = new List<CResource>();
-            foreach (var css in configuration.ExternalResources.Css)
+            if (configuration.ExternalResources.Css != null && configuration.ExternalResources.Css.Any())
             {
-                list.Add(new CResource()
+                foreach (var css in configuration.ExternalResources.Css.Where(a => a != null).OrderBy(a => a.Order))
                 {
-                    ResourceType = "css",
-                    ResourceUrl = css,
-
-                });
+                    list.Add(new CResource()
+                    {
+                        ResourceType = "css",
+                        ResourceUrl = css.Url,
+                        IsCdn = css.IsCdn
+                    });
+                }
             }
-            foreach (var externalResourcesJ in configuration.ExternalResources.Js)
+            if (configuration.ExternalResources.Js != null && configuration.ExternalResources.Js.Any())
             {
-                list.Add(new CResource()
+                foreach (var externalResourcesJ in configuration.ExternalResources.Js.Where(a => a != null).OrderBy(a => a.Order))
                 {
-                    ResourceType = "css",
-                    ResourceUrl = externalResourcesJ,
-
-                });
+                    list.Add(new CResource()
+                    {
+                        ResourceType = "js",
+                        ResourceUrl = externalResourcesJ.Url,
+                        IsCdn = externalResourcesJ.IsCdn
+                    });
+                }
             }
+
             return list;
         }
 

@@ -6,5 +6,6 @@
         public string ResourceUrl { get; set; }
         public ITemplateContent Template { get; set; }
         public string Description { get; set; }
+        public bool IsCdn { get; set; }
     }
 }

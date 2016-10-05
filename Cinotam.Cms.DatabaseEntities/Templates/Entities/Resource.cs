@@ -14,6 +14,7 @@ namespace Cinotam.Cms.DatabaseEntities.Templates.Entities
         [ForeignKey("TemplateId")]
         public virtual Template TemplateObj { get { return _template; } set { _template = value; } }
         public string Description { get; set; }
+        public bool IsCdn { get; set; }
         public virtual int TemplateId { get; set; }
     }
 }

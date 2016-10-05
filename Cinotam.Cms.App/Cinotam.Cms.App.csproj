@@ -108,7 +108,9 @@
     <Compile Include="CinotamCmsAppServiceBase.cs" />
     <Compile Include="EventHandler\CategoryDeletedHandler.cs" />
     <Compile Include="EventHandler\CategoryForPageChangedHandler.cs" />
+    <Compile Include="EventHandler\PageDeleted.cs" />
     <Compile Include="EventHandler\PageStateChangedHandler.cs" />
+    <Compile Include="Events\PageDeletedData.cs" />
     <Compile Include="Events\PageStateChangedData.cs" />
     <Compile Include="Events\CategoryDeletedEventData.cs" />
     <Compile Include="Events\PageCategoryChangedData.cs" />
@@ -180,6 +182,10 @@
     <ProjectReference Include="..\Cinotam.Cms.DatabaseEntities\Cinotam.Cms.DatabaseEntities.csproj">
       <Project>{2A5BA0A4-51FB-4132-BD08-F00357B24F23}</Project>
       <Name>Cinotam.Cms.DatabaseEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.Cms.FileSystemTemplateProvider\Cinotam.Cms.FileSystemTemplateProvider.csproj">
+      <Project>{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115}</Project>
+      <Name>Cinotam.Cms.FileSystemTemplateProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.FileManager.Contracts\Cinotam.FileManager.Contracts.csproj">
       <Project>{B1AD0F0D-EC22-4426-88D9-60C2F19E1DAE}</Project>

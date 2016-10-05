@@ -55,5 +55,6 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             }
             throw new UserFriendlyException(L("AddImage"));
         }
+
     }
 }

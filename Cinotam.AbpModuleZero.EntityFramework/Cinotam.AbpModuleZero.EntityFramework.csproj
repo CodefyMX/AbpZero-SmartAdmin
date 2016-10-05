@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201609281641575_Categories.Designer.cs">
       <DependentUpon>201609281641575_Categories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610051827430_IsCdn.cs" />
+    <Compile Include="Migrations\201610051827430_IsCdn.Designer.cs">
+      <DependentUpon>201610051827430_IsCdn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -300,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609281641575_Categories.resx">
       <DependentUpon>201609281641575_Categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610051827430_IsCdn.resx">
+      <DependentUpon>201610051827430_IsCdn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

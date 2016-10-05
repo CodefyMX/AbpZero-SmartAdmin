@@ -68,12 +68,14 @@ else
         //Localizing momentjs
         moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
     </script>
+    <script src="~/Scripts/Html2Canvas/html2canvas.js"></script>
     <script src="~/Scripts/contentTools/sandbox/build/content-tools.min.js"></script>
     <script type="text/javascript" src="../../Scripts/contentTools/sandbox/sandbox.js"></script>
 }
 else
 {
-    @section Scripts{
+@section Scripts{
+        <script src="~/Scripts/Html2Canvas/html2canvas.js"></script>
         <script src="~/Scripts/contentTools/sandbox/build/content-tools.min.js"></script>
         <script type="text/javascript" src="../../Scripts/contentTools/sandbox/sandbox.js"></script>
         <script>

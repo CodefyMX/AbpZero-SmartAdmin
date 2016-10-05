@@ -513,7 +513,7 @@
 
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a class="btn btn-lg btn-warning">@L("DeletePage")</a>
+                                    <a data-id="@Model.Id" class="btn btn-lg btn-warning js-delete-page">@L("DeletePage")</a>
                                 </div>
                             </div>
                         </div>
@@ -557,6 +557,18 @@
 
                         }));
                 });
+            $(".js-delete-page").click(function () {
+                var id = $(this).data("id");
+                abp.message.confirm(LSys("Sure"),LSys("ElementWillBeDeleted"),function(response) {
+                    if (response) {
+                        abp.services.cms.pagesService.deletePage(id)
+                            .done(function() {
+                                window.location.href = "/SysAdmin/Cms/MyPages";
+                            });
+                    }
+                });
+
+            });
             $("#CategoryId")
                 .on("change", function (e) {
                     e.preventDefault();

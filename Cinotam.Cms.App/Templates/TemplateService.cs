@@ -60,6 +60,8 @@ namespace Cinotam.Cms.App.Templates
         }
         public async Task AddTemplate(TemplateInput input)
         {
+            if (string.IsNullOrEmpty(input.Content)) input.Content = string.Empty;
+
             if (!string.IsNullOrEmpty(input.CopyFrom))
             {
                 input.Content = (await _templateManager.GetTemplateContentAsync(input.CopyFrom)).Content;

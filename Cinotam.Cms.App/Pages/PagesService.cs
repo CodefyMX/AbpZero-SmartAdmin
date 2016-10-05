@@ -342,6 +342,9 @@ namespace Cinotam.Cms.App.Pages
         public async Task<PageViewOutput> GetPageViewById(int id, string lang)
         {
             var pageContent = await _pageManager.GetPageContentAsync(id, lang);
+            var template = await _templateManager.GetTemplateContentAsync(pageContent.TemplateUniqueName);
+            var css = template.Resources.Where(a => a.ResourceType == "css");
+            var js = template.Resources.Where(a => a.ResourceType == "js");
             return new PageViewOutput()
             {
                 Id = id,
@@ -352,6 +355,16 @@ namespace Cinotam.Cms.App.Pages
                 BreadCrums = await GetBreadCrumsForPage(id),
                 IsPartial = pageContent.IsPartial,
                 ContentId = pageContent.Id,
+                JsResource = js.Select(a => new ResourceDto()
+                {
+                    IsCdn = a.IsCdn,
+                    Url = a.ResourceUrl
+                }).ToList(),
+                CssResource = css.Select(a => new ResourceDto()
+                {
+                    IsCdn = a.IsCdn,
+                    Url = a.ResourceUrl
+                }).ToList()
             };
         }
 
@@ -360,6 +373,9 @@ namespace Cinotam.Cms.App.Pages
         {
             var content = _contentRepository.FirstOrDefault(a => a.Url.ToUpper().Equals(slug.ToUpper()) && a.Page.Active);
             if (content == null) return null;
+            var template = await _templateManager.GetTemplateContentAsync(content.TemplateUniqueName);
+            var css = template.Resources.Where(a => a.ResourceType == "css");
+            var js = template.Resources.Where(a => a.ResourceType == "js");
             if (content.Lang == CultureInfo.CurrentUICulture.Name)
             {
                 return new PageViewOutput()
@@ -370,7 +386,17 @@ namespace Cinotam.Cms.App.Pages
                     TemplateName = content.TemplateUniqueName,
                     Title = content.Title,
                     IsPartial = content.IsPartial,
-                    BreadCrums = await GetBreadCrumsForPage(content.PageId)
+                    BreadCrums = await GetBreadCrumsForPage(content.PageId),
+                    JsResource = js.Select(a => new ResourceDto()
+                    {
+                        IsCdn = a.IsCdn,
+                        Url = a.ResourceUrl
+                    }).ToList(),
+                    CssResource = css.Select(a => new ResourceDto()
+                    {
+                        IsCdn = a.IsCdn,
+                        Url = a.ResourceUrl
+                    }).ToList()
                 };
             }
             var currentLangContent = _contentRepository.FirstOrDefault(a => a.PageId == content.PageId && CultureInfo.CurrentUICulture.Name == a.Lang);
@@ -670,6 +696,31 @@ namespace Cinotam.Cms.App.Pages
             page.TemplateName = input.TemplateName;
             await _pageManager.SaveOrEditPageAsync(page);
         }
+
+        public async Task DeletePage(int pageId)
+        {
+            var page = _pageRepository.FirstOrDefault(a => a.Id == pageId);
+
+            await SetChildsNull(pageId);
+
+            _pageRepository.Delete(page);
+
+            //Remove elements from menu or other operations
+            EventBus.Trigger(new PageDeletedData()
+            {
+                PageId = pageId
+            });
+        }
+
+        private async Task SetChildsNull(int pageId)
+        {
+            var childPages = await _pageRepository.GetAllListAsync(a => a.ParentPage == pageId);
+            foreach (var childPage in childPages)
+            {
+                childPage.ParentPage = null;
+            }
+        }
+
         private async Task<PageConfigurationObject> CreateEmptyPageConfigurationObject(Page page)
         {
             var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);

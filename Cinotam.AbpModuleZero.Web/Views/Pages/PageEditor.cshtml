@@ -8,20 +8,55 @@
         Layout = null;
     }
 }
-@*<link rel="stylesheet" type="text/css" href="../../Scripts/contentTools/sandbox/sandbox.css">*@
-<link href="~/Scripts/contentTools/sandbox/build/content-tools.min.css" rel="stylesheet" />
-<link href="~/css/pageViewStyle.css" rel="stylesheet" />
-@Html.HiddenFor(a => a.Lang)
-@Html.HiddenFor(a => a.Id)
-@Html.HiddenFor(a => a.TemplateName)
 
-<div id="content">
-    @Html.Raw(Model.HtmlContent)
-</div>
-@if (!Model.IsPartial)
+@if (Model.IsPartial)
 {
+    @*<link rel="stylesheet" type="text/css" href="../../Scripts/contentTools/sandbox/sandbox.css">*@
+    <link href="~/Scripts/contentTools/sandbox/build/content-tools.min.css" rel="stylesheet" />
+    <link href="~/css/pageViewStyle.css" rel="stylesheet" />
+    @Html.HiddenFor(a => a.Lang)
+    @Html.HiddenFor(a => a.Id)
+    @Html.HiddenFor(a => a.TemplateName)
 
-     <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    foreach (var resourceDto in Model.CssResource)
+    {
+        <link rel="stylesheet" href="@resourceDto.Url" />
+    }
+
+
+    <div id="content">
+        @Html.Raw(Model.HtmlContent)
+    </div>
+
+    @section Scripts{
+        <script src="~/Scripts/Html2Canvas/html2canvas.js"></script>
+        <script src="~/Scripts/contentTools/sandbox/build/content-tools.min.js"></script>
+        <script type="text/javascript" src="../../Scripts/contentTools/sandbox/sandbox.js"></script>
+    }
+}
+else
+{
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>@Model.Title</title>
+        <link href="~/Scripts/contentTools/sandbox/build/content-tools.min.css" rel="stylesheet" />
+        <link href="~/css/pageViewStyle.css" rel="stylesheet" />
+       
+
+        @foreach (var resourceDto in Model.CssResource)
+        {
+            <link rel="stylesheet" href="@resourceDto.Url" />
+        }
+    </head>
+    <body>
+        @Html.HiddenFor(a => a.Lang)
+        @Html.HiddenFor(a => a.Id)
+        @Html.HiddenFor(a => a.TemplateName)
+    <div id="content">
+        @Html.Raw(Model.HtmlContent)
+    </div>
+    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
     @Scripts.Render("~/Bundles/vendor/js/bottom")
     <script src="~/Scripts/bootstrap.min.js"></script>
@@ -34,13 +69,10 @@
     <script src="~/Scripts/Html2Canvas/html2canvas.js"></script>
     <script src="~/Scripts/contentTools/sandbox/build/content-tools.min.js"></script>
     <script type="text/javascript" src="../../Scripts/contentTools/sandbox/sandbox.js"></script>
-}
-else
-{
-
-    @section Scripts{
-        <script src="~/Scripts/Html2Canvas/html2canvas.js"></script>
-        <script src="~/Scripts/contentTools/sandbox/build/content-tools.min.js"></script>
-        <script type="text/javascript" src="../../Scripts/contentTools/sandbox/sandbox.js"></script>
+    @foreach (var resourceDto in Model.JsResource)
+    {
+        <script src="@resourceDto.Url"></script>
     }
+    </body>
+</html>
 }

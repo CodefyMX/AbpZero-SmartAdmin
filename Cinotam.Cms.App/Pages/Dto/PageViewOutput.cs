@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Castle.Components.DictionaryAdapter;
+using Cinotam.Cms.FileSystemTemplateProvider.Provider.JsonEntities;
 using System.Collections.Generic;
 
 namespace Cinotam.Cms.App.Pages.Dto
@@ -13,5 +14,8 @@ namespace Cinotam.Cms.App.Pages.Dto
         public bool IsPartial { get; set; }
         public List<BreadCrum> BreadCrums { get; set; } = new EditableList<BreadCrum>();
         public int ContentId { get; set; }
+        public List<ResourceDto> CssResource { get; set; } = new EditableList<ResourceDto>();
+        public List<ResourceDto> JsResource { get; set; } = new EditableList<ResourceDto>();
     }
+    public class ResourceDto : Resource { }
 }
