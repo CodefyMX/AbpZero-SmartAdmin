@@ -29,6 +29,17 @@
                     "render": function (data, type, row) {
                         return " <a data-modal href='/SysAdmin/Users/CreateEditUser/" + row.Id + "' class='btn btn-default btn-xs' title='Editar usuario' ><i class='fa fa-edit'></i></a> <a data-modal href='/SysAdmin/Users/EditRoles/" + row.Id + "' class='btn btn-default btn-xs' title='Editar roles' ><i class='fa fa-lock'></i></a>";
                     },
+                    "targets": 3
+                },
+                {
+                    className: "text-center",
+                    "render": function (data, type, row) {
+                        if (row.IsLockoutEnabled) {
+                            return LSys("Locked");
+                        } else {
+                            return LSys("Unlocked");
+                        }
+                    },
                     "targets": 2
                 },
         {
@@ -52,8 +63,7 @@
                     "data": "Name"
 
                 },
-                { "data": "EmailAddress" },
-                { "data": "Id" }
+                { "data": "EmailAddress" }
             ],
 
         });
