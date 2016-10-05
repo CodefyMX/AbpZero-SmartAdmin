@@ -3,6 +3,7 @@ using Cinotam.FileManager.Files.Inputs;
 using Cinotam.FileManager.Files.Outputs;
 using Cinotam.FileManager.Local.LocalFileManager;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -147,6 +148,7 @@ namespace Cinotam.FileManager.Files
                 CreateUniqueName = false,
                 FilePath = absolutePath,
                 SpecialFolder = uniquePath,
+                VirtualFolder = "/Content/Images/",
                 Properties =
                 {
                     ["TransformationType"] = 0
@@ -185,6 +187,59 @@ namespace Cinotam.FileManager.Files
                 }
             }
             throw new InvalidOperationException(nameof(IFileManagerServiceProvider));
+        }
+
+        public Image GetImageInfo(string absolutePath)
+        {
+            return Image.FromFile(absolutePath);
+        }
+
+        public SavedFileResult CropImage(string virtualPath, string absoluteFilePath, int inputWidth, string inputCrop)
+        {
+            var cropCoords = CreateCropCoordsFromString(inputCrop);
+            var image = GetImageInfo(absoluteFilePath);
+
+            var gr = Graphics.FromImage(image);
+
+
+
+
+            return new SavedFileResult()
+            {
+                VirtualPath = virtualPath,
+                AbsolutePath = absoluteFilePath,
+            };
+        }
+
+
+        private int Y = 0;
+        private int X = 1;
+        private int Yi = 2;
+        private int Xi = 3;
+        private CropCoords CreateCropCoordsFromString(string input)
+        {
+            var splitInfo = input.Split(',');
+            var cropCoords = new CropCoords();
+            for (int s = 0; s < splitInfo.Length; s++)
+            {
+                if (s == X)
+                {
+                    cropCoords.X = Convert.ToDouble(splitInfo[s]);
+                }
+                if (s == Y)
+                {
+                    cropCoords.Y = Convert.ToDouble(splitInfo[s]);
+                }
+                if (s == Xi)
+                {
+                    cropCoords.Xi = Convert.ToDouble(splitInfo[s]);
+                }
+                if (s == Yi)
+                {
+                    cropCoords.Yi = Convert.ToDouble(splitInfo[s]);
+                }
+            }
+            return cropCoords;
         }
     }
 }

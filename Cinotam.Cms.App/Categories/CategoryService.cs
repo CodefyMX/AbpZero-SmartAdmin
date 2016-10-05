@@ -37,7 +37,7 @@ namespace Cinotam.Cms.App.Categories
 
         public async Task AddEditCategory(CategoryInput input)
         {
-            var id = await _categoryManager.AddEditCategory(input.Name.Sluggify(), input.DisplayName);
+            var id = await _categoryManager.AddEditCategory(input.Name.Sluggify(), input.Name);
             var categoryCreated = _categoryRepository.FirstOrDefault(id);
             foreach (var inputLanguageInput in input.LanguageInputs)
             {

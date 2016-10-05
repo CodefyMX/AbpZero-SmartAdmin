@@ -34,7 +34,7 @@ namespace Cinotam.FileManager.Local.LocalFileManager
             else
             {
                 absolutePath = FileSystemHelper.GetAbsolutePath(input.VirtualFolder);
-                route = absolutePath + input.VirtualFolder + fileName;
+                route = absolutePath + fileName;
             }
             FileSystemHelper.CreateFolder(input.VirtualFolder);
             var virtualFullRoute = input.VirtualFolder + fileName;

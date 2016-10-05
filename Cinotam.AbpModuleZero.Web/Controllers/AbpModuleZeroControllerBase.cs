@@ -114,5 +114,15 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         {
             identityResult.CheckErrors(LocalizationManager);
         }
+
+        protected void CreateCookie(string name, string value)
+        {
+            if (HttpContext.Session != null) HttpContext.Session[name] = value;
+        }
+
+        protected object GetCookieValue(string name)
+        {
+            return HttpContext.Session?[name];
+        }
     }
 }

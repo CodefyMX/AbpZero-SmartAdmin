@@ -14,6 +14,7 @@ using Cinotam.Cms.Core.Templates;
 using Cinotam.Cms.DatabaseEntities.Category.Entities;
 using Cinotam.Cms.DatabaseEntities.CustomFilters;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
+using Cinotam.FileManager.Contracts;
 using Cinotam.FileManager.Files;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using System.Web;
 using Chunk = Cinotam.Cms.App.Pages.Dto.Chunk;
 
 namespace Cinotam.Cms.App.Pages
@@ -204,6 +206,55 @@ namespace Cinotam.Cms.App.Pages
             page.ParentPage = input.ParentPageId;
             await _pageManager.SaveOrEditPageAsync(page);
         }
+
+        public async Task<ImageAddedResult> AddImageToPage(AddImageInput input)
+        {
+            var specialFolder = $"/Content/PageImages/{input.PageId}/{input.Lang}";
+            var fileSavedInfo = await _fileStoreManager.SaveFile(new FileManagerServiceInput()
+            {
+                CreateUniqueName = true,
+                File = input.Image,
+                VirtualFolder = specialFolder
+            }, false);
+
+
+            var imageInfo = _fileStoreManager.GetImageInfo(fileSavedInfo.AbsolutePath);
+
+
+
+            return new ImageAddedResult()
+            {
+                Size = new[] { imageInfo.Width.ToString(), imageInfo.Height.ToString() },
+                Url = fileSavedInfo.VirtualPath,
+            };
+        }
+
+        public async Task<ImageAddedResult> ProcessImage(ProcessImageInput input)
+        {
+            var absoluteFilePath = HttpContext.Current.Server.MapPath(input.Url);
+
+            var result =
+
+                await Task.FromResult(_fileStoreManager.CropImage(input.Url, absoluteFilePath, input.Width, input.Crop));
+
+            return new ImageAddedResult()
+            {
+                AbsolutePath = result.AbsolutePath,
+                Url = result.Url
+            };
+        }
+
+        public async Task<string> SaveImageFromBase64(Base64Input base64)
+        {
+            var path = (base64.PageId + base64.Lang).Sluggify();
+            var result = await _fileStoreManager.SaveFileFromBase64(path, base64.Base64String, true);
+            if (result.WasStoredInCloud)
+            {
+                return result.Url;
+            }
+            return result.VirtualPath;
+        }
+
         public async Task<CategorySetResult> SetCategory(CategoryAssignationInput input)
         {
             if (input.CategoryId == 0)
@@ -613,6 +664,12 @@ namespace Cinotam.Cms.App.Pages
             return pageContentsList;
         }
 
+        public async Task SetTemplate(SetTemplateInput input)
+        {
+            var page = _pageRepository.Get(input.PageId);
+            page.TemplateName = input.TemplateName;
+            await _pageManager.SaveOrEditPageAsync(page);
+        }
         private async Task<PageConfigurationObject> CreateEmptyPageConfigurationObject(Page page)
         {
             var allLanguages = await _applicationLanguageManager.GetLanguagesAsync(AbpSession.TenantId);
