@@ -1,0 +1,25 @@
+﻿@using Castle.Core.Internal
+@model IEnumerable<Cinotam.ModuleZero.AppModule.Features.Dto.FeatureDto>
+@if (!Model.IsNullOrEmpty())
+{
+    <ul>
+        @foreach (var child in Model)
+        {
+            if (child.InputType.Name == "SINGLE_LINE_STRING")
+            {
+
+                <li class="hide-checkbox" id="@child.Name">
+                    <a> @child.Name (@child.DefaultValue)</a>
+                    @{ Html.RenderPartial("_loadChildrens", child.ChildFeatures); }
+                </li>
+                        }
+                        else
+                        {
+                            <li id="@child.Name">
+                                <a> @child.Name</a>
+                                @{ Html.RenderPartial("_loadChildrens", child.ChildFeatures); }
+                            </li>
+                                        }
+                                    }
+    </ul>
+                                    }

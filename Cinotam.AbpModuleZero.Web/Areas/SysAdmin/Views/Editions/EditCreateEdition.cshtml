@@ -1,0 +1,142 @@
+﻿@using Abp.Collections.Extensions
+@model Cinotam.ModuleZero.AppModule.Features.Dto.NewEditionInput
+@{
+    Layout = null;
+}
+<link href="~/Scripts/jstree/themes/proton/style.min.css" rel="stylesheet" />
+<style>
+    .jstree-anchor > .jstree-checkbox-disabled { display: none; }
+    .vakata-context, .vakata-context ul {
+           z-index: 10000;
+    }
+</style>
+<div class="modal-dialog" id="leaderModal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title"><i class="fa fa-3x fa-hacker-news"></i> </h4>
+        </div>
+        <div class="modal-body no-padding">
+            <div class="padding-10">
+
+                <form method="POST" id="createEditEdition" class="smart-form">
+                    @Html.HiddenFor(a => a.Id)
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#iss1" data-toggle="tab" aria-expanded="true">@L("EditionProperties")</a>
+                        </li>
+                        <li class="">
+                            <a href="#iss2" data-toggle="tab" aria-expanded="false">@L("Features")</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active in" id="iss1">
+
+                            <fieldset>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-2">@L("Name")</label>
+                                        <div class="col col-10">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-gear"></i>
+                                                @Html.TextBoxFor(a => a.DisplayName, new { required = "required" })
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="label col col-2">@L("Price")</label>
+                                        <div class="col col-10">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-gear"></i>
+                                                @Html.TextBoxFor(a => a.Price, new { required = "required" })
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                            </fieldset>
+                        </div>
+                        <div class="tab-pane fade" id="iss2">
+                            <div class="row padding-5">
+                                <div class="col col-12">
+
+                                    <div id="container">
+                                        <ul>
+                                            @foreach (var feature in Model.Features)
+                                            {
+                                                if (feature.InputType.Name == "CHECKBOX")
+                                                {
+                                                    <li data-jstree='{ "selected" : @feature.Selected.ToString().ToLower() }'>
+                                                        <a>@feature.Name</a>
+                                                        @{ Html.RenderPartial("_loadChildrens", feature.ChildFeatures); }
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                     <li>
+                                                         <a>@feature.Name @feature.DefaultValue</a>
+                                                         @{ Html.RenderPartial("_loadChildrens", feature.ChildFeatures); }
+                                                     </li>
+                                                 }
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer>
+                        <button type="submit" class="btn btn-primary">
+                            @L("Save")
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            @L("Cancel")
+                        </button>
+                    </footer>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jstree/jstree.min.js"></script>
+
+<script>
+    (function () {
+        var contextMenu = function(node) {
+            var items = {
+                editUnit: {
+                    label: LSys('EditValue'),
+                    action: function (data) {
+                        console.log(data);
+                    }
+                }
+            }
+
+            return items;
+        }
+        $(document)
+            .ready(function() {
+                $("#container")
+                    .jstree({
+                        contextmenu: {
+                            items: contextMenu
+                        },
+                        "checkbox": {
+                            "keep_selected_style": false
+                        },
+                        'plugins': ["wholerow", "checkbox", "contextmenu"],
+                        'core': {
+                            'themes': {
+                                'name': 'proton',
+                                'responsive': true
+                            }
+                        }
+                    });
+
+                
+            });
+    })()
+</script>

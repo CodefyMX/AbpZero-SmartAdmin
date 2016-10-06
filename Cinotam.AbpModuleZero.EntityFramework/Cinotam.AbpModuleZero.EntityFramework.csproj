@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201610052058569_BreadCrumOptions.Designer.cs">
       <DependentUpon>201610052058569_BreadCrumOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610061550416_Edition_Price.cs" />
+    <Compile Include="Migrations\201610061550416_Edition_Price.Designer.cs">
+      <DependentUpon>201610061550416_Edition_Price.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -314,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610052058569_BreadCrumOptions.resx">
       <DependentUpon>201610052058569_BreadCrumOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610061550416_Edition_Price.resx">
+      <DependentUpon>201610061550416_Edition_Price.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

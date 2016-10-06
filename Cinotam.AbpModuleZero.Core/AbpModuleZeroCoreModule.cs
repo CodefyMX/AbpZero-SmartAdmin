@@ -25,7 +25,7 @@ namespace Cinotam.AbpModuleZero
             Configuration.Modules.Zero().EntityTypes.User = typeof(User);
 
             //Remove the following line to disable multi-tenancy.
-            Configuration.MultiTenancy.IsEnabled = false;
+            Configuration.MultiTenancy.IsEnabled = true;
 
             //Add/remove localization sources here
             Configuration.Localization.Sources.Add(
@@ -49,6 +49,7 @@ namespace Cinotam.AbpModuleZero
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
 
             Configuration.Authorization.Providers.Add<AbpModuleZeroAuthorizationProvider>();
+            Configuration.Features.Providers.Add<AppFeatureProvider>();
         }
 
         public override void Initialize()

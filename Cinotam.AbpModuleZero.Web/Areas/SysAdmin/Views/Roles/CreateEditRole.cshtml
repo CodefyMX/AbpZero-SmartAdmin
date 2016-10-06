@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col col-12">
                             <h5>Permisos</h5>
-                            <div class="tree smart-form">
+                            <div class="tree smart-form" id="container">
                                 <ul id="tree">
                                     @foreach (var permission in Model.AssignedPermissions)
                                     {
@@ -60,31 +60,7 @@
                                             </span>
                                             @if (permission.ChildPermissions.Any())
                                             {
-                                                <ul>
-                                                    @foreach (var childPermission in permission.ChildPermissions)
-                                                    {
-
-                                                        <li id="@childPermission.Name">
-                                                            <span>
-                                                                <label class="checkbox inline-block">
-                                                                    @if (childPermission.Granted)
-                                                                    {
-
-                                                                        <input checked="checked" id="@childPermission.Name" value="@childPermission.Name" type="checkbox">
-
-                                                                    }
-                                                                    else
-                                                                    {
-
-                                                                        <input id="@childPermission.Name" value="@childPermission.Name" type="checkbox">
-
-                                                                    }
-                                                                    <i></i>@childPermission.DisplayName
-                                                                </label>
-                                                            </span>
-                                                        </li>
-                                                    }
-                                                </ul>
+                                                {Html.RenderPartial("_childPermissions",permission.ChildPermissions);}
                                             }
                                         </li>
                                     }

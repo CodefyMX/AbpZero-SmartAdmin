@@ -14,7 +14,7 @@
     <RootNamespace>Cinotam.AbpModuleZero.Web</RootNamespace>
     <AssemblyName>Cinotam.AbpModuleZero.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -1128,6 +1128,9 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css.map" />
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
+    <Content Include="Areas\SysAdmin\Views\Editions\EditionList.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Editions\EditCreateEdition.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Editions\_loadChildrens.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
@@ -1144,6 +1147,7 @@
     <Content Include="Areas\SysAdmin\Views\Menu\CreateEditMenu.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\SetCategories.cshtml" />
     <Content Include="Areas\SysAdmin\Views\PageCategories\CreateEditCategoryContent.cshtml" />
+    <None Include="Areas\SysAdmin\Views\Roles\_childPermissions.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
@@ -1241,6 +1245,22 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jstree\jstree.js" />
+    <Content Include="Scripts\jstree\jstree.min.js" />
+    <Content Include="Scripts\jstree\themes\default\30px.png" />
+    <Content Include="Scripts\jstree\themes\default\32px.png" />
+    <Content Include="Scripts\jstree\themes\default\40px.png" />
+    <Content Include="Scripts\jstree\themes\default\style.css" />
+    <Content Include="Scripts\jstree\themes\default\style.min.css" />
+    <Content Include="Scripts\jstree\themes\default\throbber.gif" />
+    <Content Include="Scripts\jstree\themes\proton\30px.png" />
+    <Content Include="Scripts\jstree\themes\proton\32px.png" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-bold-webfont.svg" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-extralight-webfont.svg" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.svg" />
+    <Content Include="Scripts\jstree\themes\proton\style.css" />
+    <Content Include="Scripts\jstree\themes\proton\style.min.css" />
+    <Content Include="Scripts\jstree\themes\proton\throbber.gif" />
     <Content Include="Scripts\lightBox2\css\lightbox.css" />
     <Content Include="Scripts\lightBox2\css\lightbox.min.css" />
     <Content Include="Scripts\lightBox2\images\close.png" />
@@ -1302,6 +1322,7 @@
     <Compile Include="Areas\SysAdmin\Controllers\CmsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\SysAdmin\Controllers\EditionsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\LanguagesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\LayoutController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\MenuController.cs" />
@@ -1372,6 +1393,15 @@
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Scripts\lightBox2\js\lightbox-plus-jquery.min.map" />
     <Content Include="Scripts\lightBox2\js\lightbox.min.map" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-bold-webfont.eot" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-bold-webfont.ttf" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-bold-webfont.woff" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-extralight-webfont.eot" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-extralight-webfont.ttf" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-extralight-webfont.woff" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.eot" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.ttf" />
+    <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.woff" />
     <None Include="Views\Layout\PagesMenu.cshtml" />
     <None Include="Views\Layout\_childsMenu.cshtml" />
     <Content Include="Areas\SysAdmin\Views\PageCategories\MyCategories.cshtml" />
@@ -1430,6 +1460,7 @@
     <Folder Include="Areas\SysAdmin\Models\" />
     <Folder Include="Content\Templates\ArticlePage\Resources\" />
     <Folder Include="Content\Templates\Simple\Resources\" />
+    <Folder Include="Scripts\jstree\libs\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1442,11 +1473,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61814</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1634</IISUrl>
+          <IISUrl>http://localhost:61815/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

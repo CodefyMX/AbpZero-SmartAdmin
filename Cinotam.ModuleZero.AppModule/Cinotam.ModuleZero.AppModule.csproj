@@ -118,6 +118,11 @@
     <Compile Include="CinotamModuleZeroAppModule.cs" />
     <Compile Include="CinotamModuleZeroAppServiceBase.cs" />
     <Compile Include="CinotamModuleZeroConsts.cs" />
+    <Compile Include="Features\Dto\EditionDto.cs" />
+    <Compile Include="Features\Dto\EditionsOutput.cs" />
+    <Compile Include="Features\Dto\NewEditionInput.cs" />
+    <Compile Include="Features\FeatureService.cs" />
+    <Compile Include="Features\IFeatureService.cs" />
     <Compile Include="Languages\Dto\LanguageDto.cs" />
     <Compile Include="Languages\Dto\LanguageSelected.cs" />
     <Compile Include="Languages\Dto\LanguagesOutput.cs" />

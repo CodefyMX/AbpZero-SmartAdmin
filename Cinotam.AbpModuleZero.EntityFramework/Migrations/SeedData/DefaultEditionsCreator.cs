@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using Abp.Application.Editions;
-using Cinotam.AbpModuleZero.Editions;
+﻿using Cinotam.AbpModuleZero.Editions;
 using Cinotam.AbpModuleZero.EntityFramework;
+using System.Linq;
 
 namespace Cinotam.AbpModuleZero.Migrations.SeedData
 {
@@ -24,12 +23,12 @@ namespace Cinotam.AbpModuleZero.Migrations.SeedData
             var defaultEdition = _context.Editions.FirstOrDefault(e => e.Name == EditionManager.DefaultEditionName);
             if (defaultEdition == null)
             {
-                defaultEdition = new Edition { Name = EditionManager.DefaultEditionName, DisplayName = EditionManager.DefaultEditionName };
+                defaultEdition = new CinotamEdition() { Name = EditionManager.DefaultEditionName, DisplayName = EditionManager.DefaultEditionName };
                 _context.Editions.Add(defaultEdition);
                 _context.SaveChanges();
 
                 //TODO: Add desired features to the standard edition, if wanted!
-            }   
+            }
         }
     }
 }

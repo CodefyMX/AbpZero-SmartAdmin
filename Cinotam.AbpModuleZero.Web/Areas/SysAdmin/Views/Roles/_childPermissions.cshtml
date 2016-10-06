@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Cinotam.ModuleZero.AppModule.Roles.Dto.AssignedPermission>
+
+<ul>
+    @foreach (var childPermission in Model)
+    {
+
+        <li id="@childPermission.Name">
+            <span>
+                <label class="checkbox inline-block">
+                    @if (childPermission.Granted)
+                    {
+
+                        <input checked="checked" id="@childPermission.Name" value="@childPermission.Name" type="checkbox">
+
+                    }
+                    else
+                    {
+
+                        <input id="@childPermission.Name" value="@childPermission.Name" type="checkbox">
+
+                    }
+                    <i></i>@childPermission.DisplayName
+                </label>
+            </span>
+            @if (childPermission.ChildPermissions.Any())
+            {
+                { Html.RenderPartial("_childPermissions"); }
+            }
+        </li>
+    }
+</ul>
