@@ -3,7 +3,7 @@
 @{
     Layout = null;
 }
-
+<link href="~/Scripts/jstree/themes/proton/style.min.css" rel="stylesheet" />
 <div class="modal-dialog" id="leaderModal" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -31,7 +31,7 @@
                             <div class="col col-10">
                                 <label class="input">
                                     <i class="icon-append fa fa-gear"></i>
-                                    @Html.TextBoxFor(a => a.DisplayName,new {required="required"})
+                                    @Html.TextBoxFor(a => a.DisplayName, new { required = "required" })
                                 </label>
                             </div>
                         </div>
@@ -39,28 +39,16 @@
                     <div class="row">
                         <div class="col col-12">
                             <h5>Permisos</h5>
-                            <div class="tree smart-form" id="container">
+                            <div id="container">
                                 <ul id="tree">
                                     @foreach (var permission in Model.AssignedPermissions)
                                     {
-                                        <li id="@permission.Name">
-                                            <span>
-                                                <label class="checkbox inline-block">
-                                                    @if (permission.Granted)
-                                                    {
-                                                        <input type="checkbox" checked="checked" id="@permission.Name" name="checkbox-inline">
+                                        <li data-jstree='{ "selected" : @permission.Granted.ToString().ToLower() }' id="@permission.Name">
+                                            @permission.DisplayName
 
-                                                    }
-                                                    else
-                                                    {
-                                                        <input type="checkbox" id="@permission.Name" value="@permission.Name">
-                                                    }
-                                                    <i></i>@permission.DisplayName
-                                                </label>
-                                            </span>
                                             @if (permission.ChildPermissions.Any())
                                             {
-                                                {Html.RenderPartial("_childPermissions",permission.ChildPermissions);}
+                                                { Html.RenderPartial("_childPermissions", permission.ChildPermissions); }
                                             }
                                         </li>
                                     }
@@ -82,6 +70,9 @@
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/jstree/jstree.min.js"></script>
+
 <script>
     (function () {
         var modalType = "MODAL_ROLE_CREATED";
@@ -91,8 +82,8 @@
             var roleName = $("#DisplayName").val();
             $("body").on("click", ".js-delete-role", function () {
                 var id = $(this).data("id");
-                var message =abp.utils.formatString(LSys("RoleDeleteMessage"),roleName);
-               
+                var message = abp.utils.formatString(LSys("RoleDeleteMessage"), roleName);
+
                 abp.message.confirm(message, LSys("ConfirmQuestion"), function (response) {
                     if (response) {
                         abp.ui.setBusy($("#createEditRole"), abp.services.app.role.deleteRole(id).done(function () {
@@ -101,51 +92,69 @@
                     }
                 });
             });
-            $('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
-            $('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch').on('click', function (e) {
-                //var children = $ (this).parent ('li.parent_li').find (' > ul > li');
-                //if (children.is (':visible')) {
-                //    children.hide ('fast');
-                //    $ (this).attr ('title', 'Expand this branch').find (' > i').removeClass ().addClass ('fa fa-lg fa-plus-circle');
-                //} else {
-                //    children.show ('fast');
-                //    $ (this).attr ('title', 'Collapse this branch').find (' > i').removeClass ().addClass ('fa fa-lg fa-minus-circle');
-                //}
-                e.stopPropagation();
-            });
-            var checkBoxs = $("#tree input");
-            var total = checkBoxs.length;
-            $(checkBoxs).each(function (nmb) {
-                var self = this;
-                if (nmb > 0) {
-                    //skip first
-                    $(self).on("click", function () {
-                        var allChecked;
-                        if ($(this).is(":checked")) {
-                            allChecked = $("#tree input:checked").length;
-                            
-                            if (allChecked + 1 >= total) {
-                                $(checkBoxs[0]).prop("checked", true);
-                            }
-                        } else {
-                            $(checkBoxs[0]).prop("checked", false);
-                        }
-                    });
-                }
 
-            });
-            $(checkBoxs[0]).on("click", function () {
-                if ($(checkBoxs[0]).is(":checked")) {
-                    $(checkBoxs).each(function () {
-                        $(this).prop("checked", true);
-                    });
-                } else {
-                    console.log("Parent off");
-                    $(checkBoxs).each(function () {
-                        $(this).prop("checked", false);
-                    });
-                }
-            });
+
+            $("#container")
+                .jstree({
+                    "checkbox": {
+                        "keep_selected_style": false
+                    },
+                    'plugins': ["wholerow","html_data", "checkbox", "ui"],
+                    'core': {
+                        'themes': {
+                            'name': 'proton',
+                            'responsive': true
+                        }
+                    }
+                });
+
+
+
+            //$('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
+            //$('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch').on('click', function (e) {
+            //    //var children = $ (this).parent ('li.parent_li').find (' > ul > li');
+            //    //if (children.is (':visible')) {
+            //    //    children.hide ('fast');
+            //    //    $ (this).attr ('title', 'Expand this branch').find (' > i').removeClass ().addClass ('fa fa-lg fa-plus-circle');
+            //    //} else {
+            //    //    children.show ('fast');
+            //    //    $ (this).attr ('title', 'Collapse this branch').find (' > i').removeClass ().addClass ('fa fa-lg fa-minus-circle');
+            //    //}
+            //    e.stopPropagation();
+            //});
+            //var checkBoxs = $("#tree input");
+            //var total = checkBoxs.length;
+            //$(checkBoxs).each(function (nmb) {
+            //    var self = this;
+            //    if (nmb > 0) {
+            //        //skip first
+            //        $(self).on("click", function () {
+            //            var allChecked;
+            //            if ($(this).is(":checked")) {
+            //                allChecked = $("#tree input:checked").length;
+
+            //                if (allChecked + 1 >= total) {
+            //                    $(checkBoxs[0]).prop("checked", true);
+            //                }
+            //            } else {
+            //                $(checkBoxs[0]).prop("checked", false);
+            //            }
+            //        });
+            //    }
+
+            //});
+            //$(checkBoxs[0]).on("click", function () {
+            //    if ($(checkBoxs[0]).is(":checked")) {
+            //        $(checkBoxs).each(function () {
+            //            $(this).prop("checked", true);
+            //        });
+            //    } else {
+            //        console.log("Parent off");
+            //        $(checkBoxs).each(function () {
+            //            $(this).prop("checked", false);
+            //        });
+            //    }
+            //});
             $("#createEditRole").on("submit", function (e) {
                 var data = {
                     AssignedPermissions: [],
@@ -153,20 +162,19 @@
                     Id: $("#Id").val()
                 }
                 e.preventDefault();
-                $("#tree input:checked").each(function () {
-                    var checkbox = this;
-                    var value = $(checkbox).val();
+                var selected = $("#container").jstree('get_selected');
+                $(selected).each(function (index,v) {
+                    console.log(index);
                     data.AssignedPermissions.push({
-                        DisplayName: value,
-                        Name: value,
+                        Name: v,
                         Granted: true
                     });
                 });
-                abp.ui.setBusy($("#createEditForm"),abp.services.app.role.createEditRole(data).done(function () {
-                    window.modalInstance.close({},modalType);
+                abp.ui.setBusy($("#createEditForm"), abp.services.app.role.createEditRole(data).done(function () {
+                    window.modalInstance.close({}, modalType);
                 }));
             });
-            
+
         });
     })();
 </script>

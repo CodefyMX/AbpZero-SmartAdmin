@@ -4,24 +4,10 @@
     @foreach (var childPermission in Model)
     {
 
-        <li id="@childPermission.Name">
-            <span>
-                <label class="checkbox inline-block">
-                    @if (childPermission.Granted)
-                    {
+        <li data-jstree='{ "selected" : @childPermission.Granted.ToString().ToLower() }' id="@childPermission.Name">
 
-                        <input checked="checked" id="@childPermission.Name" value="@childPermission.Name" type="checkbox">
+            @childPermission.DisplayName
 
-                    }
-                    else
-                    {
-
-                        <input id="@childPermission.Name" value="@childPermission.Name" type="checkbox">
-
-                    }
-                    <i></i>@childPermission.DisplayName
-                </label>
-            </span>
             @if (childPermission.ChildPermissions.Any())
             {
                 { Html.RenderPartial("_childPermissions"); }
