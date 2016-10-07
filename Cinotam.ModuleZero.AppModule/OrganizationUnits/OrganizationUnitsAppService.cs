@@ -76,6 +76,15 @@ namespace Cinotam.ModuleZero.AppModule.OrganizationUnits
             return listOrganizationUnits;
         }
 
+        public async Task DeleteOrganizationUnit(int organizationUnitId)
+        {
+            var organizationUnit = await _organizationUnitRepository.FirstOrDefaultAsync(organizationUnitId);
+            if (organizationUnit == null)
+            {
+                return;
+            }
+            await _organizationUnitManager.DeleteAsync(organizationUnitId);
+        }
         private async Task<List<OrganizationUnitDto>> GetChildren(OrganizationUnit organizationUnit)
         {
             var childs = new List<OrganizationUnitDto>();
