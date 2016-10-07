@@ -40,6 +40,9 @@
                     <li class="@Html.RouteIf("EditionList", "active")">
                         <a href="@Url.Action("EditionList", "Editions")" title="Ediciónes"><span class="menu-item-parent">Ediciones</span></a>
                     </li>
+                    <li class="@Html.RouteIf("TenantsList", "active")">
+                        <a href="@Url.Action("TenantsList", "Tenants")" title="Empresas"><span class="menu-item-parent">Empresas</span></a>
+                    </li>
                 </ul>
 
             </li>

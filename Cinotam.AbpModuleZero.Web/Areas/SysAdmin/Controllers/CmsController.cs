@@ -1,5 +1,4 @@
-﻿using Abp.Application.Features;
-using Abp.Web.Models;
+﻿using Abp.Web.Models;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.Cms.App.Pages;
@@ -8,7 +7,6 @@ using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
 {
-    [RequiresFeature("CmsEnabled")]
     public class CmsController : AbpModuleZeroControllerBase
     {
         private readonly IPagesService _pagesService;

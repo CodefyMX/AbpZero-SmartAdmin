@@ -8,18 +8,26 @@ namespace Cinotam.AbpModuleZero
     {
         public override void SetFeatures(IFeatureDefinitionContext context)
         {
-            var cmsEnabled = context.Create("CmsEnabled",
-                "false", L("CmsEnabled"),
-                L("CmsDescription"),
-                inputType: new CheckboxInputType()
-            );
-            cmsEnabled.CreateChildFeature("MaxPageNumber",
-                defaultValue: "10",
-                displayName: L("MaxPageNumber"),
-                description: L("MaxPageNameDescription"),
-                inputType: new SingleLineStringInputType());
-            var commentBox = cmsEnabled.CreateChildFeature("CommentBox", defaultValue: "true", inputType: new CheckboxInputType());
-            commentBox.CreateChildFeature("AdminComentBox", defaultValue: "false", inputType: new CheckboxInputType());
+
+            var basicReporting = context.Create("BasicReporting",
+               "false",
+               L("basicReporting"),
+               L("BasicReportingDescription"),
+               FeatureScopes.Edition, new CheckboxInputType());
+            var advancedReporting = context.Create("AdvancedReporting",
+                "false",
+                L("AdvancedReporting"),
+                L("AdvancedReportingDescription"),
+                FeatureScopes.Edition, new CheckboxInputType());
+
+            advancedReporting.CreateChildFeature("PrintData",
+                defaultValue: "false",
+                scope: FeatureScopes.Edition, inputType: new CheckboxInputType());
+            advancedReporting.CreateChildFeature("HighCharts",
+                "false",
+                L("HighCharts"),
+                L("HighChartsDescription"),
+                FeatureScopes.Edition, new CheckboxInputType());
         }
         private static ILocalizableString L(string name)
         {

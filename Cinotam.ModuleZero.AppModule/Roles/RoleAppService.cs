@@ -1,6 +1,7 @@
 ﻿using Abp.Authorization;
 using Abp.Authorization.Roles;
 using Abp.AutoMapper;
+using Abp.Collections.Extensions;
 using Abp.Localization;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
@@ -97,6 +98,9 @@ namespace Cinotam.ModuleZero.AppModule.Roles
         public async Task<RoleInput> GetRoleForEdit(int? id)
         {
             var allPermissions = _permissionManager.GetAllPermissions().Where(a => a.Parent == null).ToList();
+
+
+
             if (id != null)
             {
                 var role = await _roleManager.GetRoleByIdAsync(id.Value);
@@ -137,7 +141,7 @@ namespace Cinotam.ModuleZero.AppModule.Roles
             };
             if (allPermission.Children.Any())
             {
-                foreach (var childPermission in allPermission.Children)
+                foreach (var childPermission in allPermission.Children.WhereIf(AbpSession.TenantId.HasValue, a => a.Name != PermissionNames.PagesTenants))
                 {
                     AddPermission(childPermissions, rolePermissions, childPermission, rolePermissions.Any(a => a.Name == childPermission.Name));
                 }

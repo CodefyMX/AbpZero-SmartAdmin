@@ -1,34 +1,49 @@
 ﻿@using Abp.MultiTenancy
 @using Abp.Web.Mvc.Extensions
 @using Cinotam.AbpModuleZero.MultiTenancy
-@model Abp.Application.Services.Dto.ListResultDto<Cinotam.AbpModuleZero.MultiTenancy.Tenant>
+@model Abp.Application.Services.Dto.ListResultDto<Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.TenantListDto>
 @{
     ViewBag.ActiveMenu = "Tenants"; //The menu item will be active for this page.
 }
-@section scripts
+@section pagespecific
 {
-    @Html.IncludeScript("~/Views/Tenants/Index.js")
+   @Html.IncludeScript("~/Areas/SysAdmin/Scripts/Tenants/TenantsIndex.js") 
 }
-<div>
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa-fw fa fa-gear"></i>
+                @L("Tenants")
+                <span>
+                    &gt;
+                    @L("TenantManagement")
+                </span>
+            </h1>
+        </div>
+    </div>
     <h1>@L("Tenants")</h1>
     <div class="row">
         <div class="col-md-12">
             <button data-toggle="modal" data-target="#TenantCreateModal" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @L("CreateNewTenant")</button>
             <table class="table">
                 <thead>
-                    <tr>
-                        <th>@L("TenancyName")</th>
-                        <th>@L("Name")</th>
-                    </tr>
+                <tr>
+                    <th>@L("TenancyName")</th>
+                    <th>@L("Name")</th>
+                    <th class="text-center"></th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach (var tenant in Model.Items)
-                    {
-                        <tr>
-                            <td>@tenant.TenancyName</td>
-                            <td>@tenant.Name</td>
-                        </tr>
-                    }
+                @foreach (var tenant in Model.Items)
+                {
+                    <tr>
+                        <td>@tenant.TenancyName</td>
+                        <td>@tenant.Name</td>
+                        <td class="text-center"><a class="btn btn-primary btn-xs">@L("SetEdition")</a> <a class="btn btn-primary btn-xs">@L("EnableFeatures")</a></td>
+                      
+                    </tr>
+                }
                 </tbody>
             </table>
         </div>

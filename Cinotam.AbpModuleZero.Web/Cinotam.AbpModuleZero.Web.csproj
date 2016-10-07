@@ -1299,7 +1299,7 @@
     </Content>
     <Content Include="Views\Account\Register.js" />
     <Content Include="Content\Templates\Simple\Simple.html" />
-    <Content Include="Views\Tenants\Index.js" />
+    <Content Include="Areas\SysAdmin\Scripts\Tenants\TenantsIndex.js" />
     <Content Include="Views\Users\Index.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1329,6 +1329,7 @@
     <Compile Include="Areas\SysAdmin\Controllers\NotificationsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\RolesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\TemplatesController.cs" />
+    <Compile Include="Areas\SysAdmin\Controllers\TenantsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\SysAdmin\SysAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AboutController.cs" />
@@ -1372,7 +1373,7 @@
     <Content Include="Views\Account\RegisterResult.cshtml" />
     <Content Include="Views\Account\TenantSelection.cshtml" />
     <Content Include="Views\Layout\_UserMenuOrLoginLink.cshtml" />
-    <Content Include="Views\Tenants\Index.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Tenants\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\libs\jquery-2.1.1.min.map" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\bootstrap-tags\dist\bootstrap-tagsinput.min.js.map" />
