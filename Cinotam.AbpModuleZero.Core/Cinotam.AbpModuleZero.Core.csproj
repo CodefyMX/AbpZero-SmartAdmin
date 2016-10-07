@@ -110,12 +110,14 @@
   <ItemGroup>
     <Compile Include="AbpModuleZeroConsts.cs" />
     <Compile Include="AbpModuleZeroCoreModule.cs" />
+    <Compile Include="AppFeatureProvider.cs" />
     <Compile Include="Authorization\AbpModuleZeroAuthorizationProvider.cs" />
     <Compile Include="Authorization\LoginManager.cs" />
     <Compile Include="Authorization\PermissionChecker.cs" />
     <Compile Include="Authorization\PermissionNames.cs" />
     <Compile Include="Authorization\Roles\AppRoleConfig.cs" />
     <Compile Include="Authorization\Roles\StaticRoleNames.cs" />
+    <Compile Include="Editions\CinotamEdition.cs" />
     <Compile Include="Editions\EditionManager.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />
     <Compile Include="Localization\Helpers\LocalizationSources.cs" />

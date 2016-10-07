@@ -13,39 +13,46 @@
 
 @if (Model.IsPartial)
 {
+    string container = "container-fluid";
+    if (Model.BreadCrumInContainer)
+    {
+        container = "container";
+    }
+    <div class="@container">
 
-    <div class="row">
-        <div class="col-xs-12">
-            @if (IsGranted(PermissionNames.Pages))
+        <div class="row">
+            <div class="col-xs-12">
+                @if (IsGranted(PermissionNames.Pages))
                 {
-                <div class="alert alert-info">
-                    <p>You can edit this page</p>
-                    <a class="btn btn-primary btn-sm" href="@Url.Action("PageEditor", new {id = Model.Id, Lang = Model.Lang})">Click to edit</a>
-                </div>
+                    <div class="alert alert-info">
+                        <p>You can edit this page</p>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("PageEditor", new {id = Model.Id, Lang = Model.Lang})">Click to edit</a>
+                    </div>
                 }
-            @if (Model.BreadCrums.Any())
+                @if (Model.BreadCrums.Any() && Model.ShowBreadCrum)
                 {
 
-                <ol class="breadcrumb">
+                    <ol class="breadcrumb">
 
-                    @{
+                        @{
                             var last = Model.BreadCrums.Last();
-                    }
-                    @foreach (var bread in Model.BreadCrums)
+                        }
+                        @foreach (var bread in Model.BreadCrums)
+                    {
+                        if (bread.Equals(last))
                         {
-                            if (bread.Equals(last))
-                            {
 
-                        <li>@bread.DisplayName</li>
+                                <li>@bread.DisplayName</li>
                             }
                             else
                             {
 
-                        <li><a href="@Url.Action("Index", new {slug = bread.Url})">@bread.DisplayName</a></li>
+                                <li><a href="@Url.Action("Index", new {slug = bread.Url})">@bread.DisplayName</a></li>
                             }
                         }
-                </ol>
+                    </ol>
                             }
+            </div>
         </div>
     </div>
                         }
@@ -63,7 +70,7 @@ else
         <title>@Model.Title</title>
         @foreach (var resourceDto in Model.CssResource)
         {
-               <link rel="stylesheet" href="@resourceDto.Url" />
+        <link rel="stylesheet" href="@resourceDto.Url" />
         }
     </head>
     <body>
@@ -80,7 +87,7 @@ else
         </script>
         @foreach (var resourceDto in Model.JsResource)
         {
-            <script src="@resourceDto.Url"></script>
+        <script src="@resourceDto.Url"></script>
         }
     </body>
 </html>

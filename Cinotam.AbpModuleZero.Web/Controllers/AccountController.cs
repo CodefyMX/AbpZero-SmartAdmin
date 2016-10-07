@@ -7,6 +7,7 @@ using Abp.Extensions;
 using Abp.Threading;
 using Abp.UI;
 using Abp.Web.Models;
+using Abp.Web.Security.AntiForgery;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.MultiTenancy;
@@ -175,6 +176,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
         [HttpPost]
         [UnitOfWork]
+        [DisableAbpAntiForgeryTokenValidation]
         public virtual async Task<ActionResult> Register(RegisterViewModel model)
         {
             try

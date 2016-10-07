@@ -19,5 +19,7 @@ namespace Cinotam.Cms.App.Pages.Dto
         public List<CategoryDto> AvailableCategoryDtos { get; set; } = new EditableList<CategoryDto>();
         public int CategoryId { get; set; }
         public int ParentId { get; set; }
+        public bool ShowBreadCrum { get; set; }
+        public bool BreadCrumInContainer { get; set; }
     }
 }

@@ -46,6 +46,16 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
                 );
         }
 
+        public async Task SetTenantEdition(SetTenantEditionInput input)
+        {
+            var tenant = await _tenantManager.GetByIdAsync(input.TenantId);
+            var edition = await _editionManager.FindByIdAsync(input.EditionId);
+            if (edition != null)
+            {
+                tenant.EditionId = edition.Id;
+            }
+            await CurrentUnitOfWork.SaveChangesAsync();
+        }
         public async Task CreateTenant(CreateTenantInput input)
         {
             //Create tenant

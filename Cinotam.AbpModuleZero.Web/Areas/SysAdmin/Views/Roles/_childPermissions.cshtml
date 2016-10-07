@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Cinotam.ModuleZero.AppModule.Roles.Dto.AssignedPermission>
+
+<ul>
+    @foreach (var childPermission in Model)
+    {
+
+        <li data-jstree='{ "selected" : @childPermission.Granted.ToString().ToLower() }' id="@childPermission.Name">
+
+            @childPermission.DisplayName
+
+            @if (childPermission.ChildPermissions.Any())
+            {
+                { Html.RenderPartial("_childPermissions",childPermission.ChildPermissions); }
+            }
+        </li>
+    }
+</ul>

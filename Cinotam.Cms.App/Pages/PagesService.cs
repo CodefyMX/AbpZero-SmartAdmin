@@ -354,6 +354,8 @@ namespace Cinotam.Cms.App.Pages
                 Title = pageContent.Title,
                 BreadCrums = await GetBreadCrumsForPage(id),
                 IsPartial = pageContent.IsPartial,
+                ShowBreadCrum = pageContent.Page.ShowBreadCrum,
+                BreadCrumInContainer = pageContent.Page.BreadCrumInContainer,
                 ContentId = pageContent.Id,
                 JsResource = js.Select(a => new ResourceDto()
                 {
@@ -387,6 +389,8 @@ namespace Cinotam.Cms.App.Pages
                     Title = content.Title,
                     IsPartial = content.IsPartial,
                     BreadCrums = await GetBreadCrumsForPage(content.PageId),
+                    ShowBreadCrum = content.Page.ShowBreadCrum,
+                    BreadCrumInContainer = content.Page.BreadCrumInContainer,
                     JsResource = js.Select(a => new ResourceDto()
                     {
                         IsCdn = a.IsCdn,
@@ -503,6 +507,8 @@ namespace Cinotam.Cms.App.Pages
                 CategoryName = page.CategoryId.HasValue ? GetCategoryName(page) : "",
                 IncludeInMenu = page.IncludeInMenu,
                 TemplateName = page.TemplateName,
+                ShowBreadCrum = page.ShowBreadCrum,
+                BreadCrumInContainer = page.BreadCrumInContainer,
                 AvailableTemplates = await _templateManager.GetTemplateContentsAsync(),
                 AvailablePages = (await GetPageListDto()).Where(a => a.Id != page.Id).ToList(),
                 ParentId = page.ParentPage ?? 0,
