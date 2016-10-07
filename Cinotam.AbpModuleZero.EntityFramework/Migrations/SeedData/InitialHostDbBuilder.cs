@@ -20,6 +20,7 @@ namespace Cinotam.AbpModuleZero.Migrations.SeedData
             new DefaultLanguagesCreator(_context).Create();
             new HostRoleAndUserCreator(_context).Create();
             new DefaultSettingsCreator(_context).Create();
+            new SampleOrganizationUnitsCreator(_context).Create();
         }
     }
 }

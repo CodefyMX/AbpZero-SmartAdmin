@@ -1147,6 +1147,11 @@
     <Content Include="Areas\SysAdmin\Views\Menu\CreateEditMenu.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\SetCategories.cshtml" />
     <Content Include="Areas\SysAdmin\Views\PageCategories\CreateEditCategoryContent.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\OrganizationUnits\OrganizationUnitsList.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\OrganizationUnits\GetOrganizationUnits.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\OrganizationUnits\CreateEditOrganizationUnit.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddOrganizationUnit.cshtml" />
+    <None Include="Areas\SysAdmin\Views\OrganizationUnits\_childOrgUnits.cshtml" />
     <None Include="Areas\SysAdmin\Views\Roles\_childPermissions.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
@@ -1336,6 +1341,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\PageCategoriesController.cs" />
+    <Compile Include="Areas\SysAdmin\Controllers\OrganizationUnitsController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\TenantsController.cs" />

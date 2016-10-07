@@ -147,6 +147,7 @@
     <Compile Include="Notifications\NotificationService.cs" />
     <Compile Include="OrganizationUnits\Dto\AddUserToOrgUnitInput.cs" />
     <Compile Include="OrganizationUnits\Dto\MoveOrganizationUnitInput.cs" />
+    <Compile Include="OrganizationUnits\Dto\OrganizationUnitDto.cs" />
     <Compile Include="OrganizationUnits\Dto\OrganizationUnitInput.cs" />
     <Compile Include="OrganizationUnits\Dto\OrganizationUnitsConfigViewModel.cs" />
     <Compile Include="OrganizationUnits\IOrganizationUnitsAppService.cs" />

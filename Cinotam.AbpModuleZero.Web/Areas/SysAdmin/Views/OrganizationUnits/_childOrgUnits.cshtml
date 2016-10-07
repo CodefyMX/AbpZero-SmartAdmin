@@ -1,0 +1,20 @@
+﻿@using System.Web.Mvc.Html
+@model ICollection<Cinotam.ModuleZero.AppModule.OrganizationUnits.Dto.OrganizationUnitDto>
+
+@{ Layout = null;}
+
+<ul>
+    @foreach (var childOrg in Model)
+    {
+
+        <li data-id="@childOrg.Id" id="@childOrg.Id">
+
+            @childOrg.DisplayName
+
+            @if (childOrg.ChildrenDto.Any())
+            {
+                { Html.RenderPartial("_childOrgUnits", childOrg.ChildrenDto); }
+            }
+        </li>
+    }
+</ul>
