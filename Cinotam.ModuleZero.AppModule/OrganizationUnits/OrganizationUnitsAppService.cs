@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp.AutoMapper;
+using Abp.Domain.Repositories;
 using Abp.Organizations;
 using Cinotam.ModuleZero.AppModule.OrganizationUnits.Dto;
 using System.Collections.Generic;
@@ -16,10 +17,20 @@ namespace Cinotam.ModuleZero.AppModule.OrganizationUnits
             _organizationUnitRepository = organizationUnitRepository;
         }
 
-        public async Task CreateOrgUnit(OrganizationUnitInput input)
+        public async Task CreateOrEditOrgUnit(OrganizationUnitInput input)
         {
-            await _organizationUnitManager.CreateAsync(new OrganizationUnit(AbpSession.TenantId, input.DisplayName,
+            if (input.Id != 0)
+            {
+                var orgUnit = _organizationUnitRepository.Get(input.Id);
+                var updated = input.MapTo(orgUnit);
+                await _organizationUnitManager.UpdateAsync(updated);
+            }
+            else
+            {
+                await _organizationUnitManager.CreateAsync(new OrganizationUnit(AbpSession.TenantId, input.DisplayName,
                 input.ParentId));
+            }
+
         }
 
         public async Task MoveOrgUnit(MoveOrganizationUnitInput input)
@@ -41,19 +52,54 @@ namespace Cinotam.ModuleZero.AppModule.OrganizationUnits
                 OrganizationUnits = await GetOrganizationUnits()
             };
         }
-        private async Task<List<OrganizationUnit>> GetOrganizationUnits()
+
+        public OrganizationUnitInput GetOrganizationUnitForEdit(int? id)
         {
-            var listOrganizationUnits = new List<OrganizationUnit>();
-            var parentUnits = _organizationUnitRepository.GetAllList(a => a.ParentId == null);
+            if (!id.HasValue) return new OrganizationUnitInput();
+            var orgUnit = _organizationUnitRepository.Get(id.Value);
+            return orgUnit.MapTo<OrganizationUnitInput>();
+        }
+
+        private async Task<List<OrganizationUnitDto>> GetOrganizationUnits()
+        {
+            var listOrganizationUnits = new List<OrganizationUnitDto>();
+            var parentUnits = (await _organizationUnitRepository.GetAllListAsync(a => a.ParentId == null));
             foreach (var organizationUnit in parentUnits)
             {
-                var children = await _organizationUnitManager.FindChildrenAsync(organizationUnit.Id, true);
+                var orgUnit = organizationUnit.MapTo<OrganizationUnitDto>();
 
-                organizationUnit.Children = children;
+                orgUnit.ChildrenDto = await GetChildren(organizationUnit);
 
-                listOrganizationUnits.Add(organizationUnit);
+                listOrganizationUnits.Add(orgUnit);
+
             }
             return listOrganizationUnits;
+        }
+
+        public async Task DeleteOrganizationUnit(int organizationUnitId)
+        {
+            var organizationUnit = await _organizationUnitRepository.FirstOrDefaultAsync(organizationUnitId);
+            if (organizationUnit == null)
+            {
+                return;
+            }
+            await _organizationUnitManager.DeleteAsync(organizationUnitId);
+        }
+        private async Task<List<OrganizationUnitDto>> GetChildren(OrganizationUnit organizationUnit)
+        {
+            var childs = new List<OrganizationUnitDto>();
+
+            var children = await _organizationUnitManager.FindChildrenAsync(organizationUnit.Id);
+
+            foreach (var child in children)
+            {
+                var childElement = child.MapTo<OrganizationUnitDto>();
+                childElement.ChildrenDto = await GetChildren(child);
+
+                childs.Add(childElement);
+            }
+
+            return childs;
         }
     }
 }

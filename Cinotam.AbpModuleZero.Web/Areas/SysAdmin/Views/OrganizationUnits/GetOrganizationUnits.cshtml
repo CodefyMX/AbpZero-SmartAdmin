@@ -1,0 +1,21 @@
+﻿
+@model Cinotam.ModuleZero.AppModule.OrganizationUnits.Dto.OrganizationUnitsConfigViewModel
+@{
+    ViewBag.Title = "GetOrganizationUnits";
+    Layout = null;
+}
+<div id="container">
+    <ul id="tree">
+        @foreach (var orgUnit in Model.OrganizationUnits)
+        {
+            <li data-id="@orgUnit.Id" id="@orgUnit.Id">
+                @orgUnit.DisplayName
+
+                @if (orgUnit.ChildrenDto.Any())
+                {
+                    { Html.RenderPartial("_childOrgUnits", orgUnit.ChildrenDto); }
+                }
+            </li>
+        }
+    </ul>
+</div>
