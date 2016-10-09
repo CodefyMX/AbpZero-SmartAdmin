@@ -1,6 +1,5 @@
 ﻿/// <reference path="datatables.responsiveConfigs.js" />
 (function () {
-    "use strict";
     var columns = [
         {
             "data": "DisplayName"
@@ -15,7 +14,7 @@
         },
         {
             className: "text-center",
-            "render": function(data, type, row) {
+            "render": function (data, type, row) {
                 if (!row.IsStatic) {
                     return " <a data-modal href='/SysAdmin/Roles/CreateEditRole/" +
                         row.Id +
@@ -31,19 +30,19 @@
             },
             "targets": 2
         }
-    ]; 
+    ];
     var dataTableConfig = new DatatablesConfig({
         DisplayLength: 10,
         Url: "/SysAdmin/Roles/" + "LoadRoles",
         ColumnDefinitions: columnDefs,
         Columns: columns,
-        OnInitComplete: {},
+        OnInitComplete: function (){},
         Element: $("#rolesTable")
     });
 
     var rolesPage = {
-        dataTableConfig :dataTableConfig,
-        eventHandler:function(event) {
+        dataTableConfig: dataTableConfig,
+        eventHandler: function (event) {
             switch (event.detail.info.modalType) {
                 case "MODAL_ROLES_SET":
                     table.ajax.reload();
@@ -63,9 +62,6 @@
         }
     };
 
-
     var table = $("#rolesTable").DataTable(rolesPage.dataTableConfig);
-
-    modalInstance.setEventFunction(rolesPage.eventHandler);
-
+    document.addEventListener('modalClose', rolesPage.eventHandler);
 })();

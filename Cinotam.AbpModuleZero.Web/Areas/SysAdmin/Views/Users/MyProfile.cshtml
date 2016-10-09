@@ -283,6 +283,9 @@
     <script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
     <script>
         (function () {
+
+            window.modalInstance = new abp.app.bootstrap.modal(null, window.modalOptions);
+
             $("#changeProfilePicture")
                 .on("submit",
                     function (e) {

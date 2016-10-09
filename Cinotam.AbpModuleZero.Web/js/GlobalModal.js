@@ -91,10 +91,7 @@
                 }, modalTypes.MODAL_CANCEL);
             });
         }
-        modalInstance.setEventFunction = function (callback) {
-            if (!callback) callback = function() {};
-            document.addEventListener('modalClose', callback);
-        }
+        
         initListener();
         return modalInstance;
     };

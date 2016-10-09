@@ -108,53 +108,6 @@
                     }
                 });
 
-
-
-            //$('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
-            //$('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch').on('click', function (e) {
-            //    //var children = $ (this).parent ('li.parent_li').find (' > ul > li');
-            //    //if (children.is (':visible')) {
-            //    //    children.hide ('fast');
-            //    //    $ (this).attr ('title', 'Expand this branch').find (' > i').removeClass ().addClass ('fa fa-lg fa-plus-circle');
-            //    //} else {
-            //    //    children.show ('fast');
-            //    //    $ (this).attr ('title', 'Collapse this branch').find (' > i').removeClass ().addClass ('fa fa-lg fa-minus-circle');
-            //    //}
-            //    e.stopPropagation();
-            //});
-            //var checkBoxs = $("#tree input");
-            //var total = checkBoxs.length;
-            //$(checkBoxs).each(function (nmb) {
-            //    var self = this;
-            //    if (nmb > 0) {
-            //        //skip first
-            //        $(self).on("click", function () {
-            //            var allChecked;
-            //            if ($(this).is(":checked")) {
-            //                allChecked = $("#tree input:checked").length;
-
-            //                if (allChecked + 1 >= total) {
-            //                    $(checkBoxs[0]).prop("checked", true);
-            //                }
-            //            } else {
-            //                $(checkBoxs[0]).prop("checked", false);
-            //            }
-            //        });
-            //    }
-
-            //});
-            //$(checkBoxs[0]).on("click", function () {
-            //    if ($(checkBoxs[0]).is(":checked")) {
-            //        $(checkBoxs).each(function () {
-            //            $(this).prop("checked", true);
-            //        });
-            //    } else {
-            //        console.log("Parent off");
-            //        $(checkBoxs).each(function () {
-            //            $(this).prop("checked", false);
-            //        });
-            //    }
-            //});
             $("#createEditRole").on("submit", function (e) {
                 var data = {
                     AssignedPermissions: [],

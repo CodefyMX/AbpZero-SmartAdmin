@@ -18,9 +18,10 @@
             loadEndFunc: notLoading,
             onErrorFunction: error
         };
-        window.modalInstance = new abp.app.bootstrap.modal(null, options);
 
-        
+        window.modalOptions = options;
+
+        window.modalInstance = new abp.app.bootstrap.modal(null, window.modalOptions);
 
     });
 })();

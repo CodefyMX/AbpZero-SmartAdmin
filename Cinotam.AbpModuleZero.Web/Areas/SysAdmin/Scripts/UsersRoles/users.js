@@ -1,5 +1,6 @@
 ﻿(function () {
     "use strict";
+
     $(document).ready(function () {
 
         var columns = [
@@ -69,10 +70,7 @@
                 }
             }
         }
-
         var table = $("#usersTable").DataTable(usersPage.dataTableConfig);
-
-        modalInstance.setEventFunction(usersPage.modalHandler);
-
+        document.addEventListener('modalClose', usersPage.modalHandler);
     });
 })();
