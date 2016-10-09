@@ -310,8 +310,9 @@
     <Content Include="Areas\SysAdmin\Scripts\Languages\CreateLanguage.js" />
     <Content Include="Areas\SysAdmin\Scripts\Languages\EditText.js" />
     <Content Include="Areas\SysAdmin\Scripts\Languages\languageTexts.js" />
-    <Content Include="Areas\SysAdmin\Scripts\Layout\GetNotifications.js" />
+    <Content Include="Areas\SysAdmin\Scripts\Layout\getNotifications.js" />
     <Content Include="Areas\SysAdmin\Scripts\Layout\localizationText.js" />
+    <Content Include="Areas\SysAdmin\Scripts\Layout\modalConfiguration.js" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\bootstrap-typeahead\bootstrap-typeahead.min.js" />
     <Content Include="Areas\SysAdmin\Scripts\UsersRoles\roles.js" />
     <Content Include="Areas\SysAdmin\Scripts\UsersRoles\users.js" />
@@ -1131,6 +1132,7 @@
     <Content Include="Areas\SysAdmin\Views\Editions\EditionList.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Editions\EditCreateEdition.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Editions\_loadChildrens.cshtml" />
+    <Content Include="Areas\SysAdmin\Scripts\datatables.config.js" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />

@@ -4,10 +4,6 @@
     var newValue;
 
     var selectedOptionValue = 50;
-
-
-
-
     function GetData(max, callback) {
 
         abp.services.app.auditLogService.getAuditLogTimes(max)
@@ -173,58 +169,4 @@
         }
 
     }
-
-    //$("#op50").click(function () {
-    //    selectedOptionValue = 50;
-    //    GetData(50, function (updatedData, updatedToolTips) {
-    //        data = [];
-    //        data = updatedData;
-    //        toolTips = [];
-    //        toolTips = updatedToolTips;
-    //        plot.setData([data]);
-    //        // since the axes don't change, we don't need to call plot.setupGrid()
-    //        plot.setupGrid();
-    //        plot.draw();
-
-
-    //        setTimeout(update, updateInterval);
-
-    //    });
-    //});
-
-    //$("#op100").click(function () {
-    //    selectedOptionValue = 100;
-
-    //    GetData(100, function (updatedData, updatedToolTips) {
-    //        data = [];
-    //        data = updatedData;
-    //        toolTips = [];
-    //        toolTips = updatedToolTips;
-    //        plot.setData([data]);
-    //        // since the axes don't change, we don't need to call plot.setupGrid()
-    //        plot.setupGrid();
-    //        plot.draw();
-
-
-    //        setTimeout(update, updateInterval);
-
-    //    });
-    //});
-    //$("#op200").click(function () {
-    //    selectedOptionValue = 200;
-    //    GetData(200, function (updatedData, updatedToolTips) {
-    //        data = [];
-    //        data = updatedData;
-    //        toolTips = [];
-    //        toolTips = updatedToolTips;
-    //        plot.setData([data]);
-    //        // since the axes don't change, we don't need to call plot.setupGrid()
-    //        plot.setupGrid();
-    //        plot.draw();
-
-
-    //        setTimeout(update, updateInterval);
-
-    //    });
-    //});
 })();

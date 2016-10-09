@@ -8,25 +8,12 @@
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script> if (!window.jQuery.ui) { document.write('<script src="/scripts/jquery-ui-1.11.4.min.js"><\/script>'); } </script>
 
-
-
-<!-- IMPORTANT: SmartAdmin Core -->
-
-@*@if (Request.IsAuthenticated)
-{
-    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-    <script data-pace-options='{ "restartOnRequestAfter": true }' src="~/Scripts/smartAdminScripts/plugin/pace/pace.min.js"></script>
-    <!-- Demo purpose only! -->
-    <script src="~/Scripts/smartAdminScripts/demo.min.js"></script>
-}*@
-
-
 @Scripts.Render("~/Bundles/vendor/js/bottom")
 @Scripts.Render("~/Bundles/js")
 
 <script>
-        //Localizing momentjs
-        moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
+    //Localizing momentjs
+    moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
 </script>
 
 <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
@@ -61,48 +48,9 @@
 
 <!-- Full Calendar -->
 @*@Scripts.Render("~/scripts/full-calendar")*@
-
-<!-- DO NOT REMOVE : GLOBAL FUNCTIONS! -->
-<script>
-    $(document).ready(function () {
-        pageSetUp();
-        drawBreadCrumb();
-
-        function loading(button) {
-            console.log("Setting busy");
-            abp.ui.setBusy($("#content"));
-        }
-        function notLoading(button) {
-            abp.ui.clearBusy($("#content"));
-        }
-        function error(message) {
-            abp.message.error(message, "Error");
-        }
-        var options = {
-            loadingFunc: loading,
-            loadEndFunc: notLoading,
-            onErrorFunction: error
-        };
-        window.modalInstance = new abp.app.bootstrap.modal(null, options);
-    });
-</script>
+<script src="~/Areas/SysAdmin/Scripts/datatables.config.js"></script>
+<script src="~/Areas/SysAdmin/Scripts/Layout/modalConfiguration.js"></script>
 @if (@Model is HelperResult)
 {
     @Model
 }
-<!-- Your GOOGLE ANALYTICS CODE Below-->
-    @*<script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'xx-xxxxxxxx-x']);
-    _gaq.push(['_trackPageview']);
-
-    (function () {
-        var ga = document.createElement('script');
-        ga.type = 'text/javascript';
-        ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ga, s);
-    })();
-</script>*@
-

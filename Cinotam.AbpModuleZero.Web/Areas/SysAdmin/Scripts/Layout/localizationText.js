@@ -1,4 +1,10 @@
-﻿var LSys = function (string) {
+﻿
+/**
+ * 
+ * Summary:
+ * Some helpers for transaltions 
+ */
+var LSys = function (string) {
     return abp.localization.localize (string, "AbpModuleZero");
 };
 
