@@ -1,6 +1,20 @@
 ﻿@using Abp.Web.Mvc.Extensions
 @model Cinotam.ModuleZero.AppModule.Features.Dto.EditionsOutput
 <!-- MAIN CONTENT -->
+<style>
+    .input-tree {
+        margin-left: 15px;
+        width: 100px;
+    }
+
+    .simple-text {
+        color: inherit;
+    }
+
+        .simple-text :hover:focus {
+            color: inherit;
+        }
+</style>
 <div id="content">
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
@@ -110,7 +124,6 @@
                                                 </div>
                                                 <p class="list-group-item-text">
                                                     <a data-modal class="btn btn-primary btn-sm" href="@Url.Action("EditCreateEdition",new { id = element.Id })">@L("EditEdition")</a>
-                                                    <a data-modal class="btn btn-primary btn-sm" href="@Url.Action("ChangeEditionValues",new { id = element.Id })">@L("ChangeEditionValues")</a>
                                                 </p>
                                             </li>
                                         }

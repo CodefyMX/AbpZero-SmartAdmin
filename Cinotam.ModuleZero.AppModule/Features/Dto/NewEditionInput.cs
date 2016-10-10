@@ -15,6 +15,7 @@ namespace Cinotam.ModuleZero.AppModule.Features.Dto
         public string DisplayName { get; set; }
         public List<FeatureDto> Features { get; set; }
         public decimal Price { get; set; }
+        public string Name { get; set; }
     }
     [AutoMap(typeof(Feature))]
     public class FeatureDto

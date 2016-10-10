@@ -8,14 +8,14 @@
             if (child.InputType.Name == "SINGLE_LINE_STRING")
             {
 
-                <li class="hide-checkbox" id="@child.Name">
-                    <a> @child.Name (@child.DefaultValue)</a>
+                <li data-append-textbox="true" id="@child.Name" data-selected="@child.Selected" data-value="@child.DefaultValue" class="hide-checkbox">
+                    <a> @child.Name</a>
                     @{ Html.RenderPartial("_loadChildrens", child.ChildFeatures); }
                 </li>
                         }
                         else
                         {
-                            <li id="@child.Name">
+                            <li id="@child.Name" data-append-textbox="false" data-selected="@child.Selected" data-value="@child.DefaultValue">
                                 <a> @child.Name</a>
                                 @{ Html.RenderPartial("_loadChildrens", child.ChildFeatures); }
                             </li>

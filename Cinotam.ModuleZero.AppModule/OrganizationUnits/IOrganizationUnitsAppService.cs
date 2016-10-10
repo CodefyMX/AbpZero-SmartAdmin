@@ -10,6 +10,9 @@ namespace Cinotam.ModuleZero.AppModule.OrganizationUnits
         Task MoveOrgUnit(MoveOrganizationUnitInput input);
         Task AddUserToOrgUnit(AddUserToOrgUnitInput input);
         Task<OrganizationUnitsConfigViewModel> GetOrganizationUnitsConfigModel();
-        OrganizationUnitInput GetOrganizationUnitForEdit(int? id);
+        OrganizationUnitInput GetOrganizationUnitForEdit(long? id);
+        Task RemoveOrganizationUnit(long id);
+        Task RemoveUserFromOrganizationUnit(AddUserToOrgUnitInput input);
+        Task<UsersInOrganizationUnitOutput> GetUsersFromOrganizationUnit(long id);
     }
 }

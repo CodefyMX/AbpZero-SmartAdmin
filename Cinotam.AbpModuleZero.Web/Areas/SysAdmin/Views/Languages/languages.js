@@ -46,7 +46,7 @@
 
     var dataTablesConfig = new DatatablesConfig({
         Columns: columns,
-        ColumnDefinititions: columnDef,
+        ColumnDefinitions: columnDef,
         Element: $("#languagesTable"),
         OnInitComplete:function(){},
         Url:"/SysAdmin/Languages/" + "LoadLanguages",

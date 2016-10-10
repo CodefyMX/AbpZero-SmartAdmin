@@ -32,7 +32,9 @@
                     }
                 }
             });
-
+        $('#container').on('ready.jstree', function () {
+            $("#container").jstree("open_all");
+        });
         $("#createEditRole").on("submit", function (e) {
             var data = {
                 AssignedPermissions: [],

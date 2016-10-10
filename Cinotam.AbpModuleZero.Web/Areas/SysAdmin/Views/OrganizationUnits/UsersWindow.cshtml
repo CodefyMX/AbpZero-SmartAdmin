@@ -1,0 +1,28 @@
+﻿@model Cinotam.ModuleZero.AppModule.OrganizationUnits.Dto.UsersInOrganizationUnitOutput
+@{
+    Layout = null;
+}
+<a data-modal class="btn btn-default btn-xs" href="@Url.Action("AddUserView","OrganizationUnits",new { Id = Model.OrgUnitId })">@L("AddUser")</a>
+<table class="table table-responsive table-condensed table-forum">
+    <thead>
+    <tr>
+        <th>
+            @L("Name")
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>
+                    @item.FullName
+                </td>
+                <td class="text-center">
+                    <a data-user-id="@item.Id" data-org-id="@Model.OrgUnitId" class="btn btn-xs btn-danger js-remove"><i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

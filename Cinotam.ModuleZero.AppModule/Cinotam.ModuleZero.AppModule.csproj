@@ -150,6 +150,7 @@
     <Compile Include="OrganizationUnits\Dto\OrganizationUnitDto.cs" />
     <Compile Include="OrganizationUnits\Dto\OrganizationUnitInput.cs" />
     <Compile Include="OrganizationUnits\Dto\OrganizationUnitsConfigViewModel.cs" />
+    <Compile Include="OrganizationUnits\Dto\UsersInOrganizationUnitOutput.cs" />
     <Compile Include="OrganizationUnits\IOrganizationUnitsAppService.cs" />
     <Compile Include="OrganizationUnits\OrganizationUnitsAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
