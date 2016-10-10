@@ -48,7 +48,7 @@
         Columns: columns,
         ColumnDefinititions: columnDef,
         Element: $("#languagesTable"),
-        OnInitComplete:{},
+        OnInitComplete:function(){},
         Url:"/SysAdmin/Languages/" + "LoadLanguages",
         DisplayLength:10
     });
@@ -84,6 +84,6 @@
         });
     });
 
-    window.modalInstance.setEventFunction(languagePageConfig.eventHandler);
+    document.addEventListener('modalClose', languagePageConfig.eventHandler);
 
 })();

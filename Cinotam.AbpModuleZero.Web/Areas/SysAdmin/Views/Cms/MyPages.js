@@ -1,25 +1,17 @@
 ﻿(function () {
 
-
-    var table = $("#pagesTable")
-.DataTable({
-    "bServerSide": true,
-    "bPaginate": true,
-    "sPaginationType": "full_numbers", // And its type.
-    "iDisplayLength": 10,
-    "ajax": "/SysAdmin/Cms/" + "GetPagesTable",
-    "autoWidth": true,
-    "preDrawCallback": function () {
-        // Initialize the responsive datatables helper once.
-        if (!responsiveHelper_dt_roles) {
-            responsiveHelper_dt_roles = new
-                ResponsiveDatatablesHelper($('#pagesTable'), breakpointDefinition);
+    var columns = [
+        {
+            "data": "Title"
+        },
+        {
+            "data": "CategoryName"
+        }, {
+            "data": "TemplateName"
         }
-    },
-    "rowCallback": function (nRow) {
-        responsiveHelper_dt_roles.createExpandIcon(nRow);
-    },
-    columnDefs: [
+    ];
+
+    var columnDefinitions = [
         {
             "render": function (data, type, row) {
                 var lang = "";
@@ -44,21 +36,23 @@
             "orderable": false,
             "targets": [1, 2]
         }
-    ],
-    "drawCallback": function (oSettings) {
-        responsiveHelper_dt_roles.respond();
-    },
-    language: window.dataTablesLang,
-    columns: [
-        {
-            "data": "Title"
-        },
-        {
-            "data": "CategoryName"
-        }, {
-            "data": "TemplateName"
-        }
-    ]
-});
+    ];
+
+    var dataTablesConfig = new DatatablesConfig({
+        Url: "/SysAdmin/Cms/" + "GetPagesTable",
+        DisplayLength: 10,
+        OnInitComplete: function () { },
+        Columns: columns,
+        ColumnDefinitions: columnDefinitions,
+        Element: $("#pagesTable")
+    });
+
+    var myPagesPageConfiguration = {
+        DataTablesConfig: dataTablesConfig
+
+    }
+
+    var table = $("#pagesTable")
+.DataTable(myPagesPageConfiguration.DataTablesConfig);
 
 })();

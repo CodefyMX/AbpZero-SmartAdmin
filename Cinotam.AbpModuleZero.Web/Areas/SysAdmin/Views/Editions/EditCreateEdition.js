@@ -12,12 +12,16 @@
 
         return items;
     }
+    var treeJsConfig = {
+        contextMenu: contextMenu
+
+    }
     $(document)
         .ready(function () {
             $("#container")
                 .jstree({
                     contextmenu: {
-                        items: contextMenu
+                        items: treeJsConfig.contextMenu
                     },
                     "checkbox": {
                         "keep_selected_style": false

@@ -1,9 +1,7 @@
 ﻿
 (function () {
-
+    
     var contextMenu = function (node) {
-
-        console.log("node:", node);
         var items = {
             addUnit: {
                 label: LSys('AddOrganizationUnit'),
@@ -28,6 +26,10 @@
 
         return items;
     }
+    var treeJsConfig = {
+        contextMenu: contextMenu,
+        modalHandler:modalHandler
+    }
 
     var loadOrganizationUnitsView = function () {
         abp.ui.setBusy("#organizationUnitsView");
@@ -39,7 +41,7 @@
                     $("#container")
                         .jstree({
                             contextmenu: {
-                                items: contextMenu
+                                items: treeJsConfig.contextMenu
                             },
                             'plugins': ["wholerow", "html_data", "ui", "contextmenu", "dnd"],
                             'core': {
@@ -88,7 +90,6 @@
                                                 newParent = undefined;
                                             }
                                             var elementMoved = data.data.nodes[0];
-                                            console.log(newParent);
 
                                             var request = {
                                                 Id: elementMoved,
@@ -111,15 +112,8 @@
                             });
                 });
     }
-    $(document)
-        .ready(function () {
-            loadOrganizationUnitsView();
-        });
-
-    document.addEventListener('modalClose', modalHandler);
 
     function modalHandler(event) {
-        console.log(event);
         switch (event.detail.info.modalType) {
             case "MODAL_CREATE_EDIT_ORG_UNIT":
                 loadOrganizationUnitsView();
@@ -130,5 +124,10 @@
         }
     }
 
+    $(document)
+        .ready(function () {
+            loadOrganizationUnitsView();
+        });
 
+    document.addEventListener('modalClose', treeJsConfig.modalHandler);
 })();

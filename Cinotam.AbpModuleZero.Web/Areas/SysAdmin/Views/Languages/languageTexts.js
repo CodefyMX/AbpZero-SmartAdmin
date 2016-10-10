@@ -9,7 +9,6 @@
         var targetLang = $("#SelectedTargetLanguage").val();
         var sourceLang = $("#SelectedSourceLanguage").val();
 
-
         var table = $("#languageTextsTable").DataTable({
             "sPaginationType": "full_numbers", // And its type.
             "iDisplayLength": 10,
@@ -63,10 +62,7 @@
             modalInstance.open(href, data);
         });
 
-        document.addEventListener('modalClose', modalHandler);
-
         function modalHandler(event) {
-            console.log(event);
             switch (event.detail.info.modalType) {
                 case "MODAL_CHANGE_TEXT":
                     currentRowSelected.data.TargetValue = event.detail.info.Value;
@@ -77,6 +73,13 @@
                     break;
             }
         }
+
+        var languageTextPage = {
+            modalHadler:modalHandler
+        }
+
+        document.addEventListener('modalClose', languageTextPage.modalHandler);
+
         $('body').on('change', '.js-select', function () {
 
             var src = $("#Source").val();

@@ -1,23 +1,16 @@
 ﻿
 (function () {
 
-    var table = $("#templatesTable")
-.DataTable({
-    "sPaginationType": "full_numbers", // And its type.
-    "iDisplayLength": 10,
-    "ajax": "/SysAdmin/Templates/" + "GetTemplates",
-    "autoWidth": true,
-    "preDrawCallback": function () {
-        // Initialize the responsive datatables helper once.
-        if (!responsiveHelper_dt_roles) {
-            responsiveHelper_dt_roles = new
-                ResponsiveDatatablesHelper($('#templatesTable'), breakpointDefinition);
+    var columns = [
+        {
+            "data": "Name"
+        },
+        {
+            "data": "FileName"
         }
-    },
-    "rowCallback": function (nRow) {
-        responsiveHelper_dt_roles.createExpandIcon(nRow);
-    },
-    columnDefs: [
+    ];
+
+    var columnDefinitions = [
         {
             className: "text-center",
             "render": function (data, type, row) {
@@ -62,21 +55,20 @@
             },
             "targets": 4
         }
-    ],
-    "drawCallback": function (oSettings) {
-        responsiveHelper_dt_roles.respond();
-    },
-    language: window.dataTablesLang,
-    columns: [
-        {
-            "data": "Name"
-        },
-        {
-            "data": "FileName"
-        }
-    ]
-});
+    ];
+    var dataTablesConfig = new DatatablesConfig({
+        Url: "/SysAdmin/Templates/" + "GetTemplates",
+        DisplayLength: 10,
+        Element: $("#templatesTable"),
+        Columns: columns,
+        ColumnDefinitions: columnDefinitions
+    });
+
+    var myTemplatesPage = {
+        dataTablesConfig: dataTablesConfig
+    }
 
 
-
+    var table = $("#templatesTable")
+.DataTable(myTemplatesPage.dataTablesConfig);
 })();
