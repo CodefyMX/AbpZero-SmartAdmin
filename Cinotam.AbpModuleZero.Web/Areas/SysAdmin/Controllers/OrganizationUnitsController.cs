@@ -25,7 +25,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View(model);
         }
 
-        public ActionResult CreateEditOrganizationUnit(int? id)
+        public ActionResult CreateEditOrganizationUnit(long? id)
         {
             var model = _organizationUnitsAppService.GetOrganizationUnitForEdit(id);
             return View(model);
@@ -36,6 +36,18 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             var model = _organizationUnitsAppService.GetOrganizationUnitForEdit(null);
             model.ParentId = id;
             return View(model);
+        }
+
+        public async Task<ActionResult> UsersWindow(long id)
+        {
+            var model = await _organizationUnitsAppService.GetUsersFromOrganizationUnit(id);
+            return View(model);
+        }
+
+        public ActionResult AddUserView(long id)
+        {
+            ViewBag.OrgUnitId = id;
+            return View();
         }
     }
 }

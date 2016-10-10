@@ -323,6 +323,7 @@
     <Content Include="Areas\SysAdmin\Views\Menu\SetCategories.js" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddOrganizationUnit.js" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\bootstrap-typeahead\bootstrap-typeahead.min.js" />
+    <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddUserView.js" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\OrganizationUnitsList.js" />
     <Content Include="Areas\SysAdmin\Views\PageCategories\CreateEditCategoryContent.js" />
     <Content Include="Areas\SysAdmin\Views\PageCategories\MyCategories.js" />
@@ -1175,6 +1176,8 @@
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\GetOrganizationUnits.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\CreateEditOrganizationUnit.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddOrganizationUnit.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\OrganizationUnits\UsersWindow.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddUserView.cshtml" />
     <None Include="Areas\SysAdmin\Views\OrganizationUnits\_childOrgUnits.cshtml" />
     <None Include="Areas\SysAdmin\Views\Roles\_childPermissions.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />

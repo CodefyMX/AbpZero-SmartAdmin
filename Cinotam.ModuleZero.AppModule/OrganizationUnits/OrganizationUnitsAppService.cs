@@ -1,8 +1,11 @@
 ﻿using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Organizations;
+using Cinotam.AbpModuleZero.Users;
 using Cinotam.ModuleZero.AppModule.OrganizationUnits.Dto;
+using Cinotam.ModuleZero.AppModule.Users.Dto;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.OrganizationUnits
@@ -11,10 +14,13 @@ namespace Cinotam.ModuleZero.AppModule.OrganizationUnits
     {
         private readonly OrganizationUnitManager _organizationUnitManager;
         private readonly IRepository<OrganizationUnit, long> _organizationUnitRepository;
-        public OrganizationUnitsAppService(OrganizationUnitManager organizationUnitManager, IRepository<OrganizationUnit, long> organizationUnitRepository)
+        private readonly IRepository<User, long> _usersRepository;
+
+        public OrganizationUnitsAppService(OrganizationUnitManager organizationUnitManager, IRepository<OrganizationUnit, long> organizationUnitRepository, IRepository<User, long> usersRepository)
         {
             _organizationUnitManager = organizationUnitManager;
             _organizationUnitRepository = organizationUnitRepository;
+            _usersRepository = usersRepository;
         }
 
         public async Task CreateOrEditOrgUnit(OrganizationUnitInput input)
@@ -53,11 +59,36 @@ namespace Cinotam.ModuleZero.AppModule.OrganizationUnits
             };
         }
 
-        public OrganizationUnitInput GetOrganizationUnitForEdit(int? id)
+        public OrganizationUnitInput GetOrganizationUnitForEdit(long? id)
         {
             if (!id.HasValue) return new OrganizationUnitInput();
             var orgUnit = _organizationUnitRepository.Get(id.Value);
             return orgUnit.MapTo<OrganizationUnitInput>();
+        }
+
+        public async Task RemoveOrganizationUnit(long id)
+        {
+            await _organizationUnitManager.DeleteAsync(id);
+        }
+
+        public async Task RemoveUserFromOrganizationUnit(AddUserToOrgUnitInput input)
+        {
+            var user = await UserManager.GetUserByIdAsync(input.UserId);
+            var organizationUnit = await _organizationUnitRepository.GetAsync(input.OrgUnitId);
+            await UserManager.RemoveFromOrganizationUnitAsync(user, organizationUnit);
+        }
+
+        public async Task<UsersInOrganizationUnitOutput> GetUsersFromOrganizationUnit(long id)
+        {
+            var organizationUnit = _organizationUnitRepository.Get(id);
+            var users = await UserManager.GetUsersInOrganizationUnit(organizationUnit);
+
+
+            return new UsersInOrganizationUnitOutput()
+            {
+                OrgUnitId = id,
+                Users = users.Select(a => a.MapTo<UserListDto>()).ToList()
+            };
         }
 
         private async Task<List<OrganizationUnitDto>> GetOrganizationUnits()
@@ -103,3 +134,4 @@ namespace Cinotam.ModuleZero.AppModule.OrganizationUnits
         }
     }
 }
+

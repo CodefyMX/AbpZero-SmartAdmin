@@ -23,6 +23,11 @@ namespace Cinotam.AbpModuleZero
             advancedReporting.CreateChildFeature("PrintData",
                 defaultValue: "false",
                 scope: FeatureScopes.Edition, inputType: new CheckboxInputType());
+
+            advancedReporting.CreateChildFeature("MaxReportsPerMonth",
+                defaultValue: "100",
+                scope: FeatureScopes.Edition, inputType: new SingleLineStringInputType());
+
             advancedReporting.CreateChildFeature("HighCharts",
                 "false",
                 L("HighCharts"),

@@ -10,6 +10,8 @@
     .vakata-context, .vakata-context ul {
            z-index: 10000;
     }
+     .jstree-proton .jstree-open>.jstree-ocl {display:none}
+     .jstree-proton .jstree-closed>.jstree-ocl {display:none}
 </style>
 <div class="modal-dialog" id="leaderModal" role="document">
     <div class="modal-content">
@@ -24,6 +26,8 @@
 
                 <form method="POST" id="createEditEdition" class="smart-form">
                     @Html.HiddenFor(a => a.Id)
+                    @Html.HiddenFor(a => a.Name)
+                    
                     <ul class="nav nav-tabs">
                         <li class="active">
                             <a href="#iss1" data-toggle="tab" aria-expanded="true">@L("EditionProperties")</a>
@@ -68,14 +72,14 @@
                                             {
                                                 if (feature.InputType.Name == "CHECKBOX")
                                                 {
-                                                    <li data-jstree='{ "selected" : @feature.Selected.ToString().ToLower() }'>
+                                                    <li data-append-textbox="false" id="@feature.Name" data-value="@feature.DefaultValue" data-jstree='{ "selected" : @feature.Selected.ToString().ToLower() }'>
                                                         <a>@feature.Name</a>
                                                         @{ Html.RenderPartial("_loadChildrens", feature.ChildFeatures); }
                                                     </li>
                                                 }
                                                 else
                                                 {
-                                                    <li>
+                                                    <li data-append-textbox="true" id="@feature.Name" data-value="@feature.DefaultValue">
                                                         <a>@feature.Name @feature.DefaultValue</a>
                                                         @{ Html.RenderPartial("_loadChildrens", feature.ChildFeatures); }
                                                     </li>

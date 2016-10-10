@@ -1,6 +1,6 @@
 ﻿
 (function () {
-    
+
     var contextMenu = function (node) {
         var items = {
             addUnit: {
@@ -19,7 +19,14 @@
             deleteUnit: {
                 label: LSys('DeleteOrganizationUnit'),
                 action: function (data) {
-                    console.log(data);
+                    abp.message.confirm(LSys("TheUnitWillBeDeleted"), LSys("Sure"), function (response) {
+                        if (response) {
+                            abp.services.app.organizationUnits.removeOrganizationUnit(node.id).done(function () {
+                                abp.notify.success(LSys("OrganizationUnitRemoved"), LSys("Success"));
+                                loadOrganizationUnitsView();
+                            });
+                        }
+                    });
                 }
             }
         }
@@ -28,9 +35,17 @@
     }
     var treeJsConfig = {
         contextMenu: contextMenu,
-        modalHandler:modalHandler
+        modalHandler: modalHandler
     }
 
+    var selectedNodeId;
+    function loadUsersWindow(id) {
+        abp.ui.setBusy("#usersWindow");
+
+        $("#usersWindow").load("/SysAdmin/OrganizationUnits/UsersWindow/" + id, function () {
+            abp.ui.clearBusy("#usersWindow");
+        });
+    }
     var loadOrganizationUnitsView = function () {
         abp.ui.setBusy("#organizationUnitsView");
         $("#organizationUnitsView")
@@ -53,13 +68,12 @@
                             }
                         });
 
-                    $('#container')
-                        .on("select_node.jstree",
-                            function (e, data) {
-                                //console.log("node_id: " + data.node.id);
+                    $("#container").on("select_node.jstree", function (evt, nodeRef) {
 
-                            });
+                        selectedNodeId = nodeRef.node.id;
+                        loadUsersWindow(selectedNodeId);
 
+                    });
 
                     var newParent = 0;
                     var oldPosition;
@@ -110,6 +124,10 @@
                                     });
                                 return false;
                             });
+
+                    $('#container').on('ready.jstree', function () {
+                        $("#container").jstree("open_all");
+                    });
                 });
     }
 
@@ -119,6 +137,10 @@
                 loadOrganizationUnitsView();
                 abp.notify.success(LSys("OrganizationUnitCreated"), LSys("Success"));
                 break;
+            case "MODAL_USER_ADDED":
+                abp.notify.success(LSys("UserAdded"), LSys("Success"));
+                loadUsersWindow(selectedNodeId);
+                break;
             default:
                 console.log("Event unhandled");
         }
@@ -127,6 +149,27 @@
     $(document)
         .ready(function () {
             loadOrganizationUnitsView();
+
+
+            
+            $("body").on("click", ".js-remove", function () {
+                var userId = $(this).data("user-id");
+                var orgId = $(this).data("org-id");
+
+                abp.message.confirm(LSys("UserWillBeRemovedFromOrganizationUnit"), LSys("Sure"), function (response) {
+                    if (response) {
+                        abp.ui.setBusy("#usersTable", abp.services.app.organizationUnits.removeUserFromOrganizationUnit({
+                            UserId: userId,
+                            OrgUnitId: orgId
+                        }).done(function () {
+                            abp.notify.success(LSys("UserRemovedFromOrganizationUnit"),LSys("Success"));
+                            loadUsersWindow(selectedNodeId);
+                        }));
+                    }
+                });
+
+            });
+
         });
 
     document.addEventListener('modalClose', treeJsConfig.modalHandler);

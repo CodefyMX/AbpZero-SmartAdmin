@@ -1,0 +1,34 @@
+﻿@using Abp.Web.Mvc.Extensions
+@{
+    Layout = null;
+}
+
+
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="userAddModal-label">@L("AddUser")</h4>
+        </div>
+        <div class="modal-body">
+            @Html.Hidden("OrgUnitId",(int)ViewBag.OrgUnitId)
+            <table class="table table-condensed table-striped table-bordered table-hover" width="100%" id="usersTable">
+                <thead>
+                <tr>
+                    <th data-class="expand">@L("UserName")</th>
+
+                    <th data-hide="phone,tablet">@L("EmailAddress")</th>
+                    <th>
+                        
+                    </th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">@L("Close")</button>
+        </div>
+    </div>
+</div>
+@Html.IncludeScript("~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js")
+@Html.IncludeScript("~/Areas/SysAdmin/Views/OrganizationUnits/AddUserView.js")

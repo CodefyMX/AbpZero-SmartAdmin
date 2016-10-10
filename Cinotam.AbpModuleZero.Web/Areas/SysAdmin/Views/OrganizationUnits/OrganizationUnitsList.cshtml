@@ -110,18 +110,18 @@
 
                 <div class="jarviswidget jarviswidget-sortable" id="wid-id-orgUnitsUsers" style="" role="widget">
                     <!-- widget options:
-                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+            usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
-                    data-widget-colorbutton="false"
-                    data-widget-editbutton="false"
-                    data-widget-togglebutton="false"
-                    data-widget-deletebutton="false"
-                    data-widget-fullscreenbutton="false"
-                    data-widget-custombutton="false"
-                    data-widget-collapsed="true"
-                    data-widget-sortable="false"
+            data-widget-colorbutton="false"
+            data-widget-editbutton="false"
+            data-widget-togglebutton="false"
+            data-widget-deletebutton="false"
+            data-widget-fullscreenbutton="false"
+            data-widget-custombutton="false"
+            data-widget-collapsed="true"
+            data-widget-sortable="false"
 
-                    -->
+            -->
                     <header role="heading">
 
                         <div class="jarviswidget-ctrls" role="menu">
@@ -138,7 +138,6 @@
                             @*<a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a>*@
                         </div>
                         <div class="widget-toolbar" role="menu">
-                            <a data-modal href="@Url.Action("AddUser","OrganizationUnits")" class="btn btn-success">@L("AddUser")</a>
                             <a data-toggle="dropdown" class="dropdown-toggle color-box selector" href="javascript:void(0);"></a>
                             <ul class="dropdown-menu arrow-box-up-right color-select pull-right">
                                 <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
@@ -182,8 +181,9 @@
                         </div>
                         <!-- end widget edit box -->
                         <!-- widget content -->
-                        <div class="widget-body">
+                        <div class="widget-body" id="usersWindow">
 
+                            
                         </div>
                         <!-- end widget content -->
 
