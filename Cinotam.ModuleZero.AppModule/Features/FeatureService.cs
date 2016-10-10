@@ -123,7 +123,8 @@ namespace Cinotam.ModuleZero.AppModule.Features
                 return _editionManager.FeatureManager.GetOrNull(argName).DefaultValue;
             }
             var value = AsyncHelper.RunSync(() => _editionManager.GetFeatureValueOrNullAsync(id.Value, argName));
-            return value;
+
+            return value ?? _editionManager.FeatureManager.GetOrNull(argName).DefaultValue;
         }
 
         private bool IsEnabledInEdition(int? id, string featureName)
@@ -141,20 +142,13 @@ namespace Cinotam.ModuleZero.AppModule.Features
                 {
                     Name = argChild.Name,
                     InputType = argChild.InputType,
-                    Selected = true,
+                    Selected = IsEnabledInEdition(id, argChild.Name),
                     DefaultValue = GetDefaultValue(id, argChild.Name),
                     ChildFeatures = GetChildrens(argChild.Children, id)
                 });
             }
             return listFeatureDto;
         }
-
-        private IInputType GetInputType(string argName)
-        {
-            var feature = _editionManager.FeatureManager.GetOrNull(argName);
-            return feature.InputType;
-        }
-
         public async Task SetEditionForTenant(int tenantId, int editionId)
         {
             var tenant = await _tenantManager.FindByIdAsync(tenantId);

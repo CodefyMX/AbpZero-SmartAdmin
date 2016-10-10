@@ -24,9 +24,6 @@
                     contextmenu: {
                         items: treeJsConfig.contextMenu
                     },
-                    "checkbox": {
-                        "keep_selected_style": false
-                    },
                     'plugins': ["checkbox"],
                     'core': {
                         'themes': {
@@ -42,17 +39,24 @@
                       var selector = "#" + value.id;
                       var jqueryElement = $(selector);
                       var requiresTextBox = jqueryElement.data("append-textbox");
+                      var checked = jqueryElement.data("selected");
+                      console.log(checked);
+                      if (checked == "True") {
+                          $("#container").jstree("check_node", selector);
+                      } else {
+                          $("#container").jstree("uncheck_node", selector);
+                      }
                       if (requiresTextBox) {
 
                           jqueryElement.append("<input type='text' class='input-tree' />");
                       }
                   });
+
+
                 $("#container").jstree("open_all");
             });
 
             $("#container").on('open_node.jstree', function (evt, nodeRef) {
-                console.log("Node open");
-                console.log(nodeRef.node.children);
                 nodeRef.node.children.forEach(function (i, v) {
                     printTextBoxIfNeededForNodeNames(i);
                 });
@@ -72,6 +76,13 @@
                     //anchorElementCheckBox.remove();
                     //anchorElementIcon.remove();
                     var defaultValue = jqueryElement.data("value");
+                    var checked = jqueryElement.data("selected");
+                    console.log(checked);
+                    if (checked == "True") {
+                        $("#container").jstree("check_node", selector);
+                    } else {
+                        $("#container").jstree("uncheck_node", selector);
+                    }
                     jqueryElement.append("<input type='text' value=" + defaultValue + " class='input-tree' data-text-id='" + name + "' />");
                 }
                 node.children.forEach(function (i, v) {
@@ -89,6 +100,13 @@
                 if (requiresTextBox) {
                     //var anchorElements = jqueryElement.find(".jstree-icon.jstree-checkbox");
                     //console.log(anchorElements);
+                    var checked = jqueryElement.data("selected");
+                    console.log(checked);
+                    if (checked == "True") {
+                        $("#container").jstree("check_node", selector);
+                    } else {
+                        $("#container").jstree("uncheck_node", selector);
+                    }
                     var defaultValue = jqueryElement.data("value");
                     jqueryElement.append("<input type='text' value=" + defaultValue + " class='input-tree' data-text-id='" + name + "' />");
                 }
@@ -106,9 +124,9 @@
                         var selected = $("#container").jstree('get_json');
                         $(selected).each(function (index, v) {
                             var value = v.state.selected;
-                            console.log("Selected status for: "+v.id+"",value);
+                            console.log("Selected status for: " + v.id + "", value);
                             var selectedStatus = isAnyChildrenSelected(v.children);
-                            
+                            console.log("Has childrens activated", selectedStatus);
                             if (value === false) {
                                 value = selectedStatus;
                             } else {
@@ -120,7 +138,7 @@
                                 var valueHolder = value;
 
                                 value = $(textBox[0]).val();
-                                
+
                                 if (!valueHolder) {
                                     selectedStatus = false;
                                 }
@@ -141,12 +159,12 @@
                         });
 
                         function isAnyChildrenSelected(children) {
-                            children.forEach(function (v) {
-                                console.log("Checking if active",v);
-                                if (v.state.selected) {
+
+                            for (var i = 0; i < children.length; i++) {
+                                if (children[i].state.selected) {
                                     return true;
                                 }
-                            });
+                            }
                             return false;
                         }
 
@@ -170,14 +188,6 @@
                             });
                         }
                         console.log("Features", features);
-                        //$(".input-tree").each(function (e, v) {
-                        //    var element = $(v);
-                        //    features.push({
-                        //        Name: element.data("id"),
-                        //        DefaultValue: element.val(),
-                        //        Selected: true
-                        //    });
-                        //});
                         formData.Features = features;
 
                         abp.ui.setBusy("#createEditEdition", abp.services.app.featureService.createEdition(formData).done(function () {
