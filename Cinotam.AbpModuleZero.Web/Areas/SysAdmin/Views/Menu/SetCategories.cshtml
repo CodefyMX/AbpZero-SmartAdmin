@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+@using Abp.Web.Mvc.Extensions
 @model Cinotam.Cms.App.Menus.Dto.CategorySetModel
 <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -60,33 +61,4 @@
 
     </div>
 </div>
-<script>
-    (function () {
-
-        $(document)
-            .ready(function () {
-                $("#setCategories").on("submit", function (e) {
-                    e.preventDefault();
-                    var data = {
-                        MenuId: $("#MenuId").val(),
-                        AvailableCategories: []
-                    };
-                    $(".js-set-category").each(function (i, element) {
-                        var $element = $(element);
-                        data.AvailableCategories.push ({
-                            Checked: $element.is(":checked"),
-                            CategoryId: $element.data("category")
-                        });
-                    });
-
-                    abp.services.cms.menuService.setMenuSectionsFromCategories (data)
-                        .done(function () {
-                            window.location.reload ();
-
-                        });
-                });
-            });
-
-
-    })();
-</script>
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Menu/SetCategories.js")

@@ -1,4 +1,5 @@
-﻿@model Cinotam.Cms.App.Templates.Dto.TemplateInput
+﻿@using Abp.Web.Mvc.Extensions
+@model Cinotam.Cms.App.Templates.Dto.TemplateInput
 @{
     Layout = null;
 }
@@ -35,21 +36,6 @@
 
     </div>
 </div>
-<script>
-    (function () {
-        $(document)
-            .ready(function () {
-                $("#createTemplateForm").on("submit", function (e) {
-                    e.preventDefault();
-                    var data = $(this).serializeFormToObject();
-                    data.IsPartial = $ ("#IsPartial").is(":checked");
-                    console.log(data);
-                    abp.services.cms.templateService.addTemplate(data)
-                        .done(function () {
-                            window.location.reload();
-                        });
-                });
-            });
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Templates/CreateEditTemplate.js")
 
-    })();
-</script>
+

@@ -1,4 +1,5 @@
-﻿@model Cinotam.ModuleZero.AppModule.Languages.Dto.LocalizationTextInput
+﻿@using Abp.Web.Mvc.Extensions
+@model Cinotam.ModuleZero.AppModule.Languages.Dto.LocalizationTextInput
 
 @{
     Layout = null;
@@ -58,4 +59,4 @@
         </div>
     </div>
 </div>
-<script src="@Url.Content("~/Areas/SysAdmin/Scripts/Languages/EditText.js")"></script>
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Languages/EditText.js")

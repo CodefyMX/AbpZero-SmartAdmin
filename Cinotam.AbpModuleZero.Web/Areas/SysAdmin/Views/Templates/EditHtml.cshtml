@@ -1,5 +1,6 @@
 ﻿@using System.Threading
 @using Abp.Timing
+@using Abp.Web.Mvc.Extensions
 @model Cinotam.Cms.App.Templates.Dto.TemplateInput
 <style>
     #editor {
@@ -33,41 +34,6 @@
 
 @section pagespecific{
     <script src="https://ajaxorg.github.io/ace-builds/src/ace.js"></script>
-
-<script>
-    (function () {
-        $ (document)
-            .ready (function () {
-                var editor = ace.edit ("editor");
-                editor.setTheme ("ace/theme/twilight");
-                editor.session.setMode ("ace/mode/html");
-                $ ("#editHtml")
-                    .on ("submit",
-                        function (e) {
-                            e.preventDefault();
-                            var data = $(this).serializeFormToObject();
-                            data.Content = editor.getValue();
-                            abp.services.cms.templateService.addTemplate (data).done(function () {
-                                abp.message.success (LSys("Saved"),LSys("ContentSaved"));
-                            });
-                        });
-                //function showHTML() {
-                //    $('#return').html(editor.getValue());
-                //}
-
-                //// or use data: url to handle things like doctype
-                //function showHTMLInIFrame() {
-                //    $('#return')
-                //        .html("<iframe onload='resizeIframe(this)' style='width:100%;height:auto;' src=" +
-                //            "data:text/html," +
-                //            encodeURIComponent(editor.getValue()) +
-                //            "></iframe>");
-                //}
-
-                //editor.on("input", showHTMLInIFrame);
-                //showHTMLInIFrame();
-            });
-    }) ();
-
-</script>
+    @Html.IncludeScript("~/Areas/SysAdmin/Views/Templates/EditHtml.js")
+    
 }

@@ -1,4 +1,5 @@
-﻿@using Cinotam.AbpModuleZero
+﻿@using Abp.Web.Mvc.Extensions
+@using Cinotam.AbpModuleZero
 @model Cinotam.ModuleZero.AppModule.Settings.Dto.SettingsOutput
 <!-- MAIN CONTENT -->
 <div id="content">
@@ -112,5 +113,5 @@
 </div>
 <!-- END MAIN CONTENT -->
 @section pagespecific {
-    <script src="@Url.Content("~/Areas/SysAdmin/Scripts/Configurations/Configurations.js")"></script>
+    @Html.IncludeScript("~/Areas/SysAdmin/Views/Configuration/Configurations.js")
 }

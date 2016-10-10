@@ -1,4 +1,5 @@
-﻿@model Cinotam.ModuleZero.AppModule.Features.Dto.EditionsOutput
+﻿@using Abp.Web.Mvc.Extensions
+@model Cinotam.ModuleZero.AppModule.Features.Dto.EditionsOutput
 <!-- MAIN CONTENT -->
 <div id="content">
     <div class="row">
@@ -104,18 +105,18 @@
                                                 <div class="list-group-item-heading">
                                                     @element.DisplayName
                                                     <p>
-                                                       Price : $ @element.Price
+                                                        Price : $ @element.Price
                                                     </p>
                                                 </div>
                                                 <p class="list-group-item-text">
                                                     <a data-modal class="btn btn-primary btn-sm" href="@Url.Action("EditCreateEdition",new { id = element.Id })">@L("EditEdition")</a>
                                                     <a data-modal class="btn btn-primary btn-sm" href="@Url.Action("ChangeEditionValues",new { id = element.Id })">@L("ChangeEditionValues")</a>
                                                 </p>
-                                            </li>    
+                                            </li>
                                         }
                                     </ul>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                         <!-- end widget content -->
 
@@ -130,5 +131,5 @@
 </div>
 <!-- END MAIN CONTENT -->
 @section pagespecific {
-<script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
+    @Html.IncludeScript("~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js")
 }

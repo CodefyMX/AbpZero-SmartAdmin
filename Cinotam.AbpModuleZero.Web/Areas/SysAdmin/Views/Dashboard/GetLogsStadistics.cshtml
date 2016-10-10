@@ -1,4 +1,5 @@
-﻿
+﻿@using Abp.Web.Mvc.Extensions
+
 @{
     Layout = null;
 }
@@ -32,4 +33,4 @@
         <p class="text-center font-lg"><a href="@Url.Action("AuditLogsList","AuditLogs")">@L("SeeAll")</a></p>
     </div>
 </div>
-<script src="@Url.Content("~/Areas/SysAdmin/Scripts/Dashboard/GetLogStadistics.js")"></script>
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Dashboard/GetLogStadistics.js")

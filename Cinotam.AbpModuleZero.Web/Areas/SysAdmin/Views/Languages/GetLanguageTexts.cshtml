@@ -1,4 +1,5 @@
-﻿@using Abp.Zero
+﻿@using Abp.Web.Mvc.Extensions
+@using Abp.Zero
 @using Cinotam.AbpModuleZero
 @model Cinotam.ModuleZero.AppModule.Languages.Dto.LanguageTextsForEditView
 @{}
@@ -164,8 +165,7 @@
 
 
 @section pagespecific {
-    <script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
-    <script src=@Url.Content("~/Areas/SysAdmin/Scripts/Languages/languageTexts.js")></script>
-
+    @Html.IncludeScript("~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js")
+    @Html.IncludeScript("~/Areas/SysAdmin/Views/Languages/languageTexts.js")
 
 }
