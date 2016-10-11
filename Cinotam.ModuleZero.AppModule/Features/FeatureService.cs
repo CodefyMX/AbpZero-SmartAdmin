@@ -100,6 +100,12 @@ namespace Cinotam.ModuleZero.AppModule.Features
             return editionInput;
         }
 
+        public async Task DeleteEdition(DeleteEditionInput input)
+        {
+            var edition = await _editionManager.FindByIdAsync(input.EditionId);
+            await _editionManager.DeleteAsync(edition);
+        }
+
         private List<FeatureDto> GetAllFeatures(int? id = null)
         {
             var featuresFromDb = _editionManager.FeatureManager.GetAll().Where(a => a.Parent == null).ToList();

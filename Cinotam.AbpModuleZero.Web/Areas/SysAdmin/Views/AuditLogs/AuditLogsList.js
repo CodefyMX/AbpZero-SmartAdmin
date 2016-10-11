@@ -50,9 +50,10 @@
             dataTablesConfig: dataTablesConfig
         }
 
-        var table = $("#auditLogsTable")
-        .DataTable(auditLogListPage.dataTablesConfig);
+        var $table = $("#auditLogsTable");
 
+        var table = $table
+        .DataTable(auditLogListPage.dataTablesConfig);
     }
 
 })();

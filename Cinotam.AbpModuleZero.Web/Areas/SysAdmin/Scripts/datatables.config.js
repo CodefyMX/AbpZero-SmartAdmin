@@ -6,8 +6,16 @@ var ColumnElement = function (renderFunction, className, targets) {
 };
 var DatatablesConfig = function (configuration) {
     var responsiveHelper;
+    var serverSide = true;
+    if (configuration.Ajax != undefined) {
+        
+        if (configuration.Ajax === false) {
+             serverSide = false;
+        }
+    }
+
     var datatablesConfig = {
-        "bServerSide": true,
+        "bServerSide": serverSide,
         "bPaginate": true,
         "sPaginationType": "full_numbers", // And its type.
         "iDisplayLength": configuration.DisplayLength,

@@ -1,12 +1,13 @@
 ﻿(function () {
     $(document).ready(function () {
 
+        var $settingsForm = $("#settings");
+        var $settingsInputSelector = $("#settings input");
 
-
-        $("#settings").on("submit", function (e) {
+        $settingsForm.on("submit", function (e) {
             var data = [];
             e.preventDefault();
-            $("#settings input").each(function () {
+            $settingsInputSelector.each(function () {
                 var $element = $(this);
                 var key = $element.data("key");
                 var scope = $element.data("scope");

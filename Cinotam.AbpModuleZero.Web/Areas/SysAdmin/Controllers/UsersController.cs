@@ -22,18 +22,9 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         }
 
         [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsers)]
-        public ActionResult UsersAndRolesList(long? userId)
+        public ActionResult UsersList(long? userId)
         {
-            if (userId.HasValue)
-            {
-                ViewBag.UserId = userId.Value;
-            }
-            else
-            {
-                ViewBag.UserId = 0;
-            }
-
-
+            ViewBag.UserId = userId ?? 0;
             return View();
         }
         [WrapResult(false)]
@@ -45,22 +36,21 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             var result = _userAppService.GetUsersForTable(input);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
-        [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsers)]
+        [AbpMvcAuthorize(PermissionNames.PagesSysAdminRolesEdit)]
         public async Task<ActionResult> EditRoles(long? id)
         {
             var model = await _userAppService.GetRolesForUser(id);
             return View(model);
         }
 
-        [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsers)]
+        [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsersCreate)]
         public async Task<ActionResult> CreateEditUser(long? id)
         {
             var input = await _userAppService.GetUserForEdit(id);
             return View(input);
         }
 
-        [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsers)]
+        [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsersCreate)]
         [HttpPost]
         public async Task<ActionResult> CreateEditUser(CreateUserInput input)
         {

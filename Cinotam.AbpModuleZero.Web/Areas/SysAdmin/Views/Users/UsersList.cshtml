@@ -1,25 +1,31 @@
-﻿@using Abp.Web.Mvc.Extensions
+﻿@using Cinotam.AbpModuleZero
 @using Cinotam.AbpModuleZero.Authorization
+
+@{
+    ViewBag.Title = "Index";
+}
+
 <!-- MAIN CONTENT -->
 <div id="content">
+    @Html.Hidden("ActivatorUserId", (long)ViewBag.UserId)
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
             <h1 class="page-title txt-color-blueDark">
                 <i class="fa-fw fa fa-home"></i>
-                @L("Languages")
+                @L("Users")
                 <span>
                     >
-                    @L("LanguagesManagement")
+                    @L("UsersManagement")
                 </span>
             </h1>
         </div>
     </div>
-    <section id="widget-grid">
-        <div class="row">
+    <div class="row">
+        <section id="widget-grid">
 
-            <article class="col-xs-12 sortable-grid ui-sortable">
+            <article class="col-xs-12 col-lg-12 col-md-12 sortable-grid ui-sortable">
 
-                <div class="jarviswidget jarviswidget-sortable" id="wid-id-langTable" style="" role="widget">
+                <div class="jarviswidget jarviswidget-sortable" id="wid-id-userTable" style="" role="widget">
                     <!-- widget options:
                     usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
@@ -36,12 +42,12 @@
                     <header role="heading">
 
                         <div class="jarviswidget-ctrls" role="menu">
-                            <a href="javascript:void(0);" class="button-icon jarviswidget-edit-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("Edit")">
+                            <a role="menuitem" href="javascript:void(0);" class="button-icon jarviswidget-edit-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@Ls(AbpModuleZeroConsts.LocalizationSmartAdminSourceName, "Edit")">
                                 <i class="fa fa-cog "></i>
-                            </a> <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("Collapse")">
+                            </a> <a role="menuitem" href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@Ls(AbpModuleZeroConsts.LocalizationSmartAdminSourceName, "Collapse")">
                                 <i class="fa fa-minus "></i>
                             </a>
-                            <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("FullScreen")">
+                            <a role="menuitem" href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@Ls(AbpModuleZeroConsts.LocalizationSmartAdminSourceName, "FullScreen")">
                                 <i class="fa fa-expand "></i>
                             </a>
                             @*<a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a>*@
@@ -67,20 +73,23 @@
                                 <li><span class="bg-color-red" data-widget-setstyle="jarviswidget-color-red" rel="tooltip" data-placement="bottom" data-original-title="Red Rose"></span></li>
                                 <li><span class="bg-color-redLight" data-widget-setstyle="jarviswidget-color-redLight" rel="tooltip" data-placement="bottom" data-original-title="Light Red"></span></li>
                                 <li><span class="bg-color-white" data-widget-setstyle="jarviswidget-color-white" rel="tooltip" data-placement="right" data-original-title="Purity"></span></li>
-                                <li><a href="javascript:void(0);" class="jarviswidget-remove-colors" data-widget-setstyle="" rel="tooltip" data-placement="bottom" data-original-title="Reset widget color to default">@L("Restore")</a></li>
+                                <li><a href="javascript:void(0);" class="jarviswidget-remove-colors" data-widget-setstyle="" rel="tooltip" data-placement="bottom" data-original-title="Reset widget color to default">@Ls(AbpModuleZeroConsts.LocalizationSmartAdminSourceName, "Restore")</a></li>
                             </ul>
                         </div>
 
                         <h2>
-                            <strong>@L("Languages")</strong> <i></i>
+                            <strong>@L("Users")</strong>
                         </h2>
 
                         <div class="widget-toolbar" role="menu">
-                            
-                            @if (IsGranted(PermissionNames.PagesSysAdminLanguagesCreate))
+
+                            @if (IsGranted(PermissionNames.PagesSysAdminUsersCreate))
                             {
-                                <a data-modal href="@Url.Action("CreateLanguage", "Languages")" class="btn btn-success">@L("AddLanguage")</a>
+                                <a data-modal href="@Url.Action("CreateEditUser")" class="btn btn-success">@L("CreateNewUser")</a>
                             }
+
+
+
                         </div>
                         <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
 
@@ -93,20 +102,24 @@
                         <div class="jarviswidget-editbox">
                             <!-- This area used as dropdown edit box -->
                             <input class="form-control" type="text">
-                            <span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
+                            <span class="note"><i class="fa fa-check text-success"></i> @Ls(AbpModuleZeroConsts.LocalizationSmartAdminSourceName, "ChangeTitle")</span>
 
                         </div>
                         <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body no-padding">
-                            <table class="table table-striped table-bordered table-hover table-condensed" width="100%" id="languagesTable">
+                            <table class="table table-condensed table-striped table-bordered table-hover" width="100%" id="usersTable">
                                 <thead>
                                 <tr>
-
                                     <th></th>
-                                    <th data-class="expand">@L("Name")</th>
+                                    <th data-class="expand">@L("UserName")</th>
+                                    <th data-hide="phone,tablet">@L("Name")</th>
+                                    <th data-hide="phone,tablet">@L("Surname")</th>
+                                    <th data-hide="phone,tablet">@L("EmailAddress")</th>
+                                    <th data-hide="phone,tablet">@L("LockedStatus")</th>
                                     <th data-hide="phone,tablet">@L("CreationTime")</th>
-                                    <th>@L("Type")</th>
+                                    <th data-hide="phone,tablet">@L("LastLoginTime")</th>
+
                                 </tr>
                                 </thead>
                             </table>
@@ -118,12 +131,20 @@
 
                 </div>
             </article>
-        </div>
-    </section>
+        </section>
+    </div>
 
 </div>
 <!-- END MAIN CONTENT -->
 @section pagespecific {
-    @Html.IncludeScript("~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js")
-    @Html.IncludeScript("~/Areas/SysAdmin/Views/Languages/languages.js")
+    <script src="http://www.jquery-az.com/jquery/js/jquery-treeview/logger.js"></script>
+    <script src="http://www.jquery-az.com/jquery/js/jquery-treeview/treeview.js"></script>
+
+    <script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
+
+    @if (IsGranted(PermissionNames.PagesSysAdminUsers))
+    {
+        <script src=@Url.Content("~/Areas/SysAdmin/Views/Users/users.js")></script>
+    }
+
 }

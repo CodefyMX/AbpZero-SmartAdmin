@@ -1,34 +1,54 @@
 ﻿/// <reference path="datatables.responsiveConfigs.js" />
 (function () {
+
+    var rolePageGranted = abp.auth.isGranted("Pages.SysAdminRoles");
+    var roleEditGranted = abp.auth.isGranted("Pages.SysAdminRoles.Edit");
+    var roleDeleteGranted = abp.auth.isGranted("Pages.SysAdminRoles.Delete");
+
+
     var columns = [
+        { "data": "Id" },
         {
             "data": "DisplayName"
         },
-        { "data": "CreationTimeString" },
-        { "data": "Id" }
+        { "data": "CreationTimeString" }
+        
     ];
     var columnDefs = [
         {
             "name": "CreationTime",
-            "targets": "1"
+            "targets": 2
         },
         {
-            className: "text-center",
+            
             "render": function (data, type, row) {
-                if (!row.IsStatic) {
-                    return " <a data-modal href='/SysAdmin/Roles/CreateEditRole/" +
-                        row.Id +
-                        "' class='btn btn-default btn-xs' title='" +
+                var roleDeleteBtn = "";
+                if (roleDeleteGranted) {
+                    roleDeleteBtn = " <a data-role-name="+row.DisplayName+" data-id=" + row.Id + " class='btn btn-default btn-xs js-delete-role' title='" +
                         LSys("EditRole") +
-                        "' ><i class='fa fa-edit'></i></a>";
-                } else {
-                    return " <a disabled class='btn btn-default btn-xs' title='" +
-                        LSys("EditRole") +
-                        "' ><i class='fa fa-edit'></i></a>";
+                        "' ><i class='fa fa-trash'></i></a>";
                 }
 
+                if (roleEditGranted) {
+                    if (!row.IsStatic) {
+                        return " <a data-modal href='/SysAdmin/Roles/CreateEditRole/" +
+                            row.Id +
+                            "' class='btn btn-default btn-xs' title='" +
+                            LSys("EditRole") +
+                            "' ><i class='fa fa-edit'></i></a>" + roleDeleteBtn;
+                    } else {
+                        return " <a data-modal href='/SysAdmin/Roles/CreateEditRole/" +
+                            row.Id +
+                            "' class='btn btn-default btn-xs' title='" +
+                            LSys("EditRole") +
+                            "' ><i class='fa fa-edit'></i></a>";
+                    }
+                }
+
+                
+
             },
-            "targets": 2
+            "targets": 0
         }
     ];
     var dataTableConfig = new DatatablesConfig({
@@ -52,16 +72,30 @@
                     table.ajax.reload();
                     abp.notify.success(LSys("RoleEdited"), LSys("Success"));
                     break;
-                case "MODAL_ROLE_DELETED":
-                    table.ajax.reload();
-                    abp.notify.warn(LSys("RoleDeleted"), LSys("Success"));
-                    break;
                 default:
                     console.log("Event unhandled");
             }
         }
     };
+    
+    $("body").on("click", ".js-delete-role", function () {
+        var id = $(this).data("id");
+        var roleName = $(this).data("role-name");
+        var message = abp.utils.formatString(LSys("RoleDeleteMessage"), roleName);
 
-    var table = $("#rolesTable").DataTable(rolesPage.dataTableConfig);
+        abp.message.confirm(message, LSys("ConfirmQuestion"), function (response) {
+            if (response) {
+                abp.ui.setBusy($("#createEditRole"), abp.services.app.role.deleteRole(id).done(function () {
+                    table.ajax.reload();
+                    abp.notify.warn(LSys("RoleDeleted"), LSys("Success"));
+                }));
+            }
+        });
+    });
+    if (rolePageGranted) {
+
+        var table = $("#rolesTable").DataTable(rolesPage.dataTableConfig);
+    }
+
     document.addEventListener('modalClose', rolesPage.eventHandler);
 })();

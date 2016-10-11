@@ -1,10 +1,14 @@
 ﻿
 (function () {
-    $("#createMenuForm").on("submit", function (e) {
+
+    var $form = $("#createMenuForm");
+    var $langInputs = $(".js-lang-input");
+    $form.on("submit", function (e) {
         e.preventDefault();
         var availableLangs = [];
-        $(".js-lang-input")
-            .each(function (i, element) {
+        
+        
+        $langInputs.each(function (i, element) {
                 var $element = $(element);
                 var langInput = {
                     Lang: $element.data("lang"),
@@ -20,7 +24,7 @@
             IsActive: $("#IsActive").is(":checked"),
             Id: $("#Id").val()
         }
-        abp.ui.setBusy($("#createMenuForm"), abp.services.cms.menuService.addMenu(data).done(function () {
+        abp.ui.setBusy($form, abp.services.cms.menuService.addMenu(data).done(function () {
             window.location.reload();
         }));
 

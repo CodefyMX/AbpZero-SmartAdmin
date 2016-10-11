@@ -123,7 +123,8 @@
                                                     </p>
                                                 </div>
                                                 <p class="list-group-item-text">
-                                                    <a data-modal class="btn btn-primary btn-sm" href="@Url.Action("EditCreateEdition",new { id = element.Id })">@L("EditEdition")</a>
+                                                    <a data-modal class="btn btn-default btn-sm" href="@Url.Action("EditCreateEdition",new { id = element.Id })"><i class="fa fa-edit"></i></a>
+                                                    <a data-id="@element.Id" class="btn btn-default btn-sm js-delete-edition"><i class="fa fa-trash"></i></a>
                                                 </p>
                                             </li>
                                         }
@@ -145,4 +146,6 @@
 <!-- END MAIN CONTENT -->
 @section pagespecific {
     @Html.IncludeScript("~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js")
+    @Html.IncludeScript("~/Areas/SysAdmin/Views/Editions/EditionList.js")
+
 }

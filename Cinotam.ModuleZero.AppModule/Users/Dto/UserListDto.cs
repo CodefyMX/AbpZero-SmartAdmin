@@ -22,9 +22,14 @@ namespace Cinotam.ModuleZero.AppModule.Users.Dto
 
         public DateTime? LastLoginTime { get; set; }
 
+
+        public string LastLoginTimeString => LastLoginTime?.ToShortDateString() ?? "";
+
         public bool IsActive { get; set; }
 
         public DateTime CreationTime { get; set; }
+        public string CreationTimeString => CreationTime.ToShortDateString();
+
         public bool IsLockoutEnabled { get; set; }
         public string PhoneNumber { get; set; }
         public bool IsTwoFactorEnabled { get; set; }

@@ -72,14 +72,14 @@
                                             {
                                                 if (feature.InputType.Name == "CHECKBOX")
                                                 {
-                                                    <li data-append-textbox="false" id="@feature.Name" data-value="@feature.DefaultValue" data-selected="@feature.Selected">
+                                                    <li data-append-textbox="false" id="@feature.Name" data-value="@feature.DefaultValue" data-jstree='{ "selected" : @feature.Selected.ToString().ToLower() }' data-selected="@feature.Selected">
                                                         <a>@feature.Name</a>
                                                         @{ Html.RenderPartial("_loadChildrens", feature.ChildFeatures); }
                                                     </li>
                                                 }
                                                 else
                                                 {
-                                                    <li data-append-textbox="true" id="@feature.Name" data-selected="@feature.Selected" data-value="@feature.DefaultValue">
+                                                    <li data-append-textbox="true" id="@feature.Name" data-value="@feature.DefaultValue">
                                                         <a>@feature.Name</a>
                                                         @{ Html.RenderPartial("_loadChildrens", feature.ChildFeatures); }
                                                     </li>

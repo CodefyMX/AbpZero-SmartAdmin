@@ -31,12 +31,12 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             var data = _languageAppService.GetLanguagesForTable(input);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
-
+        [AbpMvcAuthorize(PermissionNames.PagesSysAdminLanguagesCreate)]
         public ActionResult CreateLanguage()
         {
             return View();
         }
-
+        [AbpMvcAuthorize(PermissionNames.PagesSysAdminLanguagesChangeTexts)]
         public ActionResult GetLanguageTexts(string targetLang)
         {
             var languageTexts = _languageAppService.GetLanguageTextsForEditView(targetLang, "en");
@@ -54,16 +54,9 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             var table = _languageAppService.GetLocalizationTexts(input);
             return Json(table, JsonRequestBehavior.AllowGet);
         }
-
+        [AbpMvcAuthorize(PermissionNames.PagesSysAdminLanguagesChangeTexts)]
         public ActionResult EditText(LocalizationTextInput input)
         {
-            //var localizationTextInput = new LocalizationTextInput()
-            //{
-            //    LanguageName = targetLang,
-            //    Key = key,
-            //    Source = source,
-            //    Value = currentValue
-            //};
             return View(input);
         }
     }

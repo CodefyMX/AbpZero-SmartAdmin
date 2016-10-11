@@ -1,6 +1,11 @@
 ﻿
 (function () {
-
+    //Todo: split page scripts
+    var $usersWindow = $("#usersWindow");
+    var $organizationUnitsView = $("#organizationUnitsView");
+    var jsTreeContainer = "#container";
+    var $body = $("body");
+    var $usersTable = $("#usersTable");
     var contextMenu = function (node) {
         var items = {
             addUnit: {
@@ -40,20 +45,20 @@
 
     var selectedNodeId;
     function loadUsersWindow(id) {
-        abp.ui.setBusy("#usersWindow");
+        abp.ui.setBusy($usersWindow);
 
-        $("#usersWindow").load("/SysAdmin/OrganizationUnits/UsersWindow/" + id, function () {
-            abp.ui.clearBusy("#usersWindow");
+        $usersWindow.load("/SysAdmin/OrganizationUnits/UsersWindow/" + id, function () {
+            abp.ui.clearBusy($usersWindow);
         });
     }
     var loadOrganizationUnitsView = function () {
-        abp.ui.setBusy("#organizationUnitsView");
-        $("#organizationUnitsView")
+        abp.ui.setBusy($organizationUnitsView);
+        $organizationUnitsView
             .load("/SysAdmin/OrganizationUnits/GetOrganizationUnits",
                 function () {
-                    abp.ui.clearBusy("#organizationUnitsView");
+                    abp.ui.clearBusy($organizationUnitsView);
 
-                    $("#container")
+                    $(jsTreeContainer)
                         .jstree({
                             contextmenu: {
                                 items: treeJsConfig.contextMenu
@@ -68,7 +73,7 @@
                             }
                         });
 
-                    $("#container").on("select_node.jstree", function (evt, nodeRef) {
+                    $(jsTreeContainer).on("select_node.jstree", function (evt, nodeRef) {
 
                         selectedNodeId = nodeRef.node.id;
                         loadUsersWindow(selectedNodeId);
@@ -125,8 +130,8 @@
                                 return false;
                             });
 
-                    $('#container').on('ready.jstree', function () {
-                        $("#container").jstree("open_all");
+                    $(jsTreeContainer).on('ready.jstree', function () {
+                        $(jsTreeContainer).jstree("open_all");
                     });
                 });
     }
@@ -152,13 +157,13 @@
 
 
             
-            $("body").on("click", ".js-remove", function () {
+            $body.on("click", ".js-remove", function () {
                 var userId = $(this).data("user-id");
                 var orgId = $(this).data("org-id");
 
                 abp.message.confirm(LSys("UserWillBeRemovedFromOrganizationUnit"), LSys("Sure"), function (response) {
                     if (response) {
-                        abp.ui.setBusy("#usersTable", abp.services.app.organizationUnits.removeUserFromOrganizationUnit({
+                        abp.ui.setBusy($usersTable, abp.services.app.organizationUnits.removeUserFromOrganizationUnit({
                             UserId: userId,
                             OrgUnitId: orgId
                         }).done(function () {

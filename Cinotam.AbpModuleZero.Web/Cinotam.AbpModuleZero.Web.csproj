@@ -311,6 +311,7 @@
     <Content Include="Areas\SysAdmin\Views\Configuration\Configurations.js" />
     <Content Include="Areas\SysAdmin\Scripts\datatables.responsiveConfigs.js" />
     <Content Include="Areas\SysAdmin\Views\Editions\EditCreateEdition.js" />
+    <Content Include="Areas\SysAdmin\Views\Editions\EditionList.js" />
     <Content Include="Areas\SysAdmin\Views\Languages\languages.js" />
     <Content Include="Areas\SysAdmin\Views\Languages\CreateLanguage.js" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.js" />
@@ -661,7 +662,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\SysAdmin\Views\web.config" />
-    <Content Include="Areas\SysAdmin\Views\Users\UsersAndRolesList.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Users\UsersList.cshtml" />
     <Content Include="Areas\SysAdmin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\app.config.js" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\app.js" />

@@ -21,7 +21,6 @@ namespace Cinotam.AbpModuleZero.Authorization
 
             var languages = pages.CreateChildPermission(PermissionNames.PagesSysAdminLanguages, L("PagesSysAdminLanguages"));
             languages.CreateChildPermission(PermissionNames.PagesSysAdminLanguagesCreate, L("PagesSysAdminLanguagesCreate"));
-            languages.CreateChildPermission(PermissionNames.PagesSysAdminLanguagesEdit, L("PagesSysAdminLanguagesEdit"));
             languages.CreateChildPermission(PermissionNames.PagesSysAdminLanguagesDelete, L("PagesSysAdminLanguagesDelete"));
             languages.CreateChildPermission(PermissionNames.PagesSysAdminLanguagesChangeTexts, L("PagesSysAdminLanguagesChangeTexts"));
 

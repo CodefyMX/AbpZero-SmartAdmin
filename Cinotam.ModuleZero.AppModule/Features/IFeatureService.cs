@@ -10,5 +10,6 @@ namespace Cinotam.ModuleZero.AppModule.Features
         Task SetFeatureValue(FeatureDto input);
         EditionsOutput GetEditions();
         Task<NewEditionInput> GetEditionForEdit(int? id);
+        Task DeleteEdition(DeleteEditionInput input);
     }
 }
