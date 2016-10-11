@@ -1,8 +1,11 @@
 ﻿(function () {
     "use strict";
     var modalType = "MODAL_USER_ADDED";
+
     $(document).ready(function () {
 
+        var $body = $("body");
+        var $table = $("#usersTable");
         var orgUnitId = $("#OrgUnitId").val();
 
         var columns = [
@@ -34,21 +37,21 @@
                         "data": "EmailAddress"
                     }
             ],
-            Element: $("#usersTable")
+            Element: $table
         });
         var usersPage = {
             dataTableConfig: datatablesConfig,
 
         }
 
-        $("body")
+       $body
             .on("click",
                 ".js-add-user",
                 function () {
                     var userId = $(this).data("user-id");
                     var orgUnitId = $(this).data("org-id");
 
-                    abp.ui.setBusy("#usersTable", abp.services.app.organizationUnits.addUserToOrgUnit({
+                    abp.ui.setBusy($table, abp.services.app.organizationUnits.addUserToOrgUnit({
                         UserId: userId,
                         OrgUnitId: orgUnitId
                     }).done(function () {
@@ -57,6 +60,6 @@
                 });
 
 
-        var table = $("#usersTable").DataTable(usersPage.dataTableConfig);
+        var table =$table.DataTable(usersPage.dataTableConfig);
     });
 })();

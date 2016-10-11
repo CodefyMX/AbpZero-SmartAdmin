@@ -1,7 +1,8 @@
 ﻿(function () {
     var modalType = "MODAL_CHANGE_TEXT";
+    var $form = $("#editText");
     $(document).ready(function () {
-        $("#editText").on("submit", function (e) {
+        $form.on("submit", function (e) {
             e.preventDefault();
             var data = {
                 Value: $("#Value").val(),
@@ -10,8 +11,7 @@
                 Source: $("#Source").val()
 
             };
-            console.log(data);
-            abp.ui.setBusy(this, abp.services.app.language.addEditLocalizationText(data).done(function () {
+            abp.ui.setBusy($form, abp.services.app.language.addEditLocalizationText(data).done(function () {
                 modalInstance.close(data, modalType);
             }));
         });

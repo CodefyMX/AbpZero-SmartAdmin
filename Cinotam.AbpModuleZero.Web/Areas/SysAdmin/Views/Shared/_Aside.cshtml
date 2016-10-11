@@ -28,8 +28,11 @@
                     <li class="@Html.RouteIf("OrganizationUnitsList", "active")">
                         <a href="@Url.Action("OrganizationUnitsList", "OrganizationUnits")" title="Unidades de Organización"><span class="menu-item-parent">Unidades de Organización</span></a>
                     </li>
-                    <li class="@Html.RouteIf("UsersAndRolesList", "active")">
-                        <a href="@Url.Action("UsersAndRolesList", "Users")" title="Usuarios"><span class="menu-item-parent">Usuarios y Roles</span></a>
+                    <li class="@Html.RouteIf("UsersList", "active")">
+                        <a href="@Url.Action("UsersList", "Users")" title="Usuarios"><span class="menu-item-parent">Usuarios</span></a>
+                    </li>
+                    <li class="@Html.RouteIf("RolesList", "active")">
+                        <a href="@Url.Action("RolesList", "Roles")" title="Roles"><span class="menu-item-parent">Roles</span></a>
                     </li>
                     <li class="@Html.RouteIf("LanguagesList", "active")">
                         <a href="@Url.Action("LanguagesList", "Languages")" title="Lenguajes"><span class="menu-item-parent">Lenguajes</span></a>

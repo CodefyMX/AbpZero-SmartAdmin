@@ -7,15 +7,14 @@
         {
             if (child.InputType.Name == "SINGLE_LINE_STRING")
             {
-
-                <li data-append-textbox="true" id="@child.Name" data-selected="@child.Selected" data-value="@child.DefaultValue" class="hide-checkbox">
+                <li data-append-textbox="true" id="@child.Name" data-value="@child.DefaultValue" class="hide-checkbox">
                     <a> @child.Name</a>
                     @{ Html.RenderPartial("_loadChildrens", child.ChildFeatures); }
                 </li>
                         }
                         else
                         {
-                            <li id="@child.Name" data-append-textbox="false" data-selected="@child.Selected" data-value="@child.DefaultValue">
+                            <li id="@child.Name" data-append-textbox="false" data-jstree='{ "selected" : @child.Selected.ToString().ToLower() }' data-value="@child.DefaultValue">
                                 <a> @child.Name</a>
                                 @{ Html.RenderPartial("_loadChildrens", child.ChildFeatures); }
                             </li>

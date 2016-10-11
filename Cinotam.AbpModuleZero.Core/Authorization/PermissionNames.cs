@@ -21,7 +21,6 @@
         public const string PagesSysAdminConfiguration = "Pages.SysAdminConfiguration";
         public const string PagesSysAdminLanguages = "Pages.SysAdminLanguages";
         public const string PagesSysAdminLanguagesCreate = "Pages.SysAdminLanguages.Create";
-        public const string PagesSysAdminLanguagesEdit = "Pages.SysAdminLanguages.Edit";
         public const string PagesSysAdminLanguagesDelete = "Pages.SysAdminLanguages.Delete";
         public const string PagesSysAdminLanguagesChangeTexts = "Pages.SysAdminLanguages.ChangeTexts";
         public const string AuditLogs = "Pages.AuditLogs";

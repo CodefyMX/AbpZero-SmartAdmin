@@ -5,8 +5,10 @@
     function initialize() {
 
         var selectedOptionValue = 50;
-        function GetData(max, callback) {
+        function getData(max, callback) {
 
+            var $averageElement = $("#average");
+            var $totalElement = $("#total");
             abp.services.app.auditLogService.getAuditLogTimes(max)
                 .done(function (response) {
 
@@ -28,13 +30,13 @@
                     if (currentValue == undefined) {
                         currentValue = response.avgExecutionTime;
                     }
-                    if (response.avgExecutionTime != currentValue) {
+                    if (response.avgExecutionTime !== currentValue) {
                         currentValue = response.avgExecutionTime;
                     }
                     newValue = response.avgExecutionTime;
                     currentValue = response.avgExecutionTime;
-                    $("#average").text(newValue + " ms");
-                    $("#total").text(response.totalRequestsReceived);
+                    $averageElement.text(newValue + " ms");
+                    $totalElement.text(response.totalRequestsReceived);
                     response.auditLogTimeOutputDtos.forEach(function (element) {
                         dataToolTips.push({
                             MethodName: element.methodName,
@@ -49,15 +51,16 @@
 
 
         var $chrtFourth = "#7e9d3a";
-        if ($('#logsChart').length) {
+        var $logsChart = $('#logsChart');
+        if ($logsChart.length) {
 
 
             if (isAuditLogGranted) {
 
                 // setup control widget
-                GetData(50, function (data, toolTips) {
+                getData(50, function (data, toolTips) {
                     var updateInterval = 1000;
-                    $("#logsChart").val(updateInterval).change(function () {
+                    $logsChart.val(updateInterval).change(function () {
                         var v = $(this).val();
                         if (v && !isNaN(+v)) {
                             updateInterval = +v;
@@ -92,8 +95,9 @@
                             clickable: true
                         }
                     };
-                    var plot = $.plot($("#logsChart"), [data], options);
-                    $("#logsChart").bind("plothover", function (event, pos, item) {
+                    var plot = $.plot($logsChart, [data], options);
+                    var $toolTip = $("#tooltip");
+                    $logsChart.bind("plothover", function (event, pos, item) {
                         if (item) {
                             var toolTip = toolTips[item.dataIndex];
                             var txt = toolTip.MethodName;
@@ -109,15 +113,15 @@
                                 color = "#e53935";
                             }
                             var message = "Method name: " + txt + ", Execution time: <a style='color:" + color + "'> " + value + " ms<a>";
-                            $("#tooltip")
+                            $toolTip
                                 .html(message)
                                 .css({ top: item.pageY + 5, left: item.pageX + 5 })
                                 .fadeIn(200);
                         } else {
-                            $("#tooltip").hide();
+                            $toolTip.hide();
                         }
                     });
-                    $("#logsChart").bind("plotclick", function (event, pos, item) {
+                    $logsChart.bind("plotclick", function (event, pos, item) {
 
                         if (item) {
                             var toolTip = toolTips[item.dataIndex];
@@ -135,11 +139,13 @@
                     }).appendTo("body");
 
                     function update() {
+                        var $startInterval = $("#start_interval");
 
-                        if ($("#start_interval").is(":checked")) {
+
+                        if ($startInterval.is(":checked")) {
 
 
-                            GetData(selectedOptionValue, function (updatedData, updatedToolTips) {
+                            getData(selectedOptionValue, function (updatedData, updatedToolTips) {
                                 data = [];
                                 data = updatedData;
                                 toolTips = [];
@@ -154,9 +160,9 @@
 
                             });
                         }
-                        $("#start_interval")
+                        $startInterval
                             .change(function () {
-                                if ($("#start_interval").is(":checked")) {
+                                if ($startInterval.is(":checked")) {
                                     setTimeout(update, 1000);
                                 }
                             });

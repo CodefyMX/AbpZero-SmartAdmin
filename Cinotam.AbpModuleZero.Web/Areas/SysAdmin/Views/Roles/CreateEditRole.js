@@ -1,48 +1,65 @@
 ﻿
 (function () {
     var modalType = "MODAL_ROLE_CREATED";
-    var modalTypeDelete = "MODAL_ROLE_DELETED";
     $(document).ready(function () {
-
-        var roleName = $("#DisplayName").val();
-        $("body").on("click", ".js-delete-role", function () {
-            var id = $(this).data("id");
-            var message = abp.utils.formatString(LSys("RoleDeleteMessage"), roleName);
-
-            abp.message.confirm(message, LSys("ConfirmQuestion"), function (response) {
-                if (response) {
-                    abp.ui.setBusy($("#createEditRole"), abp.services.app.role.deleteRole(id).done(function () {
-                        window.modalInstance.close({}, modalTypeDelete);
-                    }));
-                }
-            });
-        });
-
-
-        $("#container")
+        var $container = $("#container");
+        var $form = $("#createEditRole");
+        $container
             .jstree({
                 "checkbox": {
-                    "keep_selected_style": false
+                    keep_selected_style: false,
+                    three_state: false,
+                    cascade: ''
                 },
                 'plugins': ["wholerow", "html_data", "checkbox", "ui"],
                 'core': {
+
+                    "multiple": true,
                     'themes': {
                         'name': 'proton',
                         'responsive': true
                     }
                 }
             });
-        $('#container').on('ready.jstree', function () {
-            $("#container").jstree("open_all");
+        $container.on('ready.jstree', function () {
+            $container.jstree("open_all");
         });
-        $("#createEditRole").on("submit", function (e) {
+
+        $container.on("changed.jstree", function (e, data) {
+            if (!data.node) {
+                return;
+            }
+
+            var childrenNodes;
+
+            if (data.node.state.selected) {
+                selectNodeAndAllParents($container.jstree('get_parent', data.node));
+
+                childrenNodes = $.makeArray($container.jstree('get_children_dom', data.node));
+                $container.jstree('select_node', childrenNodes);
+
+            } else {
+                childrenNodes = $.makeArray($container.jstree('get_children_dom', data.node));
+                $container.jstree('deselect_node', childrenNodes);
+            }
+        });
+        function selectNodeAndAllParents(node) {
+            $container.jstree('select_node', node, true);
+            var parent = $container.jstree('get_parent', node);
+            if (parent) {
+                selectNodeAndAllParents(parent);
+            }
+        };
+
+
+        $form.on("submit", function (e) {
             var data = {
                 AssignedPermissions: [],
                 DisplayName: $("#DisplayName").val(),
                 Id: $("#Id").val()
             }
             e.preventDefault();
-            var selected = $("#container").jstree('get_selected');
+            var selected = $container.jstree('get_selected');
             $(selected).each(function (index, v) {
                 console.log(index);
                 data.AssignedPermissions.push({
@@ -50,7 +67,7 @@
                     Granted: true
                 });
             });
-            abp.ui.setBusy($("#createEditForm"), abp.services.app.role.createEditRole(data).done(function () {
+            abp.ui.setBusy($form, abp.services.app.role.createEditRole(data).done(function () {
                 window.modalInstance.close({}, modalType);
             }));
         });

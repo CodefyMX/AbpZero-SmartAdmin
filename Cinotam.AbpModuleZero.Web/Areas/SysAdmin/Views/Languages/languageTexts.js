@@ -2,6 +2,8 @@
     "use strict";
 
     $(document).ready(function () {
+        var $table = $("#languageTextsTable");
+        var $body = $("body");
 
         drawBreadCrumb([LSys("Language"), LSys("Texts")]);
 
@@ -9,44 +11,52 @@
         var targetLang = $("#SelectedTargetLanguage").val();
         var sourceLang = $("#SelectedSourceLanguage").val();
 
-        var table = $("#languageTextsTable").DataTable({
-            "sPaginationType": "full_numbers", // And its type.
-            "iDisplayLength": 10,
-            "ajax": "/SysAdmin/Languages/" + "GetLanguageTextsForTable?Source=" + source + "&TargetLang=" + targetLang + "&SourceLang=" + sourceLang,
-            "autoWidth": true,
-            "preDrawCallback": function () {
-                // Initialize the responsive datatables helper once.
-                if (!responsiveHelper_dt_languages) {
-                    responsiveHelper_dt_languages = new ResponsiveDatatablesHelper($('#languageTextsTable'), breakpointDefinition);
-                }
+
+        
+        var columns = [
+            { "data": "Id" },
+            {
+                "data": "Key"
             },
-            "rowCallback": function (nRow) {
-                responsiveHelper_dt_languages.createExpandIcon(nRow);
-            },
-            "drawCallback": function (oSettings) {
-                responsiveHelper_dt_languages.respond();
-            },
-            language: window.dataTablesLang,
-            //dataSrc: 'result.data',
-            columnDefs: [
-                {
-                    className: "text-center",
-                    "render": function (data, type, row) {
-                        return " <a data-current='"+row.TargetValue+"' data-source='" + $("#Source").val() + "' data-lang='" + $("#SelectedTargetLanguage").val() + "' data-key='" + row.Key + "' data-href='/SysAdmin/Languages/EditText' class='btn btn-default btn-xs js-trigger-modal' title='Editar texto' ><i class='fa fa-edit'></i></a>";
-                    },
-                    "targets": 3
-                }
-            ],
-            columns: [
-                {
-                    "data": "Key"
+            { "data": "SourceValue" },
+            { "data": "TargetValue" }
+        ];
+        var columnDefs = [
+            {
+                className: "text-center",
+                "render": function(data, type, row) {
+                    return " <a data-current='" +
+                        row.TargetValue +
+                        "' data-source='" +
+                        $("#Source").val() +
+                        "' data-lang='" +
+                        $("#SelectedTargetLanguage").val() +
+                        "' data-key='" +
+                        row.Key +
+                        "' data-href='/SysAdmin/Languages/EditText' class='btn btn-default btn-xs js-trigger-modal' title='Editar texto' ><i class='fa fa-edit'></i></a>";
                 },
-                { "data": "SourceValue" },
-                { "data": "TargetValue" }
-            ]
+                "targets": 0
+            }
+        ];
+        var dataTablesConfig = new DatatablesConfig({
+            Url: "/SysAdmin/Languages/" + "GetLanguageTextsForTable?Source=" + source + "&TargetLang=" + targetLang + "&SourceLang=" + sourceLang,
+            Columns: columns,
+            ColumnDefinitions: columnDefs,
+            Element: $('#languageTextsTable'),
+            OnInitComplete: function () { },
+            DisplayLength: 10,
+            Ajax: false //Ajax calls to the server disabled
         });
+        var languageTextPage = {
+            modalHandler: modalHandler,
+            dataTablesConfig: dataTablesConfig
+        }
+
+
+        var table = $table.DataTable(languageTextPage.dataTablesConfig);
+
         var currentRowSelected;
-        $('#languageTextsTable tbody').on('click', '.js-trigger-modal', function () {
+        $body.on('click', '.js-trigger-modal', function () {
             var row = $(this).parent().parent();
             currentRowSelected = {
                 data : table.row (row).data (),
@@ -67,20 +77,17 @@
                 case "MODAL_CHANGE_TEXT":
                     currentRowSelected.data.TargetValue = event.detail.info.Value;
                     table.row(currentRowSelected.row).data(currentRowSelected.data).draw(false);
-                    console.log(currentRowSelected);
                     break;
                 default:
                     break;
             }
         }
 
-        var languageTextPage = {
-            modalHadler:modalHandler
-        }
+        
 
         document.addEventListener('modalClose', languageTextPage.modalHandler);
 
-        $('body').on('change', '.js-select', function () {
+        $body.on('change', '.js-select', function () {
 
             var src = $("#Source").val();
             var target = $("#SelectedTargetLanguage").val();

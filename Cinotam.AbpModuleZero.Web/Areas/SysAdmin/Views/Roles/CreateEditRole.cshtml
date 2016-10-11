@@ -1,4 +1,5 @@
 ﻿@using Abp.Web.Mvc.Extensions
+@using Cinotam.AbpModuleZero.Authorization
 @model Cinotam.ModuleZero.AppModule.Roles.Dto.RoleInput
 
 @{
@@ -18,10 +19,9 @@
             <form method="POST" id="createEditRole" class="smart-form">
                 <header>
                     @L("RoleRegisterForm")
-                    @if (Model.Id != 0)
+                    @if (Model.Id != 0 && IsGranted(PermissionNames.PagesSysAdminRolesDelete))
                     {
                         <a data-id="@Model.Id" class="pull-right btn btn-sm btn-danger js-delete-role">@L("Delete")</a>
-
                     }
                 </header>
                 @Html.HiddenFor(a => a.Id)
@@ -37,26 +37,31 @@
                             </div>
                         </div>
                     </section>
-                    <div class="row">
-                        <div class="col col-12">
-                            <h5>Permisos</h5>
-                            <div id="container">
-                                <ul id="tree">
-                                    @foreach (var permission in Model.AssignedPermissions)
-                                    {
-                                        <li data-jstree='{ "selected" : @permission.Granted.ToString().ToLower() }' id="@permission.Name">
-                                            @permission.DisplayName
+                    @if (IsGranted(PermissionNames.PagesSysAdminPermissions))
+                    {
 
-                                            @if (permission.ChildPermissions.Any())
-                                            {
-                                                { Html.RenderPartial("_childPermissions", permission.ChildPermissions); }
-                                            }
-                                        </li>
-                                    }
-                                </ul>
+                        <div class="row">
+                            <div class="col col-12">
+                                <h5>Permisos</h5>
+
+                                <div id="container">
+                                    <ul id="tree">
+                                        @foreach (var permission in Model.AssignedPermissions)
+                                        {
+                                            <li data-jstree='{ "selected" : @permission.Granted.ToString().ToLower() }' id="@permission.Name">
+                                                @permission.DisplayName
+
+                                                @if (permission.ChildPermissions.Any())
+                                                {
+                                                    { Html.RenderPartial("_childPermissions", permission.ChildPermissions); }
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </fieldset>
                 <footer>
                     <button type="submit" class="btn btn-primary">

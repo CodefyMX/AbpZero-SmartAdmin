@@ -6,12 +6,14 @@
             onErrorFunction: error
         };
 
+        var $content = $("#content");
+
         function loading(button) {
             console.log("Setting busy");
-            abp.ui.setBusy($("#content"));
+            abp.ui.setBusy($content);
         }
         function notLoading(button) {
-            abp.ui.clearBusy($("#content"));
+            abp.ui.clearBusy($content);
         }
         function error(message) {
             abp.message.error(message, "Error");
