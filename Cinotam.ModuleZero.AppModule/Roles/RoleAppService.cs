@@ -52,24 +52,22 @@ namespace Cinotam.ModuleZero.AppModule.Roles
                         .ToList();
             if (input.Id == 0)
             {
-                var role = new Role(AbpSession.TenantId, input.RoleName, input.DisplayName);
 
+                var role = input.MapTo<Role>();
                 await _roleManager.CreateAsync(role);
-
                 await CurrentUnitOfWork.SaveChangesAsync();
-
                 await _roleManager.SetGrantedPermissionsAsync(role, permissions);
                 await _rolesAppNotificationsSender.SendRoleCreatedNotification((await GetCurrentUserAsync()), role);
             }
             else
             {
                 var role = await _roleManager.GetRoleByIdAsync(input.Id);
-                role.Name = input.RoleName;
-                role.DisplayName = input.DisplayName;
-                role.TenantId = AbpSession.TenantId;
-                await _roleManager.UpdateAsync(role);
+
+                var mapped = input.MapTo(role);
+
+                await _roleManager.UpdateAsync(mapped);
                 await CurrentUnitOfWork.SaveChangesAsync();
-                await _roleManager.SetGrantedPermissionsAsync(role, permissions);
+                await _roleManager.SetGrantedPermissionsAsync(mapped, permissions);
                 await _rolesAppNotificationsSender.SendRoleEditedNotification((await GetCurrentUserAsync()), role);
             }
 
@@ -106,12 +104,9 @@ namespace Cinotam.ModuleZero.AppModule.Roles
                 var role = await _roleManager.GetRoleByIdAsync(id.Value);
                 if (role == null) return new RoleInput();
                 var assignedPermissions = CheckPermissions(allPermissions, role.Permissions.ToList());
-                return new RoleInput()
-                {
-                    AssignedPermissions = assignedPermissions,
-                    DisplayName = role.DisplayName,
-                    Id = role.Id
-                };
+                var roleInput = role.MapTo<RoleInput>();
+                roleInput.AssignedPermissions = assignedPermissions;
+                return roleInput;
             }
 
             return new RoleInput()

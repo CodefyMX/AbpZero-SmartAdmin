@@ -162,14 +162,30 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
                 user.TenantId = AbpSession.TenantId;
                 user.Password = new PasswordHasher().HashPassword(input.Password);
-                user.IsEmailConfirmed = true;
+                user.IsEmailConfirmed = false;
+
+
                 CheckErrors(await UserManager.CreateAsync(user));
+
+                await CurrentUnitOfWork.SaveChangesAsync();
+
+                await SetDefaultRoles(user);
+
                 await _usersAppNotificationsSender.SendUserCreatedNotification((await GetCurrentUserAsync()), user);
+
+
                 if (input.SendNotificationMail)
                 {
                     await SendWelcomeEmail(user, input.Password);
                 }
             }
+        }
+
+        private async Task SetDefaultRoles(User user)
+        {
+            var defaultRoles = RoleManager.Roles.Where(a => a.IsDefault).Select(a => a.Name).ToArray();
+
+            await UserManager.AddToRolesAsync(user.Id, defaultRoles);
         }
 
         private async Task SendWelcomeEmail(User user, string password)

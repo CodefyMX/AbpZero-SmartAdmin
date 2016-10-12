@@ -58,7 +58,8 @@
             var data = {
                 AssignedPermissions: [],
                 DisplayName: $("#DisplayName").val(),
-                Id: $("#Id").val()
+                Id: $("#Id").val(),
+                IsDefault :$("#IsDefault").is(":checked")
             }
             e.preventDefault();
             var selected = $container.jstree('get_selected');

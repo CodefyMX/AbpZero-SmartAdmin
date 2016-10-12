@@ -2,30 +2,39 @@
 
     var initialize = function (_pagesAppService) {
         var pageId = $("#Id").val();
-        $('.js-toggle-status')
-            .click(function () {
-                abp.ui.setBusy($("#pageOpts"), _pagesAppService.togglePageStatus(pageId)
+
+        var $toggleStatusBtn = $('.js-toggle-status');
+        var $toggleMainPageStatus = $('.js-toggle-main');
+        var $toggleInMenuStatus = $('.js-toggle-menu');
+        var $deletePageBtn = $(".js-delete-page");
+        var $pageOptionsView = $("#pageOpts");
+        var $categorySelect = $("#CategoryId");
+        var $parentSelect = $("#ParentId");
+        var $templateSelect = $("#TemplateName");
+        $toggleStatusBtn.click(function () {
+            abp.ui.setBusy($pageOptionsView, _pagesAppService.togglePageStatus(pageId)
                     .done(function () {
                         window.location.reload();
                     }));
-            });
-        $('.js-toggle-main')
-            .change(function () {
-                abp.ui.setBusy($("#pageOpts"), _pagesAppService.setPageAsMain(pageId)
-                    .done(function () {
+        });
 
-                    }));
-            });
-        $('.js-toggle-menu')
-            .change(function () {
-                abp.ui.setBusy($("#pageOpts"), _pagesAppService.togglePageInMenuStatus(pageId)
-                    .done(function () {
+        $toggleMainPageStatus.change(function () {
+            abp.ui.setBusy($pageOptionsView, _pagesAppService.setPageAsMain(pageId)
+                .done(function () {
 
-                    }));
-            });
-        $(".js-delete-page").click(function () {
-            var id = $(this).data("id");
-            abp.message.confirm(LSys("Sure"), LSys("ElementWillBeDeleted"), function (response) {
+                }));
+        });
+
+        $toggleInMenuStatus.change(function () {
+            abp.ui.setBusy($pageOptionsView, _pagesAppService.togglePageInMenuStatus(pageId)
+                .done(function () {
+
+                }));
+        });
+        $deletePageBtn.click(function () {
+            var $self = $(this);
+            var id = $self.data("id");
+            abp.message.confirm(LSys("ElementWillBeDeleted"), LSys("ConfirmQuestion"), function (response) {
                 if (response) {
                     _pagesAppService.deletePage(id)
                         .done(function () {
@@ -35,45 +44,46 @@
             });
 
         });
-        $("#CategoryId")
-            .on("change", function (e) {
-                e.preventDefault();
-                var categoryId = $("#CategoryId").val();
-                if (categoryId === 0) {
-                    categoryId = null;
-                }
-                var selectedCategory = {
-                    CategoryId: categoryId,
-                    PageId: $("#Id").val()
-                }
-                abp.ui.setBusy(this, _pagesAppService.setCategory(selectedCategory)
-                    .done(function () {
-                        abp.notify.success(LSys("CategoryChanged"));
-                    }));
-            });
-        $("#ParentId")
-           .on("change", function (e) {
+
+        $categorySelect.on("change", function (e) {
+            e.preventDefault();
+            var categoryId = $categorySelect.val();
+            if (categoryId === 0) {
+                categoryId = null;
+            }
+            var selectedCategory = {
+                CategoryId: categoryId,
+                PageId: pageId
+            }
+            abp.ui.setBusy(this, _pagesAppService.setCategory(selectedCategory)
+                .done(function () {
+                    abp.notify.success(LSys("CategoryChanged"));
+                }));
+        });
+        
+        $parentSelect.on("change", function (e) {
+                var $self = $(this);
                e.preventDefault();
-               var parentPage = $("#ParentId").val();
+               var parentPage = $parentSelect.val();
                if (parentPage === 0) {
                    parentPage = null;
                }
                var selectedParent = {
                    ParentPageId: parentPage,
-                   PageId: $("#Id").val()
+                   PageId: pageId
                }
-               abp.ui.setBusy(this, _pagesAppService.setParentPage(selectedParent)
+               abp.ui.setBusy($self, _pagesAppService.setParentPage(selectedParent)
                    .done(function () {
                        abp.notify.success(LSys("ParentChanged"));
                    }));
            });
-        $("#TemplateName")
-           .on("change", function (e) {
-               var templateName = $("#TemplateName").val();
+        
+        $templateSelect.on("change", function () {
+               var templateName = $templateSelect.val();
 
                var selectedTemplate = {
                    TemplateName: templateName,
-                   PageId: $("#Id").val()
+                   PageId: pageId
                }
                abp.ui.setBusy(this, _pagesAppService.setTemplate(selectedTemplate)
                    .done(function () {
