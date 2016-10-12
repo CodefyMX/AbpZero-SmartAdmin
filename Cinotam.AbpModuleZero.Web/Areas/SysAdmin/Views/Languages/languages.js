@@ -1,8 +1,9 @@
 ﻿(function () {
     "use strict";
-
     $(document)
-        .ready(function() {
+        .ready(function () {
+
+            var _languageAppService = abp.services.app.language;
             var $table = $("#languagesTable");
             var $body = $("body");
             var languageTextEditionGranted = abp.auth.isGranted("Pages.SysAdminLanguages.ChangeTexts");
@@ -102,7 +103,7 @@
 
                 abp.message.confirm(abp.utils.formatString(LSys("DeleteLanguageMessage"), name), LSys("ConfirmQuestion"), function (response) {
                     if (response) {
-                        abp.ui.setBusy($body, abp.services.app.language.deleteLanguage(code).done(function () {
+                        abp.ui.setBusy($body, _languageAppService.deleteLanguage(code).done(function () {
                             table.ajax.reload();
                             //Todo: translate
                             abp.notify.warn("Lenguaje [" + name + "] eliminado", "¡Exito!");

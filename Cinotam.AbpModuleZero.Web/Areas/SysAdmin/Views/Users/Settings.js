@@ -3,13 +3,17 @@
     $(document)
         .ready(function () {
 
-            $("#themeSelector").change(function () {
-                $("body").attr("class", "");
-                var value = $("#themeSelector option:selected").val();
-                $("body").attr("class", value);
-                abp.ui.setBusy("body", abp.services.app.settings.changeTheme(value));
+            var _settingsAppService = abp.services.app.settings;
+            var $themeSelect = $("#themeSelector");
+            var $body = $("body");
+            var $themeSelectOption = $("#themeSelector option:selected");
+            $themeSelect.change(function () {
+                $body.attr("class", "");
+                var value = $themeSelectOption.val();
+                $body.attr("class", value);
+                abp.ui.setBusy($body, _settingsAppService.changeTheme(value));
             });
-            $("body").on("click", "[data-subscription]", function () {
+            $body.on("click", "[data-subscription]", function () {
                 var $elm = $(this);
                 var isSubscribed = $elm.data("is-subscribed");
                 var notificationName = $elm.data("subscription-name");
@@ -20,18 +24,21 @@
                 }
             });
             function subscribe(notificationName, $elm) {
-                abp.ui.setBusy("body", abp.services.app.settings.subscribeToNotification(notificationName).done(function () {
+                abp.ui.setBusy($body, _settingsAppService.subscribeToNotification(notificationName).done(function () {
                     $elm.text(LSys("UnSubscribe"));
                     $elm.data("is-subscribed", true);
                 }));
             }
             function unSubscribe(notificationName, $elm) {
-                abp.ui.setBusy("body", abp.services.app.settings.unSubscribeToNotification(notificationName).done(function () {
+                abp.ui.setBusy($body, _settingsAppService.unSubscribeToNotification(notificationName).done(function () {
                     $elm.text(LSys("Subscribe"));
                     $elm.data("is-subscribed", false);
                 }));
             }
-            $("[data-subscription]").each(function () {
+
+            var subscriptionElements = $("[data-subscription]");
+
+            subscriptionElements.each(function () {
                 var $elm = $(this);
                 var val = $elm.data("subscription-name");
                 abp.services.app.settings.isSubscribed(val).done(function (response) {

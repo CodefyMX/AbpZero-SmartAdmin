@@ -16,7 +16,7 @@
             <form id="selectRoles" class="smart-form">
                 @Html.HiddenFor(a => a.UserId)
                 <header>
-                    @L("SelectRoles") : @Model.FullName  <span>@L("LastModifier") : @Model.LastModifier</span>
+                    @L("SelectRoles")
                 </header>
                 <fieldset>
                     @foreach (var rol in Model.RoleDtos)

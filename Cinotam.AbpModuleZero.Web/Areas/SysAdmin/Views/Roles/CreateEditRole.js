@@ -2,6 +2,8 @@
 (function () {
     var modalType = "MODAL_ROLE_CREATED";
     $(document).ready(function () {
+
+        var _roleAppService = abp.services.app.role;
         var $container = $("#container");
         var $form = $("#createEditRole");
         $container
@@ -67,7 +69,7 @@
                     Granted: true
                 });
             });
-            abp.ui.setBusy($form, abp.services.app.role.createEditRole(data).done(function () {
+            abp.ui.setBusy($form, _roleAppService.createEditRole(data).done(function () {
                 window.modalInstance.close({}, modalType);
             }));
         });

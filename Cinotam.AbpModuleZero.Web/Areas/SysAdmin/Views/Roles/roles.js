@@ -7,9 +7,10 @@
     var rolePageGranted = abp.auth.isGranted("Pages.SysAdminRoles");
     var roleEditGranted = abp.auth.isGranted("Pages.SysAdminRoles.Edit");
     var roleDeleteGranted = abp.auth.isGranted("Pages.SysAdminRoles.Delete");
-
     $(document)
         .ready(function () {
+
+            var _roleAppService = abp.services.app.role;
             var $body = $("body");
             var $createEditRoleElement = $("#createEditRole");
 
@@ -54,7 +55,7 @@
                             }
                         }
 
-
+                        return "";
 
                     },
                     "targets": 0
@@ -68,7 +69,7 @@
                 OnInitComplete: function () { },
                 Element: $("#rolesTable")
             });
-
+            var table;
             var rolesPage = {
                 dataTableConfig: dataTableConfig,
                 eventHandler: function (event) {
@@ -94,7 +95,7 @@
 
                 abp.message.confirm(message, LSys("ConfirmQuestion"), function (response) {
                     if (response) {
-                        abp.ui.setBusy($createEditRoleElement, abp.services.app.role.deleteRole(id).done(function () {
+                        abp.ui.setBusy($createEditRoleElement, _roleAppService.deleteRole(id).done(function () {
                             table.ajax.reload();
                             abp.notify.warn(LSys("RoleDeleted"), LSys("Success"));
                         }));
@@ -103,7 +104,7 @@
             });
             if (rolePageGranted) {
 
-                var table = $table.DataTable(rolesPage.dataTableConfig);
+                table = $table.DataTable(rolesPage.dataTableConfig);
             }
 
             document.addEventListener('modalClose', rolesPage.eventHandler);

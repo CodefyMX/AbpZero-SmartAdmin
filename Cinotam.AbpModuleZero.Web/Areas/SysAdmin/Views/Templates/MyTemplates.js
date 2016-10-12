@@ -71,7 +71,7 @@
             }
 
 
-            var table = $table
+            $table
         .DataTable(myTemplatesPage.dataTablesConfig);
         });
     

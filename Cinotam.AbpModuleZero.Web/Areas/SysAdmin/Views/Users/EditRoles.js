@@ -3,6 +3,7 @@
     var modalType = "MODAL_ROLES_SET";
     $(document).ready(function () {
 
+        var _userAppService = abp.services.app.user;
         var $form = $("#selectRoles");
 
         $form.on("submit", function (e) {
@@ -22,7 +23,7 @@
                 data.roles.push(checkedElementValue);
             });
 
-            abp.services.app.user.setUserRoles(data).done(function () {
+            _userAppService.setUserRoles(data).done(function () {
                 window.modalInstance.close({}, modalType);
             });
 

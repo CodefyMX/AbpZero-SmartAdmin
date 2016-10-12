@@ -1,6 +1,8 @@
 ﻿
 (function () {
     $(document).ready(function () {
+
+        var _categoriesAppService = abp.services.cms.categoryService;
         var $table = $("#categoriesTable");
         var $body = $("body");
         var columns = [
@@ -61,7 +63,7 @@
             var id = $(this).data("id");
             abp.message.confirm(LSys("Delete"), LSys("ConfirmQuestion"), function (response) {
                 if (response) {
-                    abp.ui.setBusy($form, abp.services.cms.categoryService.removeCategory(id).done(function () {
+                    abp.ui.setBusy($form, _categoriesAppService.removeCategory(id).done(function () {
                         abp.notify.warn(LSys("CategoryRemoved"));
                     }));
                 }

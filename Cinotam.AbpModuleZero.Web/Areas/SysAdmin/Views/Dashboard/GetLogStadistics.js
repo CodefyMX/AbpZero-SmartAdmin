@@ -2,14 +2,15 @@
     var isAuditLogGranted = abp.auth.isGranted('Pages.AuditLogs');
     var currentValue;
     var newValue;
-    function initialize() {
+    var _auditLogAppService = abp.services.app.auditLogService;
+    function initialize(_auditLogAppService) {
 
         var selectedOptionValue = 50;
         function getData(max, callback) {
 
             var $averageElement = $("#average");
             var $totalElement = $("#total");
-            abp.services.app.auditLogService.getAuditLogTimes(max)
+            _auditLogAppService.getAuditLogTimes(max)
                 .done(function (response) {
 
                     var data = [];
@@ -180,6 +181,10 @@
     var logPageConfig = {
         initialize: initialize
     }
-    logPageConfig.initialize();
 
+    $(document)
+        .ready(function() {
+
+            logPageConfig.initialize(_auditLogAppService);
+        });
 })();

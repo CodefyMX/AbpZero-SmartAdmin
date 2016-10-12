@@ -1,6 +1,6 @@
 ﻿
 (function () {
-
+    var _categoriesAppService = abp.services.cms.categoryService;
     $(document)
         .ready(function() {
             var $form = $("#createCategoryForm");
@@ -25,7 +25,7 @@
                     DisplayName: $("#DisplayName").val(),
                     LanguageInputs: availableLangs
                 }
-                abp.ui.setBusy($form, abp.services.cms.categoryService.addEditCategory(data).done(function () {
+                abp.ui.setBusy($form, _categoriesAppService.addEditCategory(data).done(function () {
                     window.location.reload();
                 }));
 

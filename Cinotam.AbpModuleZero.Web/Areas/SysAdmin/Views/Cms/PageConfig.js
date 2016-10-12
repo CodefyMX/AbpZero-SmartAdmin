@@ -1,25 +1,24 @@
 ﻿(function () {
 
-
-    var initialize = function () {
+    var initialize = function (_pagesAppService) {
         var pageId = $("#Id").val();
         $('.js-toggle-status')
             .click(function () {
-                abp.ui.setBusy($("#pageOpts"), abp.services.cms.pagesService.togglePageStatus(pageId)
+                abp.ui.setBusy($("#pageOpts"), _pagesAppService.togglePageStatus(pageId)
                     .done(function () {
                         window.location.reload();
                     }));
             });
         $('.js-toggle-main')
             .change(function () {
-                abp.ui.setBusy($("#pageOpts"), abp.services.cms.pagesService.setPageAsMain(pageId)
+                abp.ui.setBusy($("#pageOpts"), _pagesAppService.setPageAsMain(pageId)
                     .done(function () {
 
                     }));
             });
         $('.js-toggle-menu')
             .change(function () {
-                abp.ui.setBusy($("#pageOpts"), abp.services.cms.pagesService.togglePageInMenuStatus(pageId)
+                abp.ui.setBusy($("#pageOpts"), _pagesAppService.togglePageInMenuStatus(pageId)
                     .done(function () {
 
                     }));
@@ -28,7 +27,7 @@
             var id = $(this).data("id");
             abp.message.confirm(LSys("Sure"), LSys("ElementWillBeDeleted"), function (response) {
                 if (response) {
-                    abp.services.cms.pagesService.deletePage(id)
+                    _pagesAppService.deletePage(id)
                         .done(function () {
                             window.location.href = "/SysAdmin/Cms/MyPages";
                         });
@@ -47,7 +46,7 @@
                     CategoryId: categoryId,
                     PageId: $("#Id").val()
                 }
-                abp.ui.setBusy(this, abp.services.cms.pagesService.setCategory(selectedCategory)
+                abp.ui.setBusy(this, _pagesAppService.setCategory(selectedCategory)
                     .done(function () {
                         abp.notify.success(LSys("CategoryChanged"));
                     }));
@@ -63,7 +62,7 @@
                    ParentPageId: parentPage,
                    PageId: $("#Id").val()
                }
-               abp.ui.setBusy(this, abp.services.cms.pagesService.setParentPage(selectedParent)
+               abp.ui.setBusy(this, _pagesAppService.setParentPage(selectedParent)
                    .done(function () {
                        abp.notify.success(LSys("ParentChanged"));
                    }));
@@ -76,7 +75,7 @@
                    TemplateName: templateName,
                    PageId: $("#Id").val()
                }
-               abp.ui.setBusy(this, abp.services.cms.pagesService.setTemplate(selectedTemplate)
+               abp.ui.setBusy(this, _pagesAppService.setTemplate(selectedTemplate)
                    .done(function () {
                        abp.notify.warn(LSys("TemplateChanged"));
                        setTimeout(function () {
@@ -89,7 +88,10 @@
     var pageConfig = {
         Initialize: initialize
     }
+    $(document)
+        .ready(function () {
 
-    pageConfig.Initialize();
-
+            var _pagesAppService = abp.services.cms.pagesService;
+            pageConfig.Initialize(_pagesAppService);
+        });
 })();

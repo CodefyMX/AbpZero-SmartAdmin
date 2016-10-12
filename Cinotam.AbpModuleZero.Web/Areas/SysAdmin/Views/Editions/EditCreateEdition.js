@@ -1,26 +1,27 @@
 ﻿
 (function () {
-    var contextMenu = function (node) {
-        var items = {
-            editUnit: {
-                label: LSys('EditValue'),
-                action: function (data) {
-                    console.log(data);
-                }
-            }
-        }
-
-        return items;
-    }
-    var treeJsConfig = {
-        contextMenu: contextMenu
-
-    }
-    var jsTreeInstance;
-    var $jsTree = $('#container');
-    var $form = $("#createEditEdition");
     $(document)
         .ready(function () {
+            var contextMenu = function () {
+                var items = {
+                    editUnit: {
+                        label: LSys('EditValue'),
+                        action: function (data) {
+                            console.log(data);
+                        }
+                    }
+                }
+
+                return items;
+            }
+            var treeJsConfig = {
+                contextMenu: contextMenu
+
+            }
+            var jsTreeInstance;
+            var $jsTree = $('#container');
+            var $form = $("#createEditEdition");
+            var _featureAppService = abp.services.app.featureService;
             jsTreeInstance = $jsTree
                 .jstree({
                     "checkbox": {
@@ -82,7 +83,7 @@
                 }
             };
             $jsTree.on('open_node.jstree', function (evt, nodeRef) {
-                nodeRef.node.children.forEach(function (i, v) {
+                nodeRef.node.children.forEach(function (i) {
                     printTextBoxIfNeededForNodeNames(i);
                 });
             });
@@ -93,17 +94,20 @@
                 var requiresTextBox = jqueryElement.data("append-textbox");
                 if (requiresTextBox) {
                     var defaultValue = jqueryElement.data("value");
-                    var anchorElement = $(selector + "_anchor");
-                    anchorElement.attr("class", "simple-text");
-                    var anchorElementCheckBox = jqueryElement.find(".jstree-icon.jstree-checkbox");
-                    var anchorElementIcon = jqueryElement.find(".jstree-icon.jstree-themeicon");
-                    anchorElementCheckBox.remove();
-                    anchorElementIcon.remove();
+                    removeCheckBoxFromNode(selector, jqueryElement);
                     jqueryElement.append("<input type='text' value=" + defaultValue + " class='input-tree' data-text-id='" + name + "' />");
                 }
-                node.children.forEach(function (i, v) {
+                node.children.forEach(function (i) {
                     printTextBoxIfNeeded(i);
                 });
+            }
+            function removeCheckBoxFromNode(selector, jqueryElement) {
+                var anchorElement = $(selector + "_anchor");
+                anchorElement.attr("class", "simple-text");
+                var anchorElementCheckBox = jqueryElement.find(".jstree-icon.jstree-checkbox");
+                var anchorElementIcon = jqueryElement.find(".jstree-icon.jstree-themeicon");
+                anchorElementCheckBox.remove();
+                anchorElementIcon.remove();
             }
             function getNode(id) {
                 return $.jstree.reference(jsTreeInstance).get_node(id);  // use the tree reference to fetch a node
@@ -114,16 +118,10 @@
                 var jqueryElement = $(selector);
                 var requiresTextBox = jqueryElement.data("append-textbox");
                 if (requiresTextBox) {
-                    var anchorElement = $(selector + "_anchor");
-                    anchorElement.attr("id", "");
-                    anchorElement.attr("class", "simple-text");
-                    var anchorElementCheckBox = jqueryElement.find(".jstree-icon.jstree-checkbox");
-                    var anchorElementIcon = jqueryElement.find(".jstree-icon.jstree-themeicon");
-                    anchorElementCheckBox.remove();
-                    anchorElementIcon.remove();
+                    removeCheckBoxFromNode(selector, jqueryElement);
                     var checked = jqueryElement.data("selected");
                     console.log(checked);
-                    if (checked == "True") {
+                    if (checked === "True") {
                         $jsTree.jstree("check_node", selector);
                     } else {
                         $jsTree.jstree("uncheck_node", selector);
@@ -131,7 +129,7 @@
                     var defaultValue = jqueryElement.data("value");
                     jqueryElement.append("<input type='text' value=" + defaultValue + " class='input-tree' data-text-id='" + name + "' />");
                 }
-                value.children.forEach(function (i, v) {
+                value.children.forEach(function (i) {
                     printTextBoxIfNeeded(i);
                 });
             }
@@ -157,7 +155,7 @@
                                 value = $(textBox[0]).val();
 
                                 selectedStatus = true;
-                                
+
 
                             }
                             features.push({
@@ -205,10 +203,9 @@
 
                             });
                         }
-                        console.log("Features", features);
                         formData.Features = features;
 
-                        abp.ui.setBusy($form, abp.services.app.featureService.createEdition(formData).done(function () {
+                        abp.ui.setBusy($form, _featureAppService.createEdition(formData).done(function () {
                             window.location.reload();
                         }));
 
