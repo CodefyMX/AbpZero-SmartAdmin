@@ -34,6 +34,12 @@
                             </div>
                         </div>
                     </section>
+                    <section>
+                        <label class="checkbox">
+                            @Html.CheckBoxFor(a=>a.IsDefault)
+                            <i></i>@L("IsAssignedByDefault")
+                        </label>
+                    </section>
                     @if (IsGranted(PermissionNames.PagesSysAdminPermissions))
                     {
 

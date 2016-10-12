@@ -2,10 +2,11 @@
 (function () {
 
     $(document)
-        .ready(function() {
+        .ready(function () {
+            var $form = $("#createMenuForm");
             $form.on("submit", function (e) {
                 var _menuAppService = abp.services.cms.menuService;
-                var $form = $("#createMenuForm");
+                
                 var $langInputs = $(".js-lang-input");
                 e.preventDefault();
                 var availableLangs = [];
