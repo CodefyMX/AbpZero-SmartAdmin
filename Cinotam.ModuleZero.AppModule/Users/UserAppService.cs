@@ -326,30 +326,6 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 //await _usersAppNotificationsSender.SendUserEditedNotification(AbpSession.UserId, user.FullName);
             }
         }
-        //private async Task SendChangePasswordEmail(User user)
-        //{
-        //    dynamic sendGridParams = BuildSendGridParamsForPasswordChanged(user);
-        //    var passwordChanged = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "WelcomeMessage"), user.FullName);
-        //    var yourUserIs = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "YourUserIs"), user.UserName);
-        //    var yourDefaultPasswordIs = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "YourDefaultPassword"), password);
-        //    await _cinotamMailSender.DeliverMail(new EmailSendInput()
-        //    {
-        //        MailMessage = new MailMessage()
-        //        {
-        //            From = new MailAddress((await SettingManager.GetSettingValueAsync("Abp.Net.Mail.DefaultFromAddress"))),
-        //            To = { new MailAddress(user.EmailAddress) },
-        //            Subject = "Welcome to Cinotam.ModuleZero",
-        //        },
-        //        Body = _templateManager.GetContent(TemplateType.Welcome, false, welcomeMessage, yourUserIs, yourDefaultPasswordIs),
-        //        EncodeType = "text/html",
-        //        ExtraParams = sendGridParams,
-        //    });
-        //}
-
-        //private object BuildSendGridParamsForPasswordChanged(User user)
-        //{
-        //    return new object();
-        //}
 
         public async Task MarkAsReaded(Guid notificationId)
         {

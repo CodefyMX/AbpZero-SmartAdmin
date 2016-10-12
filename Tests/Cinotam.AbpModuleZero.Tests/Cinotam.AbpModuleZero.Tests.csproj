@@ -55,6 +55,18 @@
       <HintPath>..\..\packages\Abp.TestBase.1.0.0.0\lib\net452\Abp.TestBase.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Abp.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.Web.1.0.0.0\lib\net452\Abp.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Abp.Web.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.Web.Common.1.0.0.0\lib\net452\Abp.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Abp.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Abp.Web.Mvc.1.0.0.0\lib\net452\Abp.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Abp.Zero, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Abp.Zero.1.0.0.0\lib\net452\Abp.Zero.dll</HintPath>
       <Private>True</Private>
@@ -103,6 +115,14 @@
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.5.23.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moq.4.5.23\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -139,6 +159,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Linq.Dynamic, Version=1.0.5840.25917, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Linq.Dynamic.1.0.6\lib\net40\System.Linq.Dynamic.dll</HintPath>
       <Private>True</Private>
@@ -146,6 +167,30 @@
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -170,11 +215,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbpModuleZeroTestModule.cs" />
+    <Compile Include="FakeRequests\FakeRequestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessions\SessionAppService_Tests.cs" />
     <Compile Include="AbpModuleZeroTestBase.cs" />
-    <Compile Include="TemplateDataBaseProvider\TemplateDatabaseProvider_Tests.cs" />
-    <Compile Include="TemplateFileSystemProvider\TemplateFileSystemProvider_Tests.cs" />
+    <Compile Include="Settings\SettingsAppService_Test.cs" />
     <Compile Include="Users\UserAppService_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +236,14 @@
     <ProjectReference Include="..\..\Cinotam.AbpModuleZero.EntityFramework\Cinotam.AbpModuleZero.EntityFramework.csproj">
       <Project>{3979F157-DEB0-4878-AB1D-4CEF6B5A1300}</Project>
       <Name>Cinotam.AbpModuleZero.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cinotam.AbpModuleZero.Tools\Cinotam.AbpModuleZero.Tools.csproj">
+      <Project>{9AB7EE8A-5411-4D24-AE46-158065006F00}</Project>
+      <Name>Cinotam.AbpModuleZero.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cinotam.AbpModuleZero.Web\Cinotam.AbpModuleZero.Web.csproj">
+      <Project>{404A6D3B-AA85-4E4C-AEEE-1E5026D5F135}</Project>
+      <Name>Cinotam.AbpModuleZero.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Cinotam.Cms.Contracts\Cinotam.Cms.Contracts.csproj">
       <Project>{DABC5C7B-2468-40CB-A673-DC723656174D}</Project>
@@ -211,6 +264,10 @@
     <ProjectReference Include="..\..\Cinotam.ModuleZero.AppModule\Cinotam.ModuleZero.AppModule.csproj">
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>
       <Name>Cinotam.ModuleZero.AppModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Cinotam.ModuleZero.Notifications\Cinotam.ModuleZero.Notifications.csproj">
+      <Project>{57EE20C5-0930-41C0-9367-9A598B1B53D7}</Project>
+      <Name>Cinotam.ModuleZero.Notifications</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
