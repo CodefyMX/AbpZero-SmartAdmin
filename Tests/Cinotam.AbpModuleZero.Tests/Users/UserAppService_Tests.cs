@@ -11,6 +11,7 @@ using Shouldly;
 using System;
 using System.Collections;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -212,6 +213,7 @@ namespace Cinotam.AbpModuleZero.Tests.Users
             var table = _userAppService.GetUsersForTable(FakeRequestHelper.CreateDataTablesFakeRequestModel());
             table.ShouldNotBe(null);
             table.data.ShouldNotBe(null);
+            table.data.Count().ShouldBe(1);
             table.data.ShouldBeAssignableTo<Array>();
         }
         private async Task CreateFakeUser()
