@@ -217,6 +217,7 @@
     <Compile Include="AbpModuleZeroTestModule.cs" />
     <Compile Include="FakeRequests\FakeRequestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles\RoleAppService_Tests.cs" />
     <Compile Include="Sessions\SessionAppService_Tests.cs" />
     <Compile Include="AbpModuleZeroTestBase.cs" />
     <Compile Include="Settings\SettingsAppService_Test.cs" />
