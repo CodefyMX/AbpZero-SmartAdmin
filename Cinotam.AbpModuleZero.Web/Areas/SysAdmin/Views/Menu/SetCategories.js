@@ -3,13 +3,16 @@
 
     $(document)
         .ready(function () {
-            $("#setCategories").on("submit", function (e) {
+
+            var $form = $("#setCategories");
+            var $setCategoryElements = $(".js-set-category");
+            $form.on("submit", function (e) {
                 e.preventDefault();
                 var data = {
                     MenuId: $("#MenuId").val(),
                     AvailableCategories: []
                 };
-                $(".js-set-category").each(function (i, element) {
+                $setCategoryElements.each(function (i, element) {
                     var $element = $(element);
                     data.AvailableCategories.push({
                         Checked: $element.is(":checked"),

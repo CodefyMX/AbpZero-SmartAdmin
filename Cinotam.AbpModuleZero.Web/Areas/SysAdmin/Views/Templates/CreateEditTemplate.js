@@ -2,11 +2,12 @@
 (function () {
     $(document)
         .ready(function () {
-            $("#createTemplateForm").on("submit", function (e) {
+            var $form = $("#createTemplateForm");
+            $form.on("submit", function (e) {
+                var $self = $(this);
                 e.preventDefault();
-                var data = $(this).serializeFormToObject();
+                var data = $self.serializeFormToObject();
                 data.IsPartial = $("#IsPartial").is(":checked");
-                console.log(data);
                 abp.services.cms.templateService.addTemplate(data)
                     .done(function () {
                         window.location.reload();

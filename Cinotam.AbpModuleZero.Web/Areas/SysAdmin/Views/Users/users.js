@@ -5,6 +5,9 @@
         var isUserEditGranted = abp.auth.isGranted("Pages.SysAdmin.Users.Edit");
         var isRoleAssignGranted = abp.auth.isGranted("Pages.SysAdminRoles.Assign");
         var isUserDeleteGranted = abp.auth.isGranted("Pages.SysAdmin.Users.Delete");
+        var $table = $("#usersTable");
+        var $body = $("body");
+        var $form = $("#createEditForm");
         var columns = [
                     {
                         "render": function (data, type, row) {
@@ -75,14 +78,8 @@
                     }
             ],
             OnInitComplete: function () {
-                //var id = $("#ActivatorUserId").val();
-                //console.log(id);
-                //if (id !== 0) {
-                //    window.modalInstance.open("/SysAdmin/Users/EditRoles/" + id + "");
-
-                //}
             },
-            Element: $("#usersTable")
+            Element: $table
         });
         var usersPage = {
             dataTableConfig: datatablesConfig,
@@ -97,17 +94,16 @@
                 }
             }
         }
-        table = $("#usersTable").DataTable(usersPage.dataTableConfig);
+        table = $table.DataTable(usersPage.dataTableConfig);
         document.addEventListener("modalClose", usersPage.modalHandler);
-
         
-        $("body").on("click", ".js-delete-user", function () {
+        $body.on("click", ".js-delete-user", function () {
             var fullName = $(this).data("full-name");
             var id = $(this).data("id");
             var confirmDelete = abp.utils.formatString(LSys("ConfirmDeleteUser"), fullName);
             abp.message.confirm(confirmDelete, LSys("ConfirmQuestion"), function (response) {
                 if (response) {
-                    abp.ui.setBusy($("#createEditForm"), abp.services.app.user.deleteUser(id).done(function () {
+                    abp.ui.setBusy($form, abp.services.app.user.deleteUser(id).done(function () {
                         table.ajax.reload();
                         abp.notify.warn(LSys("UserDeleted"), LSys("Success"));
                     }));

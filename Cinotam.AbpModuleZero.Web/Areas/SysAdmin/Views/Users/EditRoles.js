@@ -2,15 +2,24 @@
 (function () {
     var modalType = "MODAL_ROLES_SET";
     $(document).ready(function () {
-        $("#selectRoles").on("submit", function (e) {
+
+        var $form = $("#selectRoles");
+
+        $form.on("submit", function (e) {
             e.preventDefault();
             var data = {
                 userId: $("#UserId").val(),
                 roles: []
             };
 
-            $("#selectRoles input:checked").each(function () {
-                data.roles.push($(this).val());
+            var inputsChecked = $("#selectRoles input:checked");
+
+            inputsChecked.each(function () {
+                var $self = $(this);
+
+                var checkedElementValue = $self.val();
+
+                data.roles.push(checkedElementValue);
             });
 
             abp.services.app.user.setUserRoles(data).done(function () {

@@ -1,7 +1,8 @@
 ﻿
 (function () {
     $(document).ready(function () {
-
+        var $table = $("#categoriesTable");
+        var $body = $("body");
         var columns = [
             {
                 "data": "Name"
@@ -43,7 +44,7 @@
             Url: "/SysAdmin/PageCategories/" + "GetCategories",
             Columns: columns,
             ColumnDefinitions: columnDefinitions,
-            Element: $("#categoriesTable"),
+            Element: $table,
             OnInitComplete: function () { },
             DisplayLength: 10
         });
@@ -53,14 +54,14 @@
         }
 
 
-        $("#categoriesTable")
+        $table
         .DataTable(myCategoriesPage.dataTablesConfig);
 
-        $("body").on("click", ".js-delete-category", function () {
+        $body.on("click", ".js-delete-category", function () {
             var id = $(this).data("id");
-            abp.message.confirm(LSys("Delete"), LSys("AreYouSure"), function (response) {
+            abp.message.confirm(LSys("Delete"), LSys("ConfirmQuestion"), function (response) {
                 if (response) {
-                    abp.ui.setBusy($("#categoriesTable"), abp.services.cms.categoryService.removeCategory(id).done(function () {
+                    abp.ui.setBusy($form, abp.services.cms.categoryService.removeCategory(id).done(function () {
                         abp.notify.warn(LSys("CategoryRemoved"));
                     }));
                 }

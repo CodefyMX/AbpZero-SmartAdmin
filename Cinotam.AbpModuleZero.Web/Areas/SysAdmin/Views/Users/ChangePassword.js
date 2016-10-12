@@ -1,24 +1,27 @@
 ﻿(function () {
     var modalType = "USER_PASSWORD_CHANGED";
+
     $(document)
         .ready(function () {
-            $("#changePasswordForm")
-                .on("submit",
-                    function (e) {
 
-                        e.preventDefault();
-                        if ($(".js-confirm-password").val() !== $(".js-password").val()) {
-                            abp.message.error(LSys("PasswordsNotMatch"), LSys("Error"));
-                        } else {
-                            var form = this;
+            var $form = $("#changePasswordForm");
+            $form.on("submit",
+                function (e) {
+                    var self = this;
+                    e.preventDefault();
 
-                            var data = $(form).serializeFormToObject();
+                    var confirmPasswordVal = $(".js-confirm-password").val();
+                    var passwordVal = $(".js-password").val();
 
-                            abp.ui.setBusy(form, abp.services.app.user.changePassword(data).done(function () {
-                                window.modalInstance.close({}, modalType);
-                            }));
-                        }
-                    });
+                    if (confirmPasswordVal !== passwordVal) {
+                        abp.message.error(LSys("PasswordsNotMatch"), LSys("Error"));
+                    } else {
+                        var data = $(self).serializeFormToObject();
+                        abp.ui.setBusy(form, abp.services.app.user.changePassword(data).done(function () {
+                            window.modalInstance.close({}, modalType);
+                        }));
+                    }
+                });
         });
 
 })();

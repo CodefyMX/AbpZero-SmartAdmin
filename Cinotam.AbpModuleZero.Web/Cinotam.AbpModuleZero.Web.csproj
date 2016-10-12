@@ -336,7 +336,7 @@
     <Content Include="Areas\SysAdmin\Views\Users\CreateEditUser.js" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.js" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.js" />
-    <Content Include="Areas\SysAdmin\Views\Users\roles.js" />
+    <Content Include="Areas\SysAdmin\Views\Roles\roles.js" />
     <Content Include="Areas\SysAdmin\Views\Users\Settings.js" />
     <Content Include="Areas\SysAdmin\Views\Users\users.js" />
     <Content Include="Areas\SysAdmin\Views\AuditLogs\AuditLogDetails.js" />
