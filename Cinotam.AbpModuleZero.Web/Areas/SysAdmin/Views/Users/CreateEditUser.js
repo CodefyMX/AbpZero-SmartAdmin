@@ -3,10 +3,10 @@
     $(document)
         .ready(function () {
             var $form = $("#createEditForm");
+            var sendNotificationMail = $("#SendNotificationMail");
+            var isActive = $("#IsActive");
             $form.on("submit", function (e) {
                 var self = this;
-                var sendNotificationMail = $("#SendNotificationMail");
-                var isActive = $("#IsActive");
                 e.preventDefault();
                 var url = $(self).attr("action");
                 var data = $(self).serializeFormToObject();

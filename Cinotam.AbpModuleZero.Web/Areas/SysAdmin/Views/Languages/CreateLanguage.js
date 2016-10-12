@@ -1,12 +1,13 @@
 ﻿(function () {
+
     var modalType = "LANGUAGE_CREATED";
-    var $form = $("#createEditLang");
     function format(icon) {
         var originalOption = icon.element;
         return '<i class="' + $(originalOption).data('icon') + '"></i> ' + icon.text;
     }
     $(document).ready(function () {
-
+        var $form = $("#createEditLang");
+        var _languageAppService = abp.services.app.language;
         $form.on("submit", function (e) {
             e.preventDefault();
             var icon = $("#icon").val();
@@ -19,7 +20,7 @@
                 LangCode: name,
                 DisplayName: displayName
             }
-            abp.ui.setBusy($form, abp.services.app.language.addLanguage(data)
+            abp.ui.setBusy($form, _languageAppService.addLanguage(data)
                  .done(function () {
                      modalInstance.close({}, modalType);
                  }));

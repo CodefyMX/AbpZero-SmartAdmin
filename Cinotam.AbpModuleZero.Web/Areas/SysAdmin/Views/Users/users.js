@@ -1,13 +1,15 @@
 ﻿(function () {
     "use strict";
-
     $(document).ready(function () {
+
+        var _userAppService = abp.services.app.user;
         var isUserEditGranted = abp.auth.isGranted("Pages.SysAdmin.Users.Edit");
         var isRoleAssignGranted = abp.auth.isGranted("Pages.SysAdminRoles.Assign");
         var isUserDeleteGranted = abp.auth.isGranted("Pages.SysAdmin.Users.Delete");
         var $table = $("#usersTable");
         var $body = $("body");
         var $form = $("#createEditForm");
+        
         var columns = [
                     {
                         "render": function (data, type, row) {
@@ -103,7 +105,7 @@
             var confirmDelete = abp.utils.formatString(LSys("ConfirmDeleteUser"), fullName);
             abp.message.confirm(confirmDelete, LSys("ConfirmQuestion"), function (response) {
                 if (response) {
-                    abp.ui.setBusy($form, abp.services.app.user.deleteUser(id).done(function () {
+                    abp.ui.setBusy($form, _userAppService.deleteUser(id).done(function () {
                         table.ajax.reload();
                         abp.notify.warn(LSys("UserDeleted"), LSys("Success"));
                     }));

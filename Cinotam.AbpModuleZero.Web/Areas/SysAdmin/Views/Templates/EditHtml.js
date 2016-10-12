@@ -1,7 +1,9 @@
 ﻿(function () {
+    
     $(document)
         .ready(function () {
-            var editor = ace.edit("editor");
+            var _templateAppService = abp.services.cms.templateService;
+            var editor = window.ace.edit("editor");
             editor.setTheme("ace/theme/twilight");
             editor.session.setMode("ace/mode/html");
 
@@ -13,7 +15,7 @@
                         e.preventDefault();
                         var data = $self.serializeFormToObject();
                         data.Content = editor.getValue();
-                        abp.services.cms.templateService.addTemplate(data).done(function () {
+                        _templateAppService.addTemplate(data).done(function () {
                             abp.message.success(LSys("Saved"), LSys("Success"));
                         });
                     });

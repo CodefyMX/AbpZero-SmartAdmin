@@ -2,15 +2,12 @@
 (function () {
     $(document)
         .ready(function () {
-
-            window.modalInstance = new abp.app.bootstrap.modal(null, window.modalOptions);
-
             var $changeProfilePictureForm =$("#changeProfilePicture");
             var $createEditForm = $("#createEditForm");
             var $profilePictureElement = $('#profilePicture');
             var $notificationsElement = $("#myNotifications");
             var $wrapper = $("#imageWrapped");
-
+            var _userAppService = abp.services.app.user;
             $changeProfilePictureForm.on("submit",
                     function (e) {
                         var self = this;
@@ -57,7 +54,7 @@
                         console.log("Event unhandled");
                 }
             }
-            abp.services.app.user.getMyNotifications(2, null).done(function (response) {
+            _userAppService.getMyNotifications(2, null).done(function (response) {
                 $notificationsElement.text("");
                 response.notifications.forEach(function (userNotification) {
                     notificationService.printNotificationInList(userNotification, $notificationsElement);

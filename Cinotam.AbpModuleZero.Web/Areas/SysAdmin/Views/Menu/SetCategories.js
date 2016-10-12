@@ -1,6 +1,6 @@
 ﻿
 (function () {
-
+    var _menuAppService = abp.services.cms.menuService;
     $(document)
         .ready(function () {
 
@@ -20,7 +20,7 @@
                     });
                 });
 
-                abp.services.cms.menuService.setMenuSectionsFromCategories(data)
+                _menuAppService.setMenuSectionsFromCategories(data)
                     .done(function () {
                         window.location.reload();
 

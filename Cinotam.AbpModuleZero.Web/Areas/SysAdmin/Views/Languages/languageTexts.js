@@ -4,15 +4,11 @@
     $(document).ready(function () {
         var $table = $("#languageTextsTable");
         var $body = $("body");
-
         drawBreadCrumb([LSys("Language"), LSys("Texts")]);
 
         var source = $("#Source").val();
         var targetLang = $("#SelectedTargetLanguage").val();
         var sourceLang = $("#SelectedSourceLanguage").val();
-
-
-        
         var columns = [
             { "data": "Id" },
             {

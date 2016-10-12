@@ -19,10 +19,7 @@
             <form method="POST" id="createEditRole" class="smart-form">
                 <header>
                     @L("RoleRegisterForm")
-                    @if (Model.Id != 0 && IsGranted(PermissionNames.PagesSysAdminRolesDelete))
-                    {
-                        <a data-id="@Model.Id" class="pull-right btn btn-sm btn-danger js-delete-role">@L("Delete")</a>
-                    }
+                    
                 </header>
                 @Html.HiddenFor(a => a.Id)
                 <fieldset>

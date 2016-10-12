@@ -1,10 +1,12 @@
 ﻿
 (function () {
     $(document).ready(function () {
+
+        var _menuAppService = abp.services.cms.menuService;
         var $body = $("body");
         var $menus = $("#menus");
         var $menusLi = $("#menus li");
-        bind($menus, $menusLi);
+        bind($menus, $menusLi, _menuAppService);
         $body
         .on("click",
             ".js-delete-menu",
@@ -14,7 +16,7 @@
                 abp.message.confirm(LSys("ElementWillBeRemoved"), LSys("Sure"), function (response) {
 
                     if (response) {
-                        abp.services.cms.menuService.deleteMenu(id)
+                        _menuAppService.deleteMenu(id)
                             .done(function () {
 
                                 window.location.reload();
@@ -30,7 +32,7 @@
 
     
 
-    window.bind = function ($menus,$menusLi) {
+    window.bind = function ($menus,$menusLi,_menuAppService) {
         
         $menus.sortable({
             handle: ".handle",
@@ -44,12 +46,12 @@
                         Id: id
                     });
                 });
-                changeOrder(data, $menus);
+                changeOrder(data, $menus, _menuAppService);
             }
         });
     }
-    function changeOrder(data,$menus) {
-        abp.ui.setBusy($menus, abp.services.cms.menuService.changeOrder(data, "Menu").done(function () {
+    function changeOrder(data,$menus,_menuAppService) {
+        abp.ui.setBusy($menus, _menuAppService.changeOrder(data, "Menu").done(function () {
             abp.notify.success(LSys("OrderChanged"));
         }));
     }

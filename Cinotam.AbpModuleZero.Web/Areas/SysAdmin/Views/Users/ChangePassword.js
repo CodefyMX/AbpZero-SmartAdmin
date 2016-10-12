@@ -1,9 +1,9 @@
 ﻿(function () {
     var modalType = "USER_PASSWORD_CHANGED";
-
     $(document)
         .ready(function () {
 
+            var _userAppService = abp.services.app.user;
             var $form = $("#changePasswordForm");
             $form.on("submit",
                 function (e) {
@@ -17,11 +17,10 @@
                         abp.message.error(LSys("PasswordsNotMatch"), LSys("Error"));
                     } else {
                         var data = $(self).serializeFormToObject();
-                        abp.ui.setBusy(form, abp.services.app.user.changePassword(data).done(function () {
+                        abp.ui.setBusy(form, _userAppService.changePassword(data).done(function () {
                             window.modalInstance.close({}, modalType);
                         }));
                     }
                 });
         });
-
 })();

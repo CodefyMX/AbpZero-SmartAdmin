@@ -1,64 +1,27 @@
 ﻿
 (function () {
     //Todo: split page scripts
-    var $usersWindow = $("#usersWindow");
-    var $organizationUnitsView = $("#organizationUnitsView");
-    var jsTreeContainer = "#container";
-    var $body = $("body");
-    var $usersTable = $("#usersTable");
-    var contextMenu = function (node) {
-        var items = {
-            addUnit: {
-                label: LSys('AddOrganizationUnit'),
-                action: function (data) {
-                    window.modalInstance.open("/SysAdmin/OrganizationUnits/AddOrganizationUnit/" + node.id);
-                }
-            },
-            editUnit: {
-                label: LSys('EditOrganizationUnit'),
-                action: function (data) {
-                    window.modalInstance.open("/SysAdmin/OrganizationUnits/CreateEditOrganizationUnit/" +
-                        node.id);
-                }
-            },
-            deleteUnit: {
-                label: LSys('DeleteOrganizationUnit'),
-                action: function (data) {
-                    abp.message.confirm(LSys("TheUnitWillBeDeleted"), LSys("Sure"), function (response) {
-                        if (response) {
-                            abp.services.app.organizationUnits.removeOrganizationUnit(node.id).done(function () {
-                                abp.notify.success(LSys("OrganizationUnitRemoved"), LSys("Success"));
-                                loadOrganizationUnitsView();
-                            });
-                        }
-                    });
-                }
-            }
-        }
 
-        return items;
-    }
-    var treeJsConfig = {
-        contextMenu: contextMenu,
-        modalHandler: modalHandler
-    }
+
 
     var selectedNodeId;
     function loadUsersWindow(id) {
+        var $usersWindow = $("#usersWindow");
         abp.ui.setBusy($usersWindow);
 
         $usersWindow.load("/SysAdmin/OrganizationUnits/UsersWindow/" + id, function () {
             abp.ui.clearBusy($usersWindow);
         });
     }
-    var loadOrganizationUnitsView = function () {
+    var loadOrganizationUnitsView = function ($organizationUnitsView, jsTreeSelector, treeJsConfig) {
+
         abp.ui.setBusy($organizationUnitsView);
         $organizationUnitsView
             .load("/SysAdmin/OrganizationUnits/GetOrganizationUnits",
                 function () {
                     abp.ui.clearBusy($organizationUnitsView);
-
-                    $(jsTreeContainer)
+                    var $jsTreeContainer = $(jsTreeSelector);
+                    $jsTreeContainer
                         .jstree({
                             contextmenu: {
                                 items: treeJsConfig.contextMenu
@@ -73,7 +36,7 @@
                             }
                         });
 
-                    $(jsTreeContainer).on("select_node.jstree", function (evt, nodeRef) {
+                    $jsTreeContainer.on("select_node.jstree", function (evt, nodeRef) {
 
                         selectedNodeId = nodeRef.node.id;
                         loadUsersWindow(selectedNodeId);
@@ -89,14 +52,14 @@
                             function (e, data) {
                                 var selector = "li#" + data.data.nodes[0] + ".jstree-node";
                                 oldPosition = $(selector).index();
-                                oldParent = $('#container').jstree(true).get_node(data.data.nodes[0]).parent;
+                                oldParent = $jsTreeContainer.jstree(true).get_node(data.data.nodes[0]).parent;
                             });
 
                     $(document)
                         .on('dnd_stop.vakata',
                             function (e, data) {
                                 var node = data.data.origin.get_node(data.data.nodes[0]);
-                                if (node.type == "root") return false;
+                                if (node.type === "root") return false;
                                 abp.message.confirm(LSys("Move"),
                                     LSys("Sure"),
                                     function (response) {
@@ -105,7 +68,7 @@
                                             var selector = "li#" + data.data.nodes[0] + ".jstree-node";
                                             newPosition = $(selector).index();
                                             newParent = node.parent;
-                                            if (newParent == "#") {
+                                            if (newParent === "#") {
                                                 newParent = undefined;
                                             }
                                             var elementMoved = data.data.nodes[0];
@@ -122,7 +85,7 @@
                                                             LSys("Success"));
                                                 });
                                         } else {
-                                            $('#container').jstree(true).move_node(node, oldParent, oldPosition);
+                                            $jsTreeContainer.jstree(true).move_node(node, oldParent, oldPosition);
                                             return false;
                                         }
                                         return false;
@@ -130,8 +93,8 @@
                                 return false;
                             });
 
-                    $(jsTreeContainer).on('ready.jstree', function () {
-                        $(jsTreeContainer).jstree("open_all");
+                    $jsTreeContainer.on('ready.jstree', function () {
+                        $jsTreeContainer.jstree("open_all");
                     });
                 });
     }
@@ -153,21 +116,64 @@
 
     $(document)
         .ready(function () {
-            loadOrganizationUnitsView();
-
-
             
+            var $organizationUnitsView = $("#organizationUnitsView");
+            var jsTreeSelector = "#container";
+
+            var $body = $("body");
+            var $usersTable = $("#usersTable");
+            var _organizationUnitsAppService = abp.services.app.organizationUnits;
+
+            var contextMenu = function (node) {
+                var items = {
+                    addUnit: {
+                        label: LSys('AddOrganizationUnit'),
+                        action: function () {
+                            window.modalInstance.open("/SysAdmin/OrganizationUnits/AddOrganizationUnit/" + node.id);
+                        }
+                    },
+                    editUnit: {
+                        label: LSys('EditOrganizationUnit'),
+                        action: function () {
+                            window.modalInstance.open("/SysAdmin/OrganizationUnits/CreateEditOrganizationUnit/" +
+                                node.id);
+                        }
+                    },
+                    deleteUnit: {
+                        label: LSys('DeleteOrganizationUnit'),
+                        action: function () {
+                            abp.message.confirm(LSys("TheUnitWillBeDeleted"), LSys("Sure"), function (response) {
+                                if (response) {
+                                    _organizationUnitsAppService.removeOrganizationUnit(node.id).done(function () {
+                                        abp.notify.success(LSys("OrganizationUnitRemoved"), LSys("Success"));
+                                        loadOrganizationUnitsView();
+                                    });
+                                }
+                            });
+                        }
+                    }
+                }
+
+                return items;
+            }
+            var treeJsConfig = {
+                contextMenu: contextMenu,
+                modalHandler: modalHandler
+            }
+
+            document.addEventListener('modalClose', treeJsConfig.modalHandler);
+            loadOrganizationUnitsView($organizationUnitsView, jsTreeSelector, treeJsConfig);
             $body.on("click", ".js-remove", function () {
                 var userId = $(this).data("user-id");
                 var orgId = $(this).data("org-id");
 
                 abp.message.confirm(LSys("UserWillBeRemovedFromOrganizationUnit"), LSys("Sure"), function (response) {
                     if (response) {
-                        abp.ui.setBusy($usersTable, abp.services.app.organizationUnits.removeUserFromOrganizationUnit({
+                        abp.ui.setBusy($usersTable, _organizationUnitsAppService.removeUserFromOrganizationUnit({
                             UserId: userId,
                             OrgUnitId: orgId
                         }).done(function () {
-                            abp.notify.success(LSys("UserRemovedFromOrganizationUnit"),LSys("Success"));
+                            abp.notify.success(LSys("UserRemovedFromOrganizationUnit"), LSys("Success"));
                             loadUsersWindow(selectedNodeId);
                         }));
                     }
@@ -177,5 +183,4 @@
 
         });
 
-    document.addEventListener('modalClose', treeJsConfig.modalHandler);
 })();

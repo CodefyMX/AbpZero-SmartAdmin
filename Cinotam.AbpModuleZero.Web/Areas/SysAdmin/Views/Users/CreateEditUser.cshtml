@@ -17,13 +17,6 @@
             <form action="@Url.Action("CreateEditUser")" method="POST" id="createEditForm" class="smart-form">
                 <header>
                     @L("RegisterUserForm")
-
-                    @if (Model.Id != 0)
-                    {
-                        <a data-id="@Model.Id" class="pull-right btn btn-sm btn-danger js-delete-user">@L("Delete")</a>
-
-                    }
-
                 </header>
                 @Html.HiddenFor(a => a.Id)
                 <fieldset>
