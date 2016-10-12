@@ -3,21 +3,15 @@ using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.EntityFramework;
 using Cinotam.AbpModuleZero.Tests.FakeRequests;
 using Cinotam.AbpModuleZero.Users;
-using Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers;
 using Cinotam.ModuleZero.AppModule.Roles;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
-using Moq;
 using Shouldly;
 using System;
 using System.Collections;
 using System.Data.Entity;
-using System.IO;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
 using Xunit;
 
 namespace Cinotam.AbpModuleZero.Tests.Users
@@ -171,48 +165,46 @@ namespace Cinotam.AbpModuleZero.Tests.Users
             });
         }
 
-        private const string FakeImage = "{0}/fakeProfile.png";
-        [Fact]
-        public async Task AddProfilePicture()
-        {
-            //http://www.hanselman.com/blog/ABackToBasicsCaseStudyImplementingHTTPFileUploadWithASPNETMVCIncludingTestsAndMocks.aspx
-            await CreateFakeUser();
+        //private const string FakeImage = "/Content/Images/fakeProfile.png";
+        //[Fact]
+        //public async Task AddProfilePicture()
+        //{
+        //    //http://www.hanselman.com/blog/ABackToBasicsCaseStudyImplementingHTTPFileUploadWithASPNETMVCIncludingTestsAndMocks.aspx
+        //    await CreateFakeUser();
 
-            using (var stream = new FileStream(string.Format(
-                        FakeImage,
-                        AppDomain.CurrentDomain.BaseDirectory),
-                     FileMode.Open))
-            {
-                var context = new Mock<HttpContextBase>();
-                var request = new Mock<HttpRequestBase>();
-                var files = new Mock<HttpFileCollectionBase>();
-                var file = new Mock<HttpPostedFileBase>();
+        //    using (var stream = new FileStream(HostingEnvironment.MapPath(FakeImage),
+        //             FileMode.Open))
+        //    {
+        //        var context = new Mock<HttpContextBase>();
+        //        var request = new Mock<HttpRequestBase>();
+        //        var files = new Mock<HttpFileCollectionBase>();
+        //        var file = new Mock<HttpPostedFileBase>();
 
-                context.Setup(x => x.Request).Returns(request.Object);
+        //        context.Setup(x => x.Request).Returns(request.Object);
 
-                files.Setup(x => x.Count).Returns(1);
+        //        files.Setup(x => x.Count).Returns(1);
 
-                // The required properties from my Controller side
+        //        // The required properties from my Controller side
 
-                file.Setup(x => x.InputStream).Returns(stream);
-                file.Setup(x => x.ContentLength).Returns((int)stream.Length);
-                file.Setup(x => x.FileName).Returns(Path.GetFileName(stream.Name));
-                files.Setup(x => x.Get(0).InputStream).Returns(file.Object.InputStream);
+        //        file.Setup(x => x.InputStream).Returns(stream);
+        //        file.Setup(x => x.ContentLength).Returns((int)stream.Length);
+        //        file.Setup(x => x.FileName).Returns(Path.GetFileName(stream.Name));
+        //        files.Setup(x => x.Get(0).InputStream).Returns(file.Object.InputStream);
 
-                request.Setup(x => x.Files).Returns(files.Object);
-                request.Setup(x => x.Files[0]).Returns(file.Object);
+        //        request.Setup(x => x.Files).Returns(files.Object);
+        //        request.Setup(x => x.Files[0]).Returns(file.Object);
 
-                var controller = new UsersController(_userAppService);
-                controller.ControllerContext = new ControllerContext(
-                                         context.Object, new RouteData(), controller);
+        //        var controller = new UsersController(_userAppService);
+        //        controller.ControllerContext = new ControllerContext(
+        //                                 context.Object, new RouteData(), controller);
 
-                await UsingDbContextAsync(async dbContext =>
-                {
-                    var user = await GetFakeUser(dbContext);
-                    await controller.ChangeProfilePicture(user.Id);
-                });
-            }
-        }
+        //        await UsingDbContextAsync(async dbContext =>
+        //        {
+        //            var user = await GetFakeUser(dbContext);
+        //            await controller.ChangeProfilePicture(user.Id);
+        //        });
+        //    }
+        //}
         [Fact]
         public void GetUsersFromTable_Test()
         {
