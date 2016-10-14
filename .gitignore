@@ -6,6 +6,9 @@
 *.user
 *.userosscache
 *.sln.docstates
+AbpCinotamModuleZero/Cinotam.AbpModuleZero.Web/App_Data/Logs/
+AbpCinotamModuleZero/Cinotam.AbpModuleZero.Web/App_Data/Temp/
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
