@@ -216,6 +216,7 @@
   <ItemGroup>
     <Compile Include="AbpModuleZeroTestModule.cs" />
     <Compile Include="FakeRequests\FakeRequestHelper.cs" />
+    <Compile Include="Notifications\NotificationService_Test.cs" />
     <Compile Include="OrganizationUnits\OrganizationUnitsAppService_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\RoleAppService_Tests.cs" />

@@ -22,12 +22,6 @@ namespace Cinotam.AbpModuleZero.Tests.OrganizationUnits
             _organizationUnitsAppService = Resolve<IOrganizationUnitsAppService>();
             _userAppService = Resolve<IUserAppService>();
         }
-
-        /*
-         * Todo:
-            Task RemoveUserFromOrganizationUnit(AddUserToOrgUnitInput input);
-         
-         */
         [Fact]
         public async Task CreateOrEditOrgUnit_Test()
         {
@@ -65,6 +59,7 @@ namespace Cinotam.AbpModuleZero.Tests.OrganizationUnits
         [Fact]
         public async Task AddUserToOrgUnit_GetUsersFromOrganizationUnit_Test()
         {
+            LoginAsDefaultTenantAdmin();
             await CreateFakeOrganizationUnit();
 
             await CreateFakeUser();
@@ -147,10 +142,10 @@ namespace Cinotam.AbpModuleZero.Tests.OrganizationUnits
 
             });
         }
-
         [Fact]
         public async Task RemoveUserFromOrganizationUnit()
         {
+            LoginAsDefaultTenantAdmin();
             await CreateFakeOrganizationUnit();
             await CreateFakeUser();
             await UsingDbContextAsync(async dbContext =>
