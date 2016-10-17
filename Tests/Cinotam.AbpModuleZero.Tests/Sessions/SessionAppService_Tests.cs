@@ -35,6 +35,7 @@ namespace Cinotam.AbpModuleZero.Tests.Sessions
         [Fact]
         public async Task Should_Get_Current_User_And_Tenant_When_Logged_In_As_Tenant()
         {
+            LoginAsDefaultTenantAdmin();
             //Act
             var output = await _sessionAppService.GetCurrentLoginInformations();
 

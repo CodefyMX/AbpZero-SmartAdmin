@@ -1,21 +1,21 @@
+using Abp;
+using Abp.Configuration.Startup;
+using Abp.Domain.Uow;
+using Abp.Runtime.Session;
+using Abp.TestBase;
+using Castle.MicroKernel.Registration;
+using Cinotam.AbpModuleZero.EntityFramework;
+using Cinotam.AbpModuleZero.Migrations.SeedData;
+using Cinotam.AbpModuleZero.MultiTenancy;
+using Cinotam.AbpModuleZero.Users;
+using Effort;
+using EntityFramework.DynamicFilters;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using Abp;
-using Abp.Configuration.Startup;
-using Abp.Domain.Uow;
-using Abp.Runtime.Session;
-using Abp.TestBase;
-using Cinotam.AbpModuleZero.EntityFramework;
-using Cinotam.AbpModuleZero.Migrations.SeedData;
-using Cinotam.AbpModuleZero.MultiTenancy;
-using Cinotam.AbpModuleZero.Users;
-using Castle.MicroKernel.Registration;
-using Effort;
-using EntityFramework.DynamicFilters;
 
 namespace Cinotam.AbpModuleZero.Tests
 {
@@ -41,7 +41,7 @@ namespace Cinotam.AbpModuleZero.Tests
                 new TenantRoleAndUserBuilder(context, 1).Create();
             });
 
-            LoginAsDefaultTenantAdmin();
+            //LoginAsDefaultTenantAdmin();
         }
 
         protected override void PreInitialize()
@@ -246,7 +246,7 @@ namespace Cinotam.AbpModuleZero.Tests
         }
 
         #endregion
-        
+
         /// <summary>
         /// Gets current user if <see cref="IAbpSession.UserId"/> is not null.
         /// Throws exception if it's null.
