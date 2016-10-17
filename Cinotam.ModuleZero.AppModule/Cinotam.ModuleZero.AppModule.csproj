@@ -179,6 +179,7 @@
     <Compile Include="Users\Dto\UpdateProfilePictureInput.cs" />
     <Compile Include="Users\Dto\UserListDto.cs" />
     <Compile Include="Users\Dto\UserProfileDto.cs" />
+    <Compile Include="Users\Dto\UserSpecialPermissionsInput.cs" />
     <Compile Include="Users\IUserAppService.cs" />
     <Compile Include="Users\UserAppService.cs" />
   </ItemGroup>

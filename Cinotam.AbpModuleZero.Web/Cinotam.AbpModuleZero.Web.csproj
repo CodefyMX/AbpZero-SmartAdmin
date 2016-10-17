@@ -577,6 +577,7 @@
     <Content Include="Areas\SysAdmin\Content\img\voicecommand\active-btn.gif" />
     <Content Include="Areas\SysAdmin\Content\img\vt-menu.png" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\CreateEditOrganizationUnit.js" />
+    <Content Include="Areas\SysAdmin\Views\Users\UserSpecialPermissions.js" />
     <Content Include="Content\bootstrap-cosmo.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -1180,7 +1181,7 @@
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\UsersWindow.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddUserView.cshtml" />
     <None Include="Areas\SysAdmin\Views\OrganizationUnits\_childOrgUnits.cshtml" />
-    <None Include="Areas\SysAdmin\Views\Roles\_childPermissions.cshtml" />
+    <None Include="Areas\SysAdmin\Views\Shared\_childPermissions.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
@@ -1195,6 +1196,7 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\Templates\ArticlePage\TemplateConfig.json" />
     <Content Include="Scripts\contentTools\sandbox\build\content-tools.min.css.map" />
+    <Content Include="Areas\SysAdmin\Views\Users\UserSpecialPermissions.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

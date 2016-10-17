@@ -1,6 +1,6 @@
 ﻿@using Abp.Web.Mvc.Extensions
 @using Cinotam.AbpModuleZero.Authorization
-@model Cinotam.ModuleZero.AppModule.Roles.Dto.RoleInput
+@model Cinotam.ModuleZero.AppModule.Users.Dto.UserSpecialPermissionsInput
 
 @{
     Layout = null;
@@ -16,36 +16,18 @@
         </div>
         <div class="modal-body no-padding">
 
-            <form method="POST" id="createEditRole" class="smart-form">
+            <form method="POST" id="setPermissions" class="smart-form">
                 <header>
-                    @L("RoleRegisterForm")
-                    
+                    @L("SetSpecialPermissionsForm")
+
                 </header>
-                @Html.HiddenFor(a => a.Id)
+                @Html.HiddenFor(a => a.UserId)
                 <fieldset>
-                    <section>
-                        <div class="row">
-                            <label class="label col col-2">@L("Name")</label>
-                            <div class="col col-10">
-                                <label class="input">
-                                    <i class="icon-append fa fa-gear"></i>
-                                    @Html.TextBoxFor(a => a.DisplayName, new { required = "required" })
-                                </label>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <label class="checkbox">
-                            @Html.CheckBoxFor(a=>a.IsDefault)
-                            <i></i>@L("IsAssignedByDefault")
-                        </label>
-                    </section>
                     @if (IsGranted(PermissionNames.PagesSysAdminPermissions))
                     {
-
                         <div class="row">
                             <div class="col col-12">
-                                <h5>Permisos</h5>
+                                <h5>@L("Permissions")</h5>
 
                                 <div id="container">
                                     <ul id="tree">
@@ -67,10 +49,13 @@
                     }
                 </fieldset>
                 <footer>
+                    
                     <button type="submit" class="btn btn-primary">
                         @L("Save")
                     </button>
-
+                    <button type="button" class="btn btn-warning js-reset-permissions">
+                        @L("ResetPermissions")
+                    </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         @L("Cancel")
                     </button>
@@ -81,4 +66,4 @@
     </div>
 </div>
 @Html.IncludeScript("~/Scripts/jstree/jstree.min.js")
-    @Html.IncludeScript("~/Areas/SysAdmin/Views/Roles/CreateEditRole.js")
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Users/UserSpecialPermissions.js")

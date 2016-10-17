@@ -30,6 +30,8 @@ namespace Cinotam.ModuleZero.AppModule.Users
         Task<NotificationsOutput> GetMyNotifications(UserNotificationState state = UserNotificationState.Unread, int? take = null);
         Task ChangePassword(ChangePasswordInput input);
         Task MarkAsReaded(Guid notificationId);
-
+        Task<UserSpecialPermissionsInput> GetUserSpecialPermissions(long? userId);
+        Task SetUserSpecialPermissions(UserSpecialPermissionsInput input);
+        Task ResetAllPermissions(long userId);
     }
 }

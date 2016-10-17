@@ -1,6 +1,7 @@
 ﻿using Abp.Authorization;
 using Abp.Notifications;
 using Abp.UI;
+using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.EntityFramework;
 using Cinotam.AbpModuleZero.Tests.FakeRequests;
@@ -12,6 +13,7 @@ using Cinotam.ModuleZero.AppModule.Users.Dto;
 using Shouldly;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -267,6 +269,44 @@ namespace Cinotam.AbpModuleZero.Tests.Users
             table.data.ShouldNotBe(null);
             table.data.Count().ShouldBe(1);
             table.data.ShouldBeAssignableTo<Array>();
+        }
+
+        [Fact]
+        public async Task GetUserSpecialPermissions_Test()
+        {
+            LoginAsHostAdmin();
+            await CreateFakeUser();
+            await UsingDbContextAsync(async context =>
+            {
+                var user = await GetFakeUser(context);
+                var permissions = await _userAppService.GetUserSpecialPermissions(user.Id);
+                permissions.ShouldNotBeNull();
+                permissions.AssignedPermissions.ShouldNotBeNull();
+                permissions.AssignedPermissions.Count().ShouldBe(0);
+
+                await _userAppService.SetUserSpecialPermissions(new UserSpecialPermissionsInput()
+                {
+                    UserId = user.Id,
+                    AssignedPermissions = new List<AssignedPermission>()
+                    {
+                        new AssignedPermission()
+                        {
+                            Name = PermissionNames.PagesSysAdminRoles
+                        }
+                    }
+                });
+
+                permissions = await _userAppService.GetUserSpecialPermissions(user.Id);
+                permissions.ShouldNotBeNull();
+                permissions.AssignedPermissions.Count().ShouldBe(1);
+
+                await _userAppService.ResetAllPermissions(user.Id);
+
+                permissions = await _userAppService.GetUserSpecialPermissions(user.Id);
+                permissions.ShouldNotBeNull();
+                permissions.AssignedPermissions.Count().ShouldBe(0);
+
+            });
         }
         private async Task CreateFakeUser()
         {

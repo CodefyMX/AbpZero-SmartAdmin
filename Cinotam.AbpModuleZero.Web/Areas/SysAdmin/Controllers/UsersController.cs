@@ -50,6 +50,11 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View(input);
         }
 
+        public async Task<ActionResult> UserSpecialPermissions(long? id)
+        {
+            var userPermissions = await _userAppService.GetUserSpecialPermissions(id);
+            return View(userPermissions);
+        }
         [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsersCreate)]
         [HttpPost]
         public async Task<ActionResult> CreateEditUser(CreateUserInput input)

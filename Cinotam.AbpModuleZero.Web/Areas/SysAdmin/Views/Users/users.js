@@ -6,10 +6,11 @@
         var isUserEditGranted = abp.auth.isGranted("Pages.SysAdmin.Users.Edit");
         var isRoleAssignGranted = abp.auth.isGranted("Pages.SysAdminRoles.Assign");
         var isUserDeleteGranted = abp.auth.isGranted("Pages.SysAdmin.Users.Delete");
+        var isPermissionsGranted = abp.auth.isGranted("Pages.SysAdminPermissions");
         var $table = $("#usersTable");
         var $body = $("body");
         var $form = $("#createEditForm");
-        
+
         var columns = [
                     {
                         "render": function (data, type, row) {
@@ -17,6 +18,7 @@
                             var editUserbtn = "";
                             var assignRoleRolebtn = "";
                             var deleteUserBtn = "";
+                            var assignPermissions = "";
                             if (isUserEditGranted) {
                                 editUserbtn = "<a data-modal href='/SysAdmin/Users/CreateEditUser/" +
                                     row.Id +
@@ -25,12 +27,17 @@
                             if (isRoleAssignGranted) {
                                 assignRoleRolebtn = "  <a data-modal href='/SysAdmin/Users/EditRoles/" +
                                     row.Id +
-                                    "' class='btn btn-default btn-xs' title='Editar roles' ><i class='fa fa-lock'></i></a>";
+                                    "' class='btn btn-default btn-xs' title='Editar roles' ><i class='fa fa-briefcase'></i></a>";
                             }
                             if (isUserDeleteGranted) {
-                                deleteUserBtn = " <a data-id="+row.Id+" data-full-name="+row.FullName+" class='btn btn-default btn-xs js-delete-user' title='Delete user' ><i class='fa fa-trash'></i></a>";
+                                deleteUserBtn = " <a data-id=" + row.Id + " data-full-name=" + row.FullName + " class='btn btn-default btn-xs js-delete-user' title='Delete user' ><i class='fa fa-trash'></i></a>";
                             }
-                            return editUserbtn + assignRoleRolebtn + deleteUserBtn;
+
+                            if (isPermissionsGranted) {
+                                assignPermissions = " <a class='btn btn-default btn-xs' href='/SysAdmin/Users/UserSpecialPermissions/" + row.Id + "' data-modal><i class='fa fa-lock'></i></a>";
+                            }
+
+                            return editUserbtn + assignRoleRolebtn + assignPermissions + deleteUserBtn;
                         },
                         "targets": 0
                     },
@@ -53,7 +60,7 @@
             ColumnDefinitions: columns,
             Columns: [
                 {
-                    "data":"Id"
+                    "data": "Id"
                 },
                     {
                         "data": "UserName"
@@ -91,6 +98,8 @@
                         table.ajax.reload();
                         abp.notify.success(LSys("UserCreated"), LSys("Success"));
                         break;
+                    case "MODAL_PERMISSIONS_SET":
+                        abp.notify.success(LSys("PermissionsSet"), LSys("Success"));
                     default:
                         console.log("Event unhandled");
                 }
@@ -98,7 +107,7 @@
         }
         table = $table.DataTable(usersPage.dataTableConfig);
         document.addEventListener("modalClose", usersPage.modalHandler);
-        
+
         $body.on("click", ".js-delete-user", function () {
             var fullName = $(this).data("full-name");
             var id = $(this).data("id");
