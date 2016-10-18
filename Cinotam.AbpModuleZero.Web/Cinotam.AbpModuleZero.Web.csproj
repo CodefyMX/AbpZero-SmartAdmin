@@ -646,6 +646,7 @@
     <Content Include="Content\flags\famfamfam-flags.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="js\DivAjaxLoader.js" />
     <Content Include="js\GlobalModal.js" />
     <Content Include="js\main.js" />
     <Content Include="css\main.less" />
@@ -1158,6 +1159,7 @@
     <Content Include="Areas\SysAdmin\Views\Editions\EditCreateEdition.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Editions\_loadChildrens.cshtml" />
     <Content Include="Areas\SysAdmin\Scripts\datatables.config.js" />
+    <Content Include="Areas\SysAdmin\Views\Configuration\_configurationsView.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
@@ -1181,6 +1183,7 @@
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\UsersWindow.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddUserView.cshtml" />
     <None Include="Areas\SysAdmin\Views\OrganizationUnits\_childOrgUnits.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_changeProfilePicture.cshtml" />
     <None Include="Areas\SysAdmin\Views\Shared\_childPermissions.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
@@ -1312,6 +1315,7 @@
     <Compile Include="Areas\SysAdmin\Controllers\TemplatesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\TenantsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\SysAdmin\Models\GetConfigurationsByNameInput.cs" />
     <Compile Include="Areas\SysAdmin\SysAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -1440,7 +1444,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\SysAdmin\Models\" />
     <Folder Include="Content\Templates\ArticlePage\Resources\" />
     <Folder Include="Content\Templates\Simple\Resources\" />
   </ItemGroup>

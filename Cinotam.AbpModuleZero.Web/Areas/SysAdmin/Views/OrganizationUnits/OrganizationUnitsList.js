@@ -14,7 +14,6 @@
         });
     }
     var loadOrganizationUnitsView = function ($organizationUnitsView, jsTreeSelector, treeJsConfig) {
-        console.log($organizationUnitsView);
         abp.ui.setBusy($organizationUnitsView);
         $organizationUnitsView
             .load("/SysAdmin/OrganizationUnits/GetOrganizationUnits",
@@ -117,7 +116,7 @@
                 console.log("Event unhandled");
         }
     }
-    
+
     $(document)
         .ready(function () {
 

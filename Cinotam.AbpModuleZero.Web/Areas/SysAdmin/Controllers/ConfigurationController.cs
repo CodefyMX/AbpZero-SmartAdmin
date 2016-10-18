@@ -1,8 +1,9 @@
-﻿using Abp.Web.Mvc.Authorization;
+﻿using Abp.Threading;
+using Abp.Web.Mvc.Authorization;
 using Cinotam.AbpModuleZero.Authorization;
+using Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Models;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.Settings;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
@@ -18,10 +19,21 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         }
 
         // GET: SysAdmin/Configuration
-        public async Task<ActionResult> Configurations()
+        public ActionResult Configurations()
         {
-            var allSettings = await _settingsAppService.GetSettingsOptions();
-            return View(allSettings);
+            return View();
+        }
+
+        public ActionResult GetConfigurationsByName(GetConfigurationsByNameInput input)
+        {
+            ViewBag.ConfigurationName = input.ConfigurationName;
+            var settings = AsyncHelper.RunSync(() => _settingsAppService.GetSettingsOptions(input.SettingNames));
+            return View("_configurationsView", settings);
+        }
+        public ActionResult GetAllConfigurations()
+        {
+            var settings = AsyncHelper.RunSync(() => _settingsAppService.GetSettingsOptions());
+            return View("_configurationsView", settings);
         }
     }
 }
