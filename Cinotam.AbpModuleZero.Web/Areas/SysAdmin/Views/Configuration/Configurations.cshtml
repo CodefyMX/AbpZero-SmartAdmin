@@ -1,6 +1,6 @@
 ﻿@using Abp.Web.Mvc.Extensions
 @using Cinotam.AbpModuleZero
-@model Cinotam.ModuleZero.AppModule.Settings.Dto.SettingsOutput
+
 <!-- MAIN CONTENT -->
 <div id="content">
     <div class="row">
@@ -43,11 +43,20 @@
                                     <a data-toggle="tab" href="#hr1"> <i class="fa fa-lg fa-cubes"></i> <span class="hidden-mobile hidden-tablet"> Diseño </span> </a>
 
                                 </li>*@
-
                             <li class="active">
-                                <a data-toggle="tab" href="#hr2"> <i class="fa fa-lg fa-cogs"></i> <span class="hidden-mobile hidden-tablet"> @L("System") </span></a>
+                                <a data-toggle="tab" href="#hr1"> <i class="fa fa-lg fa-envelope-o"></i> <span class="hidden-mobile hidden-tablet"> @L("EmailSettings") </span></a>
                             </li>
+                            <li>
 
+
+                                <a data-toggle="tab" href="#hr3"> <i class="fa fa-lg fa-user"></i> <span class="hidden-mobile hidden-tablet"> @L("Account") </span></a>
+                            </li>
+                            <li>
+
+
+                                <a data-toggle="tab" href="#hr2"> <i class="fa fa-lg fa-gears"></i> <span class="hidden-mobile hidden-tablet"> @L("Other") </span></a>
+                            </li>
+                            
                         </ul>
                         <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
 
@@ -65,53 +74,91 @@
                         </div>
                         <!-- end widget edit box -->
                         <!-- widget content -->
-                        <div class="widget-body no-padding">
-                            <div class="tab-content padding-10">
-                                <div class="tab-pane fade  in active" id="hr2">
-                                    <form id="settings" class="smart-form ">
-                                        <fieldset>
-                                            <div class="row">
-                                                <div class="col col-12">
-                                                    @foreach (var setting in Model.Settings)
-                                                    {
-                                                        <section class="col col-6">
-                                                            <label class="label">@setting.DisplayName</label>
-                                                            <label class="input">
-                                                                <input type="text" data-scope="@setting.SettingScopes" data-key="@setting.Key" value="@setting.Value" />
-                                                            </label>
-                                                            <div class="note">
-                                                                @setting.Description
-                                                                <p>
-                                                                    Default: @setting.DefaultValue
-                                                                </p>
-                                                            </div>
-                                                        </section>
-                                                    }
-                                                </div>
-                                            </div>
 
-                                            <footer>
-                                                <button type="submit" class="btn btn-primary">
-                                                    @L("Save")
-                                                </button>
-                                            </footer>
-                                        </fieldset>
-                                    </form>
+
+                        <div class="widget-body">
+                            <form id="settings">
+                                <fieldset>
+                                    <div class="tab-content">
+
+                                        <div class="tab-pane fade  in active" id="hr1">
+
+                                            <div data-ajax-load data-parameters='{
+                                                         settingNames:[
+                                                           "Abp.Net.Mail.Smtp.Host",
+                                                           "Abp.Net.Mail.Smtp.Port",
+                                                           "Abp.Net.Mail.Smtp.UserName",
+                                                           "Abp.Net.Mail.Smtp.Password",
+                                                           "Abp.Net.Mail.Smtp.Domain",
+                                                           "Abp.Net.Mail.Smtp.EnableSsl",
+                                                           "Abp.Net.Mail.Smtp.UseDefaultCredentials",
+                                                           "Abp.Net.Mail.DefaultFromAddress",
+                                                           "Abp.Net.Mail.DefaultFromDisplayName"
+                                                         ],
+                                                         configurationName :"EmailConfigs"
+                                                         }' data-url="@Url.Action("GetConfigurationsByName")"></div>
+
+
+                                        </div>
+                                        <div class="tab-pane" id="hr2">
+
+                                            <div data-ajax-load data-parameters='{
+
+                                                            settingNames:[
+                                                                  "Abp.Localization.DefaultLanguageName",
+                                                                  "Abp.Timing.TimeZone",
+                                                                   "Abp.Zero.OrganizationUnits.MaxUserMembershipCount",
+
+                                                           "Abp.WebApi.Runtime.Caching.ClearPassword",
+                                                            "WebSiteStatus",
+                                                 "UseSmtp"
+                                                            ],
+                                                            configurationName:"Other"
+                                                         }' data-url="@Url.Action("GetConfigurationsByName")"></div>
+
+
+                                        </div>
+                                        <div class="tab-pane" id="hr3">
+
+                                            <div data-ajax-load data-parameters='{
+
+                                                            settingNames:[
+                                                                  "Abp.Zero.UserManagement.IsEmailConfirmationRequiredForLogin",
+                                                                  "Abp.Zero.UserManagement.TwoFactorLogin.IsEnabled",
+                                                                  "Abp.Zero.UserManagement.TwoFactorLogin.IsRememberBrowserEnabled",
+                                                                  "Abp.Zero.UserManagement.TwoFactorLogin.IsEmailProviderEnabled"  ,
+                                                                  "Abp.Zero.UserManagement.TwoFactorLogin.IsSmsProviderEnabled",
+                                                                  "Abp.Zero.UserManagement.UserLockOut.IsEnabled",
+                                                                  "Abp.Zero.UserManagement.UserLockOut.MaxFailedAccessAttemptsBeforeLockout",
+                                                                  "Abp.Zero.UserManagement.UserLockOut.DefaultAccountLockoutSeconds",
+                                                                  ""
+                                                            ],
+                                                            configurationName:"Account"
+                                                         }' data-url="@Url.Action("GetConfigurationsByName")"></div>
+
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">@L("Save")</button>
                                 </div>
-                            </div>
+                            </form>
+                            <!-- end widget content -->
+
                         </div>
-                        <!-- end widget content -->
+                        <!-- end widget div -->
 
                     </div>
-                    <!-- end widget div -->
-
                 </div>
             </article>
         </div>
     </section>
 
 </div>
-<!-- END MAIN CONTENT -->
-@section pagespecific {
+@section pagespecific{
+
+    @Html.IncludeScript("~/js/DivAjaxLoader.js")
+
     @Html.IncludeScript("~/Areas/SysAdmin/Views/Configuration/Configurations.js")
 }

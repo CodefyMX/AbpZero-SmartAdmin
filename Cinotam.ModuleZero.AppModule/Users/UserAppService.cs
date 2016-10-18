@@ -2,6 +2,7 @@ using Abp;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.AutoMapper;
+using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Localization;
 using Abp.Notifications;
@@ -333,6 +334,52 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 UserNotificationState.Read);
         }
 
+        public async Task<UserSpecialPermissionsInput> GetUserSpecialPermissions(long? userId)
+        {
+            var assignedPermissions = new List<AssignedPermission>();
+            var allPermissions = _permissionManager.GetAllPermissions().Where(a => a.Parent == null).ToList();
+            if (!userId.HasValue)
+                return new UserSpecialPermissionsInput()
+                {
+                    AssignedPermissions = assignedPermissions
+                };
+            var user = await UserManager.GetUserByIdAsync(userId.Value);
+            var userPermissions = (await UserManager.GetGrantedPermissionsAsync(user)).ToList();
+            assignedPermissions = CheckPermissions(allPermissions, userPermissions).ToList();
+            return new UserSpecialPermissionsInput()
+            {
+                UserId = userId,
+                AssignedPermissions = assignedPermissions
+            };
+        }
+
+        public async Task SetUserSpecialPermissions(UserSpecialPermissionsInput input)
+        {
+            if (input.UserId != null)
+            {
+                var user = await UserManager.GetUserByIdAsync(input.UserId.Value);
+                foreach (var inputAssignedPermission in input.AssignedPermissions)
+                {
+                    var permission = _permissionManager.GetPermission(inputAssignedPermission.Name);
+                    if (inputAssignedPermission.Granted)
+                    {
+
+                        await UserManager.GrantPermissionAsync(user, permission);
+                    }
+                    else
+                    {
+                        await UserManager.ProhibitPermissionAsync(user, permission);
+                    }
+                }
+            }
+        }
+
+        public async Task ResetAllPermissions(long userId)
+        {
+            var user = await UserManager.GetUserByIdAsync(userId);
+            await UserManager.ResetAllPermissionsAsync(user);
+        }
+
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)
         {
             if (userId == null) throw new UserFriendlyException("User id");
@@ -365,6 +412,36 @@ namespace Cinotam.ModuleZero.AppModule.Users
             }
             return roleDtos;
         }
+        private IEnumerable<AssignedPermission> CheckPermissions(IEnumerable<Permission> allPermissions, ICollection<Permission> userPermissions)
+        {
+            var permissionsFound = new List<AssignedPermission>();
+            foreach (var permission in allPermissions)
+            {
+                AddPermission(permissionsFound, userPermissions, permission, userPermissions.Any(a => a.Name == permission.Name));
+            }
+            return permissionsFound;
+        }
+        private void AddPermission(ICollection<AssignedPermission> permissionsFound, ICollection<Permission> userPermissions, Permission allPermission, bool granted)
+        {
 
+            var childPermissions = new List<AssignedPermission>();
+            var permission = new AssignedPermission()
+            {
+                DisplayName = allPermission.DisplayName.Localize(new LocalizationContext(LocalizationManager)),
+                Granted = granted,
+                Name = allPermission.Name,
+            };
+            if (allPermission.Children.Any())
+            {
+                foreach (var childPermission in allPermission.Children.WhereIf(AbpSession.TenantId.HasValue, a => a.Name != PermissionNames.PagesTenants))
+                {
+                    AddPermission(childPermissions, userPermissions, childPermission, userPermissions.Any(a => a.Name == childPermission.Name));
+                }
+
+                permission.ChildPermissions.AddRange(childPermissions);
+            }
+
+            permissionsFound.Add(permission);
+        }
     }
 }

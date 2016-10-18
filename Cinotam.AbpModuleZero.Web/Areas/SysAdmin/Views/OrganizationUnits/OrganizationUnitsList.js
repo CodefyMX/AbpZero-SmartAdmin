@@ -14,7 +14,6 @@
         });
     }
     var loadOrganizationUnitsView = function ($organizationUnitsView, jsTreeSelector, treeJsConfig) {
-
         abp.ui.setBusy($organizationUnitsView);
         $organizationUnitsView
             .load("/SysAdmin/OrganizationUnits/GetOrganizationUnits",
@@ -98,11 +97,15 @@
                     });
                 });
     }
-
+    var $organizationUnitsView;
+    var jsTreeSelector;
+    var treeJsConfig = {};
+    var $body;
+    var $usersTable;
     function modalHandler(event) {
         switch (event.detail.info.modalType) {
             case "MODAL_CREATE_EDIT_ORG_UNIT":
-                loadOrganizationUnitsView();
+                loadOrganizationUnitsView($organizationUnitsView, jsTreeSelector, treeJsConfig);
                 abp.notify.success(LSys("OrganizationUnitCreated"), LSys("Success"));
                 break;
             case "MODAL_USER_ADDED":
@@ -116,12 +119,12 @@
 
     $(document)
         .ready(function () {
-            
-            var $organizationUnitsView = $("#organizationUnitsView");
-            var jsTreeSelector = "#container";
 
-            var $body = $("body");
-            var $usersTable = $("#usersTable");
+            $organizationUnitsView = $("#organizationUnitsView");
+            jsTreeSelector = "#container";
+
+            $body = $("body");
+            $usersTable = $("#usersTable");
             var _organizationUnitsAppService = abp.services.app.organizationUnits;
 
             var contextMenu = function (node) {
@@ -146,7 +149,7 @@
                                 if (response) {
                                     _organizationUnitsAppService.removeOrganizationUnit(node.id).done(function () {
                                         abp.notify.success(LSys("OrganizationUnitRemoved"), LSys("Success"));
-                                        loadOrganizationUnitsView();
+                                        loadOrganizationUnitsView($organizationUnitsView, jsTreeSelector, treeJsConfig);
                                     });
                                 }
                             });
@@ -156,7 +159,7 @@
 
                 return items;
             }
-            var treeJsConfig = {
+            treeJsConfig = {
                 contextMenu: contextMenu,
                 modalHandler: modalHandler
             }

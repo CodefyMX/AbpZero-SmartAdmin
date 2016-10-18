@@ -88,6 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CinotamFileManager.cs" />
+    <Compile Include="ExceptionEvent\EventData\FileManagerExEventData.cs" />
+    <Compile Include="ExceptionEvent\ExceptionInterceptor.cs" />
     <Compile Include="FileManagerModule.cs" />
     <Compile Include="Files\FileStoreManager.cs" />
     <Compile Include="Files\IFileStoreManager.cs" />

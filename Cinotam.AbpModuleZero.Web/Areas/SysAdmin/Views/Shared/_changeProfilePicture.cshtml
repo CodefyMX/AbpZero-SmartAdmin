@@ -1,0 +1,22 @@
+﻿@model Cinotam.ModuleZero.AppModule.Users.Dto.UserProfileDto
+<form action="@Url.Action("ChangeProfilePicture","Users")" method="POST" id="changeProfilePicture" class="smart-form">
+    @Html.HiddenFor(a => a.Id)
+    <fieldset>
+        <section>
+            <div id="imageWrapped" class="col-sm-12 text-center">
+                <img id="profilePicture" style="width: 120px;height: 120px" src="@Model.ProfilePicture">
+            </div>
+        </section>
+        <section>
+            <label class="label">Change profile picture</label>
+            <label for="file" class="input input-file">
+                <div class="button"><input type="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">Select File</div><input type="text" placeholder="MyAwesomePic.jpg" readonly="">
+            </label>
+        </section>
+    </fieldset>
+    <footer>
+        <button type="submit" class="btn btn-primary">
+            @L("Save")
+        </button>
+    </footer>
+</form>

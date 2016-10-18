@@ -1,0 +1,54 @@
+﻿@using Abp.Web.Mvc.Extensions
+@model Cinotam.ModuleZero.AppModule.Settings.Dto.SettingsOutput
+@{
+    Layout = null;
+}
+
+
+
+
+<h3>@ViewBag.ConfigurationName</h3>
+
+
+@foreach (var setting in Model.Settings)
+{
+    bool isActive;
+
+
+    var isBool = bool.TryParse(setting.Value, out isActive);
+
+    <div class="form-group col-md-4 col-xs-12">
+
+        @if (isBool)
+                {
+
+                    if (isActive)
+                    {
+                <div class="checkbox">
+                    <label>
+                        <input checked="checked" type="checkbox" data-is-checkbox="true" data-scope="@setting.SettingScopes" data-key="@setting.Key" /> @setting.DisplayName
+                    </label>
+                </div>
+            }
+            else
+            {
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" data-is-checkbox="true" data-scope="@setting.SettingScopes" data-key="@setting.Key" /> @setting.DisplayName
+                    </label>
+                </div>
+            }
+
+        }
+        else
+        {
+
+            <label class="control-label">
+                @setting.DisplayName
+            </label>
+                    <input type="text" class="form-control" data-is-checkbox="false" data-scope="@setting.SettingScopes" data-key="@setting.Key" value="@setting.Value" />
+
+        }
+
+    </div>
+}
