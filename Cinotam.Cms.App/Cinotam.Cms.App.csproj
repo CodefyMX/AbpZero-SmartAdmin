@@ -106,6 +106,7 @@
     <Compile Include="Categories\ICategoryService.cs" />
     <Compile Include="CinotamCmsApp.cs" />
     <Compile Include="CinotamCmsAppServiceBase.cs" />
+    <Compile Include="CmsMenuProvider.cs" />
     <Compile Include="EventHandler\CategoryDeletedHandler.cs" />
     <Compile Include="EventHandler\CategoryForPageChangedHandler.cs" />
     <Compile Include="EventHandler\PageDeleted.cs" />

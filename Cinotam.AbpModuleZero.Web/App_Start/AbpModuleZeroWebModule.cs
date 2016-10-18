@@ -25,7 +25,8 @@ namespace Cinotam.AbpModuleZero.Web
         typeof(AbpWebSignalRModule),
         typeof(AbpHangfireModule),
         typeof(AbpWebMvcModule),
-        typeof(CinotamModuleZeroBackground), typeof(CinotamCmsApp))]
+        typeof(CinotamModuleZeroBackground),
+        typeof(CinotamCmsApp))]
     public class AbpModuleZeroWebModule : AbpModule
     {
         public override void PreInitialize()

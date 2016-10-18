@@ -9,6 +9,9 @@ namespace Cinotam.AbpModuleZero
         public override void SetFeatures(IFeatureDefinitionContext context)
         {
 
+
+            var cms = context.Create(FeatureNames.Cms, "false", L("Cms"), scope: FeatureScopes.All, inputType: new CheckboxInputType());
+
             var basicReporting = context.Create("BasicReporting",
                "false",
                L("basicReporting"),

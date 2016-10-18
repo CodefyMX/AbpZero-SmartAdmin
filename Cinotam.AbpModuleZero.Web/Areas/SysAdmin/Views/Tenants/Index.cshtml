@@ -5,10 +5,7 @@
 @{
     ViewBag.ActiveMenu = "Tenants"; //The menu item will be active for this page.
 }
-@section pagespecific
-{
-   @Html.IncludeScript("~/Areas/SysAdmin/Scripts/Tenants/TenantsIndex.js") 
-}
+
 <div id="content">
     <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
@@ -92,3 +89,6 @@
         </div>
     </div>
 </div>
+@section pagespecific{
+    @Html.IncludeScript("~/Areas/SysAdmin/Views/Tenants/TenantsIndex.js")
+}

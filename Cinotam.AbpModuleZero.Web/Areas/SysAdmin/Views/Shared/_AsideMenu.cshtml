@@ -1,0 +1,36 @@
+﻿@using System.Reflection
+@using Abp.Collections.Extensions
+@using Cinotam.AbpModuleZero.Web.App_Helpers
+@model Cinotam.AbpModuleZero.Web.Models.Layout.TopMenuViewModel
+
+@if (!Model.MainMenu.Items.IsNullOrEmpty())
+{
+    foreach (var mainMenuItem in Model.MainMenu.Items)
+    {
+        <li class="@Html.RouteIf("index", "active")">
+            <a href="#" title="@mainMenuItem.DisplayName"><i class="fa fa-lg fa-fw fa-beer"></i> <span class="menu-item-parent">@mainMenuItem.DisplayName</span></a>
+            @if (!mainMenuItem.Items.IsNullOrEmpty())
+            {
+                <ul>
+                    @foreach (var menuItem in mainMenuItem.Items)
+                    {
+                        if (menuItem.CustomData == null)
+                        {
+                            continue;
+                        }
+                        var type = menuItem.CustomData.GetType();
+                        var propActionName = type.GetProperties().FirstOrDefault(a => a.Name == "ActionName");
+                        if (propActionName == null) { continue; }
+                        var value = propActionName.GetValue(menuItem.CustomData, null).ToString();
+                        <li class="@Html.RouteIf(value, "active")">
+                            <a href="@menuItem.Url" title="@menuItem.DisplayName"><i class="@menuItem.Icon"></i><span class="menu-item-parent">@menuItem.DisplayName</span></a>
+                        </li>
+                    }
+
+                </ul>
+            }
+            
+
+        </li>
+    }
+}

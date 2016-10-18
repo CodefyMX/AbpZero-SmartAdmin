@@ -1184,6 +1184,7 @@
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddUserView.cshtml" />
     <None Include="Areas\SysAdmin\Views\OrganizationUnits\_childOrgUnits.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\_changeProfilePicture.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_AsideMenu.cshtml" />
     <None Include="Areas\SysAdmin\Views\Shared\_childPermissions.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />

@@ -19,61 +19,10 @@
         -->
 
         <ul>
-            <li class="@Html.RouteIf("index", "active")">
-                <a href="#" title="Administración"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Administración</span></a>
-                <ul>
-                    <li class="@Html.RouteIf("Index", "active")">
-                        <a href="@Url.Action("Index", "Dashboard")" title="Dashboard"><span class="menu-item-parent">Dashboard</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("OrganizationUnitsList", "active")">
-                        <a href="@Url.Action("OrganizationUnitsList", "OrganizationUnits")" title="Unidades de Organización"><span class="menu-item-parent">Unidades de Organización</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("UsersList", "active")">
-                        <a href="@Url.Action("UsersList", "Users")" title="Usuarios"><span class="menu-item-parent">Usuarios</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("RolesList", "active")">
-                        <a href="@Url.Action("RolesList", "Roles")" title="Roles"><span class="menu-item-parent">Roles</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("LanguagesList", "active")">
-                        <a href="@Url.Action("LanguagesList", "Languages")" title="Lenguajes"><span class="menu-item-parent">Lenguajes</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("Configurations", "active")">
-                        <a href="@Url.Action("Configurations", "Configuration")" title="Configuración"><span class="menu-item-parent">Configuración</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("AuditLogsList", "active")">
-                        <a href="@Url.Action("AuditLogsList", "AuditLogs")" title="Registros"><span class="menu-item-parent">Registros</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("EditionList", "active")">
-                        <a href="@Url.Action("EditionList", "Editions")" title="Ediciónes"><span class="menu-item-parent">Ediciones</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("TenantsList", "active")">
-                        <a href="@Url.Action("TenantsList", "Tenants")" title="Empresas"><span class="menu-item-parent">Empresas</span></a>
-                    </li>
-                </ul>
-
-            </li>
-
-
-            <li class="@Html.RouteIf("index", "active")">
-                <a href="#" title="Administración"><i class="fa fa-lg fa-fw fa-beer"></i> <span class="menu-item-parent">Cms</span></a>
-                <ul>
-                    <li class="@Html.RouteIf("MyCategories", "active")">
-                        <a href="@Url.Action("MyCategories", "PageCategories")" title="Menus"><span class="menu-item-parent">Categorias</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("MyMenus", "active")">
-                        <a href="@Url.Action("MyMenus", "Menu")" title="Menus"><span class="menu-item-parent">Menus</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("MyPages", "active")">
-                        <a href="@Url.Action("MyPages", "Cms")" title="Paginas"><span class="menu-item-parent">Paginas</span></a>
-                    </li>
-                    <li class="@Html.RouteIf("MyTemplates", "active")">
-                        <a href="@Url.Action("MyTemplates", "Templates")" title="Paginas Base"><span class="menu-item-parent">Paginas base</span></a>
-                    </li>
-
-
-                </ul>
-            </li>
-
+            @{
+                Html.RenderAction("GetMenu", "Layout", new {menuName = "ModuleZeroMenu"});
+                Html.RenderAction("GetMenu","Layout",new {menuName = "Cms" });
+            }
         </ul>
     </nav>
     <span class="minifyme" data-action="minifyMenu">
