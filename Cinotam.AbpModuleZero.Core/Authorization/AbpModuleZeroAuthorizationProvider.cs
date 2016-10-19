@@ -12,6 +12,13 @@ namespace Cinotam.AbpModuleZero.Authorization
             var pages = context.GetPermissionOrNull(PermissionNames.Pages) ??
                         context.CreatePermission(PermissionNames.Pages, L("Pages"));
 
+            var organizationUnits = pages.CreateChildPermission(PermissionNames.PagesSysAdminOrgUnit, L("OrganizationUnits"));
+
+            organizationUnits.CreateChildPermission(PermissionNames.PagesSysAdminOrgUnitEdit, L("OrganizationUnitsEdit"));
+            organizationUnits.CreateChildPermission(PermissionNames.PagesSysAdminOrgUnitDelete, L("OrganizationUnitsDelete"));
+            organizationUnits.CreateChildPermission(PermissionNames.PagesSysAdminOrgUnitCreate, L("OrganizationUnitsCreate"));
+            organizationUnits.CreateChildPermission(PermissionNames.PagesSysAdminOrgUnitAddUser, L("OrganizationUnitsAddUser"));
+            organizationUnits.CreateChildPermission(PermissionNames.PagesSysAdminOrgUnitRemoveUser, L("OrganizationUnitsRemoveUser"));
 
             //Configuration
             var configuration = pages.CreateChildPermission(PermissionNames.PagesSysAdminConfiguration, L("PagesSysAdminConfiguration"));

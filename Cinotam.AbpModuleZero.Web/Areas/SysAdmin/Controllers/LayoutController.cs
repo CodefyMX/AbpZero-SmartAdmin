@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Navigation;
 using Abp.Configuration.Startup;
 using Abp.Localization;
+using Abp.Runtime.Session;
 using Abp.Threading;
 using Abp.Web.Mvc.Authorization;
 using Cinotam.AbpModuleZero.Web.Controllers;
@@ -52,6 +53,17 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         {
 
             return View();
+        }
+
+        public ActionResult GetMenu(string menuName)
+        {
+            var model = new TopMenuViewModel
+            {
+                MainMenu = AsyncHelper.RunSync(() => _userNavigationManager.GetMenuAsync(menuName, AbpSession.ToUserIdentifier())),
+                ActiveMenuItemName = menuName
+            };
+
+            return PartialView("_AsideMenu", model);
         }
     }
 }

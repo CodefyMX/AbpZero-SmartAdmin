@@ -1,32 +1,49 @@
 ﻿@using Abp.Collections.Extensions
 @model Abp.Web.Mvc.Models.ErrorViewModel
+    
+
 <div class="row">
-    <section class="col-lg-12">
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <h3 class="panel-title">@Model.ErrorInfo.Message</h3>
-            </div>
-            <div class="panel-body">
-                <p>
-                    @(!string.IsNullOrEmpty(Model.ErrorInfo.Details) ? Model.ErrorInfo.Details : Model.ErrorInfo.Message)
-                </p>
-                @* Show validation errors *@
-                @if (!Model.ErrorInfo.ValidationErrors.IsNullOrEmpty())
-                {
-                    <ul>
-                        @foreach (var validationError in Model.ErrorInfo.ValidationErrors)
-                        {
-                            <li>
-                                @validationError.Message
-                                @if (validationError.Members != null && validationError.Members.Any())
-                                {
-                                    <text>(@string.Join(", ", validationError.Members))</text>
-                                }
-                            </li>
-                        }
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center error-box">
+                    <h1 class="error-text tada animated"><i class="fa fa-times-circle text-danger error-icon-shadow"></i> Error 500</h1>
+                    <h2 class="font-xl"><strong>@Model.ErrorInfo.Message</strong></h2>
+                    <br>
+                    <p class="lead semi-bold">
+                        @(!string.IsNullOrEmpty(Model.ErrorInfo.Details) ? Model.ErrorInfo.Details : Model.ErrorInfo.Message)
+                    </p>
+                    
+                    
+                    @if (!Model.ErrorInfo.ValidationErrors.IsNullOrEmpty())
+                    {
+                        <ul>
+                            @foreach (var validationError in Model.ErrorInfo.ValidationErrors)
+                            {
+                                <li>
+                                    @validationError.Message
+                                    @if (validationError.Members != null && validationError.Members.Any())
+                                    {
+                                        <text>(@string.Join(", ", validationError.Members))</text>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    }
+
+                    <ul class="error-search text-left font-md">
+                        <li><a href="@Url.Action("Index","Dashboard")"><small>Go to My Dashboard <i class="fa fa-arrow-right"></i></small></a></li>
+                        
                     </ul>
-                }
+                </div>
+
             </div>
+
         </div>
-    </section>
+
+    </div>
+
 </div>
+

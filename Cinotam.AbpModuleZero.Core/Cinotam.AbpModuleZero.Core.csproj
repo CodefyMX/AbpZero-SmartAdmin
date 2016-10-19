@@ -119,6 +119,7 @@
     <Compile Include="Authorization\Roles\StaticRoleNames.cs" />
     <Compile Include="Editions\CinotamEdition.cs" />
     <Compile Include="Editions\EditionManager.cs" />
+    <Compile Include="FeatureNames.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />
     <Compile Include="Localization\Helpers\LocalizationSources.cs" />
     <Compile Include="Localization\Helpers\XmlLocations.cs" />

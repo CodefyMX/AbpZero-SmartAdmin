@@ -12,5 +12,10 @@ namespace Cinotam.Cms.App
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
         }
+
+        public override void PreInitialize()
+        {
+            Configuration.Navigation.Providers.Add<CmsMenuProvider>();
+        }
     }
 }
