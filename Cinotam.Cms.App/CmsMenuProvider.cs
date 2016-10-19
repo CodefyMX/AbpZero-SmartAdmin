@@ -20,7 +20,7 @@ namespace Cinotam.Cms.App
                         displayName: L("CMSSystem"),
                         icon: "fa fa-lg fa-fw fa-beer",
                         featureDependency: new SimpleFeatureDependency(FeatureNames.Cms),
-                        customData: new { ActionName = "", ControllerName = "" },
+                        customData: new { ActionName = "MyPages", ControllerName = "Cms" },
                         requiresAuthentication: true
                     ).AddItem(
                     new MenuItemDefinition(

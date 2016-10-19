@@ -11,8 +11,29 @@
     <text name="ThereIsNoTenantDefinedWithName{0}" value="There is no tenant defined with name {0}" />
     <text name="TenantIsNotActive" value="Tenant {0} is not active." />
     <text name="TenancyName" value="Tenancy name" />
-
+    
+    <!--Menu-->
+    
+    <text name="Administration" value="Administración"/>
+    
+    <!--OrganizationUnits-->
+    <text name="OrganizationUnits" value="Organization units" />
+    <text name="OrganizationUnitsManagement" value="Organization Units Management"/>
+    <text name="CreateNewOrganizationUnit" value="Create new organization unit"/>
+    <text name="CreateOrEditOrgUnit" value="Create or edit organization unit"/>
+    <text name="AddOrganizationUnit" value="Add organization unit"/>
+    <text name="EditOrganizationUnit" value="Edit organization unit"/>
+    <text name="DeleteOrganizationUnit" value="Delete organization unit"/>
+    <text name="TheUnitWillBeDeleted" value="The organization unit will be deleted"/>
+    <text name="UserAdded" value="User added to organization unit"/>
+    <text name="UserRemovedFromOrganizationUnit" value="User has been removed from organization unit"/>
+    <text name="UserWillBeRemovedFromOrganizationUnit" value="The user will be removed from the organization unit"/>
+    <text name="OrganizationUnitMoved" value="Organization unit moved"/>
+    <text name="OrganizationUnitCreated" value="Organization unit created"/>
+    <text name="MoveOrganizationUnit" value="Move organization unit?"/>
+    <text name="OrganizationUnitRemoved" value="Organization organization unit removed"/>
     <!--Users-->
+    <text name="AddUser" value="Add user"/>
     <text name="RegisterUserForm" value="Register / Edit user form" />
     <text name="UsersManagement" value="Users management"/>
     <text name="Users" value="Users" />
@@ -139,6 +160,7 @@
     <text name="Dashboard" value="Dashboard" />
     <text name="DashboardView" value="Dashboard panel" />
     <text name="MethodCalls" value="Method calls"/>
+    <text name="SeeAll" value="See all"/>
     <!--//Dashboard-->
 
     <text name="Tenants" value="Tenants" />
