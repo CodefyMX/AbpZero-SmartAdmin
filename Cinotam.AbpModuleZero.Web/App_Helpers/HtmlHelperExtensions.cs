@@ -58,7 +58,27 @@ namespace Cinotam.AbpModuleZero.Web.App_Helpers
 
             return hasAction || hasController ? new HtmlString(attribute) : new HtmlString(string.Empty);
         }
+        /// <summary>
+        ///     Compares the requested route of the parent ParentActionViewContext with the given <paramref name="value" /> value, if a match is found the
+        ///     <paramref name="attribute" /> value is returned.
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="value">The action value to compare to the requested route action.</param>
+        /// <param name="attribute">The attribute value to return in the current action matches the given action value.</param>
+        /// <returns>A HtmlString containing the given attribute value; otherwise an empty string.</returns>
 
+        public static IHtmlString RouteIfParents(this HtmlHelper helper, string value, string attribute)
+        {
+            var currentController =
+                (helper.ViewContext.ParentActionViewContext.RequestContext.RouteData.Values["controller"] ?? string.Empty).ToString().UnDash();
+            var currentAction =
+                (helper.ViewContext.ParentActionViewContext.RequestContext.RouteData.Values["action"] ?? string.Empty).ToString().UnDash();
+
+            var hasController = value.Equals(currentController, StringComparison.InvariantCultureIgnoreCase);
+            var hasAction = value.Equals(currentAction, StringComparison.InvariantCultureIgnoreCase);
+
+            return hasAction || hasController ? new HtmlString(attribute) : new HtmlString(string.Empty);
+        }
         /// <summary>
         ///     Renders the specified partial view with the parent's view data and model if the given setting entry is found and
         ///     represents the equivalent of true.

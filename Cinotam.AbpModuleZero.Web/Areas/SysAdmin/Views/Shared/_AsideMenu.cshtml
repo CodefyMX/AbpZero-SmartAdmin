@@ -3,33 +3,73 @@
 @using Cinotam.AbpModuleZero.Web.App_Helpers
 @model Cinotam.AbpModuleZero.Web.Models.Layout.TopMenuViewModel
 
+
+
+@*
+
+    //Old menu config
+
+    <li class="@Html.RouteIf("OrganizationUnitsList", "active")">
+        <a
+            href="@Url.Action("OrganizationUnitsList", "OrganizationUnits")"
+            title="Unidades de Organización">
+                <span class="menu-item-parent">Unidades de Organización</span>
+        </a>
+    </li>
+
+*@
+
+@*
+
+    ---Ok Since we are calling the RouteIf from a RenderAction, the action and controller names will be the ones inside the render
+    ---If we want the real action and controller names of the clicked menu we need to access to the ParentActionViewContext
+    ---Thats why we created the RouteIfParents
+*@
+
 @if (!Model.MainMenu.Items.IsNullOrEmpty())
 {
     foreach (var mainMenuItem in Model.MainMenu.Items)
     {
-        <li class="@Html.RouteIf("index", "active")">
-            <a href="#" title="@mainMenuItem.DisplayName"><i class="fa fa-lg fa-fw fa-beer"></i> <span class="menu-item-parent">@mainMenuItem.DisplayName</span></a>
+
+        var typeMain = mainMenuItem.CustomData.GetType();
+        var propActionNameMain = typeMain.GetProperties().FirstOrDefault(a => a.Name == "ActionName");
+        var propControllerNameMain = typeMain.GetProperties().FirstOrDefault(a => a.Name == "ControllerName");
+        if (propActionNameMain == null || propControllerNameMain == null) { continue; }
+        var valueActionMain = propActionNameMain.GetValue(mainMenuItem.CustomData, null).ToString();
+        var valueControllerMain = propControllerNameMain.GetValue(mainMenuItem.CustomData, null).ToString();
+
+        <li class="@Html.RouteIfParents(valueActionMain, "active")">
+            <a data-val="@valueActionMain" href="#" title="@mainMenuItem.DisplayName"><i class="@mainMenuItem.Icon"></i> <span class="menu-item-parent">@mainMenuItem.DisplayName</span></a>
             @if (!mainMenuItem.Items.IsNullOrEmpty())
             {
+               
                 <ul>
                     @foreach (var menuItem in mainMenuItem.Items)
                     {
                         if (menuItem.CustomData == null)
                         {
-                            continue;
+                            <li>
+                                <a href="@menuItem.Url" title="@menuItem.DisplayName"><i class="@menuItem.Icon"></i><span class="menu-item-parent">@menuItem.DisplayName</span></a>
+                            </li>
                         }
-                        var type = menuItem.CustomData.GetType();
-                        var propActionName = type.GetProperties().FirstOrDefault(a => a.Name == "ActionName");
-                        if (propActionName == null) { continue; }
-                        var value = propActionName.GetValue(menuItem.CustomData, null).ToString();
-                        <li class="@Html.RouteIf(value, "active")">
-                            <a href="@menuItem.Url" title="@menuItem.DisplayName"><i class="@menuItem.Icon"></i><span class="menu-item-parent">@menuItem.DisplayName</span></a>
-                        </li>
+                        else
+                        {
+                            var type = menuItem.CustomData.GetType();
+                            var propActionName = type.GetProperties().FirstOrDefault(a => a.Name == "ActionName");
+                            var propControllerName = type.GetProperties().FirstOrDefault(a => a.Name == "ControllerName");
+                            if (propActionName == null || propControllerName == null) { continue; }
+                            var valueAction = propActionName.GetValue(menuItem.CustomData, null).ToString();
+                            var valueController = propControllerName.GetValue(menuItem.CustomData, null).ToString();
+                            <li class="@Html.RouteIfParents(valueAction, "active")">
+                                <a href="@Url.Action(valueAction, valueController)" title="@menuItem.DisplayName"><i class="@menuItem.Icon"></i><span class="menu-item-parent">@menuItem.DisplayName</span></a>
+                            </li>
+                        }
+
                     }
 
                 </ul>
             }
-            
+
 
         </li>
     }

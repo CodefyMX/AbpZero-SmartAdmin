@@ -12,7 +12,7 @@
                     {
                         className: "text-center",
                         "render": function (data, type, row) {
-                            return " <a data-org-id=" + orgUnitId + " data-user-id=" + row.Id + " class='btn btn-default btn-xs js-add-user' title='AddUser' ><i class='fa fa-check'></i></a>";
+                            return " <a data-org-id=" + orgUnitId + " data-user-id=" + row.Id + " class='btn btn-default btn-xs js-add-user' title='"+LSys("AddUser")+"' ><i class='fa fa-check'></i></a>";
                         },
                         "targets": 2
                     },
@@ -40,7 +40,7 @@
             Element: $table
         });
         var usersPage = {
-            dataTableConfig: datatablesConfig,
+            dataTableConfig: datatablesConfig
 
         }
 
@@ -48,14 +48,16 @@
             .on("click",
                 ".js-add-user",
                 function () {
-                    var userId = $(this).data("user-id");
-                    var orgUnitId = $(this).data("org-id");
+                    var $self = $(this);
+                    var userId = $self.data("user-id");
+                    var orgUnitId = $self.data("org-id");
 
                     abp.ui.setBusy($table, abp.services.app.organizationUnits.addUserToOrgUnit({
                         UserId: userId,
                         OrgUnitId: orgUnitId
                     }).done(function () {
                         window.modalInstance.close({}, modalType);
+                        
                     }));
                 });
 

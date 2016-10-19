@@ -59,8 +59,8 @@
                             function (e, data) {
                                 var node = data.data.origin.get_node(data.data.nodes[0]);
                                 if (node.type === "root") return false;
-                                abp.message.confirm(LSys("Move"),
-                                    LSys("Sure"),
+                                abp.message.confirm(LSys("MoveOrganizationUnit"),
+                                    LSys("ConfirmQuestion"),
                                     function (response) {
                                         if (response) {
 
@@ -145,7 +145,7 @@
                     deleteUnit: {
                         label: LSys('DeleteOrganizationUnit'),
                         action: function () {
-                            abp.message.confirm(LSys("TheUnitWillBeDeleted"), LSys("Sure"), function (response) {
+                            abp.message.confirm(LSys("TheUnitWillBeDeleted"), LSys("ConfirmQuestion"), function (response) {
                                 if (response) {
                                     _organizationUnitsAppService.removeOrganizationUnit(node.id).done(function () {
                                         abp.notify.success(LSys("OrganizationUnitRemoved"), LSys("Success"));
@@ -170,7 +170,7 @@
                 var userId = $(this).data("user-id");
                 var orgId = $(this).data("org-id");
 
-                abp.message.confirm(LSys("UserWillBeRemovedFromOrganizationUnit"), LSys("Sure"), function (response) {
+                abp.message.confirm(LSys("UserWillBeRemovedFromOrganizationUnit"), LSys("ConfirmQuestion"), function (response) {
                     if (response) {
                         abp.ui.setBusy($usersTable, _organizationUnitsAppService.removeUserFromOrganizationUnit({
                             UserId: userId,
