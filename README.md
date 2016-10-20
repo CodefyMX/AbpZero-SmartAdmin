@@ -7,7 +7,6 @@
 ##### -This is a "under construction" proyect, it was created for my personal use, use it under your own risk
 ##### -The template uses smart admin (single license only). Purchase from: https://wrapbootstrap.com/theme/smartadmin-responsive-webapp-WB0573SK0 , its a really cool template and its not too expensive.
 ##### -The Cms module is a Pre Alfa playground only (it works ... but is not really good actually).
-##### -The menus in the admin area are hard-coded in the html (For now).
 
 #ASP.NET Boilerplate Website
 http://aspnetboilerplate.com/
