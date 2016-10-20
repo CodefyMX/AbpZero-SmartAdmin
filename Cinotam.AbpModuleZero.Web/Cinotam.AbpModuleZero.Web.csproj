@@ -332,7 +332,9 @@
     <Content Include="Areas\SysAdmin\Views\Templates\CreateEditTemplate.js" />
     <Content Include="Areas\SysAdmin\Views\Templates\EditHtml.js" />
     <Content Include="Areas\SysAdmin\Views\Templates\MyTemplates.js" />
+    <Content Include="Areas\SysAdmin\Views\Users\AddEditPhoneNumber.js" />
     <Content Include="Areas\SysAdmin\Views\Users\ChangePassword.js" />
+    <Content Include="Areas\SysAdmin\Views\Users\ConfirmPhone.js" />
     <Content Include="Areas\SysAdmin\Views\Users\CreateEditUser.js" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.js" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.js" />
@@ -1186,6 +1188,8 @@
     <Content Include="Areas\SysAdmin\Views\Shared\_changeProfilePicture.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\_AsideMenu.cshtml" />
     <None Include="Areas\SysAdmin\Views\Shared\_childPermissions.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Users\AddEditPhoneNumber.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Users\ConfirmPhone.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
@@ -1441,6 +1445,14 @@
     <ProjectReference Include="..\Cinotam.ModuleZero.Notifications\Cinotam.ModuleZero.Notifications.csproj">
       <Project>{57EE20C5-0930-41C0-9367-9A598B1B53D7}</Project>
       <Name>Cinotam.ModuleZero.Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.TwoFactorAuth.Contracts\Cinotam.TwoFactorAuth.Contracts.csproj">
+      <Project>{645802DE-75FC-4403-B604-C2B650125073}</Project>
+      <Name>Cinotam.TwoFactorAuth.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.TwoFactorSmsSender\Cinotam.TwoFactorSender.csproj">
+      <Project>{58E46278-CDCC-4B1F-9B73-CF7ADE0D3EEE}</Project>
+      <Name>Cinotam.TwoFactorSender</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

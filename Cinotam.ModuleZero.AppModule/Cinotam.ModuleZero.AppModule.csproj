@@ -170,9 +170,12 @@
     <Compile Include="Settings\Dto\SettingsOutput.cs" />
     <Compile Include="Settings\ISettingsAppService.cs" />
     <Compile Include="Settings\SettingsAppService.cs" />
+    <Compile Include="Users\Dto\AddPhoneNumberInput.cs" />
     <Compile Include="Users\Dto\ChangePasswordInput.cs" />
+    <Compile Include="Users\Dto\ChangePhoneNumberRequest.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\Dto\NotificationsOutput.cs" />
+    <Compile Include="Users\Dto\PhoneConfirmationInput.cs" />
     <Compile Include="Users\Dto\ProhibitPermissionInput.cs" />
     <Compile Include="Roles\Dto\RoleInput.cs" />
     <Compile Include="Users\Dto\RoleSelectorInput.cs" />
@@ -231,6 +234,14 @@
     <ProjectReference Include="..\Cinotam.ModuleZero.Notifications\Cinotam.ModuleZero.Notifications.csproj">
       <Project>{57EE20C5-0930-41C0-9367-9A598B1B53D7}</Project>
       <Name>Cinotam.ModuleZero.Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.TwoFactorAuth.Contracts\Cinotam.TwoFactorAuth.Contracts.csproj">
+      <Project>{645802DE-75FC-4403-B604-C2B650125073}</Project>
+      <Name>Cinotam.TwoFactorAuth.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.TwoFactorSmsSender\Cinotam.TwoFactorSender.csproj">
+      <Project>{58E46278-CDCC-4B1F-9B73-CF7ADE0D3EEE}</Project>
+      <Name>Cinotam.TwoFactorSender</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -21,6 +21,8 @@ using Cinotam.ModuleZero.MailSender.CinotamMailSender;
 using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
 using Cinotam.ModuleZero.MailSender.TemplateManager;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender;
+using Cinotam.TwoFactorAuth.Contracts;
+using Cinotam.TwoFactorSender.Sender;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -41,7 +43,8 @@ namespace Cinotam.ModuleZero.AppModule.Users
         private readonly UserNotificationManager _userNotificationManager;
         private readonly ICinotamMailSender _cinotamMailSender;
         private readonly ITemplateManager _templateManager;
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, IFileStoreManager fileStoreManager, IUsersAppNotificationsSender usersAppNotificationsSender, UserNotificationManager userNotificationManager, ICinotamMailSender cinotamMailSender, ITemplateManager templateManager)
+        private readonly ITwoFactorMessageService _twoFactorMessageService;
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, IFileStoreManager fileStoreManager, IUsersAppNotificationsSender usersAppNotificationsSender, UserNotificationManager userNotificationManager, ICinotamMailSender cinotamMailSender, ITemplateManager templateManager, ITwoFactorMessageService twoFactorMessageService)
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
@@ -50,6 +53,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
             _userNotificationManager = userNotificationManager;
             _cinotamMailSender = cinotamMailSender;
             _templateManager = templateManager;
+            _twoFactorMessageService = twoFactorMessageService;
         }
 
         [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
@@ -387,6 +391,35 @@ namespace Cinotam.ModuleZero.AppModule.Users
             {
                 var user = await UserManager.GetUserByIdAsync(userId);
                 user.IsLockoutEnabled = false;
+            }
+        }
+
+        public async Task<ChangePhoneNumberRequest> AddPhoneNumber(AddPhoneNumberInput input)
+        {
+            var testCode = "+52";
+            var user = await UserManager.GetUserByIdAsync(input.UserId);
+            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(input.UserId, input.PhoneNumber);
+            await _twoFactorMessageService.SendMessage(new CinotamAbpIdentityMessage()
+            {
+                Body = "Your confirmation code is " + code,
+                Destination = testCode + input.PhoneNumber,
+                From = "+12016901854"
+            });
+
+
+            return new ChangePhoneNumberRequest()
+            {
+                UserId = user.Id,
+                PhoneNumber = input.PhoneNumber
+            };
+        }
+
+        public async Task ConfirmPhone(PhoneConfirmationInput input)
+        {
+            var codeIsCorrect = await UserManager.VerifyChangePhoneNumberTokenAsync(input.UserId, input.Token, input.PhoneNumber);
+            if (codeIsCorrect)
+            {
+                await UserManager.SetPhoneNumberAsync(input.UserId, input.PhoneNumber);
             }
         }
 

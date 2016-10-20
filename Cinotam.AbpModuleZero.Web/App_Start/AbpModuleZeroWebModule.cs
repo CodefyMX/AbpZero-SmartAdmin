@@ -6,10 +6,10 @@ using Abp.Web.Mvc;
 using Abp.Web.SignalR;
 using Abp.Zero.Configuration;
 using Cinotam.AbpModuleZero.Api;
-using Cinotam.Cms.App;
 using Cinotam.ModuleZero.AppModule;
 using Cinotam.ModuleZero.BackgroundTasks;
 using Cinotam.ModuleZero.BackgroundTasks.Workers.ImagePublisher;
+using Cinotam.TwoFactorSender;
 using Hangfire;
 using System.Reflection;
 using System.Web.Mvc;
@@ -26,7 +26,8 @@ namespace Cinotam.AbpModuleZero.Web
         typeof(AbpHangfireModule),
         typeof(AbpWebMvcModule),
         typeof(CinotamModuleZeroBackground),
-        typeof(CinotamCmsApp))]
+        typeof(CinotamModuleZeroBackground),
+        typeof(TwoFactorSenderModule))]
     public class AbpModuleZeroWebModule : AbpModule
     {
         public override void PreInitialize()
