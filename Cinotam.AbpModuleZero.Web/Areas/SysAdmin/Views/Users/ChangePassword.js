@@ -17,7 +17,7 @@
                         abp.message.error(LSys("PasswordsNotMatch"), LSys("Error"));
                     } else {
                         var data = $(self).serializeFormToObject();
-                        abp.ui.setBusy(form, _userAppService.changePassword(data).done(function () {
+                        abp.ui.setBusy($form, _userAppService.changePassword(data).done(function () {
                             window.modalInstance.close({}, modalType);
                         }));
                     }

@@ -6,6 +6,7 @@ using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.Users;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
+using Microsoft.AspNet.SignalR.Hubs;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -97,6 +98,24 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View(new ChangePasswordInput()
             {
                 UserId = AbpSession.UserId
+            });
+        }
+
+        [AbpMvcAuthorize]
+        public ActionResult AddEditPhoneNumber()
+        {
+            if (AbpSession.UserId != null) return View(new AddPhoneNumberInput() { UserId = AbpSession.UserId.Value });
+            throw new NotAuthorizedException();
+        }
+
+        [AbpMvcAuthorize]
+        public ActionResult ConfirmPhone(string phoneNumber, long userId)
+        {
+            return View(new PhoneConfirmationInput()
+            {
+                PhoneNumber = phoneNumber,
+                UserId = userId
+
             });
         }
     }

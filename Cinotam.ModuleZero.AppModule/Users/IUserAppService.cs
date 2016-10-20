@@ -34,5 +34,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
         Task SetUserSpecialPermissions(UserSpecialPermissionsInput input);
         Task ResetAllPermissions(long userId);
         Task UnlockUser(long userId);
+        Task<ChangePhoneNumberRequest> AddPhoneNumber(AddPhoneNumberInput input);
+        Task ConfirmPhone(PhoneConfirmationInput input);
     }
 }

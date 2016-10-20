@@ -1,0 +1,49 @@
+﻿@using Abp.Web.Mvc.Extensions
+@model Cinotam.ModuleZero.AppModule.Users.Dto.PhoneConfirmationInput
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog" id="leaderModal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title"><i class="fa fa-3x fa-lock"></i> </h4>
+        </div>
+        <div class="modal-body no-padding">
+
+            <form method="POST" id="confirmPhoneForm" class="smart-form">
+                @Html.HiddenFor(a => a.UserId)
+                @Html.HiddenFor(a => a.PhoneNumber)
+                <header>
+                    @L("ChangePhoneNumberForm")
+                </header>
+                <fieldset>
+                    <section>
+                        <div class="row">
+                            <label class="label col col-2">@L("ConfirmationCode")</label>
+                            <div class="col col-10">
+                                <label class="input">
+                                    <i class="icon-append fa fa-lock"></i>
+                                    @Html.TextBoxFor(a => a.Token, new { required = "required" })
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+                <footer>
+                    <button type="submit" class="btn btn-primary">
+                        @L("Save")
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        @L("Cancel")
+                    </button>
+                </footer>
+
+            </form>
+        </div>
+    </div>
+</div>
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Users/ConfirmPhone.js")

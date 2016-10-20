@@ -14,6 +14,7 @@ using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.AbpModuleZero.Web.Controllers.Results;
 using Cinotam.AbpModuleZero.Web.Models.Account;
+using Cinotam.TwoFactorSender.Sender;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -36,7 +37,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         private readonly IUnitOfWorkManager _unitOfWorkManager;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly LogInManager _logInManager;
-
+        private readonly ITwoFactorMessageService _twoFactorMessageService;
         private IAuthenticationManager AuthenticationManager
         {
             get
@@ -51,7 +52,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             RoleManager roleManager,
             IUnitOfWorkManager unitOfWorkManager,
             IMultiTenancyConfig multiTenancyConfig,
-            LogInManager logInManager)
+            LogInManager logInManager, ITwoFactorMessageService twoFactorMessageService)
         {
             _tenantManager = tenantManager;
             _userManager = userManager;
@@ -59,6 +60,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             _unitOfWorkManager = unitOfWorkManager;
             _multiTenancyConfig = multiTenancyConfig;
             _logInManager = logInManager;
+            _twoFactorMessageService = twoFactorMessageService;
         }
 
         #region Login / Logout
