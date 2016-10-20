@@ -6,8 +6,9 @@
             var _settingsAppService = abp.services.app.settings;
             var $themeSelect = $("#themeSelector");
             var $body = $("body");
-            var $themeSelectOption = $("#themeSelector option:selected");
             $themeSelect.change(function () {
+
+                var $themeSelectOption = $("#themeSelector option:selected");
                 $body.attr("class", "");
                 var value = $themeSelectOption.val();
                 $body.attr("class", value);
