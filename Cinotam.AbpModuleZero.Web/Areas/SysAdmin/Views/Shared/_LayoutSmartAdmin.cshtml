@@ -63,7 +63,7 @@
     <![endif]-->
 
 </head>
-<body class="@ViewBag.PageClass @SettingManager.GetSettingValue("Theme")">
+<body class="@SettingManager.GetSettingValue("Theme")">
     @{ Html.RenderPartial("_Header", RenderSection("topright", false)); }
     @{ Html.RenderPartialIf("_Aside", Request.IsAuthenticated); }
     <div id="main" role="main">
