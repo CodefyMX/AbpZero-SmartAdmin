@@ -90,18 +90,6 @@
                             </div>
                         </section>
                     }
-                    @if (Model.IsLockoutEnabled)
-                    {
-                        <div class="alert alert-warning">
-                            <p>@L("UserLocked")</p>
-                            <section>
-                                <label class="checkbox">
-                                    @Html.CheckBoxFor(a => a.IsLockoutEnabled)
-                                    <i></i>@L("LockOut")
-                                </label>
-                            </section>
-                        </div>
-                    }
                     <section>
                         <label class="checkbox">
                             @Html.CheckBoxFor(a => a.IsTwoFactorEnabled)
@@ -114,12 +102,16 @@
                             <i></i>@L("IsActive")
                         </label>
                     </section>
-                    <section>
-                        <label class="checkbox">
-                            @Html.CheckBoxFor(a => a.SendNotificationMail)
-                            <i></i>@L("SendNotificationMail")
-                        </label>
-                    </section>
+                    @if (Model.Id == 0)
+                    {
+                        <section>
+                            <label class="checkbox">
+                                @Html.CheckBoxFor(a => a.SendNotificationMail)
+                                <i></i>@L("SendNotificationMail")
+                            </label>
+                        </section>
+                    }
+                    
                 </fieldset>
                 <footer>
                     <button type="submit" class="btn btn-primary">

@@ -154,7 +154,7 @@ namespace Cinotam.AbpModuleZero.Web
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/vectormap/jquery-jvectormap-world-mill-en.js"
                 ));
 
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

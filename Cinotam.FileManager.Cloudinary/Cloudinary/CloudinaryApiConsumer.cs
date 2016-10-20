@@ -20,47 +20,15 @@ namespace Cinotam.FileManager.Cloudinary.Cloudinary
         private const string TempFolder = "/App_Data/Temp/";
         public CloudinaryApiConsumer(ICredentials credentials)
         {
+
             _instance = credentials.GetCloudinaryInstance(new CloudinaryIdentityObject()
             {
-                ApiKey = "579477425489276",
+                ApiSecretVarName = "SCloudinary",
+                ApiKeyVarName = "KCloudinary",
                 CloudName = "cinotamtest",
-                ApiSecret = "3PmIOQESQKUjU4gg5KJW_q3z2vc"
+                EnvTarget = EnvironmentVariableTarget.User
             });
         }
-
-        #region Deprecated
-
-        //public virtual CloudinaryImageUploadResult UploadImageAndGetCdn(SaveImageInput input)
-        //{
-        //    try
-        //    {
-        //        var uploadParams = new ImageUploadParams()
-        //        {
-        //            File = new FileDescription(input.AbsoluteFileDirectory),
-        //            Folder = string.IsNullOrEmpty(input.Folder) ? null : input.Folder,
-        //            Transformation = Transformations.TransFormationsConfig.GetTransformationConfiguration(input)
-        //        };
-        //        var result = _instance.Upload(uploadParams);
-        //        return new CloudinaryImageUploadResult()
-        //        {
-        //            SecureUrl = result.SecureUri.AbsoluteUri,
-        //            Url = result.Uri.AbsoluteUri,
-        //            PublicId = result.PublicId,
-        //            Failed = false
-        //        };
-        //    }
-        //    catch (System.Exception)
-        //    {
-        //        return new CloudinaryImageUploadResult()
-        //        {
-        //            Failed = true
-        //        };
-        //    }
-
-        //}
-
-        #endregion
-
         public bool IsCdnService => true;
 
         public async Task<FileManagerServiceResult> SaveImage(IFileManagerServiceInput input)

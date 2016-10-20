@@ -33,5 +33,6 @@ namespace Cinotam.ModuleZero.AppModule.Users
         Task<UserSpecialPermissionsInput> GetUserSpecialPermissions(long? userId);
         Task SetUserSpecialPermissions(UserSpecialPermissionsInput input);
         Task ResetAllPermissions(long userId);
+        Task UnlockUser(long userId);
     }
 }

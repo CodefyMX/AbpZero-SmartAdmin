@@ -19,38 +19,29 @@
                             var assignRoleRolebtn = "";
                             var deleteUserBtn = "";
                             var assignPermissions = "";
+                            var unlockUser = "";
                             if (isUserEditGranted) {
                                 editUserbtn = "<a data-modal href='/SysAdmin/Users/CreateEditUser/" +
                                     row.Id +
-                                    "' class='btn btn-default btn-xs' title='Editar usuario' ><i class='fa fa-edit'></i></a>";
+                                    "' class='btn btn-default btn-xs' title='" + LSys("EditUser") + "' ><i class='fa fa-edit'></i></a>";
+                                unlockUser = " <a data-modal data-id="+row.Id+" class='btn btn-default btn-xs js-unlock-user' title='" + LSys("UnlockUser") + "' ><i class='fa fa-unlock'></i></a>";
                             }
                             if (isRoleAssignGranted) {
                                 assignRoleRolebtn = "  <a data-modal href='/SysAdmin/Users/EditRoles/" +
                                     row.Id +
-                                    "' class='btn btn-default btn-xs' title='Editar roles' ><i class='fa fa-briefcase'></i></a>";
+                                    "' class='btn btn-default btn-xs' title='" + LSys("EditRoles") + "' ><i class='fa fa-briefcase'></i></a>";
                             }
                             if (isUserDeleteGranted) {
-                                deleteUserBtn = " <a data-id=" + row.Id + " data-full-name=" + row.FullName + " class='btn btn-default btn-xs js-delete-user' title='Delete user' ><i class='fa fa-trash'></i></a>";
+                                deleteUserBtn = " <a data-id=" + row.Id + " data-full-name=" + row.FullName + " class='btn btn-default btn-xs js-delete-user' title='" + LSys("DeleteUser") + "' ><i class='fa fa-trash'></i></a>";
                             }
 
                             if (isPermissionsGranted) {
-                                assignPermissions = " <a class='btn btn-default btn-xs' href='/SysAdmin/Users/UserSpecialPermissions/" + row.Id + "' data-modal><i class='fa fa-lock'></i></a>";
+                                assignPermissions = " <a class='btn btn-default btn-xs' title='" + LSys("SetPermissions") + "' href='/SysAdmin/Users/UserSpecialPermissions/" + row.Id + "' data-modal><i class='fa fa-lock'></i></a>";
                             }
 
-                            return editUserbtn + assignRoleRolebtn + assignPermissions + deleteUserBtn;
+                            return editUserbtn + assignRoleRolebtn + unlockUser + assignPermissions + deleteUserBtn;
                         },
                         "targets": 0
-                    },
-                    {
-                        className: "text-center",
-                        "render": function (data, type, row) {
-                            if (row.IsLockoutEnabled) {
-                                return LSys("Locked");
-                            } else {
-                                return LSys("Unlocked");
-                            }
-                        },
-                        "targets": 5
                     }
         ];
         var table;
@@ -74,9 +65,6 @@
                     {
                         "data": "EmailAddress"
                     },
-                {
-                    "data": "IsLockoutEnabled"
-                },
                     {
                         "data": "CreationTimeString",
                         name: "CreationTime"
@@ -121,6 +109,12 @@
                 }
             });
         });
-
+        $body.on("click", ".js-unlock-user",function() {
+            var id = $(this).data("id");
+            abp.ui.setBusy($form, _userAppService.unlockUser(id).done(function () {
+                table.ajax.reload();
+                abp.notify.success(LSys("UserUnlocked"), LSys("Success"));
+            }));
+        });
     });
 })();

@@ -380,6 +380,16 @@ namespace Cinotam.ModuleZero.AppModule.Users
             await UserManager.ResetAllPermissionsAsync(user);
         }
 
+        public async Task UnlockUser(long userId)
+        {
+            var isLocked = await UserManager.IsLockedOutAsync(userId);
+            if (isLocked)
+            {
+                var user = await UserManager.GetUserByIdAsync(userId);
+                user.IsLockoutEnabled = false;
+            }
+        }
+
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)
         {
             if (userId == null) throw new UserFriendlyException("User id");
