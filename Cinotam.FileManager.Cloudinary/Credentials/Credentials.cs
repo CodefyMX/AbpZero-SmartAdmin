@@ -1,6 +1,7 @@
 ﻿using Abp.Auditing;
 using Cinotam.FileManager.Cloudinary.Credentials.Helpers;
 using CloudinaryDotNet;
+using System;
 
 namespace Cinotam.FileManager.Cloudinary.Credentials
 {
@@ -9,10 +10,14 @@ namespace Cinotam.FileManager.Cloudinary.Credentials
         [DisableAuditing]
         public virtual CloudinaryDotNet.Cloudinary GetCloudinaryInstance(CloudinaryIdentityObject credentials)
         {
+
+
+            var apiKey = Environment.GetEnvironmentVariable(credentials.ApiKeyVarName, credentials.EnvTarget);
+            var secret = Environment.GetEnvironmentVariable(credentials.ApiSecretVarName, credentials.EnvTarget);
             var account = new Account()
             {
-                ApiKey = credentials.ApiKey,
-                ApiSecret = credentials.ApiSecret,
+                ApiKey = apiKey,
+                ApiSecret = secret,
                 Cloud = credentials.CloudName
             };
 

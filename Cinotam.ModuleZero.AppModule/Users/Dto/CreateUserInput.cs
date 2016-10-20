@@ -10,6 +10,11 @@ namespace Cinotam.ModuleZero.AppModule.Users.Dto
     [AutoMap(typeof(User))]
     public class CreateUserInput : EntityDto<long>
     {
+        public CreateUserInput()
+        {
+            IsLockoutEnabled = false;
+            IsActive = true;
+        }
         [Required]
         [StringLength(AbpUserBase.MaxUserNameLength)]
         public string UserName { get; set; }
