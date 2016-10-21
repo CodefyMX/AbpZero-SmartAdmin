@@ -21,7 +21,6 @@ using Cinotam.ModuleZero.MailSender.CinotamMailSender;
 using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
 using Cinotam.ModuleZero.MailSender.TemplateManager;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender;
-using Cinotam.TwoFactorAuth.Contracts;
 using Cinotam.TwoFactorSender.Sender;
 using Microsoft.AspNet.Identity;
 using System;
@@ -175,7 +174,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
                 await CurrentUnitOfWork.SaveChangesAsync();
 
-                await UserManager.SetTwoFactorEnabledAsync(input.Id, input.IsTwoFactorEnabled);
+                //await UserManager.SetTwoFactorEnabledAsync(user.Id, input.IsTwoFactorEnabled);
 
 
                 await SetDefaultRoles(user);
