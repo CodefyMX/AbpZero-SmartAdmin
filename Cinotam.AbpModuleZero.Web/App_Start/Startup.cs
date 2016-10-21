@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using Abp.Owin;
+﻿using Abp.Owin;
 using Cinotam.AbpModuleZero.Api.Controllers;
 using Cinotam.AbpModuleZero.Web;
 using Microsoft.AspNet.Identity;
@@ -10,6 +8,8 @@ using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.Twitter;
 using Owin;
+using System;
+using System.Configuration;
 
 [assembly: OwinStartup(typeof(Startup))]
 
@@ -20,15 +20,16 @@ namespace Cinotam.AbpModuleZero.Web
         public void Configuration(IAppBuilder app)
         {
             app.UseAbp();
-           
+
             app.UseOAuthBearerAuthentication(AccountController.OAuthBearerOptions);
-            
+
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login")
             });
-           
+
+
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             if (IsTrue("ExternalAuth.Facebook.IsEnabled"))

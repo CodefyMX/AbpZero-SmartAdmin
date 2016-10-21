@@ -27,5 +27,6 @@ namespace Cinotam.ModuleZero.AppModule
             Configuration.Settings.Providers.Add<ModuleZeroSettingsProvider>();
             Configuration.Navigation.Providers.Add<ModuleZeroNavigationProvider>();
         }
+
     }
 }

@@ -25,7 +25,7 @@
                 });
 
             });
-            abp.ui.setBusy($form, _settingsService.createEditSetting(data).done(function () {
+            abp.ui.setBusy($settingsForm, _settingsService.createEditSetting(data).done(function () {
                 abp.notify.success("ChangesSaved", "Success");
             }));
         });

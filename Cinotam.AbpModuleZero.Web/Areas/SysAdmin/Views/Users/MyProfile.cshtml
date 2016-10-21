@@ -181,7 +181,9 @@
                         @Html.HiddenFor(a => a.ProfilePicture)
                         @Html.HiddenFor(a => a.Password)
                         @Html.HiddenFor(a => a.IsActive)
-                        <fieldset>
+                       
+                    <fieldset>
+                        <div class="row">
                             <section>
                                 <label class="label col col-2">@L("UserName")</label>
                                 <div class="col col-10">
@@ -223,7 +225,7 @@
                                 <div class="col col-10">
                                     <label class="input">
                                         <i class="icon-append fa fa-lock"></i>
-                                        @Html.TextBoxFor(a => a.MyStringRoles, new { required = "required",disabled="disabled" })
+                                        @Html.TextBoxFor(a => a.MyStringRoles, new { required = "required", disabled = "disabled" })
                                     </label>
                                 </div>
                             </section>
@@ -243,7 +245,10 @@
                                     </label>
                                 </div>
                             </section>
-                        </fieldset>
+                        </div>
+                                                </fieldset>
+                      
+                        
                         <footer>
                             <button type="submit" class="btn btn-primary">
                                 @L("Save")

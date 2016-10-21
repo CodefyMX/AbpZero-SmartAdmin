@@ -1,11 +1,8 @@
-﻿using Abp.Domain.Services;
-using Cinotam.TwoFactorAuth.Contracts;
-using System.Threading.Tasks;
+﻿using Cinotam.TwoFactorAuth.Contracts;
 
 namespace Cinotam.TwoFactorSender.Sender
 {
-    public interface ITwoFactorMessageService : IDomainService
+    public interface ITwoFactorMessageService : IMessageSender
     {
-        Task SendMessage(CinotamAbpIdentityMessage message);
     }
 }

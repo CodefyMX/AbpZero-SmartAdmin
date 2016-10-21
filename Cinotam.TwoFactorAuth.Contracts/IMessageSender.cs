@@ -1,11 +1,12 @@
 ﻿using Abp.Domain.Services;
+using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 
 namespace Cinotam.TwoFactorAuth.Contracts
 {
-    public interface IMessageSender : IDomainService
+    public interface IMessageSender : IIdentityMessageService, IDomainService
     {
-        Task SendMessage(CinotamAbpIdentityMessage message);
+        Task SendMessage(IdentityMessage message);
         string ServiceName { get; }
     }
 }

@@ -1332,6 +1332,7 @@
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="CustomJsonValueProviderFactory.cs" />
+    <Compile Include="Models\Account\UserTwoFactorVerificationInput.cs" />
     <Compile Include="Models\Layout\UserMenuOrLoginLinkViewModel.cs" />
     <Compile Include="Models\Account\LoginFormViewModel.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
@@ -1394,6 +1395,7 @@
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.eot" />
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.ttf" />
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.woff" />
+    <Content Include="Views\Account\PhoneNumberVerification.cshtml" />
     <None Include="Views\Layout\PagesMenu.cshtml" />
     <None Include="Views\Layout\_childsMenu.cshtml" />
     <Content Include="Areas\SysAdmin\Views\PageCategories\MyCategories.cshtml" />
@@ -1449,6 +1451,10 @@
     <ProjectReference Include="..\Cinotam.TwoFactorAuth.Contracts\Cinotam.TwoFactorAuth.Contracts.csproj">
       <Project>{645802DE-75FC-4403-B604-C2B650125073}</Project>
       <Name>Cinotam.TwoFactorAuth.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.TwoFactorAuth.Twilio\Cinotam.TwoFactorAuth.Twilio.csproj">
+      <Project>{4A6DBD95-1322-4491-AC84-31616266E035}</Project>
+      <Name>Cinotam.TwoFactorAuth.Twilio</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.TwoFactorSmsSender\Cinotam.TwoFactorSender.csproj">
       <Project>{58E46278-CDCC-4B1F-9B73-CF7ADE0D3EEE}</Project>
