@@ -21,7 +21,6 @@ using Cinotam.ModuleZero.MailSender.CinotamMailSender;
 using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
 using Cinotam.ModuleZero.MailSender.TemplateManager;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender;
-using Cinotam.TwoFactorAuth.Contracts;
 using Cinotam.TwoFactorSender.Sender;
 using Microsoft.AspNet.Identity;
 using System;
@@ -130,6 +129,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 var pssw = userFound.Password;
                 var modified = input.MapTo(userFound);
                 modified.Password = pssw;
+                await UserManager.SetTwoFactorEnabledAsync(input.Id, input.IsTwoFactorEnabled);
                 await UserManager.UpdateAsync(modified);
                 if (!string.IsNullOrEmpty(input.Password))
                 {
@@ -174,7 +174,12 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
                 await CurrentUnitOfWork.SaveChangesAsync();
 
+                //await UserManager.SetTwoFactorEnabledAsync(user.Id, input.IsTwoFactorEnabled);
+
+
                 await SetDefaultRoles(user);
+
+
 
                 await _usersAppNotificationsSender.SendUserCreatedNotification((await GetCurrentUserAsync()), user);
 
@@ -399,11 +404,10 @@ namespace Cinotam.ModuleZero.AppModule.Users
             var testCode = "+52";
             var user = await UserManager.GetUserByIdAsync(input.UserId);
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(input.UserId, input.PhoneNumber);
-            await _twoFactorMessageService.SendMessage(new CinotamAbpIdentityMessage()
+            await _twoFactorMessageService.SendMessage(new IdentityMessage()
             {
                 Body = "Your confirmation code is " + code,
                 Destination = testCode + input.PhoneNumber,
-                From = "+12016901854"
             });
 
 
@@ -416,10 +420,14 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
         public async Task ConfirmPhone(PhoneConfirmationInput input)
         {
+            var userTask = UserManager.GetUserByIdAsync(input.UserId);
+
             var codeIsCorrect = await UserManager.VerifyChangePhoneNumberTokenAsync(input.UserId, input.Token, input.PhoneNumber);
             if (codeIsCorrect)
             {
                 await UserManager.SetPhoneNumberAsync(input.UserId, input.PhoneNumber);
+                var user = await userTask;
+                user.IsPhoneNumberConfirmed = true;
             }
         }
 

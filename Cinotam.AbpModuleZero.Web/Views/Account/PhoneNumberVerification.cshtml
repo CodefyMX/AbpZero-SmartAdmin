@@ -1,0 +1,39 @@
+﻿
+@using Abp.Web.Mvc.Extensions
+@using Microsoft.Owin.Security
+@model Cinotam.AbpModuleZero.Web.Models.Account.UserTwoFactorVerificationInput
+@section Styles
+{
+    @Html.IncludeStyle("~/Views/Account/Login.css")
+}
+
+<div class="container">
+    <div id="ConfirmArea" class="row">
+        <div class="col-lg-12">
+            <div class="well bs-component">
+                <form id="LoginForm" class="form-horizontal" action="@(Url.Action("PhoneNumberVerification", "Account"))?returnUrl=@(Model.ReturnUrl)" method="POST">
+                    <fieldset>
+                        @Html.HiddenFor(a=>a.UserId)
+                        @Html.HiddenFor(a => a.Provider)
+                        @Html.HiddenFor(a => a.ReturnUrl)
+                        @Html.HiddenFor(a => a.PhoneNumber)
+                        <legend>@L("ConfirmLogin")</legend>
+                        <p>
+                            A message was send to to the following phone number : @Model.PhoneNumber
+                        </p>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                @Html.TextAreaFor(a => a.Token)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <button id="LoginButton" type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> @L("Confirm")</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

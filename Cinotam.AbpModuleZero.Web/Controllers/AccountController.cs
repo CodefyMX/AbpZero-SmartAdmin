@@ -38,12 +38,10 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly LogInManager _logInManager;
         private readonly ITwoFactorMessageService _twoFactorMessageService;
+
         private IAuthenticationManager AuthenticationManager
         {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
+            get { return HttpContext.GetOwinContext().Authentication; }
         }
 
         public AccountController(
@@ -61,6 +59,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             _multiTenancyConfig = multiTenancyConfig;
             _logInManager = logInManager;
             _twoFactorMessageService = twoFactorMessageService;
+            _userManager.SmsService = twoFactorMessageService;
         }
 
         #region Login / Logout
@@ -79,18 +78,102 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                     IsMultiTenancyEnabled = _multiTenancyConfig.IsEnabled
                 });
         }
+        public ActionResult PhoneNumberVerification(string returnUrl, long userId, string provider, string phone)
+        {
+            return View(new UserTwoFactorVerificationInput()
+            {
+                Provider = provider,
+                ReturnUrl = returnUrl,
+                UserId = userId,
+                PhoneNumber = phone
+            });
+        }
+        [HttpPost]
 
+        [DisableAbpAntiForgeryTokenValidation]
+        public async Task<ActionResult> PhoneNumberVerification(UserTwoFactorVerificationInput input)
+        {
+
+            var user = await _userManager.FindByIdAsync(input.UserId);
+            if (user.TenantId != null) _userManager.RegisterTwoFactorProviders(user.TenantId.Value);
+            else _userManager.RegisterTwoFactorProviders(null);
+            await _userManager.GetValidTwoFactorProvidersAsync(input.UserId);
+            var result = await _userManager.VerifyTwoFactorTokenAsync(input.UserId, L(input.Provider), input.Token);
+            if (result)
+            {
+                await SignInAsync(user);
+                return RedirectToRoute(input.ReturnUrl);
+            }
+            return RedirectToAction("Login");
+        }
         [HttpPost]
         [DisableAuditing]
-        public async Task<JsonResult> Login(LoginViewModel loginModel, string returnUrl = "", string returnUrlHash = "")
+        public async Task<ActionResult> Login(LoginViewModel loginModel, string returnUrl = "", string returnUrlHash = "")
         {
+
             CheckModelState();
 
             var loginResult = await GetLoginResultAsync(
                 loginModel.UsernameOrEmailAddress,
                 loginModel.Password,
                 loginModel.TenancyName
-                );
+            );
+            if (loginResult.User.TenantId != null) _userManager.RegisterTwoFactorProviders(loginResult.User.TenantId.Value);
+            else _userManager.RegisterTwoFactorProviders(null);
+            _userManager.SmsService = _twoFactorMessageService;
+
+
+            var isGlobalTwoFactorEnabled =
+                bool.Parse(await SettingManager.GetSettingValueAsync("Abp.Zero.UserManagement.TwoFactorLogin.IsEnabled"));
+            var isSmsTwoFactorEnabled =
+                bool.Parse(
+                    await
+                        SettingManager.GetSettingValueAsync(
+                            "Abp.Zero.UserManagement.TwoFactorLogin.IsSmsProviderEnabled"));
+            var userHasTwoFactorEnabled = loginResult.User.IsTwoFactorEnabled;
+
+            var userHasPhoneNumber = loginResult.User.PhoneNumber != "" && loginResult.User.IsPhoneNumberConfirmed;
+
+
+            if (isGlobalTwoFactorEnabled && isSmsTwoFactorEnabled)
+            {
+                if (userHasTwoFactorEnabled && userHasPhoneNumber)
+                {
+                    var smsProvider = "Sms";
+                    var code = await _userManager.GenerateTwoFactorTokenAsync(loginResult.User.Id, L(smsProvider));
+
+                    await _twoFactorMessageService.SendMessage(new IdentityMessage()
+                    {
+                        Body = code,
+                        Destination = "+52" + loginResult.User.PhoneNumber
+                    });
+
+                    var url = Url.Action("PhoneNumberVerification",
+                        new
+                        {
+                            returnUrl = returnUrl,
+                            userId = loginResult.User.Id,
+                            provider = smsProvider,
+                            phone = loginResult.User.PhoneNumber
+                        });
+
+                    return Json(url, JsonRequestBehavior.AllowGet);
+                }
+                if (userHasTwoFactorEnabled)
+                {
+                    var emailProvider = "Email";
+                    //Send sms verification code
+                    var url = Url.Action("EmailVerification",
+                        new
+                        {
+                            returnUrl = returnUrl,
+                            userId = loginResult.User.Id,
+                            provider = emailProvider,
+                            phone = loginResult.User.PhoneNumber
+                        });
+                    return Json(new AjaxResponse(new { TargetUrl = url }));
+                }
+            }
 
             await SignInAsync(loginResult.User, loginResult.Identity, loginModel.RememberMe);
 

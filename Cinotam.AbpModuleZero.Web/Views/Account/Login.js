@@ -15,6 +15,8 @@
                         rememberMe: $('#RememberMeInput').is(':checked'),
                         returnUrlHash: $('#ReturnUrlHash').val()
                     })
+                }).done(function(response) {
+                    window.location.href = response;
                 })
             );
         });
