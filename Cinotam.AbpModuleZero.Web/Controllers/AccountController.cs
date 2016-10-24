@@ -91,7 +91,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         [HttpPost]
 
         [DisableAbpAntiForgeryTokenValidation]
-        public async Task<ActionResult> PhoneNumberVerification(UserTwoFactorVerificationInput input)
+        public async Task<JsonResult> PhoneNumberVerification(UserTwoFactorVerificationInput input)
         {
 
             var user = await _userManager.FindByIdAsync(input.UserId);
@@ -99,12 +99,11 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             else _userManager.RegisterTwoFactorProviders(null);
             await _userManager.GetValidTwoFactorProvidersAsync(input.UserId);
             var result = await _userManager.VerifyTwoFactorTokenAsync(input.UserId, L(input.Provider), input.Token);
-            if (result)
-            {
-                await SignInAsync(user);
-                return RedirectToRoute(input.ReturnUrl);
-            }
-            return RedirectToAction("Login");
+            if (!result) return Json(new { Error = L("InvalidCode") });
+            await SignInAsync(user);
+            return string.IsNullOrEmpty(input.ReturnUrl) ?
+                Json(new AjaxResponse(new { TargetUrl = input.ReturnUrl })) :
+                Json(new AjaxResponse(new { TargetUrl = "/Home/Index" }));
         }
         [HttpPost]
         [DisableAuditing]

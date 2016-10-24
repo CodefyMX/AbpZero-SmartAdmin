@@ -420,15 +420,12 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
         public async Task ConfirmPhone(PhoneConfirmationInput input)
         {
-            var userTask = UserManager.GetUserByIdAsync(input.UserId);
-
+            var user = await UserManager.GetUserByIdAsync(input.UserId);
+            if (user.IsPhoneNumberConfirmed && user.PhoneNumber == input.PhoneNumber) { return; }
             var codeIsCorrect = await UserManager.VerifyChangePhoneNumberTokenAsync(input.UserId, input.Token, input.PhoneNumber);
-            if (codeIsCorrect)
-            {
-                await UserManager.SetPhoneNumberAsync(input.UserId, input.PhoneNumber);
-                var user = await userTask;
-                user.IsPhoneNumberConfirmed = true;
-            }
+            if (!codeIsCorrect) throw new UserFriendlyException(L("VerificationCodeInvalid"));
+            await UserManager.SetPhoneNumberAsync(input.UserId, input.PhoneNumber);
+            user.IsPhoneNumberConfirmed = true;
         }
 
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)

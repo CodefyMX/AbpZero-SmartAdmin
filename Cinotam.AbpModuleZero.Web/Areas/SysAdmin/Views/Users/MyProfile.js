@@ -50,6 +50,10 @@
                     case "USER_PASSWORD_CHANGED":
                         abp.message.success(LSys("PasswordChanged"), LSys("Success"));
                         break;
+                    case "PHONE_CHANGE_REQUEST":
+                        console.log(event);
+                        window.modalInstance.open("/SysAdmin/Users/ConfirmPhone/?phoneNumber=" + event.detail.info.PhoneNumber + "&userId=" + event.detail.info.UserId);
+                        break;
                     default:
                         console.log("Event unhandled");
                 }

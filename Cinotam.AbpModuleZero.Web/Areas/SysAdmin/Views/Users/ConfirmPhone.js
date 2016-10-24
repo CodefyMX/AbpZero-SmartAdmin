@@ -1,5 +1,5 @@
 ﻿(function () {
-    var modalType = "USER_PHONE_CHANGED";
+    var modalType = "";
     $(document)
         .ready(function () {
 

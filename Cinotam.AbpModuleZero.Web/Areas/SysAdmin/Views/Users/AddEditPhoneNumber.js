@@ -1,5 +1,5 @@
 ﻿(function () {
-    var modalType = "";
+    var modalType = "PHONE_CHANGE_REQUEST";
     $(document)
         .ready(function () {
 
@@ -13,8 +13,11 @@
                     var data = $self.serializeFormToObject();
 
                     abp.ui.setBusy($form, _userAppService.addPhoneNumber(data).done(function (response) {
-                        window.modalInstance.close({}, modalType);
-                        window.modalInstance.open("/SysAdmin/Users/ConfirmPhone/?phoneNumber=" + response.phoneNumber + "&userId=" + response.userId);
+                        window.modalInstance.close(
+                            {
+                                PhoneNumber: response.phoneNumber,
+                                UserId: response.userId
+                        }, modalType);
                     }));
                 });
         });

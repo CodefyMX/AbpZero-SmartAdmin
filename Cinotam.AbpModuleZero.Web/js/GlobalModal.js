@@ -61,7 +61,11 @@
                 bubbles: true,
                 cancelable: false
             });
-            document.dispatchEvent(modalCloseEvent);
+
+            selfModal.container.on("hidden.bs.modal",
+                function() {
+                    document.dispatchEvent(modalCloseEvent);
+                });
         }
         function initListener() {
             console.log('Modal service beep awaiting orders... bep bep');
