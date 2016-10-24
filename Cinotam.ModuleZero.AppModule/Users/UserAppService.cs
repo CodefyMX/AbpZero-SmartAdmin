@@ -17,15 +17,16 @@ using Cinotam.FileManager.Files;
 using Cinotam.FileManager.Files.Inputs;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
+using Cinotam.ModuleZero.AppModule.Users.EnumHelpers;
 using Cinotam.ModuleZero.MailSender.CinotamMailSender;
 using Cinotam.ModuleZero.MailSender.CinotamMailSender.Inputs;
 using Cinotam.ModuleZero.MailSender.TemplateManager;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender;
+using Cinotam.TwoFactorAuth.Contracts;
 using Cinotam.TwoFactorSender.Sender;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Mail;
@@ -174,7 +175,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
                 await CurrentUnitOfWork.SaveChangesAsync();
 
-                //await UserManager.SetTwoFactorEnabledAsync(user.Id, input.IsTwoFactorEnabled);
+                await UserManager.SetTwoFactorEnabledAsync(user.Id, input.IsTwoFactorEnabled);
 
 
                 await SetDefaultRoles(user);
@@ -200,8 +201,6 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
         private async Task SendWelcomeEmail(User user, string password)
         {
-
-            dynamic sendGridParams = BuildSendGridParams(user, password);
             var welcomeMessage = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "WelcomeMessage"), user.FullName);
             var yourUserIs = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "YourUserIs"), user.UserName);
             var yourDefaultPasswordIs = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "YourDefaultPassword"), password);
@@ -215,23 +214,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 },
                 Body = _templateManager.GetContent(TemplateType.Welcome, false, welcomeMessage, yourUserIs, yourDefaultPasswordIs),
                 EncodeType = "text/html",
-                ExtraParams = sendGridParams,
             });
-        }
-
-        private object BuildSendGridParams(User user, string passWord)
-        {
-            dynamic sendGridParams = new ExpandoObject();
-            sendGridParams.TemplateId = "81448bab-8391-4a6e-971d-142d68d662ad";
-            sendGridParams.EnableTemplates = false;
-            sendGridParams.Substitutions = new Dictionary<string, string>()
-                {
-                    {":user", user.FullName},
-                    {":subtitle", "Welcome to Cinotam.ModuleZero"},
-                    {":website","localhost:61760" },
-                    {":userName",user.UserName},
-                    {":password",passWord}                };
-            return sendGridParams;
         }
 
         [AbpAuthorize(PermissionNames.PagesSysAdminUsers)]
@@ -402,31 +385,94 @@ namespace Cinotam.ModuleZero.AppModule.Users
         public async Task<ChangePhoneNumberRequest> AddPhoneNumber(AddPhoneNumberInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(input.UserId, input.PhoneNumber);
-            await _twoFactorMessageService.SendMessage(new IdentityMessage()
+
+            var result = new ChangePhoneNumberRequest();
+
+            var typeOfRequest = GetTypeOfRequest(user, input);
+
+            result.ResultType = typeOfRequest;
+            SendMessageResult sendMessageResult;
+            switch (typeOfRequest)
+            {
+                case TwoFactorRequestResults.SamePhoneNumberRequest:
+                    //Is the same phone number so....
+                    return result;
+                case TwoFactorRequestResults.NewPhoneNumberRequest:
+                    sendMessageResult = await SendSmsMessage(input.UserId, input.PhoneNumber, input.CountryPhoneCode);
+                    break;
+                case TwoFactorRequestResults.ChangePhoneNumberRequest:
+                    sendMessageResult = await SendSmsMessage(input.UserId, input.PhoneNumber, input.CountryPhoneCode);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            result.UserId = user.Id;
+            result.CountryCode = input.CountryCode;
+            result.PhoneNumber = input.PhoneNumber;
+            result.CountryPhoneCode = input.CountryPhoneCode;
+            result.SendMessageResult = sendMessageResult;
+            return result;
+        }
+
+        private async Task<SendMessageResult> SendSmsMessage(long inputUserId, string inputPhoneNumber, string inputCountryPhoneCode)
+        {
+            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(inputUserId, inputPhoneNumber);
+            var result = await _twoFactorMessageService.SendMessage(new IdentityMessage()
             {
                 Body = "Your confirmation code is " + code,
-                Destination = input.CountryPhoneCode + input.PhoneNumber,
+                Destination = inputCountryPhoneCode + inputPhoneNumber,
             });
-            return new ChangePhoneNumberRequest()
+            return result;
+        }
+
+        private TwoFactorRequestResults GetTypeOfRequest(User user, AddPhoneNumberInput input)
+        {
+            if (user.IsPhoneNumberConfirmed && (user.PhoneNumber == input.PhoneNumber))
             {
-                UserId = user.Id,
-                PhoneNumber = input.PhoneNumber
-            };
+                return TwoFactorRequestResults.SamePhoneNumberRequest;
+            }
+
+            if (user.IsPhoneNumberConfirmed && (user.PhoneNumber == input.PhoneNumber))
+            {
+                return TwoFactorRequestResults.ChangePhoneNumberRequest;
+            }
+            return TwoFactorRequestResults.NewPhoneNumberRequest;
         }
 
         public async Task ConfirmPhone(PhoneConfirmationInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
-            if (user.IsPhoneNumberConfirmed && user.PhoneNumber == input.PhoneNumber) { return; }
+            if (user.IsPhoneNumberConfirmed && user.PhoneNumber == input.PhoneNumber)
+            {
+                return;
+            }
             var codeIsCorrect = await UserManager.VerifyChangePhoneNumberTokenAsync(input.UserId, input.Token, input.PhoneNumber);
             if (!codeIsCorrect) throw new UserFriendlyException(L("VerificationCodeInvalid"));
             await UserManager.SetPhoneNumberAsync(input.UserId, input.PhoneNumber);
             user.IsPhoneNumberConfirmed = true;
             user.CountryPhoneCode = input.CountryPhoneCode;
             user.CountryCode = input.CountryCode;
+            await SendChangedInfoMail(user);
         }
 
+        private async Task SendChangedInfoMail(User user)
+        {
+            var infoChangedMessage = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "YourPhoneNumberHasChanged"), user.FullName, user.PhoneNumber, DateTime.Now);
+            await _cinotamMailSender.DeliverMail(new EmailSendInput()
+            {
+                MailMessage = new MailMessage()
+                {
+                    From = new MailAddress((await SettingManager.GetSettingValueAsync("Abp.Net.Mail.DefaultFromAddress"))),
+                    To = { new MailAddress(user.EmailAddress) },
+                    Subject = L("UserChangedNotification"),
+                },
+                //You can send the text with no body
+                Body = infoChangedMessage/* _templateManager.GetContent(TemplateType.Simple, false, infoChangedMessage)*/,
+                EncodeType = "text/html",
+            });
+
+        }
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)
         {
             if (userId == null) throw new UserFriendlyException("User id");

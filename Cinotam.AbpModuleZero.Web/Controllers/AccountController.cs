@@ -59,7 +59,6 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             _multiTenancyConfig = multiTenancyConfig;
             _logInManager = logInManager;
             _twoFactorMessageService = twoFactorMessageService;
-            _userManager.SmsService = twoFactorMessageService;
         }
 
         #region Login / Logout

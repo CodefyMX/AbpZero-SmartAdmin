@@ -1,4 +1,5 @@
-﻿using Cinotam.TwoFactorAuth.Twilio.Credentials;
+﻿using Cinotam.TwoFactorAuth.Contracts;
+using Cinotam.TwoFactorAuth.Twilio.Credentials;
 using Cinotam.TwoFactorAuth.Twilio.Credentials.Input;
 using Microsoft.AspNet.Identity;
 using System;
@@ -12,6 +13,7 @@ namespace Cinotam.TwoFactorAuth.Twilio.TwilioService
     {
         private readonly TwilioRestClient _client;
         private const string From = "+12016901854";
+        private const string CorrectStatus = "queued";
         public TwilioService(ITwilioSenderCredentials twilioSenderCredentials)
         {
             _client = twilioSenderCredentials.GetClient(new TwilioCredentials()
@@ -21,12 +23,24 @@ namespace Cinotam.TwoFactorAuth.Twilio.TwilioService
                 EnvTarget = EnvironmentVariableTarget.User
             });
         }
-        public Task SendMessage(IdentityMessage message)
+        public Task<SendMessageResult> SendMessage(IdentityMessage message)
         {
             var destinationWithPlus = "+" + message.Destination;
             var result = _client.SendMessage(From, destinationWithPlus, message.Body);
             Trace.TraceInformation(result.Status);
-            return Task.FromResult(0);
+
+            if (result.Status == CorrectStatus)
+            {
+                return Task.FromResult(new SendMessageResult()
+                {
+                    SendStatus = SendStatus.Queued
+                });
+            }
+            return Task.FromResult(new SendMessageResult()
+            {
+                SendStatus = SendStatus.Fail,
+                Properties = { ["Error"] = result.ErrorMessage, ["ErrorCode"] = result.ErrorCode }
+            });
         }
 
         public string ServiceName => "Twilio";

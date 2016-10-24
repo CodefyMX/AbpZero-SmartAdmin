@@ -1,4 +1,5 @@
 ﻿using Cinotam.ModuleZero.AppModule.Users.EnumHelpers;
+using Cinotam.TwoFactorAuth.Contracts;
 
 namespace Cinotam.ModuleZero.AppModule.Users.Dto
 {
@@ -9,5 +10,7 @@ namespace Cinotam.ModuleZero.AppModule.Users.Dto
         public string CountryPhoneCode { get; set; }
         public string CountryCode { get; set; }
         public TwoFactorRequestResults ResultType { get; set; }
+
+        public SendMessageResult SendMessageResult { get; set; }
     }
 }

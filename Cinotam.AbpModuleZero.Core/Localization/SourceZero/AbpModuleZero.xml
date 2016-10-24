@@ -71,12 +71,15 @@
     <text name="ChangePasswordForm" value="Change password form"/>
     <text name="CurrentPassword" value="Current password"/>
     <text name="ConfirmPassword" value="Confirm password"/>
+    
+    <!--//Users-->
+
+    <!--//Emails-->
     <text name="WelcomeMessage" value="Welcome {0} to the best website in the UNIVERSE!!!"/>
     <text name="YourUserIs" value="Your username is {0}"/>
     <text name="YourDefaultPassword" value="Your default password is: {0}"/>
-    <!--//Users-->
-
-
+    <text name="YourPhoneNumberHasChanged" value="{0} your phone number has been modified: {1} at: {2}" />
+    <text name="UserChangedNotification" value="Your profile has changed"/>
     <!--Roles-->
     <text name="SelectRoles" value="Select roles"/>
     <text name="Roles" value="Roles"/>

@@ -588,6 +588,7 @@
     <Content Include="Content\Custom\DropDownMenuLarge.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\MailTemplates\ChangeInfo\ChangedInfo_Partial.html" />
     <Content Include="Content\MailTemplates\WelcomeTemplates\Welcome.Html" />
     <Content Include="Content\MailTemplates\WelcomeTemplates\Welcome_Partial.html" />
     <Content Include="Areas\SysAdmin\Content\sound\bigbox.mp3" />
@@ -1206,6 +1207,7 @@
     <Content Include="Scripts\contentTools\sandbox\build\content-tools.min.css.map" />
     <Content Include="Areas\SysAdmin\Views\Users\UserSpecialPermissions.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\_countryCodes.cshtml" />
+    <Content Include="Content\MailTemplates\ChangeInfo\ChangedInfo.html" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
