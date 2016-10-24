@@ -117,62 +117,46 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 loginModel.Password,
                 loginModel.TenancyName
             );
-            if (loginResult.User.TenantId != null) _userManager.RegisterTwoFactorProviders(loginResult.User.TenantId.Value);
-            else _userManager.RegisterTwoFactorProviders(null);
-            _userManager.SmsService = _twoFactorMessageService;
 
+            CheckAndConfirmTwoFactorProviders(loginResult.User);
 
-            var isGlobalTwoFactorEnabled =
-                bool.Parse(await SettingManager.GetSettingValueAsync("Abp.Zero.UserManagement.TwoFactorLogin.IsEnabled"));
-            var isSmsTwoFactorEnabled =
-                bool.Parse(
-                    await
-                        SettingManager.GetSettingValueAsync(
-                            "Abp.Zero.UserManagement.TwoFactorLogin.IsSmsProviderEnabled"));
-            var userHasTwoFactorEnabled = loginResult.User.IsTwoFactorEnabled;
-
-            var userHasPhoneNumber = loginResult.User.PhoneNumber != "" && loginResult.User.IsPhoneNumberConfirmed;
-
-
-            if (isGlobalTwoFactorEnabled && isSmsTwoFactorEnabled)
+            if (await IsNecessaryToSendSms(loginResult.User))
             {
-                if (userHasTwoFactorEnabled && userHasPhoneNumber)
-                {
-                    var smsProvider = "Sms";
-                    var code = await _userManager.GenerateTwoFactorTokenAsync(loginResult.User.Id, L(smsProvider));
+                const string smsProvider = "Sms";
+                var code = await _userManager.GenerateTwoFactorTokenAsync(loginResult.User.Id, L(smsProvider));
 
-                    await _twoFactorMessageService.SendMessage(new IdentityMessage()
+                await _twoFactorMessageService.SendMessage(new IdentityMessage()
+                {
+                    Body = code,
+                    Destination = "+52" + loginResult.User.PhoneNumber
+                });
+
+                var url = Url.Action("PhoneNumberVerification",
+                    new
                     {
-                        Body = code,
-                        Destination = "+52" + loginResult.User.PhoneNumber
+                        returnUrl,
+                        userId = loginResult.User.Id,
+                        provider = smsProvider,
+                        phone = loginResult.User.PhoneNumber
                     });
 
-                    var url = Url.Action("PhoneNumberVerification",
-                        new
-                        {
-                            returnUrl = returnUrl,
-                            userId = loginResult.User.Id,
-                            provider = smsProvider,
-                            phone = loginResult.User.PhoneNumber
-                        });
-
-                    return Json(url, JsonRequestBehavior.AllowGet);
-                }
-                if (userHasTwoFactorEnabled)
-                {
-                    var emailProvider = "Email";
-                    //Send sms verification code
-                    var url = Url.Action("EmailVerification",
-                        new
-                        {
-                            returnUrl = returnUrl,
-                            userId = loginResult.User.Id,
-                            provider = emailProvider,
-                            phone = loginResult.User.PhoneNumber
-                        });
-                    return Json(new AjaxResponse(new { TargetUrl = url }));
-                }
+                return Json(url, JsonRequestBehavior.AllowGet);
             }
+            if (IsTwoFactorEnabled(loginResult.User))
+            {
+                const string emailProvider = "Email";
+                //Send sms verification code
+                var url = Url.Action("EmailVerification",
+                    new
+                    {
+                        returnUrl,
+                        userId = loginResult.User.Id,
+                        provider = emailProvider,
+                        phone = loginResult.User.PhoneNumber
+                    });
+                return Json(new AjaxResponse(new { TargetUrl = url }));
+            }
+
 
             await SignInAsync(loginResult.User, loginResult.Identity, loginModel.RememberMe);
 
@@ -188,6 +172,13 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
             return Json(new AjaxResponse { TargetUrl = returnUrl });
         }
+
+        private void CheckAndConfirmTwoFactorProviders(User loginResultUser)
+        {
+            if (loginResultUser.TenantId != null) _userManager.RegisterTwoFactorProviders(loginResultUser.TenantId.Value);
+            else _userManager.RegisterTwoFactorProviders(null);
+        }
+
 
         private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
         {
@@ -552,7 +543,27 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         #endregion
 
         #region Common private methods
+        private bool IsTwoFactorEnabled(User loginResultUser)
+        {
+            return loginResultUser.IsTwoFactorEnabled;
+        }
 
+        private async Task<bool> IsNecessaryToSendSms(User loginResultUser)
+        {
+            var isGlobalTwoFactorEnabled =
+                bool.Parse(await SettingManager.GetSettingValueAsync("Abp.Zero.UserManagement.TwoFactorLogin.IsEnabled"));
+            var isSmsTwoFactorEnabled =
+                bool.Parse(
+                    await
+                        SettingManager.GetSettingValueAsync(
+                            "Abp.Zero.UserManagement.TwoFactorLogin.IsSmsProviderEnabled"));
+            var userHasTwoFactorEnabled = loginResultUser.IsTwoFactorEnabled;
+            var userHasPhoneNumber = loginResultUser.PhoneNumber != "" && loginResultUser.IsPhoneNumberConfirmed;
+
+            if (!isGlobalTwoFactorEnabled) return false;
+            if (!isSmsTwoFactorEnabled) return false;
+            return userHasPhoneNumber && userHasTwoFactorEnabled;
+        }
         private async Task<Tenant> GetActiveTenantAsync(string tenancyName)
         {
             var tenant = await _tenantManager.FindByTenancyNameAsync(tenancyName);

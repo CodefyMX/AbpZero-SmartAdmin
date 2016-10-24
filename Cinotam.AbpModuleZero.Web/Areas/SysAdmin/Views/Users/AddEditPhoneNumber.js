@@ -13,7 +13,7 @@
                     var data = $self.serializeFormToObject();
 
                     abp.ui.setBusy($form, _userAppService.addPhoneNumber(data).done(function (response) {
-                        window.modalInstance.close(
+                        window.modalInstance.sendCloseEvent(
                             {
                                 PhoneNumber: response.phoneNumber,
                                 UserId: response.userId

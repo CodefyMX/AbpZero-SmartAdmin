@@ -38,6 +38,7 @@
             selfModal.container.modal(modalConfig);
         }
         modalInstance.open = function (url, data) {
+            console.info("Loading modal");
             if (url) {
                 options.loadingFunc();
                 selfModal.container.load(url, data, function (response, status, xhr) {
@@ -52,6 +53,7 @@
             }
         }
         modalInstance.close = function (data, modalType) {
+
             selfModal.container.modal('hide');
             data.modalType = modalType;
             var modalCloseEvent = new CustomEvent('modalClose', {
@@ -61,11 +63,33 @@
                 bubbles: true,
                 cancelable: false
             });
-
-            selfModal.container.on("hidden.bs.modal",
-                function() {
-                    document.dispatchEvent(modalCloseEvent);
+            document.dispatchEvent(modalCloseEvent);
+        }
+        modalInstance.sendCloseEvent = function (data, modalType) {
+            data.modalType = modalType;
+            var modalCloseEvent = new CustomEvent('modalClose', {
+                detail: {
+                    info: data
+                },
+                bubbles: true,
+                cancelable: false
+            });
+            document.dispatchEvent(modalCloseEvent);
+        }
+        modalInstance.openInBody = function (url, data) {
+            console.info("Loading content in body");
+            if (url) {
+                options.loadingFunc();
+                selfModal.container.load(url, data, function (response, status, xhr) {
+                    if (status == "error") {
+                        options.onErrorFunction();
+                        options.loadEndFunc();
+                    } else {
+                        options.loadEndFunc();
+                        selfModal.initModal();
+                    }
                 });
+            }
         }
         function initListener() {
             console.log('Modal service beep awaiting orders... bep bep');
@@ -80,7 +104,7 @@
                         if (status == "error") {
                             options.loadEndFunc();
 
-                            options.onErrorFunction("Sorry but there was an error: "+xhr.status +" "+ xhr.statusText);
+                            options.onErrorFunction("Sorry but there was an error: " + xhr.status + " " + xhr.statusText);
                         } else {
                             options.loadEndFunc();
                             selfModal.initModal();
@@ -95,7 +119,7 @@
                 }, modalTypes.MODAL_CANCEL);
             });
         }
-        
+
         initListener();
         return modalInstance;
     };
