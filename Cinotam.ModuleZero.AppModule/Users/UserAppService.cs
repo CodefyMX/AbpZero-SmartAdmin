@@ -401,16 +401,13 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
         public async Task<ChangePhoneNumberRequest> AddPhoneNumber(AddPhoneNumberInput input)
         {
-            var testCode = "+52";
             var user = await UserManager.GetUserByIdAsync(input.UserId);
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(input.UserId, input.PhoneNumber);
             await _twoFactorMessageService.SendMessage(new IdentityMessage()
             {
                 Body = "Your confirmation code is " + code,
-                Destination = testCode + input.PhoneNumber,
+                Destination = input.CountryPhoneCode + input.PhoneNumber,
             });
-
-
             return new ChangePhoneNumberRequest()
             {
                 UserId = user.Id,
@@ -426,6 +423,8 @@ namespace Cinotam.ModuleZero.AppModule.Users
             if (!codeIsCorrect) throw new UserFriendlyException(L("VerificationCodeInvalid"));
             await UserManager.SetPhoneNumberAsync(input.UserId, input.PhoneNumber);
             user.IsPhoneNumberConfirmed = true;
+            user.CountryPhoneCode = input.CountryPhoneCode;
+            user.CountryCode = input.CountryCode;
         }
 
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)

@@ -214,6 +214,14 @@
     <Compile Include="Migrations\201610061550416_Edition_Price.Designer.cs">
       <DependentUpon>201610061550416_Edition_Price.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610241721231_CountryPhoneCode.cs" />
+    <Compile Include="Migrations\201610241721231_CountryPhoneCode.Designer.cs">
+      <DependentUpon>201610241721231_CountryPhoneCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610241728069_CountryCode.cs" />
+    <Compile Include="Migrations\201610241728069_CountryCode.Designer.cs">
+      <DependentUpon>201610241728069_CountryCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -322,6 +330,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610061550416_Edition_Price.resx">
       <DependentUpon>201610061550416_Edition_Price.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241721231_CountryPhoneCode.resx">
+      <DependentUpon>201610241721231_CountryPhoneCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610241728069_CountryCode.resx">
+      <DependentUpon>201610241728069_CountryCode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

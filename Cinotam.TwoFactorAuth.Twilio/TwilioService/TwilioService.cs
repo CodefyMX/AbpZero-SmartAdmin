@@ -23,7 +23,8 @@ namespace Cinotam.TwoFactorAuth.Twilio.TwilioService
         }
         public Task SendMessage(IdentityMessage message)
         {
-            var result = _client.SendMessage(From, message.Destination, message.Body);
+            var destinationWithPlus = "+" + message.Destination;
+            var result = _client.SendMessage(From, destinationWithPlus, message.Body);
             Trace.TraceInformation(result.Status);
             return Task.FromResult(0);
         }

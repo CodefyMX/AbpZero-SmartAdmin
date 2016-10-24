@@ -3,10 +3,11 @@
     $(function () {
         $('#LoginButton').click(function (e) {
             e.preventDefault();
+            var url = $(this).attr("action");
             abp.ui.setBusy(
                 $('#LoginArea'),
                 abp.ajax({
-                    url: abp.appPath + 'Account/Login',
+                    url: url,
                     type: 'POST',
                     data: JSON.stringify({
                         tenancyName: $('#TenancyName').val(),

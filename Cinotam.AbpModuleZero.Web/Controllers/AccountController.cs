@@ -98,16 +98,16 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             if (user.TenantId != null) _userManager.RegisterTwoFactorProviders(user.TenantId.Value);
             else _userManager.RegisterTwoFactorProviders(null);
             await _userManager.GetValidTwoFactorProvidersAsync(input.UserId);
-            var result = await _userManager.VerifyTwoFactorTokenAsync(input.UserId, L(input.Provider), input.Token);
+            var result = await _userManager.VerifyTwoFactorTokenAsync(input.UserId, input.Provider, input.Token);
             if (!result) return Json(new { Error = L("InvalidCode") });
             await SignInAsync(user);
             return string.IsNullOrEmpty(input.ReturnUrl) ?
-                Json(new AjaxResponse(new { TargetUrl = input.ReturnUrl })) :
-                Json(new AjaxResponse(new { TargetUrl = "/Home/Index" }));
+                Json(new AjaxResponse { TargetUrl = input.ReturnUrl }) :
+                Json(new AjaxResponse { TargetUrl = "/Home/Index" });
         }
         [HttpPost]
         [DisableAuditing]
-        public async Task<ActionResult> Login(LoginViewModel loginModel, string returnUrl = "", string returnUrlHash = "")
+        public async Task<JsonResult> Login(LoginViewModel loginModel, string returnUrl = "", string returnUrlHash = "")
         {
 
             CheckModelState();
@@ -118,17 +118,21 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 loginModel.TenancyName
             );
 
+            //if (loginResult.User.TenantId != null) _userManager.RegisterTwoFactorProviders(loginResult.User.TenantId.Value);
+            //else _userManager.RegisterTwoFactorProviders(null);
+            //_userManager.SmsService = _twoFactorMessageService;
+
             CheckAndConfirmTwoFactorProviders(loginResult.User);
 
             if (await IsNecessaryToSendSms(loginResult.User))
             {
                 const string smsProvider = "Sms";
-                var code = await _userManager.GenerateTwoFactorTokenAsync(loginResult.User.Id, L(smsProvider));
+                var code = await _userManager.GenerateTwoFactorTokenAsync(loginResult.User.Id, smsProvider);
 
                 await _twoFactorMessageService.SendMessage(new IdentityMessage()
                 {
                     Body = code,
-                    Destination = "+52" + loginResult.User.PhoneNumber
+                    Destination = loginResult.User.CountryPhoneCode + loginResult.User.PhoneNumber
                 });
 
                 var url = Url.Action("PhoneNumberVerification",
@@ -140,7 +144,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                         phone = loginResult.User.PhoneNumber
                     });
 
-                return Json(url, JsonRequestBehavior.AllowGet);
+                return Json(new AjaxResponse { TargetUrl = url });
             }
             if (IsTwoFactorEnabled(loginResult.User))
             {
@@ -154,7 +158,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                         provider = emailProvider,
                         phone = loginResult.User.PhoneNumber
                     });
-                return Json(new AjaxResponse(new { TargetUrl = url }));
+                return Json(new AjaxResponse { TargetUrl = url });
             }
 
 
@@ -177,6 +181,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         {
             if (loginResultUser.TenantId != null) _userManager.RegisterTwoFactorProviders(loginResultUser.TenantId.Value);
             else _userManager.RegisterTwoFactorProviders(null);
+            _userManager.SmsService = _twoFactorMessageService;
         }
 
 

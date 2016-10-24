@@ -1205,6 +1205,7 @@
     <Content Include="Content\Templates\ArticlePage\TemplateConfig.json" />
     <Content Include="Scripts\contentTools\sandbox\build\content-tools.min.css.map" />
     <Content Include="Areas\SysAdmin\Views\Users\UserSpecialPermissions.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Users\_countryCodes.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

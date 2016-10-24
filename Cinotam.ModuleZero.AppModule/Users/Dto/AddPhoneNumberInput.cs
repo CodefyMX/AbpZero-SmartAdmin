@@ -7,5 +7,7 @@ namespace Cinotam.ModuleZero.AppModule.Users.Dto
         public long UserId { get; set; }
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+        public string CountryPhoneCode { get; set; }
+        public string CountryCode { get; set; }
     }
 }
