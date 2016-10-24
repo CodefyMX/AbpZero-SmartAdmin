@@ -17,6 +17,8 @@
             <form method="POST" id="confirmPhoneForm" class="smart-form">
                 @Html.HiddenFor(a => a.UserId)
                 @Html.HiddenFor(a => a.PhoneNumber)
+                @Html.HiddenFor(a=>a.CountryPhoneCode)
+                @Html.HiddenFor(a => a.CountryCode)
                 <header>
                     @L("ChangePhoneNumberForm")
                 </header>

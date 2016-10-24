@@ -176,9 +176,11 @@
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\Dto\NotificationsOutput.cs" />
     <Compile Include="Users\Dto\PhoneConfirmationInput.cs" />
+    <Compile Include="Users\Dto\PhoneConfirmationResult.cs" />
     <Compile Include="Users\Dto\ProhibitPermissionInput.cs" />
     <Compile Include="Roles\Dto\RoleInput.cs" />
     <Compile Include="Users\Dto\RoleSelectorInput.cs" />
+    <Compile Include="Users\EnumHelpers\TwoFactorRequestResults.cs" />
     <Compile Include="Users\Dto\UpdateProfilePictureInput.cs" />
     <Compile Include="Users\Dto\UserListDto.cs" />
     <Compile Include="Users\Dto\UserProfileDto.cs" />

@@ -22,11 +22,22 @@
                 <fieldset>
                     <section>
                         <div class="row">
+                            <label class="label col col-2">@L("CountryCode")</label>
+                            <div class="col col-10">
+                                <label class="select">
+                                    @{ Html.RenderPartial("_countryCodes"); }
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="row">
                             <label class="label col col-2">@L("PhoneNumber")</label>
                             <div class="col col-10">
                                 <label class="input">
                                     <i class="icon-append fa fa-phone"></i>
-                                    @Html.TextBoxFor(a => a.PhoneNumber, new { required = "required" })
+                                    @Html.TextBoxFor(a => a.PhoneNumber, new {required = "required"})
                                 </label>
                             </div>
                         </div>

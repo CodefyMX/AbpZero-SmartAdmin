@@ -2,7 +2,7 @@
 (function () {
     $(document)
         .ready(function () {
-            var $changeProfilePictureForm =$("#changeProfilePicture");
+            var $changeProfilePictureForm = $("#changeProfilePicture");
             var $createEditForm = $("#createEditForm");
             var $profilePictureElement = $('#profilePicture');
             var $notificationsElement = $("#myNotifications");
@@ -49,6 +49,17 @@
                 switch (event.detail.info.modalType) {
                     case "USER_PASSWORD_CHANGED":
                         abp.message.success(LSys("PasswordChanged"), LSys("Success"));
+                        break;
+                    case "PHONE_CHANGE_REQUEST":
+                        console.log(event);
+                        window.modalInstance.openInBody("/SysAdmin/Users/ConfirmPhone/?phoneNumber=" + event.detail.info.phoneNumber + "&userId=" + event.detail.info.userId + "&countryCode=" +event.detail.info.countryCode+"&countryPhoneCode="+event.detail.info.countryPhoneCode);
+                        break;
+                    case "PHONE_CONFIRMED":
+                        abp.notify.success(LSys("PhoneConfirmed"), LSys("Success"));
+                        window.modalInstance.close({});
+                        break;
+                    case "SAME_PHONE_NUMBER":
+                        abp.notify.success(LSys("PhoneAlreadyRegistered"), LSys("Success"));
                         break;
                     default:
                         console.log("Event unhandled");

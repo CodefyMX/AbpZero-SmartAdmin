@@ -10,6 +10,8 @@ using Cinotam.ModuleZero.AppModule.Roles;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
+using Cinotam.ModuleZero.AppModule.Users.EnumHelpers;
+using Cinotam.TwoFactorAuth.Contracts;
 using Shouldly;
 using System;
 using System.Collections;
@@ -308,6 +310,152 @@ namespace Cinotam.AbpModuleZero.Tests.Users
 
             });
         }
+
+
+        /*
+         Task<ChangePhoneNumberRequest> AddPhoneNumber(AddPhoneNumberInput input);
+        Task ConfirmPhone(PhoneConfirmationInput input);
+             
+             
+             */
+
+
+
+        /// <summary>
+        /// This only checks if the send message service works its not intended to check the sms delivery
+        /// </summary>
+        /// <returns></returns>
+        [Fact]
+        public async Task AddPhoneNumber_Test()
+        {
+            LoginAsHostAdmin();
+
+            await CreateFakeUser();
+
+            await UsingDbContextAsync(async context =>
+            {
+                var user = await GetFakeUser(context);
+
+                var result = await _userAppService.AddPhoneNumber(new AddPhoneNumberInput()
+                {
+                    CountryPhoneCode = "52",
+                    CountryCode = "MEX",
+                    PhoneNumber = "12345678",
+                    UserId = user.Id
+                });
+
+                result.ShouldNotBeNull();
+
+                result.ResultType.ShouldNotBeNull();
+
+                result.ResultType.ShouldBe(TwoFactorRequestResults.NewPhoneNumberRequest);
+
+                result.SendMessageResult.ShouldNotBeNull();
+
+                result.SendMessageResult.SendStatus.ShouldBe(SendStatus.Fail);
+
+
+                result.SendMessageResult.Properties.ShouldNotBeNull();
+
+                result.SendMessageResult.Properties["Error"].ShouldNotBeNull();
+
+                result.SendMessageResult.Properties["ErrorCode"].ShouldBeOfType(typeof(int));
+                result.SendMessageResult.Properties["ErrorCode"].ShouldBeAssignableTo<int>();
+                //21614 - Invalid phone number
+                //This way we know that the rest api is actually working
+                result.SendMessageResult.Properties["ErrorCode"].ShouldBe(21614);
+
+            });
+        }
+
+
+        #region RealPhoneTest
+
+        //Uncomment for testing
+        /*
+         
+             
+        [Fact]
+        public async Task AddPhoneNumber_RealNumber_Test()
+        {
+            LoginAsHostAdmin();
+
+            await CreateFakeUser();
+
+            await UsingDbContextAsync(async context =>
+            {
+                var user = await GetFakeUser(context);
+
+                var result = await _userAppService.AddPhoneNumber(new AddPhoneNumberInput()
+                {
+                    CountryPhoneCode = "52",
+                    CountryCode = "MEX",
+                    PhoneNumber = "Your phone number",
+                    UserId = user.Id
+                });
+
+                result.ShouldNotBeNull();
+
+                result.ResultType.ShouldNotBeNull();
+
+                result.ResultType.ShouldBe(TwoFactorRequestResults.NewPhoneNumberRequest);
+
+                result.SendMessageResult.ShouldNotBeNull();
+
+                //In twilio queued means SUCCESS BRA!
+
+                result.SendMessageResult.SendStatus.ShouldBe(SendStatus.Queued);
+
+
+                result.SendMessageResult.Properties.ShouldBeNull();
+
+            });
+        }
+             
+             
+             */
+
+
+
+
+
+
+
+
+        #endregion
+
+
+        [Fact]
+        public async Task ConfirmPhone_Test()
+        {
+            LoginAsHostAdmin();
+
+            await CreateFakeUser();
+
+            await UsingDbContextAsync(async context =>
+            {
+                var user = await GetFakeUser(context);
+
+
+                var result = await _userAppService.ConfirmPhone(new PhoneConfirmationInput()
+                {
+                    CountryCode = "MEX",
+                    CountryPhoneCode = "52",
+                    PhoneNumber = "12345678",
+                    Token = "Brah!",
+                    UserId = user.Id
+                });
+
+                result.ShouldNotBeNull();
+
+                result.ConfirmationCodes.ShouldNotBeNull();
+
+                result.ConfirmationCodes.ShouldBe(ConfirmationCodes.Error);
+
+                result.Message.ShouldNotBeNullOrEmpty();
+
+            });
+        }
         private async Task CreateFakeUser()
         {
             await _userAppService.CreateUser(
@@ -318,7 +466,8 @@ namespace Cinotam.AbpModuleZero.Tests.Users
                     Name = "John",
                     Surname = "Nash",
                     Password = "123qwe",
-                    UserName = "john.nash"
+                    UserName = "john.nash",
+                    IsTwoFactorEnabled = true,
                 });
         }
 
@@ -359,5 +508,23 @@ namespace Cinotam.AbpModuleZero.Tests.Users
                 });
             });
         }
+
+        #region userSnippet
+
+        /*
+            LoginAsHostAdmin();
+
+            await CreateFakeUser();
+
+            await UsingDbContextAsync(async context =>
+            {
+                var user = await GetFakeUser(context);
+                
+
+            });
+         
+         */
+
+        #endregion
     }
 }

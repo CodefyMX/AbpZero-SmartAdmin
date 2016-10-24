@@ -109,12 +109,14 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         }
 
         [AbpMvcAuthorize]
-        public ActionResult ConfirmPhone(string phoneNumber, long userId)
+        public ActionResult ConfirmPhone(string phoneNumber, long userId, string countryCode, string countryPhoneCode)
         {
             return View(new PhoneConfirmationInput()
             {
                 PhoneNumber = phoneNumber,
-                UserId = userId
+                UserId = userId,
+                CountryPhoneCode = countryPhoneCode,
+                CountryCode = countryCode
 
             });
         }

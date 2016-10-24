@@ -1,5 +1,5 @@
 ﻿(function () {
-    var modalType = "USER_PHONE_CHANGED";
+    var modalType = "PHONE_CONFIRMED";
     $(document)
         .ready(function () {
 
@@ -14,6 +14,7 @@
 
                     abp.ui.setBusy($form, _userAppService.confirmPhone(data).done(function (response) {
                         window.modalInstance.close({}, modalType);
+                         
                     }));
                 });
         });
