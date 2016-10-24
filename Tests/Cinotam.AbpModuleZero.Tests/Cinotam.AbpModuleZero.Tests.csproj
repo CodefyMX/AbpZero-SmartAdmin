@@ -272,6 +272,10 @@
       <Project>{57EE20C5-0930-41C0-9367-9A598B1B53D7}</Project>
       <Name>Cinotam.ModuleZero.Notifications</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Cinotam.TwoFactorAuth.Contracts\Cinotam.TwoFactorAuth.Contracts.csproj">
+      <Project>{645802DE-75FC-4403-B604-C2B650125073}</Project>
+      <Name>Cinotam.TwoFactorAuth.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

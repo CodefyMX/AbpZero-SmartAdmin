@@ -36,10 +36,19 @@ namespace Cinotam.TwoFactorAuth.Twilio.TwilioService
                     SendStatus = SendStatus.Queued
                 });
             }
+
+            if (result.RestException != null)
+            {
+                return Task.FromResult(new SendMessageResult()
+                {
+                    SendStatus = SendStatus.Fail,
+                    Properties = { ["Error"] = result.RestException.Message, ["ErrorCode"] = result.RestException.Code }
+                });
+            }
+
             return Task.FromResult(new SendMessageResult()
             {
-                SendStatus = SendStatus.Fail,
-                Properties = { ["Error"] = result.ErrorMessage, ["ErrorCode"] = result.ErrorCode }
+                SendStatus = SendStatus.Fail
             });
         }
 

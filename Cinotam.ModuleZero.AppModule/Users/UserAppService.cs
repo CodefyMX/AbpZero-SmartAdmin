@@ -440,20 +440,21 @@ namespace Cinotam.ModuleZero.AppModule.Users
             return TwoFactorRequestResults.NewPhoneNumberRequest;
         }
 
-        public async Task ConfirmPhone(PhoneConfirmationInput input)
+        public async Task<PhoneConfirmationResult> ConfirmPhone(PhoneConfirmationInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
             if (user.IsPhoneNumberConfirmed && user.PhoneNumber == input.PhoneNumber)
             {
-                return;
+                return new PhoneConfirmationResult() { ConfirmationCodes = ConfirmationCodes.Success, Message = LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "NumberAlreadyConfirmed") };
             }
             var codeIsCorrect = await UserManager.VerifyChangePhoneNumberTokenAsync(input.UserId, input.Token, input.PhoneNumber);
-            if (!codeIsCorrect) throw new UserFriendlyException(L("VerificationCodeInvalid"));
+            if (!codeIsCorrect) return new PhoneConfirmationResult() { ConfirmationCodes = ConfirmationCodes.Error, Message = LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "InvalidCode") };
             await UserManager.SetPhoneNumberAsync(input.UserId, input.PhoneNumber);
             user.IsPhoneNumberConfirmed = true;
             user.CountryPhoneCode = input.CountryPhoneCode;
             user.CountryCode = input.CountryCode;
             await SendChangedInfoMail(user);
+            return new PhoneConfirmationResult() { ConfirmationCodes = ConfirmationCodes.Success };
         }
 
         private async Task SendChangedInfoMail(User user)
