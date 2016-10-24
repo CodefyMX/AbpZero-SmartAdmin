@@ -114,6 +114,10 @@
       <Project>{4A1222DC-63B3-4BFD-B0D3-DB3EFAEBE853}</Project>
       <Name>Cinotam.FileManager.SharedTypes</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RestApiHelpers\RestApiHelpers.csproj">
+      <Project>{2BF3842A-1F5B-4915-BA17-CE369A213E64}</Project>
+      <Name>RestApiHelpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,18 +1,22 @@
 ﻿using Cinotam.TwoFactorAuth.Twilio.Credentials.Input;
-using System;
+using RestApiHelpers.Credentials;
 using Twilio;
 
 namespace Cinotam.TwoFactorAuth.Twilio.Credentials
 {
     public class TwilioSenderCredentials : ITwilioSenderCredentials
     {
+        private readonly ICredentialsService _credentialsService;
+
+        public TwilioSenderCredentials(ICredentialsService credentialsService)
+        {
+            _credentialsService = credentialsService;
+        }
+
         public TwilioRestClient GetClient(TwilioCredentials input)
         {
-            var apiKey = Environment.GetEnvironmentVariable(input.ApiKeyVarName, input.EnvTarget);
-            var apiSecret = Environment.GetEnvironmentVariable(input.ApiSecretVarName, input.EnvTarget);
-
-            return new TwilioRestClient(apiKey, apiSecret);
-
+            var credentials = _credentialsService.GetRestApiCredentials(input);
+            return new TwilioRestClient(credentials.Key, credentials.Secret);
         }
     }
 }

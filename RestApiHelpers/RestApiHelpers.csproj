@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4A6DBD95-1322-4491-AC84-31616266E035}</ProjectGuid>
+    <ProjectGuid>{2BF3842A-1F5B-4915-BA17-CE369A213E64}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Cinotam.TwoFactorAuth.Twilio</RootNamespace>
-    <AssemblyName>Cinotam.TwoFactorAuth.Twilio</AssemblyName>
+    <RootNamespace>RestApiHelpers</RootNamespace>
+    <AssemblyName>RestApiHelpers</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -34,15 +34,8 @@
     <Reference Include="Abp">
       <HintPath>..\packages\Abp.1.0.0.0\lib\net452\Abp.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,32 +43,15 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Twilio.Api, Version=3.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Twilio.4.7.2\lib\3.5\Twilio.Api.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Credentials\Input\TwilioCredentials.cs" />
-    <Compile Include="Credentials\ITwilioSenderCredentials.cs" />
-    <Compile Include="Credentials\TwilioSenderCredentials.cs" />
-    <Compile Include="TwilioService\ITwilioService.cs" />
-    <Compile Include="TwilioService\TwilioService.cs" />
-    <Compile Include="TwoFactorTwilioModule.cs" />
+    <Compile Include="Contracts\Output\RestApiCredentials.cs" />
+    <Compile Include="Credentials\CredentialsService.cs" />
+    <Compile Include="Credentials\ICredentialsService.cs" />
+    <Compile Include="Enums\Strategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cinotam.TwoFactorAuth.Contracts\Cinotam.TwoFactorAuth.Contracts.csproj">
-      <Project>{645802DE-75FC-4403-B604-C2B650125073}</Project>
-      <Name>Cinotam.TwoFactorAuth.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RestApiHelpers\RestApiHelpers.csproj">
-      <Project>{2BF3842A-1F5B-4915-BA17-CE369A213E64}</Project>
-      <Name>RestApiHelpers</Name>
-    </ProjectReference>
+    <Compile Include="Contracts\Input\RestApiCredentialsRequest.cs" />
+    <Compile Include="RestApiHelpersModule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

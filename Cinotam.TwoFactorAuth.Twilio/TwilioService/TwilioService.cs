@@ -2,6 +2,7 @@
 using Cinotam.TwoFactorAuth.Twilio.Credentials;
 using Cinotam.TwoFactorAuth.Twilio.Credentials.Input;
 using Microsoft.AspNet.Identity;
+using RestApiHelpers.Enums;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -18,9 +19,10 @@ namespace Cinotam.TwoFactorAuth.Twilio.TwilioService
         {
             _client = twilioSenderCredentials.GetClient(new TwilioCredentials()
             {
-                ApiKeyVarName = "TApiKey",
-                ApiSecretVarName = "TApiSecret",
-                EnvTarget = EnvironmentVariableTarget.User
+                ApiKeyName = "TApiKey",
+                SecretKeyName = "TApiSecret",
+                EnvTarget = EnvironmentVariableTarget.User,
+                Strategy = Strategy.EnvVar
             });
         }
         public Task<SendMessageResult> SendMessage(IdentityMessage message)
