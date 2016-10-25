@@ -23,10 +23,11 @@ namespace Cinotam.FileManager.Cloudinary.Cloudinary
 
             _instance = credentials.GetCloudinaryInstance(new CloudinaryIdentityObject()
             {
-                ApiSecretVarName = "SCloudinary",
-                ApiKeyVarName = "KCloudinary",
+                SecretKeyName = "SCloudinary",
+                ApiKeyName = "KCloudinary",
                 CloudName = "cinotamtest",
-                EnvTarget = EnvironmentVariableTarget.User
+                EnvTarget = EnvironmentVariableTarget.User,
+                Strategy = RestApiHelpers.Enums.Strategy.EnvVar
             });
         }
         public bool IsCdnService => true;

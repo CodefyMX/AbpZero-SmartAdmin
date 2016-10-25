@@ -1,11 +1,9 @@
 ﻿using Abp.Modules;
-using RestApiHelpers;
 using System.Reflection;
 
-namespace Cinotam.MailSender.SendGrid
+namespace RestApiHelpers
 {
-    [DependsOn(typeof(RestApiHelpersModule))]
-    public class CinotamMailSenderSendGrid : AbpModule
+    public class RestApiHelpersModule : AbpModule
     {
         public override void Initialize()
         {

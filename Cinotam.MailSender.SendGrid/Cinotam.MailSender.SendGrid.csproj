@@ -116,6 +116,10 @@
       <Project>{B79DC367-7C6B-4F59-989F-86599FBFAD06}</Project>
       <Name>CInotam.MailSender.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RestApiHelpers\RestApiHelpers.csproj">
+      <Project>{2BF3842A-1F5B-4915-BA17-CE369A213E64}</Project>
+      <Name>RestApiHelpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

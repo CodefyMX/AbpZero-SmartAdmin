@@ -1,11 +1,8 @@
-﻿using System;
+﻿using RestApiHelpers;
 
 namespace Cinotam.TwoFactorAuth.Twilio.Credentials.Input
 {
-    public class TwilioCredentials
+    public class TwilioCredentials : RestApiCredentialsRequest
     {
-        public string ApiKeyVarName { get; set; }
-        public string ApiSecretVarName { get; set; }
-        public EnvironmentVariableTarget EnvTarget { get; set; }
     }
 }
