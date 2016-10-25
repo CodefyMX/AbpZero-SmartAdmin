@@ -457,6 +457,17 @@ namespace Cinotam.ModuleZero.AppModule.Users
             return new PhoneConfirmationResult() { ConfirmationCodes = ConfirmationCodes.Success };
         }
 
+        public async Task<bool> EnableOrDisableTwoFactorAuthForUser(long userId)
+        {
+            var user = await UserManager.GetUserByIdAsync(userId);
+
+            var result = !user.IsTwoFactorEnabled;
+
+            await UserManager.SetTwoFactorEnabledAsync(userId, !user.IsTwoFactorEnabled);
+
+            return result;
+        }
+
         private async Task SendChangedInfoMail(User user)
         {
             var infoChangedMessage = string.Format(LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, "YourPhoneNumberHasChanged"), user.FullName, user.PhoneNumber, DateTime.Now);

@@ -36,5 +36,6 @@ namespace Cinotam.ModuleZero.AppModule.Users
         Task UnlockUser(long userId);
         Task<ChangePhoneNumberRequest> AddPhoneNumber(AddPhoneNumberInput input);
         Task<PhoneConfirmationResult> ConfirmPhone(PhoneConfirmationInput input);
+        Task<bool> EnableOrDisableTwoFactorAuthForUser(long userId);
     }
 }

@@ -85,15 +85,15 @@ var notificationService = (function () {
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "RoleAssigned":
-                    html = getHtmlForNotification(userNotification, badgeColors.blue, icons.roles, stateClass, "/SysAdmin/Users/UsersAndRolesList/?userId=", userNotification.notification.data.properties.userId);
+                    html = getHtmlForNotification(userNotification, badgeColors.blue, icons.roles, stateClass, "/SysAdmin/Users/UsersList/?userId=", userNotification.notification.data.properties.userId);
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "RoleCreated":
-                    html = getHtmlForNotification(userNotification, badgeColors.green, icons.roles, stateClass, "/SysAdmin/Users/UsersAndRolesList/", "");
+                    html = getHtmlForNotification(userNotification, badgeColors.green, icons.roles, stateClass, "/SysAdmin/Roles/RolesList/", "");
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "RoleDeleted":
-                    html = getHtmlForNotification(userNotification, badgeColors.yellow, icons.roles, stateClass, "/SysAdmin/Users/UsersAndRolesList/", "");
+                    html = getHtmlForNotification(userNotification, badgeColors.yellow, icons.roles, stateClass, "/SysAdmin/Roles/RolesList/", "");
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "LanguageCreated":
@@ -105,12 +105,12 @@ var notificationService = (function () {
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "UserCreated":
-                    html = getHtmlForNotification(userNotification, badgeColors.green, icons.user, stateClass, "/SysAdmin/Users/UsersAndRolesList/", "");
+                    html = getHtmlForNotification(userNotification, badgeColors.green, icons.user, stateClass, "/SysAdmin/Users/UsersList/", "");
                     setHtmlNotification($element, html, localizedText);
 
                     break;
                 case "UserDeleted":
-                    html = getHtmlForNotification(userNotification, badgeColors.yellow, icons.user, stateClass, "/SysAdmin/Users/UsersAndRolesList/", "");
+                    html = getHtmlForNotification(userNotification, badgeColors.yellow, icons.user, stateClass, "/SysAdmin/Users/UsersList/", "");
                     setHtmlNotification($element, html, localizedText);
 
                     break;

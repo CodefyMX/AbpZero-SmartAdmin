@@ -244,9 +244,25 @@
                                             }
                                             else
                                             {
-                                                <a data-modal href="@Url.Action("AddEditPhoneNumber")">@Model.PhoneNumber</a>
+                                                <a data-modal href="@Url.Action("AddEditPhoneNumber")">@Model.PhoneNumber</a> 
+                                            }
+                                            <br/>
+                                            <br/>
+                                            @if (Model.IsTwoFactorEnabled)
+                                            {
+                                                <button class="btn btn-xs btn-success js-toggle-twofactor" data-id="@Model.Id" type="button">@L("EnableTwoFactorAuth")</button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button"  data-id="@Model.Id" class="btn btn-xs btn-warning js-toggle-twofactor">@L("DisableTwoFactorAuth")</button>
                                             }
                                         </div>
+                                    </section>
+                                    <section>
+                                        <div class="col">
+                                            
+                                        </div>
+                                       
                                     </section>
                                 </fieldset>
 

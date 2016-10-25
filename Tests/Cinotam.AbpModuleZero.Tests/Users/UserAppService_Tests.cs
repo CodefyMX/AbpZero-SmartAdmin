@@ -456,6 +456,32 @@ namespace Cinotam.AbpModuleZero.Tests.Users
 
             });
         }
+
+
+        [Fact]
+        public async Task EnableOrDisableTwoFactorAuth_Test()
+        {
+            LoginAsHostAdmin();
+
+            await CreateFakeUser();
+
+            await UsingDbContextAsync(async context =>
+            {
+                var user = await GetFakeUser(context);
+
+                var result = await _userAppService.EnableOrDisableTwoFactorAuthForUser(user.Id);
+
+                result.ShouldNotBeNull();
+                result.ShouldBeAssignableTo<bool>();
+                result.ShouldBe(true);
+            });
+        }
+
+        private async Task<User> GetFakeUser(AbpModuleZeroDbContext context)
+        {
+            var johnNashUser = await context.Users.FirstOrDefaultAsync(u => u.UserName == "john.nash");
+            return johnNashUser;
+        }
         private async Task CreateFakeUser()
         {
             await _userAppService.CreateUser(
@@ -470,13 +496,6 @@ namespace Cinotam.AbpModuleZero.Tests.Users
                     IsTwoFactorEnabled = true,
                 });
         }
-
-        private async Task<User> GetFakeUser(AbpModuleZeroDbContext context)
-        {
-            var johnNashUser = await context.Users.FirstOrDefaultAsync(u => u.UserName == "john.nash");
-            return johnNashUser;
-        }
-
         private async Task CreateFakeRole()
         {
             await _roleAppService.CreateEditRole(new RoleInput()

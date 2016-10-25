@@ -54,6 +54,11 @@
                             <li>
 
 
+                                <a data-toggle="tab" href="#hr4"> <i class="fa fa-lg fa-user"></i> <span class="hidden-mobile hidden-tablet"> @L("Ui") </span></a>
+                            </li>
+                            <li>
+
+
                                 <a data-toggle="tab" href="#hr2"> <i class="fa fa-lg fa-gears"></i> <span class="hidden-mobile hidden-tablet"> @L("Other") </span></a>
                             </li>
                             
@@ -95,7 +100,7 @@
                                                            "Abp.Net.Mail.DefaultFromAddress",
                                                            "Abp.Net.Mail.DefaultFromDisplayName"
                                                          ],
-                                                         configurationName :"EmailConfigs"
+                                                         configurationName :""
                                                          }' data-url="@Url.Action("GetConfigurationsByName")"></div>
 
 
@@ -113,7 +118,7 @@
                                                             "WebSiteStatus",
                                                  "UseSmtp"
                                                             ],
-                                                            configurationName:"Other"
+                                                            configurationName:""
                                                          }' data-url="@Url.Action("GetConfigurationsByName")"></div>
 
 
@@ -133,7 +138,19 @@
                                                                   "Abp.Zero.UserManagement.UserLockOut.DefaultAccountLockoutSeconds",
                                                                   ""
                                                             ],
-                                                            configurationName:"Account"
+                                                            configurationName:""
+                                                         }' data-url="@Url.Action("GetConfigurationsByName")"></div>
+
+
+                                        </div>
+                                        <div class="tab-pane" id="hr4">
+
+                                            <div data-ajax-load data-parameters='{
+
+                                                            settingNames:[
+                                                                  "AdminPageImage"
+                                                            ],
+                                                            configurationName:""
                                                          }' data-url="@Url.Action("GetConfigurationsByName")"></div>
 
 
