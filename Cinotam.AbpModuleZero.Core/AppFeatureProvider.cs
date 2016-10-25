@@ -24,14 +24,14 @@ namespace Cinotam.AbpModuleZero
                 FeatureScopes.Edition, new CheckboxInputType());
 
             advancedReporting.CreateChildFeature("PrintData",
-                defaultValue: "false",
+                "false",
                 scope: FeatureScopes.Edition, inputType: new CheckboxInputType());
             advancedReporting.CreateChildFeature("PrintDataMaximum",
-                defaultValue: "false",
+                "false",
                 scope: FeatureScopes.Edition, inputType: new CheckboxInputType());
 
             advancedReporting.CreateChildFeature("MaxReportsPerMonth",
-                defaultValue: "100",
+                "100",
                 scope: FeatureScopes.Edition, inputType: new SingleLineStringInputType());
 
             advancedReporting.CreateChildFeature("HighCharts",
@@ -39,6 +39,7 @@ namespace Cinotam.AbpModuleZero
                 L("HighCharts"),
                 L("HighChartsDescription"),
                 FeatureScopes.Edition, new CheckboxInputType());
+
         }
         private static ILocalizableString L(string name)
         {

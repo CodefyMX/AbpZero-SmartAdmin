@@ -126,6 +126,7 @@
     <Compile Include="Localization\ILanguageTextsProvider.cs" />
     <Compile Include="Localization\LanguageTextsProvider.cs" />
     <Compile Include="Localization\LocalizationSources\Sources.cs" />
+    <Compile Include="MultiTenancy\CinotamTenant.cs" />
     <Compile Include="MultiTenancy\Tenant.cs" />
     <Compile Include="MultiTenancy\TenantManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

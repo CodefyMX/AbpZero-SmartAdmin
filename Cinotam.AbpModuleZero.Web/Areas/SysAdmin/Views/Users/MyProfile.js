@@ -7,6 +7,7 @@
             var $profilePictureElement = $('#profilePicture');
             var $notificationsElement = $("#myNotifications");
             var $wrapper = $("#imageWrapped");
+            var $btnTwoFactorToggle = $(".js-toggle-twofactor");
             var _userAppService = abp.services.app.user;
             $changeProfilePictureForm.on("submit",
                     function (e) {
@@ -16,6 +17,14 @@
                         var id = $("#Id").val();
                         abp.ui.setBusy($wrapper, upload(data, id));
                     });
+
+            $btnTwoFactorToggle.click(function() {
+                var id = $(this).data("id");
+
+                abp.ui.setBusy($createEditForm, _userAppService.enableOrDisableTwoFactorAuthForUser(id).done(function() {
+                    window.location.reload();
+                }));
+            });
             $createEditForm.on("submit", function (e) {
 
                 e.preventDefault();
