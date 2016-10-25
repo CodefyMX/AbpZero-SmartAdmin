@@ -13,6 +13,9 @@ namespace Cinotam.TwoFactorAuth.Twilio.TwilioService
     public class TwilioService : ITwilioService
     {
         private readonly TwilioRestClient _client;
+        /// <summary>
+        /// This also should be obtained in other way
+        /// </summary>
         private const string From = "+12016901854";
         private const string CorrectStatus = "queued";
         public TwilioService(ITwilioSenderCredentials twilioSenderCredentials)

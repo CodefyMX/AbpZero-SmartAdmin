@@ -1,23 +1,26 @@
 ﻿using Abp.Auditing;
 using Cinotam.FileManager.Cloudinary.Credentials.Helpers;
 using CloudinaryDotNet;
+using RestApiHelpers.Credentials;
 using System;
 
 namespace Cinotam.FileManager.Cloudinary.Credentials
 {
     public class Credentials : ICredentials
     {
+        private readonly ICredentialsService _credentialsService;
+        public Credentials(ICredentialsService credentialsService)
+        {
+            _credentialsService = credentialsService;
+        }
         [DisableAuditing]
         public virtual CloudinaryDotNet.Cloudinary GetCloudinaryInstance(CloudinaryIdentityObject credentials)
         {
-
-
-            var apiKey = Environment.GetEnvironmentVariable(credentials.ApiKeyVarName, credentials.EnvTarget);
-            var secret = Environment.GetEnvironmentVariable(credentials.ApiSecretVarName, credentials.EnvTarget);
+            var result = _credentialsService.GetRestApiCredentials(credentials);
             var account = new Account()
             {
-                ApiKey = apiKey,
-                ApiSecret = secret,
+                ApiKey = result.Key,
+                ApiSecret = result.Secret,
                 Cloud = credentials.CloudName
             };
 

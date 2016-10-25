@@ -3,6 +3,9 @@ using System;
 
 namespace Cinotam.MailSender.SendGrid.Credentials
 {
+    /// <summary>
+    /// Send grid only requires the api key
+    /// </summary>
     public class SendGridCredentialsService : ISendGridCredentialsService
     {
         public SendGridAPIClient GetInstance(string envVar, EnvironmentVariableTarget target)
