@@ -24,6 +24,8 @@ namespace Cinotam.AbpModuleZero.Tests.MultiTenancy
             tenancyName.ShouldBe("cinotam");
             var tenancyNameWithNoTw = _multiTenancyHelper.SetCurrentTenancy("http://cinotam.localhost.com");
             tenancyNameWithNoTw.ShouldBe("cinotam");
+            var tenancyNameWithHttps = _multiTenancyHelper.SetCurrentTenancy("https://cinotam.localhost.com");
+            tenancyNameWithHttps.ShouldBe("cinotam");
             var tenancyNameWithNoPr = _multiTenancyHelper.SetCurrentTenancy("www.cinotam.localhost.com");
             tenancyNameWithNoPr.ShouldBe("cinotam");
 
