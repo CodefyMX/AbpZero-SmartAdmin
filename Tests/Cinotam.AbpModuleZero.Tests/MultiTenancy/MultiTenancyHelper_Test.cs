@@ -29,6 +29,14 @@ namespace Cinotam.AbpModuleZero.Tests.MultiTenancy
             var tenancyNameWithNoPr = _multiTenancyHelper.SetCurrentTenancy("www.cinotam.localhost.com");
             tenancyNameWithNoPr.ShouldBe("cinotam");
 
+            var tenancyNameWithNoCrOne = _multiTenancyHelper.SetCurrentTenancy("https://www.cinotam.geronimo.host.wow.com");
+            tenancyNameWithNoCrOne.ShouldBe("cinotam");
+
+            var tenancyNameWithNoCrTwo = _multiTenancyHelper.SetCurrentTenancy("https://www.cinotam.com");
+            tenancyNameWithNoCrTwo.ShouldBe("cinotam");
+            var tenancyNameWithNoCrThree = _multiTenancyHelper.SetCurrentTenancy("https://www.cinotam.com.mx");
+            tenancyNameWithNoCrThree.ShouldBe("cinotam");
+
         }
     }
 }
