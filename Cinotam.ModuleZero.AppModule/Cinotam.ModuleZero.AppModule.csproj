@@ -142,6 +142,8 @@
     <Compile Include="MultiTenancy\Dto\SetTenantEditionInput.cs" />
     <Compile Include="MultiTenancy\Dto\TenantListDto.cs" />
     <Compile Include="MultiTenancy\ITenantAppService.cs" />
+    <Compile Include="MultiTenancy\MultiTenancyHelper\IMultiTenancyHelper.cs" />
+    <Compile Include="MultiTenancy\MultiTenancyHelper\MultiTenancyHelper.cs" />
     <Compile Include="MultiTenancy\TenantAppService.cs" />
     <Compile Include="Notifications\Dto\NotificationOutput.cs" />
     <Compile Include="Notifications\INotificationService.cs" />
