@@ -1,6 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
+    
+    
+    <!--Smart Admin-->
+
+
+    <!--Datatables-->
+    <text name="NoDataAvailableInTable" value="No data available in table" />
+    <text name="ShowingStartToEnd" value="Showing _START_ to _END_ of _TOTAL_ entries"/>
+    <text name="ZeroEntries" value="Showing 0 to 0 of 0 entries"/>
+    <text name="ShowEntries" value="Show _MENU_ entries"/>
+    <text name="Processing" value="Processing"/>
+    <text name="Search" value="Search" />
+    <text name="NoCoincidences" value="No Coincidences"/>
+    <text name="PaginateFirst" value="First"/>
+    <text name="PaginateBefore" value="Previous"/>
+    <text name="PaginateNext" value="Next"/>
+    <text name="PaginateLast" value="Last"/>
+
+    <!--//Datatables-->
+
+    <!--Widgets-->
+    <text name="Restore" value="Restore" />
+    <text name="Edit" value="Edit widget name"/>
+    <text name="ChangeTitle" value="Change title" />
+    <text name="Collapse" value="Collapse" />
+    <text name="FullScreen" value="Full Screen"/>
+    <text name="ResetStorage" value="Clear local storage"/>
+    <text name="ResetConfirm" value="Would you like to RESET all your saved widgets and clear LocalStorage?"/>
+    <text name="LogOutMessage" value="You can improve your security further after logging out by closing this opened browser"/>
+    <text name="Refresh" value="Refresh"/>
+    <!--//Widgets-->
+
+
+    <!--Notifications Header-->
+    <text name="PressToShowInfo" value="Click a button to show messages here"/>
+    <text name="PrivacyMessage" value="This blank page message helps protect your privacy, or you can show the first message here automatically." />
+    <!--//Notifications Header-->
+
+
+
     <text name="HomePage" value="Home page" />
     <text name="About" value="About" />
     <text name="WellcomeMessage" value="Welcome to AbpModuleZero!" />

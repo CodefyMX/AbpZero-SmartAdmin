@@ -2,7 +2,6 @@
 {
     public enum Sources
     {
-        SmartAdminSource,
         ModuleZeroSource
     }
 }

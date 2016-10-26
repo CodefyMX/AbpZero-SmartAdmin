@@ -42,9 +42,6 @@
                             </a> <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("Collapse")">
                                 <i class="fa fa-minus "></i>
                             </a>
-                            <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("FullScreen")">
-                                <i class="fa fa-expand "></i>
-                            </a>
                             @*<a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a>*@
                         </div>
                         <div class="widget-toolbar" role="menu">
@@ -81,15 +78,6 @@
 
                     <!-- widget div-->
                     <div role="content">
-
-                        <!-- widget edit box -->
-                        <div class="jarviswidget-editbox">
-                            <!-- This area used as dropdown edit box -->
-                            <input class="form-control" type="text">
-                            <span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
-
-                        </div>
-                        <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body no-padding">
                             @{Html.RenderPartial("_changeProfilePicture", Model);}
@@ -164,15 +152,6 @@
 
                     <!-- widget div-->
                     <div role="content">
-
-                        <!-- widget edit box -->
-                        <div class="jarviswidget-editbox">
-                            <!-- This area used as dropdown edit box -->
-                            <input class="form-control" type="text">
-                            <span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
-
-                        </div>
-                        <!-- end widget edit box -->
                         <!-- widget content -->
                         <div class="widget-body no-padding">
 
@@ -244,25 +223,25 @@
                                             }
                                             else
                                             {
-                                                <a data-modal href="@Url.Action("AddEditPhoneNumber")">@Model.PhoneNumber</a> 
+                                                <a data-modal href="@Url.Action("AddEditPhoneNumber")">@Model.PhoneNumber</a>
                                             }
-                                            <br/>
-                                            <br/>
+                                            <br />
+                                            <br />
                                             @if (Model.IsTwoFactorEnabled)
                                             {
                                                 <button class="btn btn-xs btn-success js-toggle-twofactor" data-id="@Model.Id" type="button">@L("EnableTwoFactorAuth")</button>
                                             }
                                             else
                                             {
-                                                <button type="button"  data-id="@Model.Id" class="btn btn-xs btn-warning js-toggle-twofactor">@L("DisableTwoFactorAuth")</button>
+                                                <button type="button" data-id="@Model.Id" class="btn btn-xs btn-warning js-toggle-twofactor">@L("DisableTwoFactorAuth")</button>
                                             }
                                         </div>
                                     </section>
                                     <section>
                                         <div class="col">
-                                            
+
                                         </div>
-                                       
+
                                     </section>
                                 </fieldset>
 
