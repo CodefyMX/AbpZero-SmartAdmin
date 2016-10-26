@@ -16,7 +16,7 @@ namespace Cinotam.AbpModuleZero.Migrations.SeedData
             InitialLanguages = new List<ApplicationLanguage>
             {
                 new ApplicationLanguage(null, "en", "English", "famfamfam-flag-gb"),
-                new ApplicationLanguage(null, "es", "Español", "famfamfam-flag-es")
+                //new ApplicationLanguage(null, "es", "Español", "famfamfam-flag-es")
             };
         }
 
