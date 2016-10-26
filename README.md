@@ -7,7 +7,7 @@ A basic and really low budget startup template implementation of ASP.NET Boilerp
 
 ###General
 
-**-This is a "under construction" proyect, it was created for my personal use, use it under your own risk**
+**-This is an "under construction" proyect, it was created for my personal use, use it under your own risk**
 
 **-The template uses smart admin (single license only). Purchase from: https://wrapbootstrap.com/theme/smartadmin-responsive-webapp-WB0573SK0 , its a really cool template and its not too expensive.**
 
