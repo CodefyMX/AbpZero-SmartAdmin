@@ -37,15 +37,6 @@ namespace Cinotam.AbpModuleZero
                         )
                     )
                 );
-
-            Configuration.Localization.Sources.Add(new DictionaryBasedLocalizationSource(
-                    AbpModuleZeroConsts.LocalizationSmartAdminSourceName,
-                    new XmlEmbeddedFileLocalizationDictionaryProvider(
-                        Assembly.GetExecutingAssembly(),
-                        "Cinotam.AbpModuleZero.Localization.SourceSmartAdmin"
-                        )
-                    ));
-
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
 
             Configuration.Authorization.Providers.Add<AbpModuleZeroAuthorizationProvider>();
