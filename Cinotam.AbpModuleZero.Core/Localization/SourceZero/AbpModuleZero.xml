@@ -288,10 +288,18 @@
     <!--Editions-->
     <text name="Editions" value="Editions"/>
     <text name="EditionsManagement" value="Edition management"/>
-    <text name="CreateEdition" value="CreateEdition"/>
+    <text name="CreateEdition" value="Create Edition"/>
     <text name="EditionProperties" value="Edition Properties"/>
     <text name="Features" value="Features"/>
     <text name="Price" value="Price"/>
     <text name="DeleteEdition" value="The edition will be deleted?"/>
+    
+    <!--Tenants-->
+    <text name="TenantManagement" value="Tenant management"/>
+    <text name="SetEdition" value="Set edition"/>
+    <text name="EnableFeatures" value="Enable features"/>
+    
+
+
   </texts>
 </localizationDictionary>
