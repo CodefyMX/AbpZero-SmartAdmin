@@ -24,10 +24,10 @@ namespace Cinotam.TwoFactorAuth.Twilio.TwilioService
             {
                 ApiKeyName = "TApiKey",
                 SecretKeyName = "TApiSecret",
-                EnvTarget = EnvironmentVariableTarget.User,
                 Strategy = Strategy.EnvVar
             });
         }
+
         public Task<SendMessageResult> SendMessage(IdentityMessage message)
         {
             var destinationWithPlus = "+" + message.Destination;

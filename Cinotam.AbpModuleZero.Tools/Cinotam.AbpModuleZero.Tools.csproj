@@ -46,6 +46,8 @@
     <Compile Include="DatatablesJsModels\GenericTypes\ReturnModel.cs" />
     <Compile Include="DatatablesJsModels\ReflectionHelpers\InputBuilder.cs" />
     <Compile Include="DatatablesJsModels\ReflectionHelpers\QueryableHelper.cs" />
+    <Compile Include="Extensions\HtmlCleaner.cs" />
+    <Compile Include="Extensions\Slugger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,8 +2,10 @@
 using Abp.UI;
 using Abp.Web.Mvc.Controllers;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
+using Cinotam.ModuleZero.AppModule.MultiTenancy.MultiTenancyHelper;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Controllers
 {
@@ -12,6 +14,8 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
     /// </summary>
     public abstract class AbpModuleZeroControllerBase : AbpController
     {
+        public IMultiTenancyHelper MultiTenancyHelper { get; set; }
+        private const string TenancyKey = "CurrentTenant";
         protected AbpModuleZeroControllerBase()
         {
             LocalizationSourceName = AbpModuleZeroConsts.LocalizationSourceName;
@@ -67,6 +71,16 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         protected object GetCookieValue(string name)
         {
             return HttpContext.Session?[name];
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var currentTenant = string.Empty;
+            if (Request.Url != null) currentTenant = MultiTenancyHelper.GetCurrentTenancyName(Request.Url.AbsoluteUri);
+
+            Session[TenancyKey] = currentTenant;
+
+            base.OnActionExecuting(filterContext);
         }
     }
 }

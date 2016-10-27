@@ -1,6 +1,6 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Extensions;
-using Cinotam.AbpModuleZero.Extensions;
+using Cinotam.AbpModuleZero.Tools.Extensions;
 using Cinotam.Cms.Contracts;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
 using System.Collections.Generic;

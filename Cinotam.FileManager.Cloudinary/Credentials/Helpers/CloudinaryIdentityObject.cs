@@ -1,5 +1,4 @@
-﻿using RestApiHelpers;
-using System;
+﻿using RestApiHelpers.Contracts.Input;
 
 namespace Cinotam.FileManager.Cloudinary.Credentials.Helpers
 {

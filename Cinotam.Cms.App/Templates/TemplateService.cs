@@ -1,6 +1,6 @@
 ﻿using Abp.UI;
-using Cinotam.AbpModuleZero.Extensions;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
+using Cinotam.AbpModuleZero.Tools.Extensions;
 using Cinotam.Cms.App.Pages.Dto;
 using Cinotam.Cms.App.Templates.Dto;
 using Cinotam.Cms.Core.Templates;

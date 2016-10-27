@@ -1,7 +1,7 @@
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Cinotam.AbpModuleZero.Authorization.Roles;
-using Cinotam.AbpModuleZero.Extensions;
+using Cinotam.AbpModuleZero.Tools.Extensions;
 using System.Collections.Generic;
 
 namespace Cinotam.ModuleZero.AppModule.Roles.Dto

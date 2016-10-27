@@ -203,9 +203,9 @@
       <Project>{3979F157-DEB0-4878-AB1D-4CEF6B5A1300}</Project>
       <Name>Cinotam.AbpModuleZero.EntityFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cinotam.AbpModuleZero.Extensions\Cinotam.AbpModuleZero.Extensions.csproj">
-      <Project>{4F061DBA-643A-4B5A-BCFA-6903E5D8B105}</Project>
-      <Name>Cinotam.AbpModuleZero.Extensions</Name>
+    <ProjectReference Include="..\Cinotam.AbpModuleZero.TenantHelpers\Cinotam.AbpModuleZero.TenantHelpers.csproj">
+      <Project>{91982CF1-F595-4DE9-A4ED-3B911204CCBC}</Project>
+      <Name>Cinotam.AbpModuleZero.TenantHelpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.AbpModuleZero.Tools\Cinotam.AbpModuleZero.Tools.csproj">
       <Project>{9AB7EE8A-5411-4D24-AE46-158065006F00}</Project>
