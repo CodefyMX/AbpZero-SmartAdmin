@@ -26,7 +26,6 @@ namespace Cinotam.FileManager.Cloudinary.Cloudinary
                 SecretKeyName = "SCloudinary",
                 ApiKeyName = "KCloudinary",
                 CloudName = "cinotamtest",
-                EnvTarget = EnvironmentVariableTarget.User,
                 Strategy = RestApiHelpers.Enums.Strategy.EnvVar
             });
         }

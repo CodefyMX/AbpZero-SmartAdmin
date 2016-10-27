@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Cinotam.AbpModuleZero.Extensions
+namespace Cinotam.AbpModuleZero.Tools.Extensions
 {
     public static class Slugger
     {

@@ -4,8 +4,9 @@ using Abp.Localization;
 using Abp.Threading;
 using Abp.UI;
 using Castle.Components.DictionaryAdapter;
-using Cinotam.AbpModuleZero.Extensions;
+using Cinotam.AbpModuleZero.TenantHelpers.TenantHelperAppServiceBase;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
+using Cinotam.AbpModuleZero.Tools.Extensions;
 using Cinotam.Cms.App.Events;
 using Cinotam.Cms.App.Pages.Dto;
 using Cinotam.Cms.Contracts;
@@ -39,6 +40,7 @@ namespace Cinotam.Cms.App.Pages
         private readonly ITemplateManager _templateManager;
         private readonly IApplicationLanguageManager _applicationLanguageManager;
         private readonly IFileStoreManager _fileStoreManager;
+        private readonly ITenantHelperService _tenantHelperService;
         public IEventBus EventBus { get; set; }
         #endregion
 
@@ -50,7 +52,7 @@ namespace Cinotam.Cms.App.Pages
             IApplicationLanguageManager applicationLanguageManager,
             ITemplateManager templateManager,
             IRepository<Category> categoryRepository,
-            IRepository<DatabaseEntities.Pages.Entities.Chunk> chunkRepository, IFileStoreManager fileStoreManager)
+            IRepository<DatabaseEntities.Pages.Entities.Chunk> chunkRepository, IFileStoreManager fileStoreManager, ITenantHelperService tenantHelperService)
         {
             _pageManager = pageManager;
             _pageRepository = pageRepository;
@@ -60,6 +62,7 @@ namespace Cinotam.Cms.App.Pages
             _categoryRepository = categoryRepository;
             _chunkRepository = chunkRepository;
             _fileStoreManager = fileStoreManager;
+            _tenantHelperService = tenantHelperService;
             EventBus = NullEventBus.Instance;
         }
 
@@ -370,9 +373,9 @@ namespace Cinotam.Cms.App.Pages
             };
         }
 
-
         public async Task<PageViewOutput> GetPageViewBySlug(string slug)
         {
+            _tenantHelperService.SetCurrentTenantFromUrl();
             var content = _contentRepository.FirstOrDefault(a => a.Url.ToUpper().Equals(slug.ToUpper()) && a.Page.Active);
             if (content == null) return null;
             var template = await _templateManager.GetTemplateContentAsync(content.TemplateUniqueName);

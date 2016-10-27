@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cinotam.ModuleZero.AppModule.MultiTenancy.MultiTenancyHelper;
+﻿using Cinotam.ModuleZero.AppModule.MultiTenancy.MultiTenancyHelper;
 using Shouldly;
 using Xunit;
 
@@ -36,6 +31,12 @@ namespace Cinotam.AbpModuleZero.Tests.MultiTenancy
             tenancyNameWithNoCrTwo.ShouldBe("cinotam");
             var tenancyNameWithNoCrThree = _multiTenancyHelper.SetCurrentTenancy("https://www.cinotam.com.mx");
             tenancyNameWithNoCrThree.ShouldBe("cinotam");
+
+
+            var testLocal = _multiTenancyHelper.SetCurrentTenancy("cinotam.localhost");
+            testLocal.ShouldBe("cinotam");
+            var testLocalAlt = _multiTenancyHelper.SetCurrentTenancy("cinotam.localhost:61815/Page/main-frame-cpu-dual-core");
+            testLocalAlt.ShouldBe("cinotam");
 
         }
     }

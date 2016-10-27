@@ -30,17 +30,20 @@ namespace Cinotam.ModuleZero.AppModule
         protected CinotamModuleZeroAppServiceBase()
         {
             LocalizationSourceName = AbpModuleZeroConsts.LocalizationSourceName;
+            //This is a no no -> SetCurrentTenant();
         }
 
         public async Task<string> GetLastEditedForName(long? lastEditedForId)
         {
             return lastEditedForId != null ? (await UserManager.GetUserByIdAsync(lastEditedForId.Value)).FullName : "";
         }
+
         private static IQueryable<T> GetOrderedQuery<T>(IQueryable<T> elements, RequestModel<object> requestModel)
         {
-            return requestModel.PropOrd.ToUpper() == "ASC" ? elements.OrderBy(requestModel.PropToSort) : elements.OrderByDescending(requestModel.PropToSort);
+            return requestModel.PropOrd.ToUpper() == "ASC"
+                ? elements.OrderBy(requestModel.PropToSort)
+                : elements.OrderByDescending(requestModel.PropToSort);
         }
-
         /// <summary>
         /// Generates a readyforuse datatable.js model
         /// </summary>

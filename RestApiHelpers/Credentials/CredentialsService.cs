@@ -1,4 +1,5 @@
-﻿using RestApiHelpers.Contracts.Output;
+﻿using RestApiHelpers.Contracts.Input;
+using RestApiHelpers.Contracts.Output;
 using RestApiHelpers.Enums;
 using System;
 using System.Configuration;
