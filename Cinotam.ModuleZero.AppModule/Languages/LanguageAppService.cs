@@ -5,7 +5,6 @@ using Abp.Localization;
 using Abp.Runtime.Caching;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Localization;
-using Cinotam.AbpModuleZero.TenantHelpers.TenantHelperAppServiceBase;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Languages.Dto;
 using Cinotam.ModuleZero.Notifications.LanguagesAppNotifications.Sender;
@@ -27,14 +26,13 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         private readonly IRepository<ApplicationLanguage> _languagesRepository;
         private readonly ILanguageTextsProvider _languageTextsProvider;
         private readonly ICacheManager _cacheManager;
-        private readonly ITenantHelperService _tenantHelperService;
         public const string DefaultLanguage = "en";
         private readonly ILanguagesAppNotificationSender _languagesAppNotificationSender;
         public LanguageAppService(IApplicationLanguageManager applicationLanguageManager,
             IRepository<ApplicationLanguageText, long> languageTextsRepository,
             IRepository<ApplicationLanguage> languagesRepository,
             ILanguageTextsProvider languageTextsProvider,
-            IApplicationLanguageTextManager applicationLanguageTextManager, ILanguagesAppNotificationSender languagesAppNotificationSender, ICacheManager cacheManager, ITenantHelperService tenantHelperService)
+            IApplicationLanguageTextManager applicationLanguageTextManager, ILanguagesAppNotificationSender languagesAppNotificationSender, ICacheManager cacheManager)
         {
             _applicationLanguageManager = applicationLanguageManager;
             _languageTextsRepository = languageTextsRepository;
@@ -43,7 +41,6 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             _applicationLanguageTextManager = applicationLanguageTextManager;
             _languagesAppNotificationSender = languagesAppNotificationSender;
             _cacheManager = cacheManager;
-            _tenantHelperService = tenantHelperService;
         }
         /// <summary>
         /// Adds a new available language to the app
@@ -168,17 +165,18 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         [AbpAllowAnonymous]
         public IReadOnlyList<LanguageInfo> GetLanguages()
         {
-            _tenantHelperService.SetCurrentTenantFromUrl();
+            //_tenantHelperService.SetCurrentTenantFromUrl();
 
-            var languagesI = new List<LanguageInfo>();
+            //var languagesI = new List<LanguageInfo>();
 
-            var languages = _languagesRepository.GetAllList();
+            //var languages = _languagesRepository.GetAllList();
 
-            foreach (var applicationLanguage in languages)
-            {
-                languagesI.Add(new LanguageInfo(applicationLanguage.Name, applicationLanguage.DisplayName, applicationLanguage.Icon));
-            }
-            return languagesI;
+            //foreach (var applicationLanguage in languages)
+            //{
+            //    languagesI.Add(new LanguageInfo(applicationLanguage.Name, applicationLanguage.DisplayName, applicationLanguage.Icon));
+            //}
+            //return languagesI;
+            throw new NotImplementedException();
         }
 
         private Task ClearCache(string cacheName)

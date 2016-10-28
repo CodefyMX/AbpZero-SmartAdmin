@@ -58,7 +58,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             var model = new LanguageSelectionViewModel
             {
                 CurrentLanguage = _languageManager.CurrentLanguage,
-                Languages = _languageAppService.GetLanguages()
+                Languages = _languageManager.GetLanguages()
             };
 
             return PartialView("_LanguageSelection", model);
