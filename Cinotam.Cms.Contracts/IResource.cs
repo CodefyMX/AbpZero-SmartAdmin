@@ -1,6 +1,8 @@
-﻿namespace Cinotam.Cms.Contracts
+﻿using Abp.Domain.Entities;
+
+namespace Cinotam.Cms.Contracts
 {
-    public interface IResource
+    public interface IResource : IMayHaveTenant
     {
         string ResourceType { get; set; }
         string ResourceUrl { get; set; }

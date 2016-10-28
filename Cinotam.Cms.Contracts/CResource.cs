@@ -7,5 +7,6 @@
         public ITemplateContent Template { get; set; }
         public string Description { get; set; }
         public bool IsCdn { get; set; }
+        public int? TenantId { get; set; }
     }
 }

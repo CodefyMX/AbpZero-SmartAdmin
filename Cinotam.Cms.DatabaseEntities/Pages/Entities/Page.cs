@@ -1,11 +1,12 @@
-﻿using Abp.Domain.Entities.Auditing;
+﻿using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using Cinotam.Cms.DatabaseEntities.CustomFilters;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
 {
-    public class Page : FullAuditedEntity, IMayHaveCategory, IMaybeInMenu
+    public class Page : FullAuditedEntity, IMayHaveCategory, IMaybeInMenu, IMayHaveTenant
     {
         public string Name { get; set; }
         public virtual ICollection<Content> Contents { get; set; }
@@ -20,5 +21,6 @@ namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
         public bool IncludeInMenu { get; set; }
         public bool ShowBreadCrum { get; set; }
         public bool BreadCrumInContainer { get; set; }
+        public int? TenantId { get; set; }
     }
 }

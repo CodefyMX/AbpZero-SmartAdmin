@@ -28,6 +28,11 @@ namespace Cinotam.Cms.FileSystemContentProvider.Provider
             throw new NotImplementedException();
         }
 
+        public Task AddChunks(List<CChunk> inputs, int? tenantId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task AddChunks(List<CChunk> inputs)
         {
             throw new NotImplementedException();

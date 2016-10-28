@@ -53,7 +53,8 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
                     Url = input.Url,
                     TemplateUniqueName = input.TemplateUniqueName,
                     IsPartial = input.IsPartial,
-                    PreviewImage = input.PreviewImage
+                    PreviewImage = input.PreviewImage,
+                    TenantId = input.TenantId
                 };
             }
 
@@ -90,7 +91,7 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
             return page;
         }
 
-        public async Task AddChunks(List<CChunk> inputs)
+        public async Task AddChunks(List<CChunk> inputs, int? tenantId)
         {
             if (!inputs.IsNullOrEmpty())
             {
@@ -104,7 +105,8 @@ namespace Cinotam.Cms.DatabaseContentProvider.Provider
                             Value = input.Value,
                             Key = input.Key,
                             ContentObj = input.PageContent as Content,
-                            Order = input.Order
+                            Order = input.Order,
+                            TenantId = tenantId
                         });
                     }
                     else

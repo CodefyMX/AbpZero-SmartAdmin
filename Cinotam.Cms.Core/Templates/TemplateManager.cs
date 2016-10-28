@@ -24,7 +24,7 @@ namespace Cinotam.Cms.Core.Templates
                         IsPartial = templateContent.IsPartial,
                         Name = templateContent.Name,
                         Resources = templateContent.Resources,
-                        IsDatabaseTemplate = provider.IsDatabase
+                        IsDatabaseTemplate = provider.IsDatabase,
                     };
                 }
                 catch (Exception)

@@ -162,6 +162,22 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             }
 
         }
+        [AbpAllowAnonymous]
+        public IReadOnlyList<LanguageInfo> GetLanguages()
+        {
+            //_tenantHelperService.SetCurrentTenantFromUrl();
+
+            //var languagesI = new List<LanguageInfo>();
+
+            //var languages = _languagesRepository.GetAllList();
+
+            //foreach (var applicationLanguage in languages)
+            //{
+            //    languagesI.Add(new LanguageInfo(applicationLanguage.Name, applicationLanguage.DisplayName, applicationLanguage.Icon));
+            //}
+            //return languagesI;
+            throw new NotImplementedException();
+        }
 
         private Task ClearCache(string cacheName)
         {

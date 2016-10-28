@@ -37,6 +37,11 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
 
         public async Task<AuditLogOutput> GetLatestAuditLogOutput()
         {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+            }
             var list = new List<AuditLogDto>();
             var logs = _auditLogRepository.GetAll().OrderByDescending(a => a.ExecutionTime).Take(10).ToList();
             foreach (var auditLog in logs)
@@ -59,6 +64,11 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
 
         public async Task<ReturnModel<AuditLogDto>> GetAuditLogTable(RequestModel<object> input)
         {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+            }
             int count;
             var query = _auditLogRepository.GetAll();
 
@@ -88,6 +98,11 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
 
         public async Task<AuditLogDto> GetAuditLogDetails(long id)
         {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+            }
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete))
             {
                 var auditLog = await _auditLogRepository.FirstOrDefaultAsync(a => a.Id == id);
@@ -103,6 +118,11 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
         [WrapResult(false)]
         public AuditLogTimeOutput GetAuditLogTimes(int? count)
         {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+            }
             var data = _auditLogRepository.GetAll().OrderByDescending(a => a.ExecutionTime);
             var listOfData = new List<AuditLogTimeOutputDto>();
             var query = from ex in data

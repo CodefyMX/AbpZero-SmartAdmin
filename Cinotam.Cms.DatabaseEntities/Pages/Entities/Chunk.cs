@@ -20,5 +20,6 @@ namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
         [ForeignKey("ContentId")]
         public virtual Content ContentObj { get { return _content; } set { _content = value; } }
         public virtual int ContentId { get; set; }
+        public int? TenantId { get; set; }
     }
 }

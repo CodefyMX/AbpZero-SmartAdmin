@@ -22,6 +22,21 @@ namespace Cinotam.AbpModuleZero.TenantHelpers.TenantHelperAppServiceBase
         public void SetCurrentTenantFromUrl()
         {
 
+            if (CurrentUnitOfWork == null)
+            {
+                using (UnitOfWorkManager.Begin())
+                {
+                    SetTenantId();
+                }
+            }
+            else
+            {
+                SetTenantId();
+            }
+        }
+
+        private void SetTenantId()
+        {
             //Check if there is a active session
             if (AbpSession.TenantId.HasValue) return; //We dont need to switch the tenant
 
@@ -35,6 +50,7 @@ namespace Cinotam.AbpModuleZero.TenantHelpers.TenantHelperAppServiceBase
 
 
             CurrentUnitOfWork.SetTenantId(tenant.Id);
+
         }
 
         public bool IsAValidTenancyName(string tenancyName)

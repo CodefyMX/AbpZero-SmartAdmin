@@ -11,5 +11,6 @@ namespace Cinotam.Cms.Core.Templates.Outputs
         public bool IsPartial { get; set; }
         public bool IsDatabaseTemplate { get; set; }
         public ICollection<IResource> Resources { get; set; }
+        public int? TenantId { get; set; }
     }
 }

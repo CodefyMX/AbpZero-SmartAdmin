@@ -12,5 +12,6 @@ namespace Cinotam.Cms.Contracts
         public bool IsPartial { get; set; }
         public ICollection<IResource> Resources { get { return _resources.ConvertAll(r => (IResource)r); } }
         public ICollection<CResource> ResourcesObj { get { return _resources; } set { _resources = value.ToList(); } }
+        public int? TenantId { get; set; }
     }
 }
