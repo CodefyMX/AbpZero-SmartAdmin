@@ -19,12 +19,19 @@
 
                         @if (Model.IsMultiTenancyEnabled)
                         {
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                    <input type="text" class="form-control" id="TenancyName" placeholder="@L("TenancyName")" required maxlength="@Cinotam.AbpModuleZero.MultiTenancy.Tenant.MaxTenancyNameLength">
-                                    <span class="text-muted">@L("CanBeEmptyToLoginAsHost")</span>
+                            if (!Model.IsAValidTenancyNameInUrl)
+                            {
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <input type="text" class="form-control" id="TenancyName" placeholder="@L("TenancyName")" required maxlength="@Cinotam.AbpModuleZero.MultiTenancy.Tenant.MaxTenancyNameLength">
+                                        <span class="text-muted">@L("CanBeEmptyToLoginAsHost")</span>
+                                    </div>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <input type="hidden" id="TenancyName" value=@Model.TenancyName>
+                            }
                         }
                         else
                         {

@@ -75,7 +75,9 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 new LoginFormViewModel
                 {
                     ReturnUrl = returnUrl,
-                    IsMultiTenancyEnabled = _multiTenancyConfig.IsEnabled
+                    IsMultiTenancyEnabled = _multiTenancyConfig.IsEnabled,
+                    IsAValidTenancyNameInUrl = UrlHasAValidTenancyName,
+                    TenancyName = UrlHasAValidTenancyName ? GetTenancyNameFromSession : string.Empty
                 });
         }
         public ActionResult PhoneNumberVerification(string returnUrl, long userId, string provider)
