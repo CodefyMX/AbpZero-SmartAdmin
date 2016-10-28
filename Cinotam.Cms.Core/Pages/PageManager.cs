@@ -37,7 +37,7 @@ namespace Cinotam.Cms.Core.Pages
             foreach (var templateContentProvider in CinotamCmsCore.PageContentProviders.Where(a => a.IsFileSystemService == useFileSystem))
             {
                 await templateContentProvider.SaveContent(content);
-                await templateContentProvider.AddChunks(chunks);
+                await templateContentProvider.AddChunks(chunks, content.TenantId);
             }
         }
 

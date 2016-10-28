@@ -15,7 +15,7 @@ namespace Cinotam.Cms.Core.Category
             _categoryContentRepository = categoryContentRepository;
         }
 
-        public async Task<int> AddEditCategory(string categoryName, string inputCategoryDisplayName)
+        public async Task<int> AddEditCategory(string categoryName, string inputCategoryDisplayName, int tenantId)
         {
             var categoryWithSameName = _categoryRepository.FirstOrDefault(a => a.Name.Equals(categoryName));
             if (categoryWithSameName != null)
@@ -27,7 +27,8 @@ namespace Cinotam.Cms.Core.Category
             var id = await _categoryRepository.InsertOrUpdateAndGetIdAsync(new DatabaseEntities.Category.Entities.Category()
             {
                 Name = categoryName,
-                DisplayName = inputCategoryDisplayName
+                DisplayName = inputCategoryDisplayName,
+                TenantId = tenantId
             });
             return id;
         }

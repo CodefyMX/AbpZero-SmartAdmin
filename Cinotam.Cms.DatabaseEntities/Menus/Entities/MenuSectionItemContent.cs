@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Entities.Auditing;
+﻿using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using Cinotam.Cms.DatabaseEntities.CustomFilters;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using System;
@@ -6,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinotam.Cms.DatabaseEntities.Menus.Entities
 {
-    public class MenuSectionItemContent : FullAuditedEntity, IHasSectionItem, ILocalizable, IMayHavePage
+    public class MenuSectionItemContent : FullAuditedEntity, IHasSectionItem, ILocalizable, IMayHavePage, IMustHaveTenant
     {
         protected MenuSectionItemContent()
         {
@@ -34,5 +35,7 @@ namespace Cinotam.Cms.DatabaseEntities.Menus.Entities
                 DisplayText = displayText
             };
         }
+
+        public int TenantId { get; set; }
     }
 }

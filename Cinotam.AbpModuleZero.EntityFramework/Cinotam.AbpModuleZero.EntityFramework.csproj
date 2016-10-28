@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201610241728069_CountryCode.Designer.cs">
       <DependentUpon>201610241728069_CountryCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610282046513_MayHaveTenantForCmsElements.cs" />
+    <Compile Include="Migrations\201610282046513_MayHaveTenantForCmsElements.Designer.cs">
+      <DependentUpon>201610282046513_MayHaveTenantForCmsElements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -336,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610241728069_CountryCode.resx">
       <DependentUpon>201610241728069_CountryCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610282046513_MayHaveTenantForCmsElements.resx">
+      <DependentUpon>201610282046513_MayHaveTenantForCmsElements.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

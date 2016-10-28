@@ -27,5 +27,6 @@ namespace Cinotam.Cms.DatabaseEntities.Templates.Entities
             }
         }
 
+        public int? TenantId { get; set; }
     }
 }

@@ -1,11 +1,12 @@
-﻿using Abp.Domain.Entities.Auditing;
+﻿using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using Cinotam.Cms.DatabaseEntities.CustomFilters;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinotam.Cms.DatabaseEntities.Category.Entities
 {
-    public class CategoryContent : FullAuditedEntity, IMustHaveCategory, ILocalizable
+    public class CategoryContent : FullAuditedEntity, IMustHaveCategory, ILocalizable, IMustHaveTenant
     {
         protected CategoryContent()
         {
@@ -27,5 +28,7 @@ namespace Cinotam.Cms.DatabaseEntities.Category.Entities
                 DisplayText = displayText
             };
         }
+
+        public int TenantId { get; set; }
     }
 }

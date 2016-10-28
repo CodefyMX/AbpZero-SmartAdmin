@@ -6,7 +6,7 @@ namespace Cinotam.Cms.Core.Category
 {
     public interface ICategoryManager : IDomainService
     {
-        Task<int> AddEditCategory(string categoryName, string inputCategoryDisplayName);
+        Task<int> AddEditCategory(string categoryName, string inputCategoryDisplayName, int tenantId);
         Task<int> AddEditCategoryContent(CategoryContent categoryContent);
     }
 }

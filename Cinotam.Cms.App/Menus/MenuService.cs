@@ -154,8 +154,6 @@ namespace Cinotam.Cms.App.Menus
                 IsActive = menu.IsActive
             };
         }
-
-
         public Task<int> AddMenuSection(MenuInput input)
         {
             throw new NotImplementedException();

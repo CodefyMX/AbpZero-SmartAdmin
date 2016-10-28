@@ -16,5 +16,6 @@ namespace Cinotam.Cms.DatabaseEntities.Templates.Entities
         public string Description { get; set; }
         public bool IsCdn { get; set; }
         public virtual int TemplateId { get; set; }
+        public int? TenantId { get; set; }
     }
 }

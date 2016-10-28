@@ -1,6 +1,8 @@
 ﻿using Abp.Application.Services;
+using Abp.Localization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Languages.Dto;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.Languages
@@ -20,5 +22,6 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
         Task UpdateLanguageFromXml(string languageName, string source, bool updateExistingValues = false);
 
+        IReadOnlyList<LanguageInfo> GetLanguages();
     }
 }

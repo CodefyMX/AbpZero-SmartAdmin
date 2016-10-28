@@ -3,9 +3,11 @@ using Abp.Configuration.Startup;
 using Abp.Localization;
 using Abp.Runtime.Session;
 using Abp.Threading;
+using Cinotam.AbpModuleZero.TenantHelpers.TenantHelperAppServiceBase;
 using Cinotam.AbpModuleZero.Web.Models.Layout;
 using Cinotam.Cms.App.Menus;
 using Cinotam.Cms.App.Pages;
+using Cinotam.ModuleZero.AppModule.Languages;
 using Cinotam.ModuleZero.AppModule.Sessions;
 using System.Web.Mvc;
 
@@ -14,25 +16,28 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
     public class LayoutController : AbpModuleZeroControllerBase
     {
         private readonly IUserNavigationManager _userNavigationManager;
-        private readonly ILocalizationManager _localizationManager;
         private readonly ISessionAppService _sessionAppService;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
-        private readonly IPagesService _pagesService;
-        private ILanguageManager _languageManager;
+        private readonly ILanguageManager _languageManager;
         private readonly IMenuService _menuService;
+        private readonly ILanguageAppService _languageAppService;
         public LayoutController(
             IUserNavigationManager userNavigationManager,
             ILocalizationManager localizationManager,
             ISessionAppService sessionAppService,
-            IMultiTenancyConfig multiTenancyConfig, IPagesService pagesService, IMenuService menuService, ILanguageManager languageManager)
+            IMultiTenancyConfig multiTenancyConfig,
+            IPagesService pagesService,
+            IMenuService menuService,
+            ILanguageManager languageManager,
+            ITenantHelperService multiTenancyHelper,
+            ILanguageAppService languageAppService)
         {
             _userNavigationManager = userNavigationManager;
-            _localizationManager = localizationManager;
             _sessionAppService = sessionAppService;
             _multiTenancyConfig = multiTenancyConfig;
-            _pagesService = pagesService;
             _menuService = menuService;
             _languageManager = languageManager;
+            _languageAppService = languageAppService;
         }
 
         [ChildActionOnly]
@@ -53,7 +58,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             var model = new LanguageSelectionViewModel
             {
                 CurrentLanguage = _languageManager.CurrentLanguage,
-                Languages = _languageManager.GetLanguages()
+                Languages = _languageAppService.GetLanguages()
             };
 
             return PartialView("_LanguageSelection", model);

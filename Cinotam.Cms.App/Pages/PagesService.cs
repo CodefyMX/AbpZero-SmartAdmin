@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.Events.Bus;
 using Abp.Localization;
+using Abp.Runtime.Session;
 using Abp.Threading;
 using Abp.UI;
 using Castle.Components.DictionaryAdapter;
@@ -42,6 +43,7 @@ namespace Cinotam.Cms.App.Pages
         private readonly IFileStoreManager _fileStoreManager;
         private readonly ITenantHelperService _tenantHelperService;
         public IEventBus EventBus { get; set; }
+
         #endregion
 
         #region Ctor
@@ -52,7 +54,8 @@ namespace Cinotam.Cms.App.Pages
             IApplicationLanguageManager applicationLanguageManager,
             ITemplateManager templateManager,
             IRepository<Category> categoryRepository,
-            IRepository<DatabaseEntities.Pages.Entities.Chunk> chunkRepository, IFileStoreManager fileStoreManager, ITenantHelperService tenantHelperService)
+            IRepository<DatabaseEntities.Pages.Entities.Chunk> chunkRepository, IFileStoreManager fileStoreManager,
+            ITenantHelperService tenantHelperService)
         {
             _pageManager = pageManager;
             _pageRepository = pageRepository;
@@ -73,15 +76,18 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task CreateEditPage(PageInput input)
         {
+
             await _pageManager.SaveOrEditPageAsync(new Page()
             {
                 Active = false,
                 Name = input.Title.Sluggify(),
                 ParentPage = input.ParentId,
-                TemplateName = input.TemplateName
+                TemplateName = input.TemplateName,
+                TenantId = AbpSession.GetTenantId()
             });
-
         }
+
+
 
         public async Task SavePageContent(PageContentInput input)
         {
@@ -98,6 +104,7 @@ namespace Cinotam.Cms.App.Pages
                     Value = inputChunk.Value,
                     Key = inputChunk.Key,
                     Order = inputChunk.Order,
+
                 });
             }
             pageContent.PreviewImage = file.WasStoredInCloud ? file.Url : file.VirtualPath;
@@ -110,17 +117,6 @@ namespace Cinotam.Cms.App.Pages
 
             page.Active = !page.Active;
             _pageRepository.Update(page);
-            //if (!page.Active)
-            //{
-            //    _menuManager.RemoveSectionItemsForPage(pageId);
-            //}
-            //else
-            //{
-            //    if (page.IncludeInMenu)
-            //    {
-            //        await _menuManager.SetItemForPage(page);
-            //    }
-            //}
             EventBus.Trigger(new PageStateChangedData() { Page = page });
         }
 
@@ -129,18 +125,6 @@ namespace Cinotam.Cms.App.Pages
             var page = await _pageRepository.GetAsync(pageId);
             page.IncludeInMenu = !page.IncludeInMenu;
             _pageRepository.Update(page);
-            //if (!page.IncludeInMenu)
-            //{
-            //    _menuManager.RemoveSectionItemsForPage(pageId);
-            //}
-            //else
-            //{
-            //    if (page.Active)
-            //    {
-
-            //        await _menuManager.SetItemForPage(page);
-            //    }
-            //}
 
             EventBus.Trigger(new PageStateChangedData() { Page = page });
         }
@@ -155,6 +139,7 @@ namespace Cinotam.Cms.App.Pages
 
         public async Task<string> GetMainPageSlug()
         {
+            _tenantHelperService.SetCurrentTenantFromUrl();
             var page = await _pageRepository.FirstOrDefaultAsync(a => a.IsMainPage && a.Active);
             if (page == null) return string.Empty;
             var pageContents =
@@ -337,7 +322,7 @@ namespace Cinotam.Cms.App.Pages
                 Url = input.Title.Sluggify(),
                 PageId = page.Id,
                 Page = page,
-
+                TenantId = AbpSession.GetTenantId(),
                 TemplateUniqueName = page.TemplateName
             });
         }

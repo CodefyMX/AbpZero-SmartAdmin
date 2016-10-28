@@ -33,5 +33,7 @@ namespace Cinotam.Cms.DatabaseEntities.Pages.Entities
         public virtual ICollection<IChunk> Chunks { get { return _chunks.ConvertAll(a => (IChunk)a); } }
         public virtual ICollection<Chunk> ChunksObj { get { return _chunks; } set { _chunks = value.ToList(); } }
         public string PreviewImage { get; set; }
+        public int? TenantId { get; set; }
+
     }
 }

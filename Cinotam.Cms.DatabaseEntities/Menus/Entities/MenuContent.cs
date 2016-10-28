@@ -1,11 +1,12 @@
-﻿using Abp.Domain.Entities.Auditing;
+﻿using Abp.Domain.Entities;
+using Abp.Domain.Entities.Auditing;
 using Cinotam.Cms.DatabaseEntities.CustomFilters;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinotam.Cms.DatabaseEntities.Menus.Entities
 {
-    public class MenuContent : FullAuditedEntity, IHasMenu, ILocalizable
+    public class MenuContent : FullAuditedEntity, IHasMenu, ILocalizable, IMustHaveTenant
     {
         protected MenuContent()
         {
@@ -30,5 +31,7 @@ namespace Cinotam.Cms.DatabaseEntities.Menus.Entities
                 Menu = menu
             };
         }
+
+        public int TenantId { get; set; }
     }
 }
