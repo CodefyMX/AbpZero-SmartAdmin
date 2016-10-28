@@ -58,7 +58,7 @@ namespace Cinotam.AbpModuleZero.Tests.Roles
         public void GetRolesForTable_Test()
         {
             LoginAsDefaultTenantAdmin();
-            var fakeTableRequest = FakeRequests.FakeRequestHelper.CreateDataTablesFakeRequestModel();
+            var fakeTableRequest = FakeRequests.FakeRequestHelper<object>.CreateDataTablesFakeRequestModel();
 
             var tableModel = _roleAppService.GetRolesForTable(fakeTableRequest);
 

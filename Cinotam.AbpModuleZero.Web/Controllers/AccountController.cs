@@ -78,19 +78,30 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                     IsMultiTenancyEnabled = _multiTenancyConfig.IsEnabled
                 });
         }
-        public ActionResult PhoneNumberVerification(string returnUrl, long userId, string provider, string phone)
+        public ActionResult PhoneNumberVerification(string returnUrl, long userId, string provider)
         {
+            if (PhoneNumber == null) throw new UserFriendlyException(L("SessionExpired"));
             return View(new UserTwoFactorVerificationInput()
             {
                 Provider = provider,
                 ReturnUrl = returnUrl,
                 UserId = userId,
-                PhoneNumber = phone
+                PhoneNumber = PhoneNumber.ToString()
             });
+        }
+
+        private const string PhoneNumberKey = "PhoneNumber";
+        private object PhoneNumber => Session[PhoneNumberKey];
+
+        private void SetPhoneNumber(string phoneNumber)
+        {
+            Session[PhoneNumberKey] = phoneNumber;
         }
         [HttpPost]
 
         [DisableAbpAntiForgeryTokenValidation]
+
+
         public async Task<JsonResult> PhoneNumberVerification(UserTwoFactorVerificationInput input)
         {
 
@@ -101,9 +112,13 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             var result = await _userManager.VerifyTwoFactorTokenAsync(input.UserId, input.Provider, input.Token);
             if (!result) return Json(new { Error = L("InvalidCode") });
             await SignInAsync(user);
-            return string.IsNullOrEmpty(input.ReturnUrl) ?
-                Json(new AjaxResponse { TargetUrl = input.ReturnUrl }) :
-                Json(new AjaxResponse { TargetUrl = "/Home/Index" });
+            if (string.IsNullOrEmpty(input.ReturnUrl))
+            {
+                return Json(new AjaxResponse { TargetUrl = "/Home/Index" });
+            }
+            return Json(new AjaxResponse { TargetUrl = input.ReturnUrl });
+
+
         }
         [HttpPost]
         [DisableAuditing]
@@ -134,14 +149,13 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                     Body = code,
                     Destination = loginResult.User.CountryPhoneCode + loginResult.User.PhoneNumber
                 });
-
+                SetPhoneNumber(loginResult.User.PhoneNumber);
                 var url = Url.Action("PhoneNumberVerification",
                     new
                     {
                         returnUrl,
                         userId = loginResult.User.Id,
                         provider = smsProvider,
-                        phone = loginResult.User.PhoneNumber
                     });
 
                 return Json(new AjaxResponse { TargetUrl = url });

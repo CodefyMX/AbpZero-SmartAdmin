@@ -266,7 +266,7 @@ namespace Cinotam.AbpModuleZero.Tests.Users
         public void GetUsersFromTable_Test()
         {
             LoginAsHostAdmin();
-            var table = _userAppService.GetUsersForTable(FakeRequestHelper.CreateDataTablesFakeRequestModel());
+            var table = _userAppService.GetUsersForTable(FakeRequestHelper<object>.CreateDataTablesFakeRequestModel());
             table.ShouldNotBe(null);
             table.data.ShouldNotBe(null);
             table.data.Count().ShouldBe(1);

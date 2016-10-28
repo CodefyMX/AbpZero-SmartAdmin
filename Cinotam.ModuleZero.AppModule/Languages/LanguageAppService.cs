@@ -2,6 +2,7 @@
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
 using Abp.Localization;
+using Abp.Runtime.Caching;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Localization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
@@ -24,13 +25,14 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         private readonly IRepository<ApplicationLanguageText, long> _languageTextsRepository;
         private readonly IRepository<ApplicationLanguage> _languagesRepository;
         private readonly ILanguageTextsProvider _languageTextsProvider;
+        private readonly ICacheManager _cacheManager;
         public const string DefaultLanguage = "en";
         private readonly ILanguagesAppNotificationSender _languagesAppNotificationSender;
         public LanguageAppService(IApplicationLanguageManager applicationLanguageManager,
             IRepository<ApplicationLanguageText, long> languageTextsRepository,
             IRepository<ApplicationLanguage> languagesRepository,
             ILanguageTextsProvider languageTextsProvider,
-            IApplicationLanguageTextManager applicationLanguageTextManager, ILanguagesAppNotificationSender languagesAppNotificationSender)
+            IApplicationLanguageTextManager applicationLanguageTextManager, ILanguagesAppNotificationSender languagesAppNotificationSender, ICacheManager cacheManager)
         {
             _applicationLanguageManager = applicationLanguageManager;
             _languageTextsRepository = languageTextsRepository;
@@ -38,6 +40,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             _languageTextsProvider = languageTextsProvider;
             _applicationLanguageTextManager = applicationLanguageTextManager;
             _languagesAppNotificationSender = languagesAppNotificationSender;
+            _cacheManager = cacheManager;
         }
         /// <summary>
         /// Adds a new available language to the app
@@ -51,15 +54,13 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
             await _languagesAppNotificationSender.SendLanguageCreatedNotification(newLanguage, (await GetCurrentUserAsync()));
             //AddAllKeysForNewLanguage(input.LangCode);
-
-
         }
 
-        private void AddAllKeysForNewLanguage(string langCode)
-        {
-            //Only creates the keys with empty values
-            _languageTextsProvider.SetLocalizationKeys(langCode, AbpSession.TenantId);
-        }
+        //private void AddAllKeysForNewLanguage(string langCode)
+        //{
+        //    //Only creates the keys with empty values
+        //    _languageTextsProvider.SetLocalizationKeys(langCode, AbpSession.TenantId);
+        //}
 
         public ReturnModel<LanguageDto> GetLanguagesForTable(RequestModel<object> input)
         {
@@ -122,6 +123,51 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                 CultureInfo.GetCultureInfo(input.LanguageName),
                 input.Key, input.Value);
         }
+
+        public async Task UpdateLanguageFromXml(string languageName, string source, bool updateExistingValues = false)
+        {
+            //Clear cache 
+            await ClearCache("AbpLocalizationScripts");
+            await ClearCache("AbpZeroLanguages");
+
+            var languageTexts = _languageTextsProvider.GetTexts(languageName, source);
+
+
+            foreach (var languageText in languageTexts)
+            {
+                //Find keys and add the value
+                var languageTextFromDb = await _languageTextsRepository.FirstOrDefaultAsync(a => a.LanguageName == languageName && a.Source == source && a.Key == languageText.Key);
+
+                if (languageTextFromDb == null)
+                {
+                    _languageTextsRepository.Insert(new ApplicationLanguageText()
+                    {
+                        LanguageName = languageName,
+                        Source = source,
+                        Key = languageText.Key,
+                        Value = languageText.Value
+                    });
+                }
+                else
+                {
+                    if (languageTextFromDb.Value == "")
+                    {
+                        languageTextFromDb.Value = languageText.Value;
+                    }
+                    else
+                    {
+                        if (updateExistingValues) languageTextFromDb.Value = languageText.Value;
+                    }
+                }
+            }
+
+        }
+
+        private Task ClearCache(string cacheName)
+        {
+            var cache = _cacheManager.GetCache(cacheName);
+            return cache.ClearAsync();
+        }
         /// <summary>
         /// Experimental (Todo:Find the way to make just one ajax call to this function per operation)
         /// Note: if there is a lot of language text elements in the table this may cause some perf. issues
@@ -130,8 +176,6 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         /// <returns></returns>
         public ReturnModel<LanguageTextTableElement> GetLocalizationTexts(RequestModel<LanguageTextsForEditRequest> input)
         {
-
-
             //1.-Load all source texts
             //1.1 If the current tenant has no texts in the dabatabase for the source
             //    we must generate these texts with a default language wich is always available 
@@ -196,7 +240,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                     Key = applicationLanguageText.Key,
                     Source = applicationLanguageText.Source,
                     SourceValue = applicationLanguageText.Value,
-                    TargetValue = GetTargetValueFromList(languageTextsTarget, applicationLanguageText.Key)
+                    TargetValue = GetTargetValueFromList(languageTextsTarget, applicationLanguageText.Key, applicationLanguageText.Value)
                 });
             }
             return new ReturnModel<LanguageTextTableElement>()
@@ -206,14 +250,14 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
         }
 
-        private string GetTargetValueFromList(List<ApplicationLanguageText> languageTextsTarget, string key)
+        private string GetTargetValueFromList(List<ApplicationLanguageText> languageTextsTarget, string key, string sourceValue)
         {
             if (languageTextsTarget.All(a => a.Key != key))
             {
-                return "";
+                return sourceValue;
             }
             var first = languageTextsTarget.FirstOrDefault(a => a.Key == key);
-            return string.IsNullOrEmpty(first?.Value) ? "" : first.Value;
+            return string.IsNullOrEmpty(first?.Value) ? sourceValue : first.Value;
         }
 
         public LanguageTextsForEditView GetLanguageTextsForEditView(string selectedTargetLanguage,

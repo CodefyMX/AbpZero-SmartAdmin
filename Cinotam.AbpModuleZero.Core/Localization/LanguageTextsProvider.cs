@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp;
+using Abp.Domain.Repositories;
 using Abp.Domain.Services;
 using Abp.Localization;
 using Abp.Localization.Dictionaries.Xml;
@@ -118,6 +119,28 @@ namespace Cinotam.AbpModuleZero.Localization
         public List<string> GetLocalizationSources()
         {
             return Helpers.LocalizationSources.LocalizationSourceNames.ToList();
+        }
+
+        public Dictionary<string, string> GetTexts(string languageName, string source)
+        {
+
+            var result = new Dictionary<string, string>();
+
+            if (!IsXMLAvailableForTheLangCode(languageName, source)) throw new AbpException("Language file not found");
+
+            var provider = new XmlEmbeddedFileLocalizationDictionaryProvider(
+                Assembly.GetExecutingAssembly(),
+                XmlLocations.GetXmlLocationBySourceName(source)
+                );
+            provider.Initialize(source);
+            //Default dictionary = "en" en should be always available
+            var strings = provider.DefaultDictionary.GetAllStrings().Where(a => a.CultureInfo.Name == languageName);
+
+            foreach (var localizedString in strings)
+            {
+                result.Add(localizedString.Name, localizedString.Value);
+            }
+            return result;
         }
 
         private bool IsXMLAvailableForTheLangCode(string langCode, string source)
