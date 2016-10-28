@@ -1,4 +1,4 @@
-# AbpCinotamModuleZero
+# AbpCinotamZero
 [![Build status](https://ci.appveyor.com/api/projects/status/70x83r44khsjd6j3?svg=true)](https://ci.appveyor.com/project/periface/abpcinotammodulezero)
 
 A basic and really low budget startup template implementation of ASP.NET Boilerplate and Module Zero.
