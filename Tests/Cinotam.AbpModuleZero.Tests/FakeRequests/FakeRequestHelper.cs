@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Cinotam.AbpModuleZero.Tests.FakeRequests
 {
-    public class FakeRequestHelper
+    public class FakeRequestHelper<T> where T : class, new()
     {
         public static RequestModel<object> CreateDataTablesFakeRequestModel()
         {
@@ -24,7 +24,20 @@ namespace Cinotam.AbpModuleZero.Tests.FakeRequests
                 search = new Dictionary<string, string>() { { "value", "" } }
             };
         }
-
+        public static RequestModel<T> CreateDataTablesFakeRequestModel(string dummy)
+        {
+            return new RequestModel<T>()
+            {
+                draw = 1,
+                length = 10,
+                PropOrd = "Id",
+                PropToSearch = "Id",
+                PropToSort = "Id",
+                PropSort = 1,
+                SearchCol = "Id",
+                search = new Dictionary<string, string>() { { "value", "" } }
+            };
+        }
         public static Mock<HttpPostedFileBase> FakeFile()
         {
             var postedFile = new Mock<HttpPostedFileBase>();

@@ -16,5 +16,9 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
         Task DeleteLanguage(string code);
         Task AddEditLocalizationText(LocalizationTextInput input);
+
+
+        Task UpdateLanguageFromXml(string languageName, string source, bool updateExistingValues = false);
+
     }
 }

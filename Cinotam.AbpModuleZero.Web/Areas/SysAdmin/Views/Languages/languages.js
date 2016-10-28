@@ -86,7 +86,7 @@
                     switch (event.detail.info.modalType) {
                         case "LANGUAGE_CREATED":
                             table.ajax.reload();
-                            abp.notify.success("Lenguaje creado", "¡Exito!");
+                            abp.notify.success(L("LanguageCreated"), L("Success"));
                             break;
                         default:
                             console.log("Event unhandled");

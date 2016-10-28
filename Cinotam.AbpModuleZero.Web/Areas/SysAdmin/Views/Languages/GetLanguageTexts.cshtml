@@ -49,7 +49,13 @@
                             @*<a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a>*@
                         </div>
                         <div class="widget-toolbar" role="menu">
+
+                            <a class="btn btn-primary js-update-from-xml">@L("UpdateFromXml")</a>
+
+
                             <a data-toggle="dropdown" class="dropdown-toggle color-box selector" href="javascript:void(0);"></a>
+
+
                             <ul class="dropdown-menu arrow-box-up-right color-select pull-right">
                                 <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
                                 <li><span class="bg-color-greenDark" data-widget-setstyle="jarviswidget-color-greenDark" rel="tooltip" data-placement="top" data-original-title="Dark Green"></span></li>
@@ -107,7 +113,7 @@
                                             </label>
                                             <label class="select">
                                                 @Html.DropDownListFor(a => a.SelectedSourceLanguage,
-                                                    new SelectList(Model.SourceLanguages, "Name", "DisplayName", Model.SelectedSourceLanguage), new {@class = "js-select"})
+                                                    new SelectList(Model.SourceLanguages, "Name", "DisplayName", Model.SelectedSourceLanguage), new { @class = "js-select" })
 
                                             </label>
                                         </div>
@@ -117,7 +123,7 @@
                                             </label>
                                             <label class="select">
                                                 @Html.DropDownListFor(a => a.SelectedTargetLanguage,
-                                                    new SelectList(Model.TargetLanguages, "Name", "DisplayName", Model.SelectedSourceLanguage), new {@class = "js-select"})
+                                                    new SelectList(Model.TargetLanguages, "Name", "DisplayName", Model.SelectedSourceLanguage), new { @class = "js-select" })
 
 
                                             </label>
@@ -127,7 +133,7 @@
                                                 @L("Source")
                                             </label>
                                             <label class="select">
-                                                @Html.DropDownList("Source", new SelectList(Model.Source, AbpZeroConsts.LocalizationSourceName), new {@class = "js-select"})
+                                                @Html.DropDownList("Source", new SelectList(Model.Source, AbpZeroConsts.LocalizationSourceName), new { @class = "js-select" })
 
 
                                             </label>
@@ -140,13 +146,13 @@
                                 <div class="col col-xs-12">
                                     <table class="table table-striped table-bordered table-hover table-condensed" width="100%" id="languageTextsTable">
                                         <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th data-class="expand">@L("Key")</th>
-                                            <th data-hide="phone,tablet">@L("SourceValue")</th>
-                                            <th data-hide="phone,tablet">@L("TargetValue")</th>
+                                            <tr>
+                                                <th></th>
+                                                <th data-class="expand">@L("Key")</th>
+                                                <th data-hide="phone,tablet">@L("SourceValue")</th>
+                                                <th data-hide="phone,tablet">@L("TargetValue")</th>
 
-                                        </tr>
+                                            </tr>
                                         </thead>
                                         <tbody></tbody>
                                     </table>
