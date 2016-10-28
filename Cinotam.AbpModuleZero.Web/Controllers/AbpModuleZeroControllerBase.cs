@@ -1,6 +1,7 @@
 ﻿using Abp.IdentityFramework;
 using Abp.UI;
 using Abp.Web.Mvc.Controllers;
+using Cinotam.AbpModuleZero.TenantHelpers.TenantHelperAppServiceBase;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.MultiTenancy.MultiTenancyHelper;
 using Microsoft.AspNet.Identity;
@@ -15,6 +16,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
     public abstract class AbpModuleZeroControllerBase : AbpController
     {
         public IMultiTenancyHelper MultiTenancyHelper { get; set; }
+        public ITenantHelperService TenantAppService { get; set; }
         private const string TenancyKey = "CurrentTenant";
         protected AbpModuleZeroControllerBase()
         {
@@ -82,5 +84,9 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
             base.OnActionExecuting(filterContext);
         }
+
+        public bool UrlHasAValidTenancyName => TenantAppService.IsAValidTenancyName(GetTenancyNameFromSession);
+
+        public string GetTenancyNameFromSession => Session[TenancyKey]?.ToString() ?? string.Empty;
     }
 }

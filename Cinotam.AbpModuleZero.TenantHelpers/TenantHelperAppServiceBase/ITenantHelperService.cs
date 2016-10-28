@@ -3,5 +3,6 @@
     public interface ITenantHelperService
     {
         void SetCurrentTenantFromUrl();
+        bool IsAValidTenancyName(string tenancyName);
     }
 }
