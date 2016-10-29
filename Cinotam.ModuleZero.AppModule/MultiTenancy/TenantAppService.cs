@@ -67,7 +67,8 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
             }
             return new EditionsForTenantOutput()
             {
-                Editions = editionCList
+                Editions = editionCList,
+                TenantId = tenantId
             };
         }
 

@@ -298,8 +298,6 @@
     <text name="TenantManagement" value="Tenant management"/>
     <text name="SetEdition" value="Set edition"/>
     <text name="EnableFeatures" value="Enable features"/>
-    
-
-
+    <text name="SetTenantEdition" value="Set edition"/>
   </texts>
 </localizationDictionary>

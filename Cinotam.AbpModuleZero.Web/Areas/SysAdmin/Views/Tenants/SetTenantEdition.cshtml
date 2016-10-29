@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using Abp.Web.Mvc.Extensions
+@model Cinotam.ModuleZero.AppModule.Features.Dto.EditionsForTenantOutput
+<div class="modal-dialog" role="document">
+    <form id="setTenantEdition">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModal-label">@L("SetTenantEdition")</h4>
+            </div>
+            @Html.HiddenFor(a => a.TenantId)
+            <div class="modal-body">
+                @foreach (var modelEdition in Model.Editions)
+                {
+
+                    if (modelEdition.IsEnabledForTenant)
+                    {
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="edition" value="@modelEdition.Id" checked="checked" /> @modelEdition.DisplayName
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="edition" value="@modelEdition.Id" /> @modelEdition.DisplayName
+                            </label>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@L("Close")</button>
+                <button type="submit" class="btn btn-primary">@L("Save")</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Tenants/SetTenantEdition.js")

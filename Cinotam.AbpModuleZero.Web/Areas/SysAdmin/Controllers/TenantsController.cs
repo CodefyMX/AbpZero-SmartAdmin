@@ -3,7 +3,7 @@ using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.Features;
 using Cinotam.ModuleZero.AppModule.MultiTenancy;
-using Cinotam.ModuleZero.AppModule.MultiTenancy.Dto;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
@@ -27,14 +27,10 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View("Index", output);
         }
 
-        public ActionResult SetTenantEdition(int tenantId)
+        public async Task<ActionResult> SetTenantEdition(int tenantId)
         {
-            var editions = _featureService.GetEditions();
-            return View(new SetTenantEditionInput()
-            {
-                TenantId = tenantId,
-                Editions = editions
-            });
+            var model = await _tenantAppService.GetEditionsForTenant(tenantId);
+            return View(model);
         }
     }
 }

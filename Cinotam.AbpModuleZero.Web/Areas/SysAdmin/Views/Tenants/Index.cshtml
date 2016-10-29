@@ -37,8 +37,7 @@
                     <tr>
                         <td>@tenant.TenancyName</td>
                         <td>@tenant.Name</td>
-                        <td class="text-center"><a class="btn btn-primary btn-xs">@L("SetEdition")</a> <a class="btn btn-primary btn-xs">@L("EnableFeatures")</a></td>
-                      
+                        <td class="text-center"><a data-modal href="@Url.Action("SetTenantEdition",new { tenantId = tenant.Id })" class="btn btn-primary btn-xs">@L("SetEdition")</a> <a data-modal href="@Url.Action("SetTenantFeatures")" class="btn btn-primary btn-xs">@L("EnableFeatures")</a></td>
                     </tr>
                 }
                 </tbody>
