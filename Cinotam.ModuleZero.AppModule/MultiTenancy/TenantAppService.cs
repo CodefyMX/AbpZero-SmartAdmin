@@ -9,6 +9,7 @@ using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Editions;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
+using Cinotam.ModuleZero.AppModule.Features.Dto;
 using Cinotam.ModuleZero.AppModule.MultiTenancy.Dto;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,38 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
                     .ToList()
                     .MapTo<List<TenantListDto>>()
                 );
+        }
+
+        public async Task EnableFeatureForTenant(EnableFeatureInput input)
+        {
+            var tenant = await _tenantManager.GetByIdAsync(input.Id);
+            await _tenantManager.SetFeatureValueAsync(tenant, input.FeatureName, input.FeatureStatus);
+        }
+
+        public async Task<EditionsForTenantOutput> GetEditionsForTenant(int tenantId)
+        {
+            var allEditions = _editionManager.Editions.ToList();
+            var editionCList = new List<EditionDtoCustom>();
+            foreach (var allEdition in allEditions)
+            {
+                var mappedEdition = allEdition.MapTo<EditionDtoCustom>();
+
+                mappedEdition.IsEnabledForTenant = await IsThisEditionActive(tenantId, allEdition.Id);
+
+                editionCList.Add(mappedEdition);
+            }
+            return new EditionsForTenantOutput()
+            {
+                Editions = editionCList
+            };
+        }
+
+        private async Task<bool> IsThisEditionActive(int tenantId, int editionId)
+        {
+            var tenant = await TenantManager.GetByIdAsync(tenantId);
+
+            return tenant.EditionId == editionId;
+
         }
 
         public async Task SetTenantEdition(SetTenantEditionInput input)

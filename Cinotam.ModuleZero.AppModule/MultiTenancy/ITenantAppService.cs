@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Cinotam.ModuleZero.AppModule.Features.Dto;
 using Cinotam.ModuleZero.AppModule.MultiTenancy.Dto;
 using System.Threading.Tasks;
 
@@ -10,5 +11,8 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
         ListResultDto<TenantListDto> GetTenants();
 
         Task CreateTenant(CreateTenantInput input);
+        Task<EditionsForTenantOutput> GetEditionsForTenant(int tenantId);
+        Task EnableFeatureForTenant(EnableFeatureInput input);
+        Task SetTenantEdition(SetTenantEditionInput input);
     }
 }
