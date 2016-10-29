@@ -1,9 +1,9 @@
 ﻿using Cinotam.MailSender.SendGrid.Credentials;
 using Cinotam.MailSender.SendGrid.SendGrid.Outputs;
 using CInotam.MailSender.Contracts;
+using RestApiHelpers.Contracts.Input;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using System;
 using System.Threading.Tasks;
 using Mail = SendGrid.Helpers.Mail.Mail;
 
@@ -14,7 +14,10 @@ namespace Cinotam.MailSender.SendGrid.SendGrid
         private readonly SendGridAPIClient _sendGrid;
         public SendGridService(ISendGridCredentialsService sendGridCredentialsService)
         {
-            _sendGrid = sendGridCredentialsService.GetInstance("SendGridKey", EnvironmentVariableTarget.Machine);
+            _sendGrid = sendGridCredentialsService.GetInstance(new RestApiCredentialsRequest()
+            {
+                ApiKeyName = "SendGridKey",
+            });
         }
 
         public async Task<SendGridMessageResult> SendViaHttp(IMail input)

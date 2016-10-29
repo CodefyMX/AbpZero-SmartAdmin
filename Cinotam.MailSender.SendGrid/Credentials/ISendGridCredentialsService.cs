@@ -1,11 +1,11 @@
 ﻿using Abp.Dependency;
+using RestApiHelpers.Contracts.Input;
 using SendGrid;
-using System;
 
 namespace Cinotam.MailSender.SendGrid.Credentials
 {
     public interface ISendGridCredentialsService : ISingletonDependency
     {
-        SendGridAPIClient GetInstance(string envVar, EnvironmentVariableTarget target);
+        SendGridAPIClient GetInstance(RestApiCredentialsRequest credentialsRequest);
     }
 }

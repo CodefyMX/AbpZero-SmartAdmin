@@ -25,8 +25,8 @@ namespace RestApiHelpers.Credentials
 
         protected RestApiCredentials GetFromEnv(RestApiCredentialsRequest input)
         {
-            var apiKey = Environment.GetEnvironmentVariable(input.ApiKeyName, input.EnvTarget);
-            var secret = Environment.GetEnvironmentVariable(input.SecretKeyName, input.EnvTarget);
+            var apiKey = GetValueFromEnv(input.ApiKeyName, input.EnvTarget);
+            var secret = GetValueFromEnv(input.SecretKeyName, input.EnvTarget);
             return new RestApiCredentials()
             {
                 Key = apiKey,
@@ -34,6 +34,18 @@ namespace RestApiHelpers.Credentials
             };
         }
 
+        private string GetValueFromEnv(string key, EnvironmentVariableTarget envTarget)
+        {
+            try
+            {
+                var value = Environment.GetEnvironmentVariable(key, envTarget);
+                return value;
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
         protected RestApiCredentials GetFromWebConfig(RestApiCredentialsRequest input)
         {
             var apiKey = ConfigurationManager.AppSettings[input.ApiKeyName];
