@@ -14,6 +14,7 @@ using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.AbpModuleZero.Web.Controllers.Results;
 using Cinotam.AbpModuleZero.Web.Models.Account;
+using Cinotam.TwoFactorAuth.Contracts;
 using Cinotam.TwoFactorSender.Sender;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -146,11 +147,15 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 const string smsProvider = "Sms";
                 var code = await _userManager.GenerateTwoFactorTokenAsync(loginResult.User.Id, smsProvider);
 
-                await _twoFactorMessageService.SendMessage(new IdentityMessage()
+                var messageResult = await _twoFactorMessageService.SendMessage(new IdentityMessage()
                 {
                     Body = code,
                     Destination = loginResult.User.CountryPhoneCode + loginResult.User.PhoneNumber
                 });
+
+                if (messageResult.SendStatus == SendStatus.Fail)
+                    throw new UserFriendlyException(L("SendMessageFailed"));
+
                 SetPhoneNumber(loginResult.User.PhoneNumber);
                 var url = Url.Action("PhoneNumberVerification",
                     new

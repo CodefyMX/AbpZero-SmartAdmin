@@ -120,6 +120,7 @@
     <Compile Include="CinotamModuleZeroConsts.cs" />
     <Compile Include="Features\Dto\DeleteEditionInput.cs" />
     <Compile Include="Features\Dto\EditionDto.cs" />
+    <Compile Include="Features\Dto\EditionsForTenantOutput.cs" />
     <Compile Include="Features\Dto\EditionsOutput.cs" />
     <Compile Include="Features\Dto\NewEditionInput.cs" />
     <Compile Include="Features\FeatureService.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="ModuleZeroNavigationProvider.cs" />
     <Compile Include="ModuleZeroSettingsProvider.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
+    <Compile Include="MultiTenancy\Dto\EnableFeatureInput.cs" />
     <Compile Include="MultiTenancy\Dto\SetTenantEditionInput.cs" />
     <Compile Include="MultiTenancy\Dto\TenantListDto.cs" />
     <Compile Include="MultiTenancy\ITenantAppService.cs" />

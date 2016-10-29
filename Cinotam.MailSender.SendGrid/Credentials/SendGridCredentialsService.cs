@@ -1,5 +1,6 @@
-﻿using SendGrid;
-using System;
+﻿using RestApiHelpers.Contracts.Input;
+using RestApiHelpers.Credentials;
+using SendGrid;
 
 namespace Cinotam.MailSender.SendGrid.Credentials
 {
@@ -8,10 +9,17 @@ namespace Cinotam.MailSender.SendGrid.Credentials
     /// </summary>
     public class SendGridCredentialsService : ISendGridCredentialsService
     {
-        public SendGridAPIClient GetInstance(string envVar, EnvironmentVariableTarget target)
+        private readonly ICredentialsService _credentialsService;
+
+        public SendGridCredentialsService(ICredentialsService credentialsService)
         {
-            var apiKey = Environment.GetEnvironmentVariable(envVar, target);
-            var sg = new SendGridAPIClient(apiKey);
+            _credentialsService = credentialsService;
+        }
+
+        public SendGridAPIClient GetInstance(RestApiCredentialsRequest input)
+        {
+            var apiCredentials = _credentialsService.GetRestApiCredentials(input);
+            var sg = new SendGridAPIClient(apiCredentials.Key);
             return sg;
         }
     }
