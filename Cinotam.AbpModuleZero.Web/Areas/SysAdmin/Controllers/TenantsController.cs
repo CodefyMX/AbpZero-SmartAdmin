@@ -32,5 +32,11 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             var model = await _tenantAppService.GetEditionsForTenant(tenantId);
             return View(model);
         }
+
+        public async Task<ActionResult> SetTenantFeatures(int tenantId)
+        {
+            var model = await _tenantAppService.GetFeaturesForTenant(tenantId);
+            return View(model);
+        }
     }
 }

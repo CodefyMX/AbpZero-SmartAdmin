@@ -106,6 +106,9 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete))
             {
                 var auditLog = await _auditLogRepository.FirstOrDefaultAsync(a => a.Id == id);
+
+                if (auditLog == null) return new AuditLogDto();
+
                 var mapped = auditLog.MapTo<AuditLogDto>();
                 mapped.UserName = auditLog.UserId != null
                     ? (await UserManager.GetUserByIdAsync(auditLog.UserId.Value)).UserName
@@ -116,7 +119,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
         }
 
         [WrapResult(false)]
-        public AuditLogTimeOutput GetAuditLogTimes(int? count)
+        public AuditLogTimeOutput GetAuditLogTimes(int? count = 50, int code = 0, int? tenantId = null)
         {
             if (AbpSession.TenantId == null)
             {
@@ -128,6 +131,22 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
             var query = from ex in data
                         where DbFunctions.TruncateTime(ex.ExecutionTime) == DbFunctions.TruncateTime(DateTime.Now)
                         select ex;
+
+            if (tenantId.HasValue)
+            {
+                query = query.Where(a => a.TenantId == tenantId);
+            }
+            //0 = all
+            //1 = only ex
+            //2 = only success
+            if (code == 1)
+            {
+                query = query.Where(a => !string.IsNullOrEmpty(a.Exception));
+            }
+            if (code == 2)
+            {
+                query = query.Where(a => string.IsNullOrEmpty(a.Exception));
+            }
             var inMemoryData = query.Take(count ?? 100).ToList();
             foreach (var auditLog in inMemoryData)
             {
@@ -156,6 +175,91 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
             };
         }
 
+
+        #region ForMultiTenants
+
+        [AbpAuthorize(PermissionNames.PagesTenants)]
+        public async Task<AuditLogOutput> GetLatestAuditLogOutputForTenant(long tenantId)
+        {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+            }
+            var list = new List<AuditLogDto>();
+            var logs = _auditLogRepository.GetAll().Where(a => a.TenantId == tenantId).OrderByDescending(a => a.ExecutionTime).Take(10).ToList();
+            foreach (var auditLog in logs)
+            {
+                var name = "Client";
+                if (auditLog.UserId.HasValue)
+                {
+                    var user = await _userManager.GetUserByIdAsync(auditLog.UserId.Value);
+                    name = user.UserName;
+                }
+                var log = auditLog.MapTo<AuditLogDto>();
+                log.UserName = name;
+                list.Add(log);
+            }
+            return new AuditLogOutput()
+            {
+                AuditLogs = list
+            };
+        }
+        [AbpAuthorize(PermissionNames.PagesTenants)]
+        public async Task<ReturnModel<AuditLogDto>> GetAuditLogTableForTenant(RequestModel<object> input, int tenantId)
+        {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+            }
+            int count;
+            var query = _auditLogRepository.GetAll().Where(a => a.TenantId == tenantId);
+
+            List<Expression<Func<AuditLog, string>>> searchs = new EditableList<Expression<Func<AuditLog, string>>>();
+
+            searchs.Add(a => a.MethodName);
+            searchs.Add(a => a.ClientIpAddress);
+            searchs.Add(a => a.BrowserInfo);
+            searchs.Add(a => a.ClientName);
+            searchs.Add(a => a.Exception);
+            searchs.Add(a => a.ServiceName);
+            searchs.Add(a => a.CustomData);
+            searchs.Add(a => a.Exception);
+
+            var filteredByLength = GenerateTableModel(input, query, searchs, "MethodName", out count);
+
+            return new ReturnModel<AuditLogDto>()
+            {
+                iTotalDisplayRecords = count,
+                recordsTotal = query.Count(),
+                recordsFiltered = filteredByLength.Count,
+                length = input.length,
+                data = await GetModel(filteredByLength),
+                draw = input.draw,
+            };
+        }
+        [AbpAuthorize(PermissionNames.PagesTenants)]
+        public async Task<AuditLogDto> GetAuditLogDetailsForTenant(long id, int tenantId)
+        {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+            }
+            using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete))
+            {
+                var auditLog = await _auditLogRepository.FirstOrDefaultAsync(a => a.Id == id && a.TenantId == tenantId);
+
+                if (auditLog == null) return new AuditLogDto();
+                var mapped = auditLog.MapTo<AuditLogDto>();
+                mapped.UserName = auditLog.UserId != null
+                    ? (await UserManager.GetUserByIdAsync(auditLog.UserId.Value)).UserName
+                    : "Client";
+                return mapped;
+            }
+        }
+        [AbpAuthorize(PermissionNames.PagesTenants)]
         public async Task<ReturnModel<LogDto>> GetLogsTable(RequestModel<object> requestModel)
         {
             var logs = await GetLogs();
@@ -212,5 +316,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
                 return results.ToArray();
             }
         }
+        #endregion
+
     }
 }

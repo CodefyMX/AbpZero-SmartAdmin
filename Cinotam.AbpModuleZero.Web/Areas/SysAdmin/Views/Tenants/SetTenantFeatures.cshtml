@@ -1,0 +1,92 @@
+﻿@using Abp.Collections.Extensions
+@using Abp.Web.Mvc.Extensions
+@model Cinotam.ModuleZero.AppModule.MultiTenancy.Dto.CustomEditionInput
+@{
+    Layout = null;
+}
+<link href="~/Scripts/jstree/themes/proton/style.min.css" rel="stylesheet" />
+<style>
+    .jstree-anchor > .jstree-checkbox-disabled {
+        display: none;
+    }
+
+    .vakata-context, .vakata-context ul {
+        z-index: 10000;
+    }
+
+    .jstree-proton .jstree-open > .jstree-ocl {
+        display: none;
+    }
+
+    .jstree-proton .jstree-closed > .jstree-ocl {
+        display: none;
+    }
+</style>
+<div class="modal-dialog" id="leaderModal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title"><i class="fa fa-3x fa-hacker-news"></i> </h4>
+        </div>
+        <div class="modal-body no-padding">
+            <div class="padding-10">
+
+                <form method="POST" id="setTenantFeatures" class="smart-form">
+                    @Html.HiddenFor(a => a.TenantId)
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#iss2" data-toggle="tab" aria-expanded="false">@L("Features")</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="iss2">
+                            <div class="row padding-5">
+                                <div class="col col-12">
+
+                                    <div id="container">
+                                        <ul>
+                                            @foreach (var feature in Model.Features)
+                                            {
+                                                if (feature.InputType.Name == "CHECKBOX")
+                                                {
+                                            <li data-append-textbox="false" id="@feature.Name" data-value="@feature.DefaultValue" data-jstree='{ "selected" : @feature.Selected.ToString().ToLower() }' data-selected="@feature.Selected">
+                                                <a>@feature.Name</a>
+                                                @{ Html.RenderPartial("_loadChildrens", feature.ChildFeatures); }
+                                            </li>
+                                                }
+                                                else
+                                                {
+                                            <li data-append-textbox="true" id="@feature.Name" data-value="@feature.DefaultValue">
+                                                <a>@feature.Name</a>
+                                                @{ Html.RenderPartial("_loadChildrens", feature.ChildFeatures); }
+                                            </li>
+                                                }
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer>
+                        <button type="button"  class="btn btn-warning js-reset-features">
+                            @L("RestoreEditionFeatures")
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            @L("Save")
+                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            @L("Cancel")
+                        </button>
+                    </footer>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.IncludeScript("~/Scripts/jstree/jstree.min.js")
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Tenants/SetTenantFeatures.js")

@@ -97,6 +97,23 @@
                         }
                     };
                     var plot = $.plot($logsChart, [data], options);
+                    
+                    $logsChart.bind("plotclick", function (event, pos, item) {
+
+                        if (item) {
+                            var toolTip = toolTips[item.dataIndex];
+                            var id = toolTip.Id;
+                            window.modalInstance.open("/SysAdmin/AuditLogs/AuditLogDetail/" + id + "");
+                        }
+                    });
+                    $("<div id='tooltip'></div>").css({
+                        position: "absolute",
+                        display: "none",
+                        border: "1px solid #fdd",
+                        padding: "2px",
+                        "background-color": "#fee",
+                        opacity: 0.80
+                    }).appendTo("body");
                     var $toolTip = $("#tooltip");
                     $logsChart.bind("plothover", function (event, pos, item) {
                         if (item) {
@@ -122,23 +139,6 @@
                             $toolTip.hide();
                         }
                     });
-                    $logsChart.bind("plotclick", function (event, pos, item) {
-
-                        if (item) {
-                            var toolTip = toolTips[item.dataIndex];
-                            var id = toolTip.Id;
-                            window.modalInstance.open("/SysAdmin/AuditLogs/AuditLogDetail/" + id + "");
-                        }
-                    });
-                    $("<div id='tooltip'></div>").css({
-                        position: "absolute",
-                        display: "none",
-                        border: "1px solid #fdd",
-                        padding: "2px",
-                        "background-color": "#fee",
-                        opacity: 0.80
-                    }).appendTo("body");
-
                     function update() {
                         var $startInterval = $("#start_interval");
 

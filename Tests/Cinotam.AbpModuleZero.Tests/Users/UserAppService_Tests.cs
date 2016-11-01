@@ -83,6 +83,10 @@ namespace Cinotam.AbpModuleZero.Tests.Users
             {
                 //Act
                 await CreateFakeUser();
+
+
+                await CreateFakeUser();
+
             }
             catch (Exception ex)
             {
@@ -95,18 +99,19 @@ namespace Cinotam.AbpModuleZero.Tests.Users
         {
             LoginAsDefaultTenantAdmin();
             await CreateFakeUser();
-
             await UsingDbContextAsync(async context =>
             {
                 var user = await GetFakeUser(context);
-
                 var userEditInput = await _userAppService.GetUserForEdit(user.Id);
-
                 userEditInput.ShouldNotBe(null);
-
+                var emptyUser = await _userAppService.GetUserForEdit(0);
+                emptyUser.ShouldNotBeNull();
+                emptyUser.Id.ShouldBe(0);
+                var invalidUserId = await _userAppService.GetUserForEdit(-1);
+                invalidUserId.ShouldNotBeNull();
+                invalidUserId.Id.ShouldBe(0);
             });
         }
-
         [Fact]
         public async Task ShouldBeNewUserInstance_Test()
         {
@@ -124,6 +129,7 @@ namespace Cinotam.AbpModuleZero.Tests.Users
             try
             {
                 await _userAppService.GetUserForEdit(null);
+
             }
             catch (Exception ex)
             {

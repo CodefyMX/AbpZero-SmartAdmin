@@ -1,13 +1,12 @@
 ﻿using Abp;
 using Abp.Application.Editions;
-using Abp.Application.Features;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
-using Abp.Threading;
 using Abp.UI.Inputs;
 using Cinotam.AbpModuleZero.Editions;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.ModuleZero.AppModule.Features.Dto;
+using Cinotam.ModuleZero.AppModule.Features.FeatureManager;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,11 +18,13 @@ namespace Cinotam.ModuleZero.AppModule.Features
         private readonly EditionManager _editionManager;
         private readonly TenantManager _tenantManager;
         private readonly IRepository<Edition> _editionRepository;
-        public FeatureService(EditionManager editionManager, TenantManager tenantManager, IRepository<Edition> editionRepository)
+        private readonly ICustomEditionManager _customEditionManager;
+        public FeatureService(EditionManager editionManager, TenantManager tenantManager, IRepository<Edition> editionRepository, ICustomEditionManager customEditionManager)
         {
             _editionManager = editionManager;
             _tenantManager = tenantManager;
             _editionRepository = editionRepository;
+            _customEditionManager = customEditionManager;
         }
 
         public async Task CreateEdition(NewEditionInput input)
@@ -88,14 +89,14 @@ namespace Cinotam.ModuleZero.AppModule.Features
             {
                 return new NewEditionInput()
                 {
-                    Features = GetAllFeatures(),
+                    Features = _customEditionManager.GetAllFeatures(),
                 };
             }
             var edition = await _editionManager.GetByIdAsync(id.Value);
 
             var editionInput = edition.MapTo<NewEditionInput>();
 
-            editionInput.Features = GetAllFeatures(edition.Id);
+            editionInput.Features = _customEditionManager.GetAllFeatures(edition.Id);
 
             return editionInput;
         }
@@ -104,56 +105,6 @@ namespace Cinotam.ModuleZero.AppModule.Features
         {
             var edition = await _editionManager.FindByIdAsync(input.EditionId);
             await _editionManager.DeleteAsync(edition);
-        }
-
-        private List<FeatureDto> GetAllFeatures(int? id = null)
-        {
-            var featuresFromDb = _editionManager.FeatureManager.GetAll().Where(a => a.Parent == null).ToList();
-            var featuresResult = featuresFromDb.Select(a => new FeatureDto()
-            {
-                DefaultValue = GetDefaultValue(id, a.Name),
-                EditionId = 0,
-                Name = a.Name,
-                Selected = IsEnabledInEdition(id, a.Name),
-                InputType = a.InputType,
-                ChildFeatures = GetChildrens(a.Children, id)
-            }).ToList();
-            return featuresResult;
-
-        }
-
-        private string GetDefaultValue(int? id, string argName)
-        {
-            if (!id.HasValue)
-            {
-                return _editionManager.FeatureManager.GetOrNull(argName).DefaultValue;
-            }
-            var value = AsyncHelper.RunSync(() => _editionManager.GetFeatureValueOrNullAsync(id.Value, argName));
-
-            return value ?? _editionManager.FeatureManager.GetOrNull(argName).DefaultValue;
-        }
-
-        private bool IsEnabledInEdition(int? id, string featureName)
-        {
-            if (!id.HasValue) return false;
-            var feature = AsyncHelper.RunSync(() => _editionManager.GetFeatureValueOrNullAsync(id.Value, featureName));
-            return feature != null;
-        }
-        private List<FeatureDto> GetChildrens(IReadOnlyList<Feature> argChildren, int? id)
-        {
-            var listFeatureDto = new List<FeatureDto>();
-            foreach (var argChild in argChildren)
-            {
-                listFeatureDto.Add(new FeatureDto()
-                {
-                    Name = argChild.Name,
-                    InputType = argChild.InputType,
-                    Selected = IsEnabledInEdition(id, argChild.Name),
-                    DefaultValue = GetDefaultValue(id, argChild.Name),
-                    ChildFeatures = GetChildrens(argChild.Children, id)
-                });
-            }
-            return listFeatureDto;
         }
         public async Task SetEditionForTenant(int tenantId, int editionId)
         {

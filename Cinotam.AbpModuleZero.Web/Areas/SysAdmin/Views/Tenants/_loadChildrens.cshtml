@@ -1,0 +1,24 @@
+﻿@using Castle.Core.Internal
+@model IEnumerable<Cinotam.ModuleZero.AppModule.Features.Dto.FeatureDto>
+@if (!Model.IsNullOrEmpty())
+{
+    <ul>
+        @foreach (var child in Model)
+        {
+            if (child.InputType.Name == "SINGLE_LINE_STRING")
+            {
+                <li data-append-textbox="true" id="@child.Name" data-value="@child.DefaultValue" class="hide-checkbox">
+                    <a> @child.Name</a>
+                    @{ Html.RenderPartial("_loadChildrens", child.ChildFeatures); }
+                </li>
+                        }
+                        else
+                        {
+                            <li id="@child.Name" data-append-textbox="false" data-jstree='{ "selected" : @child.Selected.ToString().ToLower() }' data-value="@child.DefaultValue">
+                                <a> @child.Name</a>
+                                @{ Html.RenderPartial("_loadChildrens", child.ChildFeatures); }
+                            </li>
+                                        }
+                                    }
+    </ul>
+                                    }

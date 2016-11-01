@@ -4,12 +4,15 @@ using Abp.AutoMapper;
 using Abp.Extensions;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
+using Abp.UI;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Editions;
 using Cinotam.AbpModuleZero.MultiTenancy;
+using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.ModuleZero.AppModule.Features.Dto;
+using Cinotam.ModuleZero.AppModule.Features.FeatureManager;
 using Cinotam.ModuleZero.AppModule.MultiTenancy.Dto;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,37 +23,82 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
     [AbpAuthorize(PermissionNames.PagesTenants)]
     public class TenantAppService : CinotamModuleZeroAppServiceBase, ITenantAppService
     {
-        private readonly TenantManager _tenantManager;
         private readonly RoleManager _roleManager;
         private readonly EditionManager _editionManager;
         private readonly IAbpZeroDbMigrator _abpZeroDbMigrator;
+        private readonly ICustomEditionManager _customEditionManager;
 
         public TenantAppService(
-            TenantManager tenantManager,
             RoleManager roleManager,
             EditionManager editionManager,
-            IAbpZeroDbMigrator abpZeroDbMigrator)
+            IAbpZeroDbMigrator abpZeroDbMigrator,
+            ICustomEditionManager customEditionManager)
         {
-            _tenantManager = tenantManager;
             _roleManager = roleManager;
             _editionManager = editionManager;
             _abpZeroDbMigrator = abpZeroDbMigrator;
+            _customEditionManager = customEditionManager;
         }
 
         public ListResultDto<TenantListDto> GetTenants()
         {
             return new ListResultDto<TenantListDto>(
-                _tenantManager.Tenants
+                TenantManager.Tenants
                     .OrderBy(t => t.TenancyName)
                     .ToList()
                     .MapTo<List<TenantListDto>>()
                 );
         }
 
-        public async Task EnableFeatureForTenant(EnableFeatureInput input)
+        public async Task SetFeatureValuesForTenant(CustomEditionInput input)
         {
-            var tenant = await _tenantManager.GetByIdAsync(input.Id);
-            await _tenantManager.SetFeatureValueAsync(tenant, input.FeatureName, input.FeatureStatus);
+
+            var allFeatureValuesForTenant = await TenantManager.GetFeatureValuesAsync(input.TenantId);
+
+
+            var tenant = await TenantManager.GetByIdAsync(input.TenantId);
+
+            foreach (var inputFeature in input.Features)
+            {
+                await TenantManager.SetFeatureValueAsync(tenant, inputFeature.Name, inputFeature.DefaultValue);
+            }
+        }
+
+        public async Task<CustomEditionInput> GetFeaturesForTenant(int tenantId)
+        {
+            var tenant = await TenantManager.GetByIdAsync(tenantId);
+
+            if (tenant.EditionId == null) throw new UserFriendlyException(L("NoEditionIsSetForTenant"));
+
+            var edition = await _editionManager.FindByIdAsync(tenant.EditionId.Value);
+
+
+            var mapped = edition.MapTo<CustomEditionInput>();
+
+            mapped.TenantId = tenantId;
+
+            mapped.Features = await _customEditionManager.GetAllFeatures(edition.Id, tenantId);
+
+            return mapped;
+        }
+
+
+        public async Task ResetFeatures(int tenantId)
+        {
+            var tenant = await TenantManager.GetByIdAsync(tenantId);
+
+            if (tenant.EditionId == null) throw new UserFriendlyException(L("NoEditionIsSetForTenant"));
+
+            var editionFeatures = await _editionManager.GetFeatureValuesAsync(tenant.EditionId.Value);
+
+            await TenantManager.SetFeatureValuesAsync(tenantId, editionFeatures.ToArray());
+
+        }
+
+        public ReturnModel<TenantListDto> GetTenantsTable(RequestModel<TenantListDto> input)
+        {
+
+            throw new System.NotImplementedException();
         }
 
         public async Task<EditionsForTenantOutput> GetEditionsForTenant(int tenantId)
@@ -82,7 +130,7 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
 
         public async Task SetTenantEdition(SetTenantEditionInput input)
         {
-            var tenant = await _tenantManager.GetByIdAsync(input.TenantId);
+            var tenant = await TenantManager.GetByIdAsync(input.TenantId);
             var edition = await _editionManager.FindByIdAsync(input.EditionId);
             if (edition != null)
             {
