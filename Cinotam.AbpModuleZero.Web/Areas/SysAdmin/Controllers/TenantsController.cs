@@ -49,5 +49,13 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             var data = _tenantAppService.GetTenantsTable(input);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+
+        public async Task<ActionResult> TenantCharts(int tenantId)
+        {
+
+            var tenantViewModel = await _tenantAppService.GetTenantViewModel(tenantId);
+
+            return View(tenantViewModel);
+        }
     }
 }

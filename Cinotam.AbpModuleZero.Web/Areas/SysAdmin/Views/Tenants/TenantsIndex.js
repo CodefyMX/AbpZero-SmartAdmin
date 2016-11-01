@@ -31,6 +31,9 @@
 
 
 
+        var isSetEditionGranted = abp.auth.isGranted('Pages.Tenants.EditionAssign');
+        var isSetFeaturesGranted = abp.auth.isGranted('Pages.Tenants.FeatureAssign');
+        var isDeleteGranted = abp.auth.isGranted("Pages.Tenants.Delete");
 
         var columns = [
 
@@ -54,29 +57,33 @@
 
                     var delBtn = "";
 
-
-                    editionBtn = '<a data-modal href="/SysAdmin/Tenants/SetTenantEdition?tenantId=' +
+                    if (isSetEditionGranted) {
+                        editionBtn = '<a data-modal href="/SysAdmin/Tenants/SetTenantEdition?tenantId=' +
                         row.Id +
                         '" class="btn btn-default btn-xs" title="' + LSys("SetEdition") + '"><i class="fa fa-object-group"></i></a> ';
 
-
-                    if (row.EditionId != 0) {
-                        setFeaBtn = '<a data-modal href="/SysAdmin/Tenants/SetTenantFeatures?tenantId=' +
-                            row.Id +
-                            '" class="btn btn-default btn-xs"  title="' +
-                            LSys("SetTenantFeatures") +
-                            '"  ><i class="fa fa-bars"></i></a> ';
-                    } else {
-                        setFeaBtn = '<a class="btn btn-default btn-xs disabled"  title="' + LSys("SetTenantFeatures") + '"  ><i class="fa fa-bars"></i></a> ';
-
                     }
-                   
+
+                    if (isSetFeaturesGranted) {
+                        if (row.EditionId != 0) {
+                            setFeaBtn = '<a data-modal href="/SysAdmin/Tenants/SetTenantFeatures?tenantId=' +
+                                row.Id +
+                                '" class="btn btn-default btn-xs"  title="' +
+                                LSys("SetTenantFeatures") +
+                                '"  ><i class="fa fa-bars"></i></a> ';
+                        } else {
+                            setFeaBtn = '<a class="btn btn-default btn-xs disabled"  title="' + LSys("SetTenantFeatures") + '"  ><i class="fa fa-bars"></i></a> ';
+
+                        }
+                    }
                     statsBtn = '<a href="/SysAdmin/Tenants/TenantCharts?tenantId=' +
                         row.Id +
                         '" class="btn btn-default btn-xs"><i class="fa fa-tachometer"></i></a> ';
 
-                    delBtn = '<a data-id=' + row.Id + ' class="btn btn-danger btn-xs js-delete-tenant" title="' + LSys("DeleteTenant") + '"><i class="fa fa-times"></i></a> ';
+                    if (isDeleteGranted && row.Id != 1) {
+                        delBtn = '<a data-id=' + row.Id + ' class="btn btn-danger btn-xs js-delete-tenant" title="' + LSys("DeleteTenant") + '"><i class="fa fa-times"></i></a> ';
 
+                    }
                     return editionBtn + setFeaBtn + statsBtn + delBtn;
                 },
                 targets: 0
@@ -100,14 +107,6 @@
 
         var table = $table
         .DataTable(tenantsPage.dataTablesConfig);
-
-
-
-
-
-
-
-
 
     });
 

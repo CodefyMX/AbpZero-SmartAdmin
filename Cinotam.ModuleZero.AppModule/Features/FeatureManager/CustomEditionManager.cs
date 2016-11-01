@@ -74,6 +74,13 @@ namespace Cinotam.ModuleZero.AppModule.Features.FeatureManager
         private bool IsEnabledInTenant(int tenantId, string argChildName)
         {
             var feature = AsyncHelper.RunSync(() => _tenantManager.GetFeatureValueOrNullAsync(tenantId, argChildName));
+
+            bool isBool;
+
+            var boolVal = bool.TryParse(feature, out isBool);
+
+            if (isBool) return boolVal;
+
             return feature != null;
         }
 

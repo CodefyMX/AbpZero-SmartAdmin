@@ -53,14 +53,9 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             await _applicationLanguageManager.AddAsync(newLanguage);
 
             await _languagesAppNotificationSender.SendLanguageCreatedNotification(newLanguage, (await GetCurrentUserAsync()));
-            //AddAllKeysForNewLanguage(input.LangCode);
+
         }
 
-        //private void AddAllKeysForNewLanguage(string langCode)
-        //{
-        //    //Only creates the keys with empty values
-        //    _languageTextsProvider.SetLocalizationKeys(langCode, AbpSession.TenantId);
-        //}
 
         public ReturnModel<LanguageDto> GetLanguagesForTable(RequestModel<object> input)
         {
@@ -69,7 +64,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                 int totalCount;
                 var search = new List<Expression<Func<ApplicationLanguage, string>>> { a => a.DisplayName, a => a.Name, a => a.Icon };
 
-                var allLanguages = _languagesRepository.GetAll();
+                var allLanguages = _languagesRepository.GetAll().Where(a => a.TenantId == AbpSession.TenantId || a.TenantId == null);
                 var filterByLength = GenerateTableModel(input, allLanguages, search, "Name", out totalCount).ToList();
 
                 return new ReturnModel<LanguageDto>()
@@ -162,23 +157,6 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             }
 
         }
-        [AbpAllowAnonymous]
-        public IReadOnlyList<LanguageInfo> GetLanguages()
-        {
-            //_tenantHelperService.SetCurrentTenantFromUrl();
-
-            //var languagesI = new List<LanguageInfo>();
-
-            //var languages = _languagesRepository.GetAllList();
-
-            //foreach (var applicationLanguage in languages)
-            //{
-            //    languagesI.Add(new LanguageInfo(applicationLanguage.Name, applicationLanguage.DisplayName, applicationLanguage.Icon));
-            //}
-            //return languagesI;
-            throw new NotImplementedException();
-        }
-
         private Task ClearCache(string cacheName)
         {
             var cache = _cacheManager.GetCache(cacheName);

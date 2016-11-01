@@ -1196,6 +1196,7 @@
     <Content Include="Areas\SysAdmin\Views\Tenants\SetTenantEdition.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Tenants\SetTenantFeatures.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Tenants\_loadChildrens.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Tenants\TenantCharts.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />

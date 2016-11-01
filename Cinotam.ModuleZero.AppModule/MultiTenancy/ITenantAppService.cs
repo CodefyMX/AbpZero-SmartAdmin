@@ -19,5 +19,6 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
         Task ResetFeatures(int tenantId);
         ReturnModel<TenantListDto> GetTenantsTable(RequestModel<object> input);
 
+        Task<TenantViewModel> GetTenantViewModel(int tenantId);
     }
 }

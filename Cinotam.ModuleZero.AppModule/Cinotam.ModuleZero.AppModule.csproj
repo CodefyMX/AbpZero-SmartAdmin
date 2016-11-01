@@ -145,6 +145,7 @@
     <Compile Include="MultiTenancy\Dto\CustomEditionInput.cs" />
     <Compile Include="MultiTenancy\Dto\SetTenantEditionInput.cs" />
     <Compile Include="MultiTenancy\Dto\TenantListDto.cs" />
+    <Compile Include="MultiTenancy\Dto\TenantViewModel.cs" />
     <Compile Include="MultiTenancy\ITenantAppService.cs" />
     <Compile Include="MultiTenancy\MultiTenancyHelper\IMultiTenancyHelper.cs" />
     <Compile Include="MultiTenancy\MultiTenancyHelper\MultiTenancyHelper.cs" />

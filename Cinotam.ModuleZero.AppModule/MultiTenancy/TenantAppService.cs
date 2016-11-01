@@ -63,6 +63,7 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
             {
                 await TenantManager.SetFeatureValueAsync(tenant, inputFeature.Name, inputFeature.DefaultValue);
             }
+            await CurrentUnitOfWork.SaveChangesAsync();
         }
 
         public async Task<CustomEditionInput> GetFeaturesForTenant(int tenantId)
@@ -122,6 +123,13 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
                 data = filteredByLength.Select(a => a.MapTo<TenantListDto>()).ToArray(),
                 draw = input.draw,
             };
+        }
+
+        public async Task<TenantViewModel> GetTenantViewModel(int tenantId)
+        {
+            var tenant = await TenantManager.GetByIdAsync(tenantId);
+
+            return tenant.MapTo<TenantViewModel>();
         }
 
         public async Task<EditionsForTenantOutput> GetEditionsForTenant(int tenantId)
