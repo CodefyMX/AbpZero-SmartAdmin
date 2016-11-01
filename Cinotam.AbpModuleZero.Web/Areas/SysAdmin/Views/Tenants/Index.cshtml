@@ -23,38 +23,20 @@
     <div class="row">
         <div class="col-md-12">
             <button data-toggle="modal" data-target="#TenantCreateModal" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @L("CreateNewTenant")</button>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>@L("TenancyName")</th>
-                        <th>@L("Name")</th>
-                        <th class="text-center"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var tenant in Model.Items)
-                    {
-                        <tr>
-                            <td>@tenant.TenancyName</td>
-                            <td>@tenant.Name</td>
-                            <td class="text-center">
-                                <a data-modal href="@Url.Action("SetTenantEdition",new { tenantId = tenant.Id })" class="btn btn-primary btn-xs">@L("SetEdition")</a>
 
-                                @if (tenant.EditionId != 0)
-                                {
-                                    <a data-modal href="@Url.Action("SetTenantFeatures", new {tenantId = tenant.Id})" class="btn btn-primary btn-xs">@L("SetTenantFeatures")</a>
-                                }
-                                else
-                                {
-                                    <a class="btn btn-primary btn-xs disabled">@L("SetTenantFeatures")</a>
-                                }
-                                <a data-modal href="@Url.Action("TenantCharts",new { id = tenant.Id })" class="btn btn-primary btn-xs">@L("SeeTenantStadistics")</a>
-                                <a data-modal data-id="@tenant.Id" class="btn btn-primary btn-danger btn-xs js-delete-tenant">@L("RemoveTenant")</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
+
+            <table id="tenantsTable" class="table table-responsive table-condensed">
+                <thead>
+                <tr>
+
+                    <th></th>
+                    <th>@L("TenancyName")</th>
+                    <th>@L("Name")</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
             </table>
+
         </div>
     </div>
 </div>
@@ -102,5 +84,8 @@
     </div>
 </div>
 @section pagespecific{
+
+    <script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
+
     @Html.IncludeScript("~/Areas/SysAdmin/Views/Tenants/TenantsIndex.js")
 }

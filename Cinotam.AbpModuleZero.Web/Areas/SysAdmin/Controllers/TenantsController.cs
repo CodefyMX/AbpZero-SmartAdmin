@@ -1,5 +1,7 @@
-﻿using Abp.Web.Mvc.Authorization;
+﻿using Abp.Web.Models;
+using Abp.Web.Mvc.Authorization;
 using Cinotam.AbpModuleZero.Authorization;
+using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.Features;
 using Cinotam.ModuleZero.AppModule.MultiTenancy;
@@ -37,6 +39,15 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         {
             var model = await _tenantAppService.GetFeaturesForTenant(tenantId);
             return View(model);
+        }
+
+        [WrapResult(false)]
+        public ActionResult GetTenantsTable(RequestModel<object> input)
+        {
+            ProccessQueryData(input, "Id", new[] { "TenancyName", "Name" });
+
+            var data = _tenantAppService.GetTenantsTable(input);
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
     }
 }

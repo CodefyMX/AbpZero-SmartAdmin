@@ -1,10 +1,12 @@
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.AutoMapper;
+using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
 using Abp.UI;
+using Castle.Components.DictionaryAdapter;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Editions;
@@ -14,8 +16,10 @@ using Cinotam.AbpModuleZero.Users;
 using Cinotam.ModuleZero.AppModule.Features.Dto;
 using Cinotam.ModuleZero.AppModule.Features.FeatureManager;
 using Cinotam.ModuleZero.AppModule.MultiTenancy.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.AppModule.MultiTenancy
@@ -52,9 +56,6 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
 
         public async Task SetFeatureValuesForTenant(CustomEditionInput input)
         {
-
-            var allFeatureValuesForTenant = await TenantManager.GetFeatureValuesAsync(input.TenantId);
-
 
             var tenant = await TenantManager.GetByIdAsync(input.TenantId);
 
@@ -95,10 +96,32 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
 
         }
 
-        public ReturnModel<TenantListDto> GetTenantsTable(RequestModel<TenantListDto> input)
+        public ReturnModel<TenantListDto> GetTenantsTable(RequestModel<object> input)
         {
 
-            throw new System.NotImplementedException();
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+            }
+            int count;
+            var query = TenantManager.Tenants;
+
+            List<Expression<Func<Tenant, string>>> searchs = new EditableList<Expression<Func<Tenant, string>>>();
+
+            searchs.Add(a => a.Name);
+            searchs.Add(a => a.TenancyName);
+            var filteredByLength = GenerateTableModel(input, query, searchs, "Id", out count);
+
+            return new ReturnModel<TenantListDto>()
+            {
+                iTotalDisplayRecords = count,
+                recordsTotal = query.Count(),
+                recordsFiltered = filteredByLength.Count,
+                length = input.length,
+                data = filteredByLength.Select(a => a.MapTo<TenantListDto>()).ToArray(),
+                draw = input.draw,
+            };
         }
 
         public async Task<EditionsForTenantOutput> GetEditionsForTenant(int tenantId)

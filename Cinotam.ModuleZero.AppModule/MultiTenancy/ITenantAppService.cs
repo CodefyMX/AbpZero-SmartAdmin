@@ -17,7 +17,7 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
         Task SetTenantEdition(SetTenantEditionInput input);
         Task<CustomEditionInput> GetFeaturesForTenant(int tenantId);
         Task ResetFeatures(int tenantId);
-        ReturnModel<TenantListDto> GetTenantsTable(RequestModel<TenantListDto> input);
+        ReturnModel<TenantListDto> GetTenantsTable(RequestModel<object> input);
 
     }
 }
