@@ -44,7 +44,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         [WrapResult(false)]
         public ActionResult GetTenantsTable(RequestModel<object> input)
         {
-            ProccessQueryData(input, "Id", new[] { "TenancyName", "Name" });
+            ProccessQueryData(input, "Id", new[] { "", "TenancyName", "Name" });
 
             var data = _tenantAppService.GetTenantsTable(input);
             return Json(data, JsonRequestBehavior.AllowGet);

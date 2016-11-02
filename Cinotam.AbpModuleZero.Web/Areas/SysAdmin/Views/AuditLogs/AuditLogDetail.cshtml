@@ -3,7 +3,6 @@
 @{
     Layout = null;
 }
-
 <div class="modal-dialog" id="leaderModal" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -53,10 +52,8 @@
                         {
                             <div class="alert alert-warning">
                                 <h4>@L("ExceptionFound")</h4>
-                                <a data-id="@Model.Id"  class="toggle">Details</a>
-                                
                             </div>
-                            <pre lang="js" class="@Model.Id" style="display: none">@Model.Exception</pre>
+                            <pre style="max-height: 300px; overflow: hidden"><code class="html">@Model.Exception.Substring(0,300)</code></pre>
                         }
                         else
                         {

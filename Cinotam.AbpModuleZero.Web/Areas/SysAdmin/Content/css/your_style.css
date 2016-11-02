@@ -10,55 +10,71 @@
  * unique to you with each update of SmartAdmin.
  */
 .padding-top-0 {
-  padding-top: 0 !important;
+    padding-top: 0 !important;
 }
+
 .padding-top-5 {
-  padding-top: 5px !important;
+    padding-top: 5px !important;
 }
+
 .padding-bottom-0 {
-  padding-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
+
 .padding-bottom-5 {
-  padding-bottom: 5px !important;
+    padding-bottom: 5px !important;
 }
+
 .padding-left-5 {
-  padding-left: 5px !important;
+    padding-left: 5px !important;
 }
+
 .padding-left-10 {
-  padding-left: 10px !important;
+    padding-left: 10px !important;
 }
+
 .padding-right-5 {
-  padding-right: 5px !important;
+    padding-right: 5px !important;
 }
+
 .padding-right-10 {
-  padding-right: 10px !important;
+    padding-right: 10px !important;
 }
+
 .margin-top-0 {
-  margin-top: 0 !important;
+    margin-top: 0 !important;
 }
+
 .margin-top-5 {
-  margin-top: 5px !important;
+    margin-top: 5px !important;
 }
+
 .margin-bottom-0 {
-  margin-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
+
 .margin-bottom-5 {
-  margin-bottom: 5px !important;
+    margin-bottom: 5px !important;
 }
+
 .margin-left-5 {
-  margin-left: 5px !important;
+    margin-left: 5px !important;
 }
+
 .margin-left-10 {
-  margin-left: 10px !important;
+    margin-left: 10px !important;
 }
+
 .margin-right-5 {
-  margin-right: 5px !important;
+    margin-right: 5px !important;
 }
+
 .margin-right-10 {
-  margin-right: 10px !important;
+    margin-right: 10px !important;
 }
+
 .margin-right-15 {
-  margin-right: 15px !important;
+    margin-right: 15px !important;
 }
 /*.smart-form {
     .input {
@@ -69,32 +85,70 @@
 }*/
 /* SmartForm Bootstrap Validation */
 #extr-page h4.paragraph-header {
-  width: auto;
+    width: auto;
 }
+
 #extr-page .smart-form .alert {
-  margin: 4px;
+    margin: 4px;
 }
-#extr-page .smart-form .alert li {
-  margin-left: 14px;
-  list-style: none;
-}
-#extr-page .smart-form .alert li:before {
-  content: "\f071";
-  font-family: FontAwesome;
-  position: absolute;
-  left: 14px;
-}
+
+    #extr-page .smart-form .alert li {
+        margin-left: 14px;
+        list-style: none;
+    }
+
+        #extr-page .smart-form .alert li:before {
+            content: "\f071";
+            font-family: FontAwesome;
+            position: absolute;
+            left: 14px;
+        }
+
 #extr-page .smart-form div + fieldset {
-  padding-top: 15px;
+    padding-top: 15px;
 }
 
 
-table.has-columns-hidden>tbody>tr>td>span.responsiveExpander {
+table.has-columns-hidden > tbody > tr > td > span.responsiveExpander {
     background: url(../../content/img/plus.png) no-repeat 5px center !important;
     padding-left: 32px;
     cursor: pointer;
 }
 
-table.has-columns-hidden>tbody>tr.detail-show>td span.responsiveExpander {
+table.has-columns-hidden > tbody > tr.detail-show > td span.responsiveExpander {
     background: url(../../content/img/minus.png) no-repeat 5px center !important;
+}
+
+.chart-indicator-container {
+    position: relative;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.chart-indicator {
+    height: auto;
+    width: auto;
+    max-height: 30px;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    padding:5px;
+    font-family: sans-serif;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: white;
+}
+
+.chart-indicator-success {
+    background-color: #7e9d3a;
+    width: 45%;
+}
+
+.chart-indicator-error {
+    background-color: #f95f0b;
+    width: 45%;
 }

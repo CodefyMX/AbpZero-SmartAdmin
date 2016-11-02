@@ -10,7 +10,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
         Task<AuditLogOutput> GetLatestAuditLogOutput();
         Task<ReturnModel<AuditLogDto>> GetAuditLogTable(RequestModel<object> input);
         Task<AuditLogDto> GetAuditLogDetails(long id);
-        AuditLogTimeOutput GetAuditLogTimes(int? count = 50, int code = 0, int? tenantId = null);
+        AuditLogTimeOutput GetAuditLogTimes(AuditLogTimesInput input);
 
 
         Task<AuditLogOutput> GetLatestAuditLogOutputForTenant(long tenantId);

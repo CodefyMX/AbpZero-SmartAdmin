@@ -29,7 +29,41 @@
             _$modal.find('input:not([type=hidden]):first').focus();
         });
 
+        var $body = $("body");
 
+        $body.on("click",
+            ".js-delete-tenant",
+            function () {
+
+                var id = $(this).data("id");
+
+                abp.message.confirm(LSys("TenantWillBeDeleted"), LSys("ConfirmQuestion"), function (response) {
+
+                    if (response) {
+                        _tenantService.deleteTenant(id).done(function () {
+                            window.location.reload();
+                        });
+                    }
+                });
+
+            });
+
+        $body.on("click",
+            ".js-restore-tenant",
+            function () {
+
+                var id = $(this).data("id");
+
+                abp.message.confirm(LSys("TenantWillBeRestored"), LSys("ConfirmQuestion"), function (response) {
+
+                    if (response) {
+                        _tenantService.restoreTenant(id).done(function () {
+                            window.location.reload();
+                        });
+                    }
+                });
+
+            });
 
         var isSetEditionGranted = abp.auth.isGranted('Pages.Tenants.EditionAssign');
         var isSetFeaturesGranted = abp.auth.isGranted('Pages.Tenants.FeatureAssign');
@@ -56,6 +90,8 @@
                     var statsBtn = "";
 
                     var delBtn = "";
+
+                    var restoreBtn = "";
 
                     if (isSetEditionGranted) {
                         editionBtn = '<a data-modal href="/SysAdmin/Tenants/SetTenantEdition?tenantId=' +
@@ -84,7 +120,19 @@
                         delBtn = '<a data-id=' + row.Id + ' class="btn btn-danger btn-xs js-delete-tenant" title="' + LSys("DeleteTenant") + '"><i class="fa fa-times"></i></a> ';
 
                     }
+
+                    if (row.IsDeleted) {
+                        restoreBtn = '<a data-id=' +
+                            row.Id +
+                            ' class="btn btn-success btn-xs js-restore-tenant" ><i class="fa fa-check"></i>  ' +
+                            LSys("RestoreTenant") +
+                            '   </a> ';
+                        return restoreBtn;
+
+                    }
                     return editionBtn + setFeaBtn + statsBtn + delBtn;
+
+
                 },
                 targets: 0
             }

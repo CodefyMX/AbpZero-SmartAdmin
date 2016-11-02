@@ -121,6 +121,7 @@ namespace Cinotam.AbpModuleZero.Web
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.orderBar.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.pie.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.tooltip.min.js",
+                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.navigate.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/dygraphs/dygraph-combined.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/chartjs/chart.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/highChartCore/highcharts-custom.min.js",

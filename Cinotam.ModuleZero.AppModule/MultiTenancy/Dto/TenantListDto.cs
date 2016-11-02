@@ -12,5 +12,6 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy.Dto
         public string Name { get; set; }
 
         public int EditionId { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

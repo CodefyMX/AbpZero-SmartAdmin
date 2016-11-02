@@ -119,7 +119,8 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
         }
 
         [WrapResult(false)]
-        public AuditLogTimeOutput GetAuditLogTimes(int? count = 50, int code = 0, int? tenantId = null)
+
+        public AuditLogTimeOutput GetAuditLogTimes(AuditLogTimesInput input)
         {
             if (AbpSession.TenantId == null)
             {
@@ -132,22 +133,22 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
                         where DbFunctions.TruncateTime(ex.ExecutionTime) == DbFunctions.TruncateTime(DateTime.Now)
                         select ex;
 
-            if (tenantId.HasValue)
+            if (input.TenantId.HasValue)
             {
-                query = query.Where(a => a.TenantId == tenantId);
+                query = query.Where(a => a.TenantId == input.TenantId);
             }
             //0 = all
             //1 = only ex
             //2 = only success
-            if (code == 1)
+            if (input.Code == 1)
             {
                 query = query.Where(a => !string.IsNullOrEmpty(a.Exception));
             }
-            if (code == 2)
+            if (input.Code == 2)
             {
                 query = query.Where(a => string.IsNullOrEmpty(a.Exception));
             }
-            var inMemoryData = query.Take(count ?? 100).ToList();
+            var inMemoryData = query.Take(input.Count ?? 100).ToList();
             foreach (var auditLog in inMemoryData)
             {
                 listOfData.Add(new AuditLogTimeOutputDto()
@@ -159,19 +160,37 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
 
                 });
             }
-            double avg = 0;
+            double? avg = null;
             var totalCalls = 0;
             if (data.Any())
             {
 
-                avg = data.Average(a => a.ExecutionDuration);
-                totalCalls = data.Count();
+
+                if (input.TenantId.HasValue)
+                {
+                    var tenantId = input.TenantId.Value;
+
+                    var dataForTenant = data.Where(a => a.TenantId == tenantId).ToList();
+
+                    if (dataForTenant.Any())
+                    {
+                        avg = dataForTenant.Average(a => a.ExecutionDuration);
+                        totalCalls = data.Count(a => a.TenantId == input.TenantId);
+                    }
+                }
+
+                else
+                {
+                    avg = data.Average(a => a.ExecutionDuration);
+                    totalCalls = data.Count();
+                }
+
             }
             return new AuditLogTimeOutput()
             {
                 TotalRequestsReceived = totalCalls,
                 AuditLogTimeOutputDtos = listOfData,
-                AvgExecutionTime = avg.ToString("##.#")
+                AvgExecutionTime = avg?.ToString("##.#") ?? ""
             };
         }
 

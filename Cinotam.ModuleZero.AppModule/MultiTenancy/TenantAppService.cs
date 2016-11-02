@@ -56,6 +56,12 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
 
         public async Task SetFeatureValuesForTenant(CustomEditionInput input)
         {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete);
+            }
 
             var tenant = await TenantManager.GetByIdAsync(input.TenantId);
 
@@ -68,6 +74,12 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
 
         public async Task<CustomEditionInput> GetFeaturesForTenant(int tenantId)
         {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete);
+            }
             var tenant = await TenantManager.GetByIdAsync(tenantId);
 
             if (tenant.EditionId == null) throw new UserFriendlyException(L("NoEditionIsSetForTenant"));
@@ -87,6 +99,12 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
 
         public async Task ResetFeatures(int tenantId)
         {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete);
+            }
             var tenant = await TenantManager.GetByIdAsync(tenantId);
 
             if (tenant.EditionId == null) throw new UserFriendlyException(L("NoEditionIsSetForTenant"));
@@ -104,6 +122,7 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
             {
                 CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
                 CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete);
             }
             int count;
             var query = TenantManager.Tenants;
@@ -127,6 +146,12 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
 
         public async Task<TenantViewModel> GetTenantViewModel(int tenantId)
         {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete);
+            }
             var tenant = await TenantManager.GetByIdAsync(tenantId);
 
             return tenant.MapTo<TenantViewModel>();
@@ -134,6 +159,12 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
 
         public async Task<EditionsForTenantOutput> GetEditionsForTenant(int tenantId)
         {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete);
+            }
             var allEditions = _editionManager.Editions.ToList();
             var editionCList = new List<EditionDtoCustom>();
             foreach (var allEdition in allEditions)
@@ -153,6 +184,7 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
 
         private async Task<bool> IsThisEditionActive(int tenantId, int editionId)
         {
+
             var tenant = await TenantManager.GetByIdAsync(tenantId);
 
             return tenant.EditionId == editionId;
@@ -161,6 +193,12 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
 
         public async Task SetTenantEdition(SetTenantEditionInput input)
         {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete);
+            }
             var tenant = await TenantManager.GetByIdAsync(input.TenantId);
             var edition = await _editionManager.FindByIdAsync(input.EditionId);
             if (edition != null)
@@ -210,6 +248,26 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
                 CheckErrors(await UserManager.AddToRoleAsync(adminUser.Id, adminRole.Name));
                 await CurrentUnitOfWork.SaveChangesAsync();
             }
+        }
+
+        public async Task DeleteTenant(int tenantId)
+        {
+            var tenant = await TenantManager.FindByIdAsync(tenantId);
+            await TenantManager.DeleteAsync(tenant);
+        }
+        public async Task RestoreTenant(int tenantId)
+        {
+            if (AbpSession.TenantId == null)
+            {
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
+                CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete);
+            }
+            var tenant = await TenantManager.FindByIdAsync(tenantId);
+
+            tenant.IsDeleted = false;
+
+            await TenantManager.UpdateAsync(tenant);
         }
     }
 }

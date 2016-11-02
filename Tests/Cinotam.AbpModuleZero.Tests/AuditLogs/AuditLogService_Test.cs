@@ -1,4 +1,5 @@
 ﻿using Cinotam.ModuleZero.AppModule.AuditLogs;
+using Cinotam.ModuleZero.AppModule.AuditLogs.Dto;
 using Shouldly;
 using System.Collections;
 using System.Threading.Tasks;
@@ -64,7 +65,10 @@ namespace Cinotam.AbpModuleZero.Tests.AuditLogs
         {
             LoginAsHostAdmin();
 
-            var fakeResult = _auditLogService.GetAuditLogTimes(10);
+            var fakeResult = _auditLogService.GetAuditLogTimes(new AuditLogTimesInput()
+            {
+                Count = 10
+            });
 
             fakeResult.ShouldNotBeNull();
 
