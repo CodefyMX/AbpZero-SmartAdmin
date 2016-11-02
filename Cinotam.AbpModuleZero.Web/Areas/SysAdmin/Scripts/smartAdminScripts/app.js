@@ -179,7 +179,7 @@ var calc_navbar_height = function () {
 					// ask verification
 					$.SmartMessageBox({
 					    title: "<i class='fa fa-sign-out txt-color-orangeDark'></i> "+LSys("Logout")+" <span class='txt-color-orangeDark'><strong>" + $('#show-shortcut').text() + "</strong></span> ?",
-						content: $this.data('logout-msg') || LSmart("LogOutMessage"),
+						content: $this.data('logout-msg') || LSys("LogOutMessage"),
 						buttons: '[' + noTxt + '][' + yesTxt + ']'
 
 					}, function (ButtonPressed) {
@@ -199,8 +199,8 @@ var calc_navbar_height = function () {
 					var yesTxt = LSys("Yes");
 					var noTxt = LSys("No");
 					$.SmartMessageBox({
-						title: "<i class='fa fa-refresh' style='color:green'></i> " + LSmart("ResetStorage") + "",
-						content: $this.data('reset-msg') || LSmart("ResetConfirm"),
+						title: "<i class='fa fa-refresh' style='color:green'></i> " + LSys("ResetStorage") + "",
+						content: $this.data('reset-msg') || LSys("ResetConfirm"),
 						buttons: '[' + noTxt + '][' + yesTxt + ']'
 					}, function (ButtonPressed) {
 						if (ButtonPressed == yesTxt && localStorage) {

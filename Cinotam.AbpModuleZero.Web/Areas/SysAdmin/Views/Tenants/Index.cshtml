@@ -23,25 +23,20 @@
     <div class="row">
         <div class="col-md-12">
             <button data-toggle="modal" data-target="#TenantCreateModal" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @L("CreateNewTenant")</button>
-            <table class="table">
+
+
+            <table id="tenantsTable" class="table table-responsive table-condensed">
                 <thead>
                 <tr>
+
+                    <th></th>
                     <th>@L("TenancyName")</th>
                     <th>@L("Name")</th>
-                    <th class="text-center"></th>
                 </tr>
                 </thead>
-                <tbody>
-                @foreach (var tenant in Model.Items)
-                {
-                    <tr>
-                        <td>@tenant.TenancyName</td>
-                        <td>@tenant.Name</td>
-                        <td class="text-center"><a data-modal href="@Url.Action("SetTenantEdition",new { tenantId = tenant.Id })" class="btn btn-primary btn-xs">@L("SetEdition")</a> <a data-modal href="@Url.Action("SetTenantFeatures")" class="btn btn-primary btn-xs">@L("EnableFeatures")</a></td>
-                    </tr>
-                }
-                </tbody>
+                <tbody></tbody>
             </table>
+
         </div>
     </div>
 </div>
@@ -89,5 +84,8 @@
     </div>
 </div>
 @section pagespecific{
+
+    <script src="~/Areas/SysAdmin/Scripts/datatables.responsiveConfigs.js"></script>
+
     @Html.IncludeScript("~/Areas/SysAdmin/Views/Tenants/TenantsIndex.js")
 }

@@ -4,33 +4,76 @@
     Layout = null;
 }
 <div class="row no-space">
-    <div class="col-xs-12">
-        <span class="demo-liveupdate-1">
-            <span class="onoffswitch-title">Live switch</span> <span class="onoffswitch">
-                <input type="checkbox" name="start_interval" class="onoffswitch-checkbox" id="start_interval">
-                <label class="onoffswitch-label" for="start_interval">
-                    <span class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></span>
-                    <span class="onoffswitch-switch"></span>
-                </label>
+    
+    @if (!ViewBag.Hidde)
+    {
+        <div class="col-xs-12">
+            <span class="demo-liveupdate-1">
+                <span class="onoffswitch-title">Live switch</span> <span class="onoffswitch">
+                    <input type="checkbox" name="start_interval" class="onoffswitch-checkbox" id="start_interval">
+                    <label class="onoffswitch-label" for="start_interval">
+                        <span class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </span>
             </span>
-        </span>
-    </div>
-    <br /><br />
-    <div class="col-xs-12 col-md-8">
+        </div>
+        <br /><br />
+    }
+
+   
+
+    @if (ViewBag.Hidde)
+    {
+        <div class="col-xs-12 col-sm-12 col-md-12">
 
 
-        <div id="logsChart" class="chart"></div>
-        <h4 class="text-center">
-            @L("MethodCalls")
-        </h4>
-    </div>
-    <div class="col-xs-12 col-md-4">
+            <div id="logsChart" class="chart"></div>
+            <h4 class="text-center">
+                @L("MethodCalls")
+            </h4>
+        </div>
+    }
+    else
+    {
+        <div class="col-xs-12 col-sm-12 col-md-8">
 
-        <p class="text-center font-xl">Requests</p>
-        <p class="text-center font-lg" id="total">...</p>
-        <p class="text-center font-xl">Average Execution Time</p>
-        <p class="text-center font-lg"><label id="average"></label> <i id="avgIndicator" class=""></i></p>
-        <p class="text-center font-lg"><a href="@Url.Action("AuditLogsList","AuditLogs")">@L("SeeAll")</a></p>
-    </div>
+
+            <div id="logsChart" class="chart"></div>
+            <h4 class="text-center">
+                @L("MethodCalls")
+            </h4>
+        </div>
+    }
+
+
+    @if (!ViewBag.Hidde)
+    {
+        <div class="col-xs-12 col-sm-12 col-md-4">
+
+            <p class="text-center font-xl">@L("Requests")</p>
+            <p class="text-center font-lg" id="total">...</p>
+            <p class="text-center font-xl">@L("AverageExecutionTime")</p>
+            <p class="text-center font-lg"><label id="average"></label> <i id="avgIndicator" class=""></i>
+            </p>
+            <p class="text-center font-lg"><a href="@Url.Action("AuditLogsList", "AuditLogs")">@L("SeeAll")</a>
+            </p>
+        </div>
+    }
+    else
+    {
+        <br/>
+        <br/>
+        <div class="col-md-12">
+
+            <p class="text-center">@L("Requests")</p>
+            <p class="text-center" id="total">...</p>
+            <p class="text-center">@L("AverageExecutionTime")</p>
+            <p class="text-center">
+                <label id="average"></label> <i id="avgIndicator" class=""></i>
+            </p>
+        </div>
+    }
+
 </div>
 @Html.IncludeScript("~/Areas/SysAdmin/Views/Dashboard/GetLogStadistics.js")

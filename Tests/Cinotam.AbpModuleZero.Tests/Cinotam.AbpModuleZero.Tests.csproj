@@ -215,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbpModuleZeroTestModule.cs" />
+    <Compile Include="AuditLogs\AuditLogService_Test.cs" />
     <Compile Include="FakeRequests\FakeRequestHelper.cs" />
     <Compile Include="Languages\LanguageAppService_Test.cs" />
     <Compile Include="MultiTenancy\MultiTenancyHelper_Test.cs" />

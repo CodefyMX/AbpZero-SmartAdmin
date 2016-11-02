@@ -123,6 +123,8 @@
     <Compile Include="Features\Dto\EditionsForTenantOutput.cs" />
     <Compile Include="Features\Dto\EditionsOutput.cs" />
     <Compile Include="Features\Dto\NewEditionInput.cs" />
+    <Compile Include="Features\FeatureManager\CustomEditionManager.cs" />
+    <Compile Include="Features\FeatureManager\ICustomEditionManager.cs" />
     <Compile Include="Features\FeatureService.cs" />
     <Compile Include="Features\IFeatureService.cs" />
     <Compile Include="Languages\Dto\LanguageDto.cs" />
@@ -140,9 +142,10 @@
     <Compile Include="ModuleZeroNavigationProvider.cs" />
     <Compile Include="ModuleZeroSettingsProvider.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
-    <Compile Include="MultiTenancy\Dto\EnableFeatureInput.cs" />
+    <Compile Include="MultiTenancy\Dto\CustomEditionInput.cs" />
     <Compile Include="MultiTenancy\Dto\SetTenantEditionInput.cs" />
     <Compile Include="MultiTenancy\Dto\TenantListDto.cs" />
+    <Compile Include="MultiTenancy\Dto\TenantViewModel.cs" />
     <Compile Include="MultiTenancy\ITenantAppService.cs" />
     <Compile Include="MultiTenancy\MultiTenancyHelper\IMultiTenancyHelper.cs" />
     <Compile Include="MultiTenancy\MultiTenancyHelper\MultiTenancyHelper.cs" />
