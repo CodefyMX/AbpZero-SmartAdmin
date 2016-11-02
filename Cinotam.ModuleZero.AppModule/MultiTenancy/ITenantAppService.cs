@@ -20,5 +20,7 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
         ReturnModel<TenantListDto> GetTenantsTable(RequestModel<object> input);
 
         Task<TenantViewModel> GetTenantViewModel(int tenantId);
+        Task DeleteTenant(int tenantId);
+        Task RestoreTenant(int tenantId);
     }
 }

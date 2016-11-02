@@ -22,9 +22,10 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View();
         }
         [DisableAuditing]
-        public ViewResult GetLogsStadistics(bool hidde = false)
+        public ViewResult GetLogsStadistics(bool hidde = false, int? tenantId = null)
         {
             ViewBag.Hidde = hidde;
+            ViewBag.TenantId = tenantId;
             return View();
         }
 

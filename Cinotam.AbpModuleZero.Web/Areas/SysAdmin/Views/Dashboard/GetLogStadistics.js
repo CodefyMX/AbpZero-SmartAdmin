@@ -9,7 +9,7 @@
         ONLY_SUCCESS: 2
     }
 
-
+    var $tenantId;
     var $chrtFourth = "#7e9d3a";
     var $chrtError = "#f95f0b";
     var $logsChart = $('#logsChart');
@@ -17,7 +17,7 @@
     var serieCount = 0;
     var updateInterval = 3000;
     var selectedOptionValue = 200;
-
+    var $menu = $("#menu");
     var allToolTips = [];
     //Se esta haciendo un doble bind, el bind debe ser unico
     //El data index tambien es el mismo para ambos tooltips
@@ -144,6 +144,7 @@
                     points: {
                         show: true
                     },
+
                     shadowSize: 0
 
                 },
@@ -153,12 +154,42 @@
                 grid: {
                     hoverable: true,
                     clickable: true
+                },
+                zoom: {
+                    interactive: true
+                },
+                pan: {
+                    interactive: true
                 }
             }
 
             plot = $.plot($logsChart, [chartElementData], options);
 
             isInitialized = true;
+
+
+
+            // show pan/zoom messages to illustrate events 
+
+            $menu.bind("plotpan", function (event, plot) {
+                var axes = plot.getAxes();
+                $(".message").html("Panning to x: " + axes.xaxis.min.toFixed(2)
+                + " &ndash; " + axes.xaxis.max.toFixed(2)
+                + " and y: " + axes.yaxis.min.toFixed(2)
+                + " &ndash; " + axes.yaxis.max.toFixed(2));
+            });
+
+            $menu.bind("plotzoom", function (event, plot) {
+                var axes = plot.getAxes();
+                $(".message").html("Zooming to x: " + axes.xaxis.min.toFixed(2)
+                + " &ndash; " + axes.xaxis.max.toFixed(2)
+                + " and y: " + axes.yaxis.min.toFixed(2)
+                + " &ndash; " + axes.yaxis.max.toFixed(2));
+            });
+
+
+
+
 
         } else {
 
@@ -181,7 +212,17 @@
 
             var $averageElement = $("#average");
             var $totalElement = $("#total");
-            _auditLogAppService.getAuditLogTimes(max, code)
+
+            if (!$tenantId) {
+                $tenantId = null;
+            }
+            var request = {
+                Count: max,
+                Code: code,
+                TenantId:$tenantId
+
+            }
+            _auditLogAppService.getAuditLogTimes(request)
                 .done(function (response) {
 
                     var data = [];
@@ -247,11 +288,6 @@
                     buildChart(successData, $chrtFourth);
 
                     getData(total, function (errorRData, errorRToolTips) {
-
-
-
-
-
 
 
 
@@ -350,7 +386,7 @@
 
     $(document)
         .ready(function () {
-
+            $tenantId = $("#tenantId").val();
             logPageConfig.initialize(_auditLogAppService);
         });
 })();
