@@ -4,7 +4,7 @@
     Layout = null;
 }
 <div class="row no-space">
-    
+
     @if (!ViewBag.Hidde)
     {
         <div class="col-xs-12">
@@ -21,28 +21,42 @@
         <br /><br />
     }
 
-   
+
 
     @if (ViewBag.Hidde)
     {
         <div class="col-xs-12 col-sm-12 col-md-12">
-
-
-            <div id="logsChart" class="chart"></div>
             <h4 class="text-center">
                 @L("MethodCalls")
             </h4>
+
+            <div id="logsChart" class="chart"></div>
+
+            <div class="chart-indicator-container">
+                <div class="chart-indicator chart-indicator-success">@L("SuccessOperation")</div>
+
+                <div class="chart-indicator chart-indicator-error">@L("ErrorOperation")</div>
+            </div>
+
         </div>
     }
     else
     {
         <div class="col-xs-12 col-sm-12 col-md-8">
-
-
-            <div id="logsChart" class="chart"></div>
             <h4 class="text-center">
                 @L("MethodCalls")
             </h4>
+            
+            <div id="logsChart" class="chart"></div>
+
+            <div class="chart-indicator-container">
+
+                <div class="chart-indicator chart-indicator-success">@L("SuccessOperation")</div>
+
+                <div class="chart-indicator chart-indicator-error">@L("ErrorOperation")</div>
+            </div>
+
+
         </div>
     }
 
@@ -54,16 +68,18 @@
             <p class="text-center font-xl">@L("Requests")</p>
             <p class="text-center font-lg" id="total">...</p>
             <p class="text-center font-xl">@L("AverageExecutionTime")</p>
-            <p class="text-center font-lg"><label id="average"></label> <i id="avgIndicator" class=""></i>
+            <p class="text-center font-lg">
+                <label id="average"></label> <i id="avgIndicator" class=""></i>
             </p>
-            <p class="text-center font-lg"><a href="@Url.Action("AuditLogsList", "AuditLogs")">@L("SeeAll")</a>
+            <p class="text-center font-lg">
+                <a href="@Url.Action("AuditLogsList", "AuditLogs")">@L("SeeAll")</a>
             </p>
         </div>
     }
     else
     {
-        <br/>
-        <br/>
+        <br />
+        <br />
         <div class="col-md-12">
 
             <p class="text-center">@L("Requests")</p>

@@ -4,16 +4,180 @@
     var newValue;
     var _auditLogAppService = abp.services.app.auditLogService;
     var resultTypes = {
-
         ALL: 0,
         ONLY_ERROR: 1,
         ONLY_SUCCESS: 2
+    }
+
+
+    var $chrtFourth = "#7e9d3a";
+    var $chrtError = "#f95f0b";
+    var $logsChart = $('#logsChart');
+    var isInitialized = false;
+    var serieCount = 0;
+    var updateInterval = 3000;
+    var selectedOptionValue = 200;
+
+    var allToolTips = [];
+    //Se esta haciendo un doble bind, el bind debe ser unico
+    //El data index tambien es el mismo para ambos tooltips
+
+    function getCorrectToolTipIndex(toolTips, item) {
+
+        //toolTips[item.dataIndex]
+        var seriesIndex = item.seriesIndex;
+
+        var dataIndex = item.dataIndex;
+
+        for (var i = 0; i < toolTips.length; i++) {
+            if (i == dataIndex) {
+                for (var j = 0; j < toolTips.length; j++) {
+                    if (toolTips[j].SerieId == seriesIndex) {
+
+                        return toolTips[j];
+                    }
+                }
+            }
+
+        }
+        return undefined;
+    }
+
+    var buildToolTips = function (toolTips) {
+
+        $logsChart.bind("plotclick", function (event, pos, item) {
+            if (item) {
+                var toolTip = getCorrectToolTipIndex(toolTips, item); //toolTips[item.dataIndex]; 
+                
+                if (toolTip) {
+                    var id = toolTip.Id;
+                    window.modalInstance.open("/SysAdmin/AuditLogs/AuditLogDetail/" + id + "");
+                }
+
+            }
+        });
+
+
+        $("<div id='tooltip'></div>").css({
+            position: "absolute",
+            display: "none",
+            border: "1px solid #fdd",
+            padding: "2px",
+            "background-color": "#fee",
+            opacity: 0.80
+        }).appendTo("body");
+        var $toolTip = $("#tooltip");
+        $logsChart.bind("plothover", function (event, pos, item) {
+            if (item) {
+                var toolTip = toolTips[item.dataIndex];
+
+                if (toolTip) {
+                    var txt = toolTip.MethodName;
+                    var value = item.datapoint[1];
+                    var color = "";
+                    if (value > 500) {
+                        color = "#ffca28";
+                    }
+                    if (value <= 500) {
+                        color = "#827717";
+                    }
+                    if (value > 1000) {
+                        color = "#e53935";
+                    }
+                    var message = "Method name: " + txt + ", Execution time: <a style='color:" + color + "'> " + value + " ms<a>";
+                    $toolTip
+                        .html(message)
+                        .css({ top: item.pageY + 5, left: item.pageX + 5 })
+                        .fadeIn(200);
+                }
+
+
+            } else {
+                $toolTip.hide();
+            }
+        });
 
     }
+
+    var chartData = [];
+    var plot = {};
+    var colorArray = [];
+    var options = {};
+
+    /**
+     * 
+     * @param {} dataArray 
+     * @param {} toolTipsArray 
+     * @returns {} 
+     */
+    var buildChart = function (data, color) {
+        colorArray.push(color);
+
+
+
+        var chartElementData =
+        {
+            data: data.data,
+            label: data.label
+        };
+
+
+        chartData.push(chartElementData);
+
+        if (!isInitialized) {
+
+            options = {
+                colors: colorArray,
+                series: {
+                    lines: {
+                        show: true,
+                        lineWidth: 1,
+                        fill: true,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0.1
+                            }, {
+                                opacity: 0.15
+                            }]
+                        }
+                    },
+                    points: {
+                        show: true
+                    },
+                    shadowSize: 0
+
+                },
+                xaxis: {
+                    mode: "categories"
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true
+                }
+            }
+
+            plot = $.plot($logsChart, [chartElementData], options);
+
+            isInitialized = true;
+
+        } else {
+
+            options.colors.push(color);
+
+            plot.setData(chartData);
+            plot.setupGrid();
+            plot.draw();
+
+
+        }
+
+    }
+
+    var getData;
+
     function initialize(_auditLogAppService) {
 
-        var selectedOptionValue = 50;
-        function getData(max, callback, code) {
+        getData = function (max, callback, code) {
 
             var $averageElement = $("#average");
             var $totalElement = $("#total");
@@ -24,9 +188,6 @@
                     var dataToolTips = [];
                     var count = 1;
                     var element = $("#avgIndicator");
-                    //if (currentValue == response.avgExecutionTime) {
-                    //    console.log ("No changes");
-                    //}
                     if (currentValue < response.avgExecutionTime) {
                         element.removeClass("fa fa-caret-down icon-color-good");
                         element.addClass("fa fa-caret-up icon-color-bad");
@@ -48,221 +209,70 @@
                     response.auditLogTimeOutputDtos.forEach(function (element) {
                         dataToolTips.push({
                             MethodName: element.methodName,
-                            Id: element.id
+                            Id: element.id,
+                            SerieId: serieCount
                         });
                         data.push([count, element.executionDuration]);
                         count = count + 1;
                     });
+
+                    serieCount = serieCount + 1;
+
                     callback(data, dataToolTips);
                 });
         }
 
+        startView(selectedOptionValue);
 
-        var $chrtFourth = "#7e9d3a";
-        var $chrtError = "#f95f0b";
-        var $logsChart = $('#logsChart');
+
+    }
+
+    function startView(total) {
         if ($logsChart.length) {
             if (isAuditLogGranted) {
-
                 // setup control widget
-                getData(50, function (data, toolTips) {
+                getData(total, function (data, toolTips) {
+
+                    for (var i = 0; i < toolTips.length; i++) {
+                        allToolTips.push(toolTips[i]);
+                    }
+
+                    var successData = {
 
 
-                    var successData = data;
-                    getData(50,
-                        function (dataErr, toolTipsErr) {
+                        data: data,
+                        label: LSys("Success")
+                    }
 
-                            var updateInterval = 1000;
-                            $logsChart.val(updateInterval).change(function () {
-                                var v = $(this).val();
-                                if (v && !isNaN(+v)) {
-                                    updateInterval = +v;
-                                    if (updateInterval < 1)
-                                        updateInterval = 1;
-                                    if (updateInterval > 2000)
-                                        updateInterval = 2000;
-                                    $(this).val("" + updateInterval);
-                                }
-                            });
+                    buildChart(successData, $chrtFourth);
 
-                            // setup plot
-                            var options = {
-                                colors: [$chrtFourth, $chrtError],
-                                series: {
-                                    lines: {
-                                        show: true,
-                                        lineWidth: 1,
-                                        fill: true,
-                                        fillColor: {
-                                            colors: [{
-                                                opacity: 0.1
-                                            }, {
-                                                opacity: 0.15
-                                            }]
-                                        }
-                                    },                                    points: {
-                                        show: true
-                                    },
-                                    shadowSize: 0
-
-                                },
-                                grid: {
-                                    hoverable: true,
-                                    clickable: true
-                                }
-                            };
-                            var plot = $.plot($logsChart, [
-                                {
-                                    data: successData,
-                                    label: 'Success'
-                                },
-                                {
-                                    data: dataErr,
-                                    label: 'Errors'
-                                }
-
-                            ], options);
-
-                            $logsChart.bind("plotclick", function (event, pos, item) {
-
-                                if (item) {
-                                    var toolTip = toolTips[item.dataIndex];
-
-                                    if (toolTip) {
-                                        var id = toolTip.Id;
-                                        window.modalInstance.open("/SysAdmin/AuditLogs/AuditLogDetail/" + id + "");
-                                    }
-                                    
-                                }
-                            });
-
-
-                            $logsChart.bind("plotclick", function (event, pos, item) {
-
-                                if (item) {
-                                    var toolTip = toolTipsErr[item.dataIndex];
-                                    if (toolTip) {
-                                        var id = toolTip.Id;
-                                        window.modalInstance.open("/SysAdmin/AuditLogs/AuditLogDetail/" + id + "");
-                                    }
-                                    
-                                }
-                            });
-
-
-                            $("<div id='tooltip'></div>").css({
-                                position: "absolute",
-                                display: "none",
-                                border: "1px solid #fdd",
-                                padding: "2px",
-                                "background-color": "#fee",
-                                opacity: 0.80
-                            }).appendTo("body");
-                            var $toolTip = $("#tooltip");
-                            $logsChart.bind("plothover", function (event, pos, item) {
-                                if (item) {
-                                    var toolTip = toolTips[item.dataIndex];
-
-                                    if (toolTip) {
-                                        var txt = toolTip.MethodName;
-                                        var value = item.datapoint[1];
-                                        var color = "";
-                                        if (value > 500) {
-                                            color = "#ffca28";
-                                        }
-                                        if (value <= 500) {
-                                            color = "#827717";
-                                        }
-                                        if (value > 1000) {
-                                            color = "#e53935";
-                                        }
-                                        var message = "Method name: " + txt + ", Execution time: <a style='color:" + color + "'> " + value + " ms<a>";
-                                        $toolTip
-                                            .html(message)
-                                            .css({ top: item.pageY + 5, left: item.pageX + 5 })
-                                            .fadeIn(200);
-                                    }
-
-                                   
-                                } else {
-                                    $toolTip.hide();
-                                }
-                            });
-
-                            $logsChart.bind("plothover", function (event, pos, item) {
-                                if (item) {
-                                    var toolTip = toolTipsErr[item.dataIndex];
-
-
-                                    if (toolTip) {
-                                        var txt = toolTip.MethodName;
-
-                                        var value = item.datapoint[1];
-                                        var color = "";
-                                        if (value > 500) {
-                                            color = "#ffca28";
-                                        }
-                                        if (value <= 500) {
-                                            color = "#827717";
-                                        }
-                                        if (value > 1000) {
-                                            color = "#e53935";
-                                        }
-                                        var message = "Method name: " + txt + ", Execution time: <a style='color:" + color + "'> " + value + " ms<a>";
-                                        $toolTip
-                                            .html(message)
-                                            .css({ top: item.pageY + 5, left: item.pageX + 5 })
-                                            .fadeIn(200);
-                                    }
-
-                                    
-                                } else {
-                                    $toolTip.hide();
-                                }
-                            });
-                            function update() {
-                                var $startInterval = $("#start_interval");
-
-
-                                if ($startInterval.is(":checked")) {
-
-
-                                    getData(selectedOptionValue, function (updatedData, updatedToolTips) {
-
-
-
-                                        getData(selectedOptionValue, function (updatedErrorData, updatedErrorToolTips) {
-
-                                            data = [];
-                                            data = updatedData;
-                                            toolTips = [];
-                                            toolTips = updatedToolTips;
-                                            toolTipsErr = updatedErrorToolTips;
-                                            plot.setData([data, updatedErrorData]);
-                                            plot.setupGrid();
-                                            plot.draw();
-                                        }, resultTypes.ONLY_ERROR);
-
-                                        setTimeout(update, updateInterval);
-
-                                    }, resultTypes.ONLY_SUCCESS);
-                                }
-                                $startInterval
-                                    .change(function () {
-                                        if ($startInterval.is(":checked")) {
-                                            setTimeout(update, 1000);
-                                        }
-                                    });
-
-                            }
-
-                            update();
-
-                        }, resultTypes.ONLY_ERROR);
+                    getData(total, function (errorRData, errorRToolTips) {
 
 
 
 
+
+
+
+
+                        var errorData = {
+
+
+                            data: errorRData,
+                            label: LSys("Error")
+                        }
+
+                        buildChart(errorData, $chrtError);
+                        for (var i = 0; i < errorRToolTips.length; i++) {
+                            allToolTips.push(errorRToolTips[i]);
+                        }
+                        buildToolTips(allToolTips);
+
+
+                        update();
+
+
+                    }, resultTypes.ONLY_ERROR);
 
 
                 }, resultTypes.ONLY_SUCCESS);
@@ -270,6 +280,70 @@
 
         }
     }
+
+    function update() {
+        $logsChart.val(updateInterval).change(function () {
+            var v = $(this).val();
+            if (v && !isNaN(+v)) {
+                updateInterval = +v;
+                if (updateInterval < 1)
+                    updateInterval = 1;
+                if (updateInterval > 2000)
+                    updateInterval = 2000;
+                $(this).val("" + updateInterval);
+            }
+        });
+        var $startInterval = $("#start_interval");
+
+
+        if ($startInterval.is(":checked")) {
+
+
+            getData(selectedOptionValue, function (updatedData, updatedToolTips) {
+
+                allToolTips = [];
+
+                chartData = [];
+                for (var i = 0; i < updatedToolTips.length; i++) {
+                    allToolTips.push(updatedToolTips[i]);
+                }
+
+                var successData = {
+                    data: updatedData,
+                    label: LSys("Success")
+                }
+                buildChart(successData, $chrtFourth);
+                getData(selectedOptionValue, function (updatedErrorData, updatedErrorToolTips) {
+
+
+                    var errorData = {
+                        data: updatedErrorData,
+                        label: LSys("Error")
+                    }
+
+                    buildChart(errorData, $chrtError);
+                    for (var i = 0; i < updatedErrorToolTips.length; i++) {
+                        allToolTips.push(updatedErrorToolTips[i]);
+                    }
+
+                    buildToolTips(allToolTips);
+
+                }, resultTypes.ONLY_ERROR);
+
+                setTimeout(update, updateInterval);
+
+            }, resultTypes.ONLY_SUCCESS);
+        }
+        $startInterval
+            .change(function () {
+                if ($startInterval.is(":checked")) {
+                    setTimeout(update, 1000);
+                }
+            });
+
+    }
+
+
     var logPageConfig = {
         initialize: initialize
     }
