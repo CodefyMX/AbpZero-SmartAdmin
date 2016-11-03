@@ -3,6 +3,10 @@
 
 A basic and really low budget startup template implementation of ASP.NET Boilerplate and Module Zero.
 
+![alt tag](https://raw.githubusercontent.com/periface/AbpCinotamZero-SmartAdmin/master/Cinotam.AbpModuleZero.Web/RepoContent/Captura.JPG)
+
+
+
 ##Notes:
 
 ###General
