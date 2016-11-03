@@ -116,6 +116,12 @@
     <Compile Include="AuditLogs\Dto\AuditLogTimesInput.cs" />
     <Compile Include="AuditLogs\Dto\LogDto.cs" />
     <Compile Include="AuditLogs\IAuditLogService.cs" />
+    <Compile Include="Chat\ChatAppService.cs" />
+    <Compile Include="Chat\Dto\ConversationOutput.cs" />
+    <Compile Include="Chat\Dto\ConversationRequestInput.cs" />
+    <Compile Include="Chat\Dto\MessageDto.cs" />
+    <Compile Include="Chat\Dto\SendMessageInput.cs" />
+    <Compile Include="Chat\IChatAppService.cs" />
     <Compile Include="CinotamModuleZeroAppModule.cs" />
     <Compile Include="CinotamModuleZeroAppServiceBase.cs" />
     <Compile Include="CinotamModuleZeroConsts.cs" />

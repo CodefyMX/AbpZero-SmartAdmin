@@ -18,7 +18,7 @@
                     },
             {
                 "render": function (data, type, row) {
-                    return row.Name + " " + row.Surname + " (<strong>Usuario:</strong> " + row.UserName + ")";
+                    return row.Name + " " + row.Surname + " (<strong>"+LSys("User")+":</strong> " + row.UserName + ")";
                 },
                 "targets": 0
             }

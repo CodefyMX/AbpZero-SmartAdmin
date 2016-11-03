@@ -117,6 +117,10 @@
     <Compile Include="Authorization\PermissionNames.cs" />
     <Compile Include="Authorization\Roles\AppRoleConfig.cs" />
     <Compile Include="Authorization\Roles\StaticRoleNames.cs" />
+    <Compile Include="Chat\ChatManager.cs" />
+    <Compile Include="Chat\Entities\Conversation.cs" />
+    <Compile Include="Chat\Entities\Message.cs" />
+    <Compile Include="Chat\IChatManager.cs" />
     <Compile Include="Editions\CinotamEdition.cs" />
     <Compile Include="Editions\EditionManager.cs" />
     <Compile Include="FeatureNames.cs" />

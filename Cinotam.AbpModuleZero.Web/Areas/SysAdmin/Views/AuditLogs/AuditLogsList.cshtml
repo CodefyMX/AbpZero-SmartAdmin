@@ -18,8 +18,7 @@
         <div class="row">
             @if (IsGranted(PermissionNames.AuditLogs))
             {
-
-
+                
                 <article class="col-xs-12 col-md-4 sortable-grid ui-sortable">
                     <div data-widget-load="@Url.Action("GetLogsStadistics","Dashboard",new { hidde = true })" class="jarviswidget jarviswidget-sortable" id="wid-id-auditLogsTableAll" style="" role="widget">
                         <!-- widget options:
@@ -206,9 +205,7 @@
 
                     </div>
                 </article>
-
-
-
+                
             }
 
         </div>
