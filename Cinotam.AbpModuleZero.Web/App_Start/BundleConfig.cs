@@ -11,7 +11,6 @@ namespace Cinotam.AbpModuleZero.Web
             //VENDOR RESOURCES
             bundles.Add(new StyleBundle("~/content/smartadmin")
                     .Include("~/Areas/SysAdmin/content/css/bootstrap.min.css")
-                    .Include("~/Areas/SysAdmin/content/css/demo.min.css")
                     .Include("~/Areas/SysAdmin/content/css/font-awesome.min.css")
                     .Include("~/Areas/SysAdmin/content/css/invoice.min.css")
                     .Include("~/Areas/SysAdmin/content/css/lockscreen.min.css")
@@ -47,7 +46,7 @@ namespace Cinotam.AbpModuleZero.Web
             bundles.Add(
                 new ScriptBundle("~/Bundles/vendor/js/bottom")
                     .Include(
-                        "~/scripts//json2.min.js",
+                        "~/scripts/json2.min.js",
 
                         //"~/scripts/jquery-2.2.0.min.js",
                         //"~/scripts/jquery-ui-1.11.4.min.js",
@@ -93,7 +92,6 @@ namespace Cinotam.AbpModuleZero.Web
                 "~/areas/sysadmin/scripts/smartAdminScripts/app.config.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/jquery-touch/jquery.ui.touch-punch.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/bootstrap/bootstrap.min.js",
-                "~/areas/sysadmin/scripts/smartAdminScripts/notification/SmartNotification.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/smartwidgets/jarvis.widget.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/jquery-validate/jquery.validate.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/masked-input/jquery.maskedinput.min.js",
@@ -104,16 +102,7 @@ namespace Cinotam.AbpModuleZero.Web
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/fastclick/fastclick.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/app.js"));
 
-            bundles.Add(new ScriptBundle("~/scripts/full-calendar").Include(
-                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/moment/moment.min.js",
-                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/fullcalendar/jquery.fullcalendar.min.js"
-                ));
-
             bundles.Add(new ScriptBundle("~/scripts/charts").Include(
-                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js",
-                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/sparkline/jquery.sparkline.min.js",
-                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/morris/morris.min.js",
-                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/morris/raphael.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.cust.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.resize.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.time.min.js",
@@ -121,11 +110,20 @@ namespace Cinotam.AbpModuleZero.Web
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.orderBar.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.pie.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.tooltip.min.js",
-                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.navigate.min.js",
-                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/dygraphs/dygraph-combined.min.js",
-                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/chartjs/chart.min.js",
+                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/flot/jquery.flot.navigate.min.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/scripts/highcharts").Include(
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/highChartCore/highcharts-custom.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/highchartTable/jquery.highchartTable.min.js"
+                ));
+            bundles.Add(new ScriptBundle("~/scripts/morrischarts").Include(
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/morris/morris.min.js",
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/morris/raphael.min.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/scripts/chartsjs").Include(
+                "~/areas/sysadmin/scripts/smartAdminScripts/plugin/chartjs/chart.min.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/scripts/datatables").Include(
