@@ -93,6 +93,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chat\Outputs\ChatData.cs" />
+    <Compile Include="Chat\Outputs\ChatUserOutput.cs" />
     <Compile Include="CinotamModuleZeroNotifications.cs" />
     <Compile Include="LanguagesAppNotifications\Sender\ILanguagesAppNotificationSender.cs" />
     <Compile Include="LanguagesAppNotifications\Sender\LanguagesAppNotificationSender.cs" />
