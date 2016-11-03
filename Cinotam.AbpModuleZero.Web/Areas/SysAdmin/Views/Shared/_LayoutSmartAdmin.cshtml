@@ -29,11 +29,7 @@
     <link href=@Url.Content("~/Areas/SysAdmin/Content/css/smartadmin-skins.min.css") rel="stylesheet" />
     <link href=@Url.Content("~/Areas/SysAdmin/Content/css/abp/toastr.min.css") rel="stylesheet" />
     <link href=@Url.Content("~/Scripts/sweetalert/sweet-alert.css") rel="stylesheet" />
-    
-
     <link href="~/Areas/SysAdmin/Content/css/your_style.css" rel="stylesheet" />
-    
-
     <!-- FAVICONS -->
     <link rel="shortcut icon" href=@Url.Content("~/Areas/SysAdmin/Content/img/favicon/favicon.ico") type="image/x-icon">
     <link rel="icon" href=@Url.Content("~/Areas/SysAdmin/Content/img/favicon/favicon.ico") type="image/x-icon">
@@ -46,11 +42,9 @@
     <link rel="apple-touch-icon" sizes="76x76" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/touch-icon-ipad.png")>
     <link rel="apple-touch-icon" sizes="120x120" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/touch-icon-iphone-retina.png")>
     <link rel="apple-touch-icon" sizes="152x152" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/touch-icon-ipad-retina.png")>
-
     <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
     <!-- Startup image for web apps -->
     <link rel="apple-touch-startup-image" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/ipad-landscape.png") media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
     <link rel="apple-touch-startup-image" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/ipad-portrait.png") media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
@@ -66,7 +60,6 @@
         <script src="@Url.Content("~/Scripts/others/html5shiv.js")"></script>
         <script src="@Url.Content("~/Scripts/others/respond.min.js")"></script>
     <![endif]-->
-
 </head>
 <body class="@SettingManager.GetSettingValue("Theme")">
     @{ Html.RenderPartial("_Header", RenderSection("topright", false)); }
@@ -74,9 +67,7 @@
     <div id="main" role="main">
         @{ Html.RenderPartialIf("_Ribbon", Request.IsAuthenticated); }
         @RenderBody()
-        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-
-        </div>
+        
     </div>
     @if (Request.IsAuthenticated)
     {
@@ -84,7 +75,9 @@
         Html.RenderPartialIf("_Tiles", true);
     }
     @{ Html.RenderPartial("_Scripts", RenderSection("pagespecific", false)); }
-    
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+    </div>
 </body>
 
 </html>
