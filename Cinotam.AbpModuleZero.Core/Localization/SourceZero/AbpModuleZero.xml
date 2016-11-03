@@ -241,6 +241,11 @@
     <text name="DashboardView" value="Dashboard panel" />
     <text name="MethodCalls" value="Method calls"/>
     <text name="SeeAll" value="See all"/>
+     <text name="Requests" value="Requests"/>
+     <text name="AverageExecutionTime" value="Average Execution Time"/>
+    
+    <text name="SuccessOperation" value="Success"/>
+    <text name="ErrorOperation" value="Error"/>
     <!--//Dashboard-->
 
     <text name="Tenants" value="Tenants" />

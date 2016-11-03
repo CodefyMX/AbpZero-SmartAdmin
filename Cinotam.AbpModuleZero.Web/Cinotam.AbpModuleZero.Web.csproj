@@ -1202,6 +1202,7 @@
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\Settings.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Layout\GetNotifications.cshtml" />
+    <Content Include="RepoContent\Captura.JPG" />
     <Content Include="Scripts\contentTools\sandbox\build\icons.woff" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
