@@ -162,10 +162,6 @@
       <Project>{17298ea0-af73-4f30-b6f1-2066100d7d74}</Project>
       <Name>Cinotam.AbpModuleZero.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.App\Cinotam.Cms.App.csproj">
-      <Project>{10E38564-856C-4C11-940C-6B23C5E3A284}</Project>
-      <Name>Cinotam.Cms.App</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Cinotam.ModuleZero.AppModule\Cinotam.ModuleZero.AppModule.csproj">
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>
       <Name>Cinotam.ModuleZero.AppModule</Name>
