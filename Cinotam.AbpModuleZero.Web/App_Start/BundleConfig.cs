@@ -100,6 +100,7 @@ namespace Cinotam.AbpModuleZero.Web
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/msie-fix/jquery.mb.browser.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/fastclick/fastclick.min.js",
+                 "~/areas/sysadmin/scripts/smartAdminScripts/notification/SmartNotification.min.js",
                 "~/areas/sysadmin/scripts/smartAdminScripts/app.js"));
 
             bundles.Add(new ScriptBundle("~/scripts/charts").Include(

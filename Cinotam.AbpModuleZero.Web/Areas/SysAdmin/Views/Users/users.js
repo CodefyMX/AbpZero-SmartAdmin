@@ -20,6 +20,7 @@
                             var deleteUserBtn = "";
                             var assignPermissions = "";
                             var unlockUser = "";
+                            var changePassword = "";
                             if (isUserEditGranted) {
                                 editUserbtn = "<a data-modal href='/SysAdmin/Users/CreateEditUser/" +
                                     row.Id +
@@ -38,8 +39,10 @@
                             if (isPermissionsGranted) {
                                 assignPermissions = " <a class='btn btn-default btn-xs' title='" + LSys("SetPermissions") + "' href='/SysAdmin/Users/UserSpecialPermissions/" + row.Id + "' data-modal><i class='fa fa-lock'></i></a>";
                             }
-
-                            return editUserbtn + assignRoleRolebtn + unlockUser + assignPermissions + deleteUserBtn;
+                            if (isUserEditGranted) {
+                                changePassword = " <a class='btn btn-default btn-xs' title='" + LSys("ChangePassword") + "' href='/SysAdmin/Users/ChangePasswordFromAdmin/" + row.Id + "' data-modal><i class='fa fa-key'></i></a>";
+                            }
+                            return editUserbtn + assignRoleRolebtn + unlockUser+ changePassword + assignPermissions + deleteUserBtn;
                         },
                         "targets": 0
                     }
@@ -88,6 +91,9 @@
                         break;
                     case "MODAL_PERMISSIONS_SET":
                         abp.notify.success(LSys("PermissionsSet"), LSys("Success"));
+
+                    case "USER_PASSWORD_CHANGED":
+                        abp.notify.success(LSys("PasswordChanged"), LSys("Success"));
                     default:
                         console.log("Event unhandled");
                 }

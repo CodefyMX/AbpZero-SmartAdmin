@@ -27,11 +27,12 @@ namespace Cinotam.AbpModuleZero.Tests.Users
     {
         private readonly IUserAppService _userAppService;
         private readonly IRoleAppService _roleAppService;
-
+        private readonly UserManager UserManager;
         public UserAppService_Tests()
         {
             _userAppService = Resolve<IUserAppService>();
             _roleAppService = Resolve<IRoleAppService>();
+            UserManager = Resolve<UserManager>();
         }
 
         [Fact]
@@ -210,10 +211,41 @@ namespace Cinotam.AbpModuleZero.Tests.Users
                     UserId = user.Id
                 });
 
+                var hashed = UserManager.PasswordHasher.HashPassword("qwe123");
+
+                var changePUser = await GetFakeUser(context);
+
+                changePUser.Password.ShouldBe(hashed);
+
             });
 
         }
 
+        [Fact]
+        public async Task ChangePasswordFromAdmin_Test()
+        {
+            LoginAsHostAdmin();
+            await CreateFakeUser();
+
+            await UsingDbContextAsync(async context =>
+            {
+
+                var user = await GetFakeUser(context);
+
+                await _userAppService.ChangePasswordFromAdmin(new ChangePasswordInput()
+                {
+                    NewPassword = "qwe123",
+                    UserId = user.Id
+                });
+
+                var hashed = UserManager.PasswordHasher.HashPassword("qwe123");
+
+                var changePUser = await GetFakeUser(context);
+
+                changePUser.Password.ShouldBe(hashed);
+
+            });
+        }
         [Fact]
         public async Task SetUserRoles_Test()
         {

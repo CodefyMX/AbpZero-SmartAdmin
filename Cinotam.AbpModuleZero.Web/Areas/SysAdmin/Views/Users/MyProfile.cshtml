@@ -229,11 +229,13 @@
                                             <br />
                                             @if (Model.IsTwoFactorEnabled)
                                             {
-                                                <button class="btn btn-xs btn-success js-toggle-twofactor" data-id="@Model.Id" type="button">@L("EnableTwoFactorAuth")</button>
+
+                                                <button type="button" data-id="@Model.Id" class="btn btn-xs btn-warning js-toggle-twofactor">@L("DisableTwoFactorAuth")</button>
                                             }
                                             else
                                             {
-                                                <button type="button" data-id="@Model.Id" class="btn btn-xs btn-warning js-toggle-twofactor">@L("DisableTwoFactorAuth")</button>
+
+                                                <button class="btn btn-xs btn-success js-toggle-twofactor" data-id="@Model.Id" type="button">@L("EnableTwoFactorAuth")</button>
                                             }
                                         </div>
                                     </section>
