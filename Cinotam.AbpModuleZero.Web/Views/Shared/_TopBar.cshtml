@@ -11,6 +11,11 @@
                 <a class="navbar-brand" href="~/"><i class="fa fa-cubes"></i> AbpModuleZero</a>
             </div>
             <div class="collapse navbar-collapse">
+                
+                <ul class="nav navbar-nav">
+                    @Html.Action("TopMenu","Layout")
+                </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     @Html.Action("LanguageSelection", "Layout")
                     @Html.Action("UserMenuOrLoginLink", "Layout")

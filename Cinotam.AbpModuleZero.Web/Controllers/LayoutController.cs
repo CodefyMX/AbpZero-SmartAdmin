@@ -3,7 +3,6 @@ using Abp.Configuration.Startup;
 using Abp.Localization;
 using Abp.Runtime.Session;
 using Abp.Threading;
-using Cinotam.AbpModuleZero.TenantHelpers.TenantHelperAppServiceBase;
 using Cinotam.AbpModuleZero.Web.Models.Layout;
 using Cinotam.ModuleZero.AppModule.Languages;
 using Cinotam.ModuleZero.AppModule.Sessions;
@@ -17,21 +16,18 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         private readonly ISessionAppService _sessionAppService;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly ILanguageManager _languageManager;
-        private readonly ILanguageAppService _languageAppService;
         public LayoutController(
             IUserNavigationManager userNavigationManager,
             ILocalizationManager localizationManager,
             ISessionAppService sessionAppService,
             IMultiTenancyConfig multiTenancyConfig,
             ILanguageManager languageManager,
-            ITenantHelperService multiTenancyHelper,
             ILanguageAppService languageAppService)
         {
             _userNavigationManager = userNavigationManager;
             _sessionAppService = sessionAppService;
             _multiTenancyConfig = multiTenancyConfig;
             _languageManager = languageManager;
-            _languageAppService = languageAppService;
         }
 
         [ChildActionOnly]
@@ -83,9 +79,5 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             return PartialView("_UserMenuOrLoginLink", model);
         }
 
-        public ActionResult PagesMenu()
-        {
-            return View("");
-        }
     }
 }
