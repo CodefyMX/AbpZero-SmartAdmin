@@ -3,8 +3,6 @@ using Abp.MultiTenancy;
 using Abp.TestBase;
 using Abp.Zero.Configuration;
 using Castle.MicroKernel.Registration;
-using Cinotam.Cms.DatabaseTemplateProvider;
-using Cinotam.Cms.FileSystemTemplateProvider;
 using Cinotam.ModuleZero.AppModule;
 using NSubstitute;
 
@@ -12,7 +10,7 @@ namespace Cinotam.AbpModuleZero.Tests
 {
     [DependsOn(
         typeof(AbpModuleZeroDataModule),
-        typeof(AbpTestBaseModule), typeof(CinotamModuleZeroAppModule), typeof(CinotamCmsFileSystemTemplateProvider), typeof(CinotamCmsDatabaseTemplateProvider))]
+        typeof(AbpTestBaseModule), typeof(CinotamModuleZeroAppModule))]
     public class AbpModuleZeroTestModule : AbpModule
     {
         public override void PreInitialize()

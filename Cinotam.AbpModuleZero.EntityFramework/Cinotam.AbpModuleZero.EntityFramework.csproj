@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201610282046513_MayHaveTenantForCmsElements.Designer.cs">
       <DependentUpon>201610282046513_MayHaveTenantForCmsElements.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611041545282_CmsRemoved.cs" />
+    <Compile Include="Migrations\201611041545282_CmsRemoved.Designer.cs">
+      <DependentUpon>201611041545282_CmsRemoved.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -251,18 +255,6 @@
     <ProjectReference Include="..\Cinotam.AbpModuleZero.Core\Cinotam.AbpModuleZero.Core.csproj">
       <Project>{17298ea0-af73-4f30-b6f1-2066100d7d74}</Project>
       <Name>Cinotam.AbpModuleZero.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.Contracts\Cinotam.Cms.Contracts.csproj">
-      <Project>{DABC5C7B-2468-40CB-A673-DC723656174D}</Project>
-      <Name>Cinotam.Cms.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.DatabaseContentProvider\Cinotam.Cms.DatabaseContentProvider.csproj">
-      <Project>{57CDC3CD-F90E-460E-A5CB-73AF6354506B}</Project>
-      <Name>Cinotam.Cms.DatabaseContentProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.DatabaseEntities\Cinotam.Cms.DatabaseEntities.csproj">
-      <Project>{2A5BA0A4-51FB-4132-BD08-F00357B24F23}</Project>
-      <Name>Cinotam.Cms.DatabaseEntities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610282046513_MayHaveTenantForCmsElements.resx">
       <DependentUpon>201610282046513_MayHaveTenantForCmsElements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611041545282_CmsRemoved.resx">
+      <DependentUpon>201611041545282_CmsRemoved.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

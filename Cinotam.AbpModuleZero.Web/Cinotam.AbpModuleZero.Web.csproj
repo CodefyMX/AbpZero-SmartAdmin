@@ -304,10 +304,6 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css" />
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
-    <Content Include="Areas\SysAdmin\Views\Cms\ChooseTitle.js" />
-    <Content Include="Areas\SysAdmin\Views\Cms\CreateEditPage.js" />
-    <Content Include="Areas\SysAdmin\Views\Cms\MyPages.js" />
-    <Content Include="Areas\SysAdmin\Views\Cms\PageConfig.js" />
     <Content Include="Areas\SysAdmin\Views\Configuration\Configurations.js" />
     <Content Include="Areas\SysAdmin\Scripts\datatables.responsiveConfigs.js" />
     <Content Include="Areas\SysAdmin\Views\Editions\EditCreateEdition.js" />
@@ -325,12 +321,7 @@
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddOrganizationUnit.js" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddUserView.js" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\OrganizationUnitsList.js" />
-    <Content Include="Areas\SysAdmin\Views\PageCategories\CreateEditCategoryContent.js" />
-    <Content Include="Areas\SysAdmin\Views\PageCategories\MyCategories.js" />
     <Content Include="Areas\SysAdmin\Views\Roles\CreateEditRole.js" />
-    <Content Include="Areas\SysAdmin\Views\Templates\CreateEditTemplate.js" />
-    <Content Include="Areas\SysAdmin\Views\Templates\EditHtml.js" />
-    <Content Include="Areas\SysAdmin\Views\Templates\MyTemplates.js" />
     <Content Include="Areas\SysAdmin\Views\Tenants\SetTenantEdition.js" />
     <Content Include="Areas\SysAdmin\Views\Tenants\SetTenantFeatures.js" />
     <Content Include="Areas\SysAdmin\Views\Users\AddEditPhoneNumber.js" />
@@ -628,10 +619,6 @@
     <Content Include="Areas\SysAdmin\Views\Dashboard\GetLogsStadistics.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Configuration\Configurations.cshtml" />
     <Content Include="Areas\SysAdmin\Views\AuditLogs\GetLogs.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Cms\MyPages.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Cms\CreateEditPage.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Cms\PageConfig.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Cms\ChooseTitle.cshtml" />
     <Content Include="Abp\Framework\styles\abp.mixings.less" />
     <Content Include="Abp\Framework\styles\abp.mixings.css.map" />
     <Content Include="Abp\Framework\styles\abp.less" />
@@ -650,13 +637,9 @@
     <Content Include="Areas\SysAdmin\Views\Notifications\MyNotifications.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\_alternativeUserInfo.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\Error.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Templates\MyTemplates.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Templates\CreateEditTemplate.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Templates\EditHtml.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\MyMenus.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\CreateEditMenu.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\SetCategories.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\PageCategories\CreateEditCategoryContent.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\OrganizationUnitsList.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\GetOrganizationUnits.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\CreateEditOrganizationUnit.cshtml" />
@@ -679,7 +662,6 @@
     <Content Include="Areas\SysAdmin\Views\Users\Settings.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Layout\GetNotifications.cshtml" />
     <Content Include="RepoContent\Captura.JPG" />
-    <Content Include="Scripts\contentTools\sandbox\build\icons.woff" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
@@ -687,7 +669,6 @@
     <Content Include="Content\toastr.less" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\Templates\ArticlePage\TemplateConfig.json" />
-    <Content Include="Scripts\contentTools\sandbox\build\content-tools.min.css.map" />
     <Content Include="Areas\SysAdmin\Views\Users\UserSpecialPermissions.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\_countryCodes.cshtml" />
     <Content Include="Content\MailTemplates\ChangeInfo\ChangedInfo.html" />
@@ -695,18 +676,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.2.0-vsdoc.js" />
-    <Content Include="Scripts\contentTools\sandbox\author-pic.jpg" />
-    <Content Include="Scripts\contentTools\sandbox\build\content-tools.js" />
-    <Content Include="Scripts\contentTools\sandbox\build\content-tools.min.css" />
-    <Content Include="Scripts\contentTools\sandbox\build\content-tools.min.js" />
-    <Content Include="Scripts\contentTools\sandbox\build\images\drop-horz.svg" />
-    <Content Include="Scripts\contentTools\sandbox\build\images\drop-vert-above.svg" />
-    <Content Include="Scripts\contentTools\sandbox\build\images\drop-vert-below.svg" />
-    <Content Include="Scripts\contentTools\sandbox\build\images\video.svg" />
-    <Content Include="Scripts\contentTools\sandbox\image.png" />
-    <Content Include="Scripts\contentTools\sandbox\sandbox.css" />
-    <Content Include="Scripts\contentTools\sandbox\sandbox.js" />
-    <Content Include="Scripts\Html2Canvas\html2canvas.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
@@ -736,16 +705,6 @@
     <Content Include="Scripts\jstree\themes\proton\style.css" />
     <Content Include="Scripts\jstree\themes\proton\style.min.css" />
     <Content Include="Scripts\jstree\themes\proton\throbber.gif" />
-    <Content Include="Scripts\lightBox2\css\lightbox.css" />
-    <Content Include="Scripts\lightBox2\css\lightbox.min.css" />
-    <Content Include="Scripts\lightBox2\images\close.png" />
-    <Content Include="Scripts\lightBox2\images\loading.gif" />
-    <Content Include="Scripts\lightBox2\images\next.png" />
-    <Content Include="Scripts\lightBox2\images\prev.png" />
-    <Content Include="Scripts\lightBox2\js\lightbox-plus-jquery.js" />
-    <Content Include="Scripts\lightBox2\js\lightbox-plus-jquery.min.js" />
-    <Content Include="Scripts\lightBox2\js\lightbox.js" />
-    <Content Include="Scripts\lightBox2\js\lightbox.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -794,16 +753,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\AuditLogsController.cs" />
-    <Compile Include="Areas\SysAdmin\Controllers\CmsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\EditionsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\LanguagesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\LayoutController.cs" />
-    <Compile Include="Areas\SysAdmin\Controllers\MenuController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\NotificationsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\RolesController.cs" />
-    <Compile Include="Areas\SysAdmin\Controllers\TemplatesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\TenantsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\SysAdmin\Models\GetConfigurationsByNameInput.cs" />
@@ -811,9 +767,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Areas\SysAdmin\Controllers\PageCategoriesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\OrganizationUnitsController.cs" />
-    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -855,10 +809,6 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Home\Editor.cshtml" />
     <Content Include="Content\Templates\Simple\TemplateConfig.json" />
-    <Content Include="Views\Pages\PageEditor.cshtml" />
-    <Content Include="Views\Pages\Index.cshtml" />
-    <Content Include="Scripts\lightBox2\js\lightbox-plus-jquery.min.map" />
-    <Content Include="Scripts\lightBox2\js\lightbox.min.map" />
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-bold-webfont.eot" />
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-bold-webfont.ttf" />
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-bold-webfont.woff" />
@@ -869,10 +819,6 @@
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.ttf" />
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.woff" />
     <Content Include="Views\Account\PhoneNumberVerification.cshtml" />
-    <None Include="Views\Layout\PagesMenu.cshtml" />
-    <None Include="Views\Layout\_childsMenu.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\PageCategories\MyCategories.cshtml" />
-    <Content Include="Views\Pages\UpdateWithTemplate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -900,18 +846,6 @@
     <ProjectReference Include="..\Cinotam.AbpModuleZero.WebApi\Cinotam.AbpModuleZero.WebApi.csproj">
       <Project>{5eb52d3d-09fd-463a-b02a-8d9856bd3724}</Project>
       <Name>Cinotam.AbpModuleZero.WebApi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.App\Cinotam.Cms.App.csproj">
-      <Project>{10E38564-856C-4C11-940C-6B23C5E3A284}</Project>
-      <Name>Cinotam.Cms.App</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.Contracts\Cinotam.Cms.Contracts.csproj">
-      <Project>{DABC5C7B-2468-40CB-A673-DC723656174D}</Project>
-      <Name>Cinotam.Cms.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cinotam.Cms.Core\Cinotam.Cms.Core.csproj">
-      <Project>{CC639C97-140A-42F6-8323-7C702077ACAE}</Project>
-      <Name>Cinotam.Cms.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.ModuleZero.AppModule\Cinotam.ModuleZero.AppModule.csproj">
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>
@@ -942,7 +876,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Templates\ArticlePage\Resources\" />
     <Folder Include="Content\Templates\Simple\Resources\" />
-    <Folder Include="Views\AbpLocalizationController\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

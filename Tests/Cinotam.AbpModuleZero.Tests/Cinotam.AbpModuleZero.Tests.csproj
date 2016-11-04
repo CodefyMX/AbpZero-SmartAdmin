@@ -252,22 +252,6 @@
       <Project>{404A6D3B-AA85-4E4C-AEEE-1E5026D5F135}</Project>
       <Name>Cinotam.AbpModuleZero.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Cinotam.Cms.Contracts\Cinotam.Cms.Contracts.csproj">
-      <Project>{DABC5C7B-2468-40CB-A673-DC723656174D}</Project>
-      <Name>Cinotam.Cms.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Cinotam.Cms.DatabaseEntities\Cinotam.Cms.DatabaseEntities.csproj">
-      <Project>{2A5BA0A4-51FB-4132-BD08-F00357B24F23}</Project>
-      <Name>Cinotam.Cms.DatabaseEntities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Cinotam.Cms.DatabaseTemplateProvider\Cinotam.Cms.DatabaseTemplateProvider.csproj">
-      <Project>{129C15E0-149B-4BF8-B136-B37D4C085F70}</Project>
-      <Name>Cinotam.Cms.DatabaseTemplateProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Cinotam.Cms.FileSystemTemplateProvider\Cinotam.Cms.FileSystemTemplateProvider.csproj">
-      <Project>{3CFA8ED6-AB5E-4EA7-ADBA-A61E7BF59115}</Project>
-      <Name>Cinotam.Cms.FileSystemTemplateProvider</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Cinotam.ModuleZero.AppModule\Cinotam.ModuleZero.AppModule.csproj">
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>
       <Name>Cinotam.ModuleZero.AppModule</Name>
