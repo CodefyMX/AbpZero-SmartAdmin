@@ -292,7 +292,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 Notifications = notifications.ToList()
             };
         }
-
+        [AbpAuthorize]
         public async Task ChangePassword(ChangePasswordInput input)
         {
             if (input.UserId == null) throw new UserFriendlyException(L("UserNotFound"));
@@ -319,13 +319,22 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 //await _usersAppNotificationsSender.SendUserEditedNotification(AbpSession.UserId, user.FullName);
             }
         }
-
+        [AbpAuthorize(PermissionNames.PagesSysAdminUsersEdit)]
+        public async Task ChangePasswordFromAdmin(ChangePasswordInput input)
+        {
+            if (input.UserId == null) throw new UserFriendlyException(L("UserNotFound"));
+            var user = await UserManager.GetUserByIdAsync(input.UserId.Value);
+            var hasher = new PasswordHasher();
+            user.Password = hasher.HashPassword(input.NewPassword);
+            await UserManager.UpdateAsync(user);
+        }
+        [AbpAuthorize]
         public async Task MarkAsReaded(Guid notificationId)
         {
             await _userNotificationManager.UpdateUserNotificationStateAsync(AbpSession.TenantId, notificationId,
                 UserNotificationState.Read);
         }
-
+        [AbpAuthorize(PermissionNames.PagesSysAdminRolesAssign, PermissionNames.PagesSysAdminUsers)]
         public async Task<UserSpecialPermissionsInput> GetUserSpecialPermissions(long? userId)
         {
             var assignedPermissions = new List<AssignedPermission>();
@@ -344,7 +353,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 AssignedPermissions = assignedPermissions
             };
         }
-
+        [AbpAuthorize(PermissionNames.PagesSysAdminRolesAssign, PermissionNames.PagesSysAdminUsers)]
         public async Task SetUserSpecialPermissions(UserSpecialPermissionsInput input)
         {
             if (input.UserId != null)
@@ -365,13 +374,13 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 }
             }
         }
-
+        [AbpAuthorize(PermissionNames.PagesSysAdminRolesAssign, PermissionNames.PagesSysAdminUsers)]
         public async Task ResetAllPermissions(long userId)
         {
             var user = await UserManager.GetUserByIdAsync(userId);
             await UserManager.ResetAllPermissionsAsync(user);
         }
-
+        [AbpAuthorize(PermissionNames.PagesSysAdminUsersEdit)]
         public async Task UnlockUser(long userId)
         {
             var isLocked = await UserManager.IsLockedOutAsync(userId);
@@ -381,7 +390,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 user.IsLockoutEnabled = false;
             }
         }
-
+        [AbpAuthorize]
         public async Task<ChangePhoneNumberRequest> AddPhoneNumber(AddPhoneNumberInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
@@ -414,7 +423,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
             result.SendMessageResult = sendMessageResult;
             return result;
         }
-
+        [AbpAuthorize]
         private async Task<SendMessageResult> SendSmsMessage(long inputUserId, string inputPhoneNumber, string inputCountryPhoneCode)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(inputUserId, inputPhoneNumber);
@@ -439,7 +448,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
             }
             return TwoFactorRequestResults.NewPhoneNumberRequest;
         }
-
+        [AbpAuthorize]
         public async Task<PhoneConfirmationResult> ConfirmPhone(PhoneConfirmationInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
@@ -456,7 +465,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
             await SendChangedInfoMail(user);
             return new PhoneConfirmationResult() { ConfirmationCodes = ConfirmationCodes.Success };
         }
-
+        [AbpAuthorize]
         public async Task<bool> EnableOrDisableTwoFactorAuthForUser(long userId)
         {
             var user = await UserManager.GetUserByIdAsync(userId);
@@ -485,6 +494,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
             });
 
         }
+        [AbpAuthorize(PermissionNames.PagesSysAdminRoles, PermissionNames.PagesSysAdminRolesAssign, PermissionNames.PagesSysAdminUsersEdit)]
         public async Task<RoleSelectorOutput> GetRolesForUser(long? userId)
         {
             if (userId == null) throw new UserFriendlyException("User id");

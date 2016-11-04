@@ -326,6 +326,7 @@
     <Content Include="Areas\SysAdmin\Views\Tenants\SetTenantFeatures.js" />
     <Content Include="Areas\SysAdmin\Views\Users\AddEditPhoneNumber.js" />
     <Content Include="Areas\SysAdmin\Views\Users\ChangePassword.js" />
+    <Content Include="Areas\SysAdmin\Views\Users\ChangePasswordFromAdmin.js" />
     <Content Include="Areas\SysAdmin\Views\Users\ConfirmPhone.js" />
     <Content Include="Areas\SysAdmin\Views\Users\CreateEditUser.js" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.js" />
@@ -459,6 +460,7 @@
     <Content Include="Areas\SysAdmin\Content\sound\voice_alert.mp3" />
     <Content Include="Areas\SysAdmin\Content\sound\voice_off.mp3" />
     <Content Include="Areas\SysAdmin\Content\sound\voice_on.mp3" />
+    <Content Include="Content\sound\messagebox.mp3" />
     <Content Include="Content\Templates\ArticlePage\ArticlePage.html" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -656,6 +658,7 @@
     <Content Include="Areas\SysAdmin\Views\Tenants\SetTenantFeatures.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Tenants\_loadChildrens.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Tenants\TenantCharts.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Users\ChangePasswordFromAdmin.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\MyProfile.cshtml" />

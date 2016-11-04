@@ -100,7 +100,14 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
                 UserId = AbpSession.UserId
             });
         }
-
+        [AbpMvcAuthorize]
+        public ActionResult ChangePasswordFromAdmin(long id)
+        {
+            return View(new ChangePasswordInput()
+            {
+                UserId = id
+            });
+        }
         [AbpMvcAuthorize]
         public ActionResult AddEditPhoneNumber()
         {
