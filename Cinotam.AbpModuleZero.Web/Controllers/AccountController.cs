@@ -1,6 +1,7 @@
 ﻿using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
+using Abp.Configuration;
 using Abp.Configuration.Startup;
 using Abp.Domain.Uow;
 using Abp.Extensions;
@@ -167,7 +168,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
                 return Json(new AjaxResponse { TargetUrl = url });
             }
-            if (IsTwoFactorEnabled(loginResult.User))
+            if (IsTwoFactorEnabled(loginResult.User) && IsEmailRequiredForLogin && IsEmailProviderEnabled)
             {
                 const string emailProvider = "Email";
                 //Send sms verification code
@@ -197,6 +198,13 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
             return Json(new AjaxResponse { TargetUrl = returnUrl });
         }
+
+        public bool IsEmailProviderEnabled
+            =>
+            bool.Parse(SettingManager.GetSettingValue("Abp.Zero.UserManagement.TwoFactorLogin.IsEmailProviderEnabled"));
+
+        public bool IsEmailRequiredForLogin
+            => bool.Parse(SettingManager.GetSettingValue("Abp.Zero.UserManagement.IsEmailConfirmationRequiredForLogin"));
 
         private void CheckAndConfirmTwoFactorProviders(User loginResultUser)
         {
