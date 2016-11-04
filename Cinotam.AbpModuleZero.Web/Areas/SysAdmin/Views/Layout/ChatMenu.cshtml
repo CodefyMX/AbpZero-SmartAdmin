@@ -1,0 +1,27 @@
+﻿@model List<Cinotam.AbpModuleZero.Web.Models.Layout.ChatModel>
+@{
+	Layout = null;
+}
+
+<li class="chat-users top-menu-invisible">
+	<a href="#"><i class="fa fa-lg fa-fw fa-comment-o"><em class="bg-color-pink flash animated">!</em></i> <span class="menu-item-parent">Chat -Beta-</span></a>
+	<ul style="display: none;">
+		<li>
+			<!-- DISPLAY USERS -->
+			<div class="display-users">
+
+				@*<input class="form-control chat-user-filter" placeholder="Filter" type="text">*@
+				
+				
+				@foreach (var loginInfo in Model)
+				{
+
+				    var conversationId = loginInfo.ConversationId ?? 0;
+
+					<a href="#" class="usr"  data-chat-id="@conversationId" data-chat-fname="@loginInfo.LoginInformations.User.Name" data-chat-lname="@loginInfo.LoginInformations.User.Surname" data-chat-status="online" data-rel="popover-hover" data-placement="right" data-html="true" data-content='<div class="usr-card"><div class="usr-card-content"><h3>@Html.Raw(loginInfo.GetShownLoginName())</h3></div></div>' data-original-title="" title=""><i></i> @loginInfo.LoginInformations.User.UserName</a>
+				}
+			</div>
+			<!-- END DISPLAY USERS -->
+		</li>
+	</ul>
+</li>

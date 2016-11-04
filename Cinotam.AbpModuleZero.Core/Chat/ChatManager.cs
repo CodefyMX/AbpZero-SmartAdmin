@@ -4,7 +4,6 @@ using Cinotam.AbpModuleZero.Chat.Entities;
 using Cinotam.AbpModuleZero.Users;
 using System;
 using System.Linq;
-using System.Linq.Dynamic;
 using System.Threading.Tasks;
 
 namespace Cinotam.AbpModuleZero.Chat
@@ -18,12 +17,24 @@ namespace Cinotam.AbpModuleZero.Chat
             _conversationRepository = conversationRepository;
             _messagesRepository = messagesRepository;
         }
-        public IQueryable Conversation => _conversationRepository.GetAll();
+        public IQueryable<Conversation> Conversations => _conversationRepository.GetAll();
         public async Task<int> CreateConversation(User from, User to, int? tenantId)
         {
             if (from.Id == to.Id) throw new InvalidOperationException(nameof(to));
 
 
+            var conversationInDb = _conversationRepository.FirstOrDefault(a => a.From == from.Id && a.To == to.Id);
+
+            if (conversationInDb == null)
+            {
+                var other = _conversationRepository.FirstOrDefault(a => a.To == from.Id && a.From == to.Id);
+                if (other != null)
+                    return other.Id;
+            }
+            else
+            {
+                return conversationInDb.Id;
+            }
             var id = await _conversationRepository.InsertOrUpdateAndGetIdAsync(new Conversation()
             {
                 From = from.Id,
@@ -37,20 +48,23 @@ namespace Cinotam.AbpModuleZero.Chat
         {
             var id = await _messagesRepository.InsertOrUpdateAndGetIdAsync(new Message()
             {
-                Conversation = conversation,
+                ConversationId = conversation.Id,
                 MessageText = message,
                 SenderId = user.Id
             });
             return id;
         }
 
-        public async Task<IQueryable> GetConversation(User @from, User to, int? tenantId)
+        public async Task<Conversation> GetConversation(User from, User to, int? tenantId)
         {
-            var all = await Task.FromResult(from conv in _conversationRepository.GetAll()
-                                            where conv.From == @from.Id
-                                            && conv.To == to.Id
-                                            select conv);
-            return all;
+            var conversationInDb = await _conversationRepository.FirstOrDefaultAsync(a => a.From == from.Id && a.To == to.Id);
+
+            if (conversationInDb == null)
+            {
+                var other = await _conversationRepository.FirstOrDefaultAsync(a => a.To == from.Id && a.From == to.Id);
+                return other;
+            }
+            return conversationInDb;
         }
     }
 }

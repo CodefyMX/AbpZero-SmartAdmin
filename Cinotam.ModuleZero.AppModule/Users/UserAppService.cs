@@ -427,7 +427,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
         private async Task<SendMessageResult> SendSmsMessage(long inputUserId, string inputPhoneNumber, string inputCountryPhoneCode)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(inputUserId, inputPhoneNumber);
-            var result = await _twoFactorMessageService.SendMessage(new IdentityMessage()
+            var result = await _twoFactorMessageService.SendSmsMessage(new IdentityMessage()
             {
                 Body = "Your confirmation code is " + code,
                 Destination = inputCountryPhoneCode + inputPhoneNumber,

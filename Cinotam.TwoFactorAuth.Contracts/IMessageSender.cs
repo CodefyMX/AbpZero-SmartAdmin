@@ -6,7 +6,7 @@ namespace Cinotam.TwoFactorAuth.Contracts
 {
     public interface IMessageSender : IIdentityMessageService, IDomainService
     {
-        Task<SendMessageResult> SendMessage(IdentityMessage message);
+        Task<SendMessageResult> SendSmsMessage(IdentityMessage message);
         string ServiceName { get; }
     }
 }

@@ -4,14 +4,23 @@ namespace Cinotam.ModuleZero.Notifications.Chat.Outputs
 {
     public class ChatData : NotificationData
     {
-        public ChatData(ChatUserOutput from, ChatUserOutput to, string message)
+        public ChatData(UserOutput from, UserOutput to, int conversationId, string message)
         {
             To = to;
             From = from;
+            ConversationId = conversationId;
+            Message = message;
         }
 
-        public ChatUserOutput To { get; private set; }
+        public string Message { get; set; }
 
-        public ChatUserOutput From { get; private set; }
+        /// <summary>
+        /// This works as a notification subscription id
+        /// </summary>
+        public int ConversationId { get; set; }
+
+        public UserOutput To { get; private set; }
+
+        public UserOutput From { get; private set; }
     }
 }

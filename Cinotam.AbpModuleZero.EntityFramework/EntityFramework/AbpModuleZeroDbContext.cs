@@ -1,8 +1,10 @@
 ﻿using Abp.Zero.EntityFramework;
 using Cinotam.AbpModuleZero.Authorization.Roles;
+using Cinotam.AbpModuleZero.Chat.Entities;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
 using System.Data.Common;
+using System.Data.Entity;
 
 namespace Cinotam.AbpModuleZero.EntityFramework
 {
@@ -24,6 +26,11 @@ namespace Cinotam.AbpModuleZero.EntityFramework
         //public IDbSet<MenuSectionItemContent> MenuSectionItemContents { get; set; }
         //public IDbSet<Category> Categories { get; set; }
         //public IDbSet<CategoryContent> CategoryContents { get; set; }
+
+        #region SimpleChat
+        public IDbSet<Conversation> Conversations { get; set; }
+        public IDbSet<Message> Messages { get; set; }
+        #endregion CinotamCms
         //#endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

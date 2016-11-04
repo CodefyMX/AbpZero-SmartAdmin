@@ -230,6 +230,10 @@
     <Compile Include="Migrations\201611041545282_CmsRemoved.Designer.cs">
       <DependentUpon>201611041545282_CmsRemoved.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611041955460_SimpleChat.cs" />
+    <Compile Include="Migrations\201611041955460_SimpleChat.Designer.cs">
+      <DependentUpon>201611041955460_SimpleChat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -338,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611041545282_CmsRemoved.resx">
       <DependentUpon>201611041545282_CmsRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611041955460_SimpleChat.resx">
+      <DependentUpon>201611041955460_SimpleChat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
