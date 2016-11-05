@@ -7,6 +7,7 @@ using Abp.Web.Mvc.Authorization;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.AbpModuleZero.Web.Models.Layout;
 using Cinotam.ModuleZero.AppModule.Sessions;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
@@ -55,6 +56,27 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View();
         }
 
+        public ActionResult ChatMenu()
+        {
+
+            var model = new List<ChatModel>();
+
+
+            var users = AsyncHelper.RunSync(() => _sessionAppService.GetCurrentLoginInformationsLs());
+
+            foreach (var getCurrentLoginInformationsOutput in users)
+            {
+                model.Add(new ChatModel()
+                {
+                    LoginInformations = getCurrentLoginInformationsOutput,
+                    ConversationId = getCurrentLoginInformationsOutput.ConversationId
+                });
+            }
+            return View(model);
+
+
+
+        }
         public ActionResult GetMenu(string menuName)
         {
             var model = new TopMenuViewModel

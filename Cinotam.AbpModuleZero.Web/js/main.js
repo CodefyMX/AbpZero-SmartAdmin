@@ -27,9 +27,42 @@
 
 
 var notificationService = (function () {
+
+
+    function sendChatNotification(userNotification) {
+
+        console.log(userNotification);
+        var currentUserId = userNotification.userId;
+        var chatManager = chatboxManager;
+        var fromUser = userNotification.notification.data.from;
+        var message = userNotification.notification.data.message;
+        var toUser = userNotification.notification.data.to;
+        var userData = {
+            first_name: fromUser.name,
+            last_name: fromUser.surname,
+            currentUserId: currentUserId,
+            toUserId: fromUser.id
+        }
+
+        if (currentUserId !== fromUser.id) {
+            console.log(currentUserId);
+            console.log(fromUser);
+            chatManager.addBox(fromUser.id, userData);
+            chatManager.pushMessage(fromUser.id, userData, message);
+        }
+
+    }
+
     //Notification handler
     abp.event.on('abp.notifications.received', function (userNotification) {
-        abp.notifications.showUiNotifyForUserNotification(userNotification);
+
+        if (userNotification.notification.data.type === "Cinotam.ModuleZero.Notifications.Chat.Outputs.ChatData") {
+            sendChatNotification(userNotification);
+        } else {
+
+            abp.notifications.showUiNotifyForUserNotification(userNotification);
+        }
+
     });
     function initView($element) {
         if (!$element) {

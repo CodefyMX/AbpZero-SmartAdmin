@@ -8,13 +8,13 @@ namespace Cinotam.TwoFactorSender.Sender
 {
     public class TwoFactorMessageService : ITwoFactorMessageService
     {
-        public async Task<SendMessageResult> SendMessage(IdentityMessage message)
+        public async Task<SendMessageResult> SendSmsMessage(IdentityMessage message)
         {
             foreach (var messageSender in TwoFactorSenderModule.MessageSenders.Where(a => a.ServiceName == "Twilio"))
             {
                 try
                 {
-                    var result = await messageSender.SendMessage(message);
+                    var result = await messageSender.SendSmsMessage(message);
                     return result;
                 }
                 catch (Exception)
@@ -25,11 +25,11 @@ namespace Cinotam.TwoFactorSender.Sender
             return new SendMessageResult() { SendStatus = SendStatus.Fail };
         }
 
-        public string ServiceName { get; }
+        public string ServiceName => "";
 
         public async Task SendAsync(IdentityMessage message)
         {
-            await SendMessage(message);
+            await SendSmsMessage(message);
         }
     }
 }

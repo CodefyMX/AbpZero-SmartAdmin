@@ -45,6 +45,7 @@
     //reconnect if hub disconnects
     $.connection.hub.disconnected(function () {
         if (!abp.signalr.autoConnect) {
+            
             return;
         }
 

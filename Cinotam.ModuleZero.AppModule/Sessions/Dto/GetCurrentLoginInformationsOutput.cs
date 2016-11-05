@@ -6,4 +6,10 @@
 
         public TenantLoginInfoDto Tenant { get; set; }
     }
+
+    public class ChatLoginInformation : GetCurrentLoginInformationsOutput
+    {
+        public int? ConversationId { get; set; }
+    }
+
 }

@@ -2,6 +2,7 @@
 using Cinotam.MailSender.SendGrid.SendGrid.Outputs;
 using CInotam.MailSender.Contracts;
 using RestApiHelpers.Contracts.Input;
+using RestApiHelpers.Enums;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace Cinotam.MailSender.SendGrid.SendGrid
             _sendGrid = sendGridCredentialsService.GetInstance(new RestApiCredentialsRequest()
             {
                 ApiKeyName = "SendGridKey",
+                Strategy = Strategy.EnvVar
             });
         }
 

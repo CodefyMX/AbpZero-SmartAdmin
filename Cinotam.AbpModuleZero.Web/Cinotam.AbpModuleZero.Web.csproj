@@ -304,6 +304,7 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css" />
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
+    <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\smart-chat-ui\smart.chat.manager.js" />
     <Content Include="Areas\SysAdmin\Views\Configuration\Configurations.js" />
     <Content Include="Areas\SysAdmin\Scripts\datatables.responsiveConfigs.js" />
     <Content Include="Areas\SysAdmin\Views\Editions\EditCreateEdition.js" />
@@ -579,7 +580,6 @@
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\select2\readme.txt" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\select2\select2.min.js" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\plugin\sparkline\jquery.sparkline.min.js" />
-    <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\smart-chat-ui\smart.chat.manager.min.js" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\smart-chat-ui\smart.chat.ui.min.js" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\smartwidgets\jarvis.widget.min.js" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\speech\voicecommand.min.js" />
@@ -634,6 +634,7 @@
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\LanguagesList.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Layout\ChatMenu.cshtml" />
     <None Include="Areas\SysAdmin\Views\Layout\_LanguageSelectionAdmin.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\ChangePassword.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Notifications\MyNotifications.cshtml" />
@@ -775,6 +776,7 @@
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Models\Account\UserTwoFactorVerificationInput.cs" />
+    <Compile Include="Models\Layout\ChatModel.cs" />
     <Compile Include="Models\Layout\UserMenuOrLoginLinkViewModel.cs" />
     <Compile Include="Models\Account\LoginFormViewModel.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />

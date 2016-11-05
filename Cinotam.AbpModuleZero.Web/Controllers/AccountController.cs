@@ -148,7 +148,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 const string smsProvider = "Sms";
                 var code = await _userManager.GenerateTwoFactorTokenAsync(loginResult.User.Id, smsProvider);
 
-                var messageResult = await _twoFactorMessageService.SendMessage(new IdentityMessage()
+                var messageResult = await _twoFactorMessageService.SendSmsMessage(new IdentityMessage()
                 {
                     Body = code,
                     Destination = loginResult.User.CountryPhoneCode + loginResult.User.PhoneNumber
