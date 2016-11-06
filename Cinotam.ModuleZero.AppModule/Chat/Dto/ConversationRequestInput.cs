@@ -2,7 +2,6 @@
 {
     public class ConversationRequestInput
     {
-        public long From { get; set; }
-        public long To { get; set; }
+        public int ConversationId { get; set; }
     }
 }
