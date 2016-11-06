@@ -19,6 +19,7 @@ http://aspnetboilerplate.com/
 
 ASP.NET Boilerplate is a starting point for new modern web applications using best practices and popular tools. It's aimed to be a solid model, a general-purpose application framework and a project template.
 
+
 **Asp.Net Boilerplate src** 
 https://github.com/aspnetboilerplate/aspnetboilerplate/
 
@@ -29,6 +30,11 @@ http://aspnetboilerplate.com/Pages/Documents
 http://www.myorange.ca
 
 ###**Kudos to the real geniuses behind the AbpFramework**
+
 **-Halil İbrahim Kalkan https://github.com/hikalkan**
+
 **-İsmail ÇAĞDAŞ https://github.com/ismcagdas**
+
 **-And all the awesome github commuity**
+
+
