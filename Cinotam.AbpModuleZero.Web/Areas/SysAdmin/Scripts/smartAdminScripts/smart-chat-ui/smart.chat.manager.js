@@ -19,6 +19,7 @@
 	}
 }*/
 
+
 var chatboxManager = function () {
     var _chatService = abp.services.app.chat;
     var init = function (options) {
@@ -38,7 +39,7 @@ var chatboxManager = function () {
     var boxClosedCallback = function (id) {
         // close button in the titlebar is clicked
 
-        console.log("ClosedId:",id);
+        console.log("ClosedId:", id);
 
         removeFromKeepAliveList(id);
 
@@ -93,8 +94,10 @@ var chatboxManager = function () {
             From: user.currentUserId,
             To: user.toUserId
         }
+
         _chatService.createConversation(data).done(function (id) {
             if (id != 0) {
+                id = "CinotamAbpChat" + id;
                 var idx1 = showList.indexOf(id);
                 var idx2 = boxList.indexOf(id);
                 if (idx1 != -1) {
@@ -110,29 +113,30 @@ var chatboxManager = function () {
                     var el = document.createElement('div');
                     el.setAttribute('id', id);
                     $(el)
-						.chatbox({
-						    id: id,
-						    user: user,
-						    title: '<i title="' + user.status + '"></i>' + user.first_name + " " + user.last_name,
-						    hidden: false,
-						    offset: getNextOffset(),
-						    width: chatbox_config.width,
-						    status: user.status,
-						    alertmsg: user.alertmsg,
-						    alertshow: user.alertshow,
-						    messageSent: dispatch,
-						    boxClosed: boxClosedCallback
-						});
+                        .chatbox({
+                            id: id,
+                            user: user,
+                            title: '<i title="' + user.status + '"></i>' + user.first_name + " " + user.last_name,
+                            hidden: false,
+                            offset: getNextOffset(),
+                            width: chatbox_config.width,
+                            status: user.status,
+                            alertmsg: user.alertmsg,
+                            alertshow: user.alertshow,
+                            messageSent: dispatch,
+                            boxClosed: boxClosedCallback
+                        });
                     boxList.push(id);
                     showList.push(id);
                     nameList.push(user.first_name);
 
                 }
+
+                success();
+                keepAlive(id, user);
             } else {
                 console.log("No conversation available");
             }
-            success();
-            keepAlive(id, user);
         });
 
 
@@ -233,14 +237,14 @@ var chatboxManager = function () {
 $('a[data-chat-id]:not(.offline)').click(function (event, ui) {
 
     var $this = $(this),
-		temp_chat_id = $this.attr("data-chat-id"),
-		fname = $this.attr("data-chat-fname"),
-		lname = $this.attr("data-chat-lname"),
-		status = $this.attr("data-chat-status") || "online",
-		alertmsg = $this.attr("data-chat-alertmsg"),
-		alertshow = $this.attr("data-chat-alertshow") || false,
-		currentUserId = abp.session.userId,
-		toUserId = $this.attr("data-to-id");
+        temp_chat_id = $this.attr("data-chat-id"),
+        fname = $this.attr("data-chat-fname"),
+        lname = $this.attr("data-chat-lname"),
+        status = $this.attr("data-chat-status") || "online",
+        alertmsg = $this.attr("data-chat-alertmsg"),
+        alertshow = $this.attr("data-chat-alertshow") || false,
+        currentUserId = abp.session.userId,
+        toUserId = $this.attr("data-to-id");
 
     if (toUserId == currentUserId) return false;
 
@@ -262,3 +266,5 @@ $('a[data-chat-id]:not(.offline)').click(function (event, ui) {
     event.preventDefault();
 
 });
+
+
