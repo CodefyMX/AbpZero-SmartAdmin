@@ -29,13 +29,13 @@
 var notificationService = (function () {
 
     function sendChatNotification(userNotification) {
-        var chatManager = chatboxManager;
+        var chatManager = window.chatboxManager;
         
         console.log(userNotification);
         var currentUserId = userNotification.userId;
         var fromUser = userNotification.notification.data.from;
         var message = userNotification.notification.data.message;
-        var conversationId = userNotification.notification.data.conversationId;
+        var conversationId = "CinotamAbpChat" + userNotification.notification.data.conversationId;
         var userData = {
             first_name: fromUser.name,
             last_name: fromUser.surname,
