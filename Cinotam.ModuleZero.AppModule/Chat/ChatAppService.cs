@@ -1,10 +1,11 @@
 ﻿using Abp.AutoMapper;
+using Abp.Threading;
 using Abp.UI;
 using Cinotam.AbpModuleZero.Chat;
 using Cinotam.ModuleZero.AppModule.Chat.Dto;
 using Cinotam.ModuleZero.Notifications.Chat.Outputs;
 using Cinotam.ModuleZero.Notifications.Chat.Sender;
-using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -50,9 +51,42 @@ namespace Cinotam.ModuleZero.AppModule.Chat
             var id = await _chatManager.CreateConversation(from, to, AbpSession.TenantId);
             return id;
         }
-        public Task<ConversationOutput> LoadConversation(ConversationRequestInput input)
+        public async Task<ConversationOutput> LoadConversation(ConversationRequestInput input)
         {
-            throw new NotImplementedException();
+            var conversation = (await Task.FromResult(from conv in _chatManager.Conversations
+                                                      where conv.Id == input.ConversationId
+                                                      select conv)).Include(a => a.Messages).FirstOrDefault();
+
+
+            if (conversation == null) return new ConversationOutput();
+
+            return new ConversationOutput()
+            {
+                ConversationId = conversation.Id,
+                Id = conversation.Id,
+                Messages = conversation.Messages.Take(10).Select(a => new MessageDto()
+                {
+                    ConversationId = conversation.Id,
+                    CreationTime = a.CreationTime,
+                    Id = a.Id,
+                    MessageText = a.MessageText,
+                    SenderFName = GetSenderName(a.SenderId),
+                    SenderLName = GetSenderLName(a.SenderId),
+                    SenderId = a.SenderId
+                }).ToList()
+            };
+
+        }
+
+        private string GetSenderLName(long argSenderId)
+        {
+
+            return AsyncHelper.RunSync(() => UserManager.GetUserByIdAsync(argSenderId)).Surname;
+        }
+
+        private string GetSenderName(long argSenderId)
+        {
+            return AsyncHelper.RunSync(() => UserManager.GetUserByIdAsync(argSenderId)).Name;
         }
     }
 }

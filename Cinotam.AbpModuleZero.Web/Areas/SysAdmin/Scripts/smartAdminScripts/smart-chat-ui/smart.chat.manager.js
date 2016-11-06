@@ -85,6 +85,9 @@ var chatboxManager = function () {
     var pushMessage = function (id, user, msg) {
         $("#" + id).chatbox("option", "boxManager").addMsg(user.first_name + " " + user.last_name, msg);
     }
+    var pushMessageFromMe = function(id,msg) {
+        $("#" + id).chatbox("option", "boxManager").addMsg(LSys("Me"), msg);
+    }
     // caller should guarantee the uniqueness of id
     var addBox = function (idConversation, user, success) {
 
@@ -97,7 +100,7 @@ var chatboxManager = function () {
 
         _chatService.createConversation(data).done(function (id) {
             if (id != 0) {
-                id = "CinotamAbpChat" + id;
+                id = "CinotamAbpChat_" + id;
                 var idx1 = showList.indexOf(id);
                 var idx2 = boxList.indexOf(id);
                 if (idx1 != -1) {
@@ -130,18 +133,14 @@ var chatboxManager = function () {
                     showList.push(id);
                     nameList.push(user.first_name);
 
-                }
 
+                    //Loads
+                    loadMessages(user,id);
+                }
                 success();
                 keepAlive(id, user);
-            } else {
-                console.log("No conversation available");
-            }
+            } 
         });
-
-
-
-
     };
 
     var messageSentCallback = function (id, user, msg) {
@@ -152,6 +151,8 @@ var chatboxManager = function () {
     var keepAliveElements = [];
     //Functions to show the active message boxes when page changes or reloads
     function keepAlive(conversationId, user) {
+        console.log(conversationId);
+        if (cookieExists(conversationId)) return;
 
         if (keepAliveElements.length <= 0) {
             var cValue = Cookies.get("keepAliveChats");
@@ -161,7 +162,7 @@ var chatboxManager = function () {
             }
         }
         if (!cookieExists(conversationId)) {
-
+            console.log("Adding");
             keepAliveElements.push({
                 conversationId: conversationId,
                 user: user
@@ -172,7 +173,7 @@ var chatboxManager = function () {
     }
     function cookieExists(conversationId) {
         for (var i = 0; i < keepAliveElements.length; i++) {
-            if (keepAliveElements[i] === conversationId) {
+            if (keepAliveElements[i].conversationId === conversationId) {
                 return true;
             }
         }
@@ -207,6 +208,7 @@ var chatboxManager = function () {
     }
     function loadChatWindows() {
         console.log("Loading");
+
         if (keepAliveElements.length <= 0) {
             var cValue = Cookies.get("keepAliveChats");
 
@@ -215,12 +217,49 @@ var chatboxManager = function () {
 
             }
         }
+
+        console.log(keepAliveElements);
         for (var i = 0; i < keepAliveElements.length; i++) {
             var conversationId = keepAliveElements[i].conversationId;
             var user = keepAliveElements[i].user;
-            addBox(conversationId, user);
+            addBox(conversationId, user,loadMessages(user,conversationId));
         }
 
+    }
+
+    function loadMessages(user, conversationId,callback) {
+        var data = {
+            ConversationId: getIdNumber(conversationId)
+        }
+        _chatService.loadConversation(data).done(function (response) {
+
+            if (!callback) callback = function (){};
+
+            response.messages.forEach(function (m) {
+
+                var userFromServer = {
+                    title: "username" + m.conversationId,
+                    first_name: m.senderFName,
+                    last_name: m.senderLName,
+                    currentUserId: abp.session.userId,
+                    chatId: conversationId,
+                    toUserId: m.senderId
+                }
+
+                if (m.senderId == abp.session.userId) {
+                    pushMessageFromMe(conversationId, m.messageText);
+                } else {
+                    pushMessage(conversationId, userFromServer, m.messageText);
+                }
+            });
+
+            callback(response);
+
+        });
+    }
+    function getIdNumber(convId) {
+        var afterT = convId.substr(convId.indexOf("_") + 1);
+        return afterT;
     }
     loadChatWindows();
     return {
