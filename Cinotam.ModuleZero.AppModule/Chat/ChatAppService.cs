@@ -22,7 +22,6 @@ namespace Cinotam.ModuleZero.AppModule.Chat
 
         public async Task SendMessage(SendMessageInput input)
         {
-
             if (!input.From.HasValue || !input.To.HasValue) throw new UserFriendlyException(L("NoUserDetected"));
 
             var from = await UserManager.GetUserByIdAsync(input.From.Value);
@@ -43,6 +42,14 @@ namespace Cinotam.ModuleZero.AppModule.Chat
             }
         }
 
+        public async Task<int> CreateConversation(SendMessageInput input)
+        {
+            if (!input.From.HasValue || !input.To.HasValue) throw new UserFriendlyException(L("NoUserDetected"));
+            var from = await UserManager.GetUserByIdAsync(input.From.Value);
+            var to = await UserManager.GetUserByIdAsync(input.To.Value);
+            var id = await _chatManager.CreateConversation(from, to, AbpSession.TenantId);
+            return id;
+        }
         public Task<ConversationOutput> LoadConversation(ConversationRequestInput input)
         {
             throw new NotImplementedException();

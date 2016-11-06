@@ -28,27 +28,24 @@
 
 var notificationService = (function () {
 
-
     function sendChatNotification(userNotification) {
-
+        var chatManager = chatboxManager;
+        
         console.log(userNotification);
         var currentUserId = userNotification.userId;
-        var chatManager = chatboxManager;
         var fromUser = userNotification.notification.data.from;
         var message = userNotification.notification.data.message;
-        var toUser = userNotification.notification.data.to;
+        var conversationId = userNotification.notification.data.conversationId;
         var userData = {
             first_name: fromUser.name,
             last_name: fromUser.surname,
             currentUserId: currentUserId,
             toUserId: fromUser.id
         }
-
         if (currentUserId !== fromUser.id) {
-            console.log(currentUserId);
-            console.log(fromUser);
-            chatManager.addBox(fromUser.id, userData);
-            chatManager.pushMessage(fromUser.id, userData, message);
+            chatManager.addBox(conversationId, userData,function() {
+                chatManager.pushMessage(conversationId, userData, message);
+            });
         }
 
     }

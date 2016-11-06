@@ -10,5 +10,6 @@ namespace Cinotam.ModuleZero.AppModule.Chat
         Task<ConversationOutput> LoadConversation(ConversationRequestInput input);
 
 
+        Task<int> CreateConversation(SendMessageInput input);
     }
 }

@@ -304,6 +304,7 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css" />
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
+    <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\smart-chat-ui\js.cookie.js" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\smart-chat-ui\smart.chat.manager.js" />
     <Content Include="Areas\SysAdmin\Views\Configuration\Configurations.js" />
     <Content Include="Areas\SysAdmin\Scripts\datatables.responsiveConfigs.js" />

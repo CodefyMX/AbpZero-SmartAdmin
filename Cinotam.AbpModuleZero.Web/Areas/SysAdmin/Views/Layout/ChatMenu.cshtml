@@ -18,7 +18,7 @@
 
 				    var conversationId = loginInfo.ConversationId ?? 0;
 
-					<a href="#" class="usr"  data-chat-id="@conversationId" data-chat-fname="@loginInfo.LoginInformations.User.Name" data-chat-lname="@loginInfo.LoginInformations.User.Surname" data-chat-status="online" data-rel="popover-hover" data-placement="right" data-html="true" data-content='<div class="usr-card"><div class="usr-card-content"><h3>@Html.Raw(loginInfo.GetShownLoginName())</h3></div></div>' data-original-title="" title=""><i></i> @loginInfo.LoginInformations.User.UserName</a>
+					<a href="#" class="usr" data-to-id="@loginInfo.LoginInformations.User.Id" data-chat-id="@conversationId" data-chat-fname="@loginInfo.LoginInformations.User.Name" data-chat-lname="@loginInfo.LoginInformations.User.Surname" data-chat-status="online" data-rel="popover-hover" data-placement="right" data-html="true" data-content='<div class="usr-card"><div class="usr-card-content"><h3>@Html.Raw(loginInfo.GetShownLoginName())</h3></div></div>' data-original-title="" title=""><i></i> @loginInfo.LoginInformations.User.UserName</a>
 				}
 			</div>
 			<!-- END DISPLAY USERS -->

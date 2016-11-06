@@ -40,8 +40,8 @@ namespace Cinotam.ModuleZero.AppModule.Sessions
         public async Task<List<ChatLoginInformation>> GetCurrentLoginInformationsLs()
         {
             var output = new List<ChatLoginInformation>();
-
-            var users = UserManager.Users.ToList();
+            var currentUserId = AbpSession.UserId;
+            var users = UserManager.Users.Where(a => a.Id != currentUserId.Value).ToList();
 
             Tenant tenant = null;
             foreach (var user in users)

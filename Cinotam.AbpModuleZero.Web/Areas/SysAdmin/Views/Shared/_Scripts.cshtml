@@ -7,52 +7,39 @@
 <script> if (!window.jQuery) { document.write('<script src="/scripts/jquery-2.2.0.min.js"><\/script>'); } </script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script> if (!window.jQuery.ui) { document.write('<script src="/scripts/jquery-ui-1.11.4.min.js"><\/script>'); } </script>
-
 @Scripts.Render("~/Bundles/vendor/js/bottom")
 @Scripts.Render("~/Bundles/js")
-
 <script>
     //Localizing momentjs
     moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
 </script>
-
 <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
 <script src="~/api/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)"></script>
 <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
-
 <!-- SignalR scripts -->
 <script src="~/signalr/hubs"></script>
 @Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js")
-
 <script src=@Url.Content("~/Areas/SysAdmin/Scripts/Layout/localizationText.js")></script>
-
 @Scripts.Render("~/scripts/smartadmin")
-
 <!-- SmartChat UI : plugin -->
 @*@Scripts.Render("~/scripts/smart-chat")*@
-
 <!-- DataTables : plugin -->
 @Scripts.Render("~/scripts/datatables")
-
 <!-- jQGrid : plugin -->
 @*@Scripts.Render("~/scripts/jq-grid")*@
-
 <!-- Forms : plugin -->
 @Scripts.Render("~/scripts/forms")
-
 <!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip, Morris, Sparkline, EasyPie -->
 @*@Scripts.Render("~/scripts/charts")*@
-
 <!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
 @*@Scripts.Render("~/scripts/vector-map")*@
-
 <!-- Full Calendar -->
 @*@Scripts.Render("~/scripts/full-calendar")*@
 <script src="~/Areas/SysAdmin/Scripts/datatables.config.js"></script>
 <script src="~/Areas/SysAdmin/Scripts/Layout/modalConfiguration.js"></script>
+<script src="~/Areas/SysAdmin/Scripts/smartAdminScripts/smart-chat-ui/js.cookie.js"></script>
 <script src="~/Areas/SysAdmin/Scripts/smartAdminScripts/smart-chat-ui/smart.chat.ui.min.js"></script>
 <script src="~/Areas/SysAdmin/Scripts/smartAdminScripts/smart-chat-ui/smart.chat.manager.js"></script>
-
 
 @if (@Model is HelperResult)
 {
