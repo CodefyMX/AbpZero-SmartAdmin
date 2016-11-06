@@ -1,49 +1,34 @@
 # AbpCinotamZero
 [![Build status](https://ci.appveyor.com/api/projects/status/70x83r44khsjd6j3?svg=true)](https://ci.appveyor.com/project/periface/abpcinotammodulezero)
-
-A basic and really low budget startup template implementation of ASP.NET Boilerplate and Module Zero.
-
 ![alt tag](https://raw.githubusercontent.com/periface/AbpCinotamZero-SmartAdmin/master/Cinotam.AbpModuleZero.Web/RepoContent/Captura.JPG)
 
-
+AbpCinotamZero is a basic startup template that tries to implement the ASP.NET Boilerplate and Module Zero functionality and practices, its maintained by just a couple of newbie web developers. 
 
 ##Notes:
-
-###General
-
 **-This is an "under construction" proyect, it was created for my personal use, use it under your own risk**
 
-**-The template uses smart admin (single license only). Purchase from: https://wrapbootstrap.com/theme/smartadmin-responsive-webapp-WB0573SK0 , its a really cool template and its not too expensive.**
+**-This template uses smart admin (single license only). Purchase from: https://wrapbootstrap.com/theme/smartadmin-responsive-webapp-WB0573SK0 , its a really cool template and its not too expensive.**
 
-###Cms Module
+**-If you find any logic or code errors (there might be a lot) please leave us a message or create an issue, all suggestions are welcome**
 
-**-Is a Pre Alfa playground only (it works ... but is not really good actually).**
+##**AspNetZero - This is a commercial product (recommended)**
+http://www.aspnetzero.com/?ref=abp 
 
-**-Is not a priority and may be removed from the project.**
-
-##ASP.NET Boilerplate Website
+##**ASP.NET Boilerplate**
 http://aspnetboilerplate.com/
 
 ASP.NET Boilerplate is a starting point for new modern web applications using best practices and popular tools. It's aimed to be a solid model, a general-purpose application framework and a project template.
 
-**Asp.Net Boilerplate src**
-
+**Asp.Net Boilerplate src** 
 https://github.com/aspnetboilerplate/aspnetboilerplate/
 
-**ASP.NET Boilerplate Website Docs**
-
+**ASP.NET Boilerplate Website Docs** 
 http://aspnetboilerplate.com/Pages/Documents
 
-##**AspNetZero - A more eficient, complete and commercial product (recommended)**
-
-http://www.aspnetzero.com/?ref=abp
-
 ##SmartAdmin Author Website
-
 http://www.myorange.ca
 
 ###**Kudos to the real geniuses behind the AbpFramework**
-####**-Halil İbrahim Kalkan https://github.com/hikalkan**
-####**-İsmail ÇAĞDAŞ https://github.com/ismcagdas**
-####**--And all the awesome github commuity--**
-
+**-Halil İbrahim Kalkan https://github.com/hikalkan**
+**-İsmail ÇAĞDAŞ https://github.com/ismcagdas**
+**-And all the awesome github commuity**
