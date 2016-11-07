@@ -314,6 +314,7 @@ var notificationService = (function () {
         }));
     }
 
+    startListening();
     var functions = {
         initView: initView,
         printNotificationInList: printNotificationInList,
