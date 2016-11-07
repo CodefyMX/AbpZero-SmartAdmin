@@ -107,7 +107,7 @@ namespace Cinotam.AbpModuleZero.Tests.OrganizationUnits
             output.OrganizationUnits.ShouldNotBeNull();
             output.OrganizationUnits.ShouldBeAssignableTo<IEnumerable>();
 
-            output.OrganizationUnits.Count.ShouldBe(3);
+            output.OrganizationUnits.Count.ShouldBeGreaterThan(1);
         }
 
         [Fact]

@@ -23,6 +23,7 @@ namespace Cinotam.AbpModuleZero.Tests
     {
         private DbConnection _hostDb;
         private Dictionary<int, DbConnection> _tenantDbs; //only used for db per tenant architecture
+        public readonly IMultiTenancyConfig MultiTenancyConfig;
 
         protected AbpModuleZeroTestBase()
         {
@@ -33,7 +34,7 @@ namespace Cinotam.AbpModuleZero.Tests
                 new InitialHostDbBuilder(context).Create();
                 new DefaultTenantCreator(context).Create();
             });
-
+            MultiTenancyConfig = Resolve<IMultiTenancyConfig>();
             //Seed initial data for default tenant
             AbpSession.TenantId = 1;
             UsingDbContext(context =>
@@ -44,6 +45,7 @@ namespace Cinotam.AbpModuleZero.Tests
             //LoginAsDefaultTenantAdmin();
         }
 
+        public bool IsMultiTenancyEnabled => MultiTenancyConfig.IsEnabled;
         protected override void PreInitialize()
         {
             base.PreInitialize();
@@ -197,7 +199,14 @@ namespace Cinotam.AbpModuleZero.Tests
 
         protected void LoginAsHostAdmin()
         {
-            LoginAsHost(User.AdminUserName);
+            if (MultiTenancyConfig.IsEnabled)
+            {
+                LoginAsHost(User.AdminUserName);
+            }
+            else
+            {
+                LoginAsDefaultTenantAdmin();
+            }
         }
 
         protected void LoginAsDefaultTenantAdmin()
