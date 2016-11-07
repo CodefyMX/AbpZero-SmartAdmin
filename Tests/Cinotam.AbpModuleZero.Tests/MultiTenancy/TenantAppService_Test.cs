@@ -20,47 +20,56 @@ namespace Cinotam.AbpModuleZero.Tests.MultiTenancy
 
         public async Task GetEditionsForTenant_Test()
         {
-            LoginAsHostAdmin();
+            if (IsMultiTenancyEnabled)
+            {
+                LoginAsHostAdmin();
 
-            var editionsOutput = await _tenantAppService.GetEditionsForTenant(1);
+                var editionsOutput = await _tenantAppService.GetEditionsForTenant(1);
 
-            editionsOutput.ShouldNotBeNull();
+                editionsOutput.ShouldNotBeNull();
 
-            editionsOutput.Editions.ShouldNotBeNull();
+                editionsOutput.Editions.ShouldNotBeNull();
 
-            editionsOutput.Editions.Count.ShouldBeGreaterThan(0);
+                editionsOutput.Editions.Count.ShouldBeGreaterThan(0);
+            }
+
         }
 
         [Fact]
         public async Task SetEditionForTenant_Test()
         {
-            LoginAsHostAdmin();
-
-            var editionsOutput = await _tenantAppService.GetEditionsForTenant(1);
-
-            editionsOutput.Editions.Count.ShouldBeGreaterThan(0);
-
-            var defaultEdition = editionsOutput.Editions.First();
-
-            await _tenantAppService.SetTenantEdition(new SetTenantEditionInput()
+            if (IsMultiTenancyEnabled)
             {
-                EditionId = defaultEdition.Id,
-                TenantId = 1
-            });
+                LoginAsHostAdmin();
+
+                var editionsOutput = await _tenantAppService.GetEditionsForTenant(1);
+
+                editionsOutput.Editions.Count.ShouldBeGreaterThan(0);
+
+                var defaultEdition = editionsOutput.Editions.First();
+
+                await _tenantAppService.SetTenantEdition(new SetTenantEditionInput()
+                {
+                    EditionId = defaultEdition.Id,
+                    TenantId = 1
+                });
 
 
-            //Now the edition should be 
+                //Now the edition should be 
 
 
-            var editionsOutputTest = await _tenantAppService.GetEditionsForTenant(1);
+                var editionsOutputTest = await _tenantAppService.GetEditionsForTenant(1);
 
-            editionsOutputTest.ShouldNotBeNull();
+                editionsOutputTest.ShouldNotBeNull();
 
-            editionsOutputTest.Editions.ShouldNotBeNull();
+                editionsOutputTest.Editions.ShouldNotBeNull();
 
-            editionsOutputTest.Editions.Count.ShouldBeGreaterThan(0);
+                editionsOutputTest.Editions.Count.ShouldBeGreaterThan(0);
 
-            editionsOutputTest.Editions.First().IsEnabledForTenant.ShouldBeTrue();
+                editionsOutputTest.Editions.First().IsEnabledForTenant.ShouldBeTrue();
+            }
+
+
         }
 
     }

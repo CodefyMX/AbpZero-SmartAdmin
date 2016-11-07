@@ -83,37 +83,51 @@ namespace Cinotam.AbpModuleZero.Tests.AuditLogs
         [Fact]
         public async Task GetLatestAuditLogOutput_Tenant_Test()
         {
-            LoginAsHostAdmin();
-            var auditLogs = await _auditLogService.GetLatestAuditLogOutputForTenant(1);
+            if (IsMultiTenancyEnabled)
+            {
+                LoginAsHostAdmin();
+                var auditLogs = await _auditLogService.GetLatestAuditLogOutputForTenant(1);
 
-            auditLogs.ShouldNotBeNull();
+                auditLogs.ShouldNotBeNull();
 
-            auditLogs.AuditLogs.ShouldNotBeNull();
+                auditLogs.AuditLogs.ShouldNotBeNull();
 
-            auditLogs.AuditLogs.ShouldBeAssignableTo<IEnumerable>();
+                auditLogs.AuditLogs.ShouldBeAssignableTo<IEnumerable>();
+
+            }
 
         }
         [Fact]
         public async Task GetAuditLogTable_Tenant_Test()
         {
-            LoginAsHostAdmin();
 
-            var fakeRequest = FakeRequests.FakeRequestHelper<object>.CreateDataTablesFakeRequestModel();
+            if (IsMultiTenancyEnabled)
+            {
+                LoginAsHostAdmin();
 
-            var autiLogsTable = await _auditLogService.GetAuditLogTableForTenant(fakeRequest, 1);
+                var fakeRequest = FakeRequests.FakeRequestHelper<object>.CreateDataTablesFakeRequestModel();
 
-            autiLogsTable.ShouldNotBeNull();
+                var autiLogsTable = await _auditLogService.GetAuditLogTableForTenant(fakeRequest, 1);
+
+                autiLogsTable.ShouldNotBeNull();
+            }
+
 
         }
 
         [Fact]
         public async Task GetAuditLogDetails_Tenant_Test()
         {
-            LoginAsHostAdmin();
 
-            var fakeDetailRequest = await _auditLogService.GetAuditLogDetailsForTenant(1, 1);
+            if (IsMultiTenancyEnabled)
+            {
+                LoginAsHostAdmin();
 
-            fakeDetailRequest.ShouldNotBeNull();
+                var fakeDetailRequest = await _auditLogService.GetAuditLogDetailsForTenant(1, 1);
+
+                fakeDetailRequest.ShouldNotBeNull();
+            }
+
         }
         #endregion
 

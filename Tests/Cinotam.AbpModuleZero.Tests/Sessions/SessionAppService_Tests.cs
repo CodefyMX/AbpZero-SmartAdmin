@@ -17,6 +17,7 @@ namespace Cinotam.AbpModuleZero.Tests.Sessions
         [Fact]
         public async Task Should_Get_Current_User_When_Logged_In_As_Host()
         {
+
             //Arrange
             LoginAsHostAdmin();
 
@@ -28,8 +29,15 @@ namespace Cinotam.AbpModuleZero.Tests.Sessions
             output.User.ShouldNotBe(null);
             output.User.Name.ShouldBe(currentUser.Name);
             output.User.Surname.ShouldBe(currentUser.Surname);
+            if (IsMultiTenancyEnabled)
+            {
 
-            output.Tenant.ShouldBe(null);
+                output.Tenant.ShouldBe(null);
+            }
+            else
+            {
+                output.Tenant.ShouldNotBe(null);
+            }
         }
 
         [Fact]

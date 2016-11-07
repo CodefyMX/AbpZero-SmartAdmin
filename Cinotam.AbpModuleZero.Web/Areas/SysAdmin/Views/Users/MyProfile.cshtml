@@ -18,78 +18,7 @@
     </div>
     <section id="widget-grid">
         <div class="row">
-            <article class="col-xs-12 col-md-3 sortable-grid ui-sortable">
-
-                <div class="jarviswidget jarviswidget-sortable" id="wid-id-profileInfoPic" style="" role="widget">
-                    <!-- widget options:
-                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-                    data-widget-colorbutton="false"
-                    data-widget-editbutton="false"
-                    data-widget-togglebutton="false"
-                    data-widget-deletebutton="false"
-                    data-widget-fullscreenbutton="false"
-                    data-widget-custombutton="false"
-                    data-widget-collapsed="true"
-                    data-widget-sortable="false"
-
-                    -->
-                    <header role="heading">
-
-                        <div class="jarviswidget-ctrls" role="menu">
-                            <a href="javascript:void(0);" class="button-icon jarviswidget-edit-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("Edit")">
-                                <i class="fa fa-cog "></i>
-                            </a> <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("Collapse")">
-                                <i class="fa fa-minus "></i>
-                            </a>
-                            @*<a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a>*@
-                        </div>
-                        <div class="widget-toolbar" role="menu">
-                            <a data-toggle="dropdown" class="dropdown-toggle color-box selector" href="javascript:void(0);"></a>
-                            <ul class="dropdown-menu arrow-box-up-right color-select pull-right">
-                                <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
-                                <li><span class="bg-color-greenDark" data-widget-setstyle="jarviswidget-color-greenDark" rel="tooltip" data-placement="top" data-original-title="Dark Green"></span></li>
-                                <li><span class="bg-color-greenLight" data-widget-setstyle="jarviswidget-color-greenLight" rel="tooltip" data-placement="top" data-original-title="Light Green"></span></li>
-                                <li><span class="bg-color-purple" data-widget-setstyle="jarviswidget-color-purple" rel="tooltip" data-placement="top" data-original-title="Purple"></span></li>
-                                <li><span class="bg-color-magenta" data-widget-setstyle="jarviswidget-color-magenta" rel="tooltip" data-placement="top" data-original-title="Magenta"></span></li>
-                                <li><span class="bg-color-pink" data-widget-setstyle="jarviswidget-color-pink" rel="tooltip" data-placement="right" data-original-title="Pink"></span></li>
-                                <li><span class="bg-color-pinkDark" data-widget-setstyle="jarviswidget-color-pinkDark" rel="tooltip" data-placement="left" data-original-title="Fade Pink"></span></li>
-                                <li><span class="bg-color-blueLight" data-widget-setstyle="jarviswidget-color-blueLight" rel="tooltip" data-placement="top" data-original-title="Light Blue"></span></li>
-                                <li><span class="bg-color-teal" data-widget-setstyle="jarviswidget-color-teal" rel="tooltip" data-placement="top" data-original-title="Teal"></span></li>
-                                <li><span class="bg-color-blue" data-widget-setstyle="jarviswidget-color-blue" rel="tooltip" data-placement="top" data-original-title="Ocean Blue"></span></li>
-                                <li><span class="bg-color-blueDark" data-widget-setstyle="jarviswidget-color-blueDark" rel="tooltip" data-placement="top" data-original-title="Night Sky"></span></li>
-                                <li><span class="bg-color-darken" data-widget-setstyle="jarviswidget-color-darken" rel="tooltip" data-placement="right" data-original-title="Night"></span></li>
-                                <li><span class="bg-color-yellow" data-widget-setstyle="jarviswidget-color-yellow" rel="tooltip" data-placement="left" data-original-title="Day Light"></span></li>
-                                <li><span class="bg-color-orange" data-widget-setstyle="jarviswidget-color-orange" rel="tooltip" data-placement="bottom" data-original-title="Orange"></span></li>
-                                <li><span class="bg-color-orangeDark" data-widget-setstyle="jarviswidget-color-orangeDark" rel="tooltip" data-placement="bottom" data-original-title="Dark Orange"></span></li>
-                                <li><span class="bg-color-red" data-widget-setstyle="jarviswidget-color-red" rel="tooltip" data-placement="bottom" data-original-title="Red Rose"></span></li>
-                                <li><span class="bg-color-redLight" data-widget-setstyle="jarviswidget-color-redLight" rel="tooltip" data-placement="bottom" data-original-title="Light Red"></span></li>
-                                <li><span class="bg-color-white" data-widget-setstyle="jarviswidget-color-white" rel="tooltip" data-placement="right" data-original-title="Purity"></span></li>
-                                <li><a href="javascript:void(0);" class="jarviswidget-remove-colors" data-widget-setstyle="" rel="tooltip" data-placement="bottom" data-original-title="Reset widget color to default">@L("Restore")</a></li>
-                            </ul>
-                        </div>
-
-                        <h2>
-                            <strong>@L("ProfilePicture")</strong> <i></i>
-                        </h2>
-                        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
-
-                    </header>
-
-                    <!-- widget div-->
-                    <div role="content">
-                        <!-- widget content -->
-                        <div class="widget-body no-padding">
-                            @{Html.RenderPartial("_changeProfilePicture", Model);}
-                        </div>
-                        <!-- end widget content -->
-
-                    </div>
-                    <!-- end widget div -->
-
-                </div>
-            </article>
-            <article class="col-md-9 col-xs-12 sortable-grid ui-sortable">
+            <article class="col-md-6 col-xs-12 sortable-grid ui-sortable">
 
                 <div class="jarviswidget jarviswidget-sortable" id="wid-id-profileInfo" style="" role="widget">
                     <!-- widget options:
@@ -108,9 +37,7 @@
                     <header role="heading">
 
                         <div class="jarviswidget-ctrls" role="menu">
-                            <a href="javascript:void(0);" class="button-icon jarviswidget-edit-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("Edit")">
-                                <i class="fa fa-cog "></i>
-                            </a> <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("Collapse")">
+                            <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("Collapse")">
                                 <i class="fa fa-minus "></i>
                             </a>
                             <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("FullScreen")">
@@ -153,8 +80,8 @@
                     <!-- widget div-->
                     <div role="content">
                         <!-- widget content -->
-                        <div class="widget-body no-padding">
-
+                        <div class="widget-body">
+                            @{Html.RenderPartial("_changeProfilePicture", Model);}
                             <form action="@Url.Action("CreateEditUser")" method="POST" id="createEditForm" class="smart-form">
                                 @Html.HiddenFor(a => a.Id)
                                 @Html.HiddenFor(a => a.UserName)
@@ -163,93 +90,79 @@
                                 @Html.HiddenFor(a => a.IsActive)
 
                                 <fieldset>
-                                    <section>
-                                        <label class="label col col-2">@L("UserName")</label>
-                                        <div class="col col-10">
-                                            <label class="input">
-                                                <i class="icon-append fa fa-user"></i>
-                                                @Html.TextBoxFor(a => a.UserName, new { disabled = "disabled" })
-                                            </label>
-                                        </div>
-                                    </section>
-                                    <section>
-                                        <label class="label col col-2">@L("EmailAddress")</label>
-                                        <div class="col col-10">
-                                            <label class="input">
-                                                <i class="icon-append fa fa-envelope-o"></i>
-                                                @Html.TextBoxFor(a => a.EmailAddress, new { required = "required", type = "email" })
-                                            </label>
-                                        </div>
-                                    </section>
-                                    <section>
-                                        <label class="label col col-2">@L("Name")</label>
-                                        <div class="col col-10">
-                                            <label class="input">
-                                                <i class="icon-append fa fa-user"></i>
-                                                @Html.TextBoxFor(a => a.Name, new { required = "required" })
-                                            </label>
-                                        </div>
-                                    </section>
-                                    <section>
-                                        <label class="label col col-2">@L("Surname")</label>
-                                        <div class="col col-10">
-                                            <label class="input">
-                                                <i class="icon-append fa fa-user"></i>
-                                                @Html.TextBoxFor(a => a.Surname, new { required = "required" })
-                                            </label>
-                                        </div>
-                                    </section>
-                                    <section>
-                                        <label class="label col col-2">@L("MyRoles")</label>
-                                        <div class="col col-10">
-                                            <label class="input">
-                                                <i class="icon-append fa fa-lock"></i>
-                                                @Html.TextBoxFor(a => a.MyStringRoles, new { required = "required", disabled = "disabled" })
-                                            </label>
-                                        </div>
-                                    </section>
-                                    <section>
-                                        <label class="label col col-2 padding-top-10">@L("Password")</label>
-                                        <div class="col col-10 padding-top-15">
-                                            <a data-modal href="@Url.Action("ChangePassword")">@L("ChangePassword")</a>
-                                        </div>
-                                    </section>
-                                    <section>
-                                        <label class="label col col-2 padding-top-10">@L("PhoneNumber")</label>
-                                        <div class="col col-10 padding-top-15">
-                                            @if (Model.PhoneNumber.IsNullOrEmpty())
-                                            {
-                                                <a data-modal href="@Url.Action("AddEditPhoneNumber")">@L("ChangePhoneNumber")</a>
-                                            }
-                                            else
-                                            {
-                                                <a data-modal href="@Url.Action("AddEditPhoneNumber")">@Model.PhoneNumber</a>
-                                            }
-                                            <br />
-                                            <br />
-                                            @if (Model.IsTwoFactorEnabled)
-                                            {
 
-                                                <button type="button" data-id="@Model.Id" class="btn btn-xs btn-warning js-toggle-twofactor">@L("DisableTwoFactorAuth")</button>
-                                            }
-                                            else
-                                            {
 
-                                                <button class="btn btn-xs btn-success js-toggle-twofactor" data-id="@Model.Id" type="button">@L("EnableTwoFactorAuth")</button>
-                                            }
-                                        </div>
+
+                                    <section>
+                                        <label class="label">@L("UserName")</label>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-user"></i>
+                                            @Html.TextBoxFor(a => a.UserName, new { disabled = "disabled" })
+                                        </label>
                                     </section>
                                     <section>
-                                        <div class="col">
+                                        <label class="label">@L("EmailAddress")</label>
 
-                                        </div>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-envelope-o"></i>
+                                            @Html.TextBoxFor(a => a.EmailAddress, new { required = "required", type = "email" })
+                                        </label>
+                                    </section>
+                                    <section>
+                                        <label class="label">@L("Name")</label>
 
+                                        <label class="input">
+                                            <i class="icon-append fa fa-user"></i>
+                                            @Html.TextBoxFor(a => a.Name, new { required = "required" })
+                                        </label>
+                                    </section>
+                                    <section>
+                                        <label class="label">@L("Surname")</label>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-user"></i>
+                                            @Html.TextBoxFor(a => a.Surname, new { required = "required" })
+                                        </label>
+                                    </section>
+                                    <section>
+                                        <label class="label">@L("MyRoles")</label>
+
+                                        <p>[@Model.MyStringRoles]</p>
+
+                                    </section>
+                                    <section>
+                                        <label class="label">@L("Password")</label>
+
+                                        <a data-modal href="@Url.Action("ChangePassword")">@L("ChangePassword")</a>
+
+                                    </section>
+                                    <section>
+                                        <label class="label">@L("PhoneNumber")</label>
+                                        @if (Model.PhoneNumber.IsNullOrEmpty())
+                                        {
+                                            <a data-modal href="@Url.Action("AddEditPhoneNumber")">@L("ChangePhoneNumber")</a>
+                                        }
+                                        else
+                                        {
+                                            <a data-modal href="@Url.Action("AddEditPhoneNumber")">@Model.PhoneNumber</a>
+                                        }
+                                        <br />
+                                        <br />
+                                        @if (Model.IsTwoFactorEnabled)
+                                        {
+
+                                            <button type="button" data-id="@Model.Id" class="btn btn-xs btn-warning js-toggle-twofactor">@L("DisableTwoFactorAuth")</button>
+                                        }
+                                        else
+                                        {
+
+                                            <button class="btn btn-xs btn-success js-toggle-twofactor" data-id="@Model.Id" type="button">@L("EnableTwoFactorAuth")</button>
+                                        }
                                     </section>
                                 </fieldset>
 
 
                                 <footer>
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary pull-right">
                                         @L("Save")
                                     </button>
                                 </footer>
@@ -264,9 +177,86 @@
 
                 </div>
             </article>
+            @{ Html.RenderAction("Settings"); }
+
+
+            <article class="col-md-6 col-xs-12 sortable-grid ui-sortable">
+
+                <div class="jarviswidget jarviswidget-sortable" id="wid-id-notificationsTable" style="" role="widget">
+                    <!-- widget options:
+                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                    data-widget-colorbutton="false"
+                    data-widget-editbutton="false"
+                    data-widget-togglebutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-fullscreenbutton="false"
+                    data-widget-custombutton="false"
+                    data-widget-collapsed="true"
+                    data-widget-sortable="false"
+
+                    -->
+                    <header role="heading">
+
+                        <div class="jarviswidget-ctrls" role="menu">
+                            <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("Collapse")">
+                                <i class="fa fa-minus "></i>
+                            </a>
+                            <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="@L("FullScreen")">
+                                <i class="fa fa-expand "></i>
+                            </a>
+                            @*<a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a>*@
+                        </div>
+                        <div class="widget-toolbar" role="menu">
+                            <a data-toggle="dropdown" class="dropdown-toggle color-box selector" href="javascript:void(0);"></a>
+                            <ul class="dropdown-menu arrow-box-up-right color-select pull-right">
+                                <li><span class="bg-color-green" data-widget-setstyle="jarviswidget-color-green" rel="tooltip" data-placement="left" data-original-title="Green Grass"></span></li>
+                                <li><span class="bg-color-greenDark" data-widget-setstyle="jarviswidget-color-greenDark" rel="tooltip" data-placement="top" data-original-title="Dark Green"></span></li>
+                                <li><span class="bg-color-greenLight" data-widget-setstyle="jarviswidget-color-greenLight" rel="tooltip" data-placement="top" data-original-title="Light Green"></span></li>
+                                <li><span class="bg-color-purple" data-widget-setstyle="jarviswidget-color-purple" rel="tooltip" data-placement="top" data-original-title="Purple"></span></li>
+                                <li><span class="bg-color-magenta" data-widget-setstyle="jarviswidget-color-magenta" rel="tooltip" data-placement="top" data-original-title="Magenta"></span></li>
+                                <li><span class="bg-color-pink" data-widget-setstyle="jarviswidget-color-pink" rel="tooltip" data-placement="right" data-original-title="Pink"></span></li>
+                                <li><span class="bg-color-pinkDark" data-widget-setstyle="jarviswidget-color-pinkDark" rel="tooltip" data-placement="left" data-original-title="Fade Pink"></span></li>
+                                <li><span class="bg-color-blueLight" data-widget-setstyle="jarviswidget-color-blueLight" rel="tooltip" data-placement="top" data-original-title="Light Blue"></span></li>
+                                <li><span class="bg-color-teal" data-widget-setstyle="jarviswidget-color-teal" rel="tooltip" data-placement="top" data-original-title="Teal"></span></li>
+                                <li><span class="bg-color-blue" data-widget-setstyle="jarviswidget-color-blue" rel="tooltip" data-placement="top" data-original-title="Ocean Blue"></span></li>
+                                <li><span class="bg-color-blueDark" data-widget-setstyle="jarviswidget-color-blueDark" rel="tooltip" data-placement="top" data-original-title="Night Sky"></span></li>
+                                <li><span class="bg-color-darken" data-widget-setstyle="jarviswidget-color-darken" rel="tooltip" data-placement="right" data-original-title="Night"></span></li>
+                                <li><span class="bg-color-yellow" data-widget-setstyle="jarviswidget-color-yellow" rel="tooltip" data-placement="left" data-original-title="Day Light"></span></li>
+                                <li><span class="bg-color-orange" data-widget-setstyle="jarviswidget-color-orange" rel="tooltip" data-placement="bottom" data-original-title="Orange"></span></li>
+                                <li><span class="bg-color-orangeDark" data-widget-setstyle="jarviswidget-color-orangeDark" rel="tooltip" data-placement="bottom" data-original-title="Dark Orange"></span></li>
+                                <li><span class="bg-color-red" data-widget-setstyle="jarviswidget-color-red" rel="tooltip" data-placement="bottom" data-original-title="Red Rose"></span></li>
+                                <li><span class="bg-color-redLight" data-widget-setstyle="jarviswidget-color-redLight" rel="tooltip" data-placement="bottom" data-original-title="Light Red"></span></li>
+                                <li><span class="bg-color-white" data-widget-setstyle="jarviswidget-color-white" rel="tooltip" data-placement="right" data-original-title="Purity"></span></li>
+                                <li><a href="javascript:void(0);" class="jarviswidget-remove-colors" data-widget-setstyle="" rel="tooltip" data-placement="bottom" data-original-title="Reset widget color to default">@L("Restore")</a></li>
+                            </ul>
+                        </div>
+
+                        <h2>
+                            <strong>@L("MyNotifications")</strong> <i></i>
+                        </h2>
+                        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div role="content">
+                        <!-- widget content -->
+                        <div class="widget-body">
+
+                            <ul id="myNotifications" class="notification-body"></ul>
+
+                        </div>
+                        <!-- end widget content -->
+
+                    </div>
+                    <!-- end widget div -->
+
+                </div>
+            </article>
 
         </div>
-        @{Html.RenderAction("MyNotifications", "Notifications");}
+
     </section>
 
 </div>
@@ -275,4 +265,6 @@
 
     @Html.IncludeScript("~/Areas/SysAdmin/Views/Users/MyProfile.js")
 
+
+    @Html.IncludeScript("~/Areas/SysAdmin/Views/Users/Settings.js")
 }
