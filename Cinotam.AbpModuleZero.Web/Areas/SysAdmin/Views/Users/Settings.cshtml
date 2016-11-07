@@ -107,7 +107,7 @@
                                 @if (IsGranted(PermissionNames.PagesSysAdminUsers))
                                 {
 
-                                    <div class="col col-4">
+                                    <div class="col col-6">
 
                                         <label>
                                             <input data-subscription data-subscription-name="@NotificationNames.UserCreated" type="checkbox" />
@@ -115,7 +115,7 @@
                                             @L("SubscribeToNotificationUserCreated")
                                         </label>
                                     </div>
-                                    <div class="col col-4">
+                                    <div class="col col-6">
 
                                         <label>
                                             <input data-subscription data-subscription-name="@NotificationNames.UserDeleted" type="checkbox" />
@@ -127,7 +127,7 @@
                                 @if (IsGranted(PermissionNames.PagesSysAdminRoles))
                                 {
 
-                                    <div class="col col-4">
+                                    <div class="col col-6">
 
                                         <label>
                                             <input data-subscription data-subscription-name="@NotificationNames.RoleCreated" type="checkbox" />
@@ -135,7 +135,7 @@
                                             @L("SubscribeToNotificationRoleCreated")
                                         </label>
                                     </div>
-                                    <div class="col col-4">
+                                    <div class="col col-6">
 
                                         <label>
                                             <input data-subscription data-subscription-name="@NotificationNames.RoleEdited" type="checkbox" />
@@ -143,7 +143,7 @@
                                             @L("SubscribeToNotificationRoleEdited")
                                         </label>
                                     </div>
-                                                <div class="col col-4">
+                                                <div class="col col-6">
 
                                                     <label>
                                                         <input data-subscription data-subscription-name="@NotificationNames.RoleDeleted" type="checkbox" />
@@ -151,7 +151,7 @@
                                                         @L("SubscribeToNotificationRoleDeleted")
                                                     </label>
                                                 </div>
-                                                <div class="col col-4">
+                                                <div class="col col-6">
 
                                                     <label>
                                                         <input data-subscription data-subscription-name="@NotificationNames.RoleAssigned" type="checkbox" />
@@ -162,7 +162,7 @@
                                 }
                                 @if (IsGranted(PermissionNames.PagesSysAdminLanguages))
                                 {
-                                    <div class="col col-4">
+                                    <div class="col col-6">
 
                                         <label>
                                             <input data-subscription data-subscription-name="@NotificationNames.LanguageCreated" type="checkbox" />
@@ -170,7 +170,7 @@
                                             @L("SubscribeToNotificationLanguageCreated")
                                         </label>
                                     </div>
-                                    <div class="col col-4">
+                                    <div class="col col-6">
 
                                         <label>
                                             <input data-subscription data-subscription-name="@NotificationNames.LanguageDeleted" type="checkbox" />
@@ -179,6 +179,19 @@
                                         </label>
                                     </div>
                                 }
+                                
+                                @if (IsGranted(PermissionNames.PagesSysAdminConfiguration))
+                                {
+                                    <div class="col col-6">
+
+                                        <label>
+                                            <input data-subscription data-subscription-name="@NotificationNames.SettingsChanged" type="checkbox" />
+                                            <i></i>
+                                            @L("SubscribeToNotificationSettingsChanged")
+                                        </label>
+                                    </div>
+                                }
+
                             </div>
                         </section>
                     </fieldset>

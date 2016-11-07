@@ -5,6 +5,7 @@ using Abp.Localization;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.ModuleZero.AppModule.Settings.Dto;
 using Cinotam.ModuleZero.Notifications.GeneralSubscriber;
+using Cinotam.ModuleZero.Notifications.Settings.Sender;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Inputs;
 using System;
 using System.Collections.Generic;
@@ -20,12 +21,14 @@ namespace Cinotam.ModuleZero.AppModule.Settings
         private readonly ISettingDefinitionManager _definitionManager;
         private readonly ILocalizationContext _localizationContext;
         private readonly IAppNotificationsSubscriber _userAppNotificationsSubscriber;
-        public SettingsAppService(SettingManager settingManager, ISettingDefinitionManager definitionManager, ILocalizationContext localizationContext, IAppNotificationsSubscriber userAppNotificationsSubscriber)
+        private readonly ISettingsAppNotificationsSender _settingsAppNotifications;
+        public SettingsAppService(SettingManager settingManager, ISettingDefinitionManager definitionManager, ILocalizationContext localizationContext, IAppNotificationsSubscriber userAppNotificationsSubscriber, ISettingsAppNotificationsSender settingsAppNotifications)
         {
             _settingManager = settingManager;
             _definitionManager = definitionManager;
             _localizationContext = localizationContext;
             _userAppNotificationsSubscriber = userAppNotificationsSubscriber;
+            _settingsAppNotifications = settingsAppNotifications;
         }
 
         public async Task CreateEditSetting(List<SettingInputDto> input)
@@ -54,6 +57,7 @@ namespace Cinotam.ModuleZero.AppModule.Settings
                         throw new ArgumentOutOfRangeException();
                 }
             }
+            await _settingsAppNotifications.SendSettingsChangedNotification(AbpSession.TenantId, await GetCurrentUserAsync());
         }
 
         public async Task<SettingInputDto> GetSettingForEdit(string name)
@@ -168,8 +172,9 @@ namespace Cinotam.ModuleZero.AppModule.Settings
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
+            await _settingsAppNotifications.SendSettingsChangedNotification(AbpSession.TenantId, await GetCurrentUserAsync());
 
+        }
         public async Task<bool> IsSubscribed(string notificationName)
         {
             var result = AbpSession.UserId != null &&

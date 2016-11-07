@@ -143,7 +143,7 @@ namespace Cinotam.AbpModuleZero.Localization
             return result;
         }
 
-        private bool IsXMLAvailableForTheLangCode(string langCode, string source)
+        public bool IsXMLAvailableForTheLangCode(string langCode, string source)
         {
             var provider = new XmlEmbeddedFileLocalizationDictionaryProvider(
                 Assembly.GetExecutingAssembly(),

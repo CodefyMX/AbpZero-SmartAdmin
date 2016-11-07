@@ -91,9 +91,10 @@
                         break;
                     case "MODAL_PERMISSIONS_SET":
                         abp.notify.success(LSys("PermissionsSet"), LSys("Success"));
-
+                        break;
                     case "USER_PASSWORD_CHANGED":
                         abp.notify.success(LSys("PasswordChanged"), LSys("Success"));
+                        break;
                     default:
                         console.log("Event unhandled");
                 }

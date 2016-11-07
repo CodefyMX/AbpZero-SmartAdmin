@@ -125,43 +125,47 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             await ClearCache("AbpLocalizationScripts");
             await ClearCache("AbpZeroLanguages");
 
-            var languageTexts = _languageTextsProvider.GetTexts(languageName, source);
+            //var languageTexts = _languageTextsProvider.GetTexts(languageName, source);
 
 
-            foreach (var languageText in languageTexts)
-            {
-                //Find keys and add the value
-                var languageTextFromDb = await _languageTextsRepository.FirstOrDefaultAsync(a => a.LanguageName == languageName && a.Source == source && a.Key == languageText.Key);
+            //foreach (var languageText in languageTexts)
+            //{
+            //    //Find keys and add the value
+            //    var languageTextFromDb = await _languageTextsRepository.FirstOrDefaultAsync(a => a.LanguageName == languageName && a.Source == source && a.Key == languageText.Key);
 
-                if (languageTextFromDb == null)
-                {
-                    _languageTextsRepository.Insert(new ApplicationLanguageText()
-                    {
-                        LanguageName = languageName,
-                        Source = source,
-                        Key = languageText.Key,
-                        Value = languageText.Value
-                    });
-                }
-                else
-                {
-                    if (languageTextFromDb.Value == "")
-                    {
-                        languageTextFromDb.Value = languageText.Value;
-                    }
-                    else
-                    {
-                        if (updateExistingValues) languageTextFromDb.Value = languageText.Value;
-                    }
-                }
-            }
+            //    if (languageTextFromDb == null)
+            //    {
+            //        _languageTextsRepository.Insert(new ApplicationLanguageText()
+            //        {
+            //            LanguageName = languageName,
+            //            Source = source,
+            //            Key = languageText.Key,
+            //            Value = languageText.Value
+            //        });
+            //    }
+            //    else
+            //    {
+            //        if (languageTextFromDb.Value == "")
+            //        {
+            //            languageTextFromDb.Value = languageText.Value;
+            //        }
+            //        else
+            //        {
+            //            if (updateExistingValues) languageTextFromDb.Value = languageText.Value;
+            //        }
+            //    }
+            //}
 
         }
         private Task ClearCache(string cacheName)
         {
             var cache = _cacheManager.GetCache(cacheName);
+
             return cache.ClearAsync();
+
         }
+
+
         /// <summary>
         /// Experimental (Todo:Find the way to make just one ajax call to this function per operation)
         /// Note: if there is a lot of language text elements in the table this may cause some perf. issues
@@ -176,18 +180,39 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
             var sourceWasUpdated = false;
             //Source requested
+
+            //Problem repository will return 0 records on new database
+            //We need to check if there are texts on the cache
+
             var languageTextsSource = _languageTextsRepository.GetAll()
                 .Where(a => a.Source == input.TypeOfRequest.Source
                 && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
 
-            if (!languageTextsSource.Any())
+            var languageTextsSourceFromXml = _languageTextsProvider.GetTexts(input.TypeOfRequest.SourceLang, input.TypeOfRequest.Source);
+
+
+
+            //var isXmlAvailable = _languageTextsProvider.IsXMLAvailableForTheLangCode(input.TypeOfRequest.SourceLang,
+            //    input.TypeOfRequest.Source);
+
+            if (!languageTextsSourceFromXml.Any() && !languageTextsSource.Any()
+                /* we need something like '&& IsInCache() '*/)
             {
 
                 //This will restore all the keys from the xml file en should be always available
-                _languageTextsProvider.SetLocalizationKeys(input.TypeOfRequest.SourceLang, input.TypeOfRequest.Source, AbpSession.TenantId);
+                _languageTextsProvider.SetLocalizationKeys(input.TypeOfRequest.SourceLang, input.TypeOfRequest.Source,
+                    AbpSession.TenantId);
                 sourceWasUpdated = true;
             }
-
+            else
+            {
+                languageTextsSource = languageTextsSourceFromXml.Select(a => new ApplicationLanguageText()
+                {
+                    Key = a.Key,
+                    Value = a.Value,
+                    Source = input.TypeOfRequest.Source
+                }).ToList();
+            }
             //2.-Load all target texts
             //2.1.-If the current tenant has no texts in the database for the target
             //     we must generate them with empty spaces and the key from the source 
@@ -195,6 +220,11 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             var languageTextsTarget = _languageTextsRepository.GetAll()
                 .Where(a => a.Source == input.TypeOfRequest.Source
                 && a.LanguageName == input.TypeOfRequest.TargetLang).ToList();
+
+            if (input.TypeOfRequest.TargetLang == input.TypeOfRequest.SourceLang)
+            {
+                languageTextsTarget = languageTextsSource;
+            }
 
             if (!languageTextsTarget.Any())
             {

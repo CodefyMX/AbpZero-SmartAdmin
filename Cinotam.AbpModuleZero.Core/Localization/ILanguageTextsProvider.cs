@@ -18,5 +18,7 @@ namespace Cinotam.AbpModuleZero.Localization
         /// <param name="source"></param>
         /// <returns></returns>
         Dictionary<string, string> GetTexts(string languageName, string source);
+
+        bool IsXMLAvailableForTheLangCode(string langCode, string source);
     }
 }
