@@ -8,6 +8,10 @@
             var $notificationsElement = $("#myNotifications");
             var $wrapper = $("#imageWrapped");
             var $btnTwoFactorToggle = $(".js-toggle-twofactor");
+            var $profilePicture = $("#profilePicture");
+            var $profilePictureFile = $("#profilePictureFile");
+
+
             var _userAppService = abp.services.app.user;
             $changeProfilePictureForm.on("submit",
                     function (e) {
@@ -18,10 +22,21 @@
                         abp.ui.setBusy($wrapper, upload(data, id));
                     });
 
-            $btnTwoFactorToggle.click(function() {
+            window.uploadProfilePicture = function (element) {
+
+                element.parentNode.nextSibling.value = element.value;
+                $changeProfilePictureForm.submit();
+
+            }
+
+            $profilePicture.click(function () {
+                $profilePictureFile.click();
+            });
+
+            $btnTwoFactorToggle.click(function () {
                 var id = $(this).data("id");
 
-                abp.ui.setBusy($createEditForm, _userAppService.enableOrDisableTwoFactorAuthForUser(id).done(function() {
+                abp.ui.setBusy($createEditForm, _userAppService.enableOrDisableTwoFactorAuthForUser(id).done(function () {
                     window.location.reload();
                 }));
             });
@@ -61,7 +76,7 @@
                         break;
                     case "PHONE_CHANGE_REQUEST":
                         console.log(event);
-                        window.modalInstance.openInBody("/SysAdmin/Users/ConfirmPhone/?phoneNumber=" + event.detail.info.phoneNumber + "&userId=" + event.detail.info.userId + "&countryCode=" +event.detail.info.countryCode+"&countryPhoneCode="+event.detail.info.countryPhoneCode);
+                        window.modalInstance.openInBody("/SysAdmin/Users/ConfirmPhone/?phoneNumber=" + event.detail.info.phoneNumber + "&userId=" + event.detail.info.userId + "&countryCode=" + event.detail.info.countryCode + "&countryPhoneCode=" + event.detail.info.countryPhoneCode);
                         break;
                     case "PHONE_CONFIRMED":
                         abp.notify.success(LSys("PhoneConfirmed"), LSys("Success"));
@@ -74,12 +89,33 @@
                         console.log("Event unhandled");
                 }
             }
+
+
+
             _userAppService.getMyNotifications(2, null).done(function (response) {
+
                 $notificationsElement.text("");
                 response.notifications.forEach(function (userNotification) {
-                    notificationService.printNotificationInList(userNotification, $notificationsElement);
+                    notificationService.printNotificationInListSWF(userNotification, $notificationsElement);
                 });
-                notificationService.startListening();
+
             });
+            $("#searchNotifications")
+                .on("keyup",
+                    function (e) {
+                        var value = $(this).val();
+                        console.log(value);
+
+                        _userAppService.getMyNotifications(10, null, value).done(function (response) {
+                            $notificationsElement.text("");
+                            response.notifications.forEach(function (userNotification) {
+
+                                var format = "{0}";
+
+                                notificationService.printNotificationInListSWF(userNotification, $notificationsElement, format);
+                            });
+                        });
+
+                    });
         });
 })();

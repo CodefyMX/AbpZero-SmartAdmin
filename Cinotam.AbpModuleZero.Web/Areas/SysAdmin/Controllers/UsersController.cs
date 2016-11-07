@@ -4,6 +4,7 @@ using Abp.Web.Mvc.Authorization;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
+using Cinotam.ModuleZero.AppModule.Notifications;
 using Cinotam.ModuleZero.AppModule.Users;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
 using Microsoft.AspNet.SignalR.Hubs;
@@ -16,10 +17,11 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
     {
         // GET: SysAdmin/Users
         private readonly IUserAppService _userAppService;
-
-        public UsersController(IUserAppService userAppService)
+        private readonly INotificationService _notificationService;
+        public UsersController(IUserAppService userAppService, INotificationService notificationService)
         {
             _userAppService = userAppService;
+            _notificationService = notificationService;
         }
 
         [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsers)]
