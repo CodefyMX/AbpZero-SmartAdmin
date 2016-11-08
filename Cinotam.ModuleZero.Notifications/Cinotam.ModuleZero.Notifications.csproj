@@ -113,6 +113,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesAppNotifications\Sender\IRolesAppNotificationsSender.cs" />
     <Compile Include="RolesAppNotifications\Sender\RolesAppNotificationsSender.cs" />
+    <Compile Include="Settings\Sender\ISettingsAppNotificationsSender.cs" />
+    <Compile Include="Settings\Sender\SettingsAppNotificationsSender.cs" />
     <Compile Include="UsersAppNotifications\Outputs\SendNotificationObject.cs" />
     <Compile Include="UsersAppNotifications\Sender\IUsersAppNotificationsSender.cs" />
     <Compile Include="UsersAppNotifications\Inputs\NotificationSubscriptionInput.cs" />
@@ -131,7 +133,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="EditionNotifications\" />
+    <Folder Include="MultiTenancyNotifications\" />
+    <Folder Include="Settings\Inputs\" />
+    <Folder Include="Settings\Outputs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

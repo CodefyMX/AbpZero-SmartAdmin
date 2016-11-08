@@ -88,5 +88,35 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender
             await _notificationPublisher.PublishAsync(NotificationNames.RoleAssignedToUser, dataToSendUser, userIds: new[] { assignedUserIdentifier });
 
         }
+
+        public async Task PermissionsSetNotification(int? currentTenant, User currentUser, User userAssigned)
+        {
+            var assignedUserIdentifier = new UserIdentifier(currentTenant, userAssigned.Id);
+            var dataToSend = new LocalizableMessageNotificationData(new LocalizableString("PermissionSetNotification", AbpModuleZeroConsts.LocalizationSourceName))
+            {
+                ["userName"] = currentUser.FullName,
+                ["usernameAssigned"] = userAssigned.FullName,
+                ["userId"] = userAssigned.Id
+            };
+            await
+                _notificationPublisher.PublishAsync(NotificationNames.PermissionsSet, dataToSend);
+            var isRegistered = await
+                _notificationSubscriptionManager.IsSubscribedAsync(assignedUserIdentifier
+                    , NotificationNames.PermissionsSet);
+
+            if (!isRegistered)
+            {
+                await _notificationSubscriptionManager.SubscribeAsync(assignedUserIdentifier, NotificationNames.PermissionsSet);
+
+            }
+            var dataToSendUser = new LocalizableMessageNotificationData(new LocalizableString("PermissionsModifiedNotificationToUser", AbpModuleZeroConsts.LocalizationSourceName))
+            {
+                ["userName"] = currentUser.FullName,
+                ["usernameAssigned"] = userAssigned.FullName,
+                ["userId"] = userAssigned.Id
+            };
+            await _notificationPublisher.PublishAsync(NotificationNames.PermissionsSet, dataToSendUser, userIds: new[] { assignedUserIdentifier });
+        }
+
     }
 }

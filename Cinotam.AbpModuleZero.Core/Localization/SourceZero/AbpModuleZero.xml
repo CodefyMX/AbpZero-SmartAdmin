@@ -37,6 +37,9 @@
     <!--Notifications Header-->
     <text name="PressToShowInfo" value="Click a button to show messages here"/>
     <text name="PrivacyMessage" value="This blank page message helps protect your privacy, or you can show the first message here automatically." />
+    <text name="MarkAsReaded" value="Mark as readed"/>
+    <text name="Details" value="Details"/>
+    
     <!--//Notifications Header-->
 
 
@@ -73,6 +76,9 @@
     <text name="MoveOrganizationUnit" value="Move organization unit?"/>
     <text name="OrganizationUnitRemoved" value="Organization organization unit removed"/>
     <!--Users-->
+    
+    <text name="ChangePhoneNumber" value="Change phone number" />
+    
     <text name="ChangePhoneNumberForm" value="Add or change your phone number"/>
     <text name="EnableTwoFactorAuth" value="Enable two factor authentication"/>
     <text name="DisableTwoFactorAuth" value="Disable two factor authentication"/>
@@ -124,6 +130,12 @@
     <text name="ResetPermissions" value="Reset permissions"/>
     <text name="Permissions" value="Permissions"/>
     <text name="SetSpecialPermissionsForm" value="Set special permissions"/>
+    <text name="EditRoles" value="Edit roles"  />
+    <text name="EditUser" value="Edit user"  />
+    <text name="SetPermissions" value="Set permissions"  />
+    <text name="DeleteUser" value="Delete user"  />
+    <text name="UnlockUser" value="Unlock user"  />
+    
     <!--//Users-->
 
     <!--//Emails-->
@@ -148,7 +160,7 @@
     <text name="RoleEditedByUser" value="Role {roleName} edited by {user}"/>
     <text name="RoleDeletedByUser" value="Role {roleName} deleted by {user}"/>
     <text name="RoleDeletedForUser" value="One of your roles was deleted"/>
-    
+    <test name="PermissionSetNotification" value="Your permissions were modified by user {userName}"/>
     <text name="IsAssignedByDefault" value="Is assigned by default" />
     <text name="OrganizationUnitsEdit" value="Edit organization units" />
     <text name="OrganizationUnitsDelete" value="Delete organization units" />
@@ -196,6 +208,9 @@
     <text name="Language" value="Language" />
     <text name="LanguageDeleted" value="Language: {languageName} was deleted by the user {user}"/>
     <text name="LanguageCreated" value="Language: {languageName} was created by the user {user}"/>
+    <text name="UpdateFromXml" value="Update from XML file"/>
+    <text name="LanguageTextsWillBeUpdated" value="Language texts will be updated"/>
+    <text name="Test key" value="Test key"/>
     <!--//Languages-->
 
     <!--Audit logs-->
@@ -227,12 +242,19 @@
     <text name="SubscribeToNotificationUserCreated" value="User created notifications" />
     <text name="SubscribeToNotificationUserDeleted" value="User deleted notifications" />
     <text name="SubscribeToNotificationRoleCreated" value="Role created notifications" />
+    <text name="SubscribeToNotificationRoleEdited" value="Role edited notifications" />
     <text name="SubscribeToNotificationRoleDeleted" value="Role deleted notifications" />
     <text name="SubscribeToNotificationRoleAssigned" value="Role assigned notifications" />
+    <text name="SubscribeToNotificationLanguageCreated" value="Language created notifications"/>
+    <text name="SubscribeToNotificationLanguageDeleted" value="Language deleted notifications"/>
+    <text name="SubscribeToNotificationSettingsChanged" value="Settings changed notifications"/>
     <text name="Subscribe" value="Subscribe" />
     <text name="UnSubscribe" value="Unsubscribe" />
     <text name="Loading" value="Loading"/>
     <text name="ChangesSaved" value="Changes saved"/>
+    <text name="SettingsChangedByUser" value="Application settings where changed by {userName}"/>
+    
+    
     <!--//Configuration-->
 
 
@@ -246,6 +268,7 @@
     
     <text name="SuccessOperation" value="Success"/>
     <text name="ErrorOperation" value="Error"/>
+    <text name="LiveSwitch" value="Live switch"/>
     <!--//Dashboard-->
 
     <text name="Tenants" value="Tenants" />

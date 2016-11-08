@@ -11,5 +11,6 @@ namespace Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender
         Task SendUserEditedNotification(User currentUser, User userEdited);
         Task SendUserCreatedNotification(User currentUser, User userCreated);
         Task SendRoleAssignedNotification(int? currentTenant, User currentUser, User assignedUser);
+        Task PermissionsSetNotification(int? currentTenant, User currentUser, User userAssigned);
     }
 }

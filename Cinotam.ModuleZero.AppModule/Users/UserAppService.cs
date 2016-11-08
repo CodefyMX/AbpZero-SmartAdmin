@@ -372,6 +372,9 @@ namespace Cinotam.ModuleZero.AppModule.Users
                         await UserManager.ProhibitPermissionAsync(user, permission);
                     }
                 }
+
+                await _usersAppNotificationsSender.PermissionsSetNotification(AbpSession.TenantId, await GetCurrentUserAsync(), user);
+
             }
         }
         [AbpAuthorize(PermissionNames.PagesSysAdminRolesAssign, PermissionNames.PagesSysAdminUsers)]
@@ -379,6 +382,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
         {
             var user = await UserManager.GetUserByIdAsync(userId);
             await UserManager.ResetAllPermissionsAsync(user);
+            await _usersAppNotificationsSender.PermissionsSetNotification(AbpSession.TenantId, await GetCurrentUserAsync(), user);
         }
         [AbpAuthorize(PermissionNames.PagesSysAdminUsersEdit)]
         public async Task UnlockUser(long userId)

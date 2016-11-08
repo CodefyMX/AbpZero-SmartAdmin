@@ -41,7 +41,7 @@ var notificationService = (function () {
             toUserId: fromUser.id
         }
         if (currentUserId !== fromUser.id) {
-            chatManager.addBox(conversationId, userData,function() {
+            chatManager.addBox(conversationId, userData, function () {
                 chatManager.pushMessage(conversationId, userData, message);
             });
         }
@@ -100,7 +100,8 @@ var notificationService = (function () {
                 roles: "fa fa-lock fa-fw fa-2x",
                 users: "fa fa-users fa-fw fa-2x",
                 user: "fa fa-user fa-fw fa-2x",
-                languages: "fa fa-flag fa-fw fa-2x"
+                languages: "fa fa-flag fa-fw fa-2x",
+                settings: "fa fa-gears fa-fw fa-2x"
             }
 
 
@@ -114,6 +115,10 @@ var notificationService = (function () {
                     break;
                 case "RoleAssigned":
                     html = getHtmlForNotification(userNotification, badgeColors.blue, icons.roles, stateClass, "/SysAdmin/Users/UsersList/?userId=", userNotification.notification.data.properties.userId);
+                    setHtmlNotification($element, html, localizedText);
+                    break;
+                case "PermissionSetNotification":
+                    html = getHtmlForNotification(userNotification, badgeColors.blue, icons.roles, stateClass, "", userNotification.notification.data.properties.userId);
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "RoleCreated":
@@ -141,6 +146,11 @@ var notificationService = (function () {
                     html = getHtmlForNotification(userNotification, badgeColors.yellow, icons.user, stateClass, "/SysAdmin/Users/UsersList/", "");
                     setHtmlNotification($element, html, localizedText);
 
+                    break;
+
+                case "SettingsChanged":
+                    html = getHtmlForNotification(userNotification, badgeColors.yellow, icons.settings, stateClass, "", "");
+                    setHtmlNotification($element, html, localizedText);
                     break;
                 default:
                     $element.append(abp.utils.formatString('<li class=' + userNotification.id + '>' +
@@ -195,11 +205,16 @@ var notificationService = (function () {
                 case "RoleAssignedToUser":
                     //badge padding-5 no-border-radius bg-color-blue pull-left margin-right-5
                     //fa fa-lock fa-fw fa-2x
-                    html = getHtmlForNotificationSimple(userNotification,"/SysAdmin/Users/MyProfile", "");
+                    html = getHtmlForNotificationSimple(userNotification, "/SysAdmin/Users/MyProfile", "");
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "RoleAssigned":
                     html = getHtmlForNotificationSimple(userNotification, "/SysAdmin/Users/UsersList/?userId=", userNotification.notification.data.properties.userId);
+                    setHtmlNotification($element, html, localizedText);
+                    break;
+
+                case "PermissionSetNotification":
+                    html = getHtmlForNotificationSimple(userNotification, "", userNotification.notification.data.properties.userId);
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "RoleCreated":
@@ -211,22 +226,27 @@ var notificationService = (function () {
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "LanguageCreated":
-                    html = getHtmlForNotificationSimple(userNotification,"/SysAdmin/Languages/LanguagesList/", "");
+                    html = getHtmlForNotificationSimple(userNotification, "/SysAdmin/Languages/LanguagesList/", "");
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "LanguageDeleted":
-                    html = getHtmlForNotificationSimple(userNotification,  "/SysAdmin/Languages/LanguagesList/", "");
+                    html = getHtmlForNotificationSimple(userNotification, "/SysAdmin/Languages/LanguagesList/", "");
                     setHtmlNotification($element, html, localizedText);
                     break;
                 case "UserCreated":
-                    html = getHtmlForNotificationSimple(userNotification, badgeColors.green, icons.user, stateClass, "/SysAdmin/Users/UsersList/", "");
+                    html = getHtmlForNotificationSimple(userNotification, "/SysAdmin/Users/UsersList/", "");
                     setHtmlNotification($element, html, localizedText);
 
                     break;
                 case "UserDeleted":
-                    html = getHtmlForNotificationSimple(userNotification, badgeColors.yellow, icons.user, stateClass, "/SysAdmin/Users/UsersList/", "");
+                    html = getHtmlForNotificationSimple(userNotification, "/SysAdmin/Users/UsersList/", "");
                     setHtmlNotification($element, html, localizedText);
 
+                    break;
+
+                case "SettingsChanged":
+                    html = getHtmlForNotificationSimple(userNotification, "", "");
+                    setHtmlNotification($element, html, localizedText);
                     break;
                 default:
                     $element.append(abp.utils.formatString('<li class=' + userNotification.id + '>' +
@@ -270,9 +290,9 @@ var notificationService = (function () {
             '>' +
             '<span>{0} <a data-notification-id=' +
             userNotification.id +
-            ' data-href="' + href + id + '" class="btn pull-right btn-xs btn-primary margin-top-5 js-call-action">'+LSys("Details")+'</a><br><a href="#" data-notification-id=' +
+            ' data-href="' + href + id + '" class="btn pull-right btn-xs btn-primary margin-top-5 js-call-action">' + LSys("Details") + '</a><br><a href="#" data-notification-id=' +
             userNotification.id +
-            ' class="js-mark-readed">'+LSys("MarkAsReaded")+'</a></span>' +
+            ' class="js-mark-readed">' + LSys("MarkAsReaded") + '</a></span>' +
             '</span></li>';
     }
 
@@ -304,7 +324,7 @@ var notificationService = (function () {
     function markAsReaded(notificationId, $elm) {
         abp.ui.setBusy("#userNotifications", abp.services.app.user.markAsReaded(notificationId).done(function () {
             var selector = "." + notificationId;
-            var elements = $ (selector);
+            var elements = $(selector);
             elements.children().removeClass("unread");
             var href = $elm.data("href");
             if (href) {

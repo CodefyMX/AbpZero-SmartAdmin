@@ -13,5 +13,7 @@
         public const string LanguageDeleted = "LanguageDeleted";
         public const string RoleEdited = "RoleEdited";
         public const string RoleDeletedForUser = "RoleDeletedForUser";
+        public const string PermissionsSet = "PermissionsSet";
+        public const string SettingsChanged = "SettingsChanged";
     }
 }
