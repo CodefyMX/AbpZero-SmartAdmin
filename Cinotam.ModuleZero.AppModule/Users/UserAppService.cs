@@ -13,8 +13,6 @@ using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Users;
-using Cinotam.FileManager.Files;
-using Cinotam.FileManager.Files.Inputs;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
 using Cinotam.ModuleZero.AppModule.Users.EnumHelpers;
@@ -38,17 +36,15 @@ namespace Cinotam.ModuleZero.AppModule.Users
     {
         private readonly IRepository<User, long> _userRepository;
         private readonly IPermissionManager _permissionManager;
-        private readonly IFileStoreManager _fileStoreManager;
         private readonly IUsersAppNotificationsSender _usersAppNotificationsSender;
         private readonly UserNotificationManager _userNotificationManager;
         private readonly ICinotamMailSender _cinotamMailSender;
         private readonly ITemplateManager _templateManager;
         private readonly ITwoFactorMessageService _twoFactorMessageService;
-        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, IFileStoreManager fileStoreManager, IUsersAppNotificationsSender usersAppNotificationsSender, UserNotificationManager userNotificationManager, ICinotamMailSender cinotamMailSender, ITemplateManager templateManager, ITwoFactorMessageService twoFactorMessageService)
+        public UserAppService(IRepository<User, long> userRepository, IPermissionManager permissionManager, IUsersAppNotificationsSender usersAppNotificationsSender, UserNotificationManager userNotificationManager, ICinotamMailSender cinotamMailSender, ITemplateManager templateManager, ITwoFactorMessageService twoFactorMessageService)
         {
             _userRepository = userRepository;
             _permissionManager = permissionManager;
-            _fileStoreManager = fileStoreManager;
             _usersAppNotificationsSender = usersAppNotificationsSender;
             _userNotificationManager = userNotificationManager;
             _cinotamMailSender = cinotamMailSender;
@@ -245,34 +241,12 @@ namespace Cinotam.ModuleZero.AppModule.Users
             return userProfileInfo;
         }
         [AbpAuthorize]
-        public async Task<string> AddProfilePicture(UpdateProfilePictureInput input)
+        public async Task AddProfilePicture(UpdateProfilePictureInput input)
         {
             var user = await UserManager.GetUserByIdAsync(input.UserId);
-
-
-            var result = await _fileStoreManager.SaveFile(new FileSaveInput()
-            {
-                CreateUniqueName = false,
-                File = input.Image,
-                SpecialFolder = user.UserName.Normalize(),
-                Properties =
-                {
-                    ["Width"] = 120,
-                    ["Height"] = 120,
-                    ["TransformationType"] = 2
-                },
-            }, useCdnFirst: false);
-            if (result.WasStoredInCloud)
-            {
-                user.ProfilePicture = result.Url;
-                user.IsPictureOnCdn = true;
-                await UserManager.UpdateAsync(user);
-                return result.Url;
-            }
-            user.ProfilePicture = result.VirtualPath;
-            user.IsPictureOnCdn = false;
+            user.ProfilePicture = input.ImageUrl;
+            user.IsPictureOnCdn = input.StoredInCdn;
             await UserManager.UpdateAsync(user);
-            return result.VirtualPath;
         }
         [AbpAuthorize]
         public async Task<NotificationsOutput> GetMyNotifications(UserNotificationState state, int? take = null)

@@ -93,19 +93,27 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 PhoneNumber = PhoneNumber.ToString()
             });
         }
-
+        public ActionResult EmailVerification(string returnUrl, long userId, string provider)
+        {
+            if (Email == null) throw new UserFriendlyException(L("SessionExpired"));
+            return View(new UserTwoFactorVerificationInput()
+            {
+                Provider = provider,
+                ReturnUrl = returnUrl,
+                UserId = userId,
+                Email = Email.ToString()
+            });
+        }
         private const string PhoneNumberKey = "PhoneNumber";
+        private const string EmailKey = "EmailKey";
         private object PhoneNumber => Session[PhoneNumberKey];
-
+        private object Email => Session[EmailKey];
         private void SetPhoneNumber(string phoneNumber)
         {
             Session[PhoneNumberKey] = phoneNumber;
         }
         [HttpPost]
-
         [DisableAbpAntiForgeryTokenValidation]
-
-
         public async Task<JsonResult> PhoneNumberVerification(UserTwoFactorVerificationInput input)
         {
 
@@ -124,6 +132,26 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
 
         }
+        [HttpPost]
+        [DisableAbpAntiForgeryTokenValidation]
+        public async Task<ActionResult> EmailVerification(UserTwoFactorVerificationInput input)
+        {
+            var user = await _userManager.FindByIdAsync(input.UserId);
+            if (user.TenantId != null) _userManager.RegisterTwoFactorProviders(user.TenantId.Value);
+            else _userManager.RegisterTwoFactorProviders(null);
+            await _userManager.GetValidTwoFactorProvidersAsync(input.UserId);
+            var result = await _userManager.VerifyTwoFactorTokenAsync(input.UserId, input.Provider, input.Token);
+            if (!result) return Json(new { Error = L("InvalidCode") });
+            await SignInAsync(user);
+            if (string.IsNullOrEmpty(input.ReturnUrl))
+            {
+                return Json(new AjaxResponse { TargetUrl = "/Home/Index" });
+            }
+            return Json(new AjaxResponse { TargetUrl = input.ReturnUrl });
+
+
+        }
+
         [HttpPost]
         [DisableAuditing]
         public async Task<JsonResult> Login(LoginViewModel loginModel, string returnUrl = "", string returnUrlHash = "")
@@ -151,7 +179,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 var messageResult = await _twoFactorMessageService.SendSmsMessage(new IdentityMessage()
                 {
                     Body = code,
-                    Destination = loginResult.User.CountryPhoneCode + loginResult.User.PhoneNumber
+                    Destination = loginResult.User.CountryPhoneCode + loginResult.User.PhoneNumber,
                 });
 
                 if (messageResult.SendStatus == SendStatus.Fail)
@@ -170,20 +198,30 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             }
             if (IsTwoFactorEnabled(loginResult.User) && IsEmailRequiredForLogin && IsEmailProviderEnabled)
             {
+
+                SetEmail(loginResult.User.EmailAddress);
+
                 const string emailProvider = "Email";
-                //Send sms verification code
+                //Send email verification code
+
+                var emailCode = await _userManager.GenerateTwoFactorTokenAsync(loginResult.User.Id, emailProvider);
+
+                await _twoFactorMessageService.SendEmailMessage(new IdentityMessage()
+                {
+                    Body = emailCode,
+                    Destination = loginResult.User.EmailAddress,
+                    Subject = "Your code"
+                });
+
                 var url = Url.Action("EmailVerification",
                     new
                     {
                         returnUrl,
                         userId = loginResult.User.Id,
                         provider = emailProvider,
-                        phone = loginResult.User.PhoneNumber
                     });
                 return Json(new AjaxResponse { TargetUrl = url });
             }
-
-
             await SignInAsync(loginResult.User, loginResult.Identity, loginModel.RememberMe);
 
             if (string.IsNullOrWhiteSpace(returnUrl))
@@ -199,6 +237,10 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             return Json(new AjaxResponse { TargetUrl = returnUrl });
         }
 
+        private void SetEmail(string userEmailAddress)
+        {
+            Session[EmailKey] = userEmailAddress;
+        }
         public bool IsEmailProviderEnabled
             =>
             bool.Parse(SettingManager.GetSettingValue("Abp.Zero.UserManagement.TwoFactorLogin.IsEmailProviderEnabled"));
@@ -615,5 +657,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         }
 
         #endregion
+
+
     }
 }
