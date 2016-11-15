@@ -628,9 +628,9 @@
     <Content Include="Abp\Framework\styles\abp.css.map" />
     <Content Include="Areas\SysAdmin\Views\Editions\EditionList.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Editions\EditCreateEdition.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Editions\_loadChildrens.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Editions\_LoadChildrens.cshtml" />
     <Content Include="Areas\SysAdmin\Scripts\datatables.config.js" />
-    <Content Include="Areas\SysAdmin\Views\Configuration\_configurationsView.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Configuration\_ConfigurationsView.cshtml" />
     <Content Include="Areas\SysAdminSpa\Views\web.config" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
@@ -640,7 +640,7 @@
     <None Include="Areas\SysAdmin\Views\Layout\_LanguageSelectionAdmin.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\ChangePassword.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Notifications\MyNotifications.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Shared\_alternativeUserInfo.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_AlternativeUserInfo.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\Error.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\MyMenus.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Menu\CreateEditMenu.cshtml" />
@@ -651,10 +651,10 @@
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddOrganizationUnit.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\UsersWindow.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddUserView.cshtml" />
-    <None Include="Areas\SysAdmin\Views\OrganizationUnits\_childOrgUnits.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Shared\_changeProfilePicture.cshtml" />
+    <None Include="Areas\SysAdmin\Views\OrganizationUnits\_ChildOrgUnits.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Shared\_ChangeProfilePicture.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\_AsideMenu.cshtml" />
-    <None Include="Areas\SysAdmin\Views\Shared\_childPermissions.cshtml" />
+    <None Include="Areas\SysAdmin\Views\Shared\_ChildPermissions.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\AddEditPhoneNumber.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\ConfirmPhone.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Tenants\SetTenantEdition.cshtml" />
