@@ -5,6 +5,7 @@ using Abp.Configuration;
 using Abp.Configuration.Startup;
 using Abp.Domain.Uow;
 using Abp.Extensions;
+using Abp.Localization;
 using Abp.Threading;
 using Abp.UI;
 using Abp.Web.Models;
@@ -40,6 +41,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly LogInManager _logInManager;
         private readonly ITwoFactorMessageService _twoFactorMessageService;
+        private const string IsEmailConfString = "Abp.Zero.UserManagement.TwoFactorLogin.IsEmailProviderEnabled";
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -180,6 +182,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 {
                     Body = code,
                     Destination = loginResult.User.CountryPhoneCode + loginResult.User.PhoneNumber,
+                    Subject = LocalizationManager.GetString(LocalizationSourceName, "YourTwoFactorCode")
                 });
 
                 if (messageResult.SendStatus == SendStatus.Fail)
@@ -210,7 +213,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 {
                     Body = emailCode,
                     Destination = loginResult.User.EmailAddress,
-                    Subject = "Your code"
+                    Subject = LocalizationManager.GetString(LocalizationSourceName, "YourTwoFactorCode")
                 });
 
                 var url = Url.Action("EmailVerification",
@@ -241,12 +244,14 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         {
             Session[EmailKey] = userEmailAddress;
         }
+
+
         public bool IsEmailProviderEnabled
             =>
-            bool.Parse(SettingManager.GetSettingValue("Abp.Zero.UserManagement.TwoFactorLogin.IsEmailProviderEnabled"));
+            bool.Parse(SettingManager.GetSettingValue(IsEmailConfString));
 
         public bool IsEmailRequiredForLogin
-            => bool.Parse(SettingManager.GetSettingValue("Abp.Zero.UserManagement.IsEmailConfirmationRequiredForLogin"));
+            => bool.Parse(SettingManager.GetSettingValue(IsEmailConfString));
 
         private void CheckAndConfirmTwoFactorProviders(User loginResultUser)
         {

@@ -184,6 +184,8 @@
     <text name="TenantsAssignEdition" value="Assign edition"/>
     <text name="TenantsAssignFeature" value="Assign feature"/>
     <text name="PagesSysAdminRolesAssignPermissions" value="Assign permissions" />
+    <text name="RolesManagement" value="Roles management"/>
+    
     <!--//Roles-->
 
 
@@ -227,6 +229,10 @@
     <text name="ExceptionNotFound" value="Method executed successfully"/>
     <text name="ExceptionFound" value="Exception found"/>
     <text name="ClientName" value="Client name"/>
+    <text name="ServiceName" value="Service name"/>
+    <text name="ExecutionDuration" value="Execution duration"/>
+    <text name="TenantWillBeRestored" value="Tenant will be restored"/>
+    <text name="TenantChartsFor" value="Tenant charts for"/>
     <!--//Audit logs-->
 
 
