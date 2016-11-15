@@ -631,6 +631,7 @@
     <Content Include="Areas\SysAdmin\Views\Editions\_loadChildrens.cshtml" />
     <Content Include="Areas\SysAdmin\Scripts\datatables.config.js" />
     <Content Include="Areas\SysAdmin\Views\Configuration\_configurationsView.cshtml" />
+    <Content Include="Areas\SysAdminSpa\Views\web.config" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
@@ -757,6 +758,8 @@
     <Compile Include="App_Start\AbpModuleZeroWebModule.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Areas\SysAdminSpa\Controllers\MainController.cs" />
+    <Compile Include="Areas\SysAdminSpa\SysAdminSpaAreaRegistration.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\AuditLogsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\DashboardController.cs" />
@@ -823,6 +826,7 @@
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.ttf" />
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.woff" />
     <Content Include="Views\Account\PhoneNumberVerification.cshtml" />
+    <Content Include="Views\Account\EmailVerification.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -881,7 +885,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\SysAdmin\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\SysAdminSpa\Models\" />
+    <Folder Include="Areas\SysAdminSpa\Views\Main\" />
+    <Folder Include="Areas\SysAdminSpa\Views\Shared\" />
     <Folder Include="Content\Templates\ArticlePage\Resources\" />
     <Folder Include="Content\Templates\Simple\Resources\" />
   </ItemGroup>

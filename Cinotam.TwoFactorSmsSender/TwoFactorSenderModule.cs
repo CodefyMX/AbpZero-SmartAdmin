@@ -1,4 +1,5 @@
 ﻿using Abp.Modules;
+using Cinotam.ModuleZero.MailSender;
 using Cinotam.TwoFactorAuth.Contracts;
 using Cinotam.TwoFactorAuth.Twilio;
 using Cinotam.TwoFactorAuth.Twilio.TwilioService;
@@ -7,7 +8,7 @@ using System.Reflection;
 
 namespace Cinotam.TwoFactorSender
 {
-    [DependsOn(typeof(TwoFactorTwilioModule))]
+    [DependsOn(typeof(TwoFactorTwilioModule), typeof(CinotamModuleZeroMailSender))]
     public class TwoFactorSenderModule : AbpModule
     {
         public static List<IMessageSender> MessageSenders = new List<IMessageSender>();

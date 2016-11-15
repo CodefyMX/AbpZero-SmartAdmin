@@ -54,6 +54,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CInotam.MailSender.Contracts\CInotam.MailSender.Contracts.csproj">
+      <Project>{B79DC367-7C6B-4F59-989F-86599FBFAD06}</Project>
+      <Name>CInotam.MailSender.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.ModuleZero.MailSender\Cinotam.MailSender.csproj">
+      <Project>{201432A3-493B-46FE-A6FB-03D9D95DDBF6}</Project>
+      <Name>Cinotam.MailSender</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cinotam.TwoFactorAuth.Contracts\Cinotam.TwoFactorAuth.Contracts.csproj">
       <Project>{645802DE-75FC-4403-B604-C2B650125073}</Project>
       <Name>Cinotam.TwoFactorAuth.Contracts</Name>

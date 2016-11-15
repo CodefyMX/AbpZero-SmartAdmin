@@ -17,9 +17,10 @@
                         @Html.HiddenFor(a => a.Provider)
                         @Html.HiddenFor(a => a.ReturnUrl)
                         @Html.HiddenFor(a => a.PhoneNumber)
+                        @Html.HiddenFor(a => a.Email)
                         <legend>@L("ConfirmLogin")</legend>
                         <p>
-                            A message was sent to to the following phone number : ********@Model.PhoneNumber.Substring(8)
+                            A message was sent to to the following mail address : ***@Model.Email.Substring(3)
                         </p>
                         <div class="form-group">
                             <div class="col-lg-12">
@@ -41,18 +42,18 @@
     <script>
         (function() {
             var $form = $("#PhoneVerificationForm");
-            
+
             $form.on("submit",
                 function(e) {
                     var $self = $(this);
 
                     e.preventDefault();
                     var data = $self.serializeFormToObject();
-                    
+
                     abp.ui.setBusy(
                     $form,
                         abp.ajax({
-                                url: abp.appPath + 'Account/PhoneNumberVerification',
+                                url: abp.appPath + 'Account/EmailVerification',
                                 type: 'POST',
                                 data: JSON.stringify(data)
                         })

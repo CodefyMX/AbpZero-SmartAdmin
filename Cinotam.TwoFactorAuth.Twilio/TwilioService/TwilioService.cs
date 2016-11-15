@@ -57,6 +57,11 @@ namespace Cinotam.TwoFactorAuth.Twilio.TwilioService
             });
         }
 
+        public Task<SendMessageResult> SendEmailMessage(IdentityMessage message)
+        {
+            throw new NotImplementedException();
+        }
+
         public string ServiceName => "Twilio";
         public Task SendAsync(IdentityMessage message)
         {
