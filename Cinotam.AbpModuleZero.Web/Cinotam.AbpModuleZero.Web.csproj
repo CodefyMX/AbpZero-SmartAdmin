@@ -851,6 +851,10 @@
       <Project>{5eb52d3d-09fd-463a-b02a-8d9856bd3724}</Project>
       <Name>Cinotam.AbpModuleZero.WebApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cinotam.FileManager.Service\Cinotam.FileManager.Service.csproj">
+      <Project>{B104B41B-3D65-44A4-95A1-2286590AC7A3}</Project>
+      <Name>Cinotam.FileManager.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cinotam.ModuleZero.AppModule\Cinotam.ModuleZero.AppModule.csproj">
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>
       <Name>Cinotam.ModuleZero.AppModule</Name>

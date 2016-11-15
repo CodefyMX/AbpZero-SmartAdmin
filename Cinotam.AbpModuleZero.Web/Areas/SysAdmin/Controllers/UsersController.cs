@@ -4,7 +4,8 @@ using Abp.Web.Mvc.Authorization;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
-using Cinotam.ModuleZero.AppModule.Notifications;
+using Cinotam.FileManager.Service.AppService;
+using Cinotam.FileManager.Service.AppService.Dto;
 using Cinotam.ModuleZero.AppModule.Users;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
 using Microsoft.AspNet.SignalR.Hubs;
@@ -17,11 +18,11 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
     {
         // GET: SysAdmin/Users
         private readonly IUserAppService _userAppService;
-        private readonly INotificationService _notificationService;
-        public UsersController(IUserAppService userAppService, INotificationService notificationService)
+        private readonly IFileManagerAppService _filemanagerAppService;
+        public UsersController(IUserAppService userAppService, IFileManagerAppService filemanagerAppService)
         {
             _userAppService = userAppService;
-            _notificationService = notificationService;
+            _filemanagerAppService = filemanagerAppService;
         }
 
         [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsers)]
@@ -78,13 +79,26 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             {
                 throw new UserFriendlyException("");
             }
-            var result = await _userAppService.AddProfilePicture(new UpdateProfilePictureInput()
+
+            var saveFile = await _filemanagerAppService.SaveFile(new SaveFileInput(Request.Files[0])
             {
-                Image = Request.Files[0],
+                Properties =
+                {
+                    ["Width"] = 120,
+                    ["Height"] = 120,
+                    ["TransformationType"] = 2
+                },
+            });
+
+
+            await _userAppService.AddProfilePicture(new UpdateProfilePictureInput()
+            {
+                ImageUrl = saveFile.Url,
+                StoredInCdn = saveFile.StoredInCloud,
                 UserId = id
             });
 
-            return Json(result);
+            return Json(saveFile.Url);
 
         }
 

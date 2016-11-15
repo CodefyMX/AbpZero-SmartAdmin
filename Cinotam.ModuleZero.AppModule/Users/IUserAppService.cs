@@ -26,7 +26,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
         Task SetUserRoles(RoleSelectorInput input);
         Task<UserProfileDto> GetUserProfile(long? abpSessionUserId);
 
-        Task<string> AddProfilePicture(UpdateProfilePictureInput input);
+        Task AddProfilePicture(UpdateProfilePictureInput input);
         Task<NotificationsOutput> GetMyNotifications(UserNotificationState state = UserNotificationState.Unread, int? take = null);
         Task ChangePassword(ChangePasswordInput input);
         Task MarkAsReaded(Guid notificationId);

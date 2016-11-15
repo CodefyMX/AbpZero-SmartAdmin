@@ -1,6 +1,5 @@
 ﻿using Abp.AutoMapper;
 using Abp.Modules;
-using Cinotam.FileManager;
 using Cinotam.ModuleZero.MailSender;
 using Cinotam.ModuleZero.Notifications;
 using Cinotam.TwoFactorSender;
@@ -12,7 +11,6 @@ namespace Cinotam.ModuleZero.AppModule
         typeof(AbpModuleZero.AbpModuleZeroCoreModule),
         typeof(AbpAutoMapperModule),
          typeof(TwoFactorSenderModule),
-        typeof(CinotamFileManager),
         typeof(CinotamModuleZeroNotifications),
         typeof(CinotamModuleZeroMailSender))]
     public class CinotamModuleZeroAppModule : AbpModule
