@@ -113,6 +113,7 @@
     <Compile Include="LanguagesAppNotifications\Sender\ILanguagesAppNotificationSender.cs" />
     <Compile Include="LanguagesAppNotifications\Sender\LanguagesAppNotificationSender.cs" />
     <Compile Include="MultiTenancyNotifications\Sender\IMultitenancyNotificationSender.cs" />
+    <Compile Include="MultiTenancyNotifications\Sender\MultiTenancyNotificationSender.cs" />
     <Compile Include="Notifications\NotificationNames.cs" />
     <Compile Include="Notifications\NotificationResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

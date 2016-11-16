@@ -1,10 +1,11 @@
 ﻿using Abp.Application.Editions;
+using Abp.Domain.Services;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.Notifications.MultiTenancyNotifications.Sender
 {
-    public interface IMultitenancyNotificationSender
+    public interface IMultitenancyNotificationSender : IDomainService
     {
         Task SendTenantCreatedNotification(Tenant tenant);
         Task SendDeletedNotification(Tenant tenant);
