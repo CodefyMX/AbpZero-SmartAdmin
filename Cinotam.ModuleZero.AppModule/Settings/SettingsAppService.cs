@@ -2,6 +2,7 @@
 using Abp.Authorization;
 using Abp.Configuration;
 using Abp.Localization;
+using Abp.Runtime.Caching;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.ModuleZero.AppModule.Settings.Dto;
 using Cinotam.ModuleZero.Notifications.GeneralSubscriber;
@@ -22,13 +23,15 @@ namespace Cinotam.ModuleZero.AppModule.Settings
         private readonly ILocalizationContext _localizationContext;
         private readonly IAppNotificationsSubscriber _userAppNotificationsSubscriber;
         private readonly ISettingsAppNotificationsSender _settingsAppNotifications;
-        public SettingsAppService(SettingManager settingManager, ISettingDefinitionManager definitionManager, ILocalizationContext localizationContext, IAppNotificationsSubscriber userAppNotificationsSubscriber, ISettingsAppNotificationsSender settingsAppNotifications)
+        private readonly ICacheManager _cacheManager;
+        public SettingsAppService(SettingManager settingManager, ISettingDefinitionManager definitionManager, ILocalizationContext localizationContext, IAppNotificationsSubscriber userAppNotificationsSubscriber, ISettingsAppNotificationsSender settingsAppNotifications, ICacheManager cacheManager)
         {
             _settingManager = settingManager;
             _definitionManager = definitionManager;
             _localizationContext = localizationContext;
             _userAppNotificationsSubscriber = userAppNotificationsSubscriber;
             _settingsAppNotifications = settingsAppNotifications;
+            _cacheManager = cacheManager;
         }
 
         public async Task CreateEditSetting(List<SettingInputDto> input)
@@ -121,6 +124,16 @@ namespace Cinotam.ModuleZero.AppModule.Settings
             output.Settings = settingsList;
             return output;
         }
+
+        public async Task ClearCaches()
+        {
+            var caches = _cacheManager.GetAllCaches();
+            foreach (var cach in caches)
+            {
+                await cach.ClearAsync();
+            }
+        }
+
         public async Task ChangeTheme(string themeName)
         {
             if (AbpSession.UserId != null)

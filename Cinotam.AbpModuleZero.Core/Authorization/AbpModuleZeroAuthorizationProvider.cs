@@ -55,6 +55,11 @@ namespace Cinotam.AbpModuleZero.Authorization
             tenants.CreateChildPermission(PermissionNames.PagesTenantsDelete, L("TenantsDelete"), multiTenancySides: MultiTenancySides.Host);
             tenants.CreateChildPermission(PermissionNames.PagesTenantsAssignEdition, L("TenantsAssignEdition"), multiTenancySides: MultiTenancySides.Host);
             tenants.CreateChildPermission(PermissionNames.PagesTenantsAssignFeatures, L("TenantsAssignFeature"), multiTenancySides: MultiTenancySides.Host);
+
+
+
+
+
         }
 
         private static ILocalizableString L(string name)

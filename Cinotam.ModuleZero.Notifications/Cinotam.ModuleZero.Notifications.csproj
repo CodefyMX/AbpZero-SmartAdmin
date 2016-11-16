@@ -106,8 +106,13 @@
     <Compile Include="Chat\Sender\IChatMessageSender.cs" />
     <Compile Include="Chat\Outputs\ChatData.cs" />
     <Compile Include="CinotamModuleZeroNotifications.cs" />
+    <Compile Include="EditionNotifications\Sender\EditionNotificationsSender.cs" />
+    <Compile Include="EditionNotifications\Sender\IEditionNotificationsSender.cs" />
+    <Compile Include="EditionNotifications\Subscriber\EditionNotificationSubscriber.cs" />
+    <Compile Include="EditionNotifications\Subscriber\IEditionNotificationSubscriber.cs" />
     <Compile Include="LanguagesAppNotifications\Sender\ILanguagesAppNotificationSender.cs" />
     <Compile Include="LanguagesAppNotifications\Sender\LanguagesAppNotificationSender.cs" />
+    <Compile Include="MultiTenancyNotifications\Sender\IMultitenancyNotificationSender.cs" />
     <Compile Include="Notifications\NotificationNames.cs" />
     <Compile Include="Notifications\NotificationResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,8 +139,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EditionNotifications\" />
-    <Folder Include="MultiTenancyNotifications\" />
+    <Folder Include="MultiTenancyNotifications\Subscriber\" />
     <Folder Include="Settings\Inputs\" />
     <Folder Include="Settings\Outputs\" />
   </ItemGroup>

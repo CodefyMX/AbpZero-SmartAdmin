@@ -2,11 +2,16 @@
 using Abp.Application.Editions;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
+using Abp.Domain.Uow;
+using Abp.UI;
 using Abp.UI.Inputs;
 using Cinotam.AbpModuleZero.Editions;
 using Cinotam.AbpModuleZero.MultiTenancy;
+using Cinotam.AbpModuleZero.Users;
 using Cinotam.ModuleZero.AppModule.Features.Dto;
 using Cinotam.ModuleZero.AppModule.Features.FeatureManager;
+using Cinotam.ModuleZero.Notifications.EditionNotifications.Sender;
+using Cinotam.ModuleZero.Notifications.EditionNotifications.Subscriber;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,12 +24,16 @@ namespace Cinotam.ModuleZero.AppModule.Features
         private readonly TenantManager _tenantManager;
         private readonly IRepository<Edition> _editionRepository;
         private readonly ICustomEditionManager _customEditionManager;
-        public FeatureService(EditionManager editionManager, TenantManager tenantManager, IRepository<Edition> editionRepository, ICustomEditionManager customEditionManager)
+        private readonly IEditionNotificationsSender _editionNotificationsSender;
+        private readonly IEditionNotificationSubscriber _editionNotificationSubscriber;
+        public FeatureService(EditionManager editionManager, TenantManager tenantManager, IRepository<Edition> editionRepository, ICustomEditionManager customEditionManager, IEditionNotificationsSender editionNotificationsSender, IEditionNotificationSubscriber editionNotificationSubscriber)
         {
             _editionManager = editionManager;
             _tenantManager = tenantManager;
             _editionRepository = editionRepository;
             _customEditionManager = customEditionManager;
+            _editionNotificationsSender = editionNotificationsSender;
+            _editionNotificationSubscriber = editionNotificationSubscriber;
         }
 
         public async Task CreateEdition(NewEditionInput input)
@@ -35,6 +44,9 @@ namespace Cinotam.ModuleZero.AppModule.Features
                 await _editionManager.CreateAsync(newEdition);
                 await CurrentUnitOfWork.SaveChangesAsync();
                 await SetFeatureValues(newEdition, input.Features);
+
+                await _editionNotificationsSender.SendNotificationEditionCreated(newEdition);
+
             }
             else
             {
@@ -45,6 +57,7 @@ namespace Cinotam.ModuleZero.AppModule.Features
                 await _editionRepository.UpdateAsync(mapped);
 
                 await SetFeatureValues(mapped, input.Features);
+                await _editionNotificationsSender.SendNotificationEditionEdited(edition, await GetCurrentUserAsync());
             }
 
         }
@@ -105,12 +118,38 @@ namespace Cinotam.ModuleZero.AppModule.Features
         {
             var edition = await _editionManager.FindByIdAsync(input.EditionId);
             await _editionManager.DeleteAsync(edition);
+
+            await _editionNotificationsSender.SendNotificationEditionDeleted(edition);
         }
         public async Task SetEditionForTenant(int tenantId, int editionId)
         {
             var tenant = await _tenantManager.FindByIdAsync(tenantId);
+
+            if (tenant.EditionId != null)
+            {
+                var tenantPrevEdition = _editionRepository.Get(tenant.EditionId.Value);
+                await _editionNotificationSubscriber.UnSubscribeTenantToEditionChanges(tenant, tenantPrevEdition, GetTenantOwner(tenant));
+
+            }
+
+            var edition = _editionRepository.Get(editionId);
             var editionFeatureValues = await _editionManager.GetFeatureValuesAsync(editionId);
             await _tenantManager.SetFeatureValuesAsync(tenant.Id, editionFeatureValues.ToArray());
+
+            await _editionNotificationSubscriber.SubscribeTenantToEditionChanges(tenant, edition, GetTenantOwner(tenant));
+        }
+
+        private const string TenantOwnerUserName = "admin";
+        private User GetTenantOwner(Tenant tenant)
+        {
+            using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant, AbpDataFilters.MayHaveTenant))
+            {
+                var owner = UserManager.Users.FirstOrDefault(a => a.UserName == TenantOwnerUserName && a.TenantId == tenant.Id);
+
+                if (owner == null) throw new UserFriendlyException(L("TenantOwnerNotFound"));
+
+                return owner;
+            }
         }
     }
 }
