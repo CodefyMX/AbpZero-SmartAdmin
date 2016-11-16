@@ -31,7 +31,6 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
         private readonly EditionManager _editionManager;
         private readonly IAbpZeroDbMigrator _abpZeroDbMigrator;
         private readonly ICustomEditionManager _customEditionManager;
-
         public TenantAppService(
             RoleManager roleManager,
             EditionManager editionManager,
@@ -70,6 +69,10 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
                 await TenantManager.SetFeatureValueAsync(tenant, inputFeature.Name, inputFeature.DefaultValue);
             }
             await CurrentUnitOfWork.SaveChangesAsync();
+
+            //await _multitenancyNotificationSender.SendTenantFeaturesChanged(tenant);
+
+
         }
 
         public async Task<CustomEditionInput> GetFeaturesForTenant(int tenantId)
@@ -112,7 +115,7 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
             var editionFeatures = await _editionManager.GetFeatureValuesAsync(tenant.EditionId.Value);
 
             await TenantManager.SetFeatureValuesAsync(tenantId, editionFeatures.ToArray());
-
+            //await _multitenancyNotificationSender.SendTenantFeaturesChanged(tenant);
         }
 
         public ReturnModel<TenantListDto> GetTenantsTable(RequestModel<object> input)
@@ -206,6 +209,7 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
                 tenant.EditionId = edition.Id;
             }
             await CurrentUnitOfWork.SaveChangesAsync();
+            //await _multitenancyNotificationSender.SendTenantEditionChanged(tenant, edition);
         }
         public async Task CreateTenant(CreateTenantInput input)
         {
@@ -247,6 +251,9 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
                 //Assign admin user to role!
                 CheckErrors(await UserManager.AddToRoleAsync(adminUser.Id, adminRole.Name));
                 await CurrentUnitOfWork.SaveChangesAsync();
+
+                //await _multitenancyNotificationSender.SendTenantCreatedNotification(tenant);
+
             }
         }
 
@@ -254,6 +261,7 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
         {
             var tenant = await TenantManager.FindByIdAsync(tenantId);
             await TenantManager.DeleteAsync(tenant);
+            //await _multitenancyNotificationSender.SendDeletedNotification(tenant);
         }
         public async Task RestoreTenant(int tenantId)
         {
@@ -268,6 +276,9 @@ namespace Cinotam.ModuleZero.AppModule.MultiTenancy
             tenant.IsDeleted = false;
 
             await TenantManager.UpdateAsync(tenant);
+
+            //await _multitenancyNotificationSender.SendTenantRestoredNotification(tenant);
+
         }
     }
 }

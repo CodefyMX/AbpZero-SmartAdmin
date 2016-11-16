@@ -22,5 +22,8 @@ namespace Cinotam.ModuleZero.AppModule.Settings
         /// <param name="settingNames"></param>
         /// <returns></returns>
         Task<SettingsOutput> GetSettingsOptions(params string[] settingNames);
+
+        Task ClearCaches();
+
     }
 }

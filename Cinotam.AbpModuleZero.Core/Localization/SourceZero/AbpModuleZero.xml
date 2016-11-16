@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <localizationDictionary culture="en">
   <texts>
-    
-    
+
+
     <!--Smart Admin-->
 
 
@@ -39,7 +39,7 @@
     <text name="PrivacyMessage" value="This blank page message helps protect your privacy, or you can show the first message here automatically." />
     <text name="MarkAsReaded" value="Mark as readed"/>
     <text name="Details" value="Details"/>
-    
+
     <!--//Notifications Header-->
 
 
@@ -54,11 +54,11 @@
     <text name="ThereIsNoTenantDefinedWithName{0}" value="There is no tenant defined with name {0}" />
     <text name="TenantIsNotActive" value="Tenant {0} is not active." />
     <text name="TenancyName" value="Tenancy name" />
-    
+
     <!--Menu-->
-    
+
     <text name="Administration" value="Administración"/>
-    
+
     <!--OrganizationUnits-->
     <text name="OrganizationUnits" value="Organization units" />
     <text name="OrganizationUnitsManagement" value="Organization Units Management"/>
@@ -76,9 +76,9 @@
     <text name="MoveOrganizationUnit" value="Move organization unit?"/>
     <text name="OrganizationUnitRemoved" value="Organization organization unit removed"/>
     <!--Users-->
-    
+
     <text name="ChangePhoneNumber" value="Change phone number" />
-    
+
     <text name="ChangePhoneNumberForm" value="Add or change your phone number"/>
     <text name="EnableTwoFactorAuth" value="Enable two factor authentication"/>
     <text name="DisableTwoFactorAuth" value="Disable two factor authentication"/>
@@ -135,7 +135,7 @@
     <text name="SetPermissions" value="Set permissions"  />
     <text name="DeleteUser" value="Delete user"  />
     <text name="UnlockUser" value="Unlock user"  />
-    
+
     <!--//Users-->
 
     <!--//Emails-->
@@ -185,7 +185,7 @@
     <text name="TenantsAssignFeature" value="Assign feature"/>
     <text name="PagesSysAdminRolesAssignPermissions" value="Assign permissions" />
     <text name="RolesManagement" value="Roles management"/>
-    
+
     <!--//Roles-->
 
 
@@ -259,8 +259,8 @@
     <text name="Loading" value="Loading"/>
     <text name="ChangesSaved" value="Changes saved"/>
     <text name="SettingsChangedByUser" value="Application settings where changed by {userName}"/>
-    
-    
+
+
     <!--//Configuration-->
 
 
@@ -269,9 +269,9 @@
     <text name="DashboardView" value="Dashboard panel" />
     <text name="MethodCalls" value="Method calls"/>
     <text name="SeeAll" value="See all"/>
-     <text name="Requests" value="Requests"/>
-     <text name="AverageExecutionTime" value="Average Execution Time"/>
-    
+    <text name="Requests" value="Requests"/>
+    <text name="AverageExecutionTime" value="Average Execution Time"/>
+
     <text name="SuccessOperation" value="Success"/>
     <text name="ErrorOperation" value="Error"/>
     <text name="LiveSwitch" value="Live switch"/>
@@ -313,12 +313,14 @@
     <text name="Success" value="Success"/>
     <text name="Home" value="Home"/>
     <text name="Close" value="Close"/>
-    
+
     <!--Settings-->
     <text name="EmailSettings" value="Email settings"/>
     <text name="Account" value="Account"/>
     <text name="Other" value="Other"/>
-    
+
+    <text name="ClearCache" value="Clear Caches" />
+    <text name="CacheCleaned" value="Cache cleaned"/>
     <!--Editions-->
     <text name="Editions" value="Editions"/>
     <text name="EditionsManagement" value="Edition management"/>
@@ -327,11 +329,20 @@
     <text name="Features" value="Features"/>
     <text name="Price" value="Price"/>
     <text name="DeleteEdition" value="The edition will be deleted?"/>
-    
+    <text name="EditionCreated" value="Edition: {editionName} created"/>
+    <text name="EditionDeleted" value="Edition: {editionName} deleted"/>
+    <text name="EditionDeletedForTenant" value="Your current edition: {editionName} was deleted please contact support"/>
     <!--Tenants-->
     <text name="TenantManagement" value="Tenant management"/>
     <text name="SetEdition" value="Set edition"/>
     <text name="EnableFeatures" value="Enable features"/>
     <text name="SetTenantEdition" value="Set edition"/>
+    <text name="TenantCreated" value="A new tenant was created {0}, by user {1}"/>
+    <text name="TenantDelete" value="A tenant was deleted {0}, by user {1}"/>
+    <text name="TenantFeaturesChanged" value="Features for tenant {0} changed by user {1}"/>
+    <text name="TenantEditionChanged" value="Edition for tenant {tenantName} was changed to {editionName} by user {userName}"/>
+    <text name="EditionChanged" value="Edition {editionName} was modified by user {userName}"/>
+    
+    <text name="YourEditionWasChanged" value="Your edition was changed"/>
   </texts>
 </localizationDictionary>
