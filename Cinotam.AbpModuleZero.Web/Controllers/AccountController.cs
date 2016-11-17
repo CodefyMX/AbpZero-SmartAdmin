@@ -16,6 +16,7 @@ using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.AbpModuleZero.Web.Controllers.Results;
 using Cinotam.AbpModuleZero.Web.Models.Account;
+using Cinotam.ModuleZero.AppModule.Users;
 using Cinotam.TwoFactorAuth.Contracts;
 using Cinotam.TwoFactorSender.Sender;
 using Microsoft.AspNet.Identity;
@@ -41,6 +42,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly LogInManager _logInManager;
         private readonly ITwoFactorMessageService _twoFactorMessageService;
+        private readonly IUserAppService _userAppService;
         private const string IsEmailConfString = "Abp.Zero.UserManagement.TwoFactorLogin.IsEmailProviderEnabled";
 
         private IAuthenticationManager AuthenticationManager
@@ -54,7 +56,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             RoleManager roleManager,
             IUnitOfWorkManager unitOfWorkManager,
             IMultiTenancyConfig multiTenancyConfig,
-            LogInManager logInManager, ITwoFactorMessageService twoFactorMessageService)
+            LogInManager logInManager, ITwoFactorMessageService twoFactorMessageService, IUserAppService userAppService)
         {
             _tenantManager = tenantManager;
             _userManager = userManager;
@@ -63,18 +65,20 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             _multiTenancyConfig = multiTenancyConfig;
             _logInManager = logInManager;
             _twoFactorMessageService = twoFactorMessageService;
+            _userAppService = userAppService;
             _userManager.SmsService = twoFactorMessageService;
+            _userManager.UserTokenProvider = new EmailTokenProvider<User, long>();
         }
 
         #region Login / Logout
 
-        public ActionResult Login(string returnUrl = "")
+        public ActionResult Login(string message, string returnUrl = "")
         {
             if (string.IsNullOrWhiteSpace(returnUrl))
             {
                 returnUrl = Request.ApplicationPath;
             }
-
+            ViewBag.Message = message;
             return View(
                 new LoginFormViewModel
                 {
@@ -94,6 +98,35 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 UserId = userId,
                 PhoneNumber = PhoneNumber.ToString()
             });
+        }
+        public async Task<ActionResult> EmailConfirmation(long userId, string token)
+        {
+            var user = await _userManager.GetUserByIdAsync(userId);
+
+            await _userManager.ConfirmEmailAsync(user.Id, token);
+
+
+            return RedirectToAction("Login", new { message = "EmailConfirmed" });
+
+        }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [DisableAbpAntiForgeryTokenValidation]
+        public async Task<ActionResult> ForgotPassword(string email)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(a => a.EmailAddress == email);
+            if (user == null) return View("RecoveryMessageSent");
+            var resetCode = await _userManager.GeneratePasswordResetTokenAsync(user.Id);
+            var resetUrl = Url.Action("ResetPasswordForm", new { token = resetCode, userId = user.Id });
+            var strUrl = ServerUrl;
+            var trueConfirmationUrl = "  <a href='" + strUrl + resetUrl + "'>" + L("ClickHereToResetPassword") + "<a>";
+            await _userAppService.SendPasswordResetCode(trueConfirmationUrl, user.EmailAddress);
+
+            return View("RecoveryMessageSent");
         }
         public ActionResult EmailVerification(string returnUrl, long userId, string provider)
         {
@@ -166,10 +199,12 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 loginModel.Password,
                 loginModel.TenancyName
             );
+            if (loginResult.Result == AbpLoginResultType.UserEmailIsNotConfirmed)
+            {
+                var url = Url.Action("EmailNotConfirmed", new { userName = loginModel.UsernameOrEmailAddress });
 
-            //if (loginResult.User.TenantId != null) _userManager.RegisterTwoFactorProviders(loginResult.User.TenantId.Value);
-            //else _userManager.RegisterTwoFactorProviders(null);
-            //_userManager.SmsService = _twoFactorMessageService;
+                return Json(new AjaxResponse { TargetUrl = url });
+            }
 
             CheckAndConfirmTwoFactorProviders(loginResult.User);
 
@@ -269,9 +304,30 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             {
                 case AbpLoginResultType.Success:
                     return loginResult;
+                case AbpLoginResultType.UserEmailIsNotConfirmed:
+                    return loginResult;
                 default:
                     throw CreateExceptionForFailedLoginAttempt(loginResult.Result, usernameOrEmailAddress, tenancyName);
             }
+        }
+
+        private async Task SendConfirmationMail(string userName, AbpLoginResultType loginResultType, string tenancyName)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(a => a.UserName == userName);
+            if (user == null) throw CreateExceptionForFailedLoginAttempt(loginResultType, userName, tenancyName);
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var confirmationUrl = Url.Action("EmailConfirmation", new
+            {
+                userId = user.Id,
+                token = token
+            });
+            if (HttpContext.Request.Url != null)
+            {
+                var strUrl = ServerUrl;
+                var trueConfirmationUrl = "  <a href='" + strUrl + confirmationUrl + "'>" + L("ClickHereToConfirm") + "<a>";
+                await _userAppService.SendEmailConfirmationCode(trueConfirmationUrl, user.EmailAddress);
+            }
+
         }
 
         private async Task SignInAsync(User user, ClaimsIdentity identity = null, bool rememberMe = false)
@@ -398,7 +454,9 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                     //Username and Password are required if not external login
                     if (model.UserName.IsNullOrEmpty() || model.Password.IsNullOrEmpty())
                     {
-                        throw new UserFriendlyException(L("FormIsNotValidMessage"));
+                        throw new UserFriendlyException(L("FormIsNotValid" +
+                                                          "Message" +
+                                                          ""));
                     }
                 }
 
@@ -663,6 +721,43 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
         #endregion
 
+        public ActionResult EmailNotConfirmed(string userName)
+        {
+            return View(new EmailConfirmationInput()
+            {
+                UserName = userName
+            });
+        }
 
+        public async Task<ActionResult> ResendMail(string userName)
+        {
+            await SendConfirmationMail(userName, AbpLoginResultType.UserEmailIsNotConfirmed, GetTenancyNameFromSession);
+
+            return RedirectToAction("EmailNotConfirmed", new { userName = userName });
+
+        }
+
+        public ActionResult ResetPasswordForm(string token, long userid)
+        {
+            return View(new ResetPasswordInput()
+            {
+                Token = token,
+                UserId = userid
+            });
+        }
+
+        [HttpPost]
+        [DisableAbpAntiForgeryTokenValidation]
+
+        public async Task<JsonResult> ResetPasswordForm(ResetPasswordInput input)
+        {
+            var result = await _userManager.ResetPasswordAsync(input.UserId, input.Token, input.Password);
+            if (result.Succeeded)
+            {
+                var url = Url.Action("Login", new { message = "PasswordChanged" });
+                return Json(new AjaxResponse { TargetUrl = url });
+            }
+            throw new UserFriendlyException(L("SessionExpired"));
+        }
     }
 }

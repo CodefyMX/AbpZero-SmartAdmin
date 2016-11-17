@@ -780,6 +780,8 @@
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Models\Account\EmailConfirmationInput.cs" />
+    <Compile Include="Models\Account\ResetPasswordInput.cs" />
     <Compile Include="Models\Account\UserTwoFactorVerificationInput.cs" />
     <Compile Include="Models\Layout\ChatModel.cs" />
     <Compile Include="Models\Layout\UserMenuOrLoginLinkViewModel.cs" />
@@ -828,6 +830,10 @@
     <Content Include="Scripts\jstree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.woff" />
     <Content Include="Views\Account\PhoneNumberVerification.cshtml" />
     <Content Include="Views\Account\EmailVerification.cshtml" />
+    <Content Include="Views\Account\EmailNotConfirmed.cshtml" />
+    <Content Include="Views\Account\RecoveryMessageSent.cshtml" />
+    <Content Include="Views\Account\ResetPasswordForm.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -859,6 +865,10 @@
     <ProjectReference Include="..\Cinotam.FileManager.Service\Cinotam.FileManager.Service.csproj">
       <Project>{B104B41B-3D65-44A4-95A1-2286590AC7A3}</Project>
       <Name>Cinotam.FileManager.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CInotam.MailSender.Contracts\CInotam.MailSender.Contracts.csproj">
+      <Project>{B79DC367-7C6B-4F59-989F-86599FBFAD06}</Project>
+      <Name>CInotam.MailSender.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.ModuleZero.AppModule\Cinotam.ModuleZero.AppModule.csproj">
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>

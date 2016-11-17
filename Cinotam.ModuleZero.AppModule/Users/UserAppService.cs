@@ -12,6 +12,7 @@ using Cinotam.AbpModuleZero;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
+using Cinotam.AbpModuleZero.Tools.Extensions;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
@@ -22,6 +23,7 @@ using Cinotam.ModuleZero.MailSender.TemplateManager;
 using Cinotam.ModuleZero.Notifications.UsersAppNotifications.Sender;
 using Cinotam.TwoFactorAuth.Contracts;
 using Cinotam.TwoFactorSender.Sender;
+using CInotam.MailSender.Contracts;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -29,6 +31,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Cinotam.ModuleZero.AppModule.Users
 {
@@ -164,11 +167,23 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
                 user.TenantId = AbpSession.TenantId;
                 user.Password = new PasswordHasher().HashPassword(input.Password);
-                user.IsEmailConfirmed = false;
-
 
                 CheckErrors(await UserManager.CreateAsync(user));
 
+
+
+                if (bool.Parse(await SettingManager.GetSettingValueAsync("Abp.Zero.UserManagement.IsEmailConfirmationRequiredForLogin")) && input.SendNotificationMail)
+                {
+
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+
+                    var serverUrl =
+                        ServerHelpers.GetServerUrl(HttpContext.Current.Request.RequestContext.HttpContext.Request);
+
+                    var url = serverUrl + "/Account/EmailConfirmation/?userId=" + user.Id + "&token=" + code;
+
+                    await SendEmailConfirmationCode(url, user.EmailAddress);
+                }
                 await CurrentUnitOfWork.SaveChangesAsync();
 
                 await UserManager.SetTwoFactorEnabledAsync(user.Id, input.IsTwoFactorEnabled);
@@ -181,10 +196,10 @@ namespace Cinotam.ModuleZero.AppModule.Users
                 await _usersAppNotificationsSender.SendUserCreatedNotification((await GetCurrentUserAsync()), user);
 
 
-                if (input.SendNotificationMail)
-                {
-                    await SendWelcomeEmail(user, input.Password);
-                }
+                //if (input.SendNotificationMail)
+                //{
+                //    await SendWelcomeEmail(user, input.Password);
+                //}
             }
         }
 
@@ -304,6 +319,46 @@ namespace Cinotam.ModuleZero.AppModule.Users
             user.ShouldChangePasswordOnLogin = true;
             await UserManager.UpdateAsync(user);
         }
+
+        public async Task<IMailServiceResult> SendEmailConfirmationCode(string confirmationUrl, string emailAddress)
+        {
+
+            var message = LocalizationManager.GetString(LocalizationSourceName, "EmailConfirmationUrl");
+            var fullM = message + confirmationUrl;
+            var result = await _cinotamMailSender.DeliverMail(new EmailSendInput()
+            {
+                MailMessage = new MailMessage()
+                {
+                    From = new MailAddress((await SettingManager.GetSettingValueAsync("Abp.Net.Mail.DefaultFromAddress"))),
+                    To = { new MailAddress(emailAddress) },
+                    Subject = L("EmailVerificationCode"),
+                },
+                //You can send the text with no body
+                Body = fullM/* _templateManager.GetContent(TemplateType.Simple, false, infoChangedMessage)*/,
+                EncodeType = "text/html",
+            });
+            return result;
+        }
+
+        public async Task<IMailServiceResult> SendPasswordResetCode(string trueConfirmationUrl, string userEmailAddress)
+        {
+            var message = LocalizationManager.GetString(LocalizationSourceName, "PasswordResetUrl");
+            var fullM = message + trueConfirmationUrl;
+            var result = await _cinotamMailSender.DeliverMail(new EmailSendInput()
+            {
+                MailMessage = new MailMessage()
+                {
+                    From = new MailAddress((await SettingManager.GetSettingValueAsync("Abp.Net.Mail.DefaultFromAddress"))),
+                    To = { new MailAddress(userEmailAddress) },
+                    Subject = L("PasswordReset"),
+                },
+                //You can send the text with no body
+                Body = fullM/* _templateManager.GetContent(TemplateType.Simple, false, infoChangedMessage)*/,
+                EncodeType = "text/html",
+            });
+            return result;
+        }
+
         [AbpAuthorize]
         public async Task MarkAsReaded(Guid notificationId)
         {

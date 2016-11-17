@@ -4,6 +4,7 @@ using Abp.Notifications;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.ModuleZero.AppModule.Roles.Dto;
 using Cinotam.ModuleZero.AppModule.Users.Dto;
+using CInotam.MailSender.Contracts;
 using System;
 using System.Threading.Tasks;
 
@@ -38,5 +39,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
         Task<PhoneConfirmationResult> ConfirmPhone(PhoneConfirmationInput input);
         Task<bool> EnableOrDisableTwoFactorAuthForUser(long userId);
         Task ChangePasswordFromAdmin(ChangePasswordInput input);
+        Task<IMailServiceResult> SendEmailConfirmationCode(string confirmationUrl, string emailAddress);
+        Task<IMailServiceResult> SendPasswordResetCode(string trueConfirmationUrl, string userEmailAddress);
     }
 }

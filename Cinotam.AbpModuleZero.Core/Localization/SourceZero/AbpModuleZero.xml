@@ -109,7 +109,7 @@
     <text name="PleaseEnterLoginInformation" value="Please enter login information" />
     <text name="InvalidUserNameOrPassword" value="Invalid user name or password" />
     <text name="UserDeleted" value="User deleted" />
-    <text name="UserCreated" value="User created" />
+    <text name="UserCreated" value="User created/edited" />
     <text name="UserDeletedByUser" value="The user {userName} has deleted the user {userNameDeleted}!"/>
     <text name="ProfilePicture" value="Profile picture" />
     <text name="MyInfo" value="My info"/>
@@ -332,7 +332,7 @@
     <text name="EditionCreatedNotification" value="Edition: {editionName} created by user {userName}"/>
     <text name="EditionDeletedNotification" value="Edition: {editionName} deleted by user {userName}"/>
     <text name="EditionDeletedForTenant" value="Your current edition: {editionName} was deleted please contact support"/>
-    <text name="EditionDeleted" value="Edition deleted"/> 
+    <text name="EditionDeleted" value="Edition deleted"/>
     <!--Tenants-->
     <text name="TenantManagement" value="Tenant management"/>
     <text name="SetEdition" value="Set edition"/>
@@ -361,5 +361,23 @@
     <text name="SubscribeToNotificationsTenantEditionCreated"  value="Edition created notification"/>
     <text name="SubscribeToNotificationsTenantEditionEdited"  value="Edition modified notification"/>
     <text name="SubscribeToNotificationsTenantEditionAssigned"  value="Edition assigned notification"/>
+    <text name="YourEmailIsNotConfirmed" value="Your email is not confirmed, please check your inbox or your junk folder"/>
+    <text name="Resend" value="Re-send email"/>
+    <text name="ClickHereToConfirm" value="Click here to confirm your email address"/>
+    <text name="EmailConfirmationUrl" value="Welcome to the very best website of the UNIVERSE!!! [Awesome CGI Explosion]: "/>
+    <text name="EmailVerificationCode" value="Cinotam email confirmation"/>
+    <text name="EmailConfirmed" value="Awesome! your email has been confirmed"/>
+    <text name="EmailIsConfirmed" value="Email confirmed"/>
+    <text name="ForgottenPasswordRecovery" value="Forgotten password form"/>
+    <text name="ForgottenPassword" value="I forgot my password  >:( "/>
+    <text name="SessionExpired" value="Session expired"/>
+    <text name="ConfirmLogin" value="Confirm login"/>
+    <text name="Confirm" value="Confirm"/>
+    <text name="SetNewPassword" value="Set new password"/>
+    <text name="RecoverPasswordMessage" value="Please provide us the email associated with your account"/>
+    <text name="RecoveryMessageSent" value="A recovery message was sent to the provided email account, please read it for further instructions"/>
+    <text name="PasswordReset" value="Cinotam password recovery"/>
+    <text name="PasswordResetUrl" value="Your password recovery link"/>
+    <text name="ClickHereToResetPassword" value="Click here to reset password"/>
   </texts>
 </localizationDictionary>

@@ -19,6 +19,7 @@
                     @L("RegisterUserForm")
                 </header>
                 @Html.HiddenFor(a => a.Id)
+                @Html.HiddenFor(a=>a.Password)
                 <fieldset>
                     <section>
                         <div class="row">
@@ -104,6 +105,12 @@
                         <label class="checkbox">
                             @Html.CheckBoxFor(a => a.ShouldChangePasswordOnLogin)
                             <i></i>@L("ShouldChangePasswordOnLogin")
+                        </label>
+                    </section>
+                    <section>
+                        <label class="checkbox">
+                            @Html.CheckBoxFor(a => a.IsEmailConfirmed)
+                            <i></i>@L("EmailIsConfirmed")
                         </label>
                     </section>
                 </fieldset>

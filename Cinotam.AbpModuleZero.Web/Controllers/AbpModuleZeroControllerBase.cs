@@ -3,6 +3,7 @@ using Abp.UI;
 using Abp.Web.Mvc.Controllers;
 using Cinotam.AbpModuleZero.TenantHelpers.TenantHelperAppServiceBase;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
+using Cinotam.AbpModuleZero.Tools.Extensions;
 using Cinotam.ModuleZero.AppModule.MultiTenancy.MultiTenancyHelper;
 using Microsoft.AspNet.Identity;
 using System;
@@ -52,6 +53,10 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             }
         }
 
+        public string ServerUrl
+        {
+            get { return ServerHelpers.GetServerUrl(HttpContext.Request); }
+        }
         protected virtual void CheckModelState()
         {
             if (!ModelState.IsValid)
