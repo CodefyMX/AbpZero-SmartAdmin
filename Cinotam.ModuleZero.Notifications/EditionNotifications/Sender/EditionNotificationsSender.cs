@@ -40,7 +40,6 @@ namespace Cinotam.ModuleZero.Notifications.EditionNotifications.Sender
             //Send notification to host
             await _notificationPublisher.PublishAsync(NotificationNames.EditionDeleted, notificationData);
 
-
             //Send notification for clients
             await _notificationPublisher.PublishAsync(NotificationNames.EditionDeleted, notificationDataFTenant, entityIdentifier);
 
@@ -73,9 +72,15 @@ namespace Cinotam.ModuleZero.Notifications.EditionNotifications.Sender
                 ["editionName"] = edition.DisplayName,
                 ["userName"] = modifier.FullName
             };
+
+            var entityIdentifier = new EntityIdentifier(typeof(Edition), edition.Id);
+            var messageFTenant = new LocalizableString("YourEditionWasChanged", AbpModuleZeroConsts.LocalizationSourceName);
+            var notificationDataFTenant = new LocalizableMessageNotificationData(messageFTenant);
+
             //Send notification to host
             await _notificationPublisher.PublishAsync(NotificationNames.EditionEdited, notificationData);
-
+            //Send notification to tenants
+            await _notificationPublisher.PublishAsync(NotificationNames.EditionEdited, notificationDataFTenant, entityIdentifier);
         }
     }
 }

@@ -1,16 +1,14 @@
-﻿using Abp.Application.Editions;
-using Abp.Domain.Services;
+﻿using Abp.Domain.Services;
 using Cinotam.AbpModuleZero.MultiTenancy;
+using Cinotam.AbpModuleZero.Users;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.Notifications.MultiTenancyNotifications.Sender
 {
     public interface IMultitenancyNotificationSender : IDomainService
     {
-        Task SendTenantCreatedNotification(Tenant tenant);
-        Task SendDeletedNotification(Tenant tenant);
-        Task SendTenantEditionChanged(Tenant tenant, Edition edition);
-        Task SendTenantFeaturesChanged(Tenant tenant);
-        Task SendTenantRestoredNotification(Tenant tenant);
+        Task SendTenantCreatedNotification(Tenant tenant, User user);
+        Task SendDeletedNotification(Tenant tenant, User user);
+        Task SendTenantRestoredNotification(Tenant tenant, User user);
     }
 }

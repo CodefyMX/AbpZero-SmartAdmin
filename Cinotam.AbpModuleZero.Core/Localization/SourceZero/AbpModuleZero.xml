@@ -338,8 +338,8 @@
     <text name="SetEdition" value="Set edition"/>
     <text name="EnableFeatures" value="Enable features"/>
     <text name="SetTenantEdition" value="Set edition"/>
-    <text name="TenantCreated" value="A new tenant was created {0}, by user {1}"/>
-    <text name="TenantDelete" value="A tenant was deleted {0}, by user {1}"/>
+    <text name="TenantCreated" value="A new tenant was created: {tenancyName}, by user {userName}"/>
+    <text name="TenantDeleted" value="A tenant was deleted: {tenancyName}, by user {userName}"/>
     <text name="TenantFeaturesChanged" value="Features for tenant {0} changed by user {1}"/>
     <text name="TenantEditionChanged" value="Edition for tenant {tenantName} was changed to {editionName} by user {userName}"/>
     <text name="EditionChanged" value="Edition {editionName} was modified by user {userName}"/>
@@ -352,5 +352,14 @@
     <text name="ShouldChangePassword" value="If this is your first login, click here to change your password"/>
     <text name="ShouldChangePasswordOnLogin" value="Should change password on login"/>
     <text name="NewPassword" value="New password"/>
+    <text name="TenantRestored" value="Tenant: {tenancyName} restored by user {userName}"/>
+    <text name="SubscribeToNotificationsTenantDeleted"  value="Tenant deleted notification"/>
+    <text name="SubscribeToNotificationsTenantEditionChanged"  value="Tenant edition changed notification"/>
+    <text name="SubscribeToNotificationsTenantEditionDeleted"  value="Tenant edition deleted notification"/>
+    <text name="SubscribeToNotificationsTenantCreated"  value="Tenant created notification"/>
+    <text name="SubscribeToNotificationsTenantRestored"  value="Tenant restored notification"/>
+    <text name="SubscribeToNotificationsTenantEditionCreated"  value="Edition created notification"/>
+    <text name="SubscribeToNotificationsTenantEditionEdited"  value="Edition modified notification"/>
+    <text name="SubscribeToNotificationsTenantEditionAssigned"  value="Edition assigned notification"/>
   </texts>
 </localizationDictionary>
