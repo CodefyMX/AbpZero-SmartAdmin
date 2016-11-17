@@ -12,6 +12,7 @@ namespace Cinotam.AbpModuleZero.Users
         public bool IsPictureOnCdn { get; set; }
         public string CountryPhoneCode { get; set; }
         public string CountryCode { get; set; }
+        public bool ShouldChangePasswordOnLogin { get; set; }
         public static string CreateRandomPassword()
         {
             return Guid.NewGuid().ToString("N").Truncate(16);

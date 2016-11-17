@@ -285,6 +285,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
                     case PasswordVerificationResult.Success:
                         //Is old password
                         user.Password = hasher.HashPassword(input.NewPassword);
+                        user.ShouldChangePasswordOnLogin = false;
                         await UserManager.UpdateAsync(user);
                         break;
                     default:
@@ -300,6 +301,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
             var user = await UserManager.GetUserByIdAsync(input.UserId.Value);
             var hasher = new PasswordHasher();
             user.Password = hasher.HashPassword(input.NewPassword);
+            user.ShouldChangePasswordOnLogin = true;
             await UserManager.UpdateAsync(user);
         }
         [AbpAuthorize]

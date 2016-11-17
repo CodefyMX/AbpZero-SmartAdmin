@@ -40,5 +40,6 @@ namespace Cinotam.ModuleZero.AppModule.Users.Dto
         public string PhoneNumber { get; set; }
         public bool IsTwoFactorEnabled { get; set; }
         public virtual DateTime? LockoutEndDateUtc { get; set; }
+        public bool ShouldChangePasswordOnLogin { get; set; } = true;
     }
 }

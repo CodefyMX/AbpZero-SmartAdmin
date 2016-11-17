@@ -66,6 +66,10 @@
     @{ Html.RenderPartialIf("_Aside", Request.IsAuthenticated); }
     <div id="main" role="main">
         @{ Html.RenderPartialIf("_Ribbon", Request.IsAuthenticated); }
+        
+        @{ Html.RenderAction("ShouldChangePasswordMessage", "Layout"); }
+        
+
         @RenderBody()
         
     </div>

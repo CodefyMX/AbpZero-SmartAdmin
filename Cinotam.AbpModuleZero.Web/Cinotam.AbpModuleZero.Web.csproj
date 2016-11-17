@@ -637,6 +637,7 @@
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\LanguagesList.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Layout\ChatMenu.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Layout\ShouldChangePasswordMessage.cshtml" />
     <None Include="Areas\SysAdmin\Views\Layout\_LanguageSelectionAdmin.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\ChangePassword.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Notifications\MyNotifications.cshtml" />

@@ -100,7 +100,12 @@
                             </label>
                         </section>
                     }
-                    
+                    <section>
+                        <label class="checkbox">
+                            @Html.CheckBoxFor(a => a.ShouldChangePasswordOnLogin)
+                            <i></i>@L("ShouldChangePasswordOnLogin")
+                        </label>
+                    </section>
                 </fieldset>
                 <footer>
                     <button type="submit" class="btn btn-primary">

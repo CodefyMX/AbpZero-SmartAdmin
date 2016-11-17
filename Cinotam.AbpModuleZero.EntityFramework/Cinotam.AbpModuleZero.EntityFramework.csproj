@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201611041955460_SimpleChat.Designer.cs">
       <DependentUpon>201611041955460_SimpleChat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611171642024_UserShouldChangePassword.cs" />
+    <Compile Include="Migrations\201611171642024_UserShouldChangePassword.Designer.cs">
+      <DependentUpon>201611171642024_UserShouldChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -345,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611041955460_SimpleChat.resx">
       <DependentUpon>201611041955460_SimpleChat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611171642024_UserShouldChangePassword.resx">
+      <DependentUpon>201611171642024_UserShouldChangePassword.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

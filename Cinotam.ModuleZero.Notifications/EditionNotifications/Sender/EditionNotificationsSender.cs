@@ -19,23 +19,23 @@ namespace Cinotam.ModuleZero.Notifications.EditionNotifications.Sender
             _notificationPublisher = notificationPublisher;
         }
 
-        public Task SendNotificationEditionCreated(Edition edition)
+        public Task SendNotificationEditionCreated(Edition edition, User creator)
         {
-            var message = new LocalizableString("EditionCreated", AbpModuleZeroConsts.LocalizationSourceName);
-            var notificationData = new LocalizableMessageNotificationData(message) { ["editionName"] = edition.Name };
+            var message = new LocalizableString("EditionCreatedNotification", AbpModuleZeroConsts.LocalizationSourceName);
+            var notificationData = new LocalizableMessageNotificationData(message) { ["editionName"] = edition.DisplayName, ["userName"] = creator.FullName };
             return _notificationPublisher.PublishAsync(NotificationNames.EditionCreated, notificationData);
         }
 
-        public async Task SendNotificationEditionDeleted(Edition edition)
+        public async Task SendNotificationEditionDeleted(Edition edition, User deleter)
         {
             //EditionDeletedForTenant
             var entityIdentifier = new EntityIdentifier(typeof(Edition), edition.Id);
-            var message = new LocalizableString("EditionDeleted", AbpModuleZeroConsts.LocalizationSourceName);
-            var notificationData = new LocalizableMessageNotificationData(message) { ["editionName"] = edition.Name };
+            var message = new LocalizableString("EditionDeletedNotification", AbpModuleZeroConsts.LocalizationSourceName);
+            var notificationData = new LocalizableMessageNotificationData(message) { ["editionName"] = edition.DisplayName, ["userName"] = deleter.FullName };
 
 
             var messageFTenant = new LocalizableString("EditionDeletedForTenant", AbpModuleZeroConsts.LocalizationSourceName);
-            var notificationDataFTenant = new LocalizableMessageNotificationData(messageFTenant) { ["editionName"] = edition.Name };
+            var notificationDataFTenant = new LocalizableMessageNotificationData(messageFTenant) { ["editionName"] = edition.DisplayName };
 
             //Send notification to host
             await _notificationPublisher.PublishAsync(NotificationNames.EditionDeleted, notificationData);
@@ -51,7 +51,7 @@ namespace Cinotam.ModuleZero.Notifications.EditionNotifications.Sender
             var entityIdentifier = new EntityIdentifier(typeof(Edition), edition.Id);
 
             var message = new LocalizableString("EditionChanged", AbpModuleZeroConsts.LocalizationSourceName);
-            var notificationData = new LocalizableMessageNotificationData(message) { ["editionName"] = edition.Name, ["userName"] = modifier.FullName };
+            var notificationData = new LocalizableMessageNotificationData(message) { ["editionName"] = edition.DisplayName, ["userName"] = modifier.FullName };
 
 
             var messageFTenant = new LocalizableString("YourEditionWasChanged", AbpModuleZeroConsts.LocalizationSourceName);
@@ -70,7 +70,7 @@ namespace Cinotam.ModuleZero.Notifications.EditionNotifications.Sender
             var notificationData = new LocalizableMessageNotificationData(message)
             {
                 ["tenantName"] = tenant.Name,
-                ["editionName"] = edition.Name,
+                ["editionName"] = edition.DisplayName,
                 ["userName"] = modifier.FullName
             };
             //Send notification to host
