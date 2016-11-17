@@ -1,34 +1,58 @@
-﻿using Abp.Application.Editions;
+﻿using Abp.Localization;
+using Abp.Notifications;
+using Cinotam.AbpModuleZero;
 using Cinotam.AbpModuleZero.MultiTenancy;
+using Cinotam.AbpModuleZero.Users;
+using Cinotam.ModuleZero.Notifications.Notifications;
 using System.Threading.Tasks;
 
 namespace Cinotam.ModuleZero.Notifications.MultiTenancyNotifications.Sender
 {
-    public class MultiTenancyNotificationSender : IMultitenancyNotificationSender
+    public class MultitenancyNotificationSender : IMultitenancyNotificationSender
     {
-        public Task SendTenantCreatedNotification(Tenant tenant)
+
+        private readonly INotificationPublisher _notificationPublisher;
+
+        public MultitenancyNotificationSender(INotificationPublisher notificationPublisher)
         {
-            return Task.FromResult(0);
+            _notificationPublisher = notificationPublisher;
         }
 
-        public Task SendDeletedNotification(Tenant tenant)
+        public async Task SendTenantCreatedNotification(Tenant tenant, User user)
         {
-            return Task.FromResult(0);
+            var message = new LocalizableString("TenantCreated", AbpModuleZeroConsts.LocalizationSourceName);
+            var notificationData = new LocalizableMessageNotificationData(message)
+            {
+                ["tenancyName"] = tenant.Name,
+                ["userName"] = user.FullName
+            };
+            //Notify host
+            await _notificationPublisher.PublishAsync(NotificationNames.TenantCreated, notificationData);
+
         }
 
-        public Task SendTenantEditionChanged(Tenant tenant, Edition edition)
+        public async Task SendDeletedNotification(Tenant tenant, User user)
         {
-            return Task.FromResult(0);
+            var message = new LocalizableString("TenantDeleted", AbpModuleZeroConsts.LocalizationSourceName);
+            var notificationData = new LocalizableMessageNotificationData(message)
+            {
+                ["tenancyName"] = tenant.Name,
+                ["userName"] = user.FullName
+            };
+            //Notify host
+            await _notificationPublisher.PublishAsync(NotificationNames.TenantDeleted, notificationData);
         }
 
-        public Task SendTenantFeaturesChanged(Tenant tenant)
+        public async Task SendTenantRestoredNotification(Tenant tenant, User user)
         {
-            return Task.FromResult(0);
-        }
-
-        public Task SendTenantRestoredNotification(Tenant tenant)
-        {
-            return Task.FromResult(0);
+            var message = new LocalizableString("TenantRestored", AbpModuleZeroConsts.LocalizationSourceName);
+            var notificationData = new LocalizableMessageNotificationData(message)
+            {
+                ["tenancyName"] = tenant.Name,
+                ["userName"] = user.FullName
+            };
+            //Notify host
+            await _notificationPublisher.PublishAsync(NotificationNames.TenantRestored, notificationData);
         }
     }
 }

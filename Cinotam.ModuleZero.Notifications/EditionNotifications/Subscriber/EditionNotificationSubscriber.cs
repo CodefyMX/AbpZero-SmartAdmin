@@ -24,16 +24,14 @@ namespace Cinotam.ModuleZero.Notifications.EditionNotifications.Subscriber
             var userIdentifier = new UserIdentifier(tenant.Id, tenantOwner.Id);
             await _notificationSubscriptionManager.SubscribeAsync(userIdentifier, NotificationNames.EditionEdited, entityIdentifier);
             await _notificationSubscriptionManager.SubscribeAsync(userIdentifier, NotificationNames.EditionDeleted, entityIdentifier);
-            await _notificationSubscriptionManager.SubscribeAsync(userIdentifier, NotificationNames.RoleAssigned, entityIdentifier);
         }
 
-        public async Task UnSubscribeTenantToEditionChanges(Tenant tenant, Edition tenantPrevEdition, User getTenantOwner)
+        public async Task UnSubscribeTenantToEditionChanges(Tenant tenant, Edition tenantPrevEdition, User tenantOwner)
         {
             var entityIdentifier = new EntityIdentifier(typeof(Edition), tenantPrevEdition.Id);
-            var userIdentifier = new UserIdentifier(tenant.Id, getTenantOwner.Id);
+            var userIdentifier = new UserIdentifier(tenant.Id, tenantOwner.Id);
             await _notificationSubscriptionManager.UnsubscribeAsync(userIdentifier, NotificationNames.EditionEdited, entityIdentifier);
             await _notificationSubscriptionManager.UnsubscribeAsync(userIdentifier, NotificationNames.EditionDeleted, entityIdentifier);
-            await _notificationSubscriptionManager.UnsubscribeAsync(userIdentifier, NotificationNames.RoleAssigned, entityIdentifier);
         }
     }
 }

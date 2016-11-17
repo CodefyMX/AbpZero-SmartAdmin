@@ -1,12 +1,13 @@
 ﻿using Abp.Application.Navigation;
-using Abp.Configuration.Startup;
 using Abp.Localization;
 using Abp.Runtime.Session;
 using Abp.Threading;
 using Abp.Web.Mvc.Authorization;
+using Cinotam.AbpModuleZero.Users;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.AbpModuleZero.Web.Models.Layout;
 using Cinotam.ModuleZero.AppModule.Sessions;
+using Microsoft.AspNet.SignalR.Hubs;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -16,21 +17,17 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
     {
         // GET: SysAdmin/Layout
         private readonly IUserNavigationManager _userNavigationManager;
-        private readonly ILocalizationManager _localizationManager;
         private readonly ISessionAppService _sessionAppService;
-        private readonly IMultiTenancyConfig _multiTenancyConfig;
         private readonly ILanguageManager _languageManager;
+        private readonly UserManager _userManager;
         public LayoutController(
             IUserNavigationManager userNavigationManager,
-            ILocalizationManager localizationManager,
-            ISessionAppService sessionAppService,
-            IMultiTenancyConfig multiTenancyConfig, ILanguageManager languageManager)
+            ISessionAppService sessionAppService, ILanguageManager languageManager, UserManager userManager)
         {
             _userNavigationManager = userNavigationManager;
-            _localizationManager = localizationManager;
             _sessionAppService = sessionAppService;
-            _multiTenancyConfig = multiTenancyConfig;
             _languageManager = languageManager;
+            _userManager = userManager;
         }
         [ChildActionOnly]
         public PartialViewResult LanguageSelection()
@@ -77,6 +74,14 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
 
 
         }
+
+        public ViewResult ShouldChangePasswordMessage()
+        {
+            if (!AbpSession.UserId.HasValue) throw new NotAuthorizedException();
+            var user = AsyncHelper.RunSync(() => _userManager.GetUserByIdAsync(AbpSession.UserId.Value));
+            return View(user.ShouldChangePasswordOnLogin);
+        }
+
         public ActionResult GetMenu(string menuName)
         {
             var model = new TopMenuViewModel

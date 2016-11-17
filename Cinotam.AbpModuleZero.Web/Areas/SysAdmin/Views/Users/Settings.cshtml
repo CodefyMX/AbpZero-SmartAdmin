@@ -143,14 +143,14 @@
                                             @L("SubscribeToNotificationRoleEdited")
                                         </label>
                                     </div>
-                                                <div class="col col-6">
+                                    <div class="col col-6">
 
-                                                    <label>
-                                                        <input data-subscription data-subscription-name="@NotificationNames.RoleDeleted" type="checkbox" />
-                                                        <i></i>
-                                                        @L("SubscribeToNotificationRoleDeleted")
-                                                    </label>
-                                                </div>
+                                        <label>
+                                            <input data-subscription data-subscription-name="@NotificationNames.RoleDeleted" type="checkbox" />
+                                            <i></i>
+                                            @L("SubscribeToNotificationRoleDeleted")
+                                        </label>
+                                    </div>
                                                 <div class="col col-6">
 
                                                     <label>
@@ -179,7 +179,7 @@
                                         </label>
                                     </div>
                                 }
-                                
+
                                 @if (IsGranted(PermissionNames.PagesSysAdminConfiguration))
                                 {
                                     <div class="col col-6">
@@ -223,6 +223,49 @@
                                             <input data-subscription data-subscription-name="@NotificationNames.EditionAssigned" type="checkbox" />
                                             <i></i>
                                             @L("SubscribeToNotificationsTenantEditionChanged")
+                                        </label>
+                                    </div>
+
+
+
+
+
+
+                                    <div class="col col-6">
+
+                                        <label>
+                                            <input data-subscription data-subscription-name="@NotificationNames.EditionCreated" type="checkbox" />
+                                            <i></i>
+                                            @L("SubscribeToNotificationsTenantEditionCreated")
+                                        </label>
+                                    </div>
+                                    <div class="col col-6">
+
+                                        <label>
+                                            <input data-subscription data-subscription-name="@NotificationNames.EditionEdited" type="checkbox" />
+                                            <i></i>
+                                            @L("SubscribeToNotificationsTenantEditionEdited")
+                                        </label>
+                                    </div>
+
+
+
+                                    <div class="col col-6">
+
+                                        <label>
+                                            <input data-subscription data-subscription-name="@NotificationNames.EditionDeleted" type="checkbox" />
+                                            <i></i>
+                                            @L("SubscribeToNotificationsTenantEditionDeleted")
+                                        </label>
+                                    </div>
+
+
+                                    <div class="col col-6">
+
+                                        <label>
+                                            <input data-subscription data-subscription-name="@NotificationNames.EditionAssigned" type="checkbox" />
+                                            <i></i>
+                                            @L("SubscribeToNotificationsTenantEditionAssigned")
                                         </label>
                                     </div>
                                 }

@@ -1,0 +1,16 @@
+﻿@model Cinotam.AbpModuleZero.Web.Models.Account.EmailConfirmationInput
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            
+            <div class="alert alert-info">
+                @L("YourEmailIsNotConfirmed")
+                
+                
+                
+
+            </div>
+            <a href="@Url.Action("ResendMail",new {userName = Model.UserName})" class="btn btn-primary">@L("Resend")</a>
+        </div>
+    </div>
+</div>

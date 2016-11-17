@@ -109,7 +109,7 @@
     <text name="PleaseEnterLoginInformation" value="Please enter login information" />
     <text name="InvalidUserNameOrPassword" value="Invalid user name or password" />
     <text name="UserDeleted" value="User deleted" />
-    <text name="UserCreated" value="User created" />
+    <text name="UserCreated" value="User created/edited" />
     <text name="UserDeletedByUser" value="The user {userName} has deleted the user {userNameDeleted}!"/>
     <text name="ProfilePicture" value="Profile picture" />
     <text name="MyInfo" value="My info"/>
@@ -329,20 +329,55 @@
     <text name="Features" value="Features"/>
     <text name="Price" value="Price"/>
     <text name="DeleteEdition" value="The edition will be deleted?"/>
-    <text name="EditionCreated" value="Edition: {editionName} created"/>
-    <text name="EditionDeleted" value="Edition: {editionName} deleted"/>
+    <text name="EditionCreatedNotification" value="Edition: {editionName} created by user {userName}"/>
+    <text name="EditionDeletedNotification" value="Edition: {editionName} deleted by user {userName}"/>
     <text name="EditionDeletedForTenant" value="Your current edition: {editionName} was deleted please contact support"/>
+    <text name="EditionDeleted" value="Edition deleted"/>
     <!--Tenants-->
     <text name="TenantManagement" value="Tenant management"/>
     <text name="SetEdition" value="Set edition"/>
     <text name="EnableFeatures" value="Enable features"/>
     <text name="SetTenantEdition" value="Set edition"/>
-    <text name="TenantCreated" value="A new tenant was created {0}, by user {1}"/>
-    <text name="TenantDelete" value="A tenant was deleted {0}, by user {1}"/>
+    <text name="TenantCreated" value="A new tenant was created: {tenancyName}, by user {userName}"/>
+    <text name="TenantDeleted" value="A tenant was deleted: {tenancyName}, by user {userName}"/>
     <text name="TenantFeaturesChanged" value="Features for tenant {0} changed by user {1}"/>
     <text name="TenantEditionChanged" value="Edition for tenant {tenantName} was changed to {editionName} by user {userName}"/>
     <text name="EditionChanged" value="Edition {editionName} was modified by user {userName}"/>
-    
     <text name="YourEditionWasChanged" value="Your edition was changed"/>
+    <text name ="TenantWillBeDeleted" value="The tenant will be deleted"/>
+    <text name="RestoreTenant" value="Restore tenant"/>
+    <text name="SetTenantFeatures" value="Set tenant features" />
+    <text name="DeleteTenant" value="Delete tenant"/>
+    <text name="PasswordChanged" value="Password changed"/>
+    <text name="ShouldChangePassword" value="If this is your first login, click here to change your password"/>
+    <text name="ShouldChangePasswordOnLogin" value="Should change password on login"/>
+    <text name="NewPassword" value="New password"/>
+    <text name="TenantRestored" value="Tenant: {tenancyName} restored by user {userName}"/>
+    <text name="SubscribeToNotificationsTenantDeleted"  value="Tenant deleted notification"/>
+    <text name="SubscribeToNotificationsTenantEditionChanged"  value="Tenant edition changed notification"/>
+    <text name="SubscribeToNotificationsTenantEditionDeleted"  value="Tenant edition deleted notification"/>
+    <text name="SubscribeToNotificationsTenantCreated"  value="Tenant created notification"/>
+    <text name="SubscribeToNotificationsTenantRestored"  value="Tenant restored notification"/>
+    <text name="SubscribeToNotificationsTenantEditionCreated"  value="Edition created notification"/>
+    <text name="SubscribeToNotificationsTenantEditionEdited"  value="Edition modified notification"/>
+    <text name="SubscribeToNotificationsTenantEditionAssigned"  value="Edition assigned notification"/>
+    <text name="YourEmailIsNotConfirmed" value="Your email is not confirmed, please check your inbox or your junk folder"/>
+    <text name="Resend" value="Re-send email"/>
+    <text name="ClickHereToConfirm" value="Click here to confirm your email address"/>
+    <text name="EmailConfirmationUrl" value="Welcome to the very best website of the UNIVERSE!!! [Awesome CGI Explosion]: "/>
+    <text name="EmailVerificationCode" value="Cinotam email confirmation"/>
+    <text name="EmailConfirmed" value="Awesome! your email has been confirmed"/>
+    <text name="EmailIsConfirmed" value="Email confirmed"/>
+    <text name="ForgottenPasswordRecovery" value="Forgotten password form"/>
+    <text name="ForgottenPassword" value="I forgot my password  >:( "/>
+    <text name="SessionExpired" value="Session expired"/>
+    <text name="ConfirmLogin" value="Confirm login"/>
+    <text name="Confirm" value="Confirm"/>
+    <text name="SetNewPassword" value="Set new password"/>
+    <text name="RecoverPasswordMessage" value="Please provide us the email associated with your account"/>
+    <text name="RecoveryMessageSent" value="A recovery message was sent to the provided email account, please read it for further instructions"/>
+    <text name="PasswordReset" value="Cinotam password recovery"/>
+    <text name="PasswordResetUrl" value="Your password recovery link"/>
+    <text name="ClickHereToResetPassword" value="Click here to reset password"/>
   </texts>
 </localizationDictionary>

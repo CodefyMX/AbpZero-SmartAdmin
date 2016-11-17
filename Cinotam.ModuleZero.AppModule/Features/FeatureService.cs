@@ -45,7 +45,7 @@ namespace Cinotam.ModuleZero.AppModule.Features
                 await CurrentUnitOfWork.SaveChangesAsync();
                 await SetFeatureValues(newEdition, input.Features);
 
-                await _editionNotificationsSender.SendNotificationEditionCreated(newEdition);
+                await _editionNotificationsSender.SendNotificationEditionCreated(newEdition, await GetCurrentUserAsync());
 
             }
             else
@@ -119,7 +119,7 @@ namespace Cinotam.ModuleZero.AppModule.Features
             var edition = await _editionManager.FindByIdAsync(input.EditionId);
             await _editionManager.DeleteAsync(edition);
 
-            await _editionNotificationsSender.SendNotificationEditionDeleted(edition);
+            await _editionNotificationsSender.SendNotificationEditionDeleted(edition, await GetCurrentUserAsync());
         }
         public async Task SetEditionForTenant(int tenantId, int editionId)
         {

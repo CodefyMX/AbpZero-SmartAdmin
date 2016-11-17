@@ -13,6 +13,11 @@
     <div id="LoginArea" class="row">
         <div class="col-lg-12">
             <div class="well bs-component">
+
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-info">@L(ViewBag.Message)</div>
+                }
                 <form id="LoginForm" class="form-horizontal" action="@(Url.Action("Login", "Account"))?returnUrl=@Model.ReturnUrl" method="POST">
                     <fieldset>
                         <legend>@L("LogIn")</legend>
@@ -63,6 +68,11 @@
                                 <button id="LoginButton" type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> @L("LogIn")</button>
                                 <a class="btn btn-success" href="@Url.Action("Register")"><i class="fa fa-sign-in"></i> @L("Register")</a>
                             </div>
+                            <div class="col-lg-12">
+                                <br />
+
+                                <a href="@Url.Action("ForgotPassword")">@L("ForgottenPassword")</a>
+                            </div>
                         </div>
                     </fieldset>
                 </form>
@@ -74,7 +84,7 @@
                 @if (loginProviders.Count > 0)
                 {
                     <p>@L("OrLoginWith"):</p>
-                    
+
 
                     using (Html.BeginForm("ExternalLogin", "Account", method: FormMethod.Post))
                     {
