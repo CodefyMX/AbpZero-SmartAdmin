@@ -74,6 +74,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.AbpModuleZero.Tenan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.FileManager.Service", "Cinotam.FileManager.Service\Cinotam.FileManager.Service.csproj", "{B104B41B-3D65-44A4-95A1-2286590AC7A3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cinotam.SimplePost", "Cinotam.SimplePost", "{EC7A485A-90D2-42EE-AE3C-49F1170D6A2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.SimplePost.Core", "Cinotam.SimplePost.Core\Cinotam.SimplePost.Core.csproj", "{EDF5EFEE-1572-439C-B785-577E417781B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinotam.SimplePost.Application", "Cinotam.SimplePost.Application\Cinotam.SimplePost.Application.csproj", "{3C2EF17F-0B79-46E0-9322-1EBC0A5B06FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -180,6 +186,14 @@ Global
 		{B104B41B-3D65-44A4-95A1-2286590AC7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B104B41B-3D65-44A4-95A1-2286590AC7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B104B41B-3D65-44A4-95A1-2286590AC7A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF5EFEE-1572-439C-B785-577E417781B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF5EFEE-1572-439C-B785-577E417781B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF5EFEE-1572-439C-B785-577E417781B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF5EFEE-1572-439C-B785-577E417781B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C2EF17F-0B79-46E0-9322-1EBC0A5B06FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C2EF17F-0B79-46E0-9322-1EBC0A5B06FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C2EF17F-0B79-46E0-9322-1EBC0A5B06FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C2EF17F-0B79-46E0-9322-1EBC0A5B06FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -205,5 +219,7 @@ Global
 		{2BF3842A-1F5B-4915-BA17-CE369A213E64} = {91A76082-F02E-49CE-B9DF-9FB4A176783F}
 		{91982CF1-F595-4DE9-A4ED-3B911204CCBC} = {7408541C-F99C-4197-B203-136115BD1CB9}
 		{B104B41B-3D65-44A4-95A1-2286590AC7A3} = {C5871A7A-7875-447C-9F8A-5440B9D87686}
+		{EDF5EFEE-1572-439C-B785-577E417781B5} = {EC7A485A-90D2-42EE-AE3C-49F1170D6A2F}
+		{3C2EF17F-0B79-46E0-9322-1EBC0A5B06FA} = {EC7A485A-90D2-42EE-AE3C-49F1170D6A2F}
 	EndGlobalSection
 EndGlobal
