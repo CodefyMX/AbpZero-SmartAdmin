@@ -238,6 +238,14 @@
     <Compile Include="Migrations\201611171642024_UserShouldChangePassword.Designer.cs">
       <DependentUpon>201611171642024_UserShouldChangePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611181855214_LocalizableContentDtoProp.cs" />
+    <Compile Include="Migrations\201611181855214_LocalizableContentDtoProp.Designer.cs">
+      <DependentUpon>201611181855214_LocalizableContentDtoProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611181927198_Post_Test.cs" />
+    <Compile Include="Migrations\201611181927198_Post_Test.Designer.cs">
+      <DependentUpon>201611181927198_Post_Test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -263,6 +271,10 @@
     <ProjectReference Include="..\Cinotam.AbpModuleZero.Core\Cinotam.AbpModuleZero.Core.csproj">
       <Project>{17298ea0-af73-4f30-b6f1-2066100d7d74}</Project>
       <Name>Cinotam.AbpModuleZero.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.SimplePost.Core\Cinotam.SimplePost.Core.csproj">
+      <Project>{EDF5EFEE-1572-439C-B785-577E417781B5}</Project>
+      <Name>Cinotam.SimplePost.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +364,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611171642024_UserShouldChangePassword.resx">
       <DependentUpon>201611171642024_UserShouldChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611181855214_LocalizableContentDtoProp.resx">
+      <DependentUpon>201611181855214_LocalizableContentDtoProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611181927198_Post_Test.resx">
+      <DependentUpon>201611181927198_Post_Test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -11,6 +11,7 @@ using Cinotam.FileManager.Service;
 using Cinotam.ModuleZero.AppModule;
 using Cinotam.ModuleZero.BackgroundTasks;
 using Cinotam.ModuleZero.BackgroundTasks.Workers.ImagePublisher;
+using Cinotam.SimplePost.Application;
 using Cinotam.TwoFactorSender;
 using Hangfire;
 using System.Reflection;
@@ -31,7 +32,8 @@ namespace Cinotam.AbpModuleZero.Web
         typeof(CinotamModuleZeroBackground),
         typeof(TwoFactorSenderModule),
         typeof(TenantHelpersModule),
-        typeof(CinotamFileManagerService))]
+        typeof(CinotamFileManagerService),
+        typeof(CinotamSimplePostAppModule))]
     public class AbpModuleZeroWebModule : AbpModule
     {
         public override void PreInitialize()

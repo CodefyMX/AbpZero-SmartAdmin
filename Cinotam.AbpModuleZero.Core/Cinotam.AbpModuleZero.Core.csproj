@@ -125,6 +125,14 @@
     <Compile Include="Editions\EditionManager.cs" />
     <Compile Include="FeatureNames.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />
+    <Compile Include="LocalizableContent\Contracts\LocalizableContent.cs" />
+    <Compile Include="LocalizableContent\Contracts\ILocalizableContent.cs" />
+    <Compile Include="LocalizableContent\Entities\AbpCinotamLocalizableContent.cs" />
+    <Compile Include="LocalizableContent\Helpers\QueryObj.cs" />
+    <Compile Include="LocalizableContent\ILocalizableContentManager.cs" />
+    <Compile Include="LocalizableContent\LocalizableContentManager.cs" />
+    <Compile Include="LocalizableContent\Store\ILocalizationContentStore.cs" />
+    <Compile Include="LocalizableContent\Store\LocalizationContentStore.cs" />
     <Compile Include="Localization\Helpers\LocalizationSources.cs" />
     <Compile Include="Localization\Helpers\XmlLocations.cs" />
     <Compile Include="Localization\ILanguageTextsProvider.cs" />

@@ -834,6 +834,7 @@
     <Content Include="Views\Account\RecoveryMessageSent.cshtml" />
     <Content Include="Views\Account\ResetPasswordForm.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\GetPost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -881,6 +882,10 @@
     <ProjectReference Include="..\Cinotam.ModuleZero.Notifications\Cinotam.ModuleZero.Notifications.csproj">
       <Project>{57EE20C5-0930-41C0-9367-9A598B1B53D7}</Project>
       <Name>Cinotam.ModuleZero.Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cinotam.SimplePost.Application\Cinotam.SimplePost.Application.csproj">
+      <Project>{3C2EF17F-0B79-46E0-9322-1EBC0A5B06FA}</Project>
+      <Name>Cinotam.SimplePost.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cinotam.TwoFactorAuth.Contracts\Cinotam.TwoFactorAuth.Contracts.csproj">
       <Project>{645802DE-75FC-4403-B604-C2B650125073}</Project>

@@ -1,0 +1,13 @@
+﻿@model Cinotam.SimplePost.Application.Posts.Dto.PostsOutput
+@{
+    ViewBag.Title = "GetPost";
+    Layout = null;
+}
+
+@foreach (var post in Model.PostDtos)
+{
+    <h2>Post # @post.Id</h2>
+    <h3>@post.Title</h3>
+    <p class="lead">@post.ContentString</p>
+    <h4>@post.Lang</h4>
+}
