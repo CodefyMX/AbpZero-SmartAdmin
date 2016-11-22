@@ -18,7 +18,7 @@
                 {
                     <p class="label label-info">Is in cdn</p>
                 }
-                <a href="@postAttachmentDto.ContentUrl" class="btn btn-default"><i class="fa fa-download"></i></a>  <a href="@postAttachmentDto.ContentUrl" class="btn btn-warning"><i class="fa fa-times"></i></a>
+                <a href="@postAttachmentDto.ContentUrl" class="btn btn-default"><i class="fa fa-download"></i></a>  <a class="btn btn-warning js-delete-attachment" data-id="@postAttachmentDto.Id" data-en="@ViewBag.Id"><i class="fa fa-times"></i></a>
 
 
             </div>
@@ -32,4 +32,3 @@
 
 
 </div>
-

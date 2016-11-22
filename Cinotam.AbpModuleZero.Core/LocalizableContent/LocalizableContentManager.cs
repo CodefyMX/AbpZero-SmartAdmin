@@ -4,6 +4,7 @@ using Cinotam.AbpModuleZero.LocalizableContent.Entities;
 using Cinotam.AbpModuleZero.LocalizableContent.Helpers;
 using Cinotam.AbpModuleZero.LocalizableContent.Store;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,22 +24,25 @@ namespace Cinotam.AbpModuleZero.LocalizableContent
             _localizationContentStore = localizationContentStore;
         }
 
-        public async Task<LocalizationContentResult> CreateLocalizationContent(ILocalizableContent<T, TContentType> input, int? tenantId = null)
+        public async Task<LocalizationContentResult> CreateLocalizationContent(ILocalizableContent<T, TContentType> input, bool overwrite, int? tenantId = null)
         {
             var cont = AbpCinotamLocalizableContent.CreateLocalizableContent(input);
 
-            var languageIsTaken =
+            var languageInDb =
                 _localizationContentStore.LocalizableContents.FirstOrDefault(
                     a =>
                         a.Lang == input.Lang && a.EntityDtoName == input.EntityDtoName &&
-                        a.EntityName == input.EntityName && a.EntityId == input.EntityId) != null;
-            if (languageIsTaken) return LocalizationContentResult.ContentExists;
-            var id = await _localizationContentStore.SaveContent(cont, tenantId);
-            if (id != 0)
+                        a.EntityName == input.EntityName && a.EntityId == input.EntityId);
+            if (languageInDb != null && !overwrite) return LocalizationContentResult.ContentExists;
+
+            if (overwrite && languageInDb != null)
             {
-                return LocalizationContentResult.Success;
+                languageInDb.Properties = cont.Properties;
+                await _localizationContentStore.SaveContent(languageInDb, tenantId);
+                return LocalizationContentResult.ContentUpdated;
             }
-            return LocalizationContentResult.Error;
+            var id = await _localizationContentStore.SaveContent(cont, tenantId);
+            return id != 0 ? LocalizationContentResult.Success : LocalizationContentResult.Error;
         }
 
         public async Task<AbpCinotamLocalizableContent> GetLocalizableContent(T entity, string lang)
@@ -66,6 +70,25 @@ namespace Cinotam.AbpModuleZero.LocalizableContent
 
             return content;
 
+        }
+
+        public async Task<IEnumerable<AbpCinotamLocalizableContent>> GetLocalizableContent(T entity)
+        {
+            var queryObj = QueryObj.CreateQueryObj(entity);
+            var dtoInfo = QueryObj.CreateQueryObj(typeof(TContentType));
+            var contents =
+                await
+                    Task.FromResult(
+                        _localizationContentStore.LocalizableContents.Where(a =>
+                        a.EntityId == queryObj.EntityId
+                        && a.EntityName == queryObj.EntityName
+                        && a.EntityDtoName == dtoInfo.EntityName));
+            return contents;
+        }
+
+        public Task DeleteContent(AbpCinotamLocalizableContent content)
+        {
+            return _localizationContentStore.RemoveContent(content);
         }
     }
 }

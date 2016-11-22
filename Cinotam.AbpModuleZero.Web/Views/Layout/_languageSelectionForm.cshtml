@@ -1,0 +1,9 @@
+﻿@model Cinotam.AbpModuleZero.Web.Models.Layout.LanguageSelectionViewModel
+
+ @{
+     Layout = null;
+ }
+
+
+@Html.DropDownList("Lang",new SelectList(Model.Languages, "Name", "DisplayName",Model.CurrentLanguage.Name),new {@class="form-control"})
+ 

@@ -35,7 +35,10 @@ namespace Cinotam.SimplePost.Application.Posts
                 Active = true
             };
             await _postManager.AddEditPost(post);
+            input.Content.Id = post.Id;
+
             var content = new LocalizableContent<Post, Content>(post, input.Content, input.Content.Lang);
+
             await _postLocalizableContentManager.CreateLocalizationContent(content);
         }
 
@@ -73,6 +76,13 @@ namespace Cinotam.SimplePost.Application.Posts
 
         }
 
+        public async Task RemoveAttachment(int id, int attachmentId)
+        {
+            var entity = _postManager.Posts.FirstOrDefault(a => a.Id == id);
+
+            await _attachmentManager.RemoveAttachment(entity, attachmentId);
+
+        }
         public async Task<IEnumerable<PostAttachmentDto>> GetAttachments(int id)
         {
             var post = _postManager.Posts.FirstOrDefault(a => a.Id == id);
@@ -85,9 +95,35 @@ namespace Cinotam.SimplePost.Application.Posts
             var post = _postManager.Posts.FirstOrDefault(a => a.Id == content.Id);
 
             var result = await _postLocalizableContentManager.CreateLocalizationContent(new LocalizableContent<Post, Content>(post, content,
-                content.Lang));
+                content.Lang), true);
             if (result == LocalizationContentResult.ContentExists) throw new UserFriendlyException("ContentAlreadyExists");
             if (result == LocalizationContentResult.Error) throw new UserFriendlyException("SomeThingHappened");
+        }
+
+        public async Task<IEnumerable<Content>> GetContents(int id)
+        {
+            var entity = _postManager.Posts.FirstOrDefault(a => a.Id == id);
+
+            var contents = await _postLocalizableContentManager.GetLocalizableContent(entity);
+
+            return contents.Select(content => LocalizableContent<Post, Content>.DeserializeContent(content.Properties)).ToList();
+        }
+
+        public async Task<Content> GetContentForEdit(int id, string lang)
+        {
+            var entity = _postManager.Posts.FirstOrDefault(a => a.Id == id);
+
+            var content = await _postLocalizableContentManager.GetLocalizableContent(entity, lang);
+
+            if (content == null)
+            {
+                return new Content() { Lang = lang, Id = id };
+            }
+
+            var converted = LocalizableContent<Post, Content>.DeserializeContent(content.Properties);
+
+            return new Content() { ContentString = converted.ContentString, Lang = converted.Lang, Id = id, Title = converted.Title };
+
         }
 
         public async Task<Content> GetContent(int postId)
@@ -100,5 +136,12 @@ namespace Cinotam.SimplePost.Application.Posts
 
         }
 
+        public async Task DeleteContent(int id, string lang)
+        {
+            var entity = _postManager.Posts.FirstOrDefault(a => a.Id == id);
+            var content = await _postLocalizableContentManager.GetLocalizableContent(entity, lang);
+
+            await _postLocalizableContentManager.DeleteContent(content);
+        }
     }
 }

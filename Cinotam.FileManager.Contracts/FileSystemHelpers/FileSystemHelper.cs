@@ -14,7 +14,16 @@ namespace Cinotam.FileManager.Contracts.FileSystemHelpers
             }
             catch (Exception)
             {
-                //Ignore
+                try
+                {
+                    var path = GetAbsolutePath(absolutePath);
+                    File.Delete(path);
+                }
+                catch (Exception)
+                {
+
+                    //Ignore
+                }
             }
         }
 

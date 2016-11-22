@@ -19,3 +19,38 @@
 </div>
 
 @{Html.RenderAction("GetAttachments",new {id = ViewBag.Id});}
+
+
+
+@section scripts{
+    <script>
+
+        (function() {
+
+            $(document)
+                .ready(function() {
+                    var _postService = abp.services.postsApp.post;
+                    $("body")
+                        .on("click",
+                            ".js-delete-attachment",
+                            function () {
+                                var id = $(this).data("id");
+                                var eId = $(this).data("en");
+
+                                abp.message.confirm("This item will be deleted", "Are you sure?", function (response) {
+                                    if (response) {
+                                        _postService.removeAttachment(eId,id)
+                                            .done(function () {
+                                                window.location.reload();
+                                            });
+                                    }
+                                });
+
+
+                            });
+                });
+        })();
+
+       
+    </script>
+}

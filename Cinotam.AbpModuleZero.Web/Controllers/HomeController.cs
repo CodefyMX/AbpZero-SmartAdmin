@@ -36,7 +36,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 {
                     ContentString = content,
                     Title = title,
-                    Lang = lang
+                    Lang = lang,
                 }
             });
             return RedirectToAction("Index");
@@ -78,15 +78,18 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
         public ActionResult GetAttachments(int id)
         {
+            ViewBag.Id = id;
             var attachments = AsyncHelper.RunSync(() => _postAppService.GetAttachments(id));
             return View(attachments);
         }
 
-        public ActionResult AddContent(int id)
+        public async Task<ActionResult> AddContent(int id, string lang)
         {
-            ViewBag.Id = id;
-            var contentInput = new Content() { Id = id };
-            return View(contentInput);
+
+            var contentForEdit = await _postAppService.GetContentForEdit(id, lang);
+
+
+            return View(contentForEdit);
         }
 
         [HttpPost]
@@ -96,8 +99,16 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
             await _postAppService.AddContent(content);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ManageContent", new { content.Id });
 
         }
+
+        public async Task<ActionResult> ManageContent(int id)
+        {
+            ViewBag.id = id;
+            var contents = await _postAppService.GetContents(id);
+            return View(contents);
+        }
+
     }
 }
