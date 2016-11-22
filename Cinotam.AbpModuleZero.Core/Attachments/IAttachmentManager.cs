@@ -9,7 +9,7 @@ namespace Cinotam.AbpModuleZero.Attachments
     public interface IAttachmentManager<TEntity> : IDomainService where TEntity : class
     {
 
-        Task RemoveAttachment(int attachmentId);
+        Task RemoveAttachment(TEntity entity, int attachmentId);
         Task<Attachment> GetAttachment(int attachmentId);
         Task<IEnumerable<Attachment>> GetAttachments(TEntity entity);
         Task AddAttachment(IHasAttachment<TEntity> attachmentInfo);

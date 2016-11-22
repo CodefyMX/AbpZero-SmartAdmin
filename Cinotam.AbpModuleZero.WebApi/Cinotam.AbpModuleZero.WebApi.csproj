@@ -166,6 +166,10 @@
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>
       <Name>Cinotam.ModuleZero.AppModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cinotam.SimplePost.Application\Cinotam.SimplePost.Application.csproj">
+      <Project>{3C2EF17F-0B79-46E0-9322-1EBC0A5B06FA}</Project>
+      <Name>Cinotam.SimplePost.Application</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -2,6 +2,7 @@
 using Cinotam.AbpModuleZero.Attachments.Contracts;
 using Cinotam.AbpModuleZero.Attachments.Entities;
 using Cinotam.AbpModuleZero.LocalizableContent.Helpers;
+using Cinotam.FileManager.Contracts.FileSystemHelpers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -33,17 +34,19 @@ namespace Cinotam.AbpModuleZero.Attachments
 
         public async Task AddAttachment(IHasAttachment<TEntity> attachmentInfo)
         {
-            var queryObj = QueryObj.CreateQueryObj(attachmentInfo.Entity);
-
             await _attachmentRepository.InsertOrUpdateAndGetIdAsync(Attachment.CreateAttachment(attachmentInfo));
-
         }
 
-        public Task RemoveAttachment(int attachmentId)
+        public Task RemoveAttachment(TEntity entity, int attachmentId)
         {
-            var attachment = _attachmentRepository.Get(attachmentId);
-            return _attachmentRepository.DeleteAsync(attachment);
+            var info = QueryObj.CreateQueryObj(entity);
+            var attachment = _attachmentRepository.FirstOrDefault(a => a.EntityName == info.EntityName
+            && a.EntityId == info.EntityId
+            && a.Id == attachmentId);
 
+            FileSystemHelper.RemoveFile(attachment.ContentUrl);
+
+            return _attachmentRepository.DeleteAsync(attachment);
         }
     }
 }

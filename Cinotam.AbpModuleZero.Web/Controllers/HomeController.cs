@@ -36,7 +36,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 {
                     ContentString = content,
                     Title = title,
-                    Lang = lang
+                    Lang = lang,
                 }
             });
             return RedirectToAction("Index");
@@ -56,7 +56,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
         [HttpPost]
         [DisableAbpAntiForgeryTokenValidation]
-        public async Task<ActionResult> AddAttachment(int id, FormCollection forms)
+        public async Task<ActionResult> AddAttachment(int id, string description)
         {
 
             var file = Request.Files[0];
@@ -68,11 +68,47 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
                 FileUrl = fileInfo.Url,
                 Id = id,
-                StoredInCdn = fileInfo.StoredInCloud
+                StoredInCdn = fileInfo.StoredInCloud,
+                Description = description
             });
 
             return RedirectToAction("AddAttachment", new { id });
 
         }
+
+        public ActionResult GetAttachments(int id)
+        {
+            ViewBag.Id = id;
+            var attachments = AsyncHelper.RunSync(() => _postAppService.GetAttachments(id));
+            return View(attachments);
+        }
+
+        public async Task<ActionResult> AddContent(int id, string lang)
+        {
+
+            var contentForEdit = await _postAppService.GetContentForEdit(id, lang);
+
+
+            return View(contentForEdit);
+        }
+
+        [HttpPost]
+        [DisableAbpAntiForgeryTokenValidation]
+        public async Task<ActionResult> AddContent(Content content)
+        {
+
+            await _postAppService.AddContent(content);
+
+            return RedirectToAction("ManageContent", new { content.Id });
+
+        }
+
+        public async Task<ActionResult> ManageContent(int id)
+        {
+            ViewBag.id = id;
+            var contents = await _postAppService.GetContents(id);
+            return View(contents);
+        }
+
     }
 }

@@ -44,5 +44,10 @@ namespace Cinotam.AbpModuleZero.LocalizableContent.Store
             content.TenantId = tenantId;
             return await _localizableContentRepository.InsertOrUpdateAndGetIdAsync(content);
         }
+
+        public Task RemoveContent(AbpCinotamLocalizableContent content)
+        {
+            return _localizableContentRepository.DeleteAsync(content);
+        }
     }
 }

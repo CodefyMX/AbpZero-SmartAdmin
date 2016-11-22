@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Navigation;
 using Abp.Configuration.Startup;
+using Abp.Extensions;
 using Abp.Localization;
 using Abp.Runtime.Session;
 using Abp.Threading;
@@ -43,15 +44,22 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         }
 
         [ChildActionOnly]
-        public PartialViewResult LanguageSelection()
+        //Edited just for the sample
+        public PartialViewResult LanguageSelection(string partialView = "")
         {
             var model = new LanguageSelectionViewModel
             {
                 CurrentLanguage = _languageManager.CurrentLanguage,
                 Languages = _languageManager.GetLanguages()
             };
+            if (partialView.IsNullOrEmpty())
+            {
 
-            return PartialView("_LanguageSelection", model);
+                return PartialView("_LanguageSelection", model);
+            }
+
+            return PartialView(partialView, model);
+
         }
 
 

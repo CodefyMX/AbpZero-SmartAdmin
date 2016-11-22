@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Cinotam.SimplePost.Application.Posts.Dto.Content>
+@{
+    ViewBag.Title = "ManageContent";
+}
+
+
+<style>
+    .panel-fixed {
+        max-height: 200px;
+        min-height: 200px;
+        overflow: hidden;
+    }
+</style>
+
+<h3>Post #@ViewBag.Id</h3>
+<div class="row">
+    <div class="col-xs-12">
+        <a data-modal class="btn btn-default btn-sm" href="@Url.Action("AddContent",new {id= ViewBag.Id})"><i class="fa fa-plus"></i> Add Content</a>
+    </div>
+</div>
+<br/>
+<div class="row">
+    @foreach (var elm in Model)
+    {
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">@elm.Title   <button class="btn btn-xs pull-right btn-danger js-delete-content" data-id="@ViewBag.Id" data-lang="@elm.Lang"><i class="fa fa-times"></i></button> </div>
+                <div class="panel-body  panel-fixed">
+                    <p>@elm.ContentString</p>
+
+                    <p class="label label-info">@elm.Lang</p>
+                    
+                </div>
+                <div class="panel-footer">
+
+                    <a data-modal href="@Url.Action("AddContent",new { id = elm.Id,lang=elm.Lang })" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+@section Scripts{
+    <script>
+        (function () {
+            $(document).ready(function () {
+
+                var _postService = abp.services.postsApp.post;
+
+                function loading(button) {
+                    console.log("Setting busy");
+                    abp.ui.setBusy($("#content"));
+                }
+                function notLoading(button) {
+                    abp.ui.clearBusy($("#content"));
+                }
+                function error(message) {
+                    abp.message.error(message, "Error");
+                }
+                var options = {
+                    loadingFunc: loading,
+                    loadEndFunc: notLoading,
+                    onErrorFunction: error
+                };
+
+                window.modalOptions = options;
+
+                window.modalInstance = new abp.app.bootstrap.modal(null, window.modalOptions);
+
+
+                $("body")
+                    .on("click",
+                        ".js-delete-content",
+                        function() {
+                            var id = $(this).data("id");
+                            var lang = $(this).data("lang");
+
+                            abp.message.confirm("This item will be deleted","Are you sure?",function(response) {
+                                if (response) {
+                                    _postService.deleteContent(id, lang)
+                                        .done(function() {
+                                            window.location.reload();
+                                        });
+                                }
+                            });
+
+
+                        });
+            }); 
+        })();
+    </script>
+}
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal-label">
+    
+</div>
+

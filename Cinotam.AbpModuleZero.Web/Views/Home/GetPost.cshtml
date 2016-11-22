@@ -6,10 +6,16 @@
 
 @foreach (var post in Model.PostDtos)
 {
-    <h2>Post # @post.Id</h2>
-    <h3>@post.Title</h3>
-    <p class="lead">@post.ContentString</p>
-    <h4>@post.Lang</h4>
-
-    <a class="btn btn-primary" href="@Url.Action("AddAttachment",new {id= post.Id})">Add Attachment</a>
+    <div class="panel panel-default">
+        <div class="panel-heading">Post # @post.Id</div>
+        <div class="panel-body">
+            <h3>@post.Title</h3>
+            <p class="lead">@post.ContentString</p>
+            <h4>@post.Lang</h4>
+            <a class="btn btn-default btn-sm" href="@Url.Action("ManageContent",new {id = post.Id})"><i class="fa fa-list"></i> Manage Contents</a>
+            
+            <a class="btn btn-primary btn-sm" href="@Url.Action("AddAttachment",new {id= post.Id})"><i class="fa fa-file-archive-o"></i> Attachments</a>
+        </div>
+    </div>
 }
+

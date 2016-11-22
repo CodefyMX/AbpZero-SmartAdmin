@@ -1,0 +1,35 @@
+﻿@model Cinotam.SimplePost.Application.Posts.Dto.Content
+@{
+    ViewBag.Title = "AddContent";
+    Layout = null;
+}
+<div class="modal-dialog" role="document">
+    <form role="form" action="@Url.Action("AddContent")" method="post">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModal-label">Add/EditContent</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    @Html.HiddenFor(a => a.Id)
+                    <label class="control-label">Title</label>
+                    @Html.TextBoxFor(a => a.Title, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Content</label>
+                    @Html.TextAreaFor(a => a.ContentString, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Lang</label>
+                    @{Html.RenderAction("LanguageSelection", "Layout", new { partialView = "_languageSelectionForm" });}
+                    @*<input type="text" name="lang" class="form-control" placeholder="es es-MX">*@
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@L("Cancel")</button>
+                <button type="submit" class="btn btn-primary">@L("Save")</button>
+            </div>
+        </div>
+    </form>
+</div>

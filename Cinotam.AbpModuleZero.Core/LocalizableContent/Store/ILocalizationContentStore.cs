@@ -12,5 +12,6 @@ namespace Cinotam.AbpModuleZero.LocalizableContent.Store
         IEnumerable<AbpCinotamLocalizableContent> GetLocalizableContents(string lang);
         IEnumerable<AbpCinotamLocalizableContent> GetLocalizableContents(string lang, string entityId);
         Task<int> SaveContent(AbpCinotamLocalizableContent content, int? tenantId);
+        Task RemoveContent(AbpCinotamLocalizableContent content);
     }
 }

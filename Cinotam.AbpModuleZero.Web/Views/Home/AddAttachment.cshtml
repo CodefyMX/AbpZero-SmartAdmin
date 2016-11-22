@@ -1,13 +1,56 @@
 ﻿@{
     ViewBag.Title = "AddAttachment";
 }
-
-<form role="form" enctype="multipart/form-data" action="@Url.Action("AddAttachment",new {id = ViewBag.Id})" method="post">
-    <div class="form-group">
-        @Html.Hidden("Id", (int)ViewBag.Id)
-        <label class="control-label">File</label>
-        <input type="file" name="myFileSample" class="form-control">
+<div class="row">
+    <div class="col-xs-4">
+        <form role="form" enctype="multipart/form-data" action="@Url.Action("AddAttachment",new {id = ViewBag.Id})" method="post">
+            <div class="form-group">
+                @Html.Hidden("Id", (int)ViewBag.Id)
+                <label class="control-label">File</label>
+                <input type="file" name="myFileSample" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="control-label">File Description</label>
+                <input type="text" required="required" name="description" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
     </div>
-   
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
+</div>
+
+@{Html.RenderAction("GetAttachments",new {id = ViewBag.Id});}
+
+
+
+@section scripts{
+    <script>
+
+        (function() {
+
+            $(document)
+                .ready(function() {
+                    var _postService = abp.services.postsApp.post;
+                    $("body")
+                        .on("click",
+                            ".js-delete-attachment",
+                            function () {
+                                var id = $(this).data("id");
+                                var eId = $(this).data("en");
+
+                                abp.message.confirm("This item will be deleted", "Are you sure?", function (response) {
+                                    if (response) {
+                                        _postService.removeAttachment(eId,id)
+                                            .done(function () {
+                                                window.location.reload();
+                                            });
+                                    }
+                                });
+
+
+                            });
+                });
+        })();
+
+       
+    </script>
+}
