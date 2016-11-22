@@ -57,7 +57,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         }
 
 
-        public ReturnModel<LanguageDto> GetLanguagesForTable(RequestModel<object> input)
+        public async Task <ReturnModel<LanguageDto>> GetLanguagesForTable(RequestModel<object> input)
         {
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant))
             {
@@ -66,7 +66,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
 
                 var allLanguages = _languagesRepository.GetAll().Where(a => a.TenantId == AbpSession.TenantId || a.TenantId == null);
                 var filterByLength = GenerateTableModel(input, allLanguages, search, "Name", out totalCount).ToList();
-
+                var isTenancyUser = (await GetCurrentUserAsync()).TenantId.HasValue;
                 return new ReturnModel<LanguageDto>()
                 {
                     draw = input.draw,
@@ -82,7 +82,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                         Name = a.Name,
                         Id = a.Id,
                         CreationTime = a.CreationTime,
-                        IsStatic = a.TenantId == null
+                        IsStatic = (a.TenantId == null && isTenancyUser)
                     }).ToArray()
                 };
             }

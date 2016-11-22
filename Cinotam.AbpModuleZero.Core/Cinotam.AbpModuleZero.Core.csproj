@@ -111,6 +111,11 @@
     <Compile Include="AbpModuleZeroConsts.cs" />
     <Compile Include="AbpModuleZeroCoreModule.cs" />
     <Compile Include="AppFeatureProvider.cs" />
+    <Compile Include="Attachments\AttachmentManager.cs" />
+    <Compile Include="Attachments\Contracts\HasAttachment.cs" />
+    <Compile Include="Attachments\Contracts\IHasAttachment.cs" />
+    <Compile Include="Attachments\Entities\Attachment.cs" />
+    <Compile Include="Attachments\IAttachmentManager.cs" />
     <Compile Include="Authorization\AbpModuleZeroAuthorizationProvider.cs" />
     <Compile Include="Authorization\LoginManager.cs" />
     <Compile Include="Authorization\PermissionChecker.cs" />

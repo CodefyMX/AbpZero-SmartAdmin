@@ -9,16 +9,12 @@ namespace Cinotam.ModuleZero.AppModule.Languages
     {
 
         Task AddLanguage(LanguageInput input);
-        ReturnModel<LanguageDto> GetLanguagesForTable(RequestModel<object> input);
+        Task<ReturnModel<LanguageDto>> GetLanguagesForTable(RequestModel<object> input);
         ReturnModel<LanguageTextTableElement> GetLocalizationTexts(RequestModel<LanguageTextsForEditRequest> input);
         LanguageTextsForEditView GetLanguageTextsForEditView(string selectedTargetLanguage,
             string selectedSourceLanguage);
-
         Task DeleteLanguage(string code);
         Task AddEditLocalizationText(LocalizationTextInput input);
-
-
         Task UpdateLanguageFromXml(string languageName, string source, bool updateExistingValues = false);
-
     }
 }

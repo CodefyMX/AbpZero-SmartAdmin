@@ -5,6 +5,7 @@ using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.Languages;
 using Cinotam.ModuleZero.AppModule.Languages.Dto;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
@@ -25,10 +26,10 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
             return View();
         }
         [WrapResult(false)]
-        public ActionResult LoadLanguages(RequestModel<object> input)
+        public async Task<ActionResult> LoadLanguages(RequestModel<object> input)
         {
             ProccessQueryData(input, "DisplayName", new[] { "Name", "CreationTime" });
-            var data = _languageAppService.GetLanguagesForTable(input);
+            var data = await _languageAppService.GetLanguagesForTable(input);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         [AbpMvcAuthorize(PermissionNames.PagesSysAdminLanguagesCreate)]
