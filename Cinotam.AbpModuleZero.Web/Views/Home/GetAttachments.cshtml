@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Cinotam.SimplePost.Application.Posts.Dto.PostAttachmentDto>
+@{
+    Layout = null;
+}
+
+<br/>
+
+<div class="row">
+  @foreach (var postAttachmentDto in Model)
+  {
+    <div class="col-xs-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">@postAttachmentDto.Description</div>
+            <div class="panel-body">
+
+
+                @if (postAttachmentDto.StoredInCdn)
+                {
+                    <p class="label label-info">Is in cdn</p>
+                }
+                <a href="@postAttachmentDto.ContentUrl" class="btn btn-default"><i class="fa fa-download"></i></a>  <a href="@postAttachmentDto.ContentUrl" class="btn btn-warning"><i class="fa fa-times"></i></a>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+  }
+
+
+</div>
+

@@ -56,7 +56,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
         [HttpPost]
         [DisableAbpAntiForgeryTokenValidation]
-        public async Task<ActionResult> AddAttachment(int id, FormCollection forms)
+        public async Task<ActionResult> AddAttachment(int id, string description)
         {
 
             var file = Request.Files[0];
@@ -68,10 +68,35 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
                 FileUrl = fileInfo.Url,
                 Id = id,
-                StoredInCdn = fileInfo.StoredInCloud
+                StoredInCdn = fileInfo.StoredInCloud,
+                Description = description
             });
 
             return RedirectToAction("AddAttachment", new { id });
+
+        }
+
+        public ActionResult GetAttachments(int id)
+        {
+            var attachments = AsyncHelper.RunSync(() => _postAppService.GetAttachments(id));
+            return View(attachments);
+        }
+
+        public ActionResult AddContent(int id)
+        {
+            ViewBag.Id = id;
+            var contentInput = new Content() { Id = id };
+            return View(contentInput);
+        }
+
+        [HttpPost]
+        [DisableAbpAntiForgeryTokenValidation]
+        public async Task<ActionResult> AddContent(Content content)
+        {
+
+            await _postAppService.AddContent(content);
+
+            return RedirectToAction("Index");
 
         }
     }

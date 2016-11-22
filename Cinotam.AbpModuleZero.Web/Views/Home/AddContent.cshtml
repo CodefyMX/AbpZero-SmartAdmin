@@ -1,0 +1,25 @@
+﻿@model Cinotam.SimplePost.Application.Posts.Dto.Content
+@{
+    ViewBag.Title = "AddContent";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <form role="form" action="@Url.Action("AddContent")" method="post">
+            <div class="form-group">
+                @Html.HiddenFor(a=>a.Id)
+                <label class="control-label">Title</label>
+                @Html.TextBoxFor(a=>a.Title,new {@class = "form-control"})
+            </div>
+            <div class="form-group">
+                <label class="control-label">Content</label>
+                @Html.TextAreaFor(a => a.ContentString, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label class="control-label">Lang</label>
+                @Html.TextBoxFor(a => a.Lang, new { @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>

@@ -836,6 +836,8 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Home\GetPost.cshtml" />
     <Content Include="Views\Home\AddAttachment.cshtml" />
+    <Content Include="Views\Home\GetAttachments.cshtml" />
+    <Content Include="Views\Home\AddContent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

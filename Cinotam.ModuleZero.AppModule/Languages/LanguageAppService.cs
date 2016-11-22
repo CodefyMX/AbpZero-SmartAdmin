@@ -57,7 +57,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
         }
 
 
-        public async Task <ReturnModel<LanguageDto>> GetLanguagesForTable(RequestModel<object> input)
+        public async Task<ReturnModel<LanguageDto>> GetLanguagesForTable(RequestModel<object> input)
         {
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant))
             {
@@ -184,7 +184,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             //Problem repository will return 0 records on new database
             //We need to check if there are texts on the cache
 
-            var languageTextsSource = _languageTextsRepository.GetAll()
+            var languageTextsSourceFromDatabase = _languageTextsRepository.GetAll()
                 .Where(a => a.Source == input.TypeOfRequest.Source
                 && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
 
@@ -195,7 +195,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             //var isXmlAvailable = _languageTextsProvider.IsXMLAvailableForTheLangCode(input.TypeOfRequest.SourceLang,
             //    input.TypeOfRequest.Source);
 
-            if (!languageTextsSourceFromXml.Any() && !languageTextsSource.Any()
+            if (!languageTextsSourceFromXml.Any() && !languageTextsSourceFromDatabase.Any()
                 /* we need something like '&& IsInCache() '*/)
             {
 
@@ -206,7 +206,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             }
             else
             {
-                languageTextsSource = languageTextsSourceFromXml.Select(a => new ApplicationLanguageText()
+                languageTextsSourceFromDatabase = languageTextsSourceFromXml.Select(a => new ApplicationLanguageText()
                 {
                     Key = a.Key,
                     Value = a.Value,
@@ -217,16 +217,16 @@ namespace Cinotam.ModuleZero.AppModule.Languages
             //2.1.-If the current tenant has no texts in the database for the target
             //     we must generate them with empty spaces and the key from the source 
             //Texts to edit
-            var languageTextsTarget = _languageTextsRepository.GetAll()
+            var languageTextsTargetFromDatabase = _languageTextsRepository.GetAll()
                 .Where(a => a.Source == input.TypeOfRequest.Source
                 && a.LanguageName == input.TypeOfRequest.TargetLang).ToList();
 
             if (input.TypeOfRequest.TargetLang == input.TypeOfRequest.SourceLang)
             {
-                languageTextsTarget = languageTextsSource;
+                languageTextsTargetFromDatabase = languageTextsSourceFromDatabase;
             }
 
-            if (!languageTextsTarget.Any())
+            if (!languageTextsTargetFromDatabase.Any())
             {
                 //Only sets keys with empty values
                 _languageTextsProvider.SetLocalizationKeys(input.TypeOfRequest.TargetLang, input.TypeOfRequest.Source, AbpSession.TenantId);
@@ -234,6 +234,7 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                     .Where(a => a.Source == input.TypeOfRequest.Source
                                 && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
 
+                if (!languageTextsSourceS.Any()) languageTextsSourceS = languageTextsSourceFromDatabase;
 
                 //Once reloaded we build the model
                 var languageTextsTargetS = _languageTextsRepository.GetAll()
@@ -247,10 +248,10 @@ namespace Cinotam.ModuleZero.AppModule.Languages
                 var sourceUpdated = _languageTextsRepository.GetAll()
                     .Where(a => a.Source == input.TypeOfRequest.Source
                                 && a.LanguageName == input.TypeOfRequest.SourceLang).ToList();
-                return GetTableData(languageTextsTarget, sourceUpdated);
+                return GetTableData(languageTextsTargetFromDatabase, sourceUpdated);
             }
             ////3.-Pupulate table with both key targetText - value and sourceText - value
-            return GetTableData(languageTextsTarget, languageTextsSource);
+            return GetTableData(languageTextsTargetFromDatabase, languageTextsSourceFromDatabase);
         }
 
 

@@ -11,5 +11,5 @@
     <p class="lead">@post.ContentString</p>
     <h4>@post.Lang</h4>
 
-    <a class="btn btn-primary" href="@Url.Action("AddAttachment",new {id= post.Id})">Add Attachment</a>
+    <a class="btn btn-default" href="@Url.Action("AddContent",new {id= post.Id})">Add Content</a> <a class="btn btn-primary" href="@Url.Action("AddAttachment",new {id= post.Id})">Add Attachment</a>
 }

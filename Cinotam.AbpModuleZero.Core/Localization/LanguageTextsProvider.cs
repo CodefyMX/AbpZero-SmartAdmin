@@ -5,6 +5,7 @@ using Abp.Localization;
 using Abp.Localization.Dictionaries.Xml;
 using Cinotam.AbpModuleZero.Localization.Helpers;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
@@ -13,8 +14,11 @@ namespace Cinotam.AbpModuleZero.Localization
     public class LanguageTextsProvider : DomainService, ILanguageTextsProvider
     {
         private readonly IRepository<ApplicationLanguageText, long> _languageTextsRepository;
-
-
+        private const string DefaultCultureInfo = "en";
+        protected override string L(string name)
+        {
+            return LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, name, new CultureInfo(DefaultCultureInfo));
+        }
 
         public LanguageTextsProvider(IRepository<ApplicationLanguageText, long> languageTextsRepository)
         {
@@ -89,7 +93,7 @@ namespace Cinotam.AbpModuleZero.Localization
                     _languageTextsRepository.Insert(new ApplicationLanguageText()
                     {
                         Key = key,
-                        Value = string.Empty,
+                        Value = L(key),
                         LanguageName = langCode,
                         Source = source,
                         TenantId = tenantId,
@@ -106,7 +110,7 @@ namespace Cinotam.AbpModuleZero.Localization
                     _languageTextsRepository.Insert(new ApplicationLanguageText()
                     {
                         Key = key.Name,
-                        Value = key.Value,
+                        Value = L(key.Value),
                         LanguageName = langCode,
                         Source = source,
                         TenantId = tenantId,

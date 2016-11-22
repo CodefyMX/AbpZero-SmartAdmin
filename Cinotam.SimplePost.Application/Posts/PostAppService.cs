@@ -1,7 +1,11 @@
-﻿using Cinotam.AbpModuleZero.Attachments;
+﻿using Abp.Application.Services;
+using Abp.AutoMapper;
+using Abp.UI;
+using Cinotam.AbpModuleZero.Attachments;
 using Cinotam.AbpModuleZero.Attachments.Contracts;
 using Cinotam.AbpModuleZero.LocalizableContent;
 using Cinotam.AbpModuleZero.LocalizableContent.Contracts;
+using Cinotam.AbpModuleZero.LocalizableContent.Helpers;
 using Cinotam.SimplePost.Application.Posts.Dto;
 using Cinotam.SimplePost.Core.Posts;
 using Cinotam.SimplePost.Core.Posts.Entities;
@@ -12,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Cinotam.SimplePost.Application.Posts
 {
-    public class PostAppService : IPostAppService
+    public class PostAppService : ApplicationService, IPostAppService
     {
         private readonly ILocalizableContentManager<Post, Content> _postLocalizableContentManager;
         private readonly IPostManager _postManager;
@@ -65,8 +69,25 @@ namespace Cinotam.SimplePost.Application.Posts
         public async Task AddAttachment(PostAttachmentInput input)
         {
             var post = _postManager.Posts.FirstOrDefault(a => a.Id == input.Id);
-            await _attachmentManager.AddAttachment(new HasAttachment<Post>(post, input.FileUrl, input.StoredInCdn, true, "Attachment info"));
+            await _attachmentManager.AddAttachment(new HasAttachment<Post>(post, input.FileUrl, input.StoredInCdn, true, input.Description));
 
+        }
+
+        public async Task<IEnumerable<PostAttachmentDto>> GetAttachments(int id)
+        {
+            var post = _postManager.Posts.FirstOrDefault(a => a.Id == id);
+            var attachments = await _attachmentManager.GetAttachments(post);
+            return attachments.Select(a => a.MapTo<PostAttachmentDto>());
+        }
+
+        public async Task AddContent(Content content)
+        {
+            var post = _postManager.Posts.FirstOrDefault(a => a.Id == content.Id);
+
+            var result = await _postLocalizableContentManager.CreateLocalizationContent(new LocalizableContent<Post, Content>(post, content,
+                content.Lang));
+            if (result == LocalizationContentResult.ContentExists) throw new UserFriendlyException("ContentAlreadyExists");
+            if (result == LocalizationContentResult.Error) throw new UserFriendlyException("SomeThingHappened");
         }
 
         public async Task<Content> GetContent(int postId)

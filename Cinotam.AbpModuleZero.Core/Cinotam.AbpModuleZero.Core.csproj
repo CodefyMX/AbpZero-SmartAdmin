@@ -133,6 +133,7 @@
     <Compile Include="LocalizableContent\Contracts\LocalizableContent.cs" />
     <Compile Include="LocalizableContent\Contracts\ILocalizableContent.cs" />
     <Compile Include="LocalizableContent\Entities\AbpCinotamLocalizableContent.cs" />
+    <Compile Include="LocalizableContent\Helpers\LocalizationContentResult.cs" />
     <Compile Include="LocalizableContent\Helpers\QueryObj.cs" />
     <Compile Include="LocalizableContent\ILocalizableContentManager.cs" />
     <Compile Include="LocalizableContent\LocalizableContentManager.cs" />

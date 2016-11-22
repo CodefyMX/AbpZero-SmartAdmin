@@ -23,10 +23,22 @@ namespace Cinotam.AbpModuleZero.LocalizableContent
             _localizationContentStore = localizationContentStore;
         }
 
-        public async Task CreateLocalizationContent(ILocalizableContent<T, TContentType> input, int? tenantId = null)
+        public async Task<LocalizationContentResult> CreateLocalizationContent(ILocalizableContent<T, TContentType> input, int? tenantId = null)
         {
             var cont = AbpCinotamLocalizableContent.CreateLocalizableContent(input);
-            await _localizationContentStore.SaveContent(cont, tenantId);
+
+            var languageIsTaken =
+                _localizationContentStore.LocalizableContents.FirstOrDefault(
+                    a =>
+                        a.Lang == input.Lang && a.EntityDtoName == input.EntityDtoName &&
+                        a.EntityName == input.EntityName && a.EntityId == input.EntityId) != null;
+            if (languageIsTaken) return LocalizationContentResult.ContentExists;
+            var id = await _localizationContentStore.SaveContent(cont, tenantId);
+            if (id != 0)
+            {
+                return LocalizationContentResult.Success;
+            }
+            return LocalizationContentResult.Error;
         }
 
         public async Task<AbpCinotamLocalizableContent> GetLocalizableContent(T entity, string lang)
