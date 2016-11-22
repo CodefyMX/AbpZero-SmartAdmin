@@ -1,4 +1,5 @@
 ﻿using Abp.Zero.EntityFramework;
+using Cinotam.AbpModuleZero.Attachments.Entities;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.Chat.Entities;
 using Cinotam.AbpModuleZero.LocalizableContent.Entities;
@@ -42,7 +43,13 @@ namespace Cinotam.AbpModuleZero.EntityFramework
         public IDbSet<Post> Posts { get; set; }
         #endregion
 
+        #region Attachments
 
+
+        public IDbSet<Attachment> Attachments { get; set; }
+
+
+        #endregion
         //#endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

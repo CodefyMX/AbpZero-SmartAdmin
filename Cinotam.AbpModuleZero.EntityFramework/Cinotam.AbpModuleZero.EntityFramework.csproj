@@ -246,6 +246,10 @@
     <Compile Include="Migrations\201611181927198_Post_Test.Designer.cs">
       <DependentUpon>201611181927198_Post_Test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611220450040_Attachments_Tests.cs" />
+    <Compile Include="Migrations\201611220450040_Attachments_Tests.Designer.cs">
+      <DependentUpon>201611220450040_Attachments_Tests.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -370,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611181927198_Post_Test.resx">
       <DependentUpon>201611181927198_Post_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611220450040_Attachments_Tests.resx">
+      <DependentUpon>201611220450040_Attachments_Tests.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -1,4 +1,6 @@
-﻿using Cinotam.AbpModuleZero.LocalizableContent;
+﻿using Cinotam.AbpModuleZero.Attachments;
+using Cinotam.AbpModuleZero.Attachments.Contracts;
+using Cinotam.AbpModuleZero.LocalizableContent;
 using Cinotam.AbpModuleZero.LocalizableContent.Contracts;
 using Cinotam.SimplePost.Application.Posts.Dto;
 using Cinotam.SimplePost.Core.Posts;
@@ -14,10 +16,12 @@ namespace Cinotam.SimplePost.Application.Posts
     {
         private readonly ILocalizableContentManager<Post, Content> _postLocalizableContentManager;
         private readonly IPostManager _postManager;
-        public PostAppService(ILocalizableContentManager<Post, Content> postLocalizableContentManager, IPostManager postManager)
+        private readonly IAttachmentManager<Post> _attachmentManager;
+        public PostAppService(ILocalizableContentManager<Post, Content> postLocalizableContentManager, IPostManager postManager, IAttachmentManager<Post> attachmentManager)
         {
             _postLocalizableContentManager = postLocalizableContentManager;
             _postManager = postManager;
+            _attachmentManager = attachmentManager;
         }
 
         public async Task CreateEditPost(NewPostInput input)
@@ -55,6 +59,13 @@ namespace Cinotam.SimplePost.Application.Posts
             {
                 PostDtos = contents
             };
+
+        }
+
+        public async Task AddAttachment(PostAttachmentInput input)
+        {
+            var post = _postManager.Posts.FirstOrDefault(a => a.Id == input.Id);
+            await _attachmentManager.AddAttachment(new HasAttachment<Post>(post, input.FileUrl, input.StoredInCdn, true, "Attachment info"));
 
         }
 

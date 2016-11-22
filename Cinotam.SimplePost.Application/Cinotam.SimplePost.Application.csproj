@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="CinotamSimplePostAppModule.cs" />
     <Compile Include="Posts\Dto\NewPostInput.cs" />
+    <Compile Include="Posts\Dto\PostAttachmentInput.cs" />
     <Compile Include="Posts\Dto\PostsOutput.cs" />
     <Compile Include="Posts\IPostAppService.cs" />
     <Compile Include="Posts\PostAppService.cs" />

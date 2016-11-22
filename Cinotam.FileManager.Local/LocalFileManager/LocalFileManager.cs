@@ -38,6 +38,8 @@ namespace Cinotam.FileManager.Local.LocalFileManager
                 return new FileManagerServiceResult()
                 {
                     VirtualPathResult = virtualFolder,
+                    CdnUrl = virtualFolder,
+                    LocalUrl = virtualFolder,
                     ImageSaved = true,
                     ImageSavedInCdn = false,
                     ImageSavedInServer = true,
@@ -98,6 +100,8 @@ namespace Cinotam.FileManager.Local.LocalFileManager
             {
                 LocalUrl = route,
                 FileName = fileName,
+                CdnUrl = virtualFullRoute,
+
                 VirtualPathResult = virtualFullRoute,
                 ImageSaved = true,
                 ImageSavedInCdn = false,

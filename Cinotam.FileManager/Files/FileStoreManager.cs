@@ -1,4 +1,5 @@
-﻿using Cinotam.FileManager.Contracts;
+﻿using Castle.Core.Internal;
+using Cinotam.FileManager.Contracts;
 using Cinotam.FileManager.Files.Inputs;
 using Cinotam.FileManager.Files.Outputs;
 using Cinotam.FileManager.Local.LocalFileManager;
@@ -44,8 +45,8 @@ namespace Cinotam.FileManager.Files
                     {
                         AbsolutePath = result.LocalUrl,
                         FileName = result.FileName,
-                        SecureUrl = string.Empty,
-                        Url = string.Empty,
+                        SecureUrl = result.VirtualPathResult.IsNullOrEmpty() ? result.CdnUrl : result.VirtualPathResult,
+                        Url = result.VirtualPathResult.IsNullOrEmpty() ? result.CdnUrl : result.VirtualPathResult,
                         VirtualPath = result.VirtualPathResult,
                         WasStoredInCloud = false
                     };

@@ -8,5 +8,6 @@ namespace Cinotam.SimplePost.Application.Posts
     {
         Task CreateEditPost(NewPostInput input);
         Task<PostsOutput> GetPosts(string name);
+        Task AddAttachment(PostAttachmentInput input);
     }
 }

@@ -1,5 +1,5 @@
-﻿using Abp.Domain.Entities;
-using Abp.Domain.Repositories;
+﻿using Abp.Domain.Repositories;
+using Cinotam.AbpModuleZero.Attachments.Contracts;
 using Cinotam.AbpModuleZero.Attachments.Entities;
 using Cinotam.AbpModuleZero.LocalizableContent.Helpers;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cinotam.AbpModuleZero.Attachments
 {
-    public class AttachmentManager<TEntity> : IAttachmentManager<TEntity> where TEntity : IEntity
+    public class AttachmentManager<TEntity> : IAttachmentManager<TEntity> where TEntity : class
 
     {
         private readonly IRepository<Attachment> _attachmentRepository;
@@ -31,15 +31,18 @@ namespace Cinotam.AbpModuleZero.Attachments
             return elements;
         }
 
+        public async Task AddAttachment(IHasAttachment<TEntity> attachmentInfo)
+        {
+            var queryObj = QueryObj.CreateQueryObj(attachmentInfo.Entity);
+
+            await _attachmentRepository.InsertOrUpdateAndGetIdAsync(Attachment.CreateAttachment(attachmentInfo));
+
+        }
+
         public Task RemoveAttachment(int attachmentId)
         {
             var attachment = _attachmentRepository.Get(attachmentId);
-
-
-
-
-
-            return _attachmentRepository.DeleteAsync(attachmentId);
+            return _attachmentRepository.DeleteAsync(attachment);
 
         }
     }
