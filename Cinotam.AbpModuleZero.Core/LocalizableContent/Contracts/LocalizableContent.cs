@@ -15,13 +15,14 @@ namespace Cinotam.AbpModuleZero.LocalizableContent.Contracts
             EntityId = queryObj.EntityId;
             EntityName = queryObj.EntityName;
             EntityDtoName = dtoObj.EntityName;
-            Properties = SerializeContent(contentType);
             Lang = lang;
+            SerializeContent(contentType);
         }
 
         public string SerializeContent(TContentType obj)
         {
             var json = new JavaScriptSerializer().Serialize(obj);
+            Properties = json;
             return json;
         }
 

@@ -250,6 +250,14 @@
     <Compile Include="Migrations\201611220450040_Attachments_Tests.Designer.cs">
       <DependentUpon>201611220450040_Attachments_Tests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611231618165_AttachmentProperties.cs" />
+    <Compile Include="Migrations\201611231618165_AttachmentProperties.Designer.cs">
+      <DependentUpon>201611231618165_AttachmentProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611231751555_FileNameToAttachment.cs" />
+    <Compile Include="Migrations\201611231751555_FileNameToAttachment.Designer.cs">
+      <DependentUpon>201611231751555_FileNameToAttachment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -377,6 +385,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611220450040_Attachments_Tests.resx">
       <DependentUpon>201611220450040_Attachments_Tests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611231618165_AttachmentProperties.resx">
+      <DependentUpon>201611231618165_AttachmentProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611231751555_FileNameToAttachment.resx">
+      <DependentUpon>201611231751555_FileNameToAttachment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -1,9 +1,11 @@
 ﻿using Abp.Threading;
+using Abp.UI;
 using Abp.Web.Security.AntiForgery;
 using Cinotam.FileManager.Service.AppService;
 using Cinotam.FileManager.Service.AppService.Dto;
 using Cinotam.SimplePost.Application.Posts;
 using Cinotam.SimplePost.Application.Posts.Dto;
+using System;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -14,6 +16,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
     {
         private readonly IPostAppService _postAppService;
         private readonly IFileManagerAppService _fileManagerAppService;
+
         public HomeController(IPostAppService postAppService, IFileManagerAppService fileManagerAppService)
         {
             _postAppService = postAppService;
@@ -25,6 +28,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
             return View();
         }
+
         [HttpPost]
         [DisableAbpAntiForgeryTokenValidation]
         public async Task<ActionResult> Index(string title, string content, string lang)
@@ -69,7 +73,8 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
                 FileUrl = fileInfo.Url,
                 Id = id,
                 StoredInCdn = fileInfo.StoredInCloud,
-                Description = description
+                Description = description,
+                FileName = file?.FileName
             });
 
             return RedirectToAction("AddAttachment", new { id });
@@ -110,5 +115,25 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
             return View(contents);
         }
 
+        public async Task<FileResult> DownloadFile(int id)
+        {
+            var file = await _postAppService.GetAttachment(id);
+            var realUrl = file.ContentUrl;
+
+            if (!file.StoredInCdn)
+            {
+                realUrl = Server.MapPath(file.ContentUrl);
+            }
+            try
+            {
+
+                var fileBytes = System.IO.File.ReadAllBytes(realUrl);
+                return File(fileBytes, file.FileName);
+            }
+            catch (Exception ex)
+            {
+                throw new UserFriendlyException(ex.Message);
+            }
+        }
     }
 }

@@ -16,7 +16,6 @@ namespace Cinotam.AbpModuleZero.LocalizableContent
         where TContentType : class
     {
 
-
         private readonly ILocalizationContentStore _localizationContentStore;
 
         public LocalizableContentManager(ILocalizationContentStore localizationContentStore)
@@ -27,12 +26,11 @@ namespace Cinotam.AbpModuleZero.LocalizableContent
         public async Task<LocalizationContentResult> CreateLocalizationContent(ILocalizableContent<T, TContentType> input, bool overwrite, int? tenantId = null)
         {
             var cont = AbpCinotamLocalizableContent.CreateLocalizableContent(input);
-
             var languageInDb =
-                _localizationContentStore.LocalizableContents.FirstOrDefault(
-                    a =>
-                        a.Lang == input.Lang && a.EntityDtoName == input.EntityDtoName &&
-                        a.EntityName == input.EntityName && a.EntityId == input.EntityId);
+                            _localizationContentStore.LocalizableContents.FirstOrDefault(
+                                a =>
+                                    a.Lang == input.Lang && a.EntityDtoName == input.EntityDtoName &&
+                                    a.EntityName == input.EntityName && a.EntityId == input.EntityId);
             if (languageInDb != null && !overwrite) return LocalizationContentResult.ContentExists;
 
             if (overwrite && languageInDb != null)

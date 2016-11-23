@@ -13,5 +13,6 @@ namespace Cinotam.AbpModuleZero.Attachments
         Task<Attachment> GetAttachment(int attachmentId);
         Task<IEnumerable<Attachment>> GetAttachments(TEntity entity);
         Task AddAttachment(IHasAttachment<TEntity> attachmentInfo);
+        Task AddAttachment<TProperties>(IHasAttachment<TEntity> attachmentInfo, TProperties properties);
     }
 }
