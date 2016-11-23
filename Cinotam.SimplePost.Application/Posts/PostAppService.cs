@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace Cinotam.SimplePost.Application.Posts
 {
+    /// <summary>
+    /// This is just an example for LocalizableContentManager & AttachmentManager.
+    /// </summary>
     public class PostAppService : ApplicationService, IPostAppService
     {
         private readonly ILocalizableContentManager<Post, Content> _postLocalizableContentManager;
@@ -49,11 +52,18 @@ namespace Cinotam.SimplePost.Application.Posts
             foreach (var post in posts)
             {
                 var content = await _postLocalizableContentManager.GetLocalizableContent(post, name);
-                if (content == null) continue;
+                if (content == null)
+                {
+                    contents.Add(new PostDto() { Title = "Empty content", Id = post.Id, Lang = name });
+                    continue;
+                }
                 var convert = LocalizableContent<Post, Content>.DeserializeContent(content.Properties);
 
-                if (convert == null) continue;
-
+                if (convert == null)
+                {
+                    contents.Add(new PostDto() { Title = "Empty content", Id = post.Id, Lang = name });
+                    continue;
+                }
                 contents.Add(new PostDto()
                 {
                     ContentString = convert.ContentString,
