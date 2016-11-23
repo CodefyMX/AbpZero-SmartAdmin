@@ -317,9 +317,6 @@
     <Content Include="Areas\SysAdmin\Views\Layout\GetNotifications.js" />
     <Content Include="Areas\SysAdmin\Scripts\Layout\localizationText.js" />
     <Content Include="Areas\SysAdmin\Scripts\Layout\modalConfiguration.js" />
-    <Content Include="Areas\SysAdmin\Views\Menu\CreateEditMenu.js" />
-    <Content Include="Areas\SysAdmin\Views\Menu\MyMenus.js" />
-    <Content Include="Areas\SysAdmin\Views\Menu\SetCategories.js" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddOrganizationUnit.js" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\AddUserView.js" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\OrganizationUnitsList.js" />
@@ -643,9 +640,6 @@
     <Content Include="Areas\SysAdmin\Views\Notifications\MyNotifications.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\_AlternativeUserInfo.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\Error.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Menu\MyMenus.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Menu\CreateEditMenu.cshtml" />
-    <Content Include="Areas\SysAdmin\Views\Menu\SetCategories.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\OrganizationUnitsList.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\GetOrganizationUnits.cshtml" />
     <Content Include="Areas\SysAdmin\Views\OrganizationUnits\CreateEditOrganizationUnit.cshtml" />
