@@ -9,7 +9,7 @@ namespace Cinotam.SimplePost.Application.Posts.Dto
         public Content Content { get; set; }
     }
 
-    public class Content
+    public class Content : EntityDto
     {
         public string Title { get; set; }
         public string ContentString { get; set; }
