@@ -7,6 +7,7 @@ using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Authorization.Roles;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
+using System;
 using System.Reflection;
 
 namespace Cinotam.AbpModuleZero
@@ -41,6 +42,16 @@ namespace Cinotam.AbpModuleZero
 
             Configuration.Authorization.Providers.Add<AbpModuleZeroAuthorizationProvider>();
             Configuration.Features.Providers.Add<AppFeatureProvider>();
+
+            Configuration.Caching.Configure(AbpModuleZeroConsts.AttachmentsCacheName, cache =>
+            {
+                cache.DefaultSlidingExpireTime = TimeSpan.FromHours(1);
+            });
+            Configuration.Caching.Configure(AbpModuleZeroConsts.LocalizableContentCacheName, cache =>
+            {
+                cache.DefaultSlidingExpireTime = TimeSpan.FromHours(1);
+            });
+
         }
 
         public override void Initialize()

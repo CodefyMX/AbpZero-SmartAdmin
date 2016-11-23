@@ -120,6 +120,9 @@
     <Compile Include="AbpModuleZeroCoreModule.cs" />
     <Compile Include="AppFeatureProvider.cs" />
     <Compile Include="Attachments\AttachmentManager.cs" />
+    <Compile Include="Attachments\Caching\AttachmentCache.cs" />
+    <Compile Include="Attachments\Caching\AttachmentCacheItem.cs" />
+    <Compile Include="Attachments\Caching\IAttachmentCache.cs" />
     <Compile Include="Attachments\Contracts\HasAttachment.cs" />
     <Compile Include="Attachments\Contracts\IHasAttachment.cs" />
     <Compile Include="Attachments\Entities\Attachment.cs" />
@@ -138,6 +141,9 @@
     <Compile Include="Editions\EditionManager.cs" />
     <Compile Include="FeatureNames.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />
+    <Compile Include="LocalizableContent\Caching\AbpCinotamLocalizableContentCacheItem.cs" />
+    <Compile Include="LocalizableContent\Caching\ILocalizableContentCache.cs" />
+    <Compile Include="LocalizableContent\Caching\LocalizableContentCache.cs" />
     <Compile Include="LocalizableContent\Contracts\LocalizableContent.cs" />
     <Compile Include="LocalizableContent\Contracts\ILocalizableContent.cs" />
     <Compile Include="LocalizableContent\Entities\AbpCinotamLocalizableContent.cs" />

@@ -16,5 +16,6 @@ namespace Cinotam.SimplePost.Application.Posts
         Task<Content> GetContentForEdit(int id, string lang);
         Task DeleteContent(int id, string lang);
         Task RemoveAttachment(int id, int attachmentId);
+        Task<PostAttachmentDto> GetAttachment(int id);
     }
 }

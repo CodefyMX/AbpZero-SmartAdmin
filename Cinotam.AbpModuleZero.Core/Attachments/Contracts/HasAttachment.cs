@@ -37,14 +37,16 @@ namespace Cinotam.AbpModuleZero.Attachments.Contracts
             string fileLocation,
             bool storedInCdn,
             bool active,
-            string description)
+            string description, string fileName)
         {
             StoredInCdn = storedInCdn;
             ContentUrl = fileLocation;
             Active = active;
             Description = description;
             Entity = entity;
+            FileName = fileName;
         }
 
+        public string FileName { get; set; }
     }
 }

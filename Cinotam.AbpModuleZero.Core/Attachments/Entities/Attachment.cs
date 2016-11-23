@@ -17,7 +17,7 @@ namespace Cinotam.AbpModuleZero.Attachments.Entities
         public bool StoredInCdn { get; set; }
         public string EntityId { get; set; }
         public string EntityName { get; set; }
-
+        public string FileName { get; set; }
         public string Properties { get; set; }
         public static Attachment CreateAttachment<TEntity>
             (IHasAttachment<TEntity> hasAttachmentElement)
@@ -36,7 +36,9 @@ namespace Cinotam.AbpModuleZero.Attachments.Entities
                 EntityName = entityInfo.EntityName,
                 EntityId = entityInfo.EntityId,
                 StoredInCdn = hasAttachmentElement.StoredInCdn,
-                Properties = hasAttachmentElement.Properties
+                Properties = hasAttachmentElement.Properties,
+                FileName = hasAttachmentElement.FileName
+
             };
         }
     }

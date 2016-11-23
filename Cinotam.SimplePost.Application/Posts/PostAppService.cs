@@ -72,7 +72,7 @@ namespace Cinotam.SimplePost.Application.Posts
         public async Task AddAttachment(PostAttachmentInput input)
         {
             var post = _postManager.Posts.FirstOrDefault(a => a.Id == input.Id);
-            await _attachmentManager.AddAttachment(new HasAttachment<Post>(post, input.FileUrl, input.StoredInCdn, true, input.Description), new AttachmentExtraInfo());
+            await _attachmentManager.AddAttachment(new HasAttachment<Post>(post, input.FileUrl, input.StoredInCdn, true, input.Description, input.FileName), new AttachmentExtraInfo());
 
         }
 
@@ -83,6 +83,13 @@ namespace Cinotam.SimplePost.Application.Posts
             await _attachmentManager.RemoveAttachment(entity, attachmentId);
 
         }
+
+        public async Task<PostAttachmentDto> GetAttachment(int id)
+        {
+            var attachment = await _attachmentManager.GetAttachment(id);
+            return attachment.MapTo<PostAttachmentDto>();
+        }
+
         public async Task<IEnumerable<PostAttachmentDto>> GetAttachments(int id)
         {
             var post = _postManager.Posts.FirstOrDefault(a => a.Id == id);

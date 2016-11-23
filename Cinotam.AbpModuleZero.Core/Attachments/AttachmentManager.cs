@@ -1,4 +1,6 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp.AutoMapper;
+using Abp.Domain.Repositories;
+using Cinotam.AbpModuleZero.Attachments.Caching;
 using Cinotam.AbpModuleZero.Attachments.Contracts;
 using Cinotam.AbpModuleZero.Attachments.Entities;
 using Cinotam.AbpModuleZero.LocalizableContent.Helpers;
@@ -13,15 +15,18 @@ namespace Cinotam.AbpModuleZero.Attachments
 
     {
         private readonly IRepository<Attachment> _attachmentRepository;
-
-        public AttachmentManager(IRepository<Attachment> attachmentRepository)
+        private readonly IAttachmentCache _attachmentCache;
+        public AttachmentManager(IRepository<Attachment> attachmentRepository, IAttachmentCache attachmentCache)
         {
             _attachmentRepository = attachmentRepository;
+            _attachmentCache = attachmentCache;
         }
 
-        public Task<Attachment> GetAttachment(int attachmentId)
+        public async Task<Attachment> GetAttachment(int attachmentId)
         {
-            return _attachmentRepository.GetAsync(attachmentId);
+            var attachment = (await _attachmentCache.GetAsync(attachmentId));
+            return attachment.MapTo<Attachment>();
+
         }
 
         public async Task<IEnumerable<Attachment>> GetAttachments(TEntity entity)

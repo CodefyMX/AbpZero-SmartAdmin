@@ -7,6 +7,7 @@ namespace Cinotam.SimplePost.Application.Posts.Dto
         public string FileUrl { get; set; }
         public bool StoredInCdn { get; set; }
         public string Description { get; set; }
+        public string FileName { get; set; }
     }
 
     public class AttachmentExtraInfo
