@@ -7,5 +7,8 @@
         bool Active { get; set; }
         bool StoredInCdn { get; set; }
         TEntity Entity { get; set; }
+        string Properties { get; set; }
+        string SerializeContent<TProperties>(TProperties contentType);
+
     }
 }

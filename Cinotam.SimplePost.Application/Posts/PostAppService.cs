@@ -72,7 +72,7 @@ namespace Cinotam.SimplePost.Application.Posts
         public async Task AddAttachment(PostAttachmentInput input)
         {
             var post = _postManager.Posts.FirstOrDefault(a => a.Id == input.Id);
-            await _attachmentManager.AddAttachment(new HasAttachment<Post>(post, input.FileUrl, input.StoredInCdn, true, input.Description));
+            await _attachmentManager.AddAttachment(new HasAttachment<Post>(post, input.FileUrl, input.StoredInCdn, true, input.Description), new AttachmentExtraInfo());
 
         }
 

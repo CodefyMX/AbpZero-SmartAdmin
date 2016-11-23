@@ -10,5 +10,6 @@ namespace Cinotam.SimplePost.Application.Posts.Dto
         public string Description { get; set; }
         public string ContentUrl { get; set; }
         public bool StoredInCdn { get; set; }
+        public string Properties { get; set; }
     }
 }

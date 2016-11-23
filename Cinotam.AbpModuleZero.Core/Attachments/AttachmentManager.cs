@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Cinotam.AbpModuleZero.Attachments
 {
-    public class AttachmentManager<TEntity> : IAttachmentManager<TEntity> where TEntity : class
+    public class AttachmentManager<TEntity>
+        : IAttachmentManager<TEntity> where TEntity : class
 
     {
         private readonly IRepository<Attachment> _attachmentRepository;
@@ -34,6 +35,13 @@ namespace Cinotam.AbpModuleZero.Attachments
 
         public async Task AddAttachment(IHasAttachment<TEntity> attachmentInfo)
         {
+            await _attachmentRepository.InsertOrUpdateAndGetIdAsync(Attachment.CreateAttachment(attachmentInfo));
+        }
+
+        public async Task AddAttachment<TProperties>(IHasAttachment<TEntity> attachmentInfo, TProperties properties)
+        {
+            attachmentInfo.SerializeContent(properties);
+
             await _attachmentRepository.InsertOrUpdateAndGetIdAsync(Attachment.CreateAttachment(attachmentInfo));
         }
 
