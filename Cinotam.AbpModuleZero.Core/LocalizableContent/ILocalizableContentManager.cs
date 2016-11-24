@@ -12,9 +12,11 @@ namespace Cinotam.AbpModuleZero.LocalizableContent
     {
 
         Task<LocalizationContentResult> CreateLocalizationContent(ILocalizableContent<T, TContentType> input, bool overwrite = false, int? tenantId = null);
-        Task<Entities.AbpCinotamLocalizableContent> GetLocalizableContent(T entity, string lang);
-        Task<Entities.AbpCinotamLocalizableContent> GetLocalizableContent(T entity, string lang, Type dtoType);
-        Task<IEnumerable<Entities.AbpCinotamLocalizableContent>> GetLocalizableContent(T entity);
+        Task<AbpCinotamLocalizableContent> GetLocalizableContent(T entity, string lang);
+        Task<AbpCinotamLocalizableContent> GetLocalizableContent(T entity, string lang, Type dtoType);
+        Task<IEnumerable<AbpCinotamLocalizableContent>> GetLocalizableContent(T entity);
         Task DeleteContent(AbpCinotamLocalizableContent content);
+        Task<IEnumerable<AbpCinotamLocalizableContent>> SearchAsync(string[] lookInProperties, string search);
+        Task<object> GetContentTypeAsync(T entity, string lang);
     }
 }

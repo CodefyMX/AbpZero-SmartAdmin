@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Cinotam.AbpModuleZero.Tools.Extensions
@@ -19,6 +20,10 @@ namespace Cinotam.AbpModuleZero.Tools.Extensions
                 }
             }
             return dic;
+        }
+        public static bool HasProperty(this object obj, string propertyName)
+        {
+            return obj.GetType().GetProperties().FirstOrDefault(a => a.Name == propertyName) != null;
         }
     }
 }
