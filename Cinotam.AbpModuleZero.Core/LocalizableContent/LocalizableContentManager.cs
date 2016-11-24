@@ -3,6 +3,7 @@ using Cinotam.AbpModuleZero.LocalizableContent.Contracts;
 using Cinotam.AbpModuleZero.LocalizableContent.Entities;
 using Cinotam.AbpModuleZero.LocalizableContent.Helpers;
 using Cinotam.AbpModuleZero.LocalizableContent.Store;
+using Cinotam.AbpModuleZero.Tools.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,5 +89,50 @@ namespace Cinotam.AbpModuleZero.LocalizableContent
         {
             return _localizationContentStore.RemoveContent(content);
         }
+
+        public async Task<IEnumerable<AbpCinotamLocalizableContent>> SearchAsync(string[] lookInProperties, string search)
+        {
+            var elements = await Task.FromResult(_localizationContentStore.LocalizableContents);
+            var result = new List<AbpCinotamLocalizableContent>();
+            foreach (var abpCinotamLocalizableContent in elements)
+            {
+                var deserealized = LocalizableContent<T, TContentType>.DeserializeContent(abpCinotamLocalizableContent.Properties);
+
+                result.AddRange(from lookInProperty
+                                in lookInProperties
+                                where deserealized.HasProperty(lookInProperty)
+                                select deserealized.GetType().GetProperty(lookInProperty).GetValue(deserealized)
+                                into propertyValue
+                                where propertyValue != null
+                                where propertyValue.ToString().Contains(search)
+                                select abpCinotamLocalizableContent);
+
+
+                /* Or
+                 
+             foreach (var lookInProperty in lookInProperties)
+                {
+                    if (!ClassCheckers.HasProperty(lookInProperty, deserealized)) continue;
+                    var propertyValue = deserealized.GetType().GetProperty(lookInProperty).GetValue(deserealized);
+
+                    if(propertyValue == null) continue;
+                    if (propertyValue.ToString().Contains(search))
+                    {
+                        result.Add(abpCinotamLocalizableContent);
+                    }
+                }
+             
+             */
+
+            }
+            return result;
+        }
+
+        public async Task<object> GetContentTypeAsync(T entity, string lang)
+        {
+            var localizableContent = await GetLocalizableContent(entity, lang);
+            return LocalizableContent<T, TContentType>.DeserializeContent(localizableContent.Properties);
+        }
+
     }
 }

@@ -19,13 +19,22 @@ namespace Cinotam.AbpModuleZero.LocalizableContent.Contracts
             SerializeContent(contentType);
         }
 
+        //public string SerializeContent(TContentType obj)
+        //{
+        //    dynamic objToSerialize = new ExpandoObject();
+        //    objToSerialize.Content = obj;
+        //    var shareableProps = ClassCheckers.HasAttribute(typeof(IsSharedProperty), obj.GetType().GetProperties(), obj);
+        //    objToSerialize.SharedProps = shareableProps;
+        //    var json = new JavaScriptSerializer().Serialize(objToSerialize);
+        //    Properties = json;
+        //    return json;
+        //}
         public string SerializeContent(TContentType obj)
         {
             var json = new JavaScriptSerializer().Serialize(obj);
             Properties = json;
             return json;
         }
-
 
         public static TContentType DeserializeContent(string json)
         {
