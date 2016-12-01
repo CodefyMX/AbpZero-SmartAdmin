@@ -10,7 +10,7 @@ namespace Cinotam.AbpModuleZero.Tests
 {
     [DependsOn(
         typeof(AbpModuleZeroDataModule),
-        typeof(AbpTestBaseModule), typeof(CinotamModuleZeroAppModule))]
+        typeof(AbpTestBaseModule), typeof(CinotamModuleZeroAppModule), typeof(AbpModuleZeroDataModule))]
     public class AbpModuleZeroTestModule : AbpModule
     {
         public override void PreInitialize()
