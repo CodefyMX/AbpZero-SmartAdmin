@@ -21,7 +21,7 @@ namespace Cinotam.ModuleZero.AppModule
                             ActionName = "Index",
                             ControllerName = "Dashboard",
                             //Required for angular spa admin page
-                            AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "", "", "", false)
+                            AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "Dashboard", "", "", false)
                         }
                     )
 

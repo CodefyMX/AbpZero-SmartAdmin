@@ -6,17 +6,14 @@
 	/* @ngInject */
 	appRun.$inject = ['routerHelper'];
 	function appRun(routerHelper) {
-		console.log(routerHelper);
 		routerHelper.configureStates(getStates(routerHelper), '/');
 	}
 	function getStates(routerHelper) {
 		var routeObj = {
 		    name: abp.nav.menus.ModuleZeroMenu.name,
-			routes: []
+				routes: []
 		};
-		abp.nav.menus.ModuleZeroMenu.items.forEach(function (menuItem) {
-		    console.log(menuItem);
-
+		abp.nav.menus.ModuleZeroMenu.items[0].items.forEach(function (menuItem) {
 		    if (menuItem.customData.angularMenu) {
 		        var angularCustomData = menuItem.customData.angularMenu;
 
@@ -30,7 +27,7 @@
 		        }
 		    }
 
-		    
+
 		});
 		return routeObj;
 	}

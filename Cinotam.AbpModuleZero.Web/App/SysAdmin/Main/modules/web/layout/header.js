@@ -9,8 +9,9 @@
         vm.currentLanguage = abp.localization.currentLanguage;
 
         vm.currentMenuName = $state.current.menu;
-        vm.menu = routerHelper.getStates("Administration");
-        console.log("Menu",vm.menu);
+        var routes = routerHelper.getStates();
+        vm.menu = routes;
+        console.log("Menu",routerHelper.getStates());
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             vm.currentMenuName = toState.menu;
         });

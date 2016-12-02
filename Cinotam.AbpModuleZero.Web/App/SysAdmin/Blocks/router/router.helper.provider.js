@@ -73,27 +73,22 @@
             }
             function configureStates(routeObj, otherwisePath) {
                 var routes = [];
-
                 console.log(routeObj);
                 routeObj.routes.forEach(function (data) {
-
+                  console.log(data);
                     if (data.angularMenu) {
                         var state = data.angularMenu;
-                        if (!state.isOtherApp) {
-                            state.config.resolve =
-                            angular.extend(state.config.resolve || {}, config.resolveAlways);
-                            $stateProvider.state(state.state, state.config);
-
-                        }
+                        // if (!state.isOtherApp) {
+                        //     state.config.resolve =
+                        //     angular.extend(state.config.resolve || {}, config.resolveAlways);
+                        //     $stateProvider.state(state.state, state.config);
+                        // }
                         routes.push({
                             name: state.state,
                             config: state.config,
                             isOtherApp: state.isOtherApp
                         });
                     }
-
-                    
-
                 });
                 if (otherwisePath && !hasOtherwise) {
                     hasOtherwise = true;
@@ -103,6 +98,7 @@
                     menuName: routeObj.name,
                     items: routes
                 });
+                console.log("Abp routes",abpRoutes);
             }
 
             function handleRoutingErrors() {
