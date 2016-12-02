@@ -1,4 +1,5 @@
-﻿using Abp.IdentityFramework;
+﻿using Abp.Configuration;
+using Abp.IdentityFramework;
 using Abp.UI;
 using Abp.Web.Mvc.Controllers;
 using Cinotam.AbpModuleZero.TenantHelpers.TenantHelperAppServiceBase;
@@ -18,12 +19,21 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
     {
         public IMultiTenancyHelper MultiTenancyHelper { get; set; }
         public ITenantHelperService TenantAppService { get; set; }
+
         private const string TenancyKey = "CurrentTenant";
         protected AbpModuleZeroControllerBase()
         {
             LocalizationSourceName = AbpModuleZeroConsts.LocalizationSourceName;
         }
 
+        public string SelectedApp
+        {
+            get
+            {
+                var app = SettingManager.GetSettingValue("AppMode");
+                return app;
+            }
+        }
         /// <summary>
         /// Build the model for the datatables.js request
         /// </summary>
