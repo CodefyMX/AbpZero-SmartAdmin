@@ -139,9 +139,11 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         public ActionResult AppSelector()
         {
             var app = SelectedApp;
-            if (app == "MPA") return RedirectToAction("Index", "Dashboard", new { area = "SysAdmin" });
-            if (app == "SPA") return RedirectToAction("Spa", "Admin");
-            throw new UserFriendlyException(L("AppNotFound"));
+            //if (app == "MPA") return RedirectToAction("Index", "Dashboard", new { area = "SysAdmin" });
+            //if (app == "SPA") return RedirectToAction("Spa", "Admin");
+
+            return View();
+
         }
 
 

@@ -316,12 +316,10 @@
     <Content Include="App\SysAdmin\Main\images\abp-logo.png" />
     <Content Include="App\SysAdmin\Main\main.css" />
     <Content Include="App\SysAdmin\Main\main.min.css" />
-    <Content Include="App\SysAdmin\Main\modules\web\about\about.js" />
     <Content Include="App\SysAdmin\Main\modules\web\app.web.module.js" />
     <Content Include="App\SysAdmin\Main\modules\web\app.web.routes.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\autoFocus.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\enterKey.js" />
-    <Content Include="App\SysAdmin\Main\modules\web\home\home.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\header.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\layout.js" />
     <Content Include="App\SysAdmin\Main\services\appSession.js" />
@@ -648,8 +646,6 @@
     <Content Include="Areas\SysAdmin\Scripts\datatables.config.js" />
     <Content Include="Areas\SysAdmin\Views\Configuration\_ConfigurationsView.cshtml" />
     <Content Include="App\SysAdmin\Main\main.less" />
-    <Content Include="App\SysAdmin\Main\modules\web\about\about.cshtml" />
-    <Content Include="App\SysAdmin\Main\modules\web\home\home.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\header.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\layout.cshtml" />
     <Content Include="App\SysAdmin\Main\web.config" />
@@ -658,6 +654,14 @@
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
     <Content Include="App\SysAdmin\Main\modules\web\dashboard\index.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\index.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\roles\index.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\tenants\index.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\users\index.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\editions\index.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\configurations\index.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\auditLogs\index.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\languages\index.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
@@ -702,6 +706,7 @@
     <Content Include="Areas\SysAdmin\Views\Users\UserSpecialPermissions.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\_CountryCodes.cshtml" />
     <Content Include="Content\MailTemplates\ChangeInfo\ChangedInfo.html" />
+    <Content Include="RepoContent\CapturaSpa.JPG" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -1649,6 +1654,7 @@
     <Content Include="Views\Layout\_languageSelectionForm.cshtml" />
     <Content Include="Views\Home\ManageContent.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\AppSelector.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1715,14 +1721,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\SysAdmin\Main\modules\web\auditLogs\" />
-    <Folder Include="App\SysAdmin\Main\modules\web\configuration\" />
-    <Folder Include="App\SysAdmin\Main\modules\web\editions\" />
-    <Folder Include="App\SysAdmin\Main\modules\web\languages\" />
-    <Folder Include="App\SysAdmin\Main\modules\web\organizationUnits\" />
-    <Folder Include="App\SysAdmin\Main\modules\web\roles\" />
-    <Folder Include="App\SysAdmin\Main\modules\web\tenants\" />
-    <Folder Include="App\SysAdmin\Main\modules\web\users\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\Templates\ArticlePage\Resources\" />
     <Folder Include="Content\Templates\Simple\Resources\" />

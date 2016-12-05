@@ -10,24 +10,24 @@
 		routerHelper.configureStates(states, '/dashboard');
 	}
 	function getStates(routerHelper) {
-		
+
 		var moduleZeroMenu = abp.nav.menus.ModuleZeroMenu;
 		var routeObj = {
-		    name: moduleZeroMenu.name,
-				routes: []
+			name: moduleZeroMenu.name,
+			routes: []
 		};
 		moduleZeroMenu.items[0].items.forEach(function (menuItem) {
-		    if (menuItem.customData.angularMenu) {
-		        var angularCustomData = menuItem.customData.angularMenu;
-		        if (angularCustomData.HasPermission) {
-		            if (abp.auth.hasPermission(angularCustomData.PermissionName)) {
-		                routeObj.routes.push(new routerHelper.createMenuItem(menuItem));
-		            }
-		        } else {
-		            var result = new routerHelper.createMenuItem(menuItem);
-		            routeObj.routes.push(result);
-		        }
-		    }
+			if (menuItem.customData.angularMenu) {
+				var angularCustomData = menuItem.customData.angularMenu;
+				if (angularCustomData.HasPermission) {
+					if (abp.auth.hasPermission(angularCustomData.PermissionName)) {
+						routeObj.routes.push(new routerHelper.createMenuItem(menuItem));
+					}
+				} else {
+					var result = new routerHelper.createMenuItem(menuItem);
+					routeObj.routes.push(result);
+				}
+			}
 		});
 		return routeObj;
 	}
