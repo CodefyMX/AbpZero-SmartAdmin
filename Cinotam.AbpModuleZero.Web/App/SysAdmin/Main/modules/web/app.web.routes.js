@@ -17,7 +17,6 @@
 				routes: []
 		};
 		moduleZeroMenu.items[0].items.forEach(function (menuItem) {
-			console.log(menuItem);
 		    if (menuItem.customData.angularMenu) {
 		        var angularCustomData = menuItem.customData.angularMenu;
 		        if (angularCustomData.HasPermission) {

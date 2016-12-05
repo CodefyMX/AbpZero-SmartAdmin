@@ -657,6 +657,7 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css.map" />
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
+    <Content Include="App\SysAdmin\Main\modules\web\dashboard\index.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
@@ -1714,6 +1715,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\SysAdmin\Main\modules\web\auditLogs\" />
+    <Folder Include="App\SysAdmin\Main\modules\web\configuration\" />
+    <Folder Include="App\SysAdmin\Main\modules\web\editions\" />
+    <Folder Include="App\SysAdmin\Main\modules\web\languages\" />
+    <Folder Include="App\SysAdmin\Main\modules\web\organizationUnits\" />
+    <Folder Include="App\SysAdmin\Main\modules\web\roles\" />
+    <Folder Include="App\SysAdmin\Main\modules\web\tenants\" />
+    <Folder Include="App\SysAdmin\Main\modules\web\users\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\Templates\ArticlePage\Resources\" />
     <Folder Include="Content\Templates\Simple\Resources\" />

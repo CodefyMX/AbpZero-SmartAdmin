@@ -66,7 +66,6 @@
                 self.isOtherApp = menuItem.customData.angularMenu.isOtherApp;
                 if (menuItem.items.length > 0) {
                     menuItem.items.forEach(function (childItem) {
-                        console.log("Childs",childItem);
                         self.items.push(childItem);
                     });
                 }
@@ -75,19 +74,19 @@
             function configureStates(routeObj, otherwisePath) {
                 var routes = [];
                 routeObj.routes.forEach(function (data) {
-                   
-                        var state = data;
-                        // if (!state.isOtherApp) {
-                        //     state.config.resolve =
-                        //     angular.extend(state.config.resolve || {}, config.resolveAlways);
-                        //     $stateProvider.state(state.state, state.config);
-                        // }
-                        routes.push({
-                            name: state.state,
-                            config: state.config,
-                            isOtherApp: state.isOtherApp
-                        });
                     
+                    var state = data;
+                    if (!state.isOtherApp) {
+                        state.config.resolve =
+                        angular.extend(state.config.resolve || {}, config.resolveAlways);
+                        $stateProvider.state(state.state, state.config);
+                    }
+                    routes.push({
+                        name: state.state,
+                        config: state.config,
+                        isOtherApp: state.isOtherApp
+                    });
+
                 });
                 if (otherwisePath && !hasOtherwise) {
                     hasOtherwise = true;
@@ -97,7 +96,7 @@
                     menuName: routeObj.name,
                     items: routes
                 });
-                console.log("Abp routes",abpRoutes);
+                console.log("Abp routes", abpRoutes);
             }
 
             function handleRoutingErrors() {
@@ -129,7 +128,7 @@
             }
 
             function getStates(menuName) {
-                if(menuName == "" || undefined) throw error;
+                if (menuName == "" || undefined) throw error;
                 for (var i = 0; i < abpRoutes.length; i++) {
                     if (abpRoutes[i].menuName == menuName) return abpRoutes[i];
                 }
