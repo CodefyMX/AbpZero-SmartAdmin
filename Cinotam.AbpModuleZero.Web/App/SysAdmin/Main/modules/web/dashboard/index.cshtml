@@ -1,0 +1,52 @@
+﻿<div ng-controller="app.views.dashboard.index as vm">
+    <style>
+        .chart-small {
+            max-height: 400px;
+            width: 100%;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>@L("Dashboard")</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">@L("Logs") </div>
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="col-md-8">
+
+                            <canvas id="line" chart-click="vm.onClick" chart-options="vm.chartOptions" class="chart chart-line chart-small" chart-data="vm.chartDataFormatedDtos"
+                                    chart-labels="vm.labels"></canvas>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <h2>@L("Requests")</h2>
+                            <p>{{vm.chartData.totalRequestsReceived}}</p>
+                            <h2>@L("AverageExecutionTime")</h2>
+                            <p>
+                                {{vm.chartData.avgExecutionTime}}
+                            </p>
+                            
+                            
+                            <select ng-change="vm.update()" class="form-control" ng-model="vm.selectVal">
+                                <option value="30">30</option>
+                                <option selected="selected" value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="400">400</option>
+                                <option value="800">800</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

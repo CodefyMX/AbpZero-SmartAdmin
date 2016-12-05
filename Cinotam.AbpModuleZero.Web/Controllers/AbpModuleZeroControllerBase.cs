@@ -21,6 +21,7 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         public ITenantHelperService TenantAppService { get; set; }
 
         private const string TenancyKey = "CurrentTenant";
+
         protected AbpModuleZeroControllerBase()
         {
             LocalizationSourceName = AbpModuleZeroConsts.LocalizationSourceName;
@@ -30,8 +31,17 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
         {
             get
             {
-                var app = SettingManager.GetSettingValue("AppMode");
-                return app;
+                try
+                {
+                    var app = SettingManager.GetSettingValue("AppMode");
+                    return app;
+                }
+                catch (Exception)
+                {
+                    //
+                    return string.Empty;
+                }
+
             }
         }
         /// <summary>

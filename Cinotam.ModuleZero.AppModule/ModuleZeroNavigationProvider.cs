@@ -10,6 +10,13 @@ namespace Cinotam.ModuleZero.AppModule
     {
         public override void SetNavigation(INavigationProviderContext context)
         {
+            const string adminFolder = "/App/SysAdmin/Main/modules/web/";
+
+            BuildAdminMenu(context, adminFolder);
+        }
+
+        private void BuildAdminMenu(INavigationProviderContext context, string appMainModulesWeb)
+        {
             context.Manager.Menus.Add("ModuleZeroMenu", new MenuDefinition("ModuleZeroMenu", L("SysAdminMenu"))
                 .AddItem(
                 new MenuItemDefinition(
@@ -18,10 +25,11 @@ namespace Cinotam.ModuleZero.AppModule
                         icon: "fa fa-lg fa-fw fa-gear",
                         customData: new
                         {
+                            //Required for custom menu resolver
                             ActionName = "Index",
                             ControllerName = "Dashboard",
                             //Required for angular spa admin page
-                            AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "Dashboard", "", "", false)
+                            AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.PagesDashboard, "Dashboard", "dashboard", appMainModulesWeb + "dashboard/index.cshtml", false)
                         }
                     )
 
@@ -34,7 +42,7 @@ namespace Cinotam.ModuleZero.AppModule
                     {
                         ActionName = "Index",
                         ControllerName = "Dashboard",
-                        AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.PagesDashboard, "Dashboard", "", "", false)
+                        AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.PagesDashboard, "Dashboard", "/dashboard", appMainModulesWeb + "dashboard/index.cshtml", false)
                     },
                     requiredPermissionName: PermissionNames.PagesDashboard
                     ))
@@ -47,7 +55,7 @@ namespace Cinotam.ModuleZero.AppModule
                     {
                         ActionName = "OrganizationUnitsList",
                         ControllerName = "OrganizationUnits",
-                        AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "", "", "", false)
+                        AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.PagesSysAdminOrgUnit, "OrganizationUnits", "/organizationUnits", appMainModulesWeb + "organizationUnits/index.cshtml", false)
                     },
                     requiredPermissionName: PermissionNames.PagesSysAdminOrgUnit
                     ))
@@ -60,7 +68,7 @@ namespace Cinotam.ModuleZero.AppModule
                     {
                         ActionName = "UsersList",
                         ControllerName = "Users",
-                        AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "", "", "", false)
+                        AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.PagesSysAdminUsers, "Users", "/users", appMainModulesWeb + "users/index.cshtml", false)
                     },
                     requiredPermissionName: PermissionNames.PagesSysAdminUsers
                     ))
@@ -73,7 +81,7 @@ namespace Cinotam.ModuleZero.AppModule
                     {
                         ActionName = "RolesList",
                         ControllerName = "Roles",
-                        AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "", "", "", false)
+                        AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.PagesSysAdminRoles, "Roles", "/roles", appMainModulesWeb + "roles/index.cshtml", false)
                     },
                     requiredPermissionName: PermissionNames.PagesSysAdminRoles
                     ))
@@ -86,7 +94,7 @@ namespace Cinotam.ModuleZero.AppModule
                     {
                         ActionName = "LanguagesList",
                         ControllerName = "Languages",
-                        AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "", "", "", false)
+                        AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.PagesSysAdminLanguages, "Languages", "/languages", appMainModulesWeb + "languages/index.cshtml", false)
                     },
                     requiredPermissionName: PermissionNames.PagesSysAdminLanguages
                     ))
@@ -99,7 +107,7 @@ namespace Cinotam.ModuleZero.AppModule
                     {
                         ActionName = "Configurations",
                         ControllerName = "Configuration",
-                        AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "", "", "", false)
+                        AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.PagesSysAdminConfiguration, "Configurations", "/configurations", appMainModulesWeb + "configurations/index.cshtml", false)
                     },
                     requiredPermissionName: PermissionNames.PagesSysAdminConfiguration
                     ))
@@ -112,7 +120,7 @@ namespace Cinotam.ModuleZero.AppModule
                     {
                         ActionName = "AuditLogsList",
                         ControllerName = "AuditLogs",
-                        AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "", "", "", false)
+                        AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.AuditLogs, "AuditLogs", "/AuditLogs", appMainModulesWeb + "auditLogs/index.cshtml", false)
                     },
                     requiredPermissionName: PermissionNames.AuditLogs
                     ))
@@ -124,7 +132,7 @@ namespace Cinotam.ModuleZero.AppModule
                     {
                         ActionName = "EditionList",
                         ControllerName = "Editions",
-                        AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "", "", "", false)
+                        AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.PagesTenantsEdit, "Editions", "/Editions", appMainModulesWeb + "editions/index.cshtml", false)
                     },
                     requiredPermissionName: PermissionNames.PagesTenantsEdit
                     ))
@@ -137,13 +145,13 @@ namespace Cinotam.ModuleZero.AppModule
                     {
                         ActionName = "TenantsList",
                         ControllerName = "Tenants",
-                        AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "", "", "", false)
+                        AngularMenu = new AngularCustomObj.AngularMenuItem(true, PermissionNames.PagesTenants, "Tenants", "/Tenants", appMainModulesWeb + "tenants/index.cshtml", false)
                     }
                     ))
                 )
             );
-
         }
+
         private static ILocalizableString L(string name)
         {
             return new LocalizableString(name, AbpModuleZeroConsts.LocalizationSourceName);

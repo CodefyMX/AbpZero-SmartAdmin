@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "AppSelector";
+}
+
+
+<style>
+    .demo {
+        border-radius: 3px;
+        border: 1px solid;
+        width: 100%;
+        height: 300px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-xs-12">
+        
+
+        <h3>@L("AppSelector")</h3>
+        <p>@L("SelectAppMode")</p>
+
+        
+        <div class="row text-center">
+            <div class="col-md-3 col-md-offset-2">
+                <div class="app-selector">
+
+                    <h4 class="app-selector-header">@L("SPA")</h4>
+                    
+                    
+                    <img class="demo" src="http://codecondo.com/wp-content/uploads/2015/05/15-Directives-to-Extend-Your-Angular.js-Apps.jpg?478983" />
+                    
+
+                    <a href="/Admin/Spa#/" class="btn btn-primary btn-block btn-lg">@L("Select")</a>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-md-offset-2">
+                <div class="app-selector">
+
+                    <h4 class="app-selector-header">@L("MPA")</h4>
+                    <img class="demo" src="http://www.satyanamsoft.com/Themes/satyanamsoft/Content/images/mvc_05.png" />
+                    <a href="/SysAdmin/Dashboard" class="btn btn-primary btn-block btn-lg">@L("Select")</a>
+                </div>
+
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+

@@ -6,28 +6,28 @@
 	/* @ngInject */
 	appRun.$inject = ['routerHelper'];
 	function appRun(routerHelper) {
-		routerHelper.configureStates(getStates(routerHelper), '/');
+		var states = getStates(routerHelper);
+		routerHelper.configureStates(states, '/dashboard');
 	}
 	function getStates(routerHelper) {
+
+		var moduleZeroMenu = abp.nav.menus.ModuleZeroMenu;
 		var routeObj = {
-		    name: abp.nav.menus.ModuleZeroMenu.name,
-				routes: []
+			name: moduleZeroMenu.name,
+			routes: []
 		};
-		abp.nav.menus.ModuleZeroMenu.items[0].items.forEach(function (menuItem) {
-		    if (menuItem.customData.angularMenu) {
-		        var angularCustomData = menuItem.customData.angularMenu;
-
-		        if (angularCustomData.HasPermission) {
-		            if (abp.auth.hasPermission(angularCustomData.PermissionName)) {
-		                routeObj.routes.push(new routerHelper.createMenuItem(menuItem));
-		            }
-		        } else {
-		            var result = new routerHelper.createMenuItem(menuItem);
-		            routeObj.routes.push(result);
-		        }
-		    }
-
-
+		moduleZeroMenu.items[0].items.forEach(function (menuItem) {
+			if (menuItem.customData.angularMenu) {
+				var angularCustomData = menuItem.customData.angularMenu;
+				if (angularCustomData.HasPermission) {
+					if (abp.auth.hasPermission(angularCustomData.PermissionName)) {
+						routeObj.routes.push(new routerHelper.createMenuItem(menuItem));
+					}
+				} else {
+					var result = new routerHelper.createMenuItem(menuItem);
+					routeObj.routes.push(result);
+				}
+			}
 		});
 		return routeObj;
 	}

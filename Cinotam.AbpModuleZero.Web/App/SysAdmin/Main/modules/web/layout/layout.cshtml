@@ -14,13 +14,49 @@
     <title>CinotamWebSite</title>
 
     <link rel="shortcut icon" href="~/favicon.ico">
+    <meta charset=" utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    @Styles.Render("~/Bundles/App/vendor/css")
-    @Styles.Render("~/Bundles/App/Main/css")
+    <title> SmartAdmin - MVC5 </title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        .body-content {
+                margin-top: 50px;
+    margin-left: 250px;
+        }
+    </style>
+    <link href=@Url.Content("~/Areas/SysAdmin/Content/css/bootstrap.min.css") rel="stylesheet" />
+    <link href=@Url.Content("~/Areas/SysAdmin/Content/css/font-awesome.min.css") rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link href=@Url.Content("~/Areas/SysAdmin/Content/css/abp/toastr.min.css") rel="stylesheet" />
+    <link href=@Url.Content("~/Scripts/sweetalert/sweet-alert.css") rel="stylesheet" />
+    <link href="~/Areas/SysAdmin/Content/css/your_style.css" rel="stylesheet" />
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" href=@Url.Content("~/Areas/SysAdmin/Content/img/favicon/favicon.ico") type="image/x-icon">
+    <link rel="icon" href=@Url.Content("~/Areas/SysAdmin/Content/img/favicon/favicon.ico") type="image/x-icon">
+    <link href=@Url.Content("~/Content/flags/famfamfam-flags.css") rel="stylesheet" />
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+    <!-- Specifying a Webpage Icon for Web Clip
+    Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+    <link rel="apple-touch-icon" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/sptouch-icon-iphone.png")>
+    <link rel="apple-touch-icon" sizes="76x76" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/touch-icon-ipad.png")>
+    <link rel="apple-touch-icon" sizes="120x120" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/touch-icon-iphone-retina.png")>
+    <link rel="apple-touch-icon" sizes="152x152" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/touch-icon-ipad-retina.png")>
+    <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Startup image for web apps -->
+    <link rel="apple-touch-startup-image" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/ipad-landscape.png") media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+    <link rel="apple-touch-startup-image" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/ipad-portrait.png") media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+    <link rel="apple-touch-startup-image" href=@Url.Content("~/Areas/SysAdmin/Content/img/splash/iphone.png") media="screen and (max-device-width: 320px)">
     <script type="text/javascript">
         //This is used to get the application's root path from javascript. It's useful if you're running application in a virtual directory under IIS.
-        var abp = abp || {}; abp.appPath = '@ApplicationPath';
+        var abp = abp || {};
+        abp.appPath = '@ApplicationPath';
     </script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -28,6 +64,7 @@
         <script src="@Url.Content("~/Scripts/others/html5shiv.js")"></script>
         <script src="@Url.Content("~/Scripts/others/respond.min.js")"></script>
     <![endif]-->
+
     @Scripts.Render("~/Bundles/App/vendor/js")
 
     <script>
@@ -44,6 +81,7 @@
     <script src="~/signalr/hubs"></script>
     @Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js")
     @Scripts.Render("~/App/SysAdmin/Blocks/js")
+    @Scripts.Render("~/App/SysAdmin/Libs/js")
     @Scripts.Render("~/App/SysAdmin/js")
     
 </head>
@@ -51,10 +89,13 @@
     <div ng-app="app">
         <div ng-controller="app.views.layout as vm">
             <div ng-include="'/App/SysAdmin/Main/Modules/Web/layout/header.cshtml'"></div>
-            <div class="container">
-                <div class="angular-animation-container row">
-                    <div ui-view class="shuffle-animation col-xs-12"></div>
+            <div class="body-content">
+                <div class="container-fluid">
+                    <div class="angular-animation-container row">
+                        <div ui-view class="shuffle-animation col-xs-12"></div>
+                    </div>
                 </div>
+                
             </div>
         </div>
     </div>
