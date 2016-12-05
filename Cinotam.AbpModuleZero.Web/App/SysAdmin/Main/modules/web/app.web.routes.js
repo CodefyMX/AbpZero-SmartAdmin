@@ -7,7 +7,7 @@
 	appRun.$inject = ['routerHelper'];
 	function appRun(routerHelper) {
 		var states = getStates(routerHelper);
-		routerHelper.configureStates(states, '/');
+		routerHelper.configureStates(states, '/dashboard');
 	}
 	function getStates(routerHelper) {
 		

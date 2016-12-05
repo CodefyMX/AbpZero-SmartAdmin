@@ -7,5 +7,5 @@
         'app.core',
         'app.web',
         'abp'
-    ]);
+    ]).constant('APP_CONFIG', window.appConfig);
 })();
