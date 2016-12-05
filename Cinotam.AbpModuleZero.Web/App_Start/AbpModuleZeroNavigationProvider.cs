@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Navigation;
 using Abp.Localization;
 using Cinotam.AbpModuleZero.Authorization;
+using Cinotam.AbpModuleZero.Tools.AngularHelpers;
 
 namespace Cinotam.AbpModuleZero.Web
 {
@@ -18,10 +19,15 @@ namespace Cinotam.AbpModuleZero.Web
                 .AddItem(new MenuItemDefinition(
                         "Admin",
                         L("Admin"),
-                        url: "/SysAdmin/Dashboard",
+                        url: "/Home/AppSelector",
                         icon: "fa fa-dashboard",
                         requiredPermissionName: PermissionNames.PagesDashboard,
-                        requiresAuthentication: true
+                        requiresAuthentication: true,
+                        customData: new
+                        {
+                            AngularMenu = new AngularCustomObj.AngularMenuItem(false, "", "", "", "", false)
+                        }
+
                     ));
         }
 

@@ -154,6 +154,71 @@ namespace Cinotam.AbpModuleZero.Web
                 "~/areas/sysadmin/scripts/smartAdminScripts/plugin/vectormap/jquery-jvectormap-world-mill-en.js"
                 ));
 
+
+
+
+
+
+
+            #region SpaResources
+            bundles.Add(
+               new ScriptBundle("~/Bundles/App/vendor/js")
+                   .Include(
+                       "~/Abp/Framework/scripts/utils/ie10fix.js",
+                       "~/Scripts/json2.min.js",
+
+                       "~/Scripts/modernizr-2.8.3.js",
+
+                       "~/Scripts/jquery-2.2.0.min.js",
+                       "~/Scripts/jquery-ui-1.11.4.min.js",
+
+                       "~/Scripts/bootstrap.min.js",
+
+                       "~/Scripts/moment-with-locales.min.js",
+                       "~/Scripts/jquery.validate.min.js",
+                       "~/Scripts/jquery.blockUI.js",
+                       "~/Scripts/toastr.min.js",
+                       "~/Scripts/sweetalert/sweet-alert.min.js",
+                       "~/Scripts/others/spinjs/spin.js",
+                       "~/Scripts/others/spinjs/jquery.spin.js",
+
+                       "~/Scripts/angular.min.js",
+                       "~/Scripts/angular-animate.min.js",
+                       "~/Scripts/angular-sanitize.min.js",
+                       "~/Scripts/angular-ui-router.min.js",
+                       "~/Scripts/angular-ui/ui-bootstrap.min.js",
+                       "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
+                       "~/Scripts/angular-ui/ui-utils.min.js",
+
+                       "~/Abp/Framework/scripts/abp.js",
+                       "~/Abp/Framework/scripts/libs/abp.jquery.js",
+                       "~/Abp/Framework/scripts/libs/abp.toastr.js",
+                       "~/Abp/Framework/scripts/libs/abp.blockUI.js",
+                       "~/Abp/Framework/scripts/libs/abp.spin.js",
+                       "~/Abp/Framework/scripts/libs/abp.sweet-alert.js",
+                       "~/Abp/Framework/scripts/libs/angularjs/abp.ng.js",
+
+                       "~/Scripts/jquery.signalR-2.2.1.min.js"
+                   )
+               );
+
+            bundles.Add(
+                new ScriptBundle("~/App/SysAdmin/js")
+                    .IncludeDirectory("~/Common/Scripts", "*.js", true)
+                    .IncludeDirectory("~/App/SysAdmin/Main", "*.js", true)
+                );
+            bundles.Add(new ScriptBundle("~/App/SysAdmin/Blocks/js")
+                .Include("~/App/SysAdmin/Blocks/logger/logger.module.js",
+                "~/App/SysAdmin/Blocks/logger/logger.js",
+                "~/App/SysAdmin/Blocks/router/router.module.js",
+                "~/App/SysAdmin/Blocks/router/router.helper.provider.js")
+                .IncludeDirectory("~/App/SysAdmin/Core", "*.js", true));
+            #endregion
+
+
+
+
+
             BundleTable.EnableOptimizations = false;
         }
     }

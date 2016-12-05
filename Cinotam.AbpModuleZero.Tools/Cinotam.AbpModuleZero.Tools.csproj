@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AngularHelpers\AngularCustomObj.cs" />
     <Compile Include="DatatablesJsModels\GenericTypes\RequestModel.cs" />
     <Compile Include="DatatablesJsModels\GenericTypes\ReturnModel.cs" />
     <Compile Include="DatatablesJsModels\ReflectionHelpers\InputBuilder.cs" />
