@@ -1,0 +1,23 @@
+// Coloque su configuración en este archivo para sobrescribir la configuración predeterminada y de usuario.
+{
+    "extensions.autoUpdate": true,
+    "standard.enable": false,
+
+    // A path added to NODE_PATH when resolving the standard module.
+    "standard.nodePath": null,
+
+    // Uses the legacy module resolving.
+    "standard._legacyModuleResolve": false,
+
+    // The JavaScript Standard Style options object to provide args normally passed to JavaScript Standard Style when executed from a command line.
+    "standard.options": {},
+
+    // Traces the communication between VSCode and the JavaScript Standard Style linter service.
+    "standard.trace.server": "off",
+
+    // Run the linter on save (onSave) or on type (onType)
+    "standard.run": "onType",
+
+    // Turns auto fix on save on or off.
+    "standard.autoFixOnSave": false
+}

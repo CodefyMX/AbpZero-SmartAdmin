@@ -55,17 +55,18 @@
                 var self = this;
                 var config = {};
                 config.displayName = menuItem.displayName;
-                config.url = menuItem.customData.uiUrl;
+                config.url = menuItem.customData.angularMenu.uiUrl;
                 config.order = menuItem.order;
                 config.name = menuItem.name;
                 config.icon = menuItem.icon;
-                config.templateUrl = menuItem.customData.templateUrl;
-                self.state = menuItem.customData.stateName;
+                config.templateUrl = menuItem.customData.angularMenu.templateUrl;
+                self.state = menuItem.customData.angularMenu.stateName;
                 self.config = config;
                 self.items = [];
-                self.isOtherApp = menuItem.customData.isOtherApp;
+                self.isOtherApp = menuItem.customData.angularMenu.isOtherApp;
                 if (menuItem.items.length > 0) {
                     menuItem.items.forEach(function (childItem) {
+                        console.log("Childs",childItem);
                         self.items.push(childItem);
                     });
                 }
@@ -73,11 +74,9 @@
             }
             function configureStates(routeObj, otherwisePath) {
                 var routes = [];
-                console.log(routeObj);
                 routeObj.routes.forEach(function (data) {
-                  console.log(data);
-                    if (data.angularMenu) {
-                        var state = data.angularMenu;
+                   
+                        var state = data;
                         // if (!state.isOtherApp) {
                         //     state.config.resolve =
                         //     angular.extend(state.config.resolve || {}, config.resolveAlways);
@@ -88,7 +87,7 @@
                             config: state.config,
                             isOtherApp: state.isOtherApp
                         });
-                    }
+                    
                 });
                 if (otherwisePath && !hasOtherwise) {
                     hasOtherwise = true;
@@ -130,9 +129,7 @@
             }
 
             function getStates(menuName) {
-                if (menuName == "" || undefined) {
-                    return abpRoutes;
-                }
+                if(menuName == "" || undefined) throw error;
                 for (var i = 0; i < abpRoutes.length; i++) {
                     if (abpRoutes[i].menuName == menuName) return abpRoutes[i];
                 }
