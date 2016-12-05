@@ -22,18 +22,15 @@
     <meta name="author" content="">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <!-- Basic Styles -->
-    @Styles.Render("~/content/smartadmin")
+    <style>
+        .body-content {
+                margin-top: 50px;
+    margin-left: 250px;
+        }
+    </style>
     <link href=@Url.Content("~/Areas/SysAdmin/Content/css/bootstrap.min.css") rel="stylesheet" />
     <link href=@Url.Content("~/Areas/SysAdmin/Content/css/font-awesome.min.css") rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
-    <link href=@Url.Content("~/Areas/SysAdmin/Content/css/invoice.min.css") rel="stylesheet" />
-    <link href=@Url.Content("~/Areas/SysAdmin/Content/css/lockscreen.min.css") rel="stylesheet" />
-    <link href=@Url.Content("~/Areas/SysAdmin/Content/css/smartadmin-production-plugins.min.css") rel="stylesheet" />
-    <link href=@Url.Content("~/Areas/SysAdmin/Content/css/smartadmin-production.min.css") rel="stylesheet" />
-    <link href=@Url.Content("~/Areas/SysAdmin/Content/css/smartadmin-rtl.min.css") rel="stylesheet" />
-    <link href=@Url.Content("~/Areas/SysAdmin/Content/css/smartadmin-skins.min.css") rel="stylesheet" />
     <link href=@Url.Content("~/Areas/SysAdmin/Content/css/abp/toastr.min.css") rel="stylesheet" />
     <link href=@Url.Content("~/Scripts/sweetalert/sweet-alert.css") rel="stylesheet" />
     <link href="~/Areas/SysAdmin/Content/css/your_style.css" rel="stylesheet" />
@@ -84,6 +81,7 @@
     <script src="~/signalr/hubs"></script>
     @Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js")
     @Scripts.Render("~/App/SysAdmin/Blocks/js")
+    @Scripts.Render("~/App/SysAdmin/Libs/js")
     @Scripts.Render("~/App/SysAdmin/js")
     
 </head>
@@ -91,10 +89,13 @@
     <div ng-app="app">
         <div ng-controller="app.views.layout as vm">
             <div ng-include="'/App/SysAdmin/Main/Modules/Web/layout/header.cshtml'"></div>
-            <div style="margin-top: 50px" class="container">
-                <div class="angular-animation-container row">
-                    <div ui-view class="shuffle-animation col-xs-12"></div>
+            <div class="body-content">
+                <div class="container-fluid">
+                    <div class="angular-animation-container row">
+                        <div ui-view class="shuffle-animation col-xs-12"></div>
+                    </div>
                 </div>
+                
             </div>
         </div>
     </div>

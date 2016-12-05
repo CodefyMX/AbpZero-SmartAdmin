@@ -4,6 +4,7 @@
     angular
         .module('app.web', [
             'abp',
-            'app.core'
+            'app.core',
+            'chart.js'
         ]);
 })();

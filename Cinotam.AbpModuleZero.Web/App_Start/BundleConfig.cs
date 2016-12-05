@@ -207,6 +207,14 @@ namespace Cinotam.AbpModuleZero.Web
                     .IncludeDirectory("~/Common/Scripts", "*.js", true)
                     .IncludeDirectory("~/App/SysAdmin/Main", "*.js", true)
                 );
+
+
+            bundles.Add(new ScriptBundle("~/App/SysAdmin/Libs/js")
+                .Include("~/App/dependencies/angular-chart.js/chart.min.js")
+                .IncludeDirectory("~/App/dependencies", "*.js", true)
+
+                );
+
             bundles.Add(new ScriptBundle("~/App/SysAdmin/Blocks/js")
                 .Include("~/App/SysAdmin/Blocks/logger/logger.module.js",
                 "~/App/SysAdmin/Blocks/logger/logger.js",

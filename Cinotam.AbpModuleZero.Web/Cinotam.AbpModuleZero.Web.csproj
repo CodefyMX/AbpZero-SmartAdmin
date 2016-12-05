@@ -306,6 +306,9 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css" />
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
+    <Content Include="App\dependencies\angular-chart.js\angular-chart.js" />
+    <Content Include="App\dependencies\angular-chart.js\angular-chart.min.js" />
+    <Content Include="App\dependencies\angular-chart.js\chart.min.js" />
     <Content Include="App\SysAdmin\Blocks\logger\logger.js" />
     <Content Include="App\SysAdmin\Blocks\logger\logger.module.js" />
     <Content Include="App\SysAdmin\Blocks\router\router.helper.provider.js" />
@@ -318,11 +321,13 @@
     <Content Include="App\SysAdmin\Main\main.min.css" />
     <Content Include="App\SysAdmin\Main\modules\web\app.web.module.js" />
     <Content Include="App\SysAdmin\Main\modules\web\app.web.routes.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\dashboard\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\autoFocus.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\enterKey.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\header.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\layout.js" />
     <Content Include="App\SysAdmin\Main\services\appSession.js" />
+    <Content Include="App\SysAdmin\Main\sidebar.css" />
     <Content Include="App\SysAdmin\Main\_libconfig.js" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\smart-chat-ui\js.cookie.js" />
     <Content Include="Areas\SysAdmin\Scripts\smartAdminScripts\smart-chat-ui\smart.chat.manager.js" />
@@ -662,6 +667,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\configurations\index.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\auditLogs\index.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\languages\index.cshtml" />
+    <Content Include="App\dependencies\angular-chart.js\angular-chart.min.js.map" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
@@ -707,6 +713,7 @@
     <Content Include="Areas\SysAdmin\Views\Users\_CountryCodes.cshtml" />
     <Content Include="Content\MailTemplates\ChangeInfo\ChangedInfo.html" />
     <Content Include="RepoContent\CapturaSpa.JPG" />
+    <Content Include="RepoContent\CapturaSpaDash.JPG" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
