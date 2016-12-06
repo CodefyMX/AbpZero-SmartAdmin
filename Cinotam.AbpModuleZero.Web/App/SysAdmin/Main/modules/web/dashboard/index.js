@@ -116,7 +116,7 @@
                 }
                 liveUpdate();
             });
-            
+    
         }
         //Todo
         function liveUpdate() {

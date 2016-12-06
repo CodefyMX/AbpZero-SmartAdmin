@@ -327,6 +327,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\directives\enterKey.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\header.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\layout.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\index.js" />
     <Content Include="App\SysAdmin\Main\services\appSession.js" />
     <Content Include="App\SysAdmin\Main\sidebar.css" />
     <Content Include="App\SysAdmin\Main\_libconfig.js" />
@@ -1521,6 +1522,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jstree\jstree.js" />
     <Content Include="Scripts\jstree\jstree.min.js" />
+    <Content Include="Scripts\jstree\ngJstree.min.js" />
     <Content Include="Scripts\jstree\themes\default\30px.png" />
     <Content Include="Scripts\jstree\themes\default\32px.png" />
     <Content Include="Scripts\jstree\themes\default\40px.png" />

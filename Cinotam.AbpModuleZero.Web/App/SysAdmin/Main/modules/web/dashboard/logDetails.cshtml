@@ -2,8 +2,10 @@
     Layout = null;
 }
 <div class="modal-body">
-    <h4>@L("ServiceName"): <strong>{{vm.logDetails.serviceName}}</strong> </h4>
-
+    <p><strong>@L("ServiceName")</strong>:  </p>
+    <p>
+        <strong>{{vm.logDetails.serviceName}}</strong>
+    </p>
     <p>
         <strong>@L("IP")</strong>
         <pre><code>{{vm.logDetails.clientIpAddress}}</code></pre>
@@ -32,7 +34,7 @@
     </p>
     <p>
         <strong>@L("Duration")</strong>
-        <pre><code>{{vm.logDetails.executionDuration}}</code></pre>
+        <pre><code>{{vm.logDetails.executionDuration}} ms</code></pre>
     </p>
     <div ng-show="vm.hasException">
         <a ng-click="vm.toggleException()" class="btn btn-primary btn-sm">@L("ExceptionFound")</a>

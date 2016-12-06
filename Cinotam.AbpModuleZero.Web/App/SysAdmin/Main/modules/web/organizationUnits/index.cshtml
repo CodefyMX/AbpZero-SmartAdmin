@@ -1,1 +1,30 @@
-﻿<h1>Hey!</h1>
+﻿<h1>@L("OrganizationUnits")</h1>
+<link href="~/Scripts/jstree/themes/proton/style.min.css" rel="stylesheet" />
+<div ng-controller="app.views.organizationUnits.index as vm">
+<div class="row">
+    <div class="col-sm-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">@L("OrganizationUnits")</div>
+            <div class="panel-body">
+                
+                
+                
+                <div should-apply="false"  js-tree="vm.treeConfig" ng-model="vm.treeData" ></div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">@L("Users")</div>
+            <div class="panel-body">
+                
+                
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
