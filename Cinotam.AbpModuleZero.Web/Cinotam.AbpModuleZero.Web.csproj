@@ -327,6 +327,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\directives\enterKey.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\header.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\layout.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\create.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\index.js" />
     <Content Include="App\SysAdmin\Main\services\appSession.js" />
     <Content Include="App\SysAdmin\Main\sidebar.css" />
@@ -670,6 +671,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\languages\index.cshtml" />
     <Content Include="App\dependencies\angular-chart.js\angular-chart.min.js.map" />
     <Content Include="App\SysAdmin\Main\modules\web\dashboard\logDetails.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\create.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
