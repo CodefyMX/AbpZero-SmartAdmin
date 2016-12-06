@@ -2,7 +2,16 @@
     Layout = null;
 }
 <div class="modal-body">
-    <h3>Details</h3>
+    <h4>@L("ServiceName"): {{vm.logDetails.serviceName}}</h4>
+    
+    <p>@L("IP")<pre><code>{{vm.logDetails.clientIpAddress}}</code></pre></p> 
+    
+    
+    <p>@L("BrowserInfo") : {{vm.logDetails.browserInfo}}</p>
+    
+    
+    
+
 </div>
 <div class="modal-footer">
             <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>

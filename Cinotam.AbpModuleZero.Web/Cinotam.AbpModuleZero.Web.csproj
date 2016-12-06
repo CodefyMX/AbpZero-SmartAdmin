@@ -317,7 +317,6 @@
     <Content Include="App\SysAdmin\Core\app.core.module.js" />
     <Content Include="App\SysAdmin\Core\app.core.routes.js" />
     <Content Include="App\SysAdmin\Main\app.js" />
-    <Content Include="App\SysAdmin\Main\images\abp-logo.png" />
     <Content Include="App\SysAdmin\Main\main.css" />
     <Content Include="App\SysAdmin\Main\main.min.css" />
     <Content Include="App\SysAdmin\Main\modules\web\app.web.module.js" />
@@ -477,7 +476,6 @@
     <Content Include="Content\Custom\DropDownMenuLarge.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\MailTemplates\ChangeInfo\ChangedInfo_Partial.html" />
     <Content Include="Content\MailTemplates\WelcomeTemplates\Welcome.Html" />
     <Content Include="Content\MailTemplates\WelcomeTemplates\Welcome_Partial.html" />
     <Content Include="Areas\SysAdmin\Content\sound\bigbox.mp3" />
@@ -714,7 +712,6 @@
     <Content Include="Content\Templates\ArticlePage\TemplateConfig.json" />
     <Content Include="Areas\SysAdmin\Views\Users\UserSpecialPermissions.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\_CountryCodes.cshtml" />
-    <Content Include="Content\MailTemplates\ChangeInfo\ChangedInfo.html" />
     <Content Include="RepoContent\CapturaSpa.JPG" />
     <Content Include="RepoContent\CapturaSpaDash.JPG" />
     <Content Include="Scripts\angular-animate.js" />
@@ -759,6 +756,8 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <None Include="Properties\PublishProfiles\abpcinotamzero - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\abpcinotamzero - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
