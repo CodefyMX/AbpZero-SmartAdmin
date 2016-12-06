@@ -2,17 +2,52 @@
     Layout = null;
 }
 <div class="modal-body">
-    <h4>@L("ServiceName"): {{vm.logDetails.serviceName}}</h4>
-    
-    <p>@L("IP")<pre><code>{{vm.logDetails.clientIpAddress}}</code></pre></p> 
-    
-    
-    <p>@L("BrowserInfo") : {{vm.logDetails.browserInfo}}</p>
-    
-    
-    
+    <h4>@L("ServiceName"): <strong>{{vm.logDetails.serviceName}}</strong> </h4>
 
+    <p>
+        <strong>@L("IP")</strong>
+        <pre><code>{{vm.logDetails.clientIpAddress}}</code></pre>
+    </p>
+    <p>
+        <strong>@L("ClientName")</strong>
+        <pre><code>{{vm.logDetails.clientName}}</code></pre>
+    </p>
+    <p>
+        <strong>@L("UserInfo")</strong>
+        <pre><code>{{vm.logDetails.userName}}</code></pre>
+    </p>
+    <p>
+        <strong>@L("BrowserInfo")</strong>
+        <pre><code>{{vm.logDetails.browserInfo}}</code></pre>
+    </p>
+
+    <p>
+        <strong>@L("Parameters")</strong>
+        <pre><code>{{vm.logDetails.parameters}}</code></pre>
+    </p>
+    <p>
+        <strong>@L("ExecutionTime")</strong>
+        <pre><code>{{vm.logDetails.executionTimeString}}</code></pre>
+
+    </p>
+    <p>
+        <strong>@L("Duration")</strong>
+        <pre><code>{{vm.logDetails.executionDuration}}</code></pre>
+    </p>
+    <div ng-show="vm.hasException">
+        <a ng-click="vm.toggleException()" class="btn btn-primary btn-sm">@L("ExceptionFound")</a>
+        <div ng-show="vm.showException">
+            <p>
+                <pre><code>{{vm.logDetails.exception}}</code></pre>
+            </p>
+        </div>
+    </div>
+    <div ng-show="!vm.hasException">
+        <div class="alert alert-info">
+            <h4>@L("ExceptionNotFound")</h4>
+        </div>
+    </div>
 </div>
 <div class="modal-footer">
-            <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>
+    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>
 </div>
