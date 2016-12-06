@@ -5,8 +5,8 @@
         .module('app.web')
         .controller('app.views.dashboard.index', DashboardController);
 
-    DashboardController.$inject = ["abp.services.app.auditLogService"];
-    function DashboardController(_auditLogService) {
+    DashboardController.$inject = ["abp.services.app.auditLogService", "$uibModal"];
+    function DashboardController(_auditLogService, modal) {
         var vm = this;
         vm.name = "Hey";
 
@@ -32,7 +32,17 @@
         }
         vm.chartDataFormatedDtos = [[]];
         vm.labels = [];
+        vm.onClick = function (data) {
 
+            var index = data.index;
+            if (data.length > 0) {
+                var modalInstance = modal.open({
+                    templateUrl: '/App/SysAdmin/Main/modules/web/dashboard/logDetails.cshtml',
+                    controller: 'app.views.dashboard.logDetails as vm'
+                });
+            }
+
+        }
         function activate(val) {
             if (!tenantId) tenantId = null;
             var requestModel = {
@@ -40,14 +50,7 @@
                 Code: 2,
                 TenantId: tenantId
             }
-            vm.onClick = function (data) {
 
-                var index = data.index;
-
-
-                console.log("Index position:",data[0]._index);
-
-            }
 
             vm.chartOptions = {
                 responsive: true,
@@ -60,8 +63,10 @@
                     ]
                 }
             }
-
+            vm.chartDataFormatedDtos = [[]];
+            vm.labels = [];
             _auditLogService.getAuditLogTimes(requestModel).then(function (response) {
+                
                 vm.chartData = response.data;
                 for (var i = 0; i < vm.chartData.auditLogTimeOutputDtos.length; i++) {
 
@@ -72,10 +77,6 @@
                     vm.chartDataFormatedDtos[0].push(elm.executionDuration);
 
                 }
-
-
-                console.log(vm.chartDataFormatedDtos);
-                console.log(vm.labels);
             });
 
         }

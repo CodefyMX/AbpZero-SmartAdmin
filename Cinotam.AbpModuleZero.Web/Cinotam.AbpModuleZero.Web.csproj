@@ -309,6 +309,7 @@
     <Content Include="App\dependencies\angular-chart.js\angular-chart.js" />
     <Content Include="App\dependencies\angular-chart.js\angular-chart.min.js" />
     <Content Include="App\dependencies\angular-chart.js\chart.min.js" />
+    <Content Include="App\dependencies\ui-bootstrap\ui-bootstrap-tpls-2.3.0.min.js" />
     <Content Include="App\SysAdmin\Blocks\logger\logger.js" />
     <Content Include="App\SysAdmin\Blocks\logger\logger.module.js" />
     <Content Include="App\SysAdmin\Blocks\router\router.helper.provider.js" />
@@ -322,6 +323,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\app.web.module.js" />
     <Content Include="App\SysAdmin\Main\modules\web\app.web.routes.js" />
     <Content Include="App\SysAdmin\Main\modules\web\dashboard\index.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\dashboard\logDetails.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\autoFocus.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\enterKey.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\header.js" />
@@ -668,6 +670,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\auditLogs\index.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\languages\index.cshtml" />
     <Content Include="App\dependencies\angular-chart.js\angular-chart.min.js.map" />
+    <Content Include="App\SysAdmin\Main\modules\web\dashboard\logDetails.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />

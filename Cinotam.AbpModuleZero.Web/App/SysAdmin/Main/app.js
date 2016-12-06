@@ -6,6 +6,7 @@
         'ngSanitize',
         'app.core',
         'app.web',
+        'ui.bootstrap',
         'abp'
     ]).constant('APP_CONFIG', window.appConfig);
 })();
