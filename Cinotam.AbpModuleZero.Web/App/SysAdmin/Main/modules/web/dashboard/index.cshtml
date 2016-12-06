@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-md-8">
 
-                            <canvas id="line" chart-click="vm.onClick" chart-options="vm.chartOptions" class="chart chart-line chart-small" chart-data="vm.chartDataFormatedDtos"
+                            <canvas id="line" chart-colors="vm.chartConfigs.color" chart-click="vm.onClick" chart-options="vm.chartOptions" class="chart chart-line chart-small" chart-data="vm.chartDataFormatedDtos"
                                     chart-labels="vm.labels"></canvas>
                         </div>
                         <div class="col-md-4 text-center">
@@ -30,8 +30,16 @@
                             <p>
                                 {{vm.chartData.avgExecutionTime}}
                             </p>
+
+                            <a ng-click="vm.changeLogType(1)" class="btn btn-warning btn-sm">@L("DisplayErrorOperations")</a> <a ng-click="vm.changeLogType(2)" class="btn btn-primary btn-sm">@L("DisplaySuccessOperations")</a>
+                            <br/>
+                            <br />
                             
-                            
+                            @*<a ng-click="vm.toggleLiveUpdate()" class="btn btn-default btn-xs">
+                                {{vm.liveUpdateText}}
+                            </a>*@
+                            <br />
+                            <br />
                             <select ng-change="vm.update()" class="form-control" ng-model="vm.selectVal">
                                 <option value="30">30</option>
                                 <option selected="selected" value="50">50</option>
@@ -40,6 +48,9 @@
                                 <option value="400">400</option>
                                 <option value="800">800</option>
                             </select>
+                            <br/>
+
+                            <a class="lead" href="#AuditLogs">@L("SeeAll")</a>
 
                         </div>
                     </div>

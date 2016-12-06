@@ -7,6 +7,7 @@
         'app.core',
         'app.web',
         'ui.bootstrap',
+        'ngJsTree',
         'abp'
     ]).constant('APP_CONFIG', window.appConfig);
 })();

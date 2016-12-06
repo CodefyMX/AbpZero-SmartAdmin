@@ -211,10 +211,16 @@ namespace Cinotam.AbpModuleZero.Web
 
             bundles.Add(new ScriptBundle("~/App/SysAdmin/Libs/js")
                 .Include("~/App/dependencies/angular-chart.js/chart.min.js")
+                .Include("~/Scripts/jstree/jstree.min.js")
+                .Include("~/Scripts/jstree/ngJstree.min.js")
                 .Include("~/App/dependencies/ui-bootstrap/ui-bootstrap-tpls-2.3.0.min.js")
                 .IncludeDirectory("~/App/dependencies", "*.js", true)
 
                 );
+
+
+
+
             bundles.Add(new ScriptBundle("~/App/SysAdmin/Blocks/js")
                 .Include("~/App/SysAdmin/Blocks/logger/logger.module.js",
                 "~/App/SysAdmin/Blocks/logger/logger.js",

@@ -5,21 +5,46 @@
         .module('app.web')
         .controller('app.views.dashboard.index', DashboardController);
 
-    DashboardController.$inject = ["abp.services.app.auditLogService", "$uibModal"];
-    function DashboardController(_auditLogService, modal) {
+    DashboardController.$inject = ["abp.services.app.auditLogService", "$uibModal", '$interval'];
+    function DashboardController(_auditLogService, modal, $interval) {
         var vm = this;
-        vm.name = "Hey";
-
-        var chartConfigs = {
+        var errorColor = [
+            {
+                pointBackgroundColor: "rgba(159,204,0, 1)",
+                backgroundColor: 'rgb(255,202,40)',
+            }
+        ];
+        var successColor = [
+            {
+                pointBackgroundColor: "rgba(159,204,0, 1)",
+                backgroundColor: 'rgb(102,187,106)',
+            }
+        ];
+        vm.chartConfigs = {
             updateInterval: 3000,
-            selectedOptionValue: 50
+            selectedOptionValue: 50,
+            color: successColor
         }
-
+        vm.changeLogType = function (option) {
+            requestModel.code = option;
+            if (option == 1) {
+                vm.chartConfigs.color = errorColor;
+            }
+            else {
+                 vm.chartConfigs.color = successColor;
+            }
+            vm.update();
+        }
+        var requestModel = {
+            Count: vm.chartConfigs.selectedOptionValue,
+            Code: 2,
+            TenantId: tenantId
+        }
         vm.selectVal = 50;
 
         var tenantId;
 
-        activate(chartConfigs.selectedOptionValue);
+        activate(vm.chartConfigs.selectedOptionValue);
 
         ////////////////
         vm.chartData = {
@@ -27,7 +52,7 @@
             avgExecutionTime: "",
             totalRequestsReceived: 0
         };
-        vm.update = function (d) {
+        vm.update = function () {
             activate(vm.selectVal);
         }
         vm.chartDataFormatedDtos = [[]];
@@ -49,12 +74,15 @@
                     });
                 }
             }
-
-
-            
-
         }
 
+        vm.liveUpdate = false;
+        vm.liveUpdateText = "Toggle live update";
+        vm.toggleLiveUpdate = function () {
+            if (vm.liveUpdate == false) vm.liveUpdate = true;
+            else vm.liveUpdate = false;
+            liveUpdate(vm.selectVal);
+        }
         function getIdFromData(index) {
             console.log(vm.chartData.auditLogTimeOutputDtos);
             for (var i = 0; i < vm.chartData.auditLogTimeOutputDtos.length; i++) {
@@ -62,18 +90,10 @@
                     return vm.chartData.auditLogTimeOutputDtos[index].id;
                 }
             }
-            throw exception;
         }
 
         function activate(val) {
             if (!tenantId) tenantId = null;
-            var requestModel = {
-                Count: val,
-                Code: 2,
-                TenantId: tenantId
-            }
-
-
             vm.chartOptions = {
                 responsive: true,
                 maintainAspectRatio: true,
@@ -88,19 +108,40 @@
             vm.chartDataFormatedDtos = [[]];
             vm.labels = [];
             _auditLogService.getAuditLogTimes(requestModel).then(function (response) {
-
                 vm.chartData = response.data;
                 for (var i = 0; i < vm.chartData.auditLogTimeOutputDtos.length; i++) {
-
                     vm.labels.push(i);
-
                     var elm = vm.chartData.auditLogTimeOutputDtos[i];
-
                     vm.chartDataFormatedDtos[0].push(elm.executionDuration);
-
                 }
+                liveUpdate();
             });
+    
+        }
+        //Todo
+        function liveUpdate() {
+            if (vm.liveUpdate) {
+                $interval(function () {
+                    activateLiveUpdate();
+                }, vm.chartConfigs.updateInterval);
+            }
+        }
 
+        //var firstElement;
+        function activateLiveUpdate(){
+
+            //  _auditLogService.getAuditLogTimes(requestModel).then(function (response) {
+            //     if(firstElement == 0){
+            //         firstElement = getIdFromData(0);
+            //     }
+            //     if(response.data.auditLogTimeOutputDtos[0].id != firstElement) {
+            //         console.log("Updating");
+            //         vm.labels.push(vm.labels.length+1);
+            //         var elm = response.data.auditLogTimeOutputDtos[0];
+            //         vm.chartDataFormatedDtos[0].push(elm.executionDuration);
+            //         firstElement = response.data.auditLogTimeOutputDtos[0].id;
+            //     }
+            // });
         }
     }
 })();
