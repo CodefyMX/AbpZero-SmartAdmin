@@ -214,6 +214,8 @@ namespace Cinotam.AbpModuleZero.Web
                 .Include("~/Scripts/jstree/jstree.min.js")
                 .Include("~/Scripts/jstree/ngJstree.min.js")
                 .Include("~/App/dependencies/ui-bootstrap/ui-bootstrap-tpls-2.3.0.min.js")
+                .Include("~/areas/sysadmin/scripts/smartAdminScripts/plugin/datatables/jquery.dataTables.min.js")
+
                 .IncludeDirectory("~/App/dependencies", "*.js", true)
 
                 );
