@@ -43,8 +43,11 @@
         vm.dtOptions = DTOptionsBuilder.newOptions().withOption('ajax',{
             url:'/AngularApi/Users/LoadUsers',
             type:'GET'
-        }).withDataProp('data').withOption('processing', true)
-        .withOption('serverSide', true).withPaginationType('full_numbers').withOption('createdRow', createdRow);
+        })
+        .withDataProp('data')
+        .withOption('processing', true).withOption('createdRow', createdRow)
+        .withOption('serverSide', true).withOption('createdRow', createdRow)
+        .withPaginationType('full_numbers').withOption('createdRow', createdRow);
         vm.dtColumns = [
             DTColumnBuilder.newColumn('Id').withTitle('ID'),
             DTColumnBuilder.newColumn('UserName').withTitle('First name'),
