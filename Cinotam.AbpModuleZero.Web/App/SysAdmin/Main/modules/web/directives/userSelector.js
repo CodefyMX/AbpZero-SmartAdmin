@@ -48,17 +48,15 @@
         vm.dtColumns = [
             DTColumnBuilder.newColumn('Id').withTitle('ID'),
             DTColumnBuilder.newColumn('UserName').withTitle('First name'),
-            DTColumnBuilder.newColumn(null).withTitle(App.localize('Actions')).notSortable()
+            DTColumnBuilder.newColumn(null).withTitle(App.localize('Actions')).notSortable().withClass('text-center')
             .renderWith(actions)
         ];
         vm.onClickFunction = function(id){
-            console.log(id);
             ctrlFun(id);
         }
 
         function actions(data,type,full,meta){
             return '<a class="btn btn-default btn-xs" ng-click="vm.onClickFunction(' + data.Id + ')" ><i class="fa fa-check"></i></a>'
-            
         }
         function createdRow(row, data, dataIndex) {
             // Recompiling so we can bind Angular directive to the DT
