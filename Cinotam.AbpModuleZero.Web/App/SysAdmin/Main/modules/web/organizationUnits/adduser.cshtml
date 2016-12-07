@@ -1,14 +1,12 @@
 @{
     Layout = null;
 }
-<form name="createOrgUnit" ng-submit="vm.submit(this)">
-    <div class="modal-header">
-        <h4 class="modal-title"><i class="fa fa-3x fa-hacker-news"></i> </h4>
-    </div>
-    <div class="modal-body">
-        All Users
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>
-    </div>
-</form>
+<div class="modal-header">
+    <h4 class="modal-title"><i class="fa fa-3x fa-hacker-news"></i> </h4>
+</div>
+<div class="modal-body">
+    <user-selector data-onselected="vm.click"></user-selector>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>
+</div>

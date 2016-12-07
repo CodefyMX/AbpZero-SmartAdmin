@@ -325,8 +325,10 @@
     <Content Include="App\SysAdmin\Main\modules\web\dashboard\logDetails.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\autoFocus.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\enterKey.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\directives\userSelector.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\header.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\layout.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\adduser.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\create.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\orgunitsusers.js" />
@@ -674,6 +676,8 @@
     <Content Include="App\SysAdmin\Main\modules\web\dashboard\logDetails.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\create.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\orgunitsusers.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\directives\userSelector.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\adduser.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
