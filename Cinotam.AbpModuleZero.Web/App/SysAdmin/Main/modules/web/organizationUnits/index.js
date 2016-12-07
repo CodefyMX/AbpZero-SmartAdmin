@@ -5,8 +5,8 @@
         .module('app.web')
         .controller('app.views.organizationUnits.index', OrganizationUnitsController);
 
-    OrganizationUnitsController.$inject = ['abp.services.app.organizationUnits', '$uibModal'];
-    function OrganizationUnitsController(_orgUnits, modal) {
+    OrganizationUnitsController.$inject = ['abp.services.app.organizationUnits', '$uibModal','$state'];
+    function OrganizationUnitsController(_orgUnits, modal,$state) {
         var vm = this;
         vm.treeData = [
 
@@ -50,8 +50,10 @@
             return items;
         }
 
-        vm.loadUsersView = function(){
-            
+        var loadUsersView = function (orgId) {
+
+            $state.go('OrganizationUnits.Orgunitusers',{id:orgId});
+
         }
 
         vm.removeFromTree = function (node) {
@@ -86,9 +88,16 @@
             _orgUnits.moveOrgUnit(request)
                 .then(function() {});
         }
+
+        var handleSelect = function(evt,data){
+            var id = data.node.id;
+            loadUsersView(id);
+        }
+
         //This is excecuting twice..... mmmmmmm!!
         vm.treeEventHandlers = {
-            'dnd_stop.vakata': handleStop
+            'dnd_stop.vakata': handleStop,
+            'select_node.jstree': handleSelect
         }
         vm.treeConfig = {
             contextmenu: {

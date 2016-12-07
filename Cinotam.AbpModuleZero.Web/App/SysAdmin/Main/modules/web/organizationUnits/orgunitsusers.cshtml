@@ -1,0 +1,22 @@
+
+<div ng-controller="app.views.organizationUnits.users as vm">
+
+
+<div class="col-sm-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">@L("Users") <a ng-click="vm.openAddUserModal()" class="btn btn-xs btn-primary pull-right">@L("AddUser")</a></div>
+            <div class="panel-body">
+                <div ng-show="vm.empty">
+                    <h3>@L("NoUsers")</h3>
+                </div>
+                <ul class="list-group">
+                    <li ng-repeat="user in vm.orgUnitModel.users" class="list-group-item">
+                        {{user.fullName}}
+                        <a ng-click='vm.removeUser(user.id)' class="btn btn-danger btn-xs pull-right"><i class='fa fa-times'></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -41,7 +41,8 @@
                 configureStates: configureStates,
                 getStates: getStates,
                 stateCounts: stateCounts,
-                createMenuItem: createMenuItem
+                createMenuItem: createMenuItem,
+                createSimpleMenuItem:createSimpleMenuItem
             };
 
             //Abp extension
@@ -63,6 +64,7 @@
                 self.state = menuItem.customData.angularMenu.stateName;
                 self.config = config;
                 self.items = [];
+                self.isComplete = true;
                 self.isOtherApp = menuItem.customData.angularMenu.isOtherApp;
                 if (menuItem.items.length > 0) {
                     menuItem.items.forEach(function (childItem) {
@@ -71,10 +73,17 @@
                 }
                 return self;
             }
+
+            function createSimpleMenuItem(statename,config){
+                var self = this;
+                self.config = config;
+                self.state = statename;
+                return self;
+            }
+
             function configureStates(routeObj, otherwisePath) {
                 var routes = [];
                 routeObj.routes.forEach(function (data) {
-                    
                     var state = data;
                     if (!state.isOtherApp) {
                         state.config.resolve =
@@ -92,11 +101,12 @@
                     hasOtherwise = true;
                     $urlRouterProvider.otherwise(otherwisePath);
                 }
+                //Abp helper for menus
                 abpRoutes.push({
                     menuName: routeObj.name,
                     items: routes
                 });
-                console.log("Abp routes", abpRoutes);
+                console.log(routes);
             }
 
             function handleRoutingErrors() {
