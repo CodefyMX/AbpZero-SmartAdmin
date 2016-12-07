@@ -10,7 +10,7 @@
 		routerHelper.configureStates(states, '/dashboard');
 	}
 	function getStates(routerHelper) {
-
+		var webFolder = '/App/SysAdmin/Main/modules/web/';
 		var moduleZeroMenu = abp.nav.menus.ModuleZeroMenu;
 		var routeObj = {
 			name: moduleZeroMenu.name,
@@ -29,7 +29,13 @@
 				}
 			}
 		});
+		//Creates the child route for org users
+		var usersForOrganizationUnitsMenu = new routerHelper.createSimpleMenuItem('OrganizationUnits.Orgunitusers',{
+			templateUrl:webFolder+'organizationunits/orgunitsusers.cshtml',
+			url:'/orgusers/:id'
+		});
+		//Registers the route
+		routeObj.routes.push(usersForOrganizationUnitsMenu);
 		return routeObj;
 	}
-
 })();
