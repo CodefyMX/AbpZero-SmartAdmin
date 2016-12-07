@@ -26,7 +26,6 @@
                 editUnit: {
                     label: App.localize('EditOrganizationUnit'),
                     action: function () {
-                        console.log(node.id);
                         vm.openCreateModal(node.id, null);
                     }
                 },
@@ -50,6 +49,11 @@
 
             return items;
         }
+
+        vm.loadUsersView = function(){
+            
+        }
+
         vm.removeFromTree = function (node) {
             for (var i = 0 ; i < vm.treeData.length; i++) {
                 if (vm.treeData[i].id == node.id) {
@@ -57,8 +61,6 @@
                 }
             }
         }
-
-
         //var oldParent;
         //var oldPosition;
         //function handleStart(e, data) {
@@ -80,35 +82,13 @@
                 Id: elementMoved,
                 ParentId: newParent
             }
-            //This is excecuting twice..... mmmmmmm!!
+            e.preventDefault();
             _orgUnits.moveOrgUnit(request)
-                .then(function() {
-                    abp.notify.success(App.localize("OrganizationUnitMoved"),
-                        App.localize("Success"));
-                });
-            //abp.message.confirm(
-            //    App.localize("MoveOrganizationUnit"),
-            //    App.localize("ConfirmQuestion"),
-            //    function (response) {
-
-            //        //if (response) {
-            //        //    var request = {
-            //        //        Id: elementMoved,
-            //        //        ParentId: newParent
-            //        //    }
-            //        //    _orgUnits.moveOrgUnit(request).then(function () {
-
-            //        //    });
-            //        //}
-            //        //else {
-            //        //    vm.tree.jstree(true).move_node(node, oldParent, oldPosition);
-            //        //}
-            //    });
+                .then(function() {});
         }
         //This is excecuting twice..... mmmmmmm!!
         vm.treeEventHandlers = {
-            'dnd_stop.vakata': handleStop,
-            //'dnd_start.vakata': handleStart
+            'dnd_stop.vakata': handleStop
         }
         vm.treeConfig = {
             contextmenu: {
