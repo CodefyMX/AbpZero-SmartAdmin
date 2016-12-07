@@ -24,8 +24,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
         .body-content {
-                margin-top: 50px;
-    margin-left: 250px;
+            margin-top: 50px;
+            margin-left: 250px;
         }
     </style>
     <link href=@Url.Content("~/Areas/SysAdmin/Content/css/bootstrap.min.css") rel="stylesheet" />
@@ -38,7 +38,9 @@
     <link rel="shortcut icon" href=@Url.Content("~/Areas/SysAdmin/Content/img/favicon/favicon.ico") type="image/x-icon">
     <link rel="icon" href=@Url.Content("~/Areas/SysAdmin/Content/img/favicon/favicon.ico") type="image/x-icon">
     <link href=@Url.Content("~/Content/flags/famfamfam-flags.css") rel="stylesheet" />
-    <!-- GOOGLE FONT -->
+
+    @*<link rel="stylesheet" href="@Url.Content("~/App/dependencies/angular-datatables/css/angular-datatables.min.css")">*@
+    <link href=@Url.Content("~/App/dependencies/angular-datatables/plugins/bootstrap/datatables.bootstrap.min.css") rel="stylesheet" /> <!-- GOOGLE FONT -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
     <!-- Specifying a Webpage Icon for Web Clip
     Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
@@ -58,6 +60,8 @@
         var abp = abp || {};
         abp.appPath = '@ApplicationPath';
     </script>
+
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -83,7 +87,7 @@
     @Scripts.Render("~/App/SysAdmin/Blocks/js")
     @Scripts.Render("~/App/SysAdmin/Libs/js")
     @Scripts.Render("~/App/SysAdmin/js")
-    
+
 </head>
 <body>
     <div ng-app="app">
@@ -95,7 +99,7 @@
                         <div ui-view class="shuffle-animation col-xs-12"></div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

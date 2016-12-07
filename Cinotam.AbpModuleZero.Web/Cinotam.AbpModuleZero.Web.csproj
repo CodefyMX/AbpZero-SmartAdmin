@@ -309,6 +309,33 @@
     <Content Include="App\dependencies\angular-chart.js\angular-chart.js" />
     <Content Include="App\dependencies\angular-chart.js\angular-chart.min.js" />
     <Content Include="App\dependencies\angular-chart.js\chart.min.js" />
+    <Content Include="App\dependencies\angular-datatables\angular-datatables.js" />
+    <Content Include="App\dependencies\angular-datatables\angular-datatables.min.js" />
+    <Content Include="App\dependencies\angular-datatables\css\angular-datatables.css" />
+    <Content Include="App\dependencies\angular-datatables\css\angular-datatables.min.css" />
+    <Content Include="App\dependencies\angular-datatables\plugins\bootstrap\angular-datatables.bootstrap.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\bootstrap\angular-datatables.bootstrap.min.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\bootstrap\datatables.bootstrap.min.css" />
+    <Content Include="App\dependencies\angular-datatables\plugins\buttons\angular-datatables.buttons.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\buttons\angular-datatables.buttons.min.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\colreorder\angular-datatables.colreorder.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\colreorder\angular-datatables.colreorder.min.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\columnfilter\angular-datatables.columnfilter.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\columnfilter\angular-datatables.columnfilter.min.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\colvis\angular-datatables.colvis.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\colvis\angular-datatables.colvis.min.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\fixedcolumns\angular-datatables.fixedcolumns.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\fixedcolumns\angular-datatables.fixedcolumns.min.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\fixedheader\angular-datatables.fixedheader.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\fixedheader\angular-datatables.fixedheader.min.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\light-columnfilter\angular-datatables.light-columnfilter.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\light-columnfilter\angular-datatables.light-columnfilter.min.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\scroller\angular-datatables.scroller.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\scroller\angular-datatables.scroller.min.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\select\angular-datatables.select.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\select\angular-datatables.select.min.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\tabletools\angular-datatables.tabletools.js" />
+    <Content Include="App\dependencies\angular-datatables\plugins\tabletools\angular-datatables.tabletools.min.js" />
     <Content Include="App\dependencies\ui-bootstrap\ui-bootstrap-tpls-2.3.0.min.js" />
     <Content Include="App\SysAdmin\Blocks\logger\logger.js" />
     <Content Include="App\SysAdmin\Blocks\logger\logger.module.js" />
@@ -678,6 +705,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\orgunitsusers.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\userSelector.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\adduser.cshtml" />
+    <Content Include="Areas\AngularApi\Views\web.config" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
@@ -1592,6 +1620,8 @@
     <Compile Include="App_Start\AbpModuleZeroWebModule.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Areas\AngularApi\AngularApiAreaRegistration.cs" />
+    <Compile Include="Areas\AngularApi\Controllers\UsersController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\AuditLogsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\ConfigurationController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\DashboardController.cs" />
@@ -1741,6 +1771,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\AngularApi\Models\" />
+    <Folder Include="Areas\AngularApi\Views\Shared\" />
+    <Folder Include="Areas\AngularApi\Views\Users\" />
     <Folder Include="Content\Templates\ArticlePage\Resources\" />
     <Folder Include="Content\Templates\Simple\Resources\" />
     <Folder Include="Views\Admin\" />

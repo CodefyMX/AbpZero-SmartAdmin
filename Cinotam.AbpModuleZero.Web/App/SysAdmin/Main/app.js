@@ -8,6 +8,8 @@
         'app.web',
         'ui.bootstrap',
         'ngJsTree',
+        'datatables',
+        'datatables.bootstrap',
         'abp'
     ]).constant('APP_CONFIG', window.appConfig);
 })();

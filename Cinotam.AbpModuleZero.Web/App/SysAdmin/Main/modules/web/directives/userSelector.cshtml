@@ -1,28 +1,3 @@
-<table class="table table-responsive">
-    
-    <thead>
-    <tr>
-        <th>
-            @L("UserName")
-        </th>
-        <th>
-            @L("EmailAddress")
-        </th>
-        <th></th>
-    </tr>    
-    </thead>
-    <tbody>
+<table dt-options="vm.dtOptions" dt-columns="vm.dtColumns" datatable="" class="table table-condensed table-responsive table-striped">
 
-    <tr ng-repeat="user in vm.users">
-        <td>
-            {{user.userName}}
-        </td>
-        <td>
-            {{user.emailAddress}}
-        </td>
-        <td>
-            <a class='btn btn-primary btn-xs pull-right' ng-click='vm.onClickFunction(user.id)'><i class='fa fa-check'></i></a>
-        </td>
-    </tr>
-    </tbody>
 </table>

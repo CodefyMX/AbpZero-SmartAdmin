@@ -28,7 +28,6 @@
         
         function link(scope, element, attrs) {
             if(scope.vm.fromCtrl){
-
                 ctrlFun = scope.vm.fromCtrl;
             }else{
                 ctrlFun = function(){ console.warn("No user selected event function defined"); }
@@ -36,16 +35,35 @@
         }
     }
     /* @ngInject */
-    UserSelectorController.$inject = ['$scope','abp.services.app.user'];
-    function UserSelectorController ($scope,_userService) {
+    UserSelectorController.$inject = ['abp.services.app.user','DTOptionsBuilder','DTColumnBuilder','$compile','$scope'];
+    function UserSelectorController (_userService,DTOptionsBuilder,DTColumnBuilder,$compile,$scope) {
         var vm = this;
         vm.users = [];
-        _userService.getUsers().then(function(response){
-            console.log(response.data);
-            vm.users = response.data.items
-        });
+
+        vm.dtOptions = DTOptionsBuilder.newOptions().withOption('ajax',{
+            url:'/AngularApi/Users/LoadUsers',
+            type:'GET'
+        }).withDataProp('data').withOption('processing', true)
+        .withOption('serverSide', true).withPaginationType('full_numbers').withOption('createdRow', createdRow);
+        vm.dtColumns = [
+            DTColumnBuilder.newColumn('Id').withTitle('ID'),
+            DTColumnBuilder.newColumn('UserName').withTitle('First name'),
+            DTColumnBuilder.newColumn(null).withTitle(App.localize('Actions')).notSortable()
+            .renderWith(actions)
+        ];
         vm.onClickFunction = function(id){
+            console.log(id);
             ctrlFun(id);
         }
+
+        function actions(data,type,full,meta){
+            return '<a class="btn btn-default btn-xs" ng-click="vm.onClickFunction(' + data.Id + ')" ><i class="fa fa-check"></i></a>'
+            
+        }
+        function createdRow(row, data, dataIndex) {
+            // Recompiling so we can bind Angular directive to the DT
+            $compile(angular.element(row).contents())($scope);
+        }
+
     }
 })();

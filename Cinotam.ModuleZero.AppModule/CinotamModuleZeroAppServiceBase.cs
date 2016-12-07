@@ -83,7 +83,7 @@ namespace Cinotam.ModuleZero.AppModule
                 request.length = totalCount;
             }
 
-            var searchString = request.search["value"].ToUpper();
+            var searchString = request.search?["value"].ToUpper() ?? "";
 
             queryable = queryable.Search(expression.ToArray()).Containing(searchString);
 
