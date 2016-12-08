@@ -5,8 +5,8 @@
         .module('app.web')
         .controller('app.views.organizationUnits.addUser', AddUserController);
 
-    AddUserController.$inject = ['items', '$uibModalInstance', 'abp.services.app.organizationUnits', '$sce'];
-    function AddUserController(items, uibModalInstance, _orgUnits, $sce) {
+    AddUserController.$inject = ['items', '$uibModalInstance', 'abp.services.app.organizationUnits'];
+    function AddUserController(items, uibModalInstance, _orgUnits) {
         var vm = this;
         vm.cancel = function () {
             uibModalInstance.close();
@@ -21,11 +21,6 @@
             }).then(function () {
                 uibModalInstance.close("useradded");
             });
-        }
-        vm.delete = function (id) {
-            vm.userId = id;
-
-            alert(id);
         }
         vm.properties = [
             {
@@ -51,10 +46,6 @@
                 },
             }
         ]
-
-        vm.actions = function (data, type, full, meta) {
-            return '<a class="btn btn-default btn-xs" ng-click="vm.onClickFunction(' + data.Id + ')" ><i class="fa fa-check"></i></a>'
-        }
         activate();
         ////////////////
 
