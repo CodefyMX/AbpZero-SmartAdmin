@@ -21,7 +21,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.AngularApi.Controllers
         [WrapResult(false)]
         public ActionResult LoadUsers(RequestModel<object> input)
         {
-            ProccessQueryData(input, "UserName", new[] { "", "UserName", "EmailAddress" });
+            ProccessQueryData(input, "UserName", new[] { "", "UserName", "Name", "Surname", "EmailAddress", "CreationTime", "LastLoginTime" });
             var result = _userAppService.GetUsersForTable(input);
             return Json(result, JsonRequestBehavior.AllowGet);
         }

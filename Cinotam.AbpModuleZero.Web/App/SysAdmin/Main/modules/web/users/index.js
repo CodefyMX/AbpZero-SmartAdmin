@@ -4,11 +4,10 @@
     angular
         .module('app.web')
         .controller('app.views.users.index', IndexController);
-
     IndexController.$inject = [];
     function IndexController() {
         var vm = this;
-
+        vm.instance = {};
         vm.properties = [
             {
                 Key: "Id",
@@ -20,33 +19,57 @@
                 DisplayName: "User name"
             },
             {
+                Key: "Name",
+                DisplayName: "SurName"
+            },
+            {
                 Key: "EmailAddress",
                 DisplayName: "Email"
+            },
+            {
+                Key:'CreationTimeString',
+                DisplayName:'CreationTime'
+            },
+            {
+                Key:'LastLoginTimeString',
+                DisplayName:'LastLoginTime'
             }
         ]
-        function edit() {
+        vm.edit = function() {
             console.log("Edit");
         }
-        activate();
-        vm.onSelected = function() {
+        vm.delete = function() {
             console.log("Ok");
+            vm.reloadTable();
         }
 
-        vm.events = [
+        vm.objFuncs = [
             {
-                name: 'edit',
-                dom: action,
-                event: edit
+                dom: function (data, type, full, meta) {
+                    //$parent.vm.click refers to this controller
+                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.edit(' + data.Id + ')" ><i class="fa fa-check"></i></a>';
+                },
+            },
+            {
+                dom: function (data, type, full, meta) {
+                    //$parent.vm.click refers to this controller
+                    return '<a class="btn btn-danger btn-xs" ng-click="$parent.vm.delete(' + data.Id + ')" ><i class="fa fa-times"></i></a>';
+                },
             }
         ]
-        function action(data, type, full, meta) {
-            return '<a class="btn btn-default btn-xs" ng-click="vm.Edit(' + data.Id + ')" ><i class="fa fa-edit"></i></a> <a class="btn btn-danger btn-xs" ng-click="vm.Delete(' + data.Id + ')" ><i class="fa fa-times"></i></a> '
-        }
 
+        vm.reloadTable = function(){
+            vm.instance.reloadData(function(data){
+                console.log(data);
+            },false);
+        }
 
         ////////////////
 
         function activate() {
+
         }
+        
+        activate();
     }
 })();

@@ -24,8 +24,6 @@
             }
         };
         return directive;
-
-
     }
     function link(scope, element, attrs) {
     }
@@ -33,30 +31,35 @@
     UserSelectorController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$scope'];
     function UserSelectorController(_userService, DTOptionsBuilder, DTColumnBuilder, $compile, $scope) {
         var vm = this;
+        //Holds the data table instance in the vm.instance variable of the parent
+        vm.dtInstance = function(instance) {
+            $scope.$parent.vm.instance = instance;
+        };
         vm.users = [];
         vm.dtColumns = [];
-        console.log($scope);
         vm.dtOptions = DTOptionsBuilder.newOptions().withOption('ajax', {
             url: '/AngularApi/Users/LoadUsers',
             type: 'GET'
-        })
-            .withDataProp('data')
+        }).withDataProp('data')
             .withOption('processing', true).withOption('createdRow', createdRow)
             .withOption('serverSide', true).withOption('createdRow', createdRow)
             .withPaginationType('full_numbers').withOption('createdRow', createdRow);
 
+
         vm.dtColumns = buildColumns($scope.vm.tProperties);
+
         vm.dtColumns.push(DTColumnBuilder.newColumn(null)
             .withTitle(App.localize("Actions"))
             .notSortable()
             .withClass('text-center')
             .renderWith(loadCustom));
-        vm.onClickFunction = function(id) {
-            if (!$scope.vm.fnFromCtrl) { $scope.vm.fnFromCtrl = function(id) { console.warn("No user selected event function defined"); } }
-            $scope.vm.fnFromCtrl(id);
-        }
+
         vm.registeredFunctions = [];
 
+        /**
+             * Push all the functions inside the registeredFunctions array
+             * @param  data, type, full, meta
+             */
         function loadCustom(data, type, full, meta) {
             var btns = " ";
             for (var i = 0; i < $scope.vm.tFunctions.length; i++) {
@@ -70,14 +73,17 @@
             return btns;
         }
         /**
-             * Recompiles the table to allow angular binding
+             * Recompiles the rows table to allow angular binding
              * @param  row, data, dataIndex
              */
         function createdRow(row, data, dataIndex) {
             // Recompiling so we can bind Angular directive to the DT
             $compile(angular.element(row).contents())($scope);
         }
-
+        /**
+             * Recompiles the table columns to allow angular binding
+             * @param  row, data, dataIndex
+             */
         function createdColumn(col, data, dataIndex) {
             $compile(angular.element(col).contents())($scope);
         }

@@ -49,12 +49,6 @@
                     //$parent.vm.click refers to this controller
                     return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.click(' + data.Id + ')" ><i class="fa fa-check"></i></a>';
                 },
-            },
-            {
-                dom: function (data, type, full, meta) {
-                    //$parent.vm.click refers to this controller
-                    return '<a class="btn btn-danger btn-xs" ng-click="$parent.vm.delete(' + data.Id + ')" ><i class="fa fa-times"></i></a>';
-                },
             }
         ]
 
