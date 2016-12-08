@@ -359,6 +359,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\create.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\orgunitsusers.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\users\index.js" />
     <Content Include="App\SysAdmin\Main\services\appSession.js" />
     <Content Include="App\SysAdmin\Main\sidebar.css" />
     <Content Include="App\SysAdmin\Main\_libconfig.js" />
