@@ -5,7 +5,7 @@
     <h4 class="modal-title"><i class="fa fa-3x fa-hacker-news"></i> </h4>
 </div>
 <div class="modal-body">
-    <user-selector data-onselected="vm.click"></user-selector>
+    <user-selector properties="vm.properties" funcobj="vm.objFuncs" actions="vm.actions"></user-selector>
 </div>
 <div class="modal-footer">
     <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>
