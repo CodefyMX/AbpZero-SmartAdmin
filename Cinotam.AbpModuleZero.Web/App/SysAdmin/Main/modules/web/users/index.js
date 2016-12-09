@@ -46,11 +46,17 @@
                                 userId:id
                             };
                         }
+                        else{
+                            return {};
+                        }
                     }
                 }
             });
             modalInstance.result.then(function (response) {
-                console.log(response);
+                if(response === "userCreated"){
+                    abp.notify.success(App.localize("UserCreated"), App.localize("Success"));
+                    vm.reloadTable();
+                }
             });
         }
         vm.delete = function () {

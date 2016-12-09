@@ -8,19 +8,24 @@
     CreateEditController.$inject = ['$uibModalInstance','items','$scope','abp.services.app.user'];
     function CreateEditController($uibModalInstance,items,$scope,_usersService) {
         var vm = this;
-        vm.user = {};
+        vm.user = {
+            id:0
+        };
         activate();
         vm.cancel = function (){
-            $uibModalInstance.close("ok");
+            $uibModalInstance.close();
+        }
+        vm.submit = function(form){
+            _usersService.createUser(vm.user).then(function(){
+                $uibModalInstance.close("userCreated");
+            });
         }
         ////////////////
 
         function activate() { 
-            console.log(items);
             if(items.userId){
                 _usersService.getUserForEdit(items.userId).then(function(response){
                     vm.user = response.data;
-                    console.log(vm.user);
                 })
             }
         }
