@@ -1,11 +1,11 @@
 (function() {
+    /**Im to lazy to rewrite code :( */
     'use strict';
     angular
         .module('app.web')
         .directive('userSelector', UserSelector);
-    UserSelector.$inject = [];
-    function UserSelector() {
-        var webFolder = '/App/SysAdmin/Main/modules/web/';
+    UserSelector.$inject = ['WebConst'];
+    function UserSelector(webConst) {
         // Usage:
         //  <user-selector user-selected='$scope.onSelected()' />
         // Creates:
@@ -16,11 +16,12 @@
             controllerAs: 'vm',
             link: link,
             restrict: 'E',
-            templateUrl: webFolder + 'directives/UserSelector.cshtml',
+            templateUrl: webConst.contentFolder + 'directives/UserSelector.cshtml',
             scope: {
                 tProperties: '=properties',
-                tActions: '=actions',
-                tFunctions: '=funcobj'
+                tFunctions: '=funcobj',
+                tLeftActions: '=pushActionsOnTheLeft',
+                tBtnsPosition: '@btnPositionClass'
             }
         };
         return directive;
@@ -45,15 +46,26 @@
             .withOption('serverSide', true).withOption('createdRow', createdRow)
             .withPaginationType('full_numbers').withOption('createdRow', createdRow);
 
+        var btnPosition = '';
 
-        vm.dtColumns = buildColumns($scope.vm.tProperties);
-
-        vm.dtColumns.push(DTColumnBuilder.newColumn(null)
+        console.log($scope.vm);
+        if ($scope.vm.tBtnsPosition) {
+            btnPosition = $scope.vm.tBtnsPosition;
+        }
+        var actionBtns = DTColumnBuilder.newColumn(null)
             .withTitle(App.localize("Actions"))
             .notSortable()
-            .withClass('text-center')
-            .renderWith(loadCustom));
+            .withClass(btnPosition)
+            .renderWith(loadCustom);
 
+        if ($scope.vm.tLeftActions) {
+            //Push the action buttons first so they can appear on the left 
+            vm.dtColumns = buildColumns(actionBtns, $scope.vm.tProperties);
+        }
+        else {
+            vm.dtColumns = buildColumns(null, $scope.vm.tProperties);
+            vm.dtColumns.push(actionBtns);
+        }
         vm.registeredFunctions = [];
 
         /**
@@ -64,7 +76,7 @@
             var btns = " ";
             for (var i = 0; i < $scope.vm.tFunctions.length; i++) {
                 var current = $scope.vm.tFunctions[i];
-                btns += current.dom(data, type, full, meta).toString();
+                btns += current.dom(data, type, full, meta).toString() + " "; //Space between buttons
                 vm.registeredFunctions.push({
                     name: current.name,
                     func: current.action
@@ -89,12 +101,16 @@
         }
         /**
              * Build the columns for the table
+             * @param insertBefore buttons to be placed in the left
              * @param properties the array of properties [Key,DisplayName(localizable)] that the directive should display in the table
              * @returns {DTColumns} the options
              */
-        function buildColumns(ctrlProperties) {
+        function buildColumns(insertBefore, ctrlProperties) {
             if (!ctrlProperties) ctrlProperties = [];
             var columns = [];
+            if (insertBefore) {
+                columns.push(insertBefore);
+            }
             if (ctrlProperties.length <= 0) {
                 ctrlProperties = [
                     {

@@ -5,8 +5,8 @@
         .module('app.web')
         .controller('app.views.dashboard.index', DashboardController);
 
-    DashboardController.$inject = ["abp.services.app.auditLogService", "$uibModal", '$interval'];
-    function DashboardController(_auditLogService, modal, $interval) {
+    DashboardController.$inject = ["abp.services.app.auditLogService", "$uibModal", '$interval','WebConst'];
+    function DashboardController(_auditLogService, modal, $interval,webConst) {
         var vm = this;
         var errorColor = [
             {
@@ -64,7 +64,7 @@
                 var id = getIdFromData(index);
                 if (data.length > 0) {
                     var modalInstance = modal.open({
-                        templateUrl: '/App/SysAdmin/Main/modules/web/dashboard/logDetails.cshtml',
+                        templateUrl: webConst.contentFolder+'dashboard/logDetails.cshtml',
                         controller: 'app.views.dashboard.logDetails as vm',
                         resolve: {
                             items: function () {

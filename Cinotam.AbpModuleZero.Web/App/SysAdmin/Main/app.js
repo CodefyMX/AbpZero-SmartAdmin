@@ -1,6 +1,9 @@
 ﻿(function () {
     'use strict';
-
+    window.webConst = {
+         contentFolder:'/App/SysAdmin/Main/modules/web/',
+         
+    }
     var app = angular.module('app', [
         'ngAnimate',
         'ngSanitize',
@@ -11,5 +14,5 @@
         'datatables',
         'datatables.bootstrap',
         'abp'
-    ]).constant('APP_CONFIG', window.appConfig);
+    ]).constant('WebConst',window.webConst);
 })();

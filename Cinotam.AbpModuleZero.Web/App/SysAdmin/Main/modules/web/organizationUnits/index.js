@@ -5,13 +5,12 @@
         .module('app.web')
         .controller('app.views.organizationUnits.index', OrganizationUnitsController);
 
-    OrganizationUnitsController.$inject = ['abp.services.app.organizationUnits', '$uibModal','$state'];
-    function OrganizationUnitsController(_orgUnits, modal,$state) {
+    OrganizationUnitsController.$inject = ['abp.services.app.organizationUnits', '$uibModal','$state','WebConst'];
+    function OrganizationUnitsController(_orgUnits, modal,$state,webConst) {
         var vm = this;
         vm.treeData = [
 
         ];
-
         //Tree instance
         vm.tree = {};
 
@@ -116,7 +115,7 @@
         activate();
         vm.openCreateModal = function (id, parentId) {
             var modalInstance = modal.open({
-                templateUrl: '/App/SysAdmin/Main/modules/web/organizationUnits/create.cshtml',
+                templateUrl: webConst.contentFolder+'organizationUnits/create.cshtml',
                 controller: 'app.views.organizationUnits.create as vm',
                 resolve: {
                     items: function () {
