@@ -29,8 +29,8 @@
     function link(scope, element, attrs) {
     }
     /* @ngInject */
-    UserSelectorController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$scope'];
-    function UserSelectorController(_userService, DTOptionsBuilder, DTColumnBuilder, $compile, $scope) {
+    UserSelectorController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$scope', 'WebConst'];
+    function UserSelectorController(_userService, DTOptionsBuilder, DTColumnBuilder, $compile, $scope, webConst) {
         var vm = this;
         //Holds the data table instance in the vm.instance variable of the parent
         vm.dtInstance = function(instance) {
@@ -44,7 +44,8 @@
         }).withDataProp('data')
             .withOption('processing', true).withOption('createdRow', createdRow)
             .withOption('serverSide', true).withOption('createdRow', createdRow)
-            .withPaginationType('full_numbers').withOption('createdRow', createdRow);
+            .withPaginationType('full_numbers').withOption('createdRow', createdRow).withLanguage(webConst.datatablesLangConfig);
+
 
         var btnPosition = '';
 

@@ -1,10 +1,57 @@
 <form name="createEditUser" ng-submit="vm.submit(this)">
     <div class="modal-header">
-        <h4 class="modal-title"><i class="fa fa-3x fa-hacker-news"></i> </h4>
+        <h4 class="modal-title"><i class="fa fa-3x fa-user"></i> </h4>
     </div>
     <div class="modal-body">
         <div class="form-group">
-            
+            <label class="control-label">@L("UserName")</label>
+            <input type="text" class="form-control" required ng-model="vm.user.userName">
+        </div>
+        <div class="form-group">
+            <label class="control-label">@L("EmailAddress")</label>
+            <input type="email" class="form-control" required ng-model="vm.user.emailAddress">
+        </div>
+        <div class="form-group">
+            <label class="control-label">@L("Name")</label>
+            <input type="text" class="form-control" required ng-model="vm.user.name">
+        </div>
+        <div class="form-group">
+            <label class="control-label">@L("Surname")</label>
+            <input type="text" class="form-control" required ng-model="vm.user.surname">
+        </div>
+
+        <div ng-if="vm.user.id == 0">
+            <div class="form-group">
+                <label class="control-label">@L("Password")</label>
+                <input type="password" required autocomplete="off" class="form-control" ng-model="vm.user.password">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="vm.user.sendNotificationMail"/> @L("SendNotificationMail")
+                </label>
+            </div>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="vm.user.isTwoFactorEnabled" /> @L("EnableTwoFactorAuth")
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="vm.user.isActive" /> @L("IsActive")
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="vm.user.shouldChangePasswordOnLogin" /> @L("ShouldChangePasswordOnLogin")
+            </label>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="vm.user.isEmailConfirmed" /> @L("EmailIsConfirmed")
+            </label>
         </div>
     </div>
     <div class="modal-footer">

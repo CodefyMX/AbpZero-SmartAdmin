@@ -359,6 +359,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\create.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\orgunitsusers.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\users\createEdit.js" />
     <Content Include="App\SysAdmin\Main\modules\web\users\index.js" />
     <Content Include="App\SysAdmin\Main\services\appSession.js" />
     <Content Include="App\SysAdmin\Main\sidebar.css" />
@@ -707,6 +708,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\directives\userSelector.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\adduser.cshtml" />
     <Content Include="Areas\AngularApi\Views\web.config" />
+    <Content Include="App\SysAdmin\Main\modules\web\users\createEdit.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
