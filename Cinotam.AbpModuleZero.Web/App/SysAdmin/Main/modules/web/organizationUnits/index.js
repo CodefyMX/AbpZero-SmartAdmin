@@ -85,7 +85,9 @@
             }
             e.preventDefault();
             _orgUnits.moveOrgUnit(request)
-                .then(function() {});
+                .then(function() {
+                });
+            return true;
         }
 
         var handleSelect = function(evt,data){
@@ -107,7 +109,7 @@
                     name: 'proton',
                     responsive: true
                 },
-                check_callback: true,
+                check_callback: true
             },
             plugins: ["wholerow", "html_data", "ui", "contextmenu", "dnd"],
             version: 1
@@ -135,7 +137,7 @@
                 }
             });
             modalInstance.result.then(function (result) {
-                if (result == 'created') {
+                if (result === 'created') {
                     activate();
                 }
             });
@@ -157,16 +159,6 @@
         function reloadTree() {
             vm.treeConfig.version++;
         }
-        function buildTreeData(treeElm) {
-            var model = new treeObj(treeElm.id, treeElm.parentId, treeElm.displayName);
-            vm.treeData.push(model);
-            if (treeElm.childrenDto.length > 0) {
-                for (var i = 0; i < treeElm.childrenDto.length; i++) {
-                    buildTreeData(treeElm.childrenDto[i]);
-                }
-            }
-        }
-
         var treeObj = function (id, parent, text) {
             if (!parent) {
                 parent = "#";
@@ -177,6 +169,17 @@
             this.state = { opened: true }
             return this;
         }
+        function buildTreeData(treeElm) {
+            var model = new treeObj(treeElm.id, treeElm.parentId, treeElm.displayName);
+            vm.treeData.push(model);
+            if (treeElm.childrenDto.length > 0) {
+                for (var i = 0; i < treeElm.childrenDto.length; i++) {
+                    buildTreeData(treeElm.childrenDto[i]);
+                }
+            }
+        }
+
+       
 
     }
 

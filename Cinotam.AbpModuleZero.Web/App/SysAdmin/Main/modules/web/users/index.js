@@ -34,7 +34,7 @@
                 Key: 'LastLoginTimeString',
                 DisplayName: 'LastLoginTime'
             }
-        ]
+        ];
         vm.createEdit = function(id) {
             var modalInstance = $uibModal.open({
                 templateUrl: webConst.contentFolder + 'users/createedit.cshtml',
@@ -73,18 +73,39 @@
         vm.delete = function(id, userName) {
             
             var confirmDelete = abp.utils.formatString(App.localize("ConfirmDeleteUser"), userName);
-            abp.message.confirm(confirmDelete, App.localize("ConfirmQuestion"), function(response) {
-                if (response) {
-                    abp.ui.setBusy();
-                    _usersService.deleteUser(id).then(function() {
-                        abp.notify.warn(App.localize("UserDeleted"), App.localize("Success"));
-                        abp.ui.clearBusy();
-                        vm.reloadTable();
-                    });
+            abp.message.confirm(confirmDelete,
+                App.localize("ConfirmQuestion"),
+                function(response) {
+                    if (response) {
+                        abp.ui.setBusy();
+                        _usersService.deleteUser(id)
+                            .then(function() {
+                                abp.notify.warn(App.localize("UserDeleted"), App.localize("Success"));
+                                abp.ui.clearBusy();
+                                vm.reloadTable();
+                            });
+                    }
+                });
+
+
+        }
+        vm.changeRoles = function(userId) {
+            var modalInstance = $uibModal.open({
+                templateUrl: webConst.contentFolder + "users/changeRoles.cshtml",
+                controller: "app.views.users.changeRoles as vm",
+                resolve: {
+                    items:function() {
+                        return {
+                            userId:userId
+                        }
+                    }
                 }
-            })
-
-
+            });
+            modalInstance.result.then(function(response) {
+                if (response === "roleschanged") {
+                    abp.notify.success(App.localize("RolesChanged"), App.localize("Success"));
+                }
+            });
         }
         vm.objFuncs = [
             {
@@ -130,7 +151,6 @@
 
         vm.reloadTable = function() {
             vm.instance.reloadData(function(data) {
-                console.log(data);
             }, false);
         }
 

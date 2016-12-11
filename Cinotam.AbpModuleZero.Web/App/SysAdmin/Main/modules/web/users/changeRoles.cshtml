@@ -1,0 +1,28 @@
+﻿@{ Layout = null; }
+<form name="changeRoles" ng-submit="vm.submit(this)">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-3x fa-briefcase"></i> </h4>
+    </div>
+    <div class="modal-body">
+        <h3>@L("UserName") : {{vm.rolesModel.userName}}</h3>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="role in vm.rolesModel.roles">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                <input type="checkbox" ng-model="role.isSelected" ng-checked="role.isSelected"> {{role.displayName}}
+                            </label>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">@L("Save")</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>
+    </div>
+</form>
