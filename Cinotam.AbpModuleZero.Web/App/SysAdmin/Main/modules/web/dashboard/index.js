@@ -8,42 +8,22 @@
     DashboardController.$inject = ["abp.services.app.auditLogService", "$uibModal", '$interval','WebConst'];
     function DashboardController(_auditLogService, modal, $interval,webConst) {
         var vm = this;
-        var errorColor = [
-            {
-                pointBackgroundColor: "rgba(159,204,0, 1)",
-                backgroundColor: 'rgb(255,202,40)',
-            }
-        ];
-        var successColor = [
-            {
-                pointBackgroundColor: "rgba(159,204,0, 1)",
-                backgroundColor: 'rgb(102,187,106)',
-            }
-        ];
         vm.chartConfigs = {
             updateInterval: 3000,
-            selectedOptionValue: 50,
-            color: successColor
+            selectedOptionValue: vm.selectVal
         }
-        vm.changeLogType = function (option) {
-            requestModel.code = option;
-            if (option == 1) {
-                vm.chartConfigs.color = errorColor;
-            }
-            else {
-                 vm.chartConfigs.color = successColor;
-            }
-            vm.update();
-        }
+
+        var tenantId;
         var requestModel = {
             Count: vm.chartConfigs.selectedOptionValue,
             Code: 2,
             TenantId: tenantId
         }
+        vm.changeLogType = function (option) {
+            requestModel.code = option;
+            vm.update();
+        }
         vm.selectVal = 50;
-
-        var tenantId;
-
         activate(vm.chartConfigs.selectedOptionValue);
 
         ////////////////
@@ -53,7 +33,8 @@
             totalRequestsReceived: 0
         };
         vm.update = function () {
-            activate(vm.selectVal);
+            requestModel.Count = vm.selectVal;
+            activate();
         }
         vm.chartDataFormatedDtos = [[]];
         vm.labels = [];
@@ -92,18 +73,11 @@
             }
         }
 
-        function activate(val) {
+        function activate() {
             if (!tenantId) tenantId = null;
             vm.chartOptions = {
                 responsive: true,
-                maintainAspectRatio: true,
-                scales: {
-                    xAxes: [
-                        {
-                            display: false
-                        }
-                    ]
-                }
+                maintainAspectRatio: true
             }
             vm.chartDataFormatedDtos = [[]];
             vm.labels = [];
