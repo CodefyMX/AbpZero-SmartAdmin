@@ -105,8 +105,28 @@
                 if (response === "roleschanged") {
                     abp.notify.success(App.localize("RolesChanged"), App.localize("Success"));
                 }
+                
             });
         }
+        vm.changePermissions = function(userId){
+            var modalInstance = $uibModal.open({
+                templateUrl: webConst.contentFolder + "users/changePermissions.cshtml",
+                controller: "app.views.users.changePermissions as vm",
+                resolve: {
+                    items:function() {
+                        return {
+                            userId:userId
+                        }
+                    }
+                }
+            });
+            modalInstance.result.then(function(response) {
+                if (response === "permissionsset") {
+                    abp.notify.success(App.localize("PermissionsSet"), App.localize("Success"));
+                }
+            });
+        }
+
         vm.objFuncs = [
             {
                 dom: function(data, type, full, meta) {
@@ -141,7 +161,6 @@
             
             {
                 dom: function(data, type, full, meta) {
-                    console.log("user info",data);
                     //$parent.vm.click refers to this controller
                     //
                     return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.delete(' + data.Id + ',&quot ' + data.UserName + ' &quot)" ><i class="fa fa-trash"></i></a>';

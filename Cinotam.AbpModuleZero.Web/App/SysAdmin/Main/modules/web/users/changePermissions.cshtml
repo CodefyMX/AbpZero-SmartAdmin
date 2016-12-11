@@ -1,0 +1,20 @@
+@{ Layout = null; }
+<link href="~/Scripts/jstree/themes/proton/style.min.css" rel="stylesheet" />
+<form name="changeRoles" ng-submit="vm.submit(this)">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-3x fa-briefcase"></i> </h4>
+    </div>
+    <div class="modal-body">
+        <h3>@L("UserName") : {{vm.rolesModel.userName}}</h3>
+        <div class="row">
+            <div class="col-xs-12">
+                <div should-apply="false" tree="vm.tree" js-tree="vm.treeConfig" tree-events-obj='vm.treeEventHandlers' ng-model="vm.treeData" ></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">@L("Save")</button>
+        <button class="btn btn-warning" ng-click="vm.resetPermissions()" type="button">@L("ResetPermissions")</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>
+    </div>
+</form>
