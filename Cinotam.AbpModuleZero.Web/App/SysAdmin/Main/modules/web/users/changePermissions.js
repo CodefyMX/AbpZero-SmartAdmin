@@ -11,7 +11,7 @@
         vm.cancel = function () {
             $uibModalInstance.close();
         }
-
+        vm.userName = "";
         var data = {
             AssignedPermissions: [],
             UserId: items.userId
@@ -100,6 +100,7 @@
         ////////////////
 
         function activate() {
+            vm.userName = items.userName;
             _userService.getUserSpecialPermissions(items.userId).then(function (response) {
                 console.log(response.data);
                 for (var i = 0; i < response.data.assignedPermissions.length; i++) {

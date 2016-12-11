@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -35,12 +35,12 @@
                 DisplayName: 'LastLoginTime'
             }
         ];
-        vm.createEdit = function(id) {
+        vm.createEdit = function (id) {
             var modalInstance = $uibModal.open({
                 templateUrl: webConst.contentFolder + 'users/createedit.cshtml',
                 controller: 'app.views.users.createEdit as vm',
                 resolve: {
-                    items: function() {
+                    items: function () {
                         if (id) {
                             return {
                                 userId: id
@@ -52,34 +52,34 @@
                     }
                 }
             });
-            modalInstance.result.then(function(response) {
+            modalInstance.result.then(function (response) {
                 if (response === "userCreated") {
                     abp.notify.success(App.localize("UserCreated"), App.localize("Success"));
                     vm.reloadTable();
                 }
             });
         }
-        vm.delete = function() {
+        vm.delete = function () {
             console.log("Ok");
             vm.reloadTable();
         }
-        vm.unlock = function(id) {
+        vm.unlock = function (id) {
             abp.ui.setBusy();
-            _usersService.unlockUser(id).then(function() {
+            _usersService.unlockUser(id).then(function () {
                 abp.notify.success(App.localize("UserUnlocked"), App.localize("Success"));
                 abp.ui.clearBusy();
             });
         }
-        vm.delete = function(id, userName) {
-            
+        vm.delete = function (id, userName) {
+
             var confirmDelete = abp.utils.formatString(App.localize("ConfirmDeleteUser"), userName);
             abp.message.confirm(confirmDelete,
                 App.localize("ConfirmQuestion"),
-                function(response) {
+                function (response) {
                     if (response) {
                         abp.ui.setBusy();
                         _usersService.deleteUser(id)
-                            .then(function() {
+                            .then(function () {
                                 abp.notify.warn(App.localize("UserDeleted"), App.localize("Success"));
                                 abp.ui.clearBusy();
                                 vm.reloadTable();
@@ -89,38 +89,39 @@
 
 
         }
-        vm.changeRoles = function(userId) {
+        vm.changeRoles = function (userId) {
             var modalInstance = $uibModal.open({
                 templateUrl: webConst.contentFolder + "users/changeRoles.cshtml",
                 controller: "app.views.users.changeRoles as vm",
                 resolve: {
-                    items:function() {
+                    items: function () {
                         return {
-                            userId:userId
+                            userId: userId
                         }
                     }
                 }
             });
-            modalInstance.result.then(function(response) {
+            modalInstance.result.then(function (response) {
                 if (response === "roleschanged") {
                     abp.notify.success(App.localize("RolesChanged"), App.localize("Success"));
                 }
-                
+
             });
         }
-        vm.changePermissions = function(userId){
+        vm.changePermissions = function (userId, userName) {
             var modalInstance = $uibModal.open({
                 templateUrl: webConst.contentFolder + "users/changePermissions.cshtml",
                 controller: "app.views.users.changePermissions as vm",
                 resolve: {
-                    items:function() {
+                    items: function () {
                         return {
-                            userId:userId
+                            userId: userId,
+                            userName: userName
                         }
                     }
                 }
             });
-            modalInstance.result.then(function(response) {
+            modalInstance.result.then(function (response) {
                 if (response === "permissionsset") {
                     abp.notify.success(App.localize("PermissionsSet"), App.localize("Success"));
                 }
@@ -129,38 +130,38 @@
 
         vm.objFuncs = [
             {
-                dom: function(data, type, full, meta) {
+                dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
                     return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.createEdit(' + data.Id + ')" ><i class="fa fa-edit"></i></a>';
                 },
             },
             {
-                dom: function(data, type, full, meta) {
+                dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
                     return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.changeRoles(' + data.Id + ')" ><i class="fa fa-briefcase"></i></a>';
                 },
             },
             {
-                dom: function(data, type, full, meta) {
+                dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
                     return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.changePassword(' + data.Id + ')" ><i class="fa fa-key"></i></a>';
                 },
             },
             {
-                dom: function(data, type, full, meta) {
+                dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
-                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.changePermissions(' + data.Id + ')" ><i class="fa fa-lock"></i></a>';
+                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.changePermissions(' + data.Id + ',&quot ' + data.UserName + ' &quot)" ><i class="fa fa-lock"></i></a>';
                 },
             },
             {
-                dom: function(data, type, full, meta) {
+                dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
                     return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.unlock(' + data.Id + ')" ><i class="fa fa-unlock"></i></a>';
                 },
             },
-            
+
             {
-                dom: function(data, type, full, meta) {
+                dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
                     //
                     return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.delete(' + data.Id + ',&quot ' + data.UserName + ' &quot)" ><i class="fa fa-trash"></i></a>';
@@ -168,8 +169,8 @@
             }
         ]
 
-        vm.reloadTable = function() {
-            vm.instance.reloadData(function(data) {
+        vm.reloadTable = function () {
+            vm.instance.reloadData(function (data) {
             }, false);
         }
 
