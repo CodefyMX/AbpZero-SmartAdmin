@@ -3,25 +3,26 @@
     'use strict';
     angular
         .module('app.web')
-        .directive('userSelector', UserSelector);
-    UserSelector.$inject = ['WebConst'];
-    function UserSelector(webConst) {
+        .directive('abpCinotamTable', AbpCinotamTable);
+    AbpCinotamTable.$inject = ['WebConst'];
+    function AbpCinotamTable(webConst) {
         // Usage:
         //  <user-selector user-selected='$scope.onSelected()' />
         // Creates:
         //  Table of users
         var directive = {
             bindToController: true,
-            controller: UserSelectorController,
+            controller: AbpCinotamTableController,
             controllerAs: 'vm',
             link: link,
             restrict: 'E',
-            templateUrl: webConst.contentFolder + 'directives/UserSelector.cshtml',
+            templateUrl: webConst.contentFolder + 'directives/abpcinotamtable.cshtml',
             scope: {
                 tProperties: '=properties',
                 tFunctions: '=funcobj',
                 tLeftActions: '=pushActionsOnTheLeft',
-                tBtnsPosition: '@btnPositionClass'
+                tBtnsPosition: '@btnPositionClass',
+                tAjaxUrl:'@url'
             }
         };
         return directive;
@@ -29,17 +30,18 @@
     function link(scope, element, attrs) {
     }
     /* @ngInject */
-    UserSelectorController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$scope', 'WebConst'];
-    function UserSelectorController(_userService, DTOptionsBuilder, DTColumnBuilder, $compile, $scope, webConst) {
+    AbpCinotamTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$scope', 'WebConst'];
+    function AbpCinotamTableController(_userService, DTOptionsBuilder, DTColumnBuilder, $compile, $scope, webConst) {
         var vm = this;
         //Holds the data table instance in the vm.instance variable of the parent
         vm.dtInstance = function(instance) {
             $scope.$parent.vm.instance = instance;
         };
+        var url = $scope.vm.tAjaxUrl;
         vm.users = [];
         vm.dtColumns = [];
         vm.dtOptions = DTOptionsBuilder.newOptions().withOption('ajax', {
-            url: '/AngularApi/Users/LoadUsers',
+            url: url,
             type: 'GET'
         }).withDataProp('data')
             .withOption('processing', true).withOption('createdRow', createdRow)

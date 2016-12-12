@@ -5,7 +5,7 @@
     <h4 class="modal-title"><i class="fa fa-3x fa-hacker-news"></i> </h4>
 </div>
 <div class="modal-body">
-    <user-selector properties="vm.properties" funcobj="vm.objFuncs" actions="vm.actions"></user-selector>
+    <abp-cinotam-table properties="vm.properties" url='/AngularApi/Users/LoadUsers' funcobj="vm.objFuncs" actions="vm.actions"></abp-cinotam-table>
 </div>
 <div class="modal-footer">
     <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>
