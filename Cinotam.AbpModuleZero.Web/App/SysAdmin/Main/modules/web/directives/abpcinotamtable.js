@@ -115,18 +115,8 @@
                 columns.push(insertBefore);
             }
             if (ctrlProperties.length <= 0) {
-                ctrlProperties = [
-                    {
-                        Key: "Id",
-                        DisplayName: "Id"
-                    },
-                    {
-                        Key: "UserName",
-                        DisplayName: "UserName"
-                    }
-                ];
+                throw new Error('Properties not defined');
             }
-
             for (var i = 0; i < ctrlProperties.length; i++) {
                 var currentProperty = ctrlProperties[i];
 
