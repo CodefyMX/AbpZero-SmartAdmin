@@ -108,6 +108,26 @@
 
             });
         }
+        vm.changePassword = function(userId,userName){
+            var modalInstance = $uibModal.open({
+                templateUrl: webConst.contentFolder + "users/changePassword.cshtml",
+                controller: "app.views.users.changePassword as vm",
+                resolve: {
+                    items: function () {
+                        return {
+                            userId: userId,
+                            userName : userName
+                        }
+                    }
+                }
+            });
+            modalInstance.result.then(function (response) {
+                if (response === "passwordchanged") {
+                    abp.notify.success(App.localize("PasswordChanged"), App.localize("Success"));
+                }
+
+            });
+        }
         vm.changePermissions = function (userId, userName) {
             var modalInstance = $uibModal.open({
                 templateUrl: webConst.contentFolder + "users/changePermissions.cshtml",
@@ -144,7 +164,7 @@
             {
                 dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
-                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.changePassword(' + data.Id + ')" ><i class="fa fa-key"></i></a>';
+                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.changePassword(' + data.Id + ',&quot ' + data.UserName + ' &quot)" ><i class="fa fa-key"></i></a>';
                 },
             },
             {
