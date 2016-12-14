@@ -1,18 +1,18 @@
-(function() {
+(function () {
     /**Im to lazy to rewrite code :( */
     'use strict';
     angular
         .module('app.web')
-        .directive('abpCinotamTable', AbpCinotamTable);
-    AbpCinotamTable.$inject = ['WebConst'];
-    function AbpCinotamTable(webConst) {
+        .directive('abpCinotamTable', AbpTable);
+    AbpTable.$inject = ['WebConst'];
+    function AbpTable(webConst) {
         // Usage:
         //  <user-selector user-selected='$scope.onSelected()' />
         // Creates:
         //  Table of users
         var directive = {
             bindToController: true,
-            controller: AbpCinotamTableController,
+            controller: AbpTableController,
             controllerAs: 'vm',
             link: link,
             restrict: 'E',
@@ -22,7 +22,7 @@
                 tFunctions: '=funcobj',
                 tLeftActions: '=pushActionsOnTheLeft',
                 tBtnsPosition: '@btnPositionClass',
-                tAjaxUrl:'@url'
+                tAjaxUrl: '=url'
             }
         };
         return directive;
@@ -30,11 +30,11 @@
     function link(scope, element, attrs) {
     }
     /* @ngInject */
-    AbpCinotamTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$scope', 'WebConst'];
-    function AbpCinotamTableController(_userService, DTOptionsBuilder, DTColumnBuilder, $compile, $scope, webConst) {
+    AbpTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$scope', 'WebConst'];
+    function AbpTableController(_userService, DTOptionsBuilder, DTColumnBuilder, $compile, $scope, webConst) {
         var vm = this;
         //Holds the data table instance in the vm.instance variable of the parent
-        vm.dtInstance = function(instance) {
+        vm.dtInstance = function (instance) {
             $scope.$parent.vm.instance = instance;
         };
         var url = $scope.vm.tAjaxUrl;
@@ -55,11 +55,16 @@
         if ($scope.vm.tBtnsPosition) {
             btnPosition = $scope.vm.tBtnsPosition;
         }
-        var actionBtns = DTColumnBuilder.newColumn(null)
+
+        if ($scope.vm.tFunctions) {
+            var actionBtns = DTColumnBuilder.newColumn(null)
             .withTitle(App.localize("Actions"))
             .notSortable()
             .withClass(btnPosition)
             .renderWith(loadCustom);
+        }
+
+
 
         if ($scope.vm.tLeftActions) {
             //Push the action buttons first so they can appear on the left 
@@ -67,7 +72,9 @@
         }
         else {
             vm.dtColumns = buildColumns(null, $scope.vm.tProperties);
-            vm.dtColumns.push(actionBtns);
+            if ($scope.vm.tFunctions) {
+                vm.dtColumns.push(actionBtns);
+            }
         }
         vm.registeredFunctions = [];
 
@@ -77,14 +84,17 @@
              */
         function loadCustom(data, type, full, meta) {
             var btns = " ";
-            for (var i = 0; i < $scope.vm.tFunctions.length; i++) {
-                var current = $scope.vm.tFunctions[i];
-                btns += current.dom(data, type, full, meta).toString() + " "; //Space between buttons
-                vm.registeredFunctions.push({
-                    name: current.name,
-                    func: current.action
-                });
+            if ($scope.vm.tFunctions) {
+                for (var i = 0; i < $scope.vm.tFunctions.length; i++) {
+                    var current = $scope.vm.tFunctions[i];
+                    btns += current.dom(data, type, full, meta).toString() + " "; //Space between buttons
+                    vm.registeredFunctions.push({
+                        name: current.name,
+                        func: current.action
+                    });
+                }
             }
+
             return btns;
         }
         /**

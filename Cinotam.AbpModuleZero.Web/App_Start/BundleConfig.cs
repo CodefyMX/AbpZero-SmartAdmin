@@ -224,11 +224,11 @@ namespace Cinotam.AbpModuleZero.Web
 
 
             bundles.Add(new ScriptBundle("~/App/SysAdmin/Blocks/js")
-                .Include("~/App/SysAdmin/Blocks/logger/logger.module.js",
-                "~/App/SysAdmin/Blocks/logger/logger.js",
-                "~/App/SysAdmin/Blocks/router/router.module.js",
-                "~/App/SysAdmin/Blocks/router/router.helper.provider.js")
-                .IncludeDirectory("~/App/SysAdmin/Core", "*.js", true));
+                .Include("~/App/Blocks/logger/logger.module.js",
+                "~/App/Blocks/logger/logger.js",
+                "~/App/Blocks/router/router.module.js",
+                "~/App/Blocks/router/router.helper.provider.js")
+                .IncludeDirectory("~/App/Core", "*.js", true));
             #endregion
 
 

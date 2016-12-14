@@ -35,6 +35,7 @@
                 DisplayName: 'LastLoginTime'
             }
         ];
+        vm.url = '/AngularApi/Users/LoadUsers';
         vm.createEdit = function (id) {
             var modalInstance = $uibModal.open({
                 templateUrl: webConst.contentFolder + 'users/createedit.cshtml',

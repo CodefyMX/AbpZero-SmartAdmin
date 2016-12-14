@@ -36,16 +36,19 @@
                 Key: "EmailAddress",
                 DisplayName: "Email"
             }
-        ]
+        ];
 
         vm.objFuncs = [
             {
-                dom: function (data, type, full, meta) {
+                dom: function(data, type, full, meta) {
                     //$parent.vm.click refers to this controller
-                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.click(' + data.Id + ')" ><i class="fa fa-check"></i></a>';
-                },
+                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.click(' +
+                        data.Id +
+                        ')" ><i class="fa fa-check"></i></a>';
+                }
             }
-        ]
+        ];
+        vm.url = '/AngularApi/Users/LoadUsers';
         activate();
         ////////////////
 
