@@ -359,6 +359,8 @@
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\create.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\orgunitsusers.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\roles\createEdit.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\roles\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\users\changeRoles.js" />
     <Content Include="App\SysAdmin\Main\modules\web\users\createEdit.js" />
     <Content Include="App\SysAdmin\Main\modules\web\users\index.js" />
@@ -711,6 +713,7 @@
     <Content Include="App\SysAdmin\Main\modules\web\users\createEdit.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\users\changeRoles.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\abpcinotamtable.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\roles\createEdit.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
