@@ -12,6 +12,7 @@
 
         activate();
         vm.createEdit = function (id) {
+            if (!id) id == null;
             var modalInstance = $uibModal.open({
                 templateUrl: WebConst.contentFolder + "roles/createEdit.cshtml",
                 controller: 'app.views.roles.createEdit as vm',
@@ -25,16 +26,27 @@
             });
             modalInstance.result.then(function (response) {
                 if (response == 'roleEdited') {
-
+                    abp.notify.success(App.localize("RoleEdited"), App.localize("Success"));
+                    vm.reloadTable();
+                }
+            });
+        }
+        vm.delete = function (id,roleName) {
+            var message = abp.utils.formatString(App.localize("RoleDeleteMessage"), roleName);
+            abp.message.confirm(message, App.localize("ConfirmQuestion"), function (response) {
+                if (response) {
+                    _rolesService.deleteRole(id).then(function(){
+                        abp.notify.warn(App.localize("RoleDeleted"), App.localize("Success"));
+                        vm.reloadTable();
+                    });
                 }
             });
         }
 
 
-
         ////////////////
         vm.instance = {};
-        vm.defaultSearchPropery = 'UserName';
+        vm.defaultSearchPropery = 'DisplayName';
         vm.properties = [
             {
                 Key: "Id",
@@ -43,11 +55,11 @@
             },
             {
                 Key: "DisplayName",
-                DisplayName: "Name"
+                DisplayName: App.localize("Name")
             },
             {
                 Key: "CreationTimeString",
-                DisplayName: "Creation Time"
+                DisplayName: App.localize("CreationTime")
             },
         ];
         vm.url = '/AngularApi/Roles/LoadRoles';
@@ -61,7 +73,7 @@
             {
                 dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
-                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.delete(' + data.Id + ')" ><i class="fa fa-trash"></i></a>';
+                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.delete(' + data.Id + ',&quot ' + data.DisplayName + ' &quot)" ><i class="fa fa-trash"></i></a>';
                 },
             },
         ]

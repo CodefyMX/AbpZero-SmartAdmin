@@ -133,6 +133,7 @@ namespace Cinotam.ModuleZero.AppModule.Roles
                 DisplayName = allPermission.DisplayName.Localize(new LocalizationContext(LocalizationManager)),
                 Granted = granted,
                 Name = allPermission.Name,
+                ParentPermission = allPermission.Parent?.Name
             };
             if (allPermission.Children.Any())
             {

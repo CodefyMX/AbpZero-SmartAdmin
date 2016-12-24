@@ -17,23 +17,23 @@
             },
             {
                 Key: "UserName",
-                DisplayName: "User name"
+                DisplayName: App.localize("UserName")
             },
             {
                 Key: "Name",
-                DisplayName: "SurName"
+                DisplayName: App.localize("Surname")
             },
             {
                 Key: "EmailAddress",
-                DisplayName: "Email"
+                DisplayName: App.localize("EmailAddress")
             },
             {
                 Key: 'CreationTimeString',
-                DisplayName: 'CreationTime'
+                DisplayName: App.localize("CreationTime")
             },
             {
                 Key: 'LastLoginTimeString',
-                DisplayName: 'LastLoginTime'
+                DisplayName: App.localize("LastLoginTime")
             }
         ];
         vm.url = '/AngularApi/Users/LoadUsers';
@@ -62,7 +62,6 @@
             });
         }
         vm.delete = function () {
-            console.log("Ok");
             vm.reloadTable();
         }
         vm.unlock = function (id) {
@@ -110,7 +109,7 @@
 
             });
         }
-        vm.changePassword = function(userId,userName){
+        vm.changePassword = function (userId, userName) {
             var modalInstance = $uibModal.open({
                 templateUrl: webConst.contentFolder + "users/changePassword.cshtml",
                 controller: "app.views.users.changePassword as vm",
@@ -118,7 +117,7 @@
                     items: function () {
                         return {
                             userId: userId,
-                            userName : userName
+                            userName: userName
                         }
                     }
                 }

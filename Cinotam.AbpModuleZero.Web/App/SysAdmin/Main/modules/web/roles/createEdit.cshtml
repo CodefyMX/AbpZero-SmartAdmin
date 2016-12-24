@@ -1,0 +1,31 @@
+<form ng-submit="vm.submit()">
+    <link href="~/Scripts/jstree/themes/proton/style.min.css" rel="stylesheet" />
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title"><i class="fa fa-3x fa-users"></i> </h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="">@L("Name")</label>
+                <input type="text" class="form-control" required ng-model='vm.role.displayName'>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model='vm.IsDefault'>
+                    @L("IsAssignedByDefault")
+                </label>
+            </div>
+
+            <div ng-show='vm.editPermissionsAllowed' class="row">
+                <div class="col-xs-12">
+                    <div should-apply="false" tree="vm.tree" js-tree="vm.treeConfig" tree-events-obj='vm.treeEventHandlers' ng-model="vm.treeData"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click='vm.cancel()'>Close</button>
+            <button type="submit" class="btn btn-primary">@L("Save")</button>
+        </div>
+    </div>
+</form>

@@ -7,6 +7,7 @@ namespace Cinotam.AbpModuleZero.Tools.Extensions
     {
         public static string Sluggify(this string value)
         {
+            if (value == null) return string.Empty;
             //Cambia a minusc
             value = value.ToLowerInvariant();
 

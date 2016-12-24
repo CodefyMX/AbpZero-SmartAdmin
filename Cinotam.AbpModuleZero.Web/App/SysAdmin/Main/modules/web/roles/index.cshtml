@@ -3,6 +3,11 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@L("Roles")
+                        <button type="button" ng-click='vm.createEdit(null)' class="btn btn-xs btn-default pull-right">@L("CreateRol")</button>
+                    </h3>
+                </div>
                 <div class="panel-body">
                     <abp-cinotam-table btn-position-class="" default-search="vm.defaultSearchPropery" url="vm.url" push-actions-on-the-left="true"
                         table="vm.table" properties="vm.properties" funcobj="vm.objFuncs" actions="vm.actions"></abp-cinotam-table>
