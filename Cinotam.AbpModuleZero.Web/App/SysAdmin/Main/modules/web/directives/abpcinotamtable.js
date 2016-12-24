@@ -105,7 +105,7 @@
         }
         /**
              * Builds the default request object for the table (helps to avoid unnecessary rebuilds)
-             * @param  row, data, dataIndex
+             * @param  tdata, properties, defaultSearch
              */
         function buildRequestData(tdata, properties, defaultSearch) {
             var propString = [''];

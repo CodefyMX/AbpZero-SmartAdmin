@@ -1626,6 +1626,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Areas\AngularApi\AngularApiAreaRegistration.cs" />
+    <Compile Include="Areas\AngularApi\Controllers\RolesController.cs" />
     <Compile Include="Areas\AngularApi\Controllers\UsersController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\AuditLogsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\ConfigurationController.cs" />
@@ -1779,6 +1780,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AngularApi\Models\" />
+    <Folder Include="Areas\AngularApi\Views\Roles\" />
     <Folder Include="Areas\AngularApi\Views\Shared\" />
     <Folder Include="Areas\AngularApi\Views\Users\" />
     <Folder Include="Content\Templates\ArticlePage\Resources\" />
