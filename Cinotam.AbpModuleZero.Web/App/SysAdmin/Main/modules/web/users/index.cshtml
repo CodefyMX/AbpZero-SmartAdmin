@@ -5,8 +5,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">@L("Users") <a ng-click="vm.createEdit()" class="btn btn-primary btn-xs pull-right">@L("AddUser")</a></div>
                 <div class="panel-body">
-                    <abp-cinotam-table btn-position-class="" url=vm.url push-actions-on-the-left="true" table="vm.table" properties="vm.properties" funcobj="vm.objFuncs"
-                        actions="vm.actions"></abp-cinotam-table>
+                    <abp-cinotam-table btn-position-class="" default-search="vm.defaultSearchPropery" url="vm.url" push-actions-on-the-left="true"
+                        table="vm.table" properties="vm.properties" funcobj="vm.objFuncs" actions="vm.actions"></abp-cinotam-table>
                 </div>
             </div>
         </div>

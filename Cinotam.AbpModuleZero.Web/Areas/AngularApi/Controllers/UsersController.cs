@@ -19,9 +19,9 @@ namespace Cinotam.AbpModuleZero.Web.Areas.AngularApi.Controllers
         }
         [AbpMvcAuthorize(PermissionNames.PagesSysAdminUsers)]
         [WrapResult(false)]
-        public ActionResult LoadUsers(RequestModel<object> input)
+        public ActionResult LoadUsers(RequestModel<object> input, string propToSearch, string[] requestedProps)
         {
-            ProccessQueryData(input, "UserName", new[] { "", "UserName", "Name", "Surname", "EmailAddress", "CreationTime", "LastLoginTime" });
+            ProccessQueryData(input, propToSearch, requestedProps);
             var result = _userAppService.GetUsersForTable(input);
             return Json(result, JsonRequestBehavior.AllowGet);
         }

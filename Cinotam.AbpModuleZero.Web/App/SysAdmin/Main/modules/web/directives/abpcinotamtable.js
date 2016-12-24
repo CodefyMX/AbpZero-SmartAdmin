@@ -3,16 +3,16 @@
     'use strict';
     angular
         .module('app.web')
-        .directive('abpCinotamTable', AbpTable);
-    AbpTable.$inject = ['WebConst'];
-    function AbpTable(webConst) {
+        .directive('abpCinotamTable', AbpCinotamTable);
+    AbpCinotamTable.$inject = ['WebConst'];
+    function AbpCinotamTable(webConst) {
         // Usage:
         //  <user-selector user-selected='$scope.onSelected()' />
         // Creates:
         //  Table of users
         var directive = {
             bindToController: true,
-            controller: AbpTableController,
+            controller: AbpCinotamTableController,
             controllerAs: 'vm',
             link: link,
             restrict: 'E',
@@ -22,7 +22,9 @@
                 tFunctions: '=funcobj',
                 tLeftActions: '=pushActionsOnTheLeft',
                 tBtnsPosition: '@btnPositionClass',
-                tAjaxUrl: '=url'
+                tAjaxUrl: '=url',
+                tdata: '=data',
+                tDefaultSearch: '=defaultSearch'
             }
         };
         return directive;
@@ -30,8 +32,8 @@
     function link(scope, element, attrs) {
     }
     /* @ngInject */
-    AbpTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$scope', 'WebConst'];
-    function AbpTableController(_userService, DTOptionsBuilder, DTColumnBuilder, $compile, $scope, webConst) {
+    AbpCinotamTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$scope', 'WebConst'];
+    function AbpCinotamTableController(_userService, DTOptionsBuilder, DTColumnBuilder, $compile, $scope, webConst) {
         var vm = this;
         //Holds the data table instance in the vm.instance variable of the parent
         vm.dtInstance = function (instance) {
@@ -40,10 +42,17 @@
         var url = $scope.vm.tAjaxUrl;
         vm.users = [];
         vm.dtColumns = [];
-        vm.dtOptions = DTOptionsBuilder.newOptions().withOption('ajax', {
+
+        var ajaxOptions =
+            {}
+
+        var requestData = buildRequestData($scope.vm.tdata, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
+        ajaxOptions = {
             url: url,
-            type: 'GET'
-        }).withDataProp('data')
+            type: 'POST',
+            data: requestData
+        }
+        vm.dtOptions = DTOptionsBuilder.newOptions().withOption('ajax', ajaxOptions).withDataProp('data')
             .withOption('processing', true).withOption('createdRow', createdRow)
             .withOption('serverSide', true).withOption('createdRow', createdRow)
             .withPaginationType('full_numbers').withOption('createdRow', createdRow).withLanguage(webConst.datatablesLangConfig);
@@ -58,14 +67,11 @@
 
         if ($scope.vm.tFunctions) {
             var actionBtns = DTColumnBuilder.newColumn(null)
-            .withTitle(App.localize("Actions"))
-            .notSortable()
-            .withClass(btnPosition)
-            .renderWith(loadCustom);
+                .withTitle(App.localize("Actions"))
+                .notSortable()
+                .withClass(btnPosition)
+                .renderWith(loadCustom);
         }
-
-
-
         if ($scope.vm.tLeftActions) {
             //Push the action buttons first so they can appear on the left 
             vm.dtColumns = buildColumns(actionBtns, $scope.vm.tProperties);
@@ -97,6 +103,26 @@
 
             return btns;
         }
+        /**
+             * Builds the default request object for the table (helps to avoid unnecessary rebuilds)
+             * @param  row, data, dataIndex
+             */
+        function buildRequestData(tdata, properties, defaultSearch) {
+            var propString = [''];
+            properties.forEach(function (property) {
+                propString.push(property.Key);
+            });
+            var dataObj = {
+                propToSearch: defaultSearch,
+                requestedProps: propString
+            };
+            if (tdata) {
+                angular.extend(dataObj, tdata);
+            }
+            console.log(dataObj);
+            return dataObj;
+        }
+
         /**
              * Recompiles the rows table to allow angular binding
              * @param  row, data, dataIndex

@@ -8,6 +8,7 @@
     function IndexController($uibModal, webConst, _usersService) {
         var vm = this;
         vm.instance = {};
+        vm.defaultSearchPropery = 'UserName';
         vm.properties = [
             {
                 Key: "Id",

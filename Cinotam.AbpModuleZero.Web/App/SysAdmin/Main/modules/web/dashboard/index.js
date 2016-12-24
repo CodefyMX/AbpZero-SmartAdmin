@@ -5,8 +5,8 @@
         .module('app.web')
         .controller('app.views.dashboard.index', DashboardController);
 
-    DashboardController.$inject = ["abp.services.app.auditLogService", "$uibModal", '$interval','WebConst'];
-    function DashboardController(_auditLogService, modal, $interval,webConst) {
+    DashboardController.$inject = ["abp.services.app.auditLogService", "$uibModal", '$interval', 'WebConst'];
+    function DashboardController(_auditLogService, modal, $interval, webConst) {
         var vm = this;
         vm.chartConfigs = {
             updateInterval: 3000,
@@ -45,7 +45,7 @@
                 var id = getIdFromData(index);
                 if (data.length > 0) {
                     var modalInstance = modal.open({
-                        templateUrl: webConst.contentFolder+'dashboard/logDetails.cshtml',
+                        templateUrl: webConst.contentFolder + 'dashboard/logDetails.cshtml',
                         controller: 'app.views.dashboard.logDetails as vm',
                         resolve: {
                             items: function () {
@@ -90,7 +90,7 @@
                 }
                 liveUpdate();
             });
-    
+
         }
         //Todo
         function liveUpdate() {
@@ -102,7 +102,7 @@
         }
 
         //var firstElement;
-        function activateLiveUpdate(){
+        function activateLiveUpdate() {
 
             //  _auditLogService.getAuditLogTimes(requestModel).then(function (response) {
             //     if(firstElement == 0){

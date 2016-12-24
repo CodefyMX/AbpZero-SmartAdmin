@@ -1,8 +1,8 @@
 ﻿(function () {
     var controllerId = 'app.views.layout.header';
-    angular.module('app').controller(controllerId,HeaderController);
-    HeaderController.$inject = ['$rootScope', '$state', 'appSession','routerHelper'];
-    function HeaderController($rootScope, $state, appSession,routerHelper){
+    angular.module('app').controller(controllerId, HeaderController);
+    HeaderController.$inject = ['$rootScope', '$state', 'appSession', 'routerHelper'];
+    function HeaderController($rootScope, $state, appSession, routerHelper) {
         var vm = this;
 
         vm.languages = abp.localization.languages;
@@ -27,7 +27,11 @@
             }
         };
         abp.event.on('abp.notifications.received', function (userNotification) {
-            abp.notifications.showUiNotifyForUserNotification(userNotification);
+            if (userNotification.notification.data.type === "Cinotam.ModuleZero.Notifications.Chat.Outputs.ChatData") {
+                sendChatNotification(userNotification);
+            } else {
+                abp.notifications.showUiNotifyForUserNotification(userNotification);
+            }
         });
     }
 
