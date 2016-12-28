@@ -1,8 +1,8 @@
-using System.Data.Entity.Migrations;
 using Abp.MultiTenancy;
 using Abp.Zero.EntityFramework;
 using Cinotam.AbpModuleZero.Migrations.SeedData;
 using EntityFramework.DynamicFilters;
+using System.Data.Entity.Migrations;
 
 namespace Cinotam.AbpModuleZero.Migrations
 {
