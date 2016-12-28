@@ -9,6 +9,26 @@
 
 ![alt tag](https://raw.githubusercontent.com/periface/AbpCinotamZero-SmartAdmin/master/Cinotam.AbpModuleZero.Web/RepoContent/CapturaSpaDash.JPG)
 
+##Spa Status (MPA as reference)
+
+-Dashboard - **70%**
+
+-Organization units - **90%**
+
+-Users - **Finished**
+
+-Roles - **Finished**
+
+-Languages - **45%**
+
+-Configuration - **Not started yet**
+
+-Audit logs - **Not started yet**
+
+-Editions - **Not started yet**
+
+-Tenants - **Not started yet**
+
 AbpCinotamZero is a basic startup template that tries to implement the ASP.NET Boilerplate and Module Zero functionality and practices, its maintained by just a couple of newbie web developers. 
 
 ##Notes:
