@@ -46,6 +46,7 @@
 
         ////////////////
         vm.instance = {};
+         vm.serverSide = true;
         vm.defaultSearchPropery = 'DisplayName';
         vm.properties = [
             {

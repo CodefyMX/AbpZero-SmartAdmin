@@ -189,7 +189,7 @@
                 },
             }
         ]
-
+        vm.serverSide = true;
         vm.reloadTable = function () {
             vm.instance.reloadData(function (data) {
             }, false);

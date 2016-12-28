@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-	.module('app.web').run(appRun);
+		.module('app.web').run(appRun);
 	/* @ngInject */
 	appRun.$inject = ['routerHelper'];
 	function appRun(routerHelper) {
@@ -30,12 +30,17 @@
 			}
 		});
 		//Creates the child route for org users
-		var usersForOrganizationUnitsMenu = new routerHelper.createSimpleMenuItem('OrganizationUnits.Orgunitusers',{
-			templateUrl:webFolder+'organizationunits/orgunitsusers.cshtml',
-			url:'/orgusers/:id'
+		var usersForOrganizationUnitsMenu = new routerHelper.createSimpleMenuItem('OrganizationUnits.Orgunitusers', {
+			templateUrl: webFolder + 'organizationunits/orgunitsusers.cshtml',
+			url: '/orgusers/:id'
+		});
+		var languageTexts = new routerHelper.createSimpleMenuItem('LanguageTexts', {
+			templateUrl: webFolder + 'languages/languageTexts/index.cshtml',
+			url: '/EditLanguageTexts/:targetLang'
 		});
 		//Registers the route
 		routeObj.routes.push(usersForOrganizationUnitsMenu);
+		routeObj.routes.push(languageTexts);
 		return routeObj;
 	}
 })();

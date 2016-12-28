@@ -5,10 +5,11 @@
         .module('app.web')
         .controller('app.views.languages.index', LanguagesController);
 
-    LanguagesController.$inject = [];
-    function LanguagesController() {
+    LanguagesController.$inject = ['$state', '$uibModal', 'WebConst', 'abp.services.app.language'];
+    function LanguagesController($state, $uibModal, WebConst, _languageService) {
         var vm = this;
         vm.instance = {};
+        vm.serverSide = true;
         vm.defaultSearchPropery = 'Name';
         vm.properties = [
             {
@@ -30,6 +31,18 @@
                 onlyHolder: true,
             },
         ];
+        vm.createEditLanguage = function () {
+            var modalInstance = $uibModal.open({
+                templateUrl: WebConst.contentFolder + 'languages/createEditLanguage.cshtml',
+                controller: 'app.views.languages.createEditLanguage as vm'
+            });
+            modalInstance.result.then(function (response) {
+                if (response == 'ok') {
+                    abp.notify.success(App.localize("LanguageCreated"), App.localize("Success"));
+                    vm.reloadTable();
+                }
+            });
+        }
         vm.colDefs = [
             {
                 render: function (data, type, row) {
@@ -48,18 +61,34 @@
                 target: 2
             }
         ]
+        vm.createEditTexts = function (targetLang) {
+            var clean = targetLang.replace(/ /g, '');
+            $state.go('LanguageTexts', { targetLang: clean });
+        }
+        vm.delete = function (code) {
+            var clean = code.replace(/ /g, '');
+            var message = abp.utils.formatString(App.localize("DeleteLanguageMessage"), clean);
+            abp.message.confirm(message, App.localize("ConfirmQuestion"), function (response) {
+                if (response) {
+                    _languageService.deleteLanguage(clean).then(function () {
+                        abp.notify.warn("Lenguaje [" + clean + "] eliminado", App.localize('Success'));
+                        vm.reloadTable();
+                    });
+                }
+            });
+        }
         vm.url = '/AngularApi/Languages/LoadLanguages';
         vm.objFuncs = [
             {
                 dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
-                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.createEditTexts(' + data.Id + ')" ><i class="fa fa-edit"></i></a>';
+                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.createEditTexts(&quot ' + data.Name + ' &quot)" ><i class="fa fa-edit"></i></a>';
                 },
             },
             {
                 dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
-                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.delete(' + data.Id + ',&quot ' + data.Name + ' &quot)" ><i class="fa fa-trash"></i></a>';
+                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.delete(&quot ' + data.Name + ' &quot)" ><i class="fa fa-trash"></i></a>';
                 },
             },
         ]

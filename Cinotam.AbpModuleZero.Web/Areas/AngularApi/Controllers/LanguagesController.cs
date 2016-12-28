@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
-using Abp.Web.Models;
+﻿using Abp.Web.Models;
 using Abp.Web.Mvc.Authorization;
 using Cinotam.AbpModuleZero.Authorization;
 using Cinotam.AbpModuleZero.Tools.DatatablesJsModels.GenericTypes;
 using Cinotam.AbpModuleZero.Web.Controllers;
 using Cinotam.ModuleZero.AppModule.Languages;
+using Cinotam.ModuleZero.AppModule.Languages.Dto;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.AngularApi.Controllers
@@ -26,6 +27,19 @@ namespace Cinotam.AbpModuleZero.Web.Areas.AngularApi.Controllers
             ProccessQueryData(input, propToSearch, requestedProps);
             var result = await _languageAppService.GetLanguagesForTable(input);
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [WrapResult(false)]
+
+        public ActionResult LoadLanguageTexts(RequestModel<LanguageTextsForEditRequest> input, string propToSearch, string[] requestedProps, string source, string sourceLang, string targetLang)
+        {
+            input.TypeOfRequest = new LanguageTextsForEditRequest
+            {
+                Source = source,
+                SourceLang = sourceLang,
+                TargetLang = targetLang
+            };
+            var table = _languageAppService.GetLocalizationTexts(input);
+            return Json(table, JsonRequestBehavior.AllowGet);
         }
     }
 }

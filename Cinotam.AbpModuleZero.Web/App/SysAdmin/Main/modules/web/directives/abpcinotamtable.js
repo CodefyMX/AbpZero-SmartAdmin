@@ -25,7 +25,9 @@
                 tAjaxUrl: '=url',
                 tdata: '=data',
                 tDefaultSearch: '=defaultSearch',
-                tColDefs: '=colDefs'
+                tColDefs: '=colDefs',
+                tServerSide: '=serverSide',
+
             }
         };
         return directive;
@@ -61,7 +63,7 @@
         }
         vm.dtOptions = DTOptionsBuilder.newOptions(vm.tableOptions).withOption('ajax', ajaxOptions).withDataProp('data')
             .withOption('processing', true).withOption('createdRow', createdRow)
-            .withOption('serverSide', true).withOption('createdRow', createdRow)
+            .withOption('serverSide', $scope.vm.tServerSide).withOption('createdRow', createdRow)
             .withPaginationType('full_numbers').withOption('createdRow', createdRow).withLanguage(webConst.datatablesLangConfig);
         var btnPosition = '';
         if ($scope.vm.tBtnsPosition) {

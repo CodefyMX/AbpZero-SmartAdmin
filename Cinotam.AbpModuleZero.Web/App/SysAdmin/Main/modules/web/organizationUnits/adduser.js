@@ -11,6 +11,7 @@
         vm.cancel = function () {
             uibModalInstance.close();
         }
+        vm.serverSide = true;
         vm.userId = 0;
         vm.click = function (id) {
             vm.userId = id;

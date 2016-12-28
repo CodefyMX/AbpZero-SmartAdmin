@@ -19,5 +19,6 @@
     "standard.run": "onType",
 
     // Turns auto fix on save on or off.
-    "standard.autoFixOnSave": false
+    "standard.autoFixOnSave": false,
+    "jslint.enable": false
 }

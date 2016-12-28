@@ -17,7 +17,6 @@
         vm.cancel = function () {
             $uibModalInstance.close();
         };
-        activate();
         vm.submit = function () {
 
             if (vm.user.newPassword != vm.user.confirmPassword) {
@@ -33,7 +32,8 @@
         ////////////////
 
         function activate() {
-
-        };
+            //
+        }
+        activate();
     }
 })();
