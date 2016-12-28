@@ -24,7 +24,8 @@
                 tBtnsPosition: '@btnPositionClass',
                 tAjaxUrl: '=url',
                 tdata: '=data',
-                tDefaultSearch: '=defaultSearch'
+                tDefaultSearch: '=defaultSearch',
+                tColDefs: '=colDefs'
             }
         };
         return directive;
@@ -32,39 +33,40 @@
     function link(scope, element, attrs) {
     }
     /* @ngInject */
-    AbpCinotamTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$scope', 'WebConst'];
-    function AbpCinotamTableController(_userService, DTOptionsBuilder, DTColumnBuilder, $compile, $scope, webConst) {
+    AbpCinotamTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$compile', '$scope', 'WebConst'];
+    function AbpCinotamTableController(_userService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $compile, $scope, webConst) {
         var vm = this;
         //Holds the data table instance in the vm.instance variable of the parent
         vm.dtInstance = function (instance) {
             $scope.$parent.vm.instance = instance;
         };
+        vm.dtColumnDefs = [];
         var url = $scope.vm.tAjaxUrl;
         vm.users = [];
         vm.dtColumns = [];
 
         var ajaxOptions =
             {}
-
+        if ($scope.vm.tColDefs) {
+            //Builds the column definitions
+            $scope.vm.tColDefs.forEach(function (element) {
+                vm.dtColumnDefs.push(DTColumnDefBuilder.newColumnDef(element.target).renderWith(element.render));
+            });
+        }
         var requestData = buildRequestData($scope.vm.tdata, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
         ajaxOptions = {
             url: url,
             type: 'POST',
             data: requestData
         }
-        vm.dtOptions = DTOptionsBuilder.newOptions().withOption('ajax', ajaxOptions).withDataProp('data')
+        vm.dtOptions = DTOptionsBuilder.newOptions(vm.tableOptions).withOption('ajax', ajaxOptions).withDataProp('data')
             .withOption('processing', true).withOption('createdRow', createdRow)
             .withOption('serverSide', true).withOption('createdRow', createdRow)
             .withPaginationType('full_numbers').withOption('createdRow', createdRow).withLanguage(webConst.datatablesLangConfig);
-
-
         var btnPosition = '';
-
-        console.log($scope.vm);
         if ($scope.vm.tBtnsPosition) {
             btnPosition = $scope.vm.tBtnsPosition;
         }
-
         if ($scope.vm.tFunctions) {
             var actionBtns = DTColumnBuilder.newColumn(null)
                 .withTitle(App.localize("Actions"))
@@ -110,7 +112,9 @@
         function buildRequestData(tdata, properties, defaultSearch) {
             var propString = [''];
             properties.forEach(function (property) {
-                propString.push(property.Key);
+                if (!property.onlyHolder) {
+                    propString.push(property.Key);
+                }
             });
             var dataObj = {
                 propToSearch: defaultSearch,
@@ -162,9 +166,16 @@
                             .withTitle(App.localize(currentProperty.DisplayName)).notVisible().withOption(createdColumn));
                 }
                 else {
-                    columns.push(
-                        DTColumnBuilder.newColumn(currentProperty.Key)
-                            .withTitle(App.localize(currentProperty.DisplayName)).withOption(createdColumn));
+                    if (currentProperty.onlyHolder) {
+                        columns.push(
+                            DTColumnBuilder.newColumn(currentProperty.Key)
+                                .withTitle(App.localize(currentProperty.DisplayName)).withOption(createdColumn).notSortable());
+                    }
+                    else {
+                        columns.push(
+                            DTColumnBuilder.newColumn(currentProperty.Key)
+                                .withTitle(App.localize(currentProperty.DisplayName)).withOption(createdColumn));
+                    }
                 }
 
             }
