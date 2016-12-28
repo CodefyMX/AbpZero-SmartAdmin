@@ -761,6 +761,7 @@
     <Compile Include="Areas\SysAdmin\SysAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\OrganizationUnitsController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
