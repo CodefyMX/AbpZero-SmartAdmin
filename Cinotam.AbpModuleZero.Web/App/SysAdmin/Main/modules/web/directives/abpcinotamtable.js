@@ -38,9 +38,22 @@
     AbpCinotamTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$compile', '$scope', 'WebConst'];
     function AbpCinotamTableController(_userService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $compile, $scope, webConst) {
         var vm = this;
+        $scope.vm.requestData = undefined;
         //Holds the data table instance in the vm.instance variable of the parent
+
         vm.dtInstance = function (instance) {
             $scope.$parent.vm.instance = instance;
+            $scope.$parent.vm.instance.updateRequest = function (reqObj) {
+                $scope.vm.requestData = buildRequestData(reqObj, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
+                ajaxOptions = {
+                    url: url,
+                    type: 'POST',
+                    data: function () {
+                        return $scope.vm.requestData;
+                    }
+                }
+                instance.reloadData();
+            }
         };
         vm.dtColumnDefs = [];
         var url = $scope.vm.tAjaxUrl;
@@ -55,14 +68,22 @@
                 vm.dtColumnDefs.push(DTColumnDefBuilder.newColumnDef(element.target).renderWith(element.render));
             });
         }
-        var requestData = buildRequestData($scope.vm.tdata, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
+
+        if (!$scope.vm.requestData) {
+            $scope.vm.requestData = buildRequestData($scope.vm.tdata, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
+        }
+        console.log('data obj', $scope.vm.requestData);
         ajaxOptions = {
             url: url,
             type: 'POST',
-            data: requestData
+            data: function () {
+                return $scope.vm.requestData; //mmm ok
+            }
         }
         vm.dtOptions = DTOptionsBuilder.newOptions(vm.tableOptions).withOption('ajax', ajaxOptions).withDataProp('data')
-            .withOption('processing', true).withOption('createdRow', createdRow)
+            .withOption('processing', true)
+            .withOption('createdRow', createdRow)
+            .withOption('stateSave', true)
             .withOption('serverSide', $scope.vm.tServerSide).withOption('createdRow', createdRow)
             .withPaginationType('full_numbers').withOption('createdRow', createdRow).withLanguage(webConst.datatablesLangConfig);
         var btnPosition = '';
@@ -125,7 +146,7 @@
             if (tdata) {
                 angular.extend(dataObj, tdata);
             }
-            console.log(dataObj);
+
             return dataObj;
         }
 

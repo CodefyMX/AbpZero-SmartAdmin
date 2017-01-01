@@ -11,12 +11,25 @@
         vm.selectedSource = {
             name: 'AbpModuleZero'
         }
+        vm.selectedLang = {
+            name: 'en'
+        }
+        vm.selectedTargetLang = {
+            name: 'en'
+        }
         vm.data = {
             source: 'AbpModuleZero',
             sourceLang: 'en', // Always available
-            targetLang: ''
+            targetLang: 'en'
         }
-        
+        vm.updateTable = function () {
+            vm.data.source = vm.selectedSource.name;
+            vm.data.sourceLang = vm.selectedLang.name;
+            vm.data.targetLang = vm.selectedTargetLang.name;
+            console.log(vm.data);
+            vm.instance.updateRequest(vm.data);
+            // vm.reloadTable();
+        }
         vm.targetLangs = abp.localization.languages;
         vm.sourceLangs = abp.localization.languages;
         vm.sources = abp.localization.sources;
@@ -40,14 +53,6 @@
                 onlyHolder: true
             },
         ];
-        // vm.colDefs = [
-        //     {
-        //         render: function (data, type, row) {
-        //             return ''
-        //         },
-        //         target: 0
-        //     }
-        // ]
         vm.url = '/AngularApi/Languages/LoadLanguageTexts';
         vm.objFuncs = [
             {
@@ -59,10 +64,8 @@
         ]
 
         vm.reloadTable = function () {
-            vm.instance.reloadData(function (data) {
-            }, false);
+            vm.instance.reloadData();
         }
-
         activate();
 
         ////////////////

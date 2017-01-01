@@ -133,7 +133,11 @@
                                                 @L("Source")
                                             </label>
                                             <label class="select">
-                                                @Html.DropDownList("Source", new SelectList(Model.Source, AbpZeroConsts.LocalizationSourceName), new { @class = "js-select" })
+                                                
+                                                @*<select id="Source" class="js-select" name="Source">
+                                                </select>*@
+
+                                                @Html.DropDownList("Source", new SelectList(Model.Source, AbpZeroConsts.LocalizationSourceName), new {@class = "js-select"})
 
 
                                             </label>

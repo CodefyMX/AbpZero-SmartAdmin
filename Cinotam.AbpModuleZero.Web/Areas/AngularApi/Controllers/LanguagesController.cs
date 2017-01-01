@@ -29,6 +29,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.AngularApi.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [WrapResult(false)]
+        [HttpPost]
 
         public ActionResult LoadLanguageTexts(RequestModel<LanguageTextsForEditRequest> input, string propToSearch, string[] requestedProps, string source, string sourceLang, string targetLang)
         {

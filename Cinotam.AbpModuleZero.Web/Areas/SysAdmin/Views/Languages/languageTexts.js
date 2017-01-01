@@ -6,6 +6,11 @@
         var $body = $("body");
         var $updateFromXmlBtn = $(".js-update-from-xml");
 
+        //var languageSources = abp.localization.sources;
+
+        //for (var i = 0; i < languageSources.length; i++) {
+        //    $("#Source").append('<option value="' + languageSources[i].name + '" >' + languageSources[i].name + '</option>');
+        //}
 
         drawBreadCrumb([LSys("Language"), LSys("Texts")]);
 
