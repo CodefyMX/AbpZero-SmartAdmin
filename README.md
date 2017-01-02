@@ -25,7 +25,7 @@
 
 -Configuration - **Finished**
 
--Audit logs - **Not started yet**
+-Audit logs - **50% (Chart pending)**
 
 -Editions - **Not started yet**
 
