@@ -13,9 +13,22 @@
                                 <uib-tab ng-repeat='config in vm.configForms' index="$index" heading="{{config.name}}">
                                     <br>
                                     <div ng-repeat='setting in config.settings'>
-                                        <div class="form-group col-md-4 col-xs-12">
-                                            <label class="control-label">{{setting.displayName}}</label>
-                                            <input type="text" ng-model='setting.value' class="form-control">
+
+                                        <div ng-if='vm.isBoolean(setting.value) === true'>
+                                            <div class="form-group col-md-4 col-xs-12">
+                                                <div class="checkbox">
+                                                    <label>
+                                                    <input ng-model='setting.value' type="checkbox">
+                                                    {{setting.displayName}}
+                                                </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-if='vm.isBoolean(setting.value) !== true'>
+                                            <div class="form-group col-md-4 col-xs-12">
+                                                <label class="control-label">{{setting.displayName}}</label>
+                                                <input type="text" ng-model='setting.value' class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </uib-tab>
