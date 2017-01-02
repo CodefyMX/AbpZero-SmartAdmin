@@ -5,7 +5,9 @@
 
 ![alt tag](https://raw.githubusercontent.com/periface/AbpCinotamZero-SmartAdmin/master/Cinotam.AbpModuleZero.Web/RepoContent/Captura.JPG)
 
-#SPA (ANGULARJS **[Using John Papa Module Pattern]**) -Work in progress
+#SPA (ANGULARJS) -Work in progress
+
+**[Using John Papa Module Pattern]**
 
 ![alt tag](https://raw.githubusercontent.com/periface/AbpCinotamZero-SmartAdmin/master/Cinotam.AbpModuleZero.Web/RepoContent/CapturaSpaDash.JPG)
 
