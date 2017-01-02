@@ -1,3 +1,24 @@
 ﻿<div ng-controller='app.views.auditLogs.index as vm'>
-    <flot dataset="vm.myData" height="480px" options="vm.myChartOptions"></flot>
+
+    
+    <h1>
+        @L("AuditLogs")
+    </h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> @L("AuditLogList")</h3>
+                </div>
+                <div class="panel-body">
+
+                    <abp-cinotam-table btn-position-class="" server-side='vm.serverSide' col-defs='vm.colDefs' default-search="vm.defaultSearchPropery"
+                                       url="vm.url" push-actions-on-the-left="false" table="vm.table" properties="vm.properties" funcobj="vm.objFuncs"
+                                       actions="vm.actions"></abp-cinotam-table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

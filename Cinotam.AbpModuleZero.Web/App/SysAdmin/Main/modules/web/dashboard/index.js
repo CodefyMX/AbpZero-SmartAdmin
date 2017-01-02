@@ -87,14 +87,6 @@
             else vm.liveUpdate = false;
             liveUpdate(vm.selectVal);
         }
-        // function getIdFromData(index) {
-        //     console.log(vm.chartData.auditLogTimeOutputDtos);
-        //     for (var i = 0; i < vm.chartData.auditLogTimeOutputDtos.length; i++) {
-        //         if (index === i) {
-        //             return vm.chartData.auditLogTimeOutputDtos[index].id;
-        //         }
-        //     }
-        // }
         vm.flotData = [];
         function activate() {
             vm.flotData = [];

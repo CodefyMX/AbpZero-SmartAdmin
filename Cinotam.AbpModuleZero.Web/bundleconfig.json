@@ -1,0 +1,8 @@
+[
+  {
+    "outputFileName": "App/dependencies/angular-datatables/plugins/responsive/responsive.dataTables.min.min.css",
+    "inputFiles": [
+      "App/dependencies/angular-datatables/plugins/responsive/responsive.dataTables.min.css"
+    ]
+  }
+]
