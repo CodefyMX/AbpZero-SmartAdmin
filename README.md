@@ -5,11 +5,11 @@
 
 ![alt tag](https://raw.githubusercontent.com/periface/AbpCinotamZero-SmartAdmin/master/Cinotam.AbpModuleZero.Web/RepoContent/Captura.JPG)
 
-#SPA [Angular js] -Work in progress
+#SPA (ANGULARJS **[Using John Papa Module Pattern]**) -Work in progress
 
 ![alt tag](https://raw.githubusercontent.com/periface/AbpCinotamZero-SmartAdmin/master/Cinotam.AbpModuleZero.Web/RepoContent/CapturaSpaDash.JPG)
 
-##Spa Status (MPA as reference)
+##SPA Status (MPA as reference)
 
 -Dashboard - **95% (Live update pending)**
 
