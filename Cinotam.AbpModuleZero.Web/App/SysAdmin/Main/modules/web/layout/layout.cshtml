@@ -84,9 +84,13 @@
     <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
 
     <!-- SignalR scripts -->
-    <script src="~/signalr/hubs"></script> @Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js") @Scripts.Render("~/App/SysAdmin/Blocks/js")
-    @Scripts.Render("~/App/SysAdmin/Libs/js") @Scripts.Render("~/App/SysAdmin/js")
-
+    <script src="~/signalr/hubs"></script> 
+    @Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js") 
+    @Scripts.Render("~/App/SysAdmin/Blocks/js")
+    @Scripts.Render("~/scripts/chartsng")
+    @Scripts.Render("~/App/SysAdmin/Libs/js") 
+    @Scripts.Render("~/App/SysAdmin/js")
+    
 </head>
 
 <body>

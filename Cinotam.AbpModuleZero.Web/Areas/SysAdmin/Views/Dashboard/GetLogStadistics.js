@@ -1,4 +1,5 @@
 ﻿(function () {
+    //This is a backtrack hell lol
     var isAuditLogGranted = abp.auth.isGranted('Pages.AuditLogs');
     var currentValue;
     var newValue;

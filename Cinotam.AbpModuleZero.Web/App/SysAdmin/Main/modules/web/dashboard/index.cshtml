@@ -19,9 +19,14 @@
 
                     <div class="row">
                         <div class="col-md-8">
+                            <br>
+                            <!--<canvas id="line" chart-colors="vm.chartConfigs.color" chart-click="vm.onClick" chart-options="vm.chartOptions" class="chart chart-line chart-small"
+                                chart-data="vm.chartDataFormatedDtos" chart-labels="vm.labels"></canvas>-->
 
-                            <canvas id="line" chart-colors="vm.chartConfigs.color" chart-click="vm.onClick" chart-options="vm.chartOptions" class="chart chart-line chart-small" chart-data="vm.chartDataFormatedDtos"
-                                    chart-labels="vm.labels"></canvas>
+
+                            <flot dataset="vm.flotData" on-plot-click="vm.onClick(event, pos, item)" on-plot-hover="vm.onHover(event, pos, item)" height="480px" options="vm.myChartOptions"></flot>
+
+
                         </div>
                         <div class="col-md-4 text-center">
                             <h2>@L("Requests")</h2>
@@ -31,11 +36,11 @@
                                 {{vm.chartData.avgExecutionTime}}
                             </p>
 
-                            <a ng-click="vm.changeLogType(1)" class="btn btn-warning btn-sm">@L("DisplayErrorOperations")</a> <a ng-click="vm.changeLogType(2)" class="btn btn-primary btn-sm">@L("DisplaySuccessOperations")</a>
+                            <a ng-click="vm.changeLogType(1)" class="btn btn-warning btn-sm">@L("DisplayErrorOperations")</a>                            <a ng-click="vm.changeLogType(2)" class="btn btn-primary btn-sm">@L("DisplaySuccessOperations")</a>
                             <br/>
-                            <br />
-                            
-                            @*<a ng-click="vm.toggleLiveUpdate()" class="btn btn-default btn-xs">
+                            <br /> @*
+
+                            <a ng-click="vm.toggleLiveUpdate()" class="btn btn-default btn-xs">
                                 {{vm.liveUpdateText}}
                             </a>*@
                             <br />
@@ -50,7 +55,6 @@
                             </select>
                             <br/>
                             <a class="lead" href="#AuditLogs">@L("SeeAll")</a>
-
                         </div>
                     </div>
 

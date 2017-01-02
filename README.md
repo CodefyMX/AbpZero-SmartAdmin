@@ -21,7 +21,7 @@
 
 -Languages - **95% (Has some bugs [When a language is not supported])** 
 
--Configuration - **Not started yet**
+-Configuration - **Finished**
 
 -Audit logs - **Not started yet**
 
