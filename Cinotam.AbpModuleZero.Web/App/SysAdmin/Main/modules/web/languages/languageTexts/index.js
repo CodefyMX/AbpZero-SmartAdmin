@@ -5,8 +5,8 @@
         .module('app.web')
         .controller('app.views.languageText.index', LanguageTextsController);
 
-    LanguageTextsController.$inject = ['$stateParams', '$uibModal', 'WebConst'];
-    function LanguageTextsController($stateParams, $uibModal, WebConst) {
+    LanguageTextsController.$inject = ['$stateParams', '$uibModal', 'WebConst', 'abp.services.app.language'];
+    function LanguageTextsController($stateParams, $uibModal, WebConst, _languageService) {
         var vm = this;
         vm.selectedSource = {
             name: 'AbpModuleZero'
@@ -71,6 +71,17 @@
             modalInstance.result.then(function (response) {
                 if (response == 'textchanged') {
                     vm.reloadTable(); // until i find a way to update only the selected row
+                }
+            });
+        }
+        vm.updateFromXml = function () {
+            var lang = vm.selectedLang.name;
+            var sourceDic = vm.selectedSource.name;
+            abp.message.confirm(App.localize("LanguageTextsWillBeUpdated"), App.localize("ConfirmQuestion"), function (response) {
+                if (response) {
+                    _languageService.updateLanguageFromXml(lang, sourceDic, true).then(function () {
+                        vm.reloadTable();
+                    })
                 }
             });
         }

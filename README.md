@@ -19,7 +19,7 @@
 
 -Roles - **Finished**
 
--Languages - **45%**
+-Languages - **95% (Has some bugs [When a language is not supported])** 
 
 -Configuration - **Not started yet**
 

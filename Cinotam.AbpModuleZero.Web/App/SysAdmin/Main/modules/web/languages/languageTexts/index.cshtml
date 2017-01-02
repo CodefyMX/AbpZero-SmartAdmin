@@ -4,27 +4,31 @@
         <div class="panel-heading">
             <h3 class="panel-title">
                 @L("Languages")
+                <button type="button" class="btn btn-default btn-xs pull-right" ng-click='vm.updateFromXml()'>
+                    @L("UpdateFromXml")
+                </button>
+
             </h3>
         </div>
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-4">
 
-                    <label class="control-label">Source</label>
-                    <select ng-change='vm.updateTable()' ng-model='vm.selectedLang' ng-options="option.name for option in vm.sourceLangs track by option.name" class="form-control"
-                        required="required">
+                    <label class="control-label">@L("SourceLang")</label>
+                    <select ng-change='vm.updateTable()' ng-model='vm.selectedLang' ng-options="option.name for option in vm.sourceLangs track by option.name"
+                        class="form-control" required="required">
                     </select>
                 </div>
                 <div class="col-xs-4">
-                    <label class="control-label">Target</label>
-                    <select ng-change='vm.updateTable()' ng-model='vm.selectedTargetLang' ng-options="option.name for option in vm.targetLangs track by option.name" class="form-control"
-                        required="required">
+                    <label class="control-label">@L("TargetLang")</label>
+                    <select ng-change='vm.updateTable()' ng-model='vm.selectedTargetLang' ng-options="option.name for option in vm.targetLangs track by option.name"
+                        class="form-control" required="required">
                     </select>
                 </div>
                 <div class="col-xs-4">
-                    <label class="control-label">Source</label>
-                    <select ng-change='vm.updateTable()' ng-model='vm.selectedSource' ng-options="option.name for option in vm.sources track by option.name" class="form-control"
-                        required="required">
+                    <label class="control-label">@L("Source")</label>
+                    <select ng-change='vm.updateTable()' ng-model='vm.selectedSource' ng-options="option.name for option in vm.sources track by option.name"
+                        class="form-control" required="required">
                     </select>
                 </div>
             </div>
