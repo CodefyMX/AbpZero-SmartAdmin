@@ -5,6 +5,6 @@
         .module('app.web', [
             'abp',
             'app.core',
-            'chart.js'
+            'angular-flot'
         ]);
 })();

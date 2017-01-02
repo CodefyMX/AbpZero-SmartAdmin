@@ -302,9 +302,6 @@
     <Content Include="App\Blocks\router\router.module.js" />
     <Content Include="App\Core\app.core.module.js" />
     <Content Include="App\Core\app.core.routes.js" />
-    <Content Include="App\dependencies\angular-chart.js\angular-chart.js" />
-    <Content Include="App\dependencies\angular-chart.js\angular-chart.min.js" />
-    <Content Include="App\dependencies\angular-chart.js\chart.min.js" />
     <Content Include="App\dependencies\angular-datatables\angular-datatables.js" />
     <Content Include="App\dependencies\angular-datatables\angular-datatables.min.js" />
     <Content Include="App\dependencies\angular-datatables\css\angular-datatables.css" />
@@ -332,6 +329,7 @@
     <Content Include="App\dependencies\angular-datatables\plugins\select\angular-datatables.select.min.js" />
     <Content Include="App\dependencies\angular-datatables\plugins\tabletools\angular-datatables.tabletools.js" />
     <Content Include="App\dependencies\angular-datatables\plugins\tabletools\angular-datatables.tabletools.min.js" />
+    <Content Include="App\dependencies\angular-flot\angular-flot.js" />
     <Content Include="App\dependencies\ui-bootstrap\ui-bootstrap-tpls-2.3.0.min.js" />
     <Content Include="App\SysAdmin\Main\app.js" />
     <Content Include="App\SysAdmin\Main\images\abp-logo.png" />
@@ -339,6 +337,8 @@
     <Content Include="App\SysAdmin\Main\main.min.css" />
     <Content Include="App\SysAdmin\Main\modules\web\app.web.module.js" />
     <Content Include="App\SysAdmin\Main\modules\web\app.web.routes.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\auditLogs\index.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\configurations\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\dashboard\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\dashboard\logDetails.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\abpcinotamtable.js" />
@@ -694,7 +694,6 @@
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
     <Content Include="Areas\AngularApi\Views\web.config" />
-    <Content Include="App\dependencies\angular-chart.js\angular-chart.min.js.map" />
     <Content Include="App\SysAdmin\Main\main.less" />
     <Content Include="App\SysAdmin\Main\modules\web\auditLogs\index.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\configurations\index.cshtml" />
