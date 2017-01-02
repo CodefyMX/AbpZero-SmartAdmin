@@ -27,7 +27,8 @@
                 tDefaultSearch: '=defaultSearch',
                 tColDefs: '=colDefs',
                 tServerSide: '=serverSide',
-                tOnInstanceReady: '=instanceReady'
+                tOnInstanceReady: '=instanceReady',
+                tOnTableError: '=onTableError'
             }
         };
         return directive;
@@ -35,8 +36,8 @@
     function link(scope, element, attrs) {
     }
     /* @ngInject */
-    AbpCinotamTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$compile', '$scope', 'WebConst'];
-    function AbpCinotamTableController(_userService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $compile, $scope, webConst) {
+    AbpCinotamTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$compile', '$scope', 'WebConst', 'logger'];
+    function AbpCinotamTableController(_userService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $compile, $scope, webConst, logger) {
         var vm = this;
         $scope.vm.requestData = undefined;
         //Holds the data table instance in the vm.instance variable of the parent
@@ -59,6 +60,24 @@
                 $scope.vm.tOnInstanceReady(instance);
             }
         };
+        if ($scope.vm.tOnTableError) {
+            $.fn.dataTable.ext.errMode = function (e, settings, techNote, message) {
+                $scope.vm.tOnTableError(settings, helpPage, message);
+            };
+        }
+        else {
+            $.fn.dataTable.ext.errMode = function (e, techNote, message) {
+
+                //For Asp.Net error
+                var responseText = e.jqXHR.responseText;
+                var element = $(responseText).next('title')[0];
+                if (element) {
+                    message = element.innerHTML;
+                }
+                //For Asp.Net error
+                logger.warning(message, {}, 'Error');
+            };
+        }
         vm.dtColumnDefs = [];
         var url = $scope.vm.tAjaxUrl;
         vm.users = [];
