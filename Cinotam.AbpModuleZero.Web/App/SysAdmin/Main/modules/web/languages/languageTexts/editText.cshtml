@@ -1,0 +1,31 @@
+<form ng-submit="vm.submit()">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title"><i class="fa fa-3x fa-flag"></i> </h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>@L("ChangeText")</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label class="label label-primary"><strong>@L("Source"):</strong> {{vm.text.source}}</label>
+                    <label class="label label-primary"><strong>@L("Language"):</strong> {{vm.text.languageName}}</label>
+                </div>
+            </div>
+            <div class="row">
+                <label class="label col-xs-4"><strong>@L("Key"):</strong> {{vm.text.key}}</label>
+            </div>
+            <div class="form-group">
+                <label for="">@L("Text")</label>
+                <textarea ng-model='vm.text.value' required class="form-control" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click='vm.cancel()'>Close</button>
+            <button type="submit" class="btn btn-primary">@L("Save")</button>
+        </div>
+    </div>
+</form>

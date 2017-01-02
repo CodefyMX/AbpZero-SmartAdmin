@@ -5,8 +5,8 @@
         .module('app.web')
         .controller('app.views.languageText.index', LanguageTextsController);
 
-    LanguageTextsController.$inject = ['$stateParams'];
-    function LanguageTextsController($stateParams) {
+    LanguageTextsController.$inject = ['$stateParams', '$uibModal', 'WebConst'];
+    function LanguageTextsController($stateParams, $uibModal, WebConst) {
         var vm = this;
         vm.selectedSource = {
             name: 'AbpModuleZero'
@@ -53,12 +53,33 @@
                 onlyHolder: true
             },
         ];
+        vm.editTexts = function (name, source, targetValue) {
+            var modalInstance = $uibModal.open({
+                templateUrl: WebConst.contentFolder + 'languages/languageTexts/editText.cshtml',
+                controller: 'app.views.languageTexts.editText as vm',
+                resolve: {
+                    items: function () {
+                        return {
+                            key: name,
+                            source: source,
+                            value: targetValue,
+                            languageName: vm.selectedTargetLang.name
+                        }
+                    }
+                }
+            });
+            modalInstance.result.then(function (response) {
+                if (response == 'textchanged') {
+                    vm.reloadTable(); // until i find a way to update only the selected row
+                }
+            });
+        }
         vm.url = '/AngularApi/Languages/LoadLanguageTexts';
         vm.objFuncs = [
             {
                 dom: function (data, type, full, meta) {
                     //$parent.vm.click refers to this controller
-                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.createEditTexts(&quot ' + data.Name + ' &quot)" ><i class="fa fa-edit"></i></a>';
+                    return '<a class="btn btn-default btn-xs" ng-click="$parent.vm.editTexts(&quot ' + full.Key + ' &quot,&quot ' + full.Source + ' &quot,&quot ' + full.TargetValue + ' &quot)" ><i class="fa fa-edit"></i></a>';
                 },
             }
         ]
