@@ -69,16 +69,19 @@
             });
         }
 
-        if (!$scope.vm.requestData) {
+        if (!$scope.vm.requestData && !$scope.vm.tServerSide) {
+            $scope.vm.requestData = function () {
+               return buildRequestData($scope.vm.tdata, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
+            }
+        }
+        else {
             $scope.vm.requestData = buildRequestData($scope.vm.tdata, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
         }
         console.log('data obj', $scope.vm.requestData);
         ajaxOptions = {
             url: url,
             type: 'POST',
-            data: function () {
-                return $scope.vm.requestData; //mmm ok
-            }
+            data: $scope.vm.requestData
         }
         vm.dtOptions = DTOptionsBuilder.newOptions(vm.tableOptions).withOption('ajax', ajaxOptions).withDataProp('data')
             .withOption('processing', true)
