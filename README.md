@@ -11,7 +11,7 @@
 
 ##Spa Status (MPA as reference)
 
--Dashboard - **70%**
+-Dashboard - **95% (Live update pending)**
 
 -Organization units - **90%**
 
