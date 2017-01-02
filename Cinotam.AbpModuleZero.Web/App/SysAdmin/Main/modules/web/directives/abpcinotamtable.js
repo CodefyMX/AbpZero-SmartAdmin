@@ -27,7 +27,7 @@
                 tDefaultSearch: '=defaultSearch',
                 tColDefs: '=colDefs',
                 tServerSide: '=serverSide',
-
+                tOnInstanceReady: '=instanceReady'
             }
         };
         return directive;
@@ -43,6 +43,7 @@
 
         vm.dtInstance = function (instance) {
             $scope.$parent.vm.instance = instance;
+            $scope.$parent.vm.instance.isReady = true;
             $scope.$parent.vm.instance.updateRequest = function (reqObj) {
                 $scope.vm.requestData = buildRequestData(reqObj, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
                 ajaxOptions = {
@@ -54,14 +55,15 @@
                 }
                 instance.reloadData();
             }
+            if ($scope.vm.tOnInstanceReady) {
+                $scope.vm.tOnInstanceReady(instance);
+            }
         };
         vm.dtColumnDefs = [];
         var url = $scope.vm.tAjaxUrl;
         vm.users = [];
         vm.dtColumns = [];
-
-        var ajaxOptions =
-            {}
+        var ajaxOptions = {};
         if ($scope.vm.tColDefs) {
             //Builds the column definitions
             $scope.vm.tColDefs.forEach(function (element) {
@@ -71,7 +73,7 @@
 
         if (!$scope.vm.requestData && !$scope.vm.tServerSide) {
             $scope.vm.requestData = function () {
-               return buildRequestData($scope.vm.tdata, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
+                return buildRequestData($scope.vm.tdata, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
             }
         }
         else {

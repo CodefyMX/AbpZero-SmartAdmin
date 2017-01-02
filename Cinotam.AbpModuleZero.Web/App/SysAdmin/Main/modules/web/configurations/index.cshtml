@@ -1,1 +1,33 @@
-﻿<h1>Hey!</h1>
+﻿<div ng-controller='app.views.configurations.index as vm'>
+    <h1>@L("Configuration")</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <form ng-submit='vm.submit()'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> @L("ConfigurationManagement")</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <uib-tabset>
+                                <uib-tab ng-repeat='config in vm.configForms' index="$index" heading="{{config.name}}">
+                                    <br>
+                                    <div ng-repeat='setting in config.settings'>
+                                        <div class="form-group col-md-4 col-xs-12">
+                                            <label class="control-label">{{setting.displayName}}</label>
+                                            <input type="text" ng-model='setting.value' class="form-control">
+                                        </div>
+                                    </div>
+                                </uib-tab>
+                            </uib-tabset>
+                        </div>
+                        <br>
+                        <hr>
+                        <button type="button" ng-click='vm.clearCaches()' class="btn btn-warning pull-left"><span class="fa fa-eraser"></span> @L("ClearCache")</button>
+                        <button type="submit" class="btn btn-default pull-right">@L("Save")</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
