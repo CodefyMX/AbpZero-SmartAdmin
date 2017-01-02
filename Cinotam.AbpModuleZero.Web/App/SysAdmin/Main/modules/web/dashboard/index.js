@@ -50,7 +50,7 @@
             TenantId: tenantId
         }
         vm.changeLogType = function (option) {
-            requestModel.code = option;
+            requestModel.Code = option;
             vm.update();
         }
         vm.selectVal = 50;
@@ -93,7 +93,7 @@
             if (!tenantId) tenantId = null;
             getChartData(function (data, labels) {
                 var text = App.localize("Success");
-                if (requestModel.code != 2) {
+                if (requestModel.Code != 2) {
                     text = App.localize("Error");
                 }
                 vm.toolTips = labels;

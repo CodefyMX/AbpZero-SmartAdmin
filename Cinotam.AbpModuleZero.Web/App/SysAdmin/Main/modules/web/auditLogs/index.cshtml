@@ -1,9 +1,15 @@
 ﻿<div ng-controller='app.views.auditLogs.index as vm'>
 
-    
+
     <h1>
         @L("AuditLogs")
     </h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <flot dataset="vm.flotData" on-plot-click="vm.onClick(event, pos, item)" on-plot-hover="vm.onHover(event, pos, item)" height="380px"
+                options="vm.myChartOptions"></flot>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-default">
@@ -13,8 +19,8 @@
                 <div class="panel-body">
 
                     <abp-cinotam-table btn-position-class="" server-side='vm.serverSide' col-defs='vm.colDefs' default-search="vm.defaultSearchPropery"
-                                       url="vm.url" push-actions-on-the-left="false" table="vm.table" properties="vm.properties" funcobj="vm.objFuncs"
-                                       actions="vm.actions"></abp-cinotam-table>
+                        url="vm.url" push-actions-on-the-left="false" table="vm.table" properties="vm.properties" funcobj="vm.objFuncs"
+                        actions="vm.actions"></abp-cinotam-table>
 
                 </div>
             </div>
