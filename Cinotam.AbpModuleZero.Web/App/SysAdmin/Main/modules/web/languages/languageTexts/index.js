@@ -95,15 +95,21 @@
             }
         ]
 
-        vm.reloadTable = function () {
+        vm.reloadTable = function (callback) {
             vm.instance.reloadData();
+            if (!callback) {
+                callback = function () { }
+            }
+            callback();
         }
         activate();
-
+        vm.instanceReady = function () {
+            vm.updateTable();
+        }
         ////////////////
 
         function activate() {
-            vm.data.targetLang = $stateParams.targetLang;
+            vm.selectedTargetLang.name = $stateParams.targetLang;
         }
     }
 })();
