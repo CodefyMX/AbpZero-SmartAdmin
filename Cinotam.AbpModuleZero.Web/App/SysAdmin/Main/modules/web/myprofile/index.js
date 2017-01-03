@@ -26,7 +26,7 @@
                     vm.userProfile.profilePicture = result;
                     abp.message.success(App.localize("ProfilePicModified"), App.localize("Success"));
                 }
-                else{
+                else {
                     abp.ui.clearBusy();
                 }
             });
@@ -35,14 +35,23 @@
         vm.userProfile = {};
         ////////////////
         vm.hasPhoneNumber = function(number) {
-            console.log('Number', number);
+            
             if (number == null || undefined || '') {
                 return false;
             }
             return true;
         }
         vm.changePhoneNumber = function() {
-            var userId = vm.userProfile.id;
+            var modalInstance = $uibModal.open({
+                templateUrl: WebConst.contentFolder + "myprofile/addPhoneNumber.cshtml",
+                controller: "app.views.myprofile.changePhone as vm"
+            });
+            modalInstance.result.then(function(response) {
+                if (response === 'confirmed') {
+                    abp.notify.success(App.localize("PhoneConfirmed"), App.localize("Success"));
+                    activate();
+                }
+            });
         }
         vm.changePassword = function() {
             var userId = vm.userProfile.id;
