@@ -4,5 +4,17 @@
     "inputFiles": [
       "App/dependencies/angular-datatables/plugins/responsive/responsive.dataTables.min.css"
     ]
+  },
+  {
+    "outputFileName": "App/SysAdmin/Main/modules/web/organizationUnits/create.min.js",
+    "inputFiles": [
+      "App/SysAdmin/Main/modules/web/organizationUnits/create.js"
+    ]
+  },
+  {
+    "outputFileName": "App/SysAdmin/Main/modules/web/organizationUnits/index.min.js",
+    "inputFiles": [
+      "App/SysAdmin/Main/modules/web/organizationUnits/index.js"
+    ]
   }
 ]

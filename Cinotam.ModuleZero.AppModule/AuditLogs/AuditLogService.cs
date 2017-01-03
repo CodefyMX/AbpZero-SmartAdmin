@@ -206,7 +206,12 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
                 CurrentUnitOfWork.DisableFilter(AbpDataFilters.MustHaveTenant);
             }
             var list = new List<AuditLogDto>();
-            var logs = _auditLogRepository.GetAll().Where(a => a.TenantId == tenantId).OrderByDescending(a => a.ExecutionTime).Take(10).ToList();
+            var logs =
+                _auditLogRepository.GetAll()
+                    .Where(a => a.TenantId == tenantId)
+                    .OrderByDescending(a => a.ExecutionTime)
+                    .Take(10)
+                    .ToList();
             foreach (var auditLog in logs)
             {
                 var name = "Client";
@@ -224,6 +229,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
                 AuditLogs = list
             };
         }
+
         [AbpAuthorize(PermissionNames.PagesTenants)]
         public async Task<ReturnModel<AuditLogDto>> GetAuditLogTableForTenant(RequestModel<object> input, int tenantId)
         {
@@ -258,6 +264,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
                 draw = input.draw,
             };
         }
+
         [AbpAuthorize(PermissionNames.PagesTenants)]
         public async Task<AuditLogDto> GetAuditLogDetailsForTenant(long id, int tenantId)
         {
@@ -278,6 +285,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
                 return mapped;
             }
         }
+
         [AbpAuthorize(PermissionNames.PagesTenants)]
         public async Task<ReturnModel<LogDto>> GetLogsTable(RequestModel<object> requestModel)
         {
@@ -288,6 +296,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
                 data = logs.OrderByDescending(a => a.Date).Take(100).ToArray(),
             };
         }
+
         private async Task<List<LogDto>> GetLogs()
         {
             var fullPath = HttpContext.Current.Server.MapPath(FilePath);
@@ -321,6 +330,7 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
             }
             return list;
         }
+
         private async Task<AuditLogDto[]> GetModel(IEnumerable<AuditLog> filteredByLength)
         {
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.SoftDelete))
@@ -329,12 +339,27 @@ namespace Cinotam.ModuleZero.AppModule.AuditLogs
                 var results = filteredByLength.Select(a => a.MapTo<AuditLogDto>()).ToArray();
                 foreach (var auditLogDto in results)
                 {
-                    auditLogDto.UserName = auditLogDto.UserId != null ? (await UserManager.GetUserByIdAsync(auditLogDto.UserId.Value)).UserName : "Client";
+                    auditLogDto.UserName = await GetUserOrClient(auditLogDto.UserId);
 
                 }
                 return results.ToArray();
             }
         }
+
+        private async Task<string> GetUserOrClient(long? userId)
+        {
+            try
+            {
+                return userId != null ? (await UserManager.GetUserByIdAsync(userId.Value)).UserName : "Client";
+            }
+            catch (Exception)
+            {
+
+                return "Client";
+            }
+
+        }
+
         #endregion
 
     }

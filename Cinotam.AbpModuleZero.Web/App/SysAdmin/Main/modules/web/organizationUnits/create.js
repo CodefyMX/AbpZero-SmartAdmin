@@ -25,6 +25,8 @@
             _organizationUnits.createOrEditOrgUnit(vm.orgUnit).then(function(){
                 abp.ui.clearBusy();
                 $uibModalInstance.close("created");
+            }).catch(function() {
+                abp.ui.clearBusy();
             });
 
         }
@@ -33,12 +35,12 @@
         ////////////////
 
         function activate() { 
-            console.log(params.id);
-           if(params.id){
-               _organizationUnits.getOrganizationUnitForEdit(params.id).then(function(response){
+           if(params.id) {
+               _organizationUnits.getOrganizationUnitForEdit(params.id)
+                   .then(function(response) {
 
-                   vm.orgUnit = response.data;
-               })
+                       vm.orgUnit = response.data;
+                   });
            }
            else{
                if(params.parentId){

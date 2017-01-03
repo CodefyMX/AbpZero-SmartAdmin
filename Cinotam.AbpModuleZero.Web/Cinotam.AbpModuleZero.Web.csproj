@@ -350,15 +350,24 @@
     <Content Include="App\SysAdmin\Main\modules\web\directives\abpcinotamtable.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\autoFocus.js" />
     <Content Include="App\SysAdmin\Main\modules\web\directives\enterKey.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\editions\createEdit.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\editions\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\languages\createEditLanguage.js" />
     <Content Include="App\SysAdmin\Main\modules\web\languages\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\languages\languageTexts\editText.js" />
     <Content Include="App\SysAdmin\Main\modules\web\languages\languageTexts\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\header.js" />
     <Content Include="App\SysAdmin\Main\modules\web\layout\layout.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\myprofile\index.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\adduser.js" />
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\create.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\create.min.js">
+      <DependentUpon>create.js</DependentUpon>
+    </Content>
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\index.js" />
+    <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\index.min.js">
+      <DependentUpon>index.js</DependentUpon>
+    </Content>
     <Content Include="App\SysAdmin\Main\modules\web\organizationUnits\orgunitsusers.js" />
     <Content Include="App\SysAdmin\Main\modules\web\roles\createEdit.js" />
     <Content Include="App\SysAdmin\Main\modules\web\roles\index.js" />
@@ -520,6 +529,7 @@
     <Content Include="Content\Custom\DropDownMenuLarge.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\placeholder.svg" />
     <Content Include="Content\MailTemplates\ChangeInfo\ChangedInfo_Partial.html" />
     <Content Include="Content\MailTemplates\WelcomeTemplates\Welcome.Html" />
     <Content Include="Content\MailTemplates\WelcomeTemplates\Welcome_Partial.html" />
@@ -726,6 +736,8 @@
     <Content Include="App\SysAdmin\Main\modules\web\users\createEdit.cshtml" />
     <Content Include="App\SysAdmin\Main\modules\web\users\index.cshtml" />
     <Content Include="App\SysAdmin\Main\web.config" />
+    <Content Include="App\SysAdmin\Main\modules\web\editions\createEdit.cshtml" />
+    <Content Include="App\SysAdmin\Main\modules\web\myprofile\index.cshtml" />
     <None Include="Areas\SysAdmin\Views\Languages\CreateLanguage.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\GetLanguageTexts.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Languages\EditText.cshtml" />
@@ -857,6 +869,7 @@
     <Compile Include="Areas\AngularApi\AngularApiAreaRegistration.cs" />
     <Compile Include="Areas\AngularApi\Controllers\AuditLogsController.cs" />
     <Compile Include="Areas\AngularApi\Controllers\LanguagesController.cs" />
+    <Compile Include="Areas\AngularApi\Controllers\MyProfileController.cs" />
     <Compile Include="Areas\AngularApi\Controllers\RolesController.cs" />
     <Compile Include="Areas\AngularApi\Controllers\UsersController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\AuditLogsController.cs" />
@@ -1006,6 +1019,7 @@
     <Folder Include="Areas\AngularApi\Models\" />
     <Folder Include="Areas\AngularApi\Views\AuditLogs\" />
     <Folder Include="Areas\AngularApi\Views\Languages\" />
+    <Folder Include="Areas\AngularApi\Views\MyProfile\" />
     <Folder Include="Areas\AngularApi\Views\Roles\" />
     <Folder Include="Areas\AngularApi\Views\Shared\" />
     <Folder Include="Areas\AngularApi\Views\Users\" />

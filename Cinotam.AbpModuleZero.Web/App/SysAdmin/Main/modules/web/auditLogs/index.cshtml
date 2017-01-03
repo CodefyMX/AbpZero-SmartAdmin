@@ -5,10 +5,54 @@
         @L("AuditLogs")
     </h1>
     <div class="row">
+
+
         <div class="col-xs-12">
-            <flot dataset="vm.flotData" on-plot-click="vm.onClick(event, pos, item)" on-plot-hover="vm.onHover(event, pos, item)" height="380px"
-                options="vm.myChartOptions"></flot>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> @L("Logs")</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8 col-xs-12">
+                            <br />
+                            <flot dataset="vm.flotData" on-plot-click="vm.onClick(event, pos, item)" on-plot-hover="vm.onHover(event, pos, item)" height="380px"
+                                  options="vm.myChartOptions"></flot>
+                        </div>
+                        <div class="col-md-4 col-xs-12 text-center">
+                            <h2>@L("Requests")</h2>
+                            <p>{{vm.chartData.totalRequestsReceived}}</p>
+                            <h2>@L("AverageExecutionTime")</h2>
+                            <p>
+                                {{vm.chartData.avgExecutionTime}}
+                            </p>
+
+                            <a ng-click="vm.changeLogType(1)" class="btn btn-warning btn-sm">@L("DisplayErrorOperations")</a>                            <a ng-click="vm.changeLogType(2)" class="btn btn-primary btn-sm">@L("DisplaySuccessOperations")</a>
+                            <br />
+                            <br /> @*
+
+                                                <a ng-click="vm.toggleLiveUpdate()" class="btn btn-default btn-xs">
+                                    {{vm.liveUpdateText}}
+                                </a>*@
+                            <br />
+                            <br />
+                            <select ng-change="vm.update()" class="form-control" ng-model="vm.selectVal">
+                                <option value="30">30</option>
+                                <option selected="selected" value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="200">200</option>
+                                <option value="400">400</option>
+                                <option value="800">800</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+
     </div>
     <div class="row">
         <div class="col-xs-12">
@@ -19,8 +63,8 @@
                 <div class="panel-body">
 
                     <abp-cinotam-table btn-position-class="" server-side='vm.serverSide' col-defs='vm.colDefs' default-search="vm.defaultSearchPropery"
-                        url="vm.url" push-actions-on-the-left="false" table="vm.table" properties="vm.properties" funcobj="vm.objFuncs"
-                        actions="vm.actions"></abp-cinotam-table>
+                                       url="vm.url" push-actions-on-the-left="false" table="vm.table" properties="vm.properties" funcobj="vm.objFuncs"
+                                       actions="vm.actions"></abp-cinotam-table>
 
                 </div>
             </div>

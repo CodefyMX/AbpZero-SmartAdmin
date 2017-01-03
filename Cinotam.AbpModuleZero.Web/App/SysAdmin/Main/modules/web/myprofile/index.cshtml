@@ -1,0 +1,76 @@
+<div ng-controller='app.views.myprofile.index as vm'>
+    <h1>@L("MyProfile")</h1>
+    <div class="row">
+        <div class="col-xs-6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@L("MyProfileView")</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <form enctype="multipart/form-data" ng-submit="vm.uploadImage()">
+
+                                <img style="width: 100px; height: 150px;" ng-src='{{vm.fileUrl}}' />
+                                <br>
+                                <br>
+                                <input file-model='image' type="file">
+                                <br>
+                                <button type="submit" class="btn btn-default btn-block">@L("Save")</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <br>
+                            <br>
+                            <form>
+                                <legend>@L("MyInfo")</legend>
+
+                                <div class="form-group">
+                                    <label>@L("UserName")</label>
+                                    <input type="text" class="form-control" disabled ng-model='vm.userProfile.userName'>
+                                </div>
+                                <div class="form-group">
+                                    <label>@L("EmailAddress")</label>
+                                    <input type="text" class="form-control" ng-model='vm.userProfile.emailAddress'>
+                                </div>
+                                <div class="form-group">
+                                    <label>@L("Name")</label>
+                                    <input type="text" class="form-control" ng-model='vm.userProfile.name'>
+                                </div>
+                                <div class="form-group">
+                                    <label>@L("Surname")</label>
+                                    <input type="text" class="form-control" ng-model='vm.userProfile.surname'>
+                                </div>
+                                <div class="form-group">
+                                    <label>@L("MyRoles")</label>
+                                    <p>[{{vm.userProfile.myStringRoles}}]</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>@L("Password")</label>
+                                    <a class="btn btn-xs" ng-click='vm.changePassword()'>@L("ChangePassword")</a>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>@L("PhoneNumber")</label>
+                                    <a ng-if='!vm.hasPhoneNumber(vm.userProfile.phoneNumber)' class="btn btn-xs" ng-click='vm.addEditPhoneNumber()'>@L("ChangePhoneNumber")</a>
+                                    <a ng-if='vm.hasPhoneNumber(vm.userProfile.phoneNumber)' class="btn btn-xs" ng-click='vm.addEditPhoneNumber()'>{{vm.userProfile.phoneNumber}}</a>
+                                </div>
+
+                                <a ng-if='vm.userProfile.isTwoFactorEnabled' class="btn btn-warining btn-xs" ng-click='vm.disableTwoFactor()'>@L("DisableTwoFactorAuth")</a>
+                                <a ng-if='!vm.userProfile.isTwoFactorEnabled' class="btn btn-xs btn-warning" ng-click='vm.enableTwoFactor()'>@L("EnableTwoFactorAuth")</a>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary">@L("Save")</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -4,8 +4,10 @@
 
 
     <!--Smart Admin-->
-
-
+    <text name="DisplayErrorOperations" value="Display error operations" />
+    <text name="DisplaySuccessOperations" value="Display success operations" />
+    <text name="NoUsers" value="No users" />
+    <text name="Profile" value="Profile" />
     <!--Datatables-->
     <text name="NoDataAvailableInTable" value="No data available in table" />
     <text name="ShowingStartToEnd" value="Showing _START_ to _END_ of _TOTAL_ entries"/>
