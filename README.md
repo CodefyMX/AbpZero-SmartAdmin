@@ -15,7 +15,7 @@
 
 -Dashboard - **95% (Live update pending)**
 
--Organization units - **90%**
+-Organization units - **Finished**
 
 -Users - **Finished**
 
@@ -25,7 +25,9 @@
 
 -Configuration - **Finished**
 
--Audit logs - **50% (Chart pending)**
+-Audit logs - **Finished**
+
+-User profile - **45%**
 
 -Editions - **Not started yet**
 
