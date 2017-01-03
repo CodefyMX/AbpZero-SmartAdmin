@@ -72,5 +72,51 @@
             </div>
 
         </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@L("Settings")</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div ng-repeat='notification in vm.notifications' class="checkbox">
+                                        <label>
+                                            <input ng-change='vm.subscribe(notification)' type="checkbox" ng-model='notification.isSubscribed'>
+                                            {{notification.displayName}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@L("NotificationsUser")</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="list-group">
+                                        <a ng-repeat='notification in vm.userNotifications' class="list-group-item" id="{{$index}}" ng-if='!notification.readed'>
+                                            <h4 class="list-group-item-heading">{{notification.message}}</h4>
+                                            <p class="list-group-item-text">
+                                                <button type="button" class="btn btn-xs btn-default" ng-click='vm.markAsReaded(notification)'>@L("MarkAsReaded") </button>
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

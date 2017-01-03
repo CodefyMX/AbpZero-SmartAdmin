@@ -12,9 +12,10 @@
         '$sce',
         'abp.services.app.user',
         '$uibModal',
-        'WebConst'
+        'WebConst',
+        'abp.services.app.settings'
     ];
-    function MyProfileController(fileUpload, appSession, $scope, $sce, _userService, $uibModal, WebConst) {
+    function MyProfileController(fileUpload, appSession, $scope, $sce, _userService, $uibModal, WebConst, _settingsService) {
         var vm = this;
         vm.fileUrl = $sce.trustAsHtml('/Content/Images/placeholder.svg');
         vm.uploadImage = function() {
@@ -31,7 +32,7 @@
                 }
             });
         }
-        activate();
+
         vm.userProfile = {};
         ////////////////
         vm.hasPhoneNumber = function(number) {
@@ -90,6 +91,111 @@
                 if (vm.userProfile.profilePicture) {
                     vm.fileUrl = $sce.trustAsHtml(vm.userProfile.profilePicture);
                 }
+            });
+            configureNotifications();
+            getUserNotifications();
+        }
+
+        function checkNotificationStatus() {
+            vm.notifications.forEach(function(element) {
+                _settingsService.isSubscribed(element.name).then(function(response) {
+                    if (response.data) {
+                        element.isSubscribed = true;
+                    }
+                });
+            });
+        }
+        vm.notifications = [];
+        vm.userNotifications = [];
+        vm.subscribe = function(notification) {
+            abp.ui.setBusy();
+            if (notification.isSubscribed) {
+                _settingsService.subscribeToNotification(notification.name).then(function() {
+                    abp.ui.clearBusy();
+                });
+            }
+            else {
+                _settingsService.unSubscribeToNotification(notification.name).then(function() {
+                    abp.ui.clearBusy();
+                });
+            }
+        }
+        vm.markAsReaded = function(notification) {
+            _userService.markAsReaded(notification.id).then(function() {
+                notification.readed = true;
+            });
+        }
+        activate();
+        function configureNotifications() {
+            if (abp.auth.isGranted('Pages.SysAdmin.Users')) {
+                vm.notifications.push({
+                    name: 'UserDeleted',
+                    displayName: App.localize("SubscribeToNotificationUserCreated"),
+                    isSubscribed: false
+                });
+                vm.notifications.push({
+                    name: 'UserCreated',
+                    displayName: App.localize("SubscribeToNotificationUserDeleted"),
+                    isSubscribed: false
+                });
+            }
+            if (abp.auth.isGranted('Pages.SysAdminRoles')) {
+                vm.notifications.push({
+                    name: 'RoleCreated',
+                    displayName: App.localize("SubscribeToNotificationRoleCreated"),
+                    isSubscribed: false
+                });
+                vm.notifications.push({
+                    name: 'RoleDeleted',
+                    displayName: App.localize("SubscribeToNotificationRoleDeleted"),
+                    isSubscribed: false
+                });
+                vm.notifications.push({
+                    name: 'RoleEdited',
+                    displayName: App.localize("SubscribeToNotificationRoleEdited"),
+                    isSubscribed: false
+                });
+            }
+            if (abp.auth.isGranted('Pages.SysAdminLanguages')) {
+                vm.notifications.push({
+                    name: 'LanguageCreated',
+                    displayName: App.localize("SubscribeToNotificationLanguageCreated"),
+                    isSubscribed: false
+                });
+                vm.notifications.push({
+                    name: 'LanguageDeleted',
+                    displayName: App.localize("SubscribeToNotificationLanguageDeleted"),
+                    isSubscribed: false
+                });
+            }
+            if (abp.auth.isGranted('Pages.SysAdminConfiguration')) {
+                vm.notifications.push({
+                    name: 'SettingsChanged',
+                    displayName: App.localize("SubscribeToNotificationSettingsChanged"),
+                    isSubscribed: false
+                });
+            }
+            if (abp.auth.isGranted('Pages.Tenants')) {
+                vm.notifications.push({
+                    name: 'TenantCreated',
+                    displayName: App.localize("SubscribeToNotificationsTenantCreated"),
+                    isSubscribed: false
+                });
+                vm.notifications.push({
+                    name: 'TenantDeleted',
+                    displayName: App.localize("SubscribeToNotificationsTenantDeleted"),
+                    isSubscribed: false
+                });
+            }
+
+            checkNotificationStatus();
+        }
+        function getUserNotifications() {
+            _userService.getMyNotifications(0, 10).then(function(response) {
+                response.data.notifications.forEach(function(userNotification) {
+                    var message = abp.notifications.getFormattedMessageFromUserNotification(userNotification);
+                    vm.userNotifications.push({ message: message, id: userNotification.id, readed: false });
+                });
             });
         }
     }
