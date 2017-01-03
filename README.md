@@ -21,7 +21,7 @@
 
 -Roles - **Finished**
 
--Languages - **95% (Has some bugs [When a language is not supported])** 
+-Languages - **Finished (Review pending)** 
 
 -Configuration - **Finished**
 
