@@ -1,0 +1,31 @@
+@{ Layout = null; }
+<form ng-submit="vm.submit(this)">
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-3x fa-briefcase"></i> </h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <uib-tabset>
+                    <uib-tab index="0" heading="@L("EditionProperties")">
+                        <div class="form-group">
+                            <label for="">@L("Name")</label>
+                            <input type="text" ng-model='vm.edition.displayName' class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="">@L("Price")</label>
+                            <input type="text" ng-model='vm.edition.price' class="form-control">
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="1" heading="@L("Features")">
+
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click='vm.submit()' type="submit">@L("Save")</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>
+    </div>
+</form>

@@ -1,1 +1,36 @@
-﻿<h1>Hey!</h1>
+﻿<div ng-controller='app.views.editions.index as vm'>
+    <h1>@L("Editions")</h1>
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@L("EditionsManagement")
+                        <button type="button" ng-click='vm.createEditEdition()' class="btn btn-default btn-xs pull-right">@L("CreateEdition")</button>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="list-group">
+                                <li ng-repeat='edition in vm.editions' class="list-group-item">
+                                    <div class="list-group-item-heading">
+                                        {{edition.displayName}}
+                                        <p>
+                                            @L("Price") : {{edition.price}}
+                                        </p>
+                                    </div>
+                                    <p class="list-group-item-text">
+                                        <a ng-click='vm.createEditEdition(edition.id)' class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a ng-click='vm.removeEdition(edition.id)' class="btn btn-default btn-sm"><i class="fa fa-trash"></i></a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
