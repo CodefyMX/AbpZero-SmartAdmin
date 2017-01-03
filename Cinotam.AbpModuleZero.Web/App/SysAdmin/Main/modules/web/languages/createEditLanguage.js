@@ -8,19 +8,25 @@
     CreateEditLanguageController.$inject = ['$uibModalInstance', 'abp.services.app.language'];
     function CreateEditLanguageController($uibModalInstance, _languageService) {
         var vm = this;
-        vm.language = {};
-        vm.langName = 'es';
-        vm.langIcon = 'famfamfam-flag-es';
-        vm.submit = function () {
-            var textVal = $('#selectName option:selected').text();
-            var lang = textVal.substring(0, (textVal.indexOf("(") - 1))
-            var clean = lang.replace(/ /g, '').replace(/[\r\n]/g, '');;
-            vm.language = {
-                LangCode: vm.langName,
-                Icon: vm.langIcon,
-                DisplayName: clean
+        vm.lang = {
+            LangCode: 'es-ES',
+            DisplayName: 'Spanish',
+            Icon: 'famfamfam-flag-es'
+        };
+        vm.supportedLanguages = [
+            {
+                LangCode: 'es-ES',
+                DisplayName: 'Spanish',
+                Icon: 'famfamfam-flag-es'
+            },
+            {
+                LangCode: 'es-MX',
+                DisplayName: 'Spanish MX',
+                Icon: 'famfamfam-flag-mx'
             }
-            _languageService.addLanguage(vm.language).then(function () {
+        ]
+        vm.submit = function () {
+            _languageService.addLanguage(vm.lang).then(function () {
                 $uibModalInstance.close('ok');
             });
         }
