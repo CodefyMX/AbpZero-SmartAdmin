@@ -35,7 +35,7 @@
         vm.userProfile = {};
         ////////////////
         vm.hasPhoneNumber = function(number) {
-            
+
             if (number == null || undefined || '') {
                 return false;
             }
@@ -77,6 +77,11 @@
         vm.submit = function() {
             _userService.createUser(vm.userProfile).then(function() {
                 abp.message.success(App.localize("ProfileModified"), App.localize("Success"));
+            });
+        }
+        vm.toggleTwoFactor = function() {
+            _userService.enableOrDisableTwoFactorAuthForUser(vm.userProfile.id).then(function() {
+                activate();
             });
         }
         function activate() {

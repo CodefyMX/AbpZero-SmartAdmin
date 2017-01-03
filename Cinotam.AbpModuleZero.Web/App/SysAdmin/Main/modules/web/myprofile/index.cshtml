@@ -59,8 +59,8 @@
                                     <a ng-if='vm.hasPhoneNumber(vm.userProfile.phoneNumber)' class="btn btn-xs" ng-click='vm.changePhoneNumber()'>{{vm.userProfile.phoneNumber}}</a>
                                 </div>
 
-                                <a ng-if='vm.userProfile.isTwoFactorEnabled' class="btn btn-warining btn-xs" ng-click='vm.disableTwoFactor()'>@L("DisableTwoFactorAuth")</a>
-                                <a ng-if='!vm.userProfile.isTwoFactorEnabled' class="btn btn-xs btn-warning" ng-click='vm.enableTwoFactor()'>@L("EnableTwoFactorAuth")</a>
+                                <a ng-if='vm.userProfile.isTwoFactorEnabled' class="btn btn-primary btn-xs" ng-click='vm.toggleTwoFactor()'>@L("DisableTwoFactorAuth")</a>
+                                <a ng-if='!vm.userProfile.isTwoFactorEnabled' class="btn btn-xs btn-warning" ng-click='vm.toggleTwoFactor()'>@L("EnableTwoFactorAuth")</a>
                                 <br>
                                 <br>
                                 <button type="submit" class="btn btn-primary">@L("Save")</button>
