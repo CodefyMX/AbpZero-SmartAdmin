@@ -8,6 +8,7 @@ namespace Cinotam.ModuleZero.AppModule.Sessions
     public interface ISessionAppService : IApplicationService
     {
         Task<GetCurrentLoginInformationsOutput> GetCurrentLoginInformations();
+        Task<GetCurrentLoginInformationsOutput> GetCurrentLoginInformationsSpa();
         Task<List<ChatLoginInformation>> GetCurrentLoginInformationsLs();
     }
 }
