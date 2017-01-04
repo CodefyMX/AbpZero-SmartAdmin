@@ -1,4 +1,5 @@
 ﻿using Abp;
+using Abp.Configuration.Startup;
 using Abp.Domain.Repositories;
 using Abp.Domain.Services;
 using Abp.Localization;
@@ -15,14 +16,16 @@ namespace Cinotam.AbpModuleZero.Localization
     {
         private readonly IRepository<ApplicationLanguageText, long> _languageTextsRepository;
         private const string DefaultCultureInfo = "en";
+        private IAbpStartupConfiguration _abpStartupConfiguration;
         protected override string L(string name)
         {
             return LocalizationManager.GetString(AbpModuleZeroConsts.LocalizationSourceName, name, new CultureInfo(DefaultCultureInfo));
         }
 
-        public LanguageTextsProvider(IRepository<ApplicationLanguageText, long> languageTextsRepository)
+        public LanguageTextsProvider(IRepository<ApplicationLanguageText, long> languageTextsRepository, IAbpStartupConfiguration abpStartupConfiguration)
         {
             _languageTextsRepository = languageTextsRepository;
+            _abpStartupConfiguration = abpStartupConfiguration;
         }
 
         /// <summary>
@@ -34,21 +37,26 @@ namespace Cinotam.AbpModuleZero.Localization
         public List<LocalizedString> GetLocalizationStringFromAssembly(string sourceLang, string source)
         {
 
+            var localResult = XmlLocations.GetXmlLocationBySourceName(source);
             var provider = new XmlEmbeddedFileLocalizationDictionaryProvider(
-                Assembly.GetExecutingAssembly(),
-                XmlLocations.GetXmlLocationBySourceName(source)
+                Assembly.GetAssembly(localResult.Assembly),
+                localResult.LocalizationNameSpace
                 );
             provider.Initialize(source);
             var result = new List<LocalizedString>();
             var localizationDictionary =
                 provider.Dictionaries.FirstOrDefault(a => a.Value.CultureInfo.Name == sourceLang);
-            var localizedStrings = localizationDictionary.Value.GetAllStrings().ToList();
+            var localizedStrings = localizationDictionary.Value?.GetAllStrings().ToList();
             //Else we load by the source
-            foreach (var localizedString in localizedStrings)
+            if (localizedStrings != null)
             {
+                foreach (var localizedString in localizedStrings)
+                {
 
-                result.Add(localizedString);
+                    result.Add(localizedString);
+                }
             }
+
             return result;
 
         }
@@ -63,9 +71,10 @@ namespace Cinotam.AbpModuleZero.Localization
 
         private List<string> GetLocalizationKeysFromAssembly(string source)
         {
+            var localResult = XmlLocations.GetXmlLocationBySourceName(source);
             var provider = new XmlEmbeddedFileLocalizationDictionaryProvider(
-                Assembly.GetExecutingAssembly(),
-                XmlLocations.GetXmlLocationBySourceName(source)
+                Assembly.GetAssembly(localResult.Assembly),
+                localResult.LocalizationNameSpace
                 );
             provider.Initialize(source);
             //Default dictionary = "en" en should be always available
@@ -132,9 +141,10 @@ namespace Cinotam.AbpModuleZero.Localization
 
             if (!IsXMLAvailableForTheLangCode(languageName, source)) throw new AbpException("Language file not found");
 
+            var localResult = XmlLocations.GetXmlLocationBySourceName(source);
             var provider = new XmlEmbeddedFileLocalizationDictionaryProvider(
-                Assembly.GetExecutingAssembly(),
-                XmlLocations.GetXmlLocationBySourceName(source)
+                Assembly.GetAssembly(localResult.Assembly),
+                localResult.LocalizationNameSpace
                 );
             provider.Initialize(source);
             //Default dictionary = "en" en should be always available
@@ -149,13 +159,16 @@ namespace Cinotam.AbpModuleZero.Localization
 
         public bool IsXMLAvailableForTheLangCode(string langCode, string source)
         {
-            var provider = new XmlEmbeddedFileLocalizationDictionaryProvider(
-                Assembly.GetExecutingAssembly(),
-                XmlLocations.GetXmlLocationBySourceName(source)
-                );
-            provider.Initialize(source);
+            //var provider = new XmlEmbeddedFileLocalizationDictionaryProvider(
+            //    Assembly.GetExecutingAssembly(),
+            //    XmlLocations.GetXmlLocationBySourceName(source)
+            //    );
+
+            var lang =
+                _abpStartupConfiguration.Localization.Sources.FirstOrDefault(a => a.Name == source);
+
             //Default dictionary = "en" en should be always available
-            var result = provider.Dictionaries.Any(a => a.Value.CultureInfo.Name == langCode);
+            var result = lang != null;
             return result;
         }
     }
