@@ -41,6 +41,10 @@
       <HintPath>..\packages\Abp.AutoMapper.1.2.1.0\lib\net452\Abp.AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Abp.Web.Common, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.Common.1.2.1.0\lib\net452\Abp.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Abp.Zero, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Abp.Zero.1.2.0.0\lib\net452\Abp.Zero.dll</HintPath>
       <Private>True</Private>

@@ -1,5 +1,5 @@
 ﻿using Abp.Modules;
-using Abp.UI;
+using Abp.Web;
 using Abp.Zero;
 using System;
 
@@ -11,6 +11,7 @@ namespace Cinotam.AbpModuleZero.Localization.Helpers
         private const string XmlLocationModuleZero = "Cinotam.AbpModuleZero.Localization.SourceZero";
         private const string XmlAbp = "Abp.Localization.Sources.AbpXmlSource";
         private const string XmlAbpZero = "Abp.Zero.Zero.Localization.Source";
+        private const string XmlAbpWeb = "Abp.Web.Common.Web.Localization.AbpWebXmlSource";
         public static LangLocalization GetXmlLocationBySourceName(string source)
         {
             switch (source)
@@ -22,7 +23,7 @@ namespace Cinotam.AbpModuleZero.Localization.Helpers
                 case "AbpZero":
                     return new LangLocalization() { Assembly = typeof(AbpZeroCoreModule), LocalizationNameSpace = XmlAbpZero };
                 case "AbpWeb":
-                    throw new UserFriendlyException("Abp web source is not available");
+                    return new LangLocalization() { Assembly = typeof(AbpWebCommonModule), LocalizationNameSpace = XmlAbpWeb };
                 default:
                     throw new ArgumentOutOfRangeException(nameof(source));
             }
