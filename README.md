@@ -27,7 +27,7 @@
 
 -Audit logs - **Finished**
 
--User profile - **45%**
+-User profile - **Finished**
 
 -Editions - **Not started yet**
 
