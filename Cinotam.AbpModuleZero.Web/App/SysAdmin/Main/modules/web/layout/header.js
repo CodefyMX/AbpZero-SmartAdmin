@@ -12,7 +12,7 @@
         var routes = routerHelper.getStates("ModuleZeroMenu");
         vm.menu = routes;
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-            vm.currentMenuName = toState.menu;
+            vm.currentMenuName = toState.name;
         });
         vm.isLoggedIn = appSession.isLoggedIn;
         vm.getShownUserName = function () {
