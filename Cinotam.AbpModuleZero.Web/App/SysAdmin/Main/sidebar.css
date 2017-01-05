@@ -36,7 +36,11 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
-
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
 }
