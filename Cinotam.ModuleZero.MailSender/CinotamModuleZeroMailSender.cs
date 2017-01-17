@@ -18,8 +18,8 @@ namespace Cinotam.ModuleZero.MailSender
 
         public override void PostInitialize()
         {
-            MailServiceProviders.Add(IocManager.Resolve<CinotamMailSenderDefault>());
-            MailServiceProviders.Add(IocManager.Resolve<SendGridService>());
+            MailServiceProviders.Add(typeof(CinotamMailSenderDefault));
+            MailServiceProviders.Add(typeof(SendGridService));
         }
     }
 }

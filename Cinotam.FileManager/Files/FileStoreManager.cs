@@ -35,7 +35,7 @@ namespace Cinotam.FileManager.Files
                 var result = await fileManagerServiceProvider.SaveImage(input);
                 if (result.ImageSavedInCdn)
                 {
-                    Release(fileManagerServiceProvider);
+                    ReleaseAll(providers);
                     return new SavedFileResult()
                     {
                         AbsolutePath = string.Empty,
@@ -47,7 +47,7 @@ namespace Cinotam.FileManager.Files
                 }
                 if (result.ImageSavedInServer)
                 {
-                    Release(fileManagerServiceProvider);
+                    ReleaseAll(providers);
                     return new SavedFileResult()
                     {
                         AbsolutePath = result.LocalUrl,
@@ -59,7 +59,16 @@ namespace Cinotam.FileManager.Files
                     };
                 }
             }
+            ReleaseAll(providers);
             throw new InvalidOperationException(nameof(IFileManagerServiceProvider));
+        }
+
+        private void ReleaseAll(List<IFileManagerServiceProvider> providers)
+        {
+            foreach (var fileManagerServiceProvider in providers)
+            {
+                Release(fileManagerServiceProvider);
+            }
         }
 
         private List<IFileManagerServiceProvider> GetProviders()
