@@ -20,6 +20,5 @@ namespace Cinotam.FileManager.Files
 
         Task<SavedFileResult> SaveFileFromBase64(string uniquePath, string base64String, bool useCdnFirst, string overrideFormat = "");
         Image GetImageInfo(string absolutePath);
-        SavedFileResult CropImage(string virtualPath, string absoluteFilePath, int inputWidth, string inputCrop);
     }
 }

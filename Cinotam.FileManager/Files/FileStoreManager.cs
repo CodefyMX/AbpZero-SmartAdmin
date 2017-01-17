@@ -1,9 +1,11 @@
-﻿using Castle.Core.Internal;
+﻿using Abp.Dependency;
+using Castle.Core.Internal;
 using Cinotam.FileManager.Contracts;
 using Cinotam.FileManager.Files.Inputs;
 using Cinotam.FileManager.Files.Outputs;
 using Cinotam.FileManager.Local.LocalFileManager;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,14 +15,17 @@ namespace Cinotam.FileManager.Files
     public class FileStoreManager : IFileStoreManager
     {
         private readonly ILocalFileManager _localFileManager;
-
+        private readonly IIocManager _iocManager;
         public FileStoreManager(ILocalFileManager localFileManager)
         {
             _localFileManager = localFileManager;
+            _iocManager = IocManager.Instance;
         }
         public async Task<SavedFileResult> SaveFile(IFileManagerServiceInput input, bool cdnServicesFirst)
         {
-            var providers = FileManagerModule.FileManagerServiceProviders.OrderBy(a => a.IsCdnService).ToList();
+
+            var providers = GetProviders();
+
             if (cdnServicesFirst)
             {
                 providers = providers.OrderByDescending(a => a.IsCdnService).ToList();
@@ -30,6 +35,7 @@ namespace Cinotam.FileManager.Files
                 var result = await fileManagerServiceProvider.SaveImage(input);
                 if (result.ImageSavedInCdn)
                 {
+                    Release(fileManagerServiceProvider);
                     return new SavedFileResult()
                     {
                         AbsolutePath = string.Empty,
@@ -41,6 +47,7 @@ namespace Cinotam.FileManager.Files
                 }
                 if (result.ImageSavedInServer)
                 {
+                    Release(fileManagerServiceProvider);
                     return new SavedFileResult()
                     {
                         AbsolutePath = result.LocalUrl,
@@ -53,6 +60,22 @@ namespace Cinotam.FileManager.Files
                 }
             }
             throw new InvalidOperationException(nameof(IFileManagerServiceProvider));
+        }
+
+        private List<IFileManagerServiceProvider> GetProviders()
+        {
+            var services = new List<IFileManagerServiceProvider>();
+            foreach (var fileManagerServiceProvider in FileManagerModule.FileManagerServiceProviders)
+            {
+                var resolved = _iocManager.Resolve(fileManagerServiceProvider);
+                services.Add((IFileManagerServiceProvider)resolved);
+            }
+            return services;
+        }
+
+        private void Release(IFileManagerServiceProvider service)
+        {
+            _iocManager.Release(service);
         }
 
         public async Task<SavedFileResult> SaveFileFromBase64(string uniquePath, string base64String, bool useCdnFirst, string overrideFormat = "")
@@ -70,7 +93,7 @@ namespace Cinotam.FileManager.Files
                     ["TransformationType"] = 0
                 },
             };
-            var providers = FileManagerModule.FileManagerServiceProviders.OrderBy(a => a.IsCdnService).ToList();
+            var providers = GetProviders();
             if (useCdnFirst)
             {
                 providers = providers.OrderByDescending(a => a.IsCdnService).ToList();
@@ -108,54 +131,6 @@ namespace Cinotam.FileManager.Files
         public Image GetImageInfo(string absolutePath)
         {
             return Image.FromFile(absolutePath);
-        }
-
-        public SavedFileResult CropImage(string virtualPath, string absoluteFilePath, int inputWidth, string inputCrop)
-        {
-            var cropCoords = CreateCropCoordsFromString(inputCrop);
-            var image = GetImageInfo(absoluteFilePath);
-
-            var gr = Graphics.FromImage(image);
-
-
-
-
-            return new SavedFileResult()
-            {
-                VirtualPath = virtualPath,
-                AbsolutePath = absoluteFilePath,
-            };
-        }
-
-
-        private int Y = 0;
-        private int X = 1;
-        private int Yi = 2;
-        private int Xi = 3;
-        private CropCoords CreateCropCoordsFromString(string input)
-        {
-            var splitInfo = input.Split(',');
-            var cropCoords = new CropCoords();
-            for (int s = 0; s < splitInfo.Length; s++)
-            {
-                if (s == X)
-                {
-                    cropCoords.X = Convert.ToDouble(splitInfo[s]);
-                }
-                if (s == Y)
-                {
-                    cropCoords.Y = Convert.ToDouble(splitInfo[s]);
-                }
-                if (s == Xi)
-                {
-                    cropCoords.Xi = Convert.ToDouble(splitInfo[s]);
-                }
-                if (s == Yi)
-                {
-                    cropCoords.Yi = Convert.ToDouble(splitInfo[s]);
-                }
-            }
-            return cropCoords;
         }
     }
 }
