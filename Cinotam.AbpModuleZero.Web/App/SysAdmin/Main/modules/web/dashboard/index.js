@@ -50,7 +50,7 @@
             TenantId: tenantId
         }
         vm.changeLogType = function (option) {
-            requestModel.code = option;
+            requestModel.Code = option;
             vm.update();
         }
         vm.selectVal = 50;
@@ -87,21 +87,13 @@
             else vm.liveUpdate = false;
             liveUpdate(vm.selectVal);
         }
-        // function getIdFromData(index) {
-        //     console.log(vm.chartData.auditLogTimeOutputDtos);
-        //     for (var i = 0; i < vm.chartData.auditLogTimeOutputDtos.length; i++) {
-        //         if (index === i) {
-        //             return vm.chartData.auditLogTimeOutputDtos[index].id;
-        //         }
-        //     }
-        // }
         vm.flotData = [];
         function activate() {
             vm.flotData = [];
             if (!tenantId) tenantId = null;
             getChartData(function (data, labels) {
                 var text = App.localize("Success");
-                if (requestModel.code != 2) {
+                if (requestModel.Code != 2) {
                     text = App.localize("Error");
                 }
                 vm.toolTips = labels;

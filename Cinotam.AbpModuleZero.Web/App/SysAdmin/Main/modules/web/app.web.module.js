@@ -5,6 +5,7 @@
         .module('app.web', [
             'abp',
             'app.core',
-            'angular-flot'
+            'angular-flot',
+            'ngSanitize'
         ]);
 })();

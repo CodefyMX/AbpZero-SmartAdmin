@@ -18,8 +18,8 @@ namespace Cinotam.FileManager
         public override void PostInitialize()
         {
 
-            FileManagerServiceProviders.Add(IocManager.Resolve<LocalFileManager>());
-            FileManagerServiceProviders.Add(IocManager.Resolve<CloudinaryApiConsumer>());
+            FileManagerServiceProviders.Add(typeof(LocalFileManager));
+            FileManagerServiceProviders.Add(typeof(CloudinaryApiConsumer));
         }
     }
 }

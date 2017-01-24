@@ -5,25 +5,29 @@
 
 ![alt tag](https://raw.githubusercontent.com/periface/AbpCinotamZero-SmartAdmin/master/Cinotam.AbpModuleZero.Web/RepoContent/Captura.JPG)
 
-#SPA [Angular js] -Work in progress
+#SPA (ANGULARJS) -Work in progress
+
+**[Using John Papa Module Pattern]**
 
 ![alt tag](https://raw.githubusercontent.com/periface/AbpCinotamZero-SmartAdmin/master/Cinotam.AbpModuleZero.Web/RepoContent/CapturaSpaDash.JPG)
 
-##Spa Status (MPA as reference)
+##SPA Status (MPA as reference)
 
 -Dashboard - **95% (Live update pending)**
 
--Organization units - **90%**
+-Organization units - **Finished**
 
 -Users - **Finished**
 
 -Roles - **Finished**
 
--Languages - **95% (Has some bugs [When a language is not supported])** 
+-Languages - **Finished (Review pending)** 
 
 -Configuration - **Finished**
 
--Audit logs - **Not started yet**
+-Audit logs - **Finished**
+
+-User profile - **Finished**
 
 -Editions - **Not started yet**
 

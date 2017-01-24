@@ -1,4 +1,4 @@
-(function () {
+(function() {
     /**Im to lazy to rewrite code :( */
     'use strict';
     angular
@@ -27,7 +27,8 @@
                 tDefaultSearch: '=defaultSearch',
                 tColDefs: '=colDefs',
                 tServerSide: '=serverSide',
-                tOnInstanceReady: '=instanceReady'
+                tOnInstanceReady: '=instanceReady',
+                tOnTableError: '=onTableError'
             }
         };
         return directive;
@@ -35,21 +36,21 @@
     function link(scope, element, attrs) {
     }
     /* @ngInject */
-    AbpCinotamTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$compile', '$scope', 'WebConst'];
-    function AbpCinotamTableController(_userService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $compile, $scope, webConst) {
+    AbpCinotamTableController.$inject = ['abp.services.app.user', 'DTOptionsBuilder', 'DTColumnBuilder', 'DTColumnDefBuilder', '$compile', '$scope', 'WebConst', 'logger'];
+    function AbpCinotamTableController(_userService, DTOptionsBuilder, DTColumnBuilder, DTColumnDefBuilder, $compile, $scope, webConst, logger) {
         var vm = this;
         $scope.vm.requestData = undefined;
         //Holds the data table instance in the vm.instance variable of the parent
 
-        vm.dtInstance = function (instance) {
+        vm.dtInstance = function(instance) {
             $scope.$parent.vm.instance = instance;
             $scope.$parent.vm.instance.isReady = true;
-            $scope.$parent.vm.instance.updateRequest = function (reqObj) {
+            $scope.$parent.vm.instance.updateRequest = function(reqObj) {
                 $scope.vm.requestData = buildRequestData(reqObj, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
                 ajaxOptions = {
                     url: url,
                     type: 'POST',
-                    data: function () {
+                    data: function() {
                         return $scope.vm.requestData;
                     }
                 }
@@ -59,6 +60,24 @@
                 $scope.vm.tOnInstanceReady(instance);
             }
         };
+        if ($scope.vm.tOnTableError) {
+            $.fn.dataTable.ext.errMode = function(e, settings, techNote, message) {
+                $scope.vm.tOnTableError(settings, helpPage, message);
+            };
+        }
+        else {
+            $.fn.dataTable.ext.errMode = function(e, techNote, message) {
+
+                //For Asp.Net error
+                var responseText = e.jqXHR.responseText;
+                var element = $(responseText).next('title')[0];
+                if (element) {
+                    message = element.innerHTML;
+                }
+                //For Asp.Net error
+                logger.warning(message, {}, 'Error');
+            };
+        }
         vm.dtColumnDefs = [];
         var url = $scope.vm.tAjaxUrl;
         vm.users = [];
@@ -66,13 +85,13 @@
         var ajaxOptions = {};
         if ($scope.vm.tColDefs) {
             //Builds the column definitions
-            $scope.vm.tColDefs.forEach(function (element) {
+            $scope.vm.tColDefs.forEach(function(element) {
                 vm.dtColumnDefs.push(DTColumnDefBuilder.newColumnDef(element.target).renderWith(element.render));
             });
         }
 
         if (!$scope.vm.requestData && !$scope.vm.tServerSide) {
-            $scope.vm.requestData = function () {
+            $scope.vm.requestData = function() {
                 return buildRequestData($scope.vm.tdata, $scope.vm.tProperties, $scope.vm.tDefaultSearch);
             }
         }
@@ -89,8 +108,12 @@
             .withOption('processing', true)
             .withOption('createdRow', createdRow)
             .withOption('stateSave', true)
-            .withOption('serverSide', $scope.vm.tServerSide).withOption('createdRow', createdRow)
-            .withPaginationType('full_numbers').withOption('createdRow', createdRow).withLanguage(webConst.datatablesLangConfig);
+            .withOption('serverSide', $scope.vm.tServerSide)
+            .withOption('createdRow', createdRow)
+            .withPaginationType('full_numbers')
+            .withOption('createdRow', createdRow)
+            .withLanguage(webConst.datatablesLangConfig);
+            // .withOption('responsive', true);
         var btnPosition = '';
         if ($scope.vm.tBtnsPosition) {
             btnPosition = $scope.vm.tBtnsPosition;
@@ -139,7 +162,7 @@
              */
         function buildRequestData(tdata, properties, defaultSearch) {
             var propString = [''];
-            properties.forEach(function (property) {
+            properties.forEach(function(property) {
                 if (!property.onlyHolder) {
                     propString.push(property.Key);
                 }
@@ -200,9 +223,17 @@
                                 .withTitle(App.localize(currentProperty.DisplayName)).withOption(createdColumn).notSortable());
                     }
                     else {
-                        columns.push(
-                            DTColumnBuilder.newColumn(currentProperty.Key)
-                                .withTitle(App.localize(currentProperty.DisplayName)).withOption(createdColumn));
+                        if (currentProperty.Responsive) {
+                            console.log('Is responsive');
+                            columns.push(
+                                DTColumnBuilder.newColumn(currentProperty.Key)
+                                    .withTitle(App.localize(currentProperty.DisplayName)).withClass('none').withOption(createdColumn));
+                        }
+                        else {
+                            columns.push(
+                                DTColumnBuilder.newColumn(currentProperty.Key)
+                                    .withTitle(App.localize(currentProperty.DisplayName)).withOption(createdColumn));
+                        }
                     }
                 }
 

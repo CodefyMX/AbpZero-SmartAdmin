@@ -85,7 +85,11 @@
             }
             e.preventDefault();
             _orgUnits.moveOrgUnit(request)
-                .then(function() {
+                .then(function () {
+                    return true;
+                }).catch(function () {
+                    reloadTree();
+
                 });
             return true;
         }

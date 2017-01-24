@@ -1,0 +1,122 @@
+<div ng-controller='app.views.myprofile.index as vm'>
+    <h1>@L("MyProfile")</h1>
+    <div class="row">
+        <div class="col-xs-6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@L("MyProfileView")</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <form enctype="multipart/form-data" ng-submit="vm.uploadImage()">
+
+                                <img style="width: 100px; height: 150px;" ng-src='{{vm.fileUrl}}' />
+                                <br>
+                                <br>
+                                <input file-model='image' type="file">
+                                <br>
+                                <button type="submit" class="btn btn-default btn-block">@L("Save")</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <br>
+                            <br>
+                            <form ng-submit='vm.submit()'>
+                                <legend>@L("MyInfo")</legend>
+
+                                <div class="form-group">
+                                    <label>@L("UserName")</label>
+                                    <input type="text" class="form-control" disabled ng-model='vm.userProfile.userName'>
+                                </div>
+                                <div class="form-group">
+                                    <label>@L("EmailAddress")</label>
+                                    <input type="text" class="form-control" ng-model='vm.userProfile.emailAddress'>
+                                </div>
+                                <div class="form-group">
+                                    <label>@L("Name")</label>
+                                    <input type="text" class="form-control" ng-model='vm.userProfile.name'>
+                                </div>
+                                <div class="form-group">
+                                    <label>@L("Surname")</label>
+                                    <input type="text" class="form-control" ng-model='vm.userProfile.surname'>
+                                </div>
+                                <div class="form-group">
+                                    <label>@L("MyRoles")</label>
+                                    <p>[{{vm.userProfile.myStringRoles}}]</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>@L("Password")</label>
+                                    <a class="btn btn-xs" ng-click='vm.changePassword()'>@L("ChangePassword")</a>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>@L("PhoneNumber")</label>
+                                    <a ng-if='!vm.hasPhoneNumber(vm.userProfile.phoneNumber)' class="btn btn-xs" ng-click='vm.changePhoneNumber()'>@L("ChangePhoneNumber")</a>
+                                    <a ng-if='vm.hasPhoneNumber(vm.userProfile.phoneNumber)' class="btn btn-xs" ng-click='vm.changePhoneNumber()'>{{vm.userProfile.phoneNumber}}</a>
+                                </div>
+
+                                <a ng-if='vm.userProfile.isTwoFactorEnabled' class="btn btn-primary btn-xs" ng-click='vm.toggleTwoFactor()'>@L("DisableTwoFactorAuth")</a>
+                                <a ng-if='!vm.userProfile.isTwoFactorEnabled' class="btn btn-xs btn-warning" ng-click='vm.toggleTwoFactor()'>@L("EnableTwoFactorAuth")</a>
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-primary">@L("Save")</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@L("Settings")</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div ng-repeat='notification in vm.notifications' class="checkbox">
+                                        <label>
+                                            <input ng-change='vm.subscribe(notification)' type="checkbox" ng-model='notification.isSubscribed'>
+                                            {{notification.displayName}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@L("NotificationsUser")</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="list-group">
+                                        <a ng-repeat='notification in vm.userNotifications' class="list-group-item" id="{{$index}}" ng-if='!notification.readed'>
+                                            <h4 class="list-group-item-heading">{{notification.message}}</h4>
+                                            <p class="list-group-item-text">
+                                                <button type="button" class="btn btn-xs btn-default" ng-click='vm.markAsReaded(notification)'>@L("MarkAsReaded") </button>
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

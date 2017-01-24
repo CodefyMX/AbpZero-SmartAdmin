@@ -1,12 +1,12 @@
 ﻿using Abp.Modules;
-using CInotam.MailSender.Contracts;
+using System;
 using System.Collections.Generic;
 
 namespace Cinotam.ModuleZero.MailSender
 {
     public class MailSenderAbpModule : AbpModule
     {
-        public static List<IMailServiceProvider> MailServiceProviders = new List<IMailServiceProvider>();
+        public static List<Type> MailServiceProviders = new List<Type>();
         protected MailSenderAbpModule()
         {
 

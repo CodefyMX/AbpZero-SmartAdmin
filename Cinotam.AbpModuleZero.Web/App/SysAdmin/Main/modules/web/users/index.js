@@ -21,7 +21,7 @@
             },
             {
                 Key: "Name",
-                DisplayName: App.localize("Surname")
+                DisplayName: App.localize("Name")
             },
             {
                 Key: "EmailAddress",

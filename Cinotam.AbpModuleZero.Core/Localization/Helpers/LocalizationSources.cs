@@ -8,6 +8,9 @@ namespace Cinotam.AbpModuleZero.Localization.Helpers
         public static readonly IList<string> LocalizationSourceNames = new List<string>()
         {
             "AbpModuleZero",
+            "Abp",
+            "AbpWeb",
+            "AbpZero",
         };
 
     }

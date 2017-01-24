@@ -269,8 +269,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
             if (AbpSession.UserId == null) return new NotificationsOutput();
             var userIdentifier = new UserIdentifier(AbpSession.TenantId,
                 AbpSession.UserId.Value);
-            var notifications = (await _userNotificationManager.GetUserNotificationsAsync(userIdentifier));
-            notifications.AddRange((await _userNotificationManager.GetUserNotificationsAsync(userIdentifier, UserNotificationState.Read)));
+            var notifications = await _userNotificationManager.GetUserNotificationsAsync(userIdentifier, state);
 
             if (take.HasValue)
             {

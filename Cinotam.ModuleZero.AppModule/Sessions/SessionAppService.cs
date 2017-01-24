@@ -5,6 +5,7 @@ using Cinotam.AbpModuleZero.Chat;
 using Cinotam.AbpModuleZero.MultiTenancy;
 using Cinotam.AbpModuleZero.Users;
 using Cinotam.ModuleZero.AppModule.Sessions.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,6 +36,31 @@ namespace Cinotam.ModuleZero.AppModule.Sessions
             }
 
             return output;
+        }
+
+        [DisableAuditing]
+        [AbpAllowAnonymous]
+        public async Task<GetCurrentLoginInformationsOutput> GetCurrentLoginInformationsSpa()
+        {
+            try
+            {
+                var output = new GetCurrentLoginInformationsOutput
+                {
+                    User = (await GetCurrentUserAsync()).MapTo<UserLoginInfoDto>()
+                };
+
+                if (AbpSession.TenantId.HasValue)
+                {
+                    output.Tenant = (await GetCurrentTenantAsync()).MapTo<TenantLoginInfoDto>();
+                }
+
+                return output;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
 
         public async Task<List<ChatLoginInformation>> GetCurrentLoginInformationsLs()

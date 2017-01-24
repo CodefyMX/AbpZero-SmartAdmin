@@ -1,0 +1,32 @@
+@{ Layout = null; }
+<form>
+    <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-3x fa-phone"></i> </h4>
+    </div>
+    <div class="modal-body">
+        <div ng-if='vm.showCaptureWindow' class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label>@L("CountryCode")</label>
+                    <select class="form-control" ng-model='vm.selectedCountryCode' ng-options="option.name for option in vm.supportedCountryCodes track by option.countryCode"></select>
+                </div>
+                <div class="form-group">
+                    <label>@L("PhoneNumber")</label>
+                    <input class="form-control" ng-model='vm.phoneInput' type="text">
+                </div>
+            </div>
+        </div>
+        <div ng-if='vm.showConfirmWindow' class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label>@L("ConfirmationCode")</label>
+                    <input class="form-control" ng-model='vm.token' type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click='vm.callFunc(vm.currentFunc)' type="submit">{{vm.buttonText}}</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">@L("Close")</button>
+    </div>
+</form>
