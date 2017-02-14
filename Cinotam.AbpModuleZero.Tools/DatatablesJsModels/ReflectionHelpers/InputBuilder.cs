@@ -5,7 +5,14 @@ namespace Cinotam.AbpModuleZero.Tools.DatatablesJsModels.ReflectionHelpers
 {
     public static class InputBuilder
     {
-        public static T BuildInputByRequest<T>(HttpRequestBase request)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
+        /// <param name="unCapitalize"></param>
+        /// <returns></returns>
+        public static T BuildInputByRequest<T>(HttpRequestBase request, bool unCapitalize = true)
         {
             //Get type
             var obj = typeof(T);
@@ -16,12 +23,25 @@ namespace Cinotam.AbpModuleZero.Tools.DatatablesJsModels.ReflectionHelpers
             {
                 //Get the name of the property
                 var prop = props.Name;
-
+                string[] stringValue;
                 //Create a new property info
                 var propertyInfo = obj.GetProperty(props.Name);
 
-                //Gets the string value from the request params based on the property name
-                var stringValue = request.Params.GetValues(prop);
+                if (unCapitalize)
+                {
+                    var propFixed = prop.First().ToString().ToLower();
+
+                    var firstRemoved = prop.Substring(1);
+
+                    var word = propFixed + firstRemoved;
+                    //Gets the string value from the request params based on the property name
+                    stringValue = request.Params.GetValues(word);
+                }
+
+                else
+                {
+                    stringValue = request.Params.GetValues(prop);
+                }
 
                 //If its empty just ignore it
                 if (stringValue == null) continue;
