@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Web;
-
+using System.Linq;
 namespace Cinotam.AbpModuleZero.Tools.DatatablesJsModels.ReflectionHelpers
 {
     public static class InputBuilder
