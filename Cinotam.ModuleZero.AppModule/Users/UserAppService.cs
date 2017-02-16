@@ -170,11 +170,11 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
                 CheckErrors(await UserManager.CreateAsync(user));
 
-
+                await CurrentUnitOfWork.SaveChangesAsync();
 
                 if (bool.Parse(await SettingManager.GetSettingValueAsync("Abp.Zero.UserManagement.IsEmailConfirmationRequiredForLogin")) && input.SendNotificationMail)
                 {
-
+                    UserManager.UserTokenProvider = new EmailTokenProvider<User, long>();
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
 
                     var serverUrl =
@@ -184,7 +184,7 @@ namespace Cinotam.ModuleZero.AppModule.Users
 
                     await SendEmailConfirmationCode(url, user.EmailAddress);
                 }
-                await CurrentUnitOfWork.SaveChangesAsync();
+
 
                 await UserManager.SetTwoFactorEnabledAsync(user.Id, input.IsTwoFactorEnabled);
 
