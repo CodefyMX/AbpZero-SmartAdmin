@@ -21,40 +21,18 @@ namespace Cinotam.MailSender.SmtpDefault.CinotamMailSender
             var result = new EmailSentResult();
 
             var resultSmtp = await SendViaSmtp(input.MailMessage);
+            //Issue: https://github.com/periface/AbpCinotamZero-SmartAdmin/issues/91
             result.SentWithSmtp = resultSmtp;
             //If was sent via smtp just return
+            result.MailSent = resultSmtp;
             if (resultSmtp) return result;
-            //Implement httpServices here
-
-            //var resultHttp = await SendViaHttp(input);
-            //result.SentWithHttp = resultHttp;
 
             if (result.SentWithHttp || result.SentWithSmtp)
             {
-                input.Sent = true;
+                result.MailSent = true;
             }
             return result;
         }
-
-        //async Task<bool> SendViaHttp(IMail input)
-        //{
-
-        //    var firstOrDefault = input.MailMessage.To.FirstOrDefault();
-        //    if (firstOrDefault == null) return false;
-        //    var mailAddress = input.MailMessage.To.FirstOrDefault();
-        //    if (mailAddress == null) return false;
-        //    var response = await _sendGridService.SendViaHttp(new SendGridMessageInput()
-        //    {
-        //        Body = input.Body,
-        //        EncodeType = input.EncodeType,
-        //        Message = input.MailMessage,
-        //        Subject = input.MailMessage.Subject,
-        //        To = mailAddress.Address,
-        //        TemplateId = input.ExtraParams.TemplateId,
-        //        Substitutions = input.ExtraParams.Substitutions,
-        //    });
-        //    return response.Success;
-        //}
         async Task<bool> SendViaSmtp(MailMessage message)
         {
             try

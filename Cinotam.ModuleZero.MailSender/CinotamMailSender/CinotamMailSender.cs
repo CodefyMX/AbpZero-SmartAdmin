@@ -33,6 +33,7 @@ namespace Cinotam.ModuleZero.MailSender.CinotamMailSender
                     SentWithHttp = mailServiceProvider.IsHttp
                 };
             }
+            //It should release the providers on error
             ReleaseAll(providers);
             throw new InvalidOperationException(nameof(MailSenderAbpModule));
 
