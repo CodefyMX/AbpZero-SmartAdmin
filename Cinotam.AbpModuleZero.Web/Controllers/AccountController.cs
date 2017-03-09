@@ -313,7 +313,8 @@ namespace Cinotam.AbpModuleZero.Web.Controllers
 
         private async Task SendConfirmationMail(string userName, AbpLoginResultType loginResultType, string tenancyName)
         {
-            var user = await _userManager.Users.FirstOrDefaultAsync(a => a.UserName == userName);
+            var user = await _userManager.Users.FirstOrDefaultAsync(a => a.UserName == userName) ??
+                       await _userManager.Users.FirstOrDefaultAsync(a => a.EmailAddress == userName);
             if (user == null) throw CreateExceptionForFailedLoginAttempt(loginResultType, userName, tenancyName);
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
             var confirmationUrl = Url.Action("EmailConfirmation", new
