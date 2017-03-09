@@ -122,84 +122,31 @@ namespace Cinotam.ModuleZero.AppModule.Users
         public async Task CreateUser(CreateUserInput input)
         {
             var user = input.MapTo<User>();
-            var hasher = new PasswordHasher();
             if (user.Id != 0)
             {
                 var userFound = _userRepository.Get(user.Id);
-                var pssw = userFound.Password;
                 var modified = input.MapTo(userFound);
-                modified.Password = pssw;
                 await UserManager.SetTwoFactorEnabledAsync(input.Id, input.IsTwoFactorEnabled);
                 await UserManager.UpdateAsync(modified);
-                if (!string.IsNullOrEmpty(input.Password))
-                {
-                    var checkedPassword = hasher.VerifyHashedPassword(pssw, input.Password);
-                    switch (checkedPassword)
-                    {
-                        case PasswordVerificationResult.Failed:
-                            //Is new password
-                            modified.Password = hasher.HashPassword(input.Password);
-                            await UserManager.UpdateAsync(modified);
-                            break;
-                        //Rev-02.09.2016
-                        //case PasswordVerificationResult.Success:
-                        //    //Is old password
-                        //    modified.Password = pssw;
-                        //    await UserManager.UpdateAsync(modified);
-                        //    break;
-                        //case PasswordVerificationResult.SuccessRehashNeeded:
-                        //    modified.Password = hasher.HashPassword(input.Password);
-                        //    await UserManager.UpdateAsync(modified);
-                        //    break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-                    await _usersAppNotificationsSender.SendUserEditedNotification((await GetCurrentUserAsync()), userFound);
-                }
-                else
-                {
-                    modified.Password = pssw;
-                    await UserManager.UpdateAsync(modified);
-                }
             }
             else
             {
-
                 user.TenantId = AbpSession.TenantId;
                 user.Password = new PasswordHasher().HashPassword(input.Password);
-
                 CheckErrors(await UserManager.CreateAsync(user));
-
-                await CurrentUnitOfWork.SaveChangesAsync();
-
                 if (bool.Parse(await SettingManager.GetSettingValueAsync("Abp.Zero.UserManagement.IsEmailConfirmationRequiredForLogin")) && input.SendNotificationMail)
                 {
-                    UserManager.UserTokenProvider = new EmailTokenProvider<User, long>();
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-
                     var serverUrl =
                         ServerHelpers.GetServerUrl(HttpContext.Current.Request.RequestContext.HttpContext.Request);
-
                     var url = serverUrl + "/Account/EmailConfirmation/?userId=" + user.Id + "&token=" + code;
-
                     await SendEmailConfirmationCode(url, user.EmailAddress);
                 }
-
+                await CurrentUnitOfWork.SaveChangesAsync();
 
                 await UserManager.SetTwoFactorEnabledAsync(user.Id, input.IsTwoFactorEnabled);
-
-
                 await SetDefaultRoles(user);
-
-
-
                 await _usersAppNotificationsSender.SendUserCreatedNotification((await GetCurrentUserAsync()), user);
-
-
-                //if (input.SendNotificationMail)
-                //{
-                //    await SendWelcomeEmail(user, input.Password);
-                //}
             }
         }
 
